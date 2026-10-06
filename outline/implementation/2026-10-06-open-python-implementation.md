@@ -48,7 +48,7 @@ These are intended responsibilities, not a requirement to create empty files ear
 | Area | Planned files | Required interface / responsibility |
 |---|---|---|
 | Configuration and input | `src/open/config.py`, `metadata.py` | `ThresholdConfig`; validate root, variable roles/types, exclusions, thresholds, seed, loss, and supported mode. |
-| Split and prediction | `src/open/splits.py`, `preprocessing.py`, `learners/base.py`, `learners/elastic_net.py`, `risk.py` | `make_split_plan(data, config) -> SplitPlan`; predictor `tune/fit/predict/clone`; `evaluate_risk(..., predictors, split_plan) -> RiskResult` with held-out losses. |
+| Split and prediction | `src/open/splits.py`, `preprocessing.py`, `learners/base.py`, `learners/elastic_net.py`, `risk.py` | `make_split_plan(data, config) -> SplitPlan`; predictor `tune/fit/predict/clone`; `evaluate_risk(..., predictors, split_plan) -> RiskResult` as specified in spec §38.6, with row-keyed held-out losses, per-fold and pooled risks, split/learner provenance, and fit counts. |
 | Local method | `src/open/relevance.py`, `dependence/spearman.py`, `grouping.py`, `classify.py`, `local_target.py` | `analyze_target(data, target, candidates, config, split_plan) -> LocalResult`; raw and normalized broad/unique/group values, classes, stop reason, promoted set. |
 | Network | `src/open/recurse.py`, `graph.py` | `build_network_once(data, root, all_variables, config) -> NetworkRun`; depth, parents, local results, core edges, virtual shared groups. |
 | Stability | `src/open/stability.py`, `consensus.py` | `fit_stable_open(data, root, variables, config) -> OPENResult`; run-level records, unconditional structural probabilities, consensus, target evaluation frequencies. |
@@ -87,8 +87,8 @@ An interface change propagates to dependent phase sheets and receives a decision
 
 ### P1.1 Risk engine
 
-- [ ] Create `src/open/risk.py`, `tests/test_risk.py`. For a continuous target, compute held-out MSE and the training-mean baseline; return per-observation losses and fold/aggregate risk.
-- [ ] Test the training-mean baseline and common split indices across full and ablated fits. Store learner, loss, split seed, candidate set, and model-fit count.
+- [ ] Create `src/open/risk.py`, `tests/test_risk.py`. Implement the immutable `RiskResult` contract in spec §38.6. For a continuous target, compute held-out MSE and a per-fold training-mean baseline; retain row-keyed observation losses, fold means, and the observation-weighted aggregate risk.
+- [ ] Test the baseline uses each fold's training mean; paired full/ablation results share split IDs and identical held-out keys; pooled aggregation is observation-weighted; and learner, loss, split seed/ID, candidate set, selected fold parameters, and outer/tuning fit counts are recorded.
 
 ### P1.2 Relevance quantities and low-gain stop
 

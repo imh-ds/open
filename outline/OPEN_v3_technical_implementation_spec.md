@@ -1616,6 +1616,46 @@ class SharedGroupResult:
     stability_summary: float
 ```
 
+## 38.6 Risk result
+
+The P1 risk engine returns one immutable `RiskResult` for one target, loss, split plan, and model specification. Model variants may be evaluated on a subset of planned folds (as with D-002 pair ablations); only evaluated folds appear in `folds`, and the result records that subset explicitly.
+
+```python
+@dataclass(frozen=True)
+class ObservationLoss:
+    row_position: int
+    observed: float
+    predicted: float
+    loss: float
+
+@dataclass(frozen=True)
+class FoldRisk:
+    repeat_index: int
+    fold_index: int
+    predictors: tuple[str, ...]
+    observations: tuple[ObservationLoss, ...]
+    risk: float  # mean loss over this fold's held-out observations
+    fitted_parameters: dict[str, object] | None
+
+@dataclass(frozen=True)
+class RiskResult:
+    target: str
+    candidate_set: tuple[str, ...]
+    predictors: tuple[str, ...]
+    learner: str | None  # None for the training-mean baseline
+    loss: str
+    split_plan_id: str  # stable fingerprint of the serialized SplitPlan
+    split_seed: int
+    folds: tuple[FoldRisk, ...]
+    aggregate_risk: float  # pooled mean of all recorded held-out losses
+    outer_model_fit_count: int
+    tuning_model_fit_count: int
+```
+
+The stable observation key for paired comparisons is `(repeat_index, fold_index, row_position)`. The `SplitPlan` identified by `split_plan_id` remains the source of train/test assignments; row positions in results identify the held-out observations and preserve input-order provenance. `aggregate_risk` weights each recorded held-out observation equally, including repeated out-of-fold appearances in repeated CV. Fold means are retained so alternative aggregations can be inspected without refitting. For the training-mean baseline, `learner` is `None`, `predictors` is empty, and both fit counts are zero; each fold prediction is the mean target value from that fold's training rows.
+
+`outer_model_fit_count` counts model fits on outer training folds. `tuning_model_fit_count` counts estimator fits performed by inner tuning. Their sum is the reported model-fit count. `fitted_parameters` records the parameters used for that fold, or `None` for the baseline and unfitted cases. Paired full/ablation comparisons must have matching split IDs and identical held-out observation keys for every compared fold.
+
 ---
 
 # 39. Output files

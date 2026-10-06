@@ -129,4 +129,16 @@ The original decision entries above are retained as written; this addendum recor
 - **Evidence:** Algebraic consistency review against spec §§8–12 and D-002; fixed-risk arithmetic and zero/negative gain checks pending P1.2.
 - **Supersedes:** none
 
+### D-009 — RiskResult contract
+
+- **Date / status:** 2026-10-06; accepted as the P1 software interface; implementation and contract tests pending
+- **Applies to:** P1.1–P1.3; `risk.py`, risk result serialization, and paired ablations; spec §38.6
+- **Question:** Which risk outputs and provenance must be retained to make repeated-CV comparisons paired, reproducible, and auditable?
+- **Options considered:** A) Return aggregate scalar risks with minimal metadata; B) return typed per-fold and per-observation losses keyed to held-out row positions, plus pooled risk and explicit split/model provenance.
+- **Decision:** Use the immutable dataclasses `ObservationLoss`, `FoldRisk`, and `RiskResult` specified in spec §38.6. The observation key is `(repeat_index, fold_index, row_position)` and the split-plan fingerprint binds the result to exact train/test indices. Retain observed value, prediction, and loss per held-out row; per-fold mean loss; and `aggregate_risk`, the equally observation-weighted mean over all recorded held-out losses. `RiskResult` also retains target, the full candidate set, predictors actually used, learner, loss, split-plan ID and seed, fitted parameters by evaluated fold, and separate outer/tuning estimator-fit counts. Baseline results identify `learner=None`, use no predictors, and have zero estimator-fit counts; each fold predicts its training-row target mean. A result may include only evaluated folds, but paired comparisons require identical split IDs and held-out keys on each compared fold.
+- **Reason:** Scalar risks cannot prove paired row coverage or distinguish a changed split plan. Row-keyed losses enable matched full/ablation contrasts and support D-002's fold-local evaluated subset; fold and aggregate risks keep both audit views available.
+- **Effect on compatibility / inference:** This fixes the first stable internal P1 risk schema. Aggregate risks weight each held-out appearance equally; repeated K-fold therefore counts each row once per repeat. Partial-fold results must be paired on exactly the same keys before taking a contrast. The contract does not by itself validate CV uncertainty or methodological calibration.
+- **Evidence:** Interface review against plan P1.1, spec §§6–7, 24, 32, 38, and D-002; dataclass, pairing, baseline, aggregation, and fit-count tests pending P1.1.
+- **Supersedes:** none
+
 Before implementing a proposed decision, the agent must either mark it `accepted` with the check or review that supports it, or append a replacement entry and cite the replacement in the progress register. Proposed entries are not validated method rules.
