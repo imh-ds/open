@@ -6,6 +6,7 @@ import pytest
 
 from open.config import AnalysisConfig, OpenConfig, PerformanceCVConfig, PreprocessingConfig
 from open.learners.elastic_net import ElasticNetPredictor
+from open.metadata import validate_metadata
 from open.splits import SplitPlan, make_split_plan
 from open.preprocessing import make_preprocessor
 
@@ -31,6 +32,29 @@ def test_repeated_kfold_plan_is_deterministic_disjoint_and_covers_each_row():
         assert set(split.train_indices).isdisjoint(split.test_indices)
         held_out_counts[list(split.test_indices)] += 1
     assert held_out_counts.tolist() == [2] * len(data)
+
+
+def test_metadata_fixture_and_repeated_kfold_use_the_same_row_order():
+    data = pd.DataFrame(
+        {
+            "y": [2.0, 3.0, 5.0, 7.0, 11.0, 13.0],
+            "x": [1.0, 4.0, 2.0, 8.0, 3.0, 6.0],
+            "z": [9.0, 2.0, 7.0, 1.0, 5.0, 3.0],
+        }
+    )
+    metadata = [
+        {"name": "y", "role": "root", "type": "continuous"},
+        {"name": "x", "role": "candidate", "type": "continuous"},
+        {"name": "z", "role": "candidate", "type": "continuous"},
+    ]
+
+    validated = validate_metadata(data.columns, metadata, root="y")
+    first = make_split_plan(data, config(seed=31, folds=3, repeats=2))
+    second = make_split_plan(data, config(seed=31, folds=3, repeats=2))
+
+    assert validated.candidates == ("x", "z")
+    assert first.splits == second.splits
+    assert first.to_dict() == second.to_dict()
 
 
 def test_split_plan_round_trip_json_and_file(tmp_path):
