@@ -134,9 +134,9 @@ This is the live status and evidence register for the [implementation plan](2026
 ### 2026-10-06 — P1 method contracts resolved
 
 - **Status:** P1 not_started; implementation policies recorded, no P1 software gate evidence
-- **Branch / commit:** `main`; `47db527` (D-002 fold-local pair evaluation), `6adfa14` (D-008 exact relevance denominators), `2dbc66b` (D-009 RiskResult contract), `0304708` (formal D-002 pooled-score equation)
+- **Branch / commit:** `main`; `47db527` (D-002 fold-local pair evaluation), `6adfa14` (D-008 exact relevance denominators), `2dbc66b` (D-009 RiskResult contract), `0304708` (formal D-002 pooled-score equation), `5b57679` (specification whitespace cleanup)
 - **Scope and decision IDs:** fold-local dependence selection and pair evaluation, including pair-specific held-out risk pooling; no-epsilon denominator and low-gain stop; immutable row-keyed `RiskResult`, `FoldRisk`, and `ObservationLoss` contract. Updated the Phase 1 plan and method specification.
-- **Checks:** `git diff --check` passed for each documentation increment. No Python tests run; implementation has not started. The ignored outline documents are now explicitly tracked and committed.
+- **Checks:** `git diff --check` passed for each documentation increment and across the committed decision range after `5b57679`. No Python tests run; implementation has not started. The ignored outline documents are now explicitly tracked and committed.
 - **Artifact / data provenance:** design decisions reviewed against method specification §§6–12, 24, 32, 34, 38 and Phase 1 task dependencies; no analysis data used.
 - **What works:** D-002, D-008, and D-009 now specify pair selection/evaluation denominators, relevance denominator guards, result fields, paired-row keys, pooled aggregation, and fit-count meanings. The decision log records rationale, consequences, and pending evidence checks.
 - **Limits / failures:** Leakage sentinel, arithmetic, pairing, baseline, aggregation, and fit-count tests remain pending their P1 tasks. These decisions do not establish population-level validity or calibration.
