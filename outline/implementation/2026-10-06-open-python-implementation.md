@@ -92,7 +92,7 @@ An interface change propagates to dependent phase sheets and receives a decision
 
 ### P1.2 Relevance quantities and low-gain stop
 
-- [ ] Create `src/open/relevance.py`, `tests/test_relevance.py`. Compute `G=R0-R_full`, `g=G/(R0+eps)`, `B_j=R0-R_j`, `b_j=B_j/(G+eps)`, `U_j=R_-j-R_full`, and `u_j=U_j/(G+eps)` as in §§8–10.
+- [ ] Create `src/open/relevance.py`, `tests/test_relevance.py`. Compute `G=R0-R_full`, `g=G/R0` when `R0 > 0`, `B_j=R0-R_j`, `b_j=B_j/G`, `U_j=R_-j-R_full`, and `u_j=U_j/G` only after the target passes `g >= tau_gain`. Do not add epsilon to risk-scale denominators. `R0 <= 0` or below-threshold/nonpositive total gain returns `LOW_TOTAL_GAIN` before relevance normalization or classification.
 - [ ] If `g < tau_gain`, return `LOW_TOTAL_GAIN` before normalized classes or promotion. Retain signed raw and normalized U where evaluated; clamp only in Phase 5 display.
 - [ ] Check exact arithmetic on fixed risk fixtures, including a negative `U_j`; check that a zero/negative gain stops cleanly.
 

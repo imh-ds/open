@@ -117,4 +117,16 @@ The original decision entries above are retained as written; this addendum recor
 - **Exact gate:** `& 'C:\Users\imhoh\AppData\Local\Programs\Python\Python311\python.exe' -m pytest tests/test_config.py tests/test_metadata.py tests/test_splits_preprocessing.py` -> 37 passed. The same command using `C:\Users\imhoh\AppData\Local\Programs\Python\Python314\python.exe` also passed 37 tests with pytest 9.0.3.
 - **Commit / review:** pytest src-path configuration committed as `462ad23`; full-branch static review passed; `git diff --check b971c92..HEAD` passed.
 
+### D-008 — Relevance denominator and zero-gain policy
+
+- **Date / status:** 2026-10-06; accepted as the initial continuous/MSE implementation policy; arithmetic checks pending
+- **Applies to:** P1.2–P1.3; `relevance.py`, local target calculations; spec §§8–12, 34
+- **Question:** How should relevance ratios avoid undefined or scale-dependent epsilon denominators?
+- **Options considered:** A) Add a configurable/fixed epsilon to the baseline risk and total-gain denominators; B) stop before normalization when total predictive gain is insufficient and use the exact positive denominators thereafter.
+- **Decision:** Use `g_T = G_T / R_0(T)` only when `R_0(T) > 0`; if `R_0(T) <= 0`, stop with `LOW_TOTAL_GAIN`. If `g_T < tau_gain`, also stop before relevance normalization, classification, or promotion. For an eligible target, `G_T > 0` and `b_j = B_j/G_T`, `u_j = U_j/G_T`, and the all-fold group analogue divides by `G_T`, without epsilon. Retain signed raw contrasts and, where defined, signed normalized values. For D-002 pair scores, use the same held-out rows for the pair contrast and pair-specific total-gain denominator; if that denominator is not positive, normalized pair relevance is undefined and cannot pass `tau_group`.
+- **Reason:** An arbitrary epsilon in MSE units changes with target scale and can alter classifications. The specified low-gain stop already provides the guard needed before division by total gain.
+- **Effect on compatibility / inference:** Low-gain targets have raw baseline/full results and a stop reason but no normalized relevance classes. Ratios are undefined when their reference gain is nonpositive and must serialize as null/absent with an explicit status, not zero. This policy does not apply to future outcome types without a separately defined risk-zero rule.
+- **Evidence:** Algebraic consistency review against spec §§8–12 and D-002; fixed-risk arithmetic and zero/negative gain checks pending P1.2.
+- **Supersedes:** none
+
 Before implementing a proposed decision, the agent must either mark it `accepted` with the check or review that supports it, or append a replacement entry and cite the replacement in the progress register. Proposed entries are not validated method rules.
