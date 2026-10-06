@@ -1,0 +1,43 @@
+analysis:
+  root: Anxiety
+  random_seed: 20261004
+  max_depth: 3
+outcome:
+  type: continuous
+  loss: mse
+learner:
+  mode: fixed
+  library:
+    - elastic_net
+  retune_ablation: false
+preprocessing:
+  missing: median
+  standardize_linear: true
+  one_hot_categorical: false
+dependence:
+  method: spearman
+  absolute: true
+thresholds:
+  min_total_gain_relative: 0.02
+  broad_relative: 0.05
+  unique_relative: 0.05
+  group_relative: 0.10
+  dependence_pair: 0.70
+  stability: 0.70
+performance_cv:
+  folds: 5
+  repeats: 2
+  grouped: false
+tuning_cv:
+  folds: 3
+stability:
+  method: subsample
+  fraction: 0.80
+  n_resamples: 100
+  final_resamples: 500
+visualization:
+  show_screened: true
+  show_unstable: false
+  distance_mode: visual_strength
+  edge_width: unique
+  edge_opacity: stability

@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "open-predictive-expansion"
+version = "0.1.0.dev0"
+description = "Development package for Outcome-centered Predictive Expansion Network"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "numpy>=1.24,<3",
+  "pandas>=2.0,<4",
+  "scipy>=1.10,<2",
+  "scikit-learn>=1.3,<2",
+  "PyYAML>=6,<7",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4,<9"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
