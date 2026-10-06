@@ -116,4 +116,3 @@ def validate_metadata(
         for name in names
     )
     return MetadataValidation(root, tuple(candidates), visible)
-

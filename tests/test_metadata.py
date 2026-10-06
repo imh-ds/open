@@ -88,4 +88,3 @@ def test_unsupported_candidate_type_fails_explicitly():
     data = records(["y", "binary"], binary={"role": "candidate", "type": "binary"})
     with pytest.raises(ValueError, match="unsupported type 'binary'"):
         validate_metadata(["y", "binary"], data, "y")
-
