@@ -491,6 +491,15 @@ u_{\{a,b\}\rightarrow T}
 
 Under the fold-local selection policy, calculate both `U_{a,b}` and its reference gain on the same held-out rows from folds that selected `(a,b)`. If that pair-specific reference gain is not positive, retain the raw contrast and report normalized group relevance as undefined; the pair cannot meet the group threshold.
 
+Let `E_{a,b}` be the pooled held-out observations from folds whose training rows selected `(a,b)`. Pool means over all observations in `E_{a,b}` (including one appearance per repeat), and define:
+
+\[
+G_{T\mid a,b}=R_0(T;E_{a,b})-R_{\mathrm{full}}(T;E_{a,b}),\qquad
+U_{\{a,b\}\rightarrow T\mid E}=R_{-(a,b)}(T;E_{a,b})-R_{\mathrm{full}}(T;E_{a,b}).
+\]
+
+Then `u_{a,b|E} = U_{a,b|E}/G_{T|a,b}` when `G_{T|a,b} > 0`. The baseline, full, and pair-ablated risks must use identical keys `(repeat_index, fold_index, row_position)` in `E_{a,b}`. Record selected and evaluated fold counts/frequencies against all planned outer folds. This pair-specific denominator makes explicit that pair relevance is conditional on the folds where training-fold dependence selected the pair; it is not numerically interchangeable with all-fold individual relevance.
+
 Prototype threshold:
 
 ```text
