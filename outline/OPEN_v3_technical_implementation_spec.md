@@ -1,7 +1,7 @@
 # Outcome-centered Predictive Expansion Network (OPEN)
 ## Technical Specification and Repository Implementation Guide — Version 3
 
-> **Status:** Working methodological specification for implementation and simulation testing.  
+> **Status:** Working methodological specification for implementation and simulation testing.
 > **Purpose:** Define the exact statistical objects, processing order, classification rules, recursion logic, resampling strategy, output schema, visualization rules, and software architecture required to build the method reproducibly.
 
 ---
