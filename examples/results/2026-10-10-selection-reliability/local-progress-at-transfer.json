@@ -1,0 +1,318 @@
+{
+  "completed": [
+    {
+      "id": "noise-n80-r1",
+      "status": "complete",
+      "retained": [],
+      "scores": {
+        "baseline": {
+          "mse": 0.9657516106723097,
+          "rmse": 0.9827266205167691,
+          "skill": 0.0
+        },
+        "full": {
+          "mse": 1.143878753818431,
+          "rmse": 1.0695226756915586,
+          "skill": -0.18444405494919947
+        },
+        "retained": {
+          "mse": 0.9657516106723097,
+          "rmse": 0.9827266205167691,
+          "skill": 0.0
+        }
+      },
+      "elapsed_seconds": 6424.040944800014,
+      "failure": null
+    },
+    {
+      "id": "interaction-n80-r1",
+      "status": "complete",
+      "retained": [
+        "a",
+        "b"
+      ],
+      "scores": {
+        "baseline": {
+          "mse": 4.326240487055061,
+          "rmse": 2.0799616551886384,
+          "skill": 0.0
+        },
+        "full": {
+          "mse": 2.2137082857254224,
+          "rmse": 1.4878535834299766,
+          "skill": 0.488306696692137
+        },
+        "retained": {
+          "mse": 2.2137082857254224,
+          "rmse": 1.4878535834299766,
+          "skill": 0.488306696692137
+        }
+      },
+      "elapsed_seconds": 6451.201966299966,
+      "failure": null
+    },
+    {
+      "id": "redundant-n80-r0",
+      "status": "complete",
+      "retained": [
+        "a",
+        "b"
+      ],
+      "scores": {
+        "baseline": {
+          "mse": 4.343329070258409,
+          "rmse": 2.084065514867133,
+          "skill": 0.0
+        },
+        "full": {
+          "mse": 0.16616540352096815,
+          "rmse": 0.4076339086986854,
+          "skill": 0.9617423868113493
+        },
+        "retained": {
+          "mse": 0.16616540352096815,
+          "rmse": 0.4076339086986854,
+          "skill": 0.9617423868113493
+        }
+      },
+      "elapsed_seconds": 6454.314146099961,
+      "failure": null
+    },
+    {
+      "id": "ordinary-n80-r1",
+      "status": "complete",
+      "retained": [
+        "a"
+      ],
+      "scores": {
+        "baseline": {
+          "mse": 3.8675298363682935,
+          "rmse": 1.9666036297048506,
+          "skill": 0.0
+        },
+        "full": {
+          "mse": 0.151410664383937,
+          "rmse": 0.3891152327832168,
+          "skill": 0.9608508089685184
+        },
+        "retained": {
+          "mse": 0.14178314655452032,
+          "rmse": 0.37654102904533565,
+          "skill": 0.9633401285695942
+        }
+      },
+      "elapsed_seconds": 6460.36018920003,
+      "failure": null
+    },
+    {
+      "id": "redundant-n80-r1",
+      "status": "complete",
+      "retained": [
+        "a",
+        "b"
+      ],
+      "scores": {
+        "baseline": {
+          "mse": 4.079119016559523,
+          "rmse": 2.019682900001761,
+          "skill": 0.0
+        },
+        "full": {
+          "mse": 0.167745208476173,
+          "rmse": 0.40956709886924875,
+          "skill": 0.9588770987570607
+        },
+        "retained": {
+          "mse": 0.167745208476173,
+          "rmse": 0.40956709886924875,
+          "skill": 0.9588770987570607
+        }
+      },
+      "elapsed_seconds": 6471.12037389999,
+      "failure": null
+    },
+    {
+      "id": "noise-n80-r0",
+      "status": "complete",
+      "retained": [],
+      "scores": {
+        "baseline": {
+          "mse": 1.050267787378703,
+          "rmse": 1.0248257351270522,
+          "skill": 0.0
+        },
+        "full": {
+          "mse": 1.3735175551614214,
+          "rmse": 1.171971652883047,
+          "skill": -0.3077784272423485
+        },
+        "retained": {
+          "mse": 1.050267787378703,
+          "rmse": 1.0248257351270522,
+          "skill": 0.0
+        }
+      },
+      "elapsed_seconds": 6475.949701300007,
+      "failure": null
+    },
+    {
+      "id": "interaction-n80-r0",
+      "status": "complete",
+      "retained": [
+        "a",
+        "b"
+      ],
+      "scores": {
+        "baseline": {
+          "mse": 4.245719907571498,
+          "rmse": 2.06051447642852,
+          "skill": 0.0
+        },
+        "full": {
+          "mse": 2.3919626019848916,
+          "rmse": 1.546597103962403,
+          "skill": 0.4366178989529561
+        },
+        "retained": {
+          "mse": 2.3919626019848916,
+          "rmse": 1.546597103962403,
+          "skill": 0.4366178989529561
+        }
+      },
+      "elapsed_seconds": 6487.389847500017,
+      "failure": null
+    },
+    {
+      "id": "ordinary-n80-r0",
+      "status": "complete",
+      "retained": [
+        "a"
+      ],
+      "scores": {
+        "baseline": {
+          "mse": 4.222812809083103,
+          "rmse": 2.054948371391141,
+          "skill": 0.0
+        },
+        "full": {
+          "mse": 0.18145815191613496,
+          "rmse": 0.4259790510296662,
+          "skill": 0.957029079876374
+        },
+        "retained": {
+          "mse": 0.16822587146578358,
+          "rmse": 0.41015347306317373,
+          "skill": 0.9601626027315404
+        }
+      },
+      "elapsed_seconds": 6496.500461400021,
+      "failure": null
+    },
+    {
+      "id": "noise-n180-r0",
+      "status": "complete",
+      "retained": [],
+      "scores": {
+        "baseline": {
+          "mse": 0.9348399055906702,
+          "rmse": 0.966871193898479,
+          "skill": 0.0
+        },
+        "full": {
+          "mse": 1.0661409715255312,
+          "rmse": 1.0325410265580401,
+          "skill": -0.14045299644317133
+        },
+        "retained": {
+          "mse": 0.9348399055906702,
+          "rmse": 0.966871193898479,
+          "skill": 0.0
+        }
+      },
+      "elapsed_seconds": 7577.499311299995,
+      "failure": null
+    },
+    {
+      "id": "redundant-n180-r0",
+      "status": "complete",
+      "retained": [
+        "a",
+        "b"
+      ],
+      "scores": {
+        "baseline": {
+          "mse": 4.225776261743058,
+          "rmse": 2.0556692977575595,
+          "skill": 0.0
+        },
+        "full": {
+          "mse": 0.124411283765403,
+          "rmse": 0.3527198374991163,
+          "skill": 0.9705589515252553
+        },
+        "retained": {
+          "mse": 0.124411283765403,
+          "rmse": 0.3527198374991163,
+          "skill": 0.9705589515252553
+        }
+      },
+      "elapsed_seconds": 7577.939834400022,
+      "failure": null
+    },
+    {
+      "id": "interaction-n180-r0",
+      "status": "complete",
+      "retained": [
+        "a",
+        "b"
+      ],
+      "scores": {
+        "baseline": {
+          "mse": 3.6996669089577296,
+          "rmse": 1.9234518213248102,
+          "skill": 0.0
+        },
+        "full": {
+          "mse": 1.37578154222188,
+          "rmse": 1.172937143337988,
+          "skill": 0.6281336736313201
+        },
+        "retained": {
+          "mse": 1.37578154222188,
+          "rmse": 1.172937143337988,
+          "skill": 0.6281336736313201
+        }
+      },
+      "elapsed_seconds": 7582.686026599957,
+      "failure": null
+    },
+    {
+      "id": "ordinary-n180-r0",
+      "status": "complete",
+      "retained": [
+        "a"
+      ],
+      "scores": {
+        "baseline": {
+          "mse": 4.21085154409607,
+          "rmse": 2.0520359509755357,
+          "skill": 0.0
+        },
+        "full": {
+          "mse": 0.11226680571265722,
+          "rmse": 0.33506239077619143,
+          "skill": 0.9733386930085285
+        },
+        "retained": {
+          "mse": 0.1125270250597588,
+          "rmse": 0.33545048078629847,
+          "skill": 0.9732768956869234
+        }
+      },
+      "elapsed_seconds": 7612.981535099971,
+      "failure": null
+    }
+  ],
+  "planned": 48,
+  "elapsed_seconds": 7615.5477517999825
+}

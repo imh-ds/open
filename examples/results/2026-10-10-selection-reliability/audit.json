@@ -1,0 +1,12 @@
+{
+  "planned_cases": 48,
+  "completed_cases": 48,
+  "planned_assessments": 4800,
+  "completed_assessments": 4800,
+  "independent_test_predictions": 48000,
+  "warnings": 0,
+  "local_outer_fits": 240000,
+  "local_tuning_fits": 1728000,
+  "checks": "source/protocol, regenerated inputs/samples/splits, training sizes, local arithmetic, classes/promotions, relation counts, retention, test scores and dataset summaries",
+  "limit": "Does not independently refit every local model or establish scientific calibration"
+}

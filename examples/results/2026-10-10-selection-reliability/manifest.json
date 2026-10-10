@@ -1,0 +1,507 @@
+{
+  "scope": "development_root_selection",
+  "config": {
+    "analysis": {
+      "root": "y",
+      "random_seed": 613,
+      "max_depth": 1
+    },
+    "outcome": {
+      "type": "continuous",
+      "loss": "mse"
+    },
+    "learner": {
+      "mode": "fixed",
+      "library": [
+        "gbm"
+      ],
+      "retune_ablation": false
+    },
+    "preprocessing": {
+      "missing": "median",
+      "standardize_linear": true,
+      "one_hot_categorical": false
+    },
+    "dependence": {
+      "method": "spearman",
+      "absolute": true
+    },
+    "thresholds": {
+      "min_total_gain_relative": 0.02,
+      "broad_relative": 0.05,
+      "unique_relative": 0.05,
+      "group_relative": 0.1,
+      "dependence_pair": 0.7,
+      "stability": 0.7
+    },
+    "performance_cv": {
+      "folds": 5,
+      "repeats": 2,
+      "grouped": false
+    },
+    "tuning_cv": {
+      "folds": 3
+    },
+    "stability": {
+      "method": "subsample",
+      "fraction": 0.8,
+      "n_resamples": 100,
+      "final_resamples": 500,
+      "scope": "layer_consensus"
+    },
+    "visualization": {
+      "show_screened": true,
+      "show_unstable": true,
+      "distance_mode": "visual_strength",
+      "edge_width": "unique",
+      "edge_opacity": "stability"
+    }
+  },
+  "specs": [
+    {
+      "id": "noise-n80-r0",
+      "scenario": "noise",
+      "n": 80,
+      "repetition": 0,
+      "seed": 171001
+    },
+    {
+      "id": "noise-n80-r1",
+      "scenario": "noise",
+      "n": 80,
+      "repetition": 1,
+      "seed": 171002
+    },
+    {
+      "id": "noise-n80-r2",
+      "scenario": "noise",
+      "n": 80,
+      "repetition": 2,
+      "seed": 171003
+    },
+    {
+      "id": "noise-n80-r3",
+      "scenario": "noise",
+      "n": 80,
+      "repetition": 3,
+      "seed": 171004
+    },
+    {
+      "id": "noise-n180-r0",
+      "scenario": "noise",
+      "n": 180,
+      "repetition": 0,
+      "seed": 171101
+    },
+    {
+      "id": "noise-n180-r1",
+      "scenario": "noise",
+      "n": 180,
+      "repetition": 1,
+      "seed": 171102
+    },
+    {
+      "id": "noise-n180-r2",
+      "scenario": "noise",
+      "n": 180,
+      "repetition": 2,
+      "seed": 171103
+    },
+    {
+      "id": "noise-n180-r3",
+      "scenario": "noise",
+      "n": 180,
+      "repetition": 3,
+      "seed": 171104
+    },
+    {
+      "id": "noise-n400-r0",
+      "scenario": "noise",
+      "n": 400,
+      "repetition": 0,
+      "seed": 171201
+    },
+    {
+      "id": "noise-n400-r1",
+      "scenario": "noise",
+      "n": 400,
+      "repetition": 1,
+      "seed": 171202
+    },
+    {
+      "id": "noise-n400-r2",
+      "scenario": "noise",
+      "n": 400,
+      "repetition": 2,
+      "seed": 171203
+    },
+    {
+      "id": "noise-n400-r3",
+      "scenario": "noise",
+      "n": 400,
+      "repetition": 3,
+      "seed": 171204
+    },
+    {
+      "id": "ordinary-n80-r0",
+      "scenario": "ordinary",
+      "n": 80,
+      "repetition": 0,
+      "seed": 181001
+    },
+    {
+      "id": "ordinary-n80-r1",
+      "scenario": "ordinary",
+      "n": 80,
+      "repetition": 1,
+      "seed": 181002
+    },
+    {
+      "id": "ordinary-n80-r2",
+      "scenario": "ordinary",
+      "n": 80,
+      "repetition": 2,
+      "seed": 181003
+    },
+    {
+      "id": "ordinary-n80-r3",
+      "scenario": "ordinary",
+      "n": 80,
+      "repetition": 3,
+      "seed": 181004
+    },
+    {
+      "id": "ordinary-n180-r0",
+      "scenario": "ordinary",
+      "n": 180,
+      "repetition": 0,
+      "seed": 181101
+    },
+    {
+      "id": "ordinary-n180-r1",
+      "scenario": "ordinary",
+      "n": 180,
+      "repetition": 1,
+      "seed": 181102
+    },
+    {
+      "id": "ordinary-n180-r2",
+      "scenario": "ordinary",
+      "n": 180,
+      "repetition": 2,
+      "seed": 181103
+    },
+    {
+      "id": "ordinary-n180-r3",
+      "scenario": "ordinary",
+      "n": 180,
+      "repetition": 3,
+      "seed": 181104
+    },
+    {
+      "id": "ordinary-n400-r0",
+      "scenario": "ordinary",
+      "n": 400,
+      "repetition": 0,
+      "seed": 181201
+    },
+    {
+      "id": "ordinary-n400-r1",
+      "scenario": "ordinary",
+      "n": 400,
+      "repetition": 1,
+      "seed": 181202
+    },
+    {
+      "id": "ordinary-n400-r2",
+      "scenario": "ordinary",
+      "n": 400,
+      "repetition": 2,
+      "seed": 181203
+    },
+    {
+      "id": "ordinary-n400-r3",
+      "scenario": "ordinary",
+      "n": 400,
+      "repetition": 3,
+      "seed": 181204
+    },
+    {
+      "id": "redundant-n80-r0",
+      "scenario": "redundant",
+      "n": 80,
+      "repetition": 0,
+      "seed": 191001
+    },
+    {
+      "id": "redundant-n80-r1",
+      "scenario": "redundant",
+      "n": 80,
+      "repetition": 1,
+      "seed": 191002
+    },
+    {
+      "id": "redundant-n80-r2",
+      "scenario": "redundant",
+      "n": 80,
+      "repetition": 2,
+      "seed": 191003
+    },
+    {
+      "id": "redundant-n80-r3",
+      "scenario": "redundant",
+      "n": 80,
+      "repetition": 3,
+      "seed": 191004
+    },
+    {
+      "id": "redundant-n180-r0",
+      "scenario": "redundant",
+      "n": 180,
+      "repetition": 0,
+      "seed": 191101
+    },
+    {
+      "id": "redundant-n180-r1",
+      "scenario": "redundant",
+      "n": 180,
+      "repetition": 1,
+      "seed": 191102
+    },
+    {
+      "id": "redundant-n180-r2",
+      "scenario": "redundant",
+      "n": 180,
+      "repetition": 2,
+      "seed": 191103
+    },
+    {
+      "id": "redundant-n180-r3",
+      "scenario": "redundant",
+      "n": 180,
+      "repetition": 3,
+      "seed": 191104
+    },
+    {
+      "id": "redundant-n400-r0",
+      "scenario": "redundant",
+      "n": 400,
+      "repetition": 0,
+      "seed": 191201
+    },
+    {
+      "id": "redundant-n400-r1",
+      "scenario": "redundant",
+      "n": 400,
+      "repetition": 1,
+      "seed": 191202
+    },
+    {
+      "id": "redundant-n400-r2",
+      "scenario": "redundant",
+      "n": 400,
+      "repetition": 2,
+      "seed": 191203
+    },
+    {
+      "id": "redundant-n400-r3",
+      "scenario": "redundant",
+      "n": 400,
+      "repetition": 3,
+      "seed": 191204
+    },
+    {
+      "id": "interaction-n80-r0",
+      "scenario": "interaction",
+      "n": 80,
+      "repetition": 0,
+      "seed": 201001
+    },
+    {
+      "id": "interaction-n80-r1",
+      "scenario": "interaction",
+      "n": 80,
+      "repetition": 1,
+      "seed": 201002
+    },
+    {
+      "id": "interaction-n80-r2",
+      "scenario": "interaction",
+      "n": 80,
+      "repetition": 2,
+      "seed": 201003
+    },
+    {
+      "id": "interaction-n80-r3",
+      "scenario": "interaction",
+      "n": 80,
+      "repetition": 3,
+      "seed": 201004
+    },
+    {
+      "id": "interaction-n180-r0",
+      "scenario": "interaction",
+      "n": 180,
+      "repetition": 0,
+      "seed": 201101
+    },
+    {
+      "id": "interaction-n180-r1",
+      "scenario": "interaction",
+      "n": 180,
+      "repetition": 1,
+      "seed": 201102
+    },
+    {
+      "id": "interaction-n180-r2",
+      "scenario": "interaction",
+      "n": 180,
+      "repetition": 2,
+      "seed": 201103
+    },
+    {
+      "id": "interaction-n180-r3",
+      "scenario": "interaction",
+      "n": 180,
+      "repetition": 3,
+      "seed": 201104
+    },
+    {
+      "id": "interaction-n400-r0",
+      "scenario": "interaction",
+      "n": 400,
+      "repetition": 0,
+      "seed": 201201
+    },
+    {
+      "id": "interaction-n400-r1",
+      "scenario": "interaction",
+      "n": 400,
+      "repetition": 1,
+      "seed": 201202
+    },
+    {
+      "id": "interaction-n400-r2",
+      "scenario": "interaction",
+      "n": 400,
+      "repetition": 2,
+      "seed": 201203
+    },
+    {
+      "id": "interaction-n400-r3",
+      "scenario": "interaction",
+      "n": 400,
+      "repetition": 3,
+      "seed": 201204
+    }
+  ],
+  "workers": 8,
+  "source_hashes": {
+    "examples/run_selection_reliability.py": "7f3424e4c1c85364eb6cd4103792a0748c9834bba10740647f686c33e8e74a67",
+    "src/open/__init__.py": "cab0826c3976489bd91e3701b2b230229b272353f1dcb8e0f84cf6c3d05b99c4",
+    "src/open/aggregation.py": "75ca06f0fa964c0d628113f9e2e97000d5d6875670a54faf51ccd23d9784f66b",
+    "src/open/analysis.py": "18a8f5c5b77e02675510c10f4275f014255f1ac8c274b5c35e9170fa408780e5",
+    "src/open/classify.py": "4aac44fbf03371fdf8225cbece72c8846614aa9abb563ea9cdee8a04a8a2afc4",
+    "src/open/config.py": "3861d3813bc3aba0fb55d819f790b255969a2e1fe969d861d4996a8cf9cdf205",
+    "src/open/consensus.py": "9753460c1aba3a7886eaf3acc99ed31acb47530a47ef3c1cb58e2fe627d83fa1",
+    "src/open/dependence/spearman.py": "9be3a6b3f7f915171c8563a211ddc7b5b92c8c8d574c2ff5311ebefbd09b8f24",
+    "src/open/diagnostics.py": "497d9d5751b58464a6c17e34417f8a0cb617226b41ae44aa642a5e0aeaa18efb",
+    "src/open/effects.py": "2869b95e4b871964dbed79f881a501c2e0ec947a3df027bdce6e5fad6b46a36f",
+    "src/open/evaluation.py": "4c22a3eb13ba68377c91d534cc2217c26c6caeb1dbafc31c8415f71a4203f9e3",
+    "src/open/exploration.py": "f02bba4f32f0223595d230ef14bebd0ece593a80d5b61230bfe8ff1208fe0a28",
+    "src/open/exploratory_visualization.py": "ee1b3c1e179f977f3cd1b760dd0d2597d64c7a8610001eb1e5e3698127bd5cc5",
+    "src/open/graph.py": "87b0ef2bc9fc6734fc7ad6a226d8eab9361b5d8a362052441f0b537732a5e2df",
+    "src/open/grouping.py": "92446e5303fbbef98b56f1bfbce57ab2d3f4f29d8322839438b335d99a09fd71",
+    "src/open/io.py": "9867b1babd59190aa921431c534e95532d16ee5ce6a0a14a5315fe410ea01015",
+    "src/open/layer_artifacts.py": "971d2e53edea6b8b335c63320be4deea5e92d7e385a838e187eebf40503b5885",
+    "src/open/layer_consensus.py": "7db99886ab5baa6889d148a9c58d47bc567eeb92e8d522e252126529db5568cf",
+    "src/open/layer_io.py": "631f63ed1d6b8a0d5c9878d43a0c92aea20d31b0fecd525cc01ff85844281359",
+    "src/open/layer_sensitivity.py": "ff6d3a68704416ed00c316c2f21de00d4f40150da1cd8094f9b2eb6c08976a5f",
+    "src/open/layer_stability.py": "d9fc389dcec490ff0a44da5603d218f9b0426e318bc551f2e2b0214bdc378207",
+    "src/open/layer_types.py": "67c7d2dac27ec4fe25af67d5c8fccbde7dfbdbd20e99cbbfcfb756441b8e06cf",
+    "src/open/layer_visualization.py": "6fe2fdca8f6aced947a62621808078ed08be58dde8810950c8b5c5b2d28fa5fd",
+    "src/open/learners/__init__.py": "7ead0b9a67d455b46002936cc2de788b0a753a8df7eefa97ab7b2812f8178e09",
+    "src/open/learners/base.py": "fc60eca06c2dfc603dfce67d29e5f0d3c6f12099fa6668c459f29e3590e277c7",
+    "src/open/learners/elastic_net.py": "4de79c511803c617dab5d134121f5bc71f3f9d02ab2b71d940909d92c6f1fcfc",
+    "src/open/learners/trees.py": "35352cabf0b870bec666833ab3110f9ecc0e521fab176ce35715edfd98a7647a",
+    "src/open/local_target.py": "fcee84048c170a083a6249a90c29d9b7081bad8ba1904538255e96e3f66771f0",
+    "src/open/metadata.py": "2243507079593c7514eec4579a280f6e118c257bf7399788fc123ea793e57feb",
+    "src/open/preprocessing.py": "a48fd3a0e0d99c1d1cc053d094672d649b946b6546f617d32af34bbccf0eb94f",
+    "src/open/recurse.py": "f6234969d072df8026d37398d004634b54f48a4a48ce65789cf66b383fd6b635",
+    "src/open/relevance.py": "7de7117234a974338b8a0465e72dc8fdafbd21d99bc707a0ccdb23b72d6f8440",
+    "src/open/reporting.py": "94b8a972e23c7a502685c885b11407ec3e98e3d1b7da1d81ff036560f5c76f05",
+    "src/open/risk.py": "47b3bafe0921a540f44179e0b132fc4df5adec4b257ecff9cc61cbbe869d9534",
+    "src/open/splits.py": "9675f12a27f12f54d3458b6dd2fb9f68aa53d8041515cd4d96ec06bac17952f3",
+    "src/open/stability.py": "08ddb9e06162e89936699b2d60e10b18acd4b9c74c3e96cced501d1fc334feba",
+    "src/open/stability_types.py": "5de840aac8ad4ffc7afa1e4f9dd4429b4bf164bc8ad532ba498863ac27c8f0ce",
+    "src/open/visualization.py": "463c461d9c4361a68da8ce6d6ba8f6f7b57d09a9636486d49850e58cc8e72e04"
+  },
+  "protocol_hash": "d59318247c28d6378e90f2c8766373f927a4ebf5b3ac558184e0d32a4aff4d7c",
+  "execution_sources": [
+    {
+      "runner_hash": "6d3ae3522725a129a1ad67832e3a1bb93101fb83550e34689595223169b71315",
+      "workers": 16,
+      "dispatch": "repetition/sample-size/scenario",
+      "reason": "Resume after interruption; checkpointing and dispatch scheduling only; fixed statistical settings"
+    }
+  ],
+  "distributed_execution": {
+    "planned": 48,
+    "completed": 48,
+    "failed": 0,
+    "provider": "GitHub Actions",
+    "github_run": "38086809646",
+    "elapsed_seconds": null,
+    "note": "Mixed local checkpoint and distributed execution; no pristine runtime benchmark.",
+    "case_execution_records": [
+      "noise-n80-r0/actions-execution.json",
+      "noise-n80-r1/actions-execution.json",
+      "noise-n80-r2/actions-execution.json",
+      "noise-n80-r3/actions-execution.json",
+      "noise-n180-r0/actions-execution.json",
+      "noise-n180-r1/actions-execution.json",
+      "noise-n180-r2/actions-execution.json",
+      "noise-n180-r3/actions-execution.json",
+      "noise-n400-r0/actions-execution.json",
+      "noise-n400-r1/actions-execution.json",
+      "noise-n400-r2/actions-execution.json",
+      "noise-n400-r3/actions-execution.json",
+      "ordinary-n80-r0/actions-execution.json",
+      "ordinary-n80-r1/actions-execution.json",
+      "ordinary-n80-r2/actions-execution.json",
+      "ordinary-n80-r3/actions-execution.json",
+      "ordinary-n180-r0/actions-execution.json",
+      "ordinary-n180-r1/actions-execution.json",
+      "ordinary-n180-r2/actions-execution.json",
+      "ordinary-n180-r3/actions-execution.json",
+      "ordinary-n400-r0/actions-execution.json",
+      "ordinary-n400-r1/actions-execution.json",
+      "ordinary-n400-r2/actions-execution.json",
+      "ordinary-n400-r3/actions-execution.json",
+      "redundant-n80-r0/actions-execution.json",
+      "redundant-n80-r1/actions-execution.json",
+      "redundant-n80-r2/actions-execution.json",
+      "redundant-n80-r3/actions-execution.json",
+      "redundant-n180-r0/actions-execution.json",
+      "redundant-n180-r1/actions-execution.json",
+      "redundant-n180-r2/actions-execution.json",
+      "redundant-n180-r3/actions-execution.json",
+      "redundant-n400-r0/actions-execution.json",
+      "redundant-n400-r1/actions-execution.json",
+      "redundant-n400-r2/actions-execution.json",
+      "redundant-n400-r3/actions-execution.json",
+      "interaction-n80-r0/actions-execution.json",
+      "interaction-n80-r1/actions-execution.json",
+      "interaction-n80-r2/actions-execution.json",
+      "interaction-n80-r3/actions-execution.json",
+      "interaction-n180-r0/actions-execution.json",
+      "interaction-n180-r1/actions-execution.json",
+      "interaction-n180-r2/actions-execution.json",
+      "interaction-n180-r3/actions-execution.json",
+      "interaction-n400-r0/actions-execution.json",
+      "interaction-n400-r1/actions-execution.json",
+      "interaction-n400-r2/actions-execution.json",
+      "interaction-n400-r3/actions-execution.json"
+    ]
+  }
+}

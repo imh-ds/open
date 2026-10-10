@@ -1,0 +1,47 @@
+{
+  "result": {
+    "id": "ordinary-n180-r2",
+    "status": "complete",
+    "retained": [
+      "a"
+    ],
+    "scores": {
+      "baseline": {
+        "mse": 4.045401553343598,
+        "rmse": 2.011318362006273,
+        "skill": -2.220446049250313e-16
+      },
+      "full": {
+        "mse": 0.13942776976703922,
+        "rmse": 0.37340028088773475,
+        "skill": 0.9655342571241662
+      },
+      "retained": {
+        "mse": 0.13558254409889706,
+        "rmse": 0.36821535016739465,
+        "skill": 0.9664847747965006
+      }
+    },
+    "elapsed_seconds": 3.1678953000000547,
+    "failure": null
+  },
+  "checkpoints": {
+    "reused": 0,
+    "computed": 100
+  },
+  "elapsed_seconds": 625.3643817000002,
+  "environment": {
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.20348-SP0",
+    "dependencies": {
+      "numpy": "1.26.4",
+      "pandas": "2.2.3",
+      "scipy": "1.11.2",
+      "scikit-learn": "1.3.0"
+    }
+  },
+  "helper_hash": "a888e03addaded99c4f661c67e6112b10738d124ff13a1353a6905229941e438",
+  "github_run": "38086809646",
+  "github_sha": "b8debf019ba99bf674dab528fb699860f8eab5cf",
+  "workers": 4
+}

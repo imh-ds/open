@@ -1,0 +1,45 @@
+{
+  "result": {
+    "id": "noise-n180-r2",
+    "status": "complete",
+    "retained": [],
+    "scores": {
+      "baseline": {
+        "mse": 1.0860967898473777,
+        "rmse": 1.0421596757922356,
+        "skill": 0.0
+      },
+      "full": {
+        "mse": 1.16394866859927,
+        "rmse": 1.078864527454337,
+        "skill": -0.07168042432280108
+      },
+      "retained": {
+        "mse": 1.0860967898473777,
+        "rmse": 1.0421596757922356,
+        "skill": 0.0
+      }
+    },
+    "elapsed_seconds": 2.3885183000002144,
+    "failure": null
+  },
+  "checkpoints": {
+    "reused": 0,
+    "computed": 100
+  },
+  "elapsed_seconds": 610.6930522000002,
+  "environment": {
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.20348-SP0",
+    "dependencies": {
+      "numpy": "1.26.4",
+      "pandas": "2.2.3",
+      "scipy": "1.11.2",
+      "scikit-learn": "1.3.0"
+    }
+  },
+  "helper_hash": "a888e03addaded99c4f661c67e6112b10738d124ff13a1353a6905229941e438",
+  "github_run": "38086809646",
+  "github_sha": "b8debf019ba99bf674dab528fb699860f8eab5cf",
+  "workers": 4
+}
