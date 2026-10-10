@@ -131,6 +131,26 @@ headline sample size. Inspect those sizes and local low-gain stops. More
 assessments refine repeatability estimates; they do not give each fit more data.
 Neither a larger budget nor five-fold CV guarantees interaction recovery.
 
+The [research-settings reliability study](../examples/results/2026-10-10-selection-reliability/REPORT.md)
+completed 48 independent datasets and 4,800 assessments at the unchanged 70%
+threshold. Ordinary and redundant signals were retained in all 24 examples;
+both interaction inputs were retained in 11 of 12. No noise input was retained
+in the 24 noise/ordinary checks. The one miss was an 80-person interaction
+dataset: 42 assessments stopped for low predictive gain, so each input appeared
+58/100 times. Local tuning fits contained only 34–35 people. The all-input model
+trained on the full discovery dataset nevertheless achieved independent-test
+skill .653; retaining no inputs reduced skill to zero.
+
+This confirms a practical limitation: an empty stable network can coexist with
+useful predictive structure. It does not establish a counting defect or imply
+that the interaction inputs are useless. All eight interaction datasets at
+n=180/400 retained both inputs, so the frozen repeated-large-sample failure rule
+was not triggered. Prioritize training-size, weak-fit and prediction-loss
+diagnostics before changing selection. Four datasets per cell cannot calibrate
+a safe minimum sample size, false-positive rate or default threshold. This study
+tests root selection for strong two-input signals; it does not validate complete
+recursive networks or all engines.
+
 Keep settings fixed before outer evaluation. If retained-input prediction falls
 behind all-candidate prediction, acknowledge possible loss of useful inputs;
 do not repair the network by selecting a threshold from those test scores.

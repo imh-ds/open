@@ -179,3 +179,11 @@ replays the failed pilot's root decisions and compares assessment count, local
 CV training size, and fresh small/larger interaction examples at unchanged
 thresholds. It preserves a noise check and all negative results. Reproduction
 and offline audit commands are in the report; no production rule is changed.
+
+The [research-settings reliability report](results/2026-10-10-selection-reliability/REPORT.md)
+extends that investigation to 48 independent datasets, 4,800 local assessments
+and 48,000 independent test predictions. It preserves one small-sample interaction
+miss alongside successful ordinary, redundant and larger interaction examples.
+See the [parallel Actions workflow](selection_actions.md) for validated checkpoint
+transfer and execution provenance. No selection threshold or production rule was
+changed; this remains targeted development evidence rather than final calibration.

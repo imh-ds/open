@@ -10,6 +10,48 @@ import numpy as np
 COLORS = dict(noise='#666666', ordinary='#2874a6', redundant='#239b56', interaction='#b9770e')
 
 
+def findings(cases, audit):
+    if audit['completed_cases'] != audit['planned_cases']:
+        return ['The study is incomplete; a final recommendation is withheld.', '']
+    signal = [c for c in cases if c['scenario'] != 'noise']
+    noise_checks = [c for c in cases if c['scenario'] in ('noise', 'ordinary')]
+    misses = [c for c in signal if not c['root_recovered']]
+    large = [c for c in misses if c['n'] == 400]
+    false = sum(c['false_input'] for c in noise_checks)
+    lines = [f"Required root inputs were retained in {len(signal)-len(misses)}/{len(signal)} signal datasets.",
+             f"A noise input was retained in {false}/{len(noise_checks)} noise/ordinary datasets.", '']
+    if len(large) >= 2:
+        lines += [f"The frozen decision rule is triggered: useful inputs were lost in {len(large)} datasets at n=400.",
+                  'Next: design a separate selection safeguard and evaluate it on fresh development',
+                  'and confirmation datasets before changing the production rule.']
+    elif large:
+        lines += ['One n=400 dataset lost a required input. This does not satisfy the repeated',
+                  'large-sample failure criterion; investigate that case and obtain fresh confirmation',
+                  'before accepting a policy change.']
+    elif misses:
+        lines += ['Required-input misses occurred only at smaller sample sizes. Next: examine local',
+                  'training sizes and weak prediction first. This does not establish a safe minimum n.']
+    else:
+        lines += ['No required input was lost in these strong-signal simulations. The results do not',
+                  'justify a selection-rule patch. Next: improve training-size, weak-fit and',
+                  'post-selection prediction-loss diagnostics for cases like the earlier small pilot.']
+    if false:
+        lines += ['The observed noise retention also needs follow-up; correct signal recovery alone',
+                  'does not establish reliable network structure.']
+    for c in misses:
+        lines += ['', f"In `{c['id']}`, a was promoted {c['a_promoted']}/{c['planned']} times and",
+                  f"b {c['b_promoted']}/{c['planned']} times; {c['low_gain']} assessments stopped for low total gain.",
+                  f"Local model fits used {c['min_fit_n']}–{c['max_fit_n']} people; tuning fits used {c['min_tuning_n']}–{c['max_tuning_n']}.",
+                  f"The full-data model's independent-test skill was {c['full_skill']:.3f}, versus {c['retained_skill']:.3f} after selection.",
+                  'An empty stable network therefore did not mean there was no useful predictive',
+                  'relationship. It meant the relationships failed the unchanged stability requirement',
+                  'under these resampled training conditions. A larger number of assessments does not',
+                  'automatically make each assessment learn the relationship better.']
+    return lines+['', 'These are four independent datasets per scenario/sample size and only two inputs.',
+                  'The study does not establish general reliability, a safe sample-size cutoff,',
+                  'or recovery of a complete recursive network.', '']
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('output', type=Path)
@@ -66,12 +108,14 @@ def main():
     fig.savefig(base/'reliability.png', dpi=170)
     plt.close(fig)
     lines = ['# Root-selection reliability investigation', '',
-        'Fixed GBM; five local folds, two repeats, three tuning folds,100 stability',
-        'assessments per dataset,80% subsampling, unchanged70% retention.',
+        'Fixed GBM; five local folds, two repeats, three tuning folds, 100 stability',
+        'assessments per dataset, 80% subsampling, unchanged 70% retention.',
         'Independent test participants are generated after each discovery dataset;',
         'they do not select inputs, engines, thresholds or settings.', '',
         f"Completed {audit['completed_cases']}/{audit['planned_cases']} datasets and {audit['completed_assessments']}/{audit['planned_assessments']} local assessments.",
-        f"Audited {audit['independent_test_predictions']} independent test participants; {audit['warnings']} recorded warnings.", '',
+        f"Audited {audit['independent_test_predictions']} independent test participants; {audit['warnings']} recorded warnings.", '']
+    lines += findings(cases, audit)
+    lines += [
         '![Recovery, noise retention and prediction loss](reliability.png)', '',
         '## Results by scenario and sample size', '',
         '| Scenario | Discovery n | Completed/planned | Root recovered | Noise input retained | Shared group retained | Skill loss >.05 | Mean full skill | Mean retained skill | Mean loss (MC SE) |',
@@ -109,15 +153,15 @@ def main():
         'same-depth links, other engines, weak effects, correlated interaction inputs,',
         'non-Gaussian predictors, measurement error, missingness or real survey data.',
         'The chosen signals are strong and the redundancy nearly exact.', '',
-        'There are four independent datasets per cell. Even4/4recovery has a Wilson',
-        '95% interval of approximately51%–100%;0/4noise retention has an interval of',
-        'approximately0%–49%. Therefore no observed misses does not prove reliability',
+        'There are four independent datasets per cell. Even 4/4 recovery has a Wilson',
+        '95% interval of approximately 51%–100%; 0/4 noise retention has an interval of',
+        'approximately 0%–49%. Therefore no observed misses does not prove reliability',
         'and no observed false links does not establish a low false-positive rate.',
-        'The100overlapping assessments inside a dataset are not100 independent',
+        'The 100 overlapping assessments inside a dataset are not 100 independent',
         'simulation replications. Monte Carlo SE reflects variability across the',
         'four datasets, not uncertainty of an individual edge.', '',
         'The fixed protocol calls for a safeguard design if useful inputs disappear',
-        'at n400 in multiple datasets. Loss concentrated at smaller sizes supports',
+        'at n=400 in multiple datasets. Loss concentrated at smaller sizes supports',
         'training-size and weak-fit diagnostics first. Neither result calibrates a',
         'minimum sample size or accepts a new production policy. Examine shared-class',
         'fragmentation and noise retention alongside interaction recovery.', '',
@@ -133,6 +177,12 @@ def main():
         'saved only progress counts and had to replay those samples; its counters',
         'are not accepted statistical evidence. Elapsed resumed time excludes that',
         'lost computation and is not a pristine runtime benchmark.',
+        'This study then moved to a dedicated GitHub Actions branch. The synthetic',
+        'transfer preserved 1,946 assessments and 12 completed datasets. Hosted jobs',
+        'restored the exact source bytes, used pinned numerical dependencies, and',
+        'computed remaining assessments with four workers per dataset. Per-case',
+        '`actions-execution.json` files record reuse, platform, versions and GitHub',
+        'run/commit provenance. See [Actions workflow documentation](../../selection_actions.md).',
         '`--smoke` uses deliberately tiny',
         'settings for plumbing checks and is excluded from this study. The smoke',
         'check compares singleton orchestration with the production batch assessor.',
