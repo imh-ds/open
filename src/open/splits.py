@@ -17,6 +17,10 @@ SPLIT_PLAN_VERSION = 1
 _SPLIT_PLAN_SCHEMA = "open.split_plan"
 
 
+class InsufficientTargetObservations(ValueError):
+    """An observed-target partition cannot support the requested analysis."""
+
+
 def _is_int(value: Any) -> bool:
     return type(value) is int
 
@@ -252,3 +256,37 @@ def make_split_plan(data: Any, config: OpenConfig, *, groups: Iterable[Any] | No
         random_seed=seed,
         splits=tuple(realized),
     )
+
+
+def observed_target_splits(
+    split_plan: SplitPlan,
+    target_values: np.ndarray,
+    *,
+    min_training_rows: int = 1,
+    selected_folds: set[tuple[int, int]] | None = None,
+) -> tuple[SplitFold, ...]:
+    """Restrict recorded folds to observed outcomes without moving any row.
+
+    The original plan remains the source of fold IDs and positional indices.
+    All compared models and training-only dependence estimates must use these
+    same restrictions. Missing outcomes are never imputed or scored.
+    """
+    values = np.asarray(target_values, dtype=float)
+    if values.shape != (split_plan.n_samples,) or np.isinf(values).any():
+        raise ValueError('target values must match the split plan and contain no infinity')
+    if type(min_training_rows) is not int or min_training_rows < 1:
+        raise ValueError('min_training_rows must be a positive integer')
+    observed = ~np.isnan(values)
+    restricted = []
+    for split in split_plan.splits:
+        if selected_folds is not None and (split.repeat, split.fold) not in selected_folds:
+            continue
+        train = tuple(row for row in split.train_indices if observed[row])
+        test = tuple(row for row in split.test_indices if observed[row])
+        if len(train) < min_training_rows or not test:
+            raise InsufficientTargetObservations(
+                f'fold ({split.repeat}, {split.fold}) has {len(train)} observed training '
+                f'rows and {len(test)} observed test rows; requires at least '
+                f'{min_training_rows} training rows and one test row')
+        restricted.append(SplitFold(split.repeat, split.fold, train, test))
+    return tuple(restricted)

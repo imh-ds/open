@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "root_unique_counts": {
+    "perceived_stress": 10,
+    "physical_activity": 14,
+    "sleep_quality": 15,
+    "social_support": 20,
+    "work_demands": 0
+  },
+  "all_threshold_root_snapshots_identical": true,
+  "all_threshold_statuses_complete": true,
+  "total_assessments": 240,
+  "total_warnings": 0,
+  "full_python311_tests": 440,
+  "full_python311_warnings": 29,
+  "focused_python314_tests": 122,
+  "process_launch_revision": "9ed7aa896a3636d3e03150d37240a24ce54b7e8e",
+  "fit_start_observed_git_heads": {
+    "0.6": "9ed7aa896a3636d3e03150d37240a24ce54b7e8e",
+    "0.7": "52f29d4eb8e7177b14f7b329cc763647624e007d",
+    "0.8": "c9de7bc8d4c4a9718641b9d90dd07142554613fe"
+  },
+  "audited_and_rendered_revision": "83e9fcef701b0b9480dee4b6ef35180057b24a3d",
+  "unchanged_computational_source_blobs": {
+    "src/open/layer_stability.py": "f31ce3f433a1d96b2874cdd04f00e33a6db0d521",
+    "src/open/layer_consensus.py": "cf2274c744ea0a28d51be8240fa79156142496ae",
+    "src/open/analysis.py": "3820e7820ce68763c99ace4ec81b891f2ffe8e35",
+    "src/open/risk.py": "89f4d68ecfc0602aefb627d95ec31fb6f6ed1b21",
+    "src/open/local_target.py": "82df6be97049b73160d8f6948c41c4cd94a9c555",
+    "src/open/grouping.py": "69460a2fb923f014928d6289457c5bd18fb72fb7",
+    "src/open/relevance.py": "88368b7dafbfed71c540774405d46c7329efc79d",
+    "src/open/config.py": "40282acf7696325fa3602e24a55171a5f94bd695",
+    "src/open/splits.py": "07a5d875091e6690d125c5c630fe9199f4a1acbf",
+    "src/open/learners/elastic_net.py": "fb75518be5aa2511bd8ed53cdcb437e2915314d5",
+    "src/open/layer_sensitivity.py": "046440445380d72caaa61a51ded6735ddff52916",
+    "src/open/classify.py": "6ba24887c706ed37d6162331bca132f5a3971aca"
+  },
+  "git_head_note": "The process loaded source at launch. Git HEAD advanced during the long batch as validation/display fixes were committed. Numerical computation modules are identical; original per-fit HEAD fields are preserved.",
+  "scientific_calibration_accepted": false,
+  "focused_python314_warnings": 4,
+  "test_warning_scope": {
+    "constant_outcome_optimizer": 25,
+    "missing_cjk_test_font": 4
+  }
+}

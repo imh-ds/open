@@ -1,0 +1,27 @@
+{
+  "elapsed_seconds": 2896.2581979000242,
+  "pilot_conditions": 10,
+  "planned_pilot_folds": 30,
+  "survey_status": "COMPLETE",
+  "survey_scores": {
+    "baseline": {
+      "mse": 0.4703881077080703,
+      "prediction_skill": 0.0,
+      "r_squared": -0.0022405918079577702,
+      "rmse": 0.6858484582676193
+    },
+    "full": {
+      "mse": 0.21940503695323754,
+      "prediction_skill": 0.5335659355372064,
+      "r_squared": 0.5325208471934186,
+      "rmse": 0.4684069138614817
+    },
+    "reduced": {
+      "mse": 0.2550077963980799,
+      "prediction_skill": 0.45787788377434613,
+      "r_squared": 0.45666320940181815,
+      "rmse": 0.5049829664435028
+    }
+  },
+  "claim": "development_integration_not_scientific_calibration"
+}

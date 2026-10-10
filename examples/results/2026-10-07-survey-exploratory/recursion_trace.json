@@ -1,0 +1,4673 @@
+[
+  {
+    "run_index": 0,
+    "seed": 613,
+    "depths": {
+      "perceived_stress": 2,
+      "physical_activity": 2,
+      "sleep_quality": 1,
+      "social_support": 1,
+      "wellbeing": 0,
+      "work_demands": 2
+    },
+    "edges": [
+      {
+        "source": "perceived_stress",
+        "target": "sleep_quality",
+        "unique_raw": 0.04232185845776809,
+        "unique_normalized": 0.6085729483535554
+      },
+      {
+        "source": "perceived_stress",
+        "target": "social_support",
+        "unique_raw": 0.10082387955212785,
+        "unique_normalized": 1.1316725253931432
+      },
+      {
+        "source": "physical_activity",
+        "target": "social_support",
+        "unique_raw": 0.006280971885600006,
+        "unique_normalized": 0.07049920462567918
+      },
+      {
+        "source": "sleep_quality",
+        "target": "wellbeing",
+        "unique_raw": 0.016226764691136347,
+        "unique_normalized": 0.06611344835602516
+      },
+      {
+        "source": "social_support",
+        "target": "wellbeing",
+        "unique_raw": 0.0557367492618033,
+        "unique_normalized": 0.22709078266635674
+      },
+      {
+        "source": "work_demands",
+        "target": "social_support",
+        "unique_raw": 0.045106029554046856,
+        "unique_normalized": 0.5062813948702956
+      }
+    ],
+    "shared_relations": [],
+    "stop_reasons": {
+      "perceived_stress": "NO_UNASSIGNED",
+      "physical_activity": "NO_UNASSIGNED",
+      "work_demands": "NO_UNASSIGNED"
+    },
+    "targets": {
+      "sleep_quality": {
+        "baseline_risk": 0.32179747105950374,
+        "full_risk": 0.25225468482119584,
+        "relative_gain": 0.2161073112518299,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 1.1639659966455977,
+            "unique": 0.6085729483535554,
+            "screened_by": []
+          },
+          "physical_activity": {
+            "class": "NEGLIGIBLE",
+            "broad": 0.0,
+            "unique": 0.047327558196758275,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.5805348300510743,
+            "unique": -0.041817442751097424,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "perceived_stress",
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "perceived_stress"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.04232185845776809,
+            "gain_relative": 0.6085729483535554
+          },
+          "physical_activity": {
+            "raw": 0.0032912902628582374,
+            "gain_relative": 0.047327558196758275
+          },
+          "work_demands": {
+            "raw": -0.002908101482272246,
+            "gain_relative": -0.041817442751097424
+          }
+        }
+      },
+      "social_support": {
+        "baseline_risk": 0.3562341172896162,
+        "full_risk": 0.26714131235728683,
+        "relative_gain": 0.2500962165280128,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.47932391553630327,
+            "unique": 1.1316725253931432,
+            "screened_by": []
+          },
+          "physical_activity": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": -0.029698416447555078,
+            "unique": 0.07049920462567918,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": -0.038889251725997595,
+            "unique": 0.5062813948702956,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "perceived_stress",
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "perceived_stress",
+          "physical_activity",
+          "work_demands"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.10082387955212785,
+            "gain_relative": 1.1316725253931432
+          },
+          "physical_activity": {
+            "raw": 0.006280971885600006,
+            "gain_relative": 0.07049920462567918
+          },
+          "work_demands": {
+            "raw": 0.045106029554046856,
+            "gain_relative": 0.5062813948702956
+          }
+        }
+      },
+      "wellbeing": {
+        "baseline_risk": 0.4518558383290406,
+        "full_risk": 0.20641765450062824,
+        "relative_gain": 0.5431780736441093,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.573897509352772,
+            "unique": 0.03942409333215318,
+            "screened_by": []
+          },
+          "physical_activity": {
+            "class": "NEGLIGIBLE",
+            "broad": 0.007960078770147897,
+            "unique": 0.048142877773676235,
+            "screened_by": []
+          },
+          "sleep_quality": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.4714645405302115,
+            "unique": 0.06611344835602516,
+            "screened_by": []
+          },
+          "social_support": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.5985656795023934,
+            "unique": 0.22709078266635674,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.09165045789137263,
+            "unique": -2.4699775060602133e-05,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "sleep_quality",
+          "perceived_stress",
+          "social_support",
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "sleep_quality",
+          "social_support"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.009676177866525498,
+            "gain_relative": 0.03942409333215318
+          },
+          "physical_activity": {
+            "raw": 0.011816100485044334,
+            "gain_relative": 0.048142877773676235
+          },
+          "sleep_quality": {
+            "raw": 0.016226764691136347,
+            "gain_relative": 0.06611344835602516
+          },
+          "social_support": {
+            "raw": 0.0557367492618033,
+            "gain_relative": 0.22709078266635674
+          },
+          "work_demands": {
+            "raw": -6.0622679318445005e-06,
+            "gain_relative": -2.4699775060602133e-05
+          }
+        }
+      }
+    }
+  },
+  {
+    "run_index": 1,
+    "seed": 614,
+    "depths": {
+      "perceived_stress": 1,
+      "sleep_quality": 1,
+      "social_support": 1,
+      "wellbeing": 0,
+      "work_demands": 2
+    },
+    "edges": [
+      {
+        "source": "perceived_stress",
+        "target": "wellbeing",
+        "unique_raw": 0.013119172104979565,
+        "unique_normalized": 0.06273272913497886
+      },
+      {
+        "source": "sleep_quality",
+        "target": "wellbeing",
+        "unique_raw": 0.011909478643631871,
+        "unique_normalized": 0.05694826563074023
+      },
+      {
+        "source": "social_support",
+        "target": "wellbeing",
+        "unique_raw": 0.057295406404897525,
+        "unique_normalized": 0.27397286825078726
+      },
+      {
+        "source": "work_demands",
+        "target": "perceived_stress",
+        "unique_raw": 0.11161169976028829,
+        "unique_normalized": 0.9723993104959723
+      },
+      {
+        "source": "work_demands",
+        "target": "sleep_quality",
+        "unique_raw": 0.0369332513236984,
+        "unique_normalized": 1.0
+      }
+    ],
+    "shared_relations": [],
+    "stop_reasons": {
+      "social_support": "LOW_TOTAL_GAIN",
+      "work_demands": "LOW_TOTAL_GAIN"
+    },
+    "targets": {
+      "perceived_stress": {
+        "baseline_risk": 0.29604080712398945,
+        "full_risk": 0.18126110854176736,
+        "relative_gain": 0.3877158007279362,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "physical_activity": {
+            "class": "NEGLIGIBLE",
+            "broad": 0.009298380912061272,
+            "unique": -0.00515019575636987,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 1.0018412419716045,
+            "unique": 0.9723993104959723,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "work_demands"
+        ],
+        "unique_scores": {
+          "physical_activity": {
+            "raw": -0.000591137916555573,
+            "gain_relative": -0.00515019575636987
+          },
+          "work_demands": {
+            "raw": 0.11161169976028829,
+            "gain_relative": 0.9723993104959723
+          }
+        }
+      },
+      "sleep_quality": {
+        "baseline_risk": 0.3174259447785835,
+        "full_risk": 0.2804926934548851,
+        "relative_gain": 0.11635233959675455,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "physical_activity": {
+            "class": "NEGLIGIBLE",
+            "broad": 0.0,
+            "unique": 0.0015612878561017379,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 1.0604539389315797,
+            "unique": 1.0,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "work_demands"
+        ],
+        "unique_scores": {
+          "physical_activity": {
+            "raw": 5.766343677804375e-05,
+            "gain_relative": 0.0015612878561017379
+          },
+          "work_demands": {
+            "raw": 0.0369332513236984,
+            "gain_relative": 1.0
+          }
+        }
+      },
+      "social_support": {
+        "baseline_risk": 0.31864575593401934,
+        "full_risk": 0.31864575593401934,
+        "relative_gain": 0.0,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {},
+        "input_candidates": [
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [],
+        "unique_scores": {
+          "physical_activity": {
+            "raw": 0.0,
+            "gain_relative": null
+          },
+          "work_demands": {
+            "raw": 0.0,
+            "gain_relative": null
+          }
+        }
+      },
+      "wellbeing": {
+        "baseline_risk": 0.45305264918599053,
+        "full_risk": 0.24392461847730415,
+        "relative_gain": 0.4615976334857135,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.6054928135517569,
+            "unique": 0.06273272913497886,
+            "screened_by": []
+          },
+          "physical_activity": {
+            "class": "NEGLIGIBLE",
+            "broad": 0.04769397219005043,
+            "unique": -0.018322097447095995,
+            "screened_by": []
+          },
+          "sleep_quality": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.5138159564133663,
+            "unique": 0.05694826563074023,
+            "screened_by": []
+          },
+          "social_support": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.6179095322968728,
+            "unique": 0.27397286825078726,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "NEGLIGIBLE",
+            "broad": 0.011368722249973966,
+            "unique": -0.01270619652034065,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "sleep_quality",
+          "perceived_stress",
+          "social_support",
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "perceived_stress",
+          "sleep_quality",
+          "social_support"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.013119172104979565,
+            "gain_relative": 0.06273272913497886
+          },
+          "physical_activity": {
+            "raw": -0.0038316641575638355,
+            "gain_relative": -0.018322097447095995
+          },
+          "sleep_quality": {
+            "raw": 0.011909478643631871,
+            "gain_relative": 0.05694826563074023
+          },
+          "social_support": {
+            "raw": 0.057295406404897525,
+            "gain_relative": 0.27397286825078726
+          },
+          "work_demands": {
+            "raw": -0.0026572218560964034,
+            "gain_relative": -0.01270619652034065
+          }
+        }
+      },
+      "work_demands": {
+        "baseline_risk": 0.3928217957678693,
+        "full_risk": 0.3925006047618907,
+        "relative_gain": 0.0008176506737635474,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {},
+        "input_candidates": [
+          "physical_activity"
+        ],
+        "promoted": [],
+        "unique_scores": {
+          "physical_activity": {
+            "raw": 0.00032119100597860495,
+            "gain_relative": null
+          }
+        }
+      }
+    }
+  },
+  {
+    "run_index": 2,
+    "seed": 615,
+    "depths": {
+      "perceived_stress": 2,
+      "physical_activity": 1,
+      "sleep_quality": 1,
+      "social_support": 1,
+      "wellbeing": 0,
+      "work_demands": 3
+    },
+    "edges": [
+      {
+        "source": "perceived_stress",
+        "target": "sleep_quality",
+        "unique_raw": 0.04659997643580935,
+        "unique_normalized": 0.5352224894263373
+      },
+      {
+        "source": "perceived_stress",
+        "target": "social_support",
+        "unique_raw": 0.06974664215258702,
+        "unique_normalized": 0.9891602457172531
+      },
+      {
+        "source": "physical_activity",
+        "target": "wellbeing",
+        "unique_raw": 0.0214284898466581,
+        "unique_normalized": 0.09305221570998254
+      },
+      {
+        "source": "sleep_quality",
+        "target": "wellbeing",
+        "unique_raw": 0.014232729682338213,
+        "unique_normalized": 0.06180496348646579
+      },
+      {
+        "source": "social_support",
+        "target": "wellbeing",
+        "unique_raw": 0.03797262789651146,
+        "unique_normalized": 0.1648943620099363
+      },
+      {
+        "source": "work_demands",
+        "target": "perceived_stress",
+        "unique_raw": 0.11475226225429225,
+        "unique_normalized": 1.0
+      }
+    ],
+    "shared_relations": [],
+    "stop_reasons": {
+      "physical_activity": "LOW_TOTAL_GAIN",
+      "work_demands": "NO_UNASSIGNED"
+    },
+    "targets": {
+      "perceived_stress": {
+        "baseline_risk": 0.30513598551446247,
+        "full_risk": 0.19038372326017022,
+        "relative_gain": 0.37606925338818603,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "work_demands": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 1.0,
+            "unique": 1.0,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "work_demands"
+        ],
+        "promoted": [
+          "work_demands"
+        ],
+        "unique_scores": {
+          "work_demands": {
+            "raw": 0.11475226225429225,
+            "gain_relative": 1.0
+          }
+        }
+      },
+      "physical_activity": {
+        "baseline_risk": 0.34946541683877347,
+        "full_risk": 0.3492904053878454,
+        "relative_gain": 0.0005007976254452017,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {},
+        "input_candidates": [
+          "perceived_stress",
+          "work_demands"
+        ],
+        "promoted": [],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.0,
+            "gain_relative": null
+          },
+          "work_demands": {
+            "raw": 0.00017501145092807535,
+            "gain_relative": null
+          }
+        }
+      },
+      "sleep_quality": {
+        "baseline_risk": 0.32798606883663894,
+        "full_risk": 0.2409195173437146,
+        "relative_gain": 0.2654580781487089,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 1.0321724183201142,
+            "unique": 0.5352224894263373,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "SCREENED_BY_PARTNER",
+            "broad": 0.2140725107678996,
+            "unique": 0.023116883192317993,
+            "screened_by": [
+              "perceived_stress"
+            ]
+          }
+        },
+        "input_candidates": [
+          "perceived_stress",
+          "work_demands"
+        ],
+        "promoted": [
+          "perceived_stress"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.04659997643580935,
+            "gain_relative": 0.5352224894263373
+          },
+          "work_demands": {
+            "raw": 0.0020127073008198715,
+            "gain_relative": 0.023116883192317993
+          }
+        }
+      },
+      "social_support": {
+        "baseline_risk": 0.3468563114837221,
+        "full_risk": 0.2763453478106796,
+        "relative_gain": 0.20328580261787038,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.9978902687961568,
+            "unique": 0.9891602457172531,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "NEGLIGIBLE",
+            "broad": 0.0,
+            "unique": 0.0015228941538964684,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "perceived_stress",
+          "work_demands"
+        ],
+        "promoted": [
+          "perceived_stress"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.06974664215258702,
+            "gain_relative": 0.9891602457172531
+          },
+          "work_demands": {
+            "raw": 0.00010738073436328266,
+            "gain_relative": 0.0015228941538964684
+          }
+        }
+      },
+      "wellbeing": {
+        "baseline_risk": 0.4550434307201543,
+        "full_risk": 0.22475885680474483,
+        "relative_gain": 0.5060716370544232,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.6185640621090607,
+            "unique": 0.04183596141943141,
+            "screened_by": []
+          },
+          "physical_activity": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.08205940969154962,
+            "unique": 0.09305221570998254,
+            "screened_by": []
+          },
+          "sleep_quality": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.47476786330602017,
+            "unique": 0.06180496348646579,
+            "screened_by": []
+          },
+          "social_support": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.541525531314393,
+            "unique": 0.1648943620099363,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.10305825420090013,
+            "unique": 0.006693287068715182,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "sleep_quality",
+          "perceived_stress",
+          "social_support",
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "physical_activity",
+          "sleep_quality",
+          "social_support"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.009634176549815271,
+            "gain_relative": 0.04183596141943141
+          },
+          "physical_activity": {
+            "raw": 0.0214284898466581,
+            "gain_relative": 0.09305221570998254
+          },
+          "sleep_quality": {
+            "raw": 0.014232729682338213,
+            "gain_relative": 0.06180496348646579
+          },
+          "social_support": {
+            "raw": 0.03797262789651146,
+            "gain_relative": 0.1648943620099363
+          },
+          "work_demands": {
+            "raw": 0.0015413607607125956,
+            "gain_relative": 0.006693287068715182
+          }
+        }
+      }
+    }
+  },
+  {
+    "run_index": 3,
+    "seed": 616,
+    "depths": {
+      "perceived_stress": 2,
+      "physical_activity": 1,
+      "sleep_quality": 1,
+      "social_support": 1,
+      "wellbeing": 0,
+      "work_demands": 2
+    },
+    "edges": [
+      {
+        "source": "perceived_stress",
+        "target": "sleep_quality",
+        "unique_raw": 0.021927620709039197,
+        "unique_normalized": 0.2388885870722667
+      },
+      {
+        "source": "perceived_stress",
+        "target": "social_support",
+        "unique_raw": 0.1288229089382545,
+        "unique_normalized": 0.9999007862313617
+      },
+      {
+        "source": "physical_activity",
+        "target": "wellbeing",
+        "unique_raw": 0.020362068069623984,
+        "unique_normalized": 0.07796894348718407
+      },
+      {
+        "source": "sleep_quality",
+        "target": "wellbeing",
+        "unique_raw": 0.01997306249166314,
+        "unique_normalized": 0.07647939174712898
+      },
+      {
+        "source": "social_support",
+        "target": "wellbeing",
+        "unique_raw": 0.05667090632461916,
+        "unique_normalized": 0.21700009436582385
+      },
+      {
+        "source": "work_demands",
+        "target": "sleep_quality",
+        "unique_raw": 0.012374170742826762,
+        "unique_normalized": 0.13480934407654624
+      },
+      {
+        "source": "work_demands",
+        "target": "social_support",
+        "unique_raw": 0.05205266164008421,
+        "unique_normalized": 0.40402361449780555
+      }
+    ],
+    "shared_relations": [],
+    "stop_reasons": {
+      "perceived_stress": "NO_UNASSIGNED",
+      "physical_activity": "LOW_TOTAL_GAIN",
+      "work_demands": "NO_UNASSIGNED"
+    },
+    "targets": {
+      "physical_activity": {
+        "baseline_risk": 0.40153314913519433,
+        "full_risk": 0.4005893637927235,
+        "relative_gain": 0.002350454363490402,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {},
+        "input_candidates": [
+          "perceived_stress",
+          "work_demands"
+        ],
+        "promoted": [],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.0009437853424708598,
+            "gain_relative": null
+          },
+          "work_demands": {
+            "raw": 0.0,
+            "gain_relative": null
+          }
+        }
+      },
+      "sleep_quality": {
+        "baseline_risk": 0.3345765031349402,
+        "full_risk": 0.2427863469881929,
+        "relative_gain": 0.27434728765076133,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.8651906559234538,
+            "unique": 0.2388885870722667,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.7597633269348556,
+            "unique": 0.13480934407654624,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "perceived_stress",
+          "work_demands"
+        ],
+        "promoted": [
+          "perceived_stress",
+          "work_demands"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.021927620709039197,
+            "gain_relative": 0.2388885870722667
+          },
+          "work_demands": {
+            "raw": 0.012374170742826762,
+            "gain_relative": 0.13480934407654624
+          }
+        }
+      },
+      "social_support": {
+        "baseline_risk": 0.3708729597729961,
+        "full_risk": 0.2420372685602813,
+        "relative_gain": 0.34738496786493295,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.6002293724340302,
+            "unique": 0.9999007862313617,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": -6.651099978856301e-05,
+            "unique": 0.40402361449780555,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "perceived_stress",
+          "work_demands"
+        ],
+        "promoted": [
+          "perceived_stress",
+          "work_demands"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.1288229089382545,
+            "gain_relative": 0.9999007862313617
+          },
+          "work_demands": {
+            "raw": 0.05205266164008421,
+            "gain_relative": 0.40402361449780555
+          }
+        }
+      },
+      "wellbeing": {
+        "baseline_risk": 0.4738536836795349,
+        "full_risk": 0.21269754690347428,
+        "relative_gain": 0.5511324397610452,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.5501922615692807,
+            "unique": 0.0027835379109046997,
+            "screened_by": []
+          },
+          "physical_activity": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.10498942796617472,
+            "unique": 0.07796894348718407,
+            "screened_by": []
+          },
+          "sleep_quality": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.4113806551680136,
+            "unique": 0.07647939174712898,
+            "screened_by": []
+          },
+          "social_support": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.6582464205187137,
+            "unique": 0.21700009436582385,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.17304669746019685,
+            "unique": 0.006904135327447139,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "sleep_quality",
+          "perceived_stress",
+          "social_support",
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "physical_activity",
+          "sleep_quality",
+          "social_support"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.0007269380073815779,
+            "gain_relative": 0.0027835379109046997
+          },
+          "physical_activity": {
+            "raw": 0.020362068069623984,
+            "gain_relative": 0.07796894348718407
+          },
+          "sleep_quality": {
+            "raw": 0.01997306249166314,
+            "gain_relative": 0.07647939174712898
+          },
+          "social_support": {
+            "raw": 0.05667090632461916,
+            "gain_relative": 0.21700009436582385
+          },
+          "work_demands": {
+            "raw": 0.0018030573098952174,
+            "gain_relative": 0.006904135327447139
+          }
+        }
+      }
+    }
+  },
+  {
+    "run_index": 4,
+    "seed": 617,
+    "depths": {
+      "perceived_stress": 1,
+      "physical_activity": 1,
+      "sleep_quality": 2,
+      "social_support": 1,
+      "wellbeing": 0,
+      "work_demands": 2
+    },
+    "edges": [
+      {
+        "source": "perceived_stress",
+        "target": "wellbeing",
+        "unique_raw": 0.03085460289809,
+        "unique_normalized": 0.13066167383222654
+      },
+      {
+        "source": "physical_activity",
+        "target": "wellbeing",
+        "unique_raw": 0.024126483907612517,
+        "unique_normalized": 0.10216974049113668
+      },
+      {
+        "source": "sleep_quality",
+        "target": "perceived_stress",
+        "unique_raw": 0.022638576001555888,
+        "unique_normalized": 0.1725378034483995
+      },
+      {
+        "source": "social_support",
+        "target": "wellbeing",
+        "unique_raw": 0.06638928430910324,
+        "unique_normalized": 0.2811423320210024
+      },
+      {
+        "source": "work_demands",
+        "target": "perceived_stress",
+        "unique_raw": 0.059705408799217735,
+        "unique_normalized": 0.4550392254131966
+      }
+    ],
+    "shared_relations": [],
+    "stop_reasons": {
+      "physical_activity": "LOW_TOTAL_GAIN",
+      "sleep_quality": "NO_UNASSIGNED",
+      "social_support": "LOW_TOTAL_GAIN",
+      "work_demands": "NO_UNASSIGNED"
+    },
+    "targets": {
+      "perceived_stress": {
+        "baseline_risk": 0.2848510122652744,
+        "full_risk": 0.15364164510576747,
+        "relative_gain": 0.4606245423390492,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "sleep_quality": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.5412316142282743,
+            "unique": 0.1725378034483995,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.8149525870493989,
+            "unique": 0.4550392254131966,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "sleep_quality",
+          "work_demands"
+        ],
+        "promoted": [
+          "sleep_quality",
+          "work_demands"
+        ],
+        "unique_scores": {
+          "sleep_quality": {
+            "raw": 0.022638576001555888,
+            "gain_relative": 0.1725378034483995
+          },
+          "work_demands": {
+            "raw": 0.059705408799217735,
+            "gain_relative": 0.4550392254131966
+          }
+        }
+      },
+      "physical_activity": {
+        "baseline_risk": 0.3735937198842519,
+        "full_risk": 0.3698538119366119,
+        "relative_gain": 0.010010628521268291,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {},
+        "input_candidates": [
+          "sleep_quality",
+          "work_demands"
+        ],
+        "promoted": [],
+        "unique_scores": {
+          "sleep_quality": {
+            "raw": 0.0046032367365863025,
+            "gain_relative": null
+          },
+          "work_demands": {
+            "raw": -0.0010814888512060694,
+            "gain_relative": null
+          }
+        }
+      },
+      "social_support": {
+        "baseline_risk": 0.29611794880032616,
+        "full_risk": 0.31591064434900423,
+        "relative_gain": -0.06684058034599041,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {},
+        "input_candidates": [
+          "sleep_quality",
+          "work_demands"
+        ],
+        "promoted": [],
+        "unique_scores": {
+          "sleep_quality": {
+            "raw": 0.0024088029653870358,
+            "gain_relative": null
+          },
+          "work_demands": {
+            "raw": -0.012805494274587992,
+            "gain_relative": null
+          }
+        }
+      },
+      "wellbeing": {
+        "baseline_risk": 0.4682713336597545,
+        "full_risk": 0.23213014555812167,
+        "relative_gain": 0.5042828188009749,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.5655666117377176,
+            "unique": 0.13066167383222654,
+            "screened_by": []
+          },
+          "physical_activity": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.08476126591554797,
+            "unique": 0.10216974049113668,
+            "screened_by": []
+          },
+          "sleep_quality": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.3511622558064623,
+            "unique": 0.01487952790640371,
+            "screened_by": []
+          },
+          "social_support": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.5666905669814069,
+            "unique": 0.2811423320210024,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "NEGLIGIBLE",
+            "broad": -0.011020104027681193,
+            "unique": -0.0030582605750054483,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "sleep_quality",
+          "perceived_stress",
+          "social_support",
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "perceived_stress",
+          "physical_activity",
+          "social_support"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.03085460289809,
+            "gain_relative": 0.13066167383222654
+          },
+          "physical_activity": {
+            "raw": 0.024126483907612517,
+            "gain_relative": 0.10216974049113668
+          },
+          "sleep_quality": {
+            "raw": 0.0035136693982095735,
+            "gain_relative": 0.01487952790640371
+          },
+          "social_support": {
+            "raw": 0.06638928430910324,
+            "gain_relative": 0.2811423320210024
+          },
+          "work_demands": {
+            "raw": -0.0007221812857061694,
+            "gain_relative": -0.0030582605750054483
+          }
+        }
+      }
+    }
+  },
+  {
+    "run_index": 5,
+    "seed": 618,
+    "depths": {
+      "perceived_stress": 1,
+      "physical_activity": 2,
+      "sleep_quality": 1,
+      "social_support": 1,
+      "wellbeing": 0,
+      "work_demands": 2
+    },
+    "edges": [
+      {
+        "source": "perceived_stress",
+        "target": "wellbeing",
+        "unique_raw": 0.014563822451141129,
+        "unique_normalized": 0.06080653639673411
+      },
+      {
+        "source": "physical_activity",
+        "target": "sleep_quality",
+        "unique_raw": 0.009268641443245795,
+        "unique_normalized": 0.14381433660070947
+      },
+      {
+        "source": "sleep_quality",
+        "target": "wellbeing",
+        "unique_raw": 0.024359505143868088,
+        "unique_normalized": 0.1017052453850114
+      },
+      {
+        "source": "social_support",
+        "target": "wellbeing",
+        "unique_raw": 0.04313618835932487,
+        "unique_normalized": 0.1801012211105435
+      },
+      {
+        "source": "work_demands",
+        "target": "perceived_stress",
+        "unique_raw": 0.11306206523102688,
+        "unique_normalized": 1.0062637013851483
+      },
+      {
+        "source": "work_demands",
+        "target": "sleep_quality",
+        "unique_raw": 0.06169159776159522,
+        "unique_normalized": 0.9572207815188378
+      }
+    ],
+    "shared_relations": [],
+    "stop_reasons": {
+      "physical_activity": "NO_UNASSIGNED",
+      "social_support": "LOW_TOTAL_GAIN",
+      "work_demands": "NO_UNASSIGNED"
+    },
+    "targets": {
+      "perceived_stress": {
+        "baseline_risk": 0.3052230363330566,
+        "full_risk": 0.19286474985666477,
+        "relative_gain": 0.3681186316284053,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "physical_activity": {
+            "class": "NEGLIGIBLE",
+            "broad": 0.0,
+            "unique": 0.0042866286278119186,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 1.058811127416052,
+            "unique": 1.0062637013851483,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "work_demands"
+        ],
+        "unique_scores": {
+          "physical_activity": {
+            "raw": 0.0004816382473815939,
+            "gain_relative": 0.0042866286278119186
+          },
+          "work_demands": {
+            "raw": 0.11306206523102688,
+            "gain_relative": 1.0062637013851483
+          }
+        }
+      },
+      "sleep_quality": {
+        "baseline_risk": 0.3585137659509069,
+        "full_risk": 0.29406510483459875,
+        "relative_gain": 0.17976621049785138,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "physical_activity": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": -0.011366392271809468,
+            "unique": 0.14381433660070947,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.8694059614401375,
+            "unique": 0.9572207815188378,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "physical_activity",
+          "work_demands"
+        ],
+        "unique_scores": {
+          "physical_activity": {
+            "raw": 0.009268641443245795,
+            "gain_relative": 0.14381433660070947
+          },
+          "work_demands": {
+            "raw": 0.06169159776159522,
+            "gain_relative": 0.9572207815188378
+          }
+        }
+      },
+      "social_support": {
+        "baseline_risk": 0.3660410082983853,
+        "full_risk": 0.3660410082983853,
+        "relative_gain": 0.0,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {},
+        "input_candidates": [
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [],
+        "unique_scores": {
+          "physical_activity": {
+            "raw": 0.0,
+            "gain_relative": null
+          },
+          "work_demands": {
+            "raw": 0.0,
+            "gain_relative": null
+          }
+        }
+      },
+      "wellbeing": {
+        "baseline_risk": 0.5149906408903571,
+        "full_risk": 0.2754798363919883,
+        "relative_gain": 0.46507797517306976,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.6577023392584574,
+            "unique": 0.06080653639673411,
+            "screened_by": []
+          },
+          "physical_activity": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.08063699446424026,
+            "unique": 0.03733186390845633,
+            "screened_by": []
+          },
+          "sleep_quality": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.5764186256326387,
+            "unique": 0.1017052453850114,
+            "screened_by": []
+          },
+          "social_support": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.5245272183235276,
+            "unique": 0.1801012211105435,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.13857229591091713,
+            "unique": -0.005802215693974286,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "sleep_quality",
+          "perceived_stress",
+          "social_support",
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "perceived_stress",
+          "sleep_quality",
+          "social_support"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.014563822451141129,
+            "gain_relative": 0.06080653639673411
+          },
+          "physical_activity": {
+            "raw": 0.008941384758137993,
+            "gain_relative": 0.03733186390845633
+          },
+          "sleep_quality": {
+            "raw": 0.024359505143868088,
+            "gain_relative": 0.1017052453850114
+          },
+          "social_support": {
+            "raw": 0.04313618835932487,
+            "gain_relative": 0.1801012211105435
+          },
+          "work_demands": {
+            "raw": -0.0013896933487368424,
+            "gain_relative": -0.005802215693974286
+          }
+        }
+      }
+    }
+  },
+  {
+    "run_index": 6,
+    "seed": 619,
+    "depths": {
+      "perceived_stress": 2,
+      "physical_activity": 1,
+      "sleep_quality": 1,
+      "social_support": 1,
+      "wellbeing": 0,
+      "work_demands": 2
+    },
+    "edges": [
+      {
+        "source": "perceived_stress",
+        "target": "sleep_quality",
+        "unique_raw": 0.04690405403538378,
+        "unique_normalized": 0.4887912379125007
+      },
+      {
+        "source": "perceived_stress",
+        "target": "social_support",
+        "unique_raw": 0.0784393163102326,
+        "unique_normalized": 0.9833889428156697
+      },
+      {
+        "source": "physical_activity",
+        "target": "wellbeing",
+        "unique_raw": 0.013436109611045799,
+        "unique_normalized": 0.0665694124209197
+      },
+      {
+        "source": "sleep_quality",
+        "target": "wellbeing",
+        "unique_raw": 0.0311970897056027,
+        "unique_normalized": 0.15456646239603347
+      },
+      {
+        "source": "social_support",
+        "target": "wellbeing",
+        "unique_raw": 0.033140029551995465,
+        "unique_normalized": 0.1641927878494391
+      },
+      {
+        "source": "work_demands",
+        "target": "social_support",
+        "unique_raw": 0.054843209244431534,
+        "unique_normalized": 0.6875659821688744
+      }
+    ],
+    "shared_relations": [],
+    "stop_reasons": {
+      "perceived_stress": "NO_UNASSIGNED",
+      "physical_activity": "LOW_TOTAL_GAIN",
+      "work_demands": "NO_UNASSIGNED"
+    },
+    "targets": {
+      "physical_activity": {
+        "baseline_risk": 0.38233611468362944,
+        "full_risk": 0.3810500448392287,
+        "relative_gain": 0.0033637153149000776,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {},
+        "input_candidates": [
+          "perceived_stress",
+          "work_demands"
+        ],
+        "promoted": [],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.0012815392526158709,
+            "gain_relative": null
+          },
+          "work_demands": {
+            "raw": 0.0,
+            "gain_relative": null
+          }
+        }
+      },
+      "sleep_quality": {
+        "baseline_risk": 0.38828353551427336,
+        "full_risk": 0.2923242580204731,
+        "relative_gain": 0.24713712716843425,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 1.0071427108176136,
+            "unique": 0.4887912379125007,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "SCREENED_BY_PARTNER",
+            "broad": 0.17999371565709155,
+            "unique": -0.005239290901438691,
+            "screened_by": [
+              "perceived_stress"
+            ]
+          }
+        },
+        "input_candidates": [
+          "perceived_stress",
+          "work_demands"
+        ],
+        "promoted": [
+          "perceived_stress"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.04690405403538378,
+            "gain_relative": 0.4887912379125007
+          },
+          "work_demands": {
+            "raw": -0.0005027585694818981,
+            "gain_relative": -0.005239290901438691
+          }
+        }
+      },
+      "social_support": {
+        "baseline_risk": 0.3011444322479649,
+        "full_risk": 0.22138014683141066,
+        "relative_gain": 0.2648705301344427,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.306306653778415,
+            "unique": 0.9833889428156697,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.006222589669132665,
+            "unique": 0.6875659821688744,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "perceived_stress",
+          "work_demands"
+        ],
+        "promoted": [
+          "perceived_stress",
+          "work_demands"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.0784393163102326,
+            "gain_relative": 0.9833889428156697
+          },
+          "work_demands": {
+            "raw": 0.054843209244431534,
+            "gain_relative": 0.6875659821688744
+          }
+        }
+      },
+      "wellbeing": {
+        "baseline_risk": 0.4696542579068212,
+        "full_risk": 0.26781817249736894,
+        "relative_gain": 0.429754616319259,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.606080623512521,
+            "unique": -0.007682744973698615,
+            "screened_by": []
+          },
+          "physical_activity": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.05137948608312928,
+            "unique": 0.0665694124209197,
+            "screened_by": []
+          },
+          "sleep_quality": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.6914241899239977,
+            "unique": 0.15456646239603347,
+            "screened_by": []
+          },
+          "social_support": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.492599889379343,
+            "unique": 0.1641927878494391,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.08065118809836168,
+            "unique": -0.1074622945331074,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "sleep_quality",
+          "perceived_stress",
+          "social_support",
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "physical_activity",
+          "sleep_quality",
+          "social_support"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": -0.0015506551706904736,
+            "gain_relative": -0.007682744973698615
+          },
+          "physical_activity": {
+            "raw": 0.013436109611045799,
+            "gain_relative": 0.0665694124209197
+          },
+          "sleep_quality": {
+            "raw": 0.0311970897056027,
+            "gain_relative": 0.15456646239603347
+          },
+          "social_support": {
+            "raw": 0.033140029551995465,
+            "gain_relative": 0.1641927878494391
+          },
+          "work_demands": {
+            "raw": -0.02168976885767998,
+            "gain_relative": -0.1074622945331074
+          }
+        }
+      }
+    }
+  },
+  {
+    "run_index": 7,
+    "seed": 620,
+    "depths": {
+      "perceived_stress": 2,
+      "physical_activity": 1,
+      "sleep_quality": 1,
+      "social_support": 1,
+      "wellbeing": 0,
+      "work_demands": 2
+    },
+    "edges": [
+      {
+        "source": "perceived_stress",
+        "target": "sleep_quality",
+        "unique_raw": 0.045204056850624286,
+        "unique_normalized": 0.41098690182301295
+      },
+      {
+        "source": "perceived_stress",
+        "target": "social_support",
+        "unique_raw": 0.07340301698298396,
+        "unique_normalized": 1.0078658428673106
+      },
+      {
+        "source": "physical_activity",
+        "target": "wellbeing",
+        "unique_raw": 0.018434129779434705,
+        "unique_normalized": 0.0677615578993074
+      },
+      {
+        "source": "sleep_quality",
+        "target": "wellbeing",
+        "unique_raw": 0.03027274319946663,
+        "unique_normalized": 0.11127882170874182
+      },
+      {
+        "source": "social_support",
+        "target": "wellbeing",
+        "unique_raw": 0.05161196299096377,
+        "unique_normalized": 0.18971912752891282
+      },
+      {
+        "source": "work_demands",
+        "target": "sleep_quality",
+        "unique_raw": 0.005549122885061597,
+        "unique_normalized": 0.05045159618975987
+      },
+      {
+        "source": "work_demands",
+        "target": "social_support",
+        "unique_raw": 0.013636626420658493,
+        "unique_normalized": 0.18723876137829146
+      }
+    ],
+    "shared_relations": [],
+    "stop_reasons": {
+      "perceived_stress": "NO_UNASSIGNED",
+      "physical_activity": "LOW_TOTAL_GAIN",
+      "work_demands": "NO_UNASSIGNED"
+    },
+    "targets": {
+      "physical_activity": {
+        "baseline_risk": 0.383476638587699,
+        "full_risk": 0.3812723623939536,
+        "relative_gain": 0.005748136840521649,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {},
+        "input_candidates": [
+          "perceived_stress",
+          "work_demands"
+        ],
+        "promoted": [],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.0026738863688174908,
+            "gain_relative": null
+          },
+          "work_demands": {
+            "raw": 0.0,
+            "gain_relative": null
+          }
+        }
+      },
+      "sleep_quality": {
+        "baseline_risk": 0.36466884504859615,
+        "full_risk": 0.2546798000203657,
+        "relative_gain": 0.3016134954264414,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.9503573515874484,
+            "unique": 0.41098690182301295,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.5890130981769871,
+            "unique": 0.05045159618975987,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "perceived_stress",
+          "work_demands"
+        ],
+        "promoted": [
+          "perceived_stress",
+          "work_demands"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.045204056850624286,
+            "gain_relative": 0.41098690182301295
+          },
+          "work_demands": {
+            "raw": 0.005549122885061597,
+            "gain_relative": 0.05045159618975987
+          }
+        }
+      },
+      "social_support": {
+        "baseline_risk": 0.35023487106182405,
+        "full_risk": 0.27740472456717025,
+        "relative_gain": 0.2079465881676805,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.8127612386217086,
+            "unique": 1.0078658428673106,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.015291169673153946,
+            "unique": 0.18723876137829146,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "perceived_stress",
+          "work_demands"
+        ],
+        "promoted": [
+          "perceived_stress",
+          "work_demands"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.07340301698298396,
+            "gain_relative": 1.0078658428673106
+          },
+          "work_demands": {
+            "raw": 0.013636626420658493,
+            "gain_relative": 0.18723876137829146
+          }
+        }
+      },
+      "wellbeing": {
+        "baseline_risk": 0.47743084202754954,
+        "full_risk": 0.20538677528948063,
+        "relative_gain": 0.5698083215209858,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.5733188837062736,
+            "unique": 0.03733007879519187,
+            "screened_by": []
+          },
+          "physical_activity": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.09909463236146346,
+            "unique": 0.0677615578993074,
+            "screened_by": []
+          },
+          "sleep_quality": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.532985106388798,
+            "unique": 0.11127882170874182,
+            "screened_by": []
+          },
+          "social_support": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.4940768578294874,
+            "unique": 0.18971912752891282,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.21661487701642373,
+            "unique": 0.002369693076095453,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "sleep_quality",
+          "perceived_stress",
+          "social_support",
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "physical_activity",
+          "sleep_quality",
+          "social_support"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.01015542644709655,
+            "gain_relative": 0.03733007879519187
+          },
+          "physical_activity": {
+            "raw": 0.018434129779434705,
+            "gain_relative": 0.0677615578993074
+          },
+          "sleep_quality": {
+            "raw": 0.03027274319946663,
+            "gain_relative": 0.11127882170874182
+          },
+          "social_support": {
+            "raw": 0.05161196299096377,
+            "gain_relative": 0.18971912752891282
+          },
+          "work_demands": {
+            "raw": 0.0006446609413420512,
+            "gain_relative": 0.002369693076095453
+          }
+        }
+      }
+    }
+  },
+  {
+    "run_index": 8,
+    "seed": 621,
+    "depths": {
+      "perceived_stress": 1,
+      "physical_activity": 1,
+      "sleep_quality": 1,
+      "social_support": 1,
+      "wellbeing": 0,
+      "work_demands": 2
+    },
+    "edges": [
+      {
+        "source": "perceived_stress",
+        "target": "wellbeing",
+        "unique_raw": 0.017124913232454297,
+        "unique_normalized": 0.0654284441277522
+      },
+      {
+        "source": "physical_activity",
+        "target": "wellbeing",
+        "unique_raw": 0.014917789810630466,
+        "unique_normalized": 0.056995779417125955
+      },
+      {
+        "source": "sleep_quality",
+        "target": "wellbeing",
+        "unique_raw": 0.01709644070655153,
+        "unique_normalized": 0.0653196603315999
+      },
+      {
+        "source": "social_support",
+        "target": "wellbeing",
+        "unique_raw": 0.05732768577862679,
+        "unique_normalized": 0.21902950602002283
+      },
+      {
+        "source": "work_demands",
+        "target": "perceived_stress",
+        "unique_raw": 0.14480918014244643,
+        "unique_normalized": 1.0
+      },
+      {
+        "source": "work_demands",
+        "target": "sleep_quality",
+        "unique_raw": 0.058171700569536855,
+        "unique_normalized": 1.0
+      }
+    ],
+    "shared_relations": [],
+    "stop_reasons": {
+      "physical_activity": "LOW_TOTAL_GAIN",
+      "social_support": "LOW_TOTAL_GAIN",
+      "work_demands": "NO_UNASSIGNED"
+    },
+    "targets": {
+      "perceived_stress": {
+        "baseline_risk": 0.31738407119437323,
+        "full_risk": 0.1725748910519268,
+        "relative_gain": 0.45625849967045756,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "work_demands": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 1.0,
+            "unique": 1.0,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "work_demands"
+        ],
+        "promoted": [
+          "work_demands"
+        ],
+        "unique_scores": {
+          "work_demands": {
+            "raw": 0.14480918014244643,
+            "gain_relative": 1.0
+          }
+        }
+      },
+      "physical_activity": {
+        "baseline_risk": 0.3949834802845872,
+        "full_risk": 0.39386625242634554,
+        "relative_gain": 0.002828543253091688,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {},
+        "input_candidates": [
+          "work_demands"
+        ],
+        "promoted": [],
+        "unique_scores": {
+          "work_demands": {
+            "raw": 0.0011172278582416428,
+            "gain_relative": null
+          }
+        }
+      },
+      "sleep_quality": {
+        "baseline_risk": 0.33668740828931326,
+        "full_risk": 0.2785157077197764,
+        "relative_gain": 0.1727765848598362,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "work_demands": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 1.0,
+            "unique": 1.0,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "work_demands"
+        ],
+        "promoted": [
+          "work_demands"
+        ],
+        "unique_scores": {
+          "work_demands": {
+            "raw": 0.058171700569536855,
+            "gain_relative": 1.0
+          }
+        }
+      },
+      "social_support": {
+        "baseline_risk": 0.35666678944119506,
+        "full_risk": 0.35666678944119506,
+        "relative_gain": 0.0,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {},
+        "input_candidates": [
+          "work_demands"
+        ],
+        "promoted": [],
+        "unique_scores": {
+          "work_demands": {
+            "raw": 0.0,
+            "gain_relative": null
+          }
+        }
+      },
+      "wellbeing": {
+        "baseline_risk": 0.4997769472052273,
+        "full_risk": 0.2380419562429315,
+        "relative_gain": 0.5237036090318458,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.5872815948961965,
+            "unique": 0.0654284441277522,
+            "screened_by": []
+          },
+          "physical_activity": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.04600984835991243,
+            "unique": 0.056995779417125955,
+            "screened_by": []
+          },
+          "sleep_quality": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.5136266407926785,
+            "unique": 0.0653196603315999,
+            "screened_by": []
+          },
+          "social_support": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.609352358839985,
+            "unique": 0.21902950602002283,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "NEGLIGIBLE",
+            "broad": 0.02657146018898998,
+            "unique": -0.018386447559026443,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "sleep_quality",
+          "perceived_stress",
+          "social_support",
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "perceived_stress",
+          "physical_activity",
+          "sleep_quality",
+          "social_support"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.017124913232454297,
+            "gain_relative": 0.0654284441277522
+          },
+          "physical_activity": {
+            "raw": 0.014917789810630466,
+            "gain_relative": 0.056995779417125955
+          },
+          "sleep_quality": {
+            "raw": 0.01709644070655153,
+            "gain_relative": 0.0653196603315999
+          },
+          "social_support": {
+            "raw": 0.05732768577862679,
+            "gain_relative": 0.21902950602002283
+          },
+          "work_demands": {
+            "raw": -0.0048123766856905115,
+            "gain_relative": -0.018386447559026443
+          }
+        }
+      }
+    }
+  },
+  {
+    "run_index": 9,
+    "seed": 622,
+    "depths": {
+      "perceived_stress": 1,
+      "physical_activity": 1,
+      "sleep_quality": 2,
+      "social_support": 1,
+      "wellbeing": 0,
+      "work_demands": 2
+    },
+    "edges": [
+      {
+        "source": "perceived_stress",
+        "target": "wellbeing",
+        "unique_raw": 0.020237100312485157,
+        "unique_normalized": 0.08526172255804637
+      },
+      {
+        "source": "physical_activity",
+        "target": "wellbeing",
+        "unique_raw": 0.02276947828813558,
+        "unique_normalized": 0.095930983718886
+      },
+      {
+        "source": "sleep_quality",
+        "target": "perceived_stress",
+        "unique_raw": 0.0302112809104767,
+        "unique_normalized": 0.20183464094202225
+      },
+      {
+        "source": "social_support",
+        "target": "wellbeing",
+        "unique_raw": 0.060254992493097737,
+        "unique_normalized": 0.25386267663624473
+      },
+      {
+        "source": "work_demands",
+        "target": "perceived_stress",
+        "unique_raw": 0.06902205654121973,
+        "unique_normalized": 0.4611205344241469
+      }
+    ],
+    "shared_relations": [],
+    "stop_reasons": {
+      "physical_activity": "LOW_TOTAL_GAIN",
+      "sleep_quality": "NO_UNASSIGNED",
+      "social_support": "LOW_TOTAL_GAIN",
+      "work_demands": "NO_UNASSIGNED"
+    },
+    "targets": {
+      "perceived_stress": {
+        "baseline_risk": 0.30726550206462544,
+        "full_risk": 0.15758217332842994,
+        "relative_gain": 0.48714654827964854,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "sleep_quality": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.5341773321247325,
+            "unique": 0.20183464094202225,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.8183489491674019,
+            "unique": 0.4611205344241469,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "sleep_quality",
+          "work_demands"
+        ],
+        "promoted": [
+          "sleep_quality",
+          "work_demands"
+        ],
+        "unique_scores": {
+          "sleep_quality": {
+            "raw": 0.0302112809104767,
+            "gain_relative": 0.20183464094202225
+          },
+          "work_demands": {
+            "raw": 0.06902205654121973,
+            "gain_relative": 0.4611205344241469
+          }
+        }
+      },
+      "physical_activity": {
+        "baseline_risk": 0.3902761690613615,
+        "full_risk": 0.390837399430762,
+        "relative_gain": -0.0014380339203142428,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {},
+        "input_candidates": [
+          "sleep_quality",
+          "work_demands"
+        ],
+        "promoted": [],
+        "unique_scores": {
+          "sleep_quality": {
+            "raw": 0.0013302538168232791,
+            "gain_relative": null
+          },
+          "work_demands": {
+            "raw": -0.002887603354496504,
+            "gain_relative": null
+          }
+        }
+      },
+      "social_support": {
+        "baseline_risk": 0.34190614649706774,
+        "full_risk": 0.34165662243190464,
+        "relative_gain": 0.0007298028061780927,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {},
+        "input_candidates": [
+          "sleep_quality",
+          "work_demands"
+        ],
+        "promoted": [],
+        "unique_scores": {
+          "sleep_quality": {
+            "raw": 0.0002495240651630981,
+            "gain_relative": null
+          },
+          "work_demands": {
+            "raw": 0.0,
+            "gain_relative": null
+          }
+        }
+      },
+      "wellbeing": {
+        "baseline_risk": 0.47394628693231056,
+        "full_risk": 0.23659358392179264,
+        "relative_gain": 0.5008008492836169,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.6043069543378722,
+            "unique": 0.08526172255804637,
+            "screened_by": []
+          },
+          "physical_activity": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.11171862948878555,
+            "unique": 0.095930983718886,
+            "screened_by": []
+          },
+          "sleep_quality": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.42040319357336137,
+            "unique": -0.012970956246293651,
+            "screened_by": []
+          },
+          "social_support": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.5747660748982255,
+            "unique": 0.25386267663624473,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.1431164784706307,
+            "unique": -0.0019132677967237126,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "sleep_quality",
+          "perceived_stress",
+          "social_support",
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "perceived_stress",
+          "physical_activity",
+          "social_support"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.020237100312485157,
+            "gain_relative": 0.08526172255804637
+          },
+          "physical_activity": {
+            "raw": 0.02276947828813558,
+            "gain_relative": 0.095930983718886
+          },
+          "sleep_quality": {
+            "raw": -0.003078691525688959,
+            "gain_relative": -0.012970956246293651
+          },
+          "social_support": {
+            "raw": 0.060254992493097737,
+            "gain_relative": 0.25386267663624473
+          },
+          "work_demands": {
+            "raw": -0.0004541192831353513,
+            "gain_relative": -0.0019132677967237126
+          }
+        }
+      }
+    }
+  },
+  {
+    "run_index": 10,
+    "seed": 623,
+    "depths": {
+      "perceived_stress": 2,
+      "sleep_quality": 1,
+      "social_support": 1,
+      "wellbeing": 0,
+      "work_demands": 2
+    },
+    "edges": [
+      {
+        "source": "perceived_stress",
+        "target": "sleep_quality",
+        "unique_raw": 0.05991157974749828,
+        "unique_normalized": 0.8863009425188741
+      },
+      {
+        "source": "perceived_stress",
+        "target": "social_support",
+        "unique_raw": 0.08777066804897027,
+        "unique_normalized": 0.9920513791431915
+      },
+      {
+        "source": "sleep_quality",
+        "target": "wellbeing",
+        "unique_raw": 0.02702561886660776,
+        "unique_normalized": 0.12882616754989662
+      },
+      {
+        "source": "social_support",
+        "target": "wellbeing",
+        "unique_raw": 0.041377981141057174,
+        "unique_normalized": 0.19724124571077337
+      },
+      {
+        "source": "work_demands",
+        "target": "social_support",
+        "unique_raw": 0.015583516044705814,
+        "unique_normalized": 0.17613684534593024
+      }
+    ],
+    "shared_relations": [],
+    "stop_reasons": {
+      "perceived_stress": "LOW_TOTAL_GAIN",
+      "work_demands": "LOW_TOTAL_GAIN"
+    },
+    "targets": {
+      "perceived_stress": {
+        "baseline_risk": 0.3041753851943921,
+        "full_risk": 0.3020418529230008,
+        "relative_gain": 0.007014151621860514,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {},
+        "input_candidates": [
+          "physical_activity"
+        ],
+        "promoted": [],
+        "unique_scores": {
+          "physical_activity": {
+            "raw": 0.002133532271391292,
+            "gain_relative": null
+          }
+        }
+      },
+      "sleep_quality": {
+        "baseline_risk": 0.337064167680003,
+        "full_risk": 0.2694668349081015,
+        "relative_gain": 0.20054737125328626,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 1.2288071632278303,
+            "unique": 0.8863009425188741,
+            "screened_by": []
+          },
+          "physical_activity": {
+            "class": "NEGLIGIBLE",
+            "broad": -0.3225959370918494,
+            "unique": -0.18659221002517196,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.38659064216456046,
+            "unique": -0.10095594704331394,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "perceived_stress",
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "perceived_stress"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.05991157974749828,
+            "gain_relative": 0.8863009425188741
+          },
+          "physical_activity": {
+            "raw": -0.012613135713716084,
+            "gain_relative": -0.18659221002517196
+          },
+          "work_demands": {
+            "raw": -0.006824352747589357,
+            "gain_relative": -0.10095594704331394
+          }
+        }
+      },
+      "social_support": {
+        "baseline_risk": 0.34958706512626797,
+        "full_risk": 0.2611131514820216,
+        "relative_gain": 0.25308119913501476,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.730328248525537,
+            "unique": 0.9920513791431915,
+            "screened_by": []
+          },
+          "physical_activity": {
+            "class": "NEGLIGIBLE",
+            "broad": -0.0308423256160596,
+            "unique": 0.020828135824292104,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.002267850130213046,
+            "unique": 0.17613684534593024,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "perceived_stress",
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "perceived_stress",
+          "work_demands"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.08777066804897027,
+            "gain_relative": 0.9920513791431915
+          },
+          "physical_activity": {
+            "raw": 0.0018427466902890544,
+            "gain_relative": 0.020828135824292104
+          },
+          "work_demands": {
+            "raw": 0.015583516044705814,
+            "gain_relative": 0.17613684534593024
+          }
+        }
+      },
+      "wellbeing": {
+        "baseline_risk": 0.44031931417812964,
+        "full_risk": 0.23053570126315048,
+        "relative_gain": 0.47643518274129565,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.5600522195280406,
+            "unique": 0.022936635826582324,
+            "screened_by": []
+          },
+          "physical_activity": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.05816547211679405,
+            "unique": 0.03601342746711181,
+            "screened_by": []
+          },
+          "sleep_quality": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.4946014047197426,
+            "unique": 0.12882616754989662,
+            "screened_by": []
+          },
+          "social_support": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.6025064484743424,
+            "unique": 0.19724124571077337,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "NEGLIGIBLE",
+            "broad": -0.05367424121408303,
+            "unique": 0.003724029542316848,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "sleep_quality",
+          "perceived_stress",
+          "social_support",
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "sleep_quality",
+          "social_support"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.004811730331815589,
+            "gain_relative": 0.022936635826582324
+          },
+          "physical_activity": {
+            "raw": 0.007555026927502262,
+            "gain_relative": 0.03601342746711181
+          },
+          "sleep_quality": {
+            "raw": 0.02702561886660776,
+            "gain_relative": 0.12882616754989662
+          },
+          "social_support": {
+            "raw": 0.041377981141057174,
+            "gain_relative": 0.19724124571077337
+          },
+          "work_demands": {
+            "raw": 0.0007812403719893446,
+            "gain_relative": 0.003724029542316848
+          }
+        }
+      },
+      "work_demands": {
+        "baseline_risk": 0.385952319247401,
+        "full_risk": 0.39707858850693206,
+        "relative_gain": -0.028828092758263715,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {},
+        "input_candidates": [
+          "physical_activity"
+        ],
+        "promoted": [],
+        "unique_scores": {
+          "physical_activity": {
+            "raw": -0.011126269259531085,
+            "gain_relative": null
+          }
+        }
+      }
+    }
+  },
+  {
+    "run_index": 11,
+    "seed": 624,
+    "depths": {
+      "perceived_stress": 1,
+      "physical_activity": 1,
+      "sleep_quality": 2,
+      "social_support": 1,
+      "wellbeing": 0,
+      "work_demands": 2
+    },
+    "edges": [
+      {
+        "source": "perceived_stress",
+        "target": "wellbeing",
+        "unique_raw": 0.016125667961120305,
+        "unique_normalized": 0.06806576467116938
+      },
+      {
+        "source": "physical_activity",
+        "target": "wellbeing",
+        "unique_raw": 0.018509864744520627,
+        "unique_normalized": 0.0781293587858414
+      },
+      {
+        "source": "sleep_quality",
+        "target": "perceived_stress",
+        "unique_raw": 0.02561560058117046,
+        "unique_normalized": 0.17740300575421133
+      },
+      {
+        "source": "social_support",
+        "target": "wellbeing",
+        "unique_raw": 0.05040776142612674,
+        "unique_normalized": 0.21276903599302602
+      },
+      {
+        "source": "work_demands",
+        "target": "perceived_stress",
+        "unique_raw": 0.06977981173474684,
+        "unique_normalized": 0.4832659809587581
+      }
+    ],
+    "shared_relations": [],
+    "stop_reasons": {
+      "physical_activity": "LOW_TOTAL_GAIN",
+      "sleep_quality": "NO_UNASSIGNED",
+      "social_support": "LOW_TOTAL_GAIN",
+      "work_demands": "NO_UNASSIGNED"
+    },
+    "targets": {
+      "perceived_stress": {
+        "baseline_risk": 0.31233346347386454,
+        "full_risk": 0.16794131818710195,
+        "relative_gain": 0.4623012330500572,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "sleep_quality": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.5358450481086285,
+            "unique": 0.17740300575421133,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.821077007387586,
+            "unique": 0.4832659809587581,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "sleep_quality",
+          "work_demands"
+        ],
+        "promoted": [
+          "sleep_quality",
+          "work_demands"
+        ],
+        "unique_scores": {
+          "sleep_quality": {
+            "raw": 0.02561560058117046,
+            "gain_relative": 0.17740300575421133
+          },
+          "work_demands": {
+            "raw": 0.06977981173474684,
+            "gain_relative": 0.4832659809587581
+          }
+        }
+      },
+      "physical_activity": {
+        "baseline_risk": 0.44435822974457495,
+        "full_risk": 0.4475007009461345,
+        "relative_gain": -0.0070719320386299035,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {},
+        "input_candidates": [
+          "sleep_quality",
+          "work_demands"
+        ],
+        "promoted": [],
+        "unique_scores": {
+          "sleep_quality": {
+            "raw": -0.003142471201559527,
+            "gain_relative": null
+          },
+          "work_demands": {
+            "raw": 0.0,
+            "gain_relative": null
+          }
+        }
+      },
+      "social_support": {
+        "baseline_risk": 0.3637316336207419,
+        "full_risk": 0.36129404783784375,
+        "relative_gain": 0.006701605132975025,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {},
+        "input_candidates": [
+          "sleep_quality",
+          "work_demands"
+        ],
+        "promoted": [],
+        "unique_scores": {
+          "sleep_quality": {
+            "raw": 0.002437585782898155,
+            "gain_relative": null
+          },
+          "work_demands": {
+            "raw": 0.0,
+            "gain_relative": null
+          }
+        }
+      },
+      "wellbeing": {
+        "baseline_risk": 0.4664940779334948,
+        "full_risk": 0.2295810271652478,
+        "relative_gain": 0.5078586459612511,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.5734653994192596,
+            "unique": 0.06806576467116938,
+            "screened_by": []
+          },
+          "physical_activity": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.02038010642161429,
+            "unique": 0.0781293587858414,
+            "screened_by": []
+          },
+          "sleep_quality": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.4722891024607049,
+            "unique": 0.03593976707323901,
+            "screened_by": []
+          },
+          "social_support": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.5220063675560179,
+            "unique": 0.21276903599302602,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.18797211541047795,
+            "unique": -0.00028474769831679796,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "sleep_quality",
+          "perceived_stress",
+          "social_support",
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "perceived_stress",
+          "physical_activity",
+          "social_support"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.016125667961120305,
+            "gain_relative": 0.06806576467116938
+          },
+          "physical_activity": {
+            "raw": 0.018509864744520627,
+            "gain_relative": 0.0781293587858414
+          },
+          "sleep_quality": {
+            "raw": 0.008514599861221245,
+            "gain_relative": 0.03593976707323901
+          },
+          "social_support": {
+            "raw": 0.05040776142612674,
+            "gain_relative": 0.21276903599302602
+          },
+          "work_demands": {
+            "raw": -6.746044590746902e-05,
+            "gain_relative": -0.00028474769831679796
+          }
+        }
+      }
+    }
+  },
+  {
+    "run_index": 12,
+    "seed": 625,
+    "depths": {
+      "perceived_stress": 2,
+      "physical_activity": 1,
+      "sleep_quality": 1,
+      "social_support": 1,
+      "wellbeing": 0,
+      "work_demands": 2
+    },
+    "edges": [
+      {
+        "source": "perceived_stress",
+        "target": "sleep_quality",
+        "unique_raw": 0.050775154358807584,
+        "unique_normalized": 0.4493942185336086
+      },
+      {
+        "source": "perceived_stress",
+        "target": "social_support",
+        "unique_raw": 0.08041525334426797,
+        "unique_normalized": 1.0094131781781104
+      },
+      {
+        "source": "physical_activity",
+        "target": "wellbeing",
+        "unique_raw": 0.014967044860857898,
+        "unique_normalized": 0.05291144863206343
+      },
+      {
+        "source": "sleep_quality",
+        "target": "wellbeing",
+        "unique_raw": 0.03111448646598633,
+        "unique_normalized": 0.10999583202049033
+      },
+      {
+        "source": "social_support",
+        "target": "wellbeing",
+        "unique_raw": 0.08225812618353409,
+        "unique_normalized": 0.2907986618996731
+      },
+      {
+        "source": "work_demands",
+        "target": "social_support",
+        "unique_raw": 0.04540149660260501,
+        "unique_normalized": 0.5699026872859427
+      }
+    ],
+    "shared_relations": [],
+    "stop_reasons": {
+      "perceived_stress": "NO_UNASSIGNED",
+      "physical_activity": "LOW_TOTAL_GAIN",
+      "work_demands": "NO_UNASSIGNED"
+    },
+    "targets": {
+      "physical_activity": {
+        "baseline_risk": 0.38756576838187384,
+        "full_risk": 0.3964986139707674,
+        "relative_gain": -0.02304859282642298,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {},
+        "input_candidates": [
+          "perceived_stress",
+          "work_demands"
+        ],
+        "promoted": [],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": -0.009497046152673938,
+            "gain_relative": null
+          },
+          "work_demands": {
+            "raw": -0.0048800484639938135,
+            "gain_relative": null
+          }
+        }
+      },
+      "sleep_quality": {
+        "baseline_risk": 0.3675329746442702,
+        "full_risk": 0.25454719898278316,
+        "relative_gain": 0.30741670395926873,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.9936374838431351,
+            "unique": 0.4493942185336086,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.5049359308154049,
+            "unique": 0.007782080059727729,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "perceived_stress",
+          "work_demands"
+        ],
+        "promoted": [
+          "perceived_stress"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.050775154358807584,
+            "gain_relative": 0.4493942185336086
+          },
+          "work_demands": {
+            "raw": 0.0008792643518081289,
+            "gain_relative": 0.007782080059727729
+          }
+        }
+      },
+      "social_support": {
+        "baseline_risk": 0.35278794829131294,
+        "full_risk": 0.27312259907385034,
+        "relative_gain": 0.2258165269060703,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.4300973127140573,
+            "unique": 1.0094131781781104,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.0,
+            "unique": 0.5699026872859427,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "perceived_stress",
+          "work_demands"
+        ],
+        "promoted": [
+          "perceived_stress",
+          "work_demands"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.08041525334426797,
+            "gain_relative": 1.0094131781781104
+          },
+          "work_demands": {
+            "raw": 0.04540149660260501,
+            "gain_relative": 0.5699026872859427
+          }
+        }
+      },
+      "wellbeing": {
+        "baseline_risk": 0.5085209924448596,
+        "full_risk": 0.2256513064353912,
+        "relative_gain": 0.5562596042485715,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.5580028165748718,
+            "unique": 0.0477715221024741,
+            "screened_by": []
+          },
+          "physical_activity": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": -0.1352565150793555,
+            "unique": 0.05291144863206343,
+            "screened_by": []
+          },
+          "sleep_quality": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.5348685524527033,
+            "unique": 0.10999583202049033,
+            "screened_by": []
+          },
+          "social_support": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.4957163801798377,
+            "unique": 0.2907986618996731,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.14346976037205625,
+            "unique": -0.0018021166724496598,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "sleep_quality",
+          "perceived_stress",
+          "social_support",
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "physical_activity",
+          "sleep_quality",
+          "social_support"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.013513115457321229,
+            "gain_relative": 0.0477715221024741
+          },
+          "physical_activity": {
+            "raw": 0.014967044860857898,
+            "gain_relative": 0.05291144863206343
+          },
+          "sleep_quality": {
+            "raw": 0.03111448646598633,
+            "gain_relative": 0.10999583202049033
+          },
+          "social_support": {
+            "raw": 0.08225812618353409,
+            "gain_relative": 0.2907986618996731
+          },
+          "work_demands": {
+            "raw": -0.0005097641772882633,
+            "gain_relative": -0.0018021166724496598
+          }
+        }
+      }
+    }
+  },
+  {
+    "run_index": 13,
+    "seed": 626,
+    "depths": {
+      "perceived_stress": 2,
+      "physical_activity": 1,
+      "sleep_quality": 2,
+      "social_support": 1,
+      "wellbeing": 0,
+      "work_demands": 3
+    },
+    "edges": [
+      {
+        "source": "perceived_stress",
+        "target": "physical_activity",
+        "unique_raw": 0.015757473128908406,
+        "unique_normalized": 0.8667943322134412
+      },
+      {
+        "source": "perceived_stress",
+        "target": "social_support",
+        "unique_raw": 0.06402424847543398,
+        "unique_normalized": 1.1836684472744012
+      },
+      {
+        "source": "physical_activity",
+        "target": "wellbeing",
+        "unique_raw": 0.03099378170762121,
+        "unique_normalized": 0.13159999882860446
+      },
+      {
+        "source": "sleep_quality",
+        "target": "physical_activity",
+        "unique_raw": 0.009732409890644167,
+        "unique_normalized": 0.5353648813471149
+      },
+      {
+        "source": "sleep_quality",
+        "target": "social_support",
+        "unique_raw": 0.006250305512922771,
+        "unique_normalized": 0.1155544906444414
+      },
+      {
+        "source": "social_support",
+        "target": "wellbeing",
+        "unique_raw": 0.056761695212193014,
+        "unique_normalized": 0.24101089353666735
+      },
+      {
+        "source": "work_demands",
+        "target": "perceived_stress",
+        "unique_raw": 0.13730527421777883,
+        "unique_normalized": 1.0
+      },
+      {
+        "source": "work_demands",
+        "target": "sleep_quality",
+        "unique_raw": 0.06806899561441854,
+        "unique_normalized": 1.0
+      }
+    ],
+    "shared_relations": [],
+    "stop_reasons": {
+      "work_demands": "NO_UNASSIGNED"
+    },
+    "targets": {
+      "perceived_stress": {
+        "baseline_risk": 0.3206446424775808,
+        "full_risk": 0.18333936825980196,
+        "relative_gain": 0.4282163368046266,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "work_demands": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 1.0,
+            "unique": 1.0,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "work_demands"
+        ],
+        "promoted": [
+          "work_demands"
+        ],
+        "unique_scores": {
+          "work_demands": {
+            "raw": 0.13730527421777883,
+            "gain_relative": 1.0
+          }
+        }
+      },
+      "physical_activity": {
+        "baseline_risk": 0.3968154778603906,
+        "full_risk": 0.37863645598253615,
+        "relative_gain": 0.045812280246412915,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.560430049807607,
+            "unique": 0.8667943322134412,
+            "screened_by": []
+          },
+          "sleep_quality": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": -0.7497048534953056,
+            "unique": 0.5353648813471149,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "NEGLIGIBLE",
+            "broad": 0.038593031594244785,
+            "unique": -0.05675241503734493,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "sleep_quality",
+          "perceived_stress",
+          "work_demands"
+        ],
+        "promoted": [
+          "perceived_stress",
+          "sleep_quality"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.015757473128908406,
+            "gain_relative": 0.8667943322134412
+          },
+          "sleep_quality": {
+            "raw": 0.009732409890644167,
+            "gain_relative": 0.5353648813471149
+          },
+          "work_demands": {
+            "raw": -0.0010317033945849707,
+            "gain_relative": -0.05675241503734493
+          }
+        }
+      },
+      "sleep_quality": {
+        "baseline_risk": 0.34924310099422073,
+        "full_risk": 0.2811741053798022,
+        "relative_gain": 0.19490433861296216,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "work_demands": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 1.0,
+            "unique": 1.0,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "work_demands"
+        ],
+        "promoted": [
+          "work_demands"
+        ],
+        "unique_scores": {
+          "work_demands": {
+            "raw": 0.06806899561441854,
+            "gain_relative": 1.0
+          }
+        }
+      },
+      "social_support": {
+        "baseline_risk": 0.3139984322306231,
+        "full_risk": 0.2599087514396375,
+        "relative_gain": 0.17226098998882347,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.8234372634889626,
+            "unique": 1.1836684472744012,
+            "screened_by": []
+          },
+          "sleep_quality": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.0,
+            "unique": 0.1155544906444414,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "NEGLIGIBLE",
+            "broad": -0.19762578379732892,
+            "unique": 0.041525334053914634,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "sleep_quality",
+          "perceived_stress",
+          "work_demands"
+        ],
+        "promoted": [
+          "perceived_stress",
+          "sleep_quality"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.06402424847543398,
+            "gain_relative": 1.1836684472744012
+          },
+          "sleep_quality": {
+            "raw": 0.006250305512922771,
+            "gain_relative": 0.1155544906444414
+          },
+          "work_demands": {
+            "raw": 0.002246092063715288,
+            "gain_relative": 0.041525334053914634
+          }
+        }
+      },
+      "wellbeing": {
+        "baseline_risk": 0.4599024157197079,
+        "full_risk": 0.22438735505479526,
+        "relative_gain": 0.5120978986299772,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.5713662518121287,
+            "unique": 0.004956395263599983,
+            "screened_by": []
+          },
+          "physical_activity": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.10631654391946779,
+            "unique": 0.13159999882860446,
+            "screened_by": []
+          },
+          "sleep_quality": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.4385069877629314,
+            "unique": 0.03197148486296158,
+            "screened_by": []
+          },
+          "social_support": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.500129334414246,
+            "unique": 0.24101089353666735,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.14111551898007327,
+            "unique": 0.0010151261453469529,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "sleep_quality",
+          "perceived_stress",
+          "social_support",
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "physical_activity",
+          "social_support"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.0011673057311860358,
+            "gain_relative": 0.004956395263599983
+          },
+          "physical_activity": {
+            "raw": 0.03099378170762121,
+            "gain_relative": 0.13159999882860446
+          },
+          "sleep_quality": {
+            "raw": 0.0075297661970477325,
+            "gain_relative": 0.03197148486296158
+          },
+          "social_support": {
+            "raw": 0.056761695212193014,
+            "gain_relative": 0.24101089353666735
+          },
+          "work_demands": {
+            "raw": 0.00023907749570392656,
+            "gain_relative": 0.0010151261453469529
+          }
+        }
+      }
+    }
+  },
+  {
+    "run_index": 14,
+    "seed": 627,
+    "depths": {
+      "perceived_stress": 1,
+      "sleep_quality": 1,
+      "social_support": 1,
+      "wellbeing": 0,
+      "work_demands": 2
+    },
+    "edges": [
+      {
+        "source": "perceived_stress",
+        "target": "wellbeing",
+        "unique_raw": 0.012455871179810063,
+        "unique_normalized": 0.06896024453577211
+      },
+      {
+        "source": "sleep_quality",
+        "target": "wellbeing",
+        "unique_raw": 0.011735231946881641,
+        "unique_normalized": 0.06497052298138035
+      },
+      {
+        "source": "social_support",
+        "target": "wellbeing",
+        "unique_raw": 0.01438997180064222,
+        "unique_normalized": 0.07966813078828616
+      },
+      {
+        "source": "work_demands",
+        "target": "perceived_stress",
+        "unique_raw": 0.11796728165605785,
+        "unique_normalized": 1.0926181596533233
+      },
+      {
+        "source": "work_demands",
+        "target": "sleep_quality",
+        "unique_raw": 0.041530579274615564,
+        "unique_normalized": 1.256806626461161
+      }
+    ],
+    "shared_relations": [],
+    "stop_reasons": {
+      "social_support": "LOW_TOTAL_GAIN",
+      "work_demands": "LOW_TOTAL_GAIN"
+    },
+    "targets": {
+      "perceived_stress": {
+        "baseline_risk": 0.29318229996357975,
+        "full_risk": 0.18521477204560366,
+        "relative_gain": 0.36826073037624796,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "physical_activity": {
+            "class": "NEGLIGIBLE",
+            "broad": -0.16623009820612145,
+            "unique": -0.01711330564994055,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 1.025390942751774,
+            "unique": 1.0926181596533233,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "work_demands"
+        ],
+        "unique_scores": {
+          "physical_activity": {
+            "raw": -0.0018476813055288144,
+            "gain_relative": -0.01711330564994055
+          },
+          "work_demands": {
+            "raw": 0.11796728165605785,
+            "gain_relative": 1.0926181596533233
+          }
+        }
+      },
+      "sleep_quality": {
+        "baseline_risk": 0.29601503025914955,
+        "full_risk": 0.2629705042356396,
+        "relative_gain": 0.11163124384116829,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "physical_activity": {
+            "class": "NEGLIGIBLE",
+            "broad": -0.256806626461161,
+            "unique": -0.024408822727256932,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 1.2150849435040232,
+            "unique": 1.256806626461161,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "work_demands"
+        ],
+        "unique_scores": {
+          "physical_activity": {
+            "raw": -0.0008065779778140825,
+            "gain_relative": -0.024408822727256932
+          },
+          "work_demands": {
+            "raw": 0.041530579274615564,
+            "gain_relative": 1.256806626461161
+          }
+        }
+      },
+      "social_support": {
+        "baseline_risk": 0.3293137290059577,
+        "full_risk": 0.3327147530110143,
+        "relative_gain": -0.01032761074165562,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {},
+        "input_candidates": [
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [],
+        "unique_scores": {
+          "physical_activity": {
+            "raw": -0.0034010240050565965,
+            "gain_relative": null
+          },
+          "work_demands": {
+            "raw": 0.0,
+            "gain_relative": null
+          }
+        }
+      },
+      "wellbeing": {
+        "baseline_risk": 0.43890419934815245,
+        "full_risk": 0.2582802577762985,
+        "relative_gain": 0.4115338651125036,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.5756143230217359,
+            "unique": 0.06896024453577211,
+            "screened_by": []
+          },
+          "physical_activity": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.11545992496763396,
+            "unique": -0.04663911857365469,
+            "screened_by": []
+          },
+          "sleep_quality": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.6405321751519596,
+            "unique": 0.06497052298138035,
+            "screened_by": []
+          },
+          "social_support": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.6027091948834541,
+            "unique": 0.07966813078828616,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.1336901828720612,
+            "unique": -0.07779720350387061,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "sleep_quality",
+          "perceived_stress",
+          "social_support",
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "perceived_stress",
+          "sleep_quality",
+          "social_support"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.012455871179810063,
+            "gain_relative": 0.06896024453577211
+          },
+          "physical_activity": {
+            "raw": -0.008424141428210574,
+            "gain_relative": -0.04663911857365469
+          },
+          "sleep_quality": {
+            "raw": 0.011735231946881641,
+            "gain_relative": 0.06497052298138035
+          },
+          "social_support": {
+            "raw": 0.01438997180064222,
+            "gain_relative": 0.07966813078828616
+          },
+          "work_demands": {
+            "raw": -0.014052037540136758,
+            "gain_relative": -0.07779720350387061
+          }
+        }
+      },
+      "work_demands": {
+        "baseline_risk": 0.39329015419773866,
+        "full_risk": 0.4048873857416495,
+        "relative_gain": -0.029487724063592968,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {},
+        "input_candidates": [
+          "physical_activity"
+        ],
+        "promoted": [],
+        "unique_scores": {
+          "physical_activity": {
+            "raw": -0.011597231543910846,
+            "gain_relative": null
+          }
+        }
+      }
+    }
+  },
+  {
+    "run_index": 15,
+    "seed": 628,
+    "depths": {
+      "perceived_stress": 1,
+      "physical_activity": 2,
+      "sleep_quality": 1,
+      "social_support": 1,
+      "wellbeing": 0,
+      "work_demands": 2
+    },
+    "edges": [
+      {
+        "source": "perceived_stress",
+        "target": "wellbeing",
+        "unique_raw": 0.013344241735462364,
+        "unique_normalized": 0.05473392479665701
+      },
+      {
+        "source": "physical_activity",
+        "target": "sleep_quality",
+        "unique_raw": 0.005978102017332676,
+        "unique_normalized": 0.10220660508884544
+      },
+      {
+        "source": "sleep_quality",
+        "target": "wellbeing",
+        "unique_raw": 0.017404471561189128,
+        "unique_normalized": 0.07138772336715872
+      },
+      {
+        "source": "social_support",
+        "target": "wellbeing",
+        "unique_raw": 0.053156723513108434,
+        "unique_normalized": 0.21803232921592125
+      },
+      {
+        "source": "work_demands",
+        "target": "perceived_stress",
+        "unique_raw": 0.11022571691078611,
+        "unique_normalized": 1.0015454802726258
+      },
+      {
+        "source": "work_demands",
+        "target": "sleep_quality",
+        "unique_raw": 0.05007142421183414,
+        "unique_normalized": 0.85606272121438
+      }
+    ],
+    "shared_relations": [],
+    "stop_reasons": {
+      "physical_activity": "NO_UNASSIGNED",
+      "social_support": "LOW_TOTAL_GAIN",
+      "work_demands": "NO_UNASSIGNED"
+    },
+    "targets": {
+      "perceived_stress": {
+        "baseline_risk": 0.29980803758616736,
+        "full_risk": 0.18975240947751462,
+        "relative_gain": 0.3670869833735589,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "physical_activity": {
+            "class": "NEGLIGIBLE",
+            "broad": 0.0,
+            "unique": 0.0,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 1.0348914473337818,
+            "unique": 1.0015454802726258,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "work_demands"
+        ],
+        "unique_scores": {
+          "physical_activity": {
+            "raw": 0.0,
+            "gain_relative": 0.0
+          },
+          "work_demands": {
+            "raw": 0.11022571691078611,
+            "gain_relative": 1.0015454802726258
+          }
+        }
+      },
+      "sleep_quality": {
+        "baseline_risk": 0.34969082809151797,
+        "full_risk": 0.2912004593708656,
+        "relative_gain": 0.1672630907704128,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "physical_activity": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.07160593686415642,
+            "unique": 0.10220660508884544,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.8995947559902282,
+            "unique": 0.85606272121438,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "physical_activity",
+          "work_demands"
+        ],
+        "unique_scores": {
+          "physical_activity": {
+            "raw": 0.005978102017332676,
+            "gain_relative": 0.10220660508884544
+          },
+          "work_demands": {
+            "raw": 0.05007142421183414,
+            "gain_relative": 0.85606272121438
+          }
+        }
+      },
+      "social_support": {
+        "baseline_risk": 0.33583965009254985,
+        "full_risk": 0.33583965009254985,
+        "relative_gain": 0.0,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {},
+        "input_candidates": [
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [],
+        "unique_scores": {
+          "physical_activity": {
+            "raw": 0.0,
+            "gain_relative": null
+          },
+          "work_demands": {
+            "raw": 0.0,
+            "gain_relative": null
+          }
+        }
+      },
+      "wellbeing": {
+        "baseline_risk": 0.45496701546399554,
+        "full_risk": 0.2111649898457378,
+        "relative_gain": 0.5358674746335569,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.6474772011336649,
+            "unique": 0.05473392479665701,
+            "screened_by": []
+          },
+          "physical_activity": {
+            "class": "NEGLIGIBLE",
+            "broad": 0.04716665633651959,
+            "unique": 0.04374726492566923,
+            "screened_by": []
+          },
+          "sleep_quality": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.44434020129091295,
+            "unique": 0.07138772336715872,
+            "screened_by": []
+          },
+          "social_support": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.5517848286524809,
+            "unique": 0.21803232921592125,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.18301240683384298,
+            "unique": 0.002647562336434456,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "sleep_quality",
+          "perceived_stress",
+          "social_support",
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "perceived_stress",
+          "sleep_quality",
+          "social_support"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.013344241735462364,
+            "gain_relative": 0.05473392479665701
+          },
+          "physical_activity": {
+            "raw": 0.010665671804136717,
+            "gain_relative": 0.04374726492566923
+          },
+          "sleep_quality": {
+            "raw": 0.017404471561189128,
+            "gain_relative": 0.07138772336715872
+          },
+          "social_support": {
+            "raw": 0.053156723513108434,
+            "gain_relative": 0.21803232921592125
+          },
+          "work_demands": {
+            "raw": 0.0006454810605733274,
+            "gain_relative": 0.002647562336434456
+          }
+        }
+      }
+    }
+  },
+  {
+    "run_index": 16,
+    "seed": 629,
+    "depths": {
+      "perceived_stress": 2,
+      "physical_activity": 1,
+      "sleep_quality": 1,
+      "social_support": 1,
+      "wellbeing": 0,
+      "work_demands": 2
+    },
+    "edges": [
+      {
+        "source": "perceived_stress",
+        "target": "sleep_quality",
+        "unique_raw": 0.04520699884350943,
+        "unique_normalized": 0.4490430253795663
+      },
+      {
+        "source": "perceived_stress",
+        "target": "social_support",
+        "unique_raw": 0.10375752850696263,
+        "unique_normalized": 1.0202345745899981
+      },
+      {
+        "source": "physical_activity",
+        "target": "wellbeing",
+        "unique_raw": 0.02878053826649471,
+        "unique_normalized": 0.11464646359684855
+      },
+      {
+        "source": "sleep_quality",
+        "target": "wellbeing",
+        "unique_raw": 0.018033045623959687,
+        "unique_normalized": 0.07183412935241822
+      },
+      {
+        "source": "social_support",
+        "target": "wellbeing",
+        "unique_raw": 0.043879464664301926,
+        "unique_normalized": 0.17479261164971227
+      },
+      {
+        "source": "work_demands",
+        "target": "social_support",
+        "unique_raw": 0.05622557537510836,
+        "unique_normalized": 0.5528589279191649
+      }
+    ],
+    "shared_relations": [],
+    "stop_reasons": {
+      "perceived_stress": "NO_UNASSIGNED",
+      "physical_activity": "LOW_TOTAL_GAIN",
+      "work_demands": "NO_UNASSIGNED"
+    },
+    "targets": {
+      "physical_activity": {
+        "baseline_risk": 0.3821018925174689,
+        "full_risk": 0.3768370688170509,
+        "relative_gain": 0.013778585773890871,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {},
+        "input_candidates": [
+          "perceived_stress",
+          "work_demands"
+        ],
+        "promoted": [],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.0047238258366704144,
+            "gain_relative": null
+          },
+          "work_demands": {
+            "raw": 6.791334197014942e-05,
+            "gain_relative": null
+          }
+        }
+      },
+      "sleep_quality": {
+        "baseline_risk": 0.3365666776051648,
+        "full_risk": 0.23589258561743837,
+        "relative_gain": 0.2991207944413019,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 1.017922371293166,
+            "unique": 0.4490430253795663,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.5875916698385938,
+            "unique": 0.04380010933879262,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "perceived_stress",
+          "work_demands"
+        ],
+        "promoted": [
+          "perceived_stress"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.04520699884350943,
+            "gain_relative": 0.4490430253795663
+          },
+          "work_demands": {
+            "raw": 0.004409536236646083,
+            "gain_relative": 0.04380010933879262
+          }
+        }
+      },
+      "social_support": {
+        "baseline_risk": 0.3927135470301564,
+        "full_risk": 0.2910138682590662,
+        "relative_gain": 0.25896656619100705,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.43657320742346106,
+            "unique": 1.0202345745899981,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.0,
+            "unique": 0.5528589279191649,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "perceived_stress",
+          "work_demands"
+        ],
+        "promoted": [
+          "perceived_stress",
+          "work_demands"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.10375752850696263,
+            "gain_relative": 1.0202345745899981
+          },
+          "work_demands": {
+            "raw": 0.05622557537510836,
+            "gain_relative": 0.5528589279191649
+          }
+        }
+      },
+      "wellbeing": {
+        "baseline_risk": 0.4480202925602465,
+        "full_risk": 0.19698299613128067,
+        "relative_gain": 0.5603257276459372,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.5541955562974087,
+            "unique": 0.03173199487436773,
+            "screened_by": []
+          },
+          "physical_activity": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.1416949449044537,
+            "unique": 0.11464646359684855,
+            "screened_by": []
+          },
+          "sleep_quality": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.4067140550551348,
+            "unique": 0.07183412935241822,
+            "screened_by": []
+          },
+          "social_support": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.44391990411869847,
+            "unique": 0.17479261164971227,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.1298771209689585,
+            "unique": 0.0063993253155439,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "sleep_quality",
+          "perceived_stress",
+          "social_support",
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "physical_activity",
+          "sleep_quality",
+          "social_support"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.007965914203559077,
+            "gain_relative": 0.03173199487436773
+          },
+          "physical_activity": {
+            "raw": 0.02878053826649471,
+            "gain_relative": 0.11464646359684855
+          },
+          "sleep_quality": {
+            "raw": 0.018033045623959687,
+            "gain_relative": 0.07183412935241822
+          },
+          "social_support": {
+            "raw": 0.043879464664301926,
+            "gain_relative": 0.17479261164971227
+          },
+          "work_demands": {
+            "raw": 0.0016064693261835794,
+            "gain_relative": 0.0063993253155439
+          }
+        }
+      }
+    }
+  },
+  {
+    "run_index": 17,
+    "seed": 630,
+    "depths": {
+      "perceived_stress": 1,
+      "physical_activity": 1,
+      "sleep_quality": 1,
+      "social_support": 1,
+      "wellbeing": 0,
+      "work_demands": 2
+    },
+    "edges": [
+      {
+        "source": "perceived_stress",
+        "target": "wellbeing",
+        "unique_raw": 0.027154205308000084,
+        "unique_normalized": 0.14109783120286482
+      },
+      {
+        "source": "physical_activity",
+        "target": "wellbeing",
+        "unique_raw": 0.011167289557252075,
+        "unique_normalized": 0.05802712025891792
+      },
+      {
+        "source": "sleep_quality",
+        "target": "wellbeing",
+        "unique_raw": 0.020041880583704097,
+        "unique_normalized": 0.10414099221509229
+      },
+      {
+        "source": "social_support",
+        "target": "wellbeing",
+        "unique_raw": 0.03673151288116974,
+        "unique_normalized": 0.1908631368713347
+      },
+      {
+        "source": "work_demands",
+        "target": "perceived_stress",
+        "unique_raw": 0.04489749262004769,
+        "unique_normalized": 1.0
+      },
+      {
+        "source": "work_demands",
+        "target": "sleep_quality",
+        "unique_raw": 0.026935205554666664,
+        "unique_normalized": 1.0
+      }
+    ],
+    "shared_relations": [],
+    "stop_reasons": {
+      "physical_activity": "LOW_TOTAL_GAIN",
+      "social_support": "LOW_TOTAL_GAIN",
+      "work_demands": "NO_UNASSIGNED"
+    },
+    "targets": {
+      "perceived_stress": {
+        "baseline_risk": 0.2489946824718661,
+        "full_risk": 0.2040971898518184,
+        "relative_gain": 0.18031506606620268,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "work_demands": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 1.0,
+            "unique": 1.0,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "work_demands"
+        ],
+        "promoted": [
+          "work_demands"
+        ],
+        "unique_scores": {
+          "work_demands": {
+            "raw": 0.04489749262004769,
+            "gain_relative": 1.0
+          }
+        }
+      },
+      "physical_activity": {
+        "baseline_risk": 0.37597263067366354,
+        "full_risk": 0.37597263067366354,
+        "relative_gain": 0.0,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {},
+        "input_candidates": [
+          "work_demands"
+        ],
+        "promoted": [],
+        "unique_scores": {
+          "work_demands": {
+            "raw": 0.0,
+            "gain_relative": null
+          }
+        }
+      },
+      "sleep_quality": {
+        "baseline_risk": 0.3251579051229016,
+        "full_risk": 0.29822269956823494,
+        "relative_gain": 0.08283730805955902,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "work_demands": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 1.0,
+            "unique": 1.0,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "work_demands"
+        ],
+        "promoted": [
+          "work_demands"
+        ],
+        "unique_scores": {
+          "work_demands": {
+            "raw": 0.026935205554666664,
+            "gain_relative": 1.0
+          }
+        }
+      },
+      "social_support": {
+        "baseline_risk": 0.35083414199460883,
+        "full_risk": 0.35165208105452717,
+        "relative_gain": -0.002331412374143754,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {},
+        "input_candidates": [
+          "work_demands"
+        ],
+        "promoted": [],
+        "unique_scores": {
+          "work_demands": {
+            "raw": -0.0008179390599183378,
+            "gain_relative": null
+          }
+        }
+      },
+      "wellbeing": {
+        "baseline_risk": 0.4223239573943318,
+        "full_risk": 0.22987446985430823,
+        "relative_gain": 0.4556916181772039,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.6159375345825948,
+            "unique": 0.14109783120286482,
+            "screened_by": []
+          },
+          "physical_activity": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.15660757522926685,
+            "unique": 0.05802712025891792,
+            "screened_by": []
+          },
+          "sleep_quality": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.5714006310572587,
+            "unique": 0.10414099221509229,
+            "screened_by": []
+          },
+          "social_support": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.517795271431772,
+            "unique": 0.1908631368713347,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "NEGLIGIBLE",
+            "broad": -0.1504571533391759,
+            "unique": -0.045890183849955406,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "sleep_quality",
+          "perceived_stress",
+          "social_support",
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "perceived_stress",
+          "physical_activity",
+          "sleep_quality",
+          "social_support"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.027154205308000084,
+            "gain_relative": 0.14109783120286482
+          },
+          "physical_activity": {
+            "raw": 0.011167289557252075,
+            "gain_relative": 0.05802712025891792
+          },
+          "sleep_quality": {
+            "raw": 0.020041880583704097,
+            "gain_relative": 0.10414099221509229
+          },
+          "social_support": {
+            "raw": 0.03673151288116974,
+            "gain_relative": 0.1908631368713347
+          },
+          "work_demands": {
+            "raw": -0.008831542365041384,
+            "gain_relative": -0.045890183849955406
+          }
+        }
+      }
+    }
+  },
+  {
+    "run_index": 18,
+    "seed": 631,
+    "depths": {
+      "perceived_stress": 1,
+      "physical_activity": 1,
+      "sleep_quality": 2,
+      "social_support": 1,
+      "wellbeing": 0,
+      "work_demands": 2
+    },
+    "edges": [
+      {
+        "source": "perceived_stress",
+        "target": "wellbeing",
+        "unique_raw": 0.02814521153931715,
+        "unique_normalized": 0.10786196305535681
+      },
+      {
+        "source": "physical_activity",
+        "target": "wellbeing",
+        "unique_raw": 0.015140530446461381,
+        "unique_normalized": 0.058023629823261355
+      },
+      {
+        "source": "sleep_quality",
+        "target": "perceived_stress",
+        "unique_raw": 0.025208892247011894,
+        "unique_normalized": 0.16023754404849222
+      },
+      {
+        "source": "social_support",
+        "target": "wellbeing",
+        "unique_raw": 0.03145619708639419,
+        "unique_normalized": 0.12055077870901625
+      },
+      {
+        "source": "work_demands",
+        "target": "perceived_stress",
+        "unique_raw": 0.06990105770017341,
+        "unique_normalized": 0.4443183660160792
+      }
+    ],
+    "shared_relations": [],
+    "stop_reasons": {
+      "physical_activity": "LOW_TOTAL_GAIN",
+      "sleep_quality": "NO_UNASSIGNED",
+      "social_support": "LOW_TOTAL_GAIN",
+      "work_demands": "NO_UNASSIGNED"
+    },
+    "targets": {
+      "perceived_stress": {
+        "baseline_risk": 0.32277624383538733,
+        "full_risk": 0.1654542354589796,
+        "relative_gain": 0.4874026864772625,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "sleep_quality": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.5556816339839208,
+            "unique": 0.16023754404849222,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.839797706563952,
+            "unique": 0.4443183660160792,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "sleep_quality",
+          "work_demands"
+        ],
+        "promoted": [
+          "sleep_quality",
+          "work_demands"
+        ],
+        "unique_scores": {
+          "sleep_quality": {
+            "raw": 0.025208892247011894,
+            "gain_relative": 0.16023754404849222
+          },
+          "work_demands": {
+            "raw": 0.06990105770017341,
+            "gain_relative": 0.4443183660160792
+          }
+        }
+      },
+      "physical_activity": {
+        "baseline_risk": 0.40108872371652265,
+        "full_risk": 0.3981190022185162,
+        "relative_gain": 0.00740415105787257,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {},
+        "input_candidates": [
+          "sleep_quality",
+          "work_demands"
+        ],
+        "promoted": [],
+        "unique_scores": {
+          "sleep_quality": {
+            "raw": 0.00296972149800645,
+            "gain_relative": null
+          },
+          "work_demands": {
+            "raw": -0.0004473924028405296,
+            "gain_relative": null
+          }
+        }
+      },
+      "social_support": {
+        "baseline_risk": 0.3728393883207183,
+        "full_risk": 0.3788659168583205,
+        "relative_gain": -0.01616387304127365,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {},
+        "input_candidates": [
+          "sleep_quality",
+          "work_demands"
+        ],
+        "promoted": [],
+        "unique_scores": {
+          "sleep_quality": {
+            "raw": -0.006195527012682833,
+            "gain_relative": null
+          },
+          "work_demands": {
+            "raw": -0.00021803501934786196,
+            "gain_relative": null
+          }
+        }
+      },
+      "wellbeing": {
+        "baseline_risk": 0.4944378532756133,
+        "full_risk": 0.23350053355640427,
+        "relative_gain": 0.5277454345182495,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.6018486534846198,
+            "unique": 0.10786196305535681,
+            "screened_by": []
+          },
+          "physical_activity": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.041677990680125725,
+            "unique": 0.058023629823261355,
+            "screened_by": []
+          },
+          "sleep_quality": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.4465637794300432,
+            "unique": -0.015285261825938614,
+            "screened_by": []
+          },
+          "social_support": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.5272033053688695,
+            "unique": 0.12055077870901625,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.1591509415258492,
+            "unique": -0.013426278033150281,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "sleep_quality",
+          "perceived_stress",
+          "social_support",
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "perceived_stress",
+          "physical_activity",
+          "social_support"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.02814521153931715,
+            "gain_relative": 0.10786196305535681
+          },
+          "physical_activity": {
+            "raw": 0.015140530446461381,
+            "gain_relative": 0.058023629823261355
+          },
+          "sleep_quality": {
+            "raw": -0.003988495252066765,
+            "gain_relative": -0.015285261825938614
+          },
+          "social_support": {
+            "raw": 0.03145619708639419,
+            "gain_relative": 0.12055077870901625
+          },
+          "work_demands": {
+            "raw": -0.0035034170037751278,
+            "gain_relative": -0.013426278033150281
+          }
+        }
+      }
+    }
+  },
+  {
+    "run_index": 19,
+    "seed": 632,
+    "depths": {
+      "perceived_stress": 2,
+      "physical_activity": 1,
+      "sleep_quality": 1,
+      "social_support": 1,
+      "wellbeing": 0,
+      "work_demands": 2
+    },
+    "edges": [
+      {
+        "source": "perceived_stress",
+        "target": "sleep_quality",
+        "unique_raw": 0.03122667519676736,
+        "unique_normalized": 0.38142955714508664
+      },
+      {
+        "source": "perceived_stress",
+        "target": "social_support",
+        "unique_raw": 0.05340514370345595,
+        "unique_normalized": 1.0212278166108153
+      },
+      {
+        "source": "physical_activity",
+        "target": "wellbeing",
+        "unique_raw": 0.0165817996147338,
+        "unique_normalized": 0.07122042988775706
+      },
+      {
+        "source": "sleep_quality",
+        "target": "wellbeing",
+        "unique_raw": 0.020927289049932407,
+        "unique_normalized": 0.08988472645617991
+      },
+      {
+        "source": "social_support",
+        "target": "wellbeing",
+        "unique_raw": 0.050947253318535,
+        "unique_normalized": 0.21882337063839685
+      },
+      {
+        "source": "work_demands",
+        "target": "social_support",
+        "unique_raw": 0.018043602918591584,
+        "unique_normalized": 0.34503472764091436
+      }
+    ],
+    "shared_relations": [],
+    "stop_reasons": {
+      "perceived_stress": "NO_UNASSIGNED",
+      "physical_activity": "LOW_TOTAL_GAIN",
+      "work_demands": "NO_UNASSIGNED"
+    },
+    "targets": {
+      "physical_activity": {
+        "baseline_risk": 0.41990954110384116,
+        "full_risk": 0.41990954110384116,
+        "relative_gain": 0.0,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {},
+        "input_candidates": [
+          "perceived_stress",
+          "work_demands"
+        ],
+        "promoted": [],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.0,
+            "gain_relative": null
+          },
+          "work_demands": {
+            "raw": 0.0,
+            "gain_relative": null
+          }
+        }
+      },
+      "sleep_quality": {
+        "baseline_risk": 0.32234141540713734,
+        "full_risk": 0.24047393919346394,
+        "relative_gain": 0.2539775291061177,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.9796761385252166,
+            "unique": 0.38142955714508664,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.6490284927178821,
+            "unique": 0.04139304490082432,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "perceived_stress",
+          "work_demands"
+        ],
+        "promoted": [
+          "perceived_stress"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.03122667519676736,
+            "gain_relative": 0.38142955714508664
+          },
+          "work_demands": {
+            "raw": 0.0033887441188297507,
+            "gain_relative": 0.04139304490082432
+          }
+        }
+      },
+      "social_support": {
+        "baseline_risk": 0.3274908591742046,
+        "full_risk": 0.2751958248686434,
+        "relative_gain": 0.1596839509885176,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.8016501021494591,
+            "unique": 1.0212278166108153,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.0,
+            "unique": 0.34503472764091436,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "perceived_stress",
+          "work_demands"
+        ],
+        "promoted": [
+          "perceived_stress",
+          "work_demands"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": 0.05340514370345595,
+            "gain_relative": 1.0212278166108153
+          },
+          "work_demands": {
+            "raw": 0.018043602918591584,
+            "gain_relative": 0.34503472764091436
+          }
+        }
+      },
+      "wellbeing": {
+        "baseline_risk": 0.4657900856067349,
+        "full_risk": 0.2329664472087835,
+        "relative_gain": 0.4998467026078431,
+        "observed_target_rows": 144,
+        "missing_target_rows": 0,
+        "candidates": {
+          "perceived_stress": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.521639855129796,
+            "unique": -0.0034745833259165345,
+            "screened_by": []
+          },
+          "physical_activity": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.06655492954586643,
+            "unique": 0.07122042988775706,
+            "screened_by": []
+          },
+          "sleep_quality": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.4676166657567274,
+            "unique": 0.08988472645617991,
+            "screened_by": []
+          },
+          "social_support": {
+            "class": "PROXIMAL_UNIQUE",
+            "broad": 0.5804990544750256,
+            "unique": 0.21882337063839685,
+            "screened_by": []
+          },
+          "work_demands": {
+            "class": "SCREENED_GENERAL",
+            "broad": 0.22439141155693365,
+            "unique": -0.008851591696832565,
+            "screened_by": []
+          }
+        },
+        "input_candidates": [
+          "sleep_quality",
+          "perceived_stress",
+          "social_support",
+          "physical_activity",
+          "work_demands"
+        ],
+        "promoted": [
+          "physical_activity",
+          "sleep_quality",
+          "social_support"
+        ],
+        "unique_scores": {
+          "perceived_stress": {
+            "raw": -0.0008089651318567426,
+            "gain_relative": -0.0034745833259165345
+          },
+          "physical_activity": {
+            "raw": 0.0165817996147338,
+            "gain_relative": 0.07122042988775706
+          },
+          "sleep_quality": {
+            "raw": 0.020927289049932407,
+            "gain_relative": 0.08988472645617991
+          },
+          "social_support": {
+            "raw": 0.050947253318535,
+            "gain_relative": 0.21882337063839685
+          },
+          "work_demands": {
+            "raw": -0.002060859784469654,
+            "gain_relative": -0.008851591696832565
+          }
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,47 @@
+{
+  "method": "layer_consensus",
+  "threshold": 0.8,
+  "status": "COMPLETE",
+  "planned_per_target": 20,
+  "assigned_depth": {
+    "perceived_stress": 2,
+    "physical_activity": 3,
+    "sleep_quality": 3,
+    "social_support": 1,
+    "wellbeing": 0,
+    "work_demands": 2
+  },
+  "parents": {
+    "perceived_stress": [
+      "social_support"
+    ],
+    "physical_activity": [
+      "perceived_stress"
+    ],
+    "sleep_quality": [
+      "perceived_stress",
+      "work_demands"
+    ],
+    "social_support": [
+      "wellbeing"
+    ],
+    "work_demands": [
+      "social_support"
+    ]
+  },
+  "stop_reasons": {
+    "physical_activity": "NO_UNASSIGNED",
+    "sleep_quality": "NO_UNASSIGNED"
+  },
+  "assessment_count": 80,
+  "completed_count": 80,
+  "failed_count": 0,
+  "infeasible_count": 0,
+  "warning_count": 0,
+  "outer_model_fit_count": 1208,
+  "tuning_model_fit_count": 34000,
+  "elapsed_seconds": 812.0254626999958,
+  "peak_traced_memory_bytes": 2267791,
+  "engine_revision": "c9de7bc8d4c4a9718641b9d90dd07142554613fe",
+  "path_frequency_available": false
+}

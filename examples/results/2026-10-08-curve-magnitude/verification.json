@@ -1,0 +1,19 @@
+{
+  "independent_magnitude_formula_audit": true,
+  "csv_json_magnitudes_match": true,
+  "prior_numerical_fields_unchanged": true,
+  "prior_plots_byte_identical": true,
+  "links_resolve": true,
+  "independent_review": "no actionable findings; all 24 magnitudes checked",
+  "runner_sha256": "38304900214d624a43351e72839c68eab2633b4168f1eee1643604a5f5e44b95",
+  "python314": {
+    "passed": 15,
+    "seconds": 22.09
+  },
+  "python311_full": {
+    "passed": 468,
+    "warnings": 29,
+    "seconds": 440.15,
+    "warning_scope": "25 existing constant-outcome optimizer and 4 existing font warnings"
+  }
+}

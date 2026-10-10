@@ -1,0 +1,30 @@
+{
+  "independent_offline_audit": "passed",
+  "matched_heldout_keys": true,
+  "csv_json_values": true,
+  "raw_to_standardized_scaling": true,
+  "common_reference_boundaries": true,
+  "links_resolve": true,
+  "numerical_rerun_identical": true,
+  "existing_output_rejected_without_changes": true,
+  "plot_manually_inspected": true,
+  "survey_plot_y_axes_common": true,
+  "core_independent_review": "no actionable findings at 4deaf06",
+  "full_suite": {
+    "python": "3.11",
+    "passed": 467,
+    "warnings": 29,
+    "seconds": 238.46,
+    "warning_scope": "25 existing constant-outcome optimizer and 4 existing missing-CJK-font warnings"
+  },
+  "focused_suite": {
+    "python": "3.14",
+    "passed": 43,
+    "skipped": 1,
+    "deselected": 4,
+    "seconds": 17.47,
+    "skip_reason": "optional LightGBM not installed"
+  },
+  "demo_independent_review": "no actionable findings; scoring, support, weighted effects, counts and provenance checked",
+  "runner_sha256": "0f364f152f593a911d31a2ce6084976073ab044de69e3f9ef501b8e00f7ffd83"
+}

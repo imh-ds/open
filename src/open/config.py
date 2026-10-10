@@ -58,8 +58,9 @@ class LearnerConfig:
 
     def __post_init__(self) -> None:
         _choice("learner.mode", self.mode, "fixed")
-        if self.library != ("elastic_net",):
-            raise ValueError("learner.library must contain only elastic_net")
+        if (not isinstance(self.library, tuple) or len(self.library) != 1
+                or self.library[0] not in ("elastic_net", "random_forest", "gbm", "lightgbm")):
+            raise ValueError("learner.library must contain exactly one supported engine: elastic_net, random_forest, gbm, lightgbm")
         _choice("learner.retune_ablation", self.retune_ablation, False)
 
 
@@ -107,6 +108,8 @@ class PerformanceCVConfig:
 
     def __post_init__(self) -> None:
         _positive_int("performance_cv.folds", self.folds)
+        if self.folds < 2:
+            raise ValueError("performance_cv.folds must be at least 2")
         _positive_int("performance_cv.repeats", self.repeats)
         _choice("performance_cv.grouped", self.grouped, False)
 
@@ -117,6 +120,8 @@ class TuningCVConfig:
 
     def __post_init__(self) -> None:
         _positive_int("tuning_cv.folds", self.folds)
+        if self.folds < 2:
+            raise ValueError("tuning_cv.folds must be at least 2")
 
 
 @dataclass(frozen=True)
@@ -125,8 +130,11 @@ class StabilityConfig:
     fraction: float = 0.80
     n_resamples: int = 100
     final_resamples: int = 500
+    scope: str = "whole_pipeline"
 
     def __post_init__(self) -> None:
+        if type(self.scope) is not str or self.scope not in ("whole_pipeline", "layer_consensus"):
+            raise ValueError("stability.scope must be whole_pipeline or layer_consensus")
         _choice("stability.method", self.method, "subsample")
         _unit_interval("stability.fraction", self.fraction, include_zero=False)
         _positive_int("stability.n_resamples", self.n_resamples)
@@ -136,14 +144,15 @@ class StabilityConfig:
 @dataclass(frozen=True)
 class VisualizationConfig:
     show_screened: bool = True
-    show_unstable: bool = False
+    show_unstable: bool = True
     distance_mode: str = "visual_strength"
     edge_width: str = "unique"
     edge_opacity: str = "stability"
 
     def __post_init__(self) -> None:
         _choice("visualization.show_screened", self.show_screened, True)
-        _choice("visualization.show_unstable", self.show_unstable, False)
+        if type(self.show_unstable) is not bool:
+            raise ValueError("visualization.show_unstable must be boolean")
         _choice("visualization.distance_mode", self.distance_mode, "visual_strength")
         _choice("visualization.edge_width", self.edge_width, "unique")
         _choice("visualization.edge_opacity", self.edge_opacity, "stability")

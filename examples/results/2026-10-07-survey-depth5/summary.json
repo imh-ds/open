@@ -1,0 +1,437 @@
+{
+  "data_seed": 613,
+  "n_rows": 180,
+  "variables": {
+    "wellbeing": "Well-being",
+    "sleep_quality": "Sleep Quality",
+    "perceived_stress": "Perceived Stress",
+    "social_support": "Social Support",
+    "physical_activity": "Physical Activity",
+    "work_demands": "Work Demands"
+  },
+  "sample_sha256": "105cec06b74d47f0ff67e0cc6e0e4fa5719d8595ef477fa58a47ea16f8db6548",
+  "engine_revision": "0c158017f45b0d7d43eb1b5aecc57deb125d6773",
+  "config": {
+    "analysis": {
+      "root": "wellbeing",
+      "random_seed": 613,
+      "max_depth": 5
+    },
+    "outcome": {
+      "type": "continuous",
+      "loss": "mse"
+    },
+    "learner": {
+      "mode": "fixed",
+      "library": [
+        "elastic_net"
+      ],
+      "retune_ablation": false
+    },
+    "preprocessing": {
+      "missing": "median",
+      "standardize_linear": true,
+      "one_hot_categorical": false
+    },
+    "dependence": {
+      "method": "spearman",
+      "absolute": true
+    },
+    "thresholds": {
+      "min_total_gain_relative": 0.02,
+      "broad_relative": 0.05,
+      "unique_relative": 0.05,
+      "group_relative": 0.1,
+      "dependence_pair": 0.7,
+      "stability": 0.7
+    },
+    "performance_cv": {
+      "folds": 2,
+      "repeats": 1,
+      "grouped": false
+    },
+    "tuning_cv": {
+      "folds": 2
+    },
+    "stability": {
+      "method": "subsample",
+      "fraction": 0.8,
+      "n_resamples": 20,
+      "final_resamples": 20
+    },
+    "visualization": {
+      "show_screened": true,
+      "show_unstable": false,
+      "distance_mode": "visual_strength",
+      "edge_width": "unique",
+      "edge_opacity": "stability"
+    }
+  },
+  "completed": 20,
+  "failed": 0,
+  "warnings": {},
+  "median_root_baseline_mse": 0.46614208177011485,
+  "median_root_full_mse": 0.23020508555872937,
+  "median_root_relative_gain": 0.5069651415078371,
+  "evaluated_targets": {
+    "sleep_quality": 16,
+    "social_support": 20,
+    "wellbeing": 20,
+    "perceived_stress": 13,
+    "work_demands": 3,
+    "physical_activity": 14
+  },
+  "stop_counts": [
+    {
+      "target": "perceived_stress",
+      "reason": "LOW_TOTAL_GAIN",
+      "count": 1
+    },
+    {
+      "target": "perceived_stress",
+      "reason": "NO_UNASSIGNED",
+      "count": 7
+    },
+    {
+      "target": "physical_activity",
+      "reason": "LOW_TOTAL_GAIN",
+      "count": 13
+    },
+    {
+      "target": "physical_activity",
+      "reason": "NO_UNASSIGNED",
+      "count": 3
+    },
+    {
+      "target": "sleep_quality",
+      "reason": "NO_UNASSIGNED",
+      "count": 4
+    },
+    {
+      "target": "social_support",
+      "reason": "LOW_TOTAL_GAIN",
+      "count": 10
+    },
+    {
+      "target": "work_demands",
+      "reason": "LOW_TOTAL_GAIN",
+      "count": 3
+    },
+    {
+      "target": "work_demands",
+      "reason": "NO_UNASSIGNED",
+      "count": 17
+    }
+  ],
+  "unique_edges": [
+    {
+      "source": "perceived_stress",
+      "target": "physical_activity",
+      "count": 1,
+      "probability": 0.05
+    },
+    {
+      "source": "perceived_stress",
+      "target": "sleep_quality",
+      "count": 9,
+      "probability": 0.45
+    },
+    {
+      "source": "perceived_stress",
+      "target": "social_support",
+      "count": 10,
+      "probability": 0.5
+    },
+    {
+      "source": "perceived_stress",
+      "target": "wellbeing",
+      "count": 10,
+      "probability": 0.5
+    },
+    {
+      "source": "physical_activity",
+      "target": "sleep_quality",
+      "count": 2,
+      "probability": 0.1
+    },
+    {
+      "source": "physical_activity",
+      "target": "social_support",
+      "count": 1,
+      "probability": 0.05
+    },
+    {
+      "source": "physical_activity",
+      "target": "wellbeing",
+      "count": 14,
+      "probability": 0.7
+    },
+    {
+      "source": "sleep_quality",
+      "target": "perceived_stress",
+      "count": 4,
+      "probability": 0.2
+    },
+    {
+      "source": "sleep_quality",
+      "target": "physical_activity",
+      "count": 1,
+      "probability": 0.05
+    },
+    {
+      "source": "sleep_quality",
+      "target": "social_support",
+      "count": 1,
+      "probability": 0.05
+    },
+    {
+      "source": "sleep_quality",
+      "target": "wellbeing",
+      "count": 15,
+      "probability": 0.75
+    },
+    {
+      "source": "social_support",
+      "target": "wellbeing",
+      "count": 20,
+      "probability": 1.0
+    },
+    {
+      "source": "work_demands",
+      "target": "perceived_stress",
+      "count": 12,
+      "probability": 0.6
+    },
+    {
+      "source": "work_demands",
+      "target": "sleep_quality",
+      "count": 9,
+      "probability": 0.45
+    },
+    {
+      "source": "work_demands",
+      "target": "social_support",
+      "count": 8,
+      "probability": 0.4
+    }
+  ],
+  "consensus_edges": [
+    {
+      "source": "physical_activity",
+      "target": "wellbeing",
+      "class": "PROXIMAL_UNIQUE",
+      "count": 14,
+      "probability": 0.7
+    },
+    {
+      "source": "sleep_quality",
+      "target": "wellbeing",
+      "class": "PROXIMAL_UNIQUE",
+      "count": 15,
+      "probability": 0.75
+    },
+    {
+      "source": "social_support",
+      "target": "wellbeing",
+      "class": "PROXIMAL_UNIQUE",
+      "count": 20,
+      "probability": 1.0
+    }
+  ],
+  "paths": [
+    {
+      "nodes": [
+        "perceived_stress",
+        "physical_activity",
+        "wellbeing"
+      ],
+      "count": 1,
+      "probability": 0.05
+    },
+    {
+      "nodes": [
+        "perceived_stress",
+        "sleep_quality",
+        "wellbeing"
+      ],
+      "count": 9,
+      "probability": 0.45
+    },
+    {
+      "nodes": [
+        "perceived_stress",
+        "social_support",
+        "wellbeing"
+      ],
+      "count": 10,
+      "probability": 0.5
+    },
+    {
+      "nodes": [
+        "physical_activity",
+        "sleep_quality",
+        "wellbeing"
+      ],
+      "count": 2,
+      "probability": 0.1
+    },
+    {
+      "nodes": [
+        "physical_activity",
+        "social_support",
+        "wellbeing"
+      ],
+      "count": 1,
+      "probability": 0.05
+    },
+    {
+      "nodes": [
+        "sleep_quality",
+        "perceived_stress",
+        "wellbeing"
+      ],
+      "count": 4,
+      "probability": 0.2
+    },
+    {
+      "nodes": [
+        "sleep_quality",
+        "physical_activity",
+        "wellbeing"
+      ],
+      "count": 1,
+      "probability": 0.05
+    },
+    {
+      "nodes": [
+        "sleep_quality",
+        "social_support",
+        "wellbeing"
+      ],
+      "count": 1,
+      "probability": 0.05
+    },
+    {
+      "nodes": [
+        "work_demands",
+        "perceived_stress",
+        "physical_activity"
+      ],
+      "count": 1,
+      "probability": 0.05
+    },
+    {
+      "nodes": [
+        "work_demands",
+        "perceived_stress",
+        "physical_activity",
+        "wellbeing"
+      ],
+      "count": 1,
+      "probability": 0.05
+    },
+    {
+      "nodes": [
+        "work_demands",
+        "perceived_stress",
+        "sleep_quality"
+      ],
+      "count": 1,
+      "probability": 0.05
+    },
+    {
+      "nodes": [
+        "work_demands",
+        "perceived_stress",
+        "sleep_quality",
+        "wellbeing"
+      ],
+      "count": 1,
+      "probability": 0.05
+    },
+    {
+      "nodes": [
+        "work_demands",
+        "perceived_stress",
+        "social_support"
+      ],
+      "count": 2,
+      "probability": 0.1
+    },
+    {
+      "nodes": [
+        "work_demands",
+        "perceived_stress",
+        "social_support",
+        "wellbeing"
+      ],
+      "count": 2,
+      "probability": 0.1
+    },
+    {
+      "nodes": [
+        "work_demands",
+        "perceived_stress",
+        "wellbeing"
+      ],
+      "count": 10,
+      "probability": 0.5
+    },
+    {
+      "nodes": [
+        "work_demands",
+        "sleep_quality",
+        "physical_activity"
+      ],
+      "count": 1,
+      "probability": 0.05
+    },
+    {
+      "nodes": [
+        "work_demands",
+        "sleep_quality",
+        "physical_activity",
+        "wellbeing"
+      ],
+      "count": 1,
+      "probability": 0.05
+    },
+    {
+      "nodes": [
+        "work_demands",
+        "sleep_quality",
+        "social_support"
+      ],
+      "count": 1,
+      "probability": 0.05
+    },
+    {
+      "nodes": [
+        "work_demands",
+        "sleep_quality",
+        "social_support",
+        "wellbeing"
+      ],
+      "count": 1,
+      "probability": 0.05
+    },
+    {
+      "nodes": [
+        "work_demands",
+        "sleep_quality",
+        "wellbeing"
+      ],
+      "count": 8,
+      "probability": 0.4
+    },
+    {
+      "nodes": [
+        "work_demands",
+        "social_support",
+        "wellbeing"
+      ],
+      "count": 8,
+      "probability": 0.4
+    }
+  ]
+}

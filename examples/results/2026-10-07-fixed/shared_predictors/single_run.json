@@ -1,0 +1,46 @@
+{
+  "depths": {
+    "Outcome": 0,
+    "Scale_A": 1,
+    "Scale_B": 1
+  },
+  "edges": [],
+  "shared_relations": [
+    {
+      "target": "Outcome",
+      "members": [
+        "Scale_A",
+        "Scale_B"
+      ],
+      "raw": 0.9185219850332664,
+      "normalized": 1.0
+    }
+  ],
+  "stop_reasons": {
+    "Scale_A": "NO_UNASSIGNED",
+    "Scale_B": "NO_UNASSIGNED"
+  },
+  "targets": {
+    "Outcome": {
+      "baseline_risk": 0.9385485844758676,
+      "full_risk": 0.020026599442601267,
+      "relative_gain": 0.9786621600907479,
+      "observed_target_rows": 80,
+      "missing_target_rows": 0,
+      "candidates": {
+        "Scale_A": {
+          "class": "SHARED_GROUP_MEMBER",
+          "broad": 0.9998577060027359,
+          "unique": -7.221328116376852e-05,
+          "screened_by": []
+        },
+        "Scale_B": {
+          "class": "SHARED_GROUP_MEMBER",
+          "broad": 1.0000575177673192,
+          "unique": 0.0001308974947724454,
+          "screened_by": []
+        }
+      }
+    }
+  }
+}

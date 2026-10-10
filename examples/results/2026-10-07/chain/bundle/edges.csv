@@ -1,0 +1,4 @@
+source,target,relation,broad_raw,broad_norm,unique_raw,unique_norm,broad_raw_median,broad_norm_median,unique_raw_median,unique_norm_median,stability,target_reached_probability,target_reached_numerator,target_reached_denominator,evaluated_probability,screened_by,stability_numerator,stability_denominator,evaluated_numerator,evaluated_denominator
+Depression,Anxiety,PROXIMAL_UNIQUE,1.214867023649564,1.0034484917439512,0.44795236898715485,0.37711060549955167,1.2155510322121903,1.0006564820779151,0.43861107617846157,0.35354786269100824,1.0,1.0,20,20,1.0,[],20,20,20,20
+Stress,Anxiety,SCREENED_BY_PARTNER,0.7594518838502288,0.6179771654790143,-0.0008523162935505323,-0.0007085790227974253,0.7719336466313992,0.6446688061038919,-0.0001606468719506024,-0.0001410436215241997,1.0,1.0,20,20,1.0,"[""Depression""]",20,20,20,20
+Stress,Depression,PROXIMAL_UNIQUE,0.8718198783623926,1.0,0.8718198783623926,1.0,0.8811727907206889,1.0,0.8811727907206889,1.0,1.0,1.0,20,20,1.0,[],20,20,20,20

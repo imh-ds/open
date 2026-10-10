@@ -1,0 +1,79 @@
+[
+  {
+    "source": "perceived_stress",
+    "target": "physical_activity",
+    "count": 1,
+    "probability": 0.05,
+    "eligible_runs": 8
+  },
+  {
+    "source": "perceived_stress",
+    "target": "sleep_quality",
+    "count": 9,
+    "probability": 0.45,
+    "eligible_runs": 9
+  },
+  {
+    "source": "perceived_stress",
+    "target": "social_support",
+    "count": 10,
+    "probability": 0.5,
+    "eligible_runs": 10
+  },
+  {
+    "source": "physical_activity",
+    "target": "sleep_quality",
+    "count": 2,
+    "probability": 0.1,
+    "eligible_runs": 6
+  },
+  {
+    "source": "physical_activity",
+    "target": "social_support",
+    "count": 1,
+    "probability": 0.05,
+    "eligible_runs": 6
+  },
+  {
+    "source": "sleep_quality",
+    "target": "perceived_stress",
+    "count": 4,
+    "probability": 0.2,
+    "eligible_runs": 4
+  },
+  {
+    "source": "sleep_quality",
+    "target": "physical_activity",
+    "count": 1,
+    "probability": 0.05,
+    "eligible_runs": 5
+  },
+  {
+    "source": "sleep_quality",
+    "target": "social_support",
+    "count": 1,
+    "probability": 0.05,
+    "eligible_runs": 5
+  },
+  {
+    "source": "work_demands",
+    "target": "perceived_stress",
+    "count": 10,
+    "probability": 0.5,
+    "eligible_runs": 10
+  },
+  {
+    "source": "work_demands",
+    "target": "sleep_quality",
+    "count": 8,
+    "probability": 0.4,
+    "eligible_runs": 15
+  },
+  {
+    "source": "work_demands",
+    "target": "social_support",
+    "count": 8,
+    "probability": 0.4,
+    "eligible_runs": 20
+  }
+]

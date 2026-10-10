@@ -1,0 +1,222 @@
+{
+  "assessments": [
+    {
+      "candidates": [
+        "a",
+        "b"
+      ],
+      "depth": 0,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "a": null,
+          "b": null
+        },
+        "classes": {},
+        "dependence_components": [],
+        "input_candidates": [
+          "a",
+          "b"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 42,
+        "outer_model_fit_count": 10,
+        "pair_ablations": null,
+        "pair_classes": null,
+        "promoted": [],
+        "reason": "LOW_TOTAL_GAIN",
+        "relevance": {
+          "baseline_risk": 1.3680263448360062,
+          "broad": {
+            "a": {
+              "normalized": null,
+              "raw": 0.0
+            },
+            "b": {
+              "normalized": null,
+              "raw": 0.003763353514497192
+            }
+          },
+          "full_risk": 1.3680263448360062,
+          "relative_gain": 0.0,
+          "stop_reason": "LOW_TOTAL_GAIN",
+          "total_gain": 0.0,
+          "unique": {
+            "a": {
+              "normalized": null,
+              "raw": 0.0
+            },
+            "b": {
+              "normalized": null,
+              "raw": 0.0
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": true,
+        "target": "y",
+        "total_gain": 0.0,
+        "total_gain_relative": 0.0,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "a": null,
+          "b": null
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 42,
+      "run_index": 0,
+      "status": "completed",
+      "target": "y",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "a",
+        "b"
+      ],
+      "depth": 0,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "a": null,
+          "b": null
+        },
+        "classes": {},
+        "dependence_components": [],
+        "input_candidates": [
+          "a",
+          "b"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 42,
+        "outer_model_fit_count": 10,
+        "pair_ablations": null,
+        "pair_classes": null,
+        "promoted": [],
+        "reason": "LOW_TOTAL_GAIN",
+        "relevance": {
+          "baseline_risk": 1.225627988569274,
+          "broad": {
+            "a": {
+              "normalized": null,
+              "raw": 0.0
+            },
+            "b": {
+              "normalized": null,
+              "raw": 0.0
+            }
+          },
+          "full_risk": 1.225627988569274,
+          "relative_gain": 0.0,
+          "stop_reason": "LOW_TOTAL_GAIN",
+          "total_gain": 0.0,
+          "unique": {
+            "a": {
+              "normalized": null,
+              "raw": 0.0
+            },
+            "b": {
+              "normalized": null,
+              "raw": 0.0
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": true,
+        "target": "y",
+        "total_gain": 0.0,
+        "total_gain_relative": 0.0,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "a": null,
+          "b": null
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 42,
+      "run_index": 1,
+      "status": "completed",
+      "target": "y",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "a",
+        "b"
+      ],
+      "depth": 0,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "a": null,
+          "b": null
+        },
+        "classes": {},
+        "dependence_components": [],
+        "input_candidates": [
+          "a",
+          "b"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 42,
+        "outer_model_fit_count": 10,
+        "pair_ablations": null,
+        "pair_classes": null,
+        "promoted": [],
+        "reason": "LOW_TOTAL_GAIN",
+        "relevance": {
+          "baseline_risk": 1.4750342776403778,
+          "broad": {
+            "a": {
+              "normalized": null,
+              "raw": 0.0
+            },
+            "b": {
+              "normalized": null,
+              "raw": -0.7647286009122349
+            }
+          },
+          "full_risk": 1.6154523273425265,
+          "relative_gain": -0.09519646548606076,
+          "stop_reason": "LOW_TOTAL_GAIN",
+          "total_gain": -0.14041804970214877,
+          "unique": {
+            "a": {
+              "normalized": null,
+              "raw": 0.0017214053128324913
+            },
+            "b": {
+              "normalized": null,
+              "raw": -0.14034957630028644
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": true,
+        "target": "y",
+        "total_gain": -0.14041804970214877,
+        "total_gain_relative": -0.09519646548606076,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "a": null,
+          "b": null
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 42,
+      "run_index": 2,
+      "status": "completed",
+      "target": "y",
+      "warnings": []
+    }
+  ],
+  "schema": "open.layer_assessments",
+  "schema_version": 1
+}

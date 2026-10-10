@@ -1,0 +1,223 @@
+{
+  "layers": [
+    {
+      "candidates": [
+        "a",
+        "b"
+      ],
+      "depth": 0,
+      "evidence": [
+        {
+          "assessments": [
+            [
+              0,
+              "y",
+              0
+            ],
+            [
+              0,
+              "y",
+              1
+            ],
+            [
+              0,
+              "y",
+              2
+            ]
+          ],
+          "candidates": [
+            "a",
+            "b"
+          ],
+          "candidates_evidence": [
+            {
+              "broad": {
+                "baseline_relative_count": 3,
+                "baseline_relative_median": 0.8295124814912778,
+                "gain_relative_count": 3,
+                "gain_relative_median": 1.0357433470244737,
+                "raw_count": 3,
+                "raw_median": 2.886871594138996,
+                "scope": "all scored completed local fits"
+              },
+              "classes": {
+                "PROXIMAL_UNIQUE": {
+                  "completed": 3,
+                  "planned": 3,
+                  "selected": 3
+                }
+              },
+              "promotion": {
+                "completed": 3,
+                "planned": 3,
+                "selected": 3
+              },
+              "source": "a",
+              "target": "y",
+              "unique": {
+                "baseline_relative_count": 3,
+                "baseline_relative_median": 2.647792875880605,
+                "gain_relative_count": 3,
+                "gain_relative_median": 3.4384102717894724,
+                "raw_count": 3,
+                "raw_median": 9.369444776392623,
+                "scope": "all scored completed local fits"
+              }
+            },
+            {
+              "broad": {
+                "baseline_relative_count": 3,
+                "baseline_relative_median": -1.3491863682896572,
+                "gain_relative_count": 3,
+                "gain_relative_median": -1.6415508145614062,
+                "raw_count": 3,
+                "raw_median": -4.321623252217122,
+                "scope": "all scored completed local fits"
+              },
+              "classes": {
+                "NEGLIGIBLE": {
+                  "completed": 3,
+                  "planned": 3,
+                  "selected": 3
+                }
+              },
+              "promotion": {
+                "completed": 3,
+                "planned": 3,
+                "selected": 0
+              },
+              "source": "b",
+              "target": "y",
+              "unique": {
+                "baseline_relative_count": 3,
+                "baseline_relative_median": -0.02760545110026108,
+                "gain_relative_count": 3,
+                "gain_relative_median": -0.033587465605226,
+                "raw_count": 3,
+                "raw_median": -0.08842392879648364,
+                "scope": "all scored completed local fits"
+              }
+            }
+          ],
+          "depth": 0,
+          "relations": [
+            {
+              "frequency": {
+                "completed": 3,
+                "planned": 3,
+                "selected": 3
+              },
+              "members": [],
+              "qualifies": true,
+              "relation": "PROXIMAL_UNIQUE",
+              "screened_by": [],
+              "source": "a",
+              "strength": {
+                "baseline_relative_count": 3,
+                "baseline_relative_median": 2.647792875880605,
+                "gain_relative_count": 3,
+                "gain_relative_median": 3.4384102717894724,
+                "raw_count": 3,
+                "raw_median": 9.369444776392623,
+                "scope": "all scored completed local fits"
+              },
+              "target": "y"
+            }
+          ],
+          "shared_comembership": [],
+          "target": "y"
+        }
+      ],
+      "finalized": true,
+      "new_nodes": [
+        "a"
+      ],
+      "promoted_parents": {
+        "a": [
+          "y"
+        ]
+      },
+      "targets": [
+        "y"
+      ]
+    },
+    {
+      "candidates": [
+        "b"
+      ],
+      "depth": 1,
+      "evidence": [
+        {
+          "assessments": [
+            [
+              1,
+              "a",
+              0
+            ],
+            [
+              1,
+              "a",
+              1
+            ],
+            [
+              1,
+              "a",
+              2
+            ]
+          ],
+          "candidates": [
+            "b"
+          ],
+          "candidates_evidence": [
+            {
+              "broad": {
+                "baseline_relative_count": 3,
+                "baseline_relative_median": -0.7948941689133328,
+                "gain_relative_count": 0,
+                "gain_relative_median": null,
+                "raw_count": 3,
+                "raw_median": -0.5735984260458085,
+                "scope": "all scored completed local fits"
+              },
+              "classes": {
+                "LOW_TOTAL_GAIN": {
+                  "completed": 3,
+                  "planned": 3,
+                  "selected": 3
+                }
+              },
+              "promotion": {
+                "completed": 3,
+                "planned": 3,
+                "selected": 0
+              },
+              "source": "b",
+              "target": "a",
+              "unique": {
+                "baseline_relative_count": 3,
+                "baseline_relative_median": -0.7948941689133328,
+                "gain_relative_count": 0,
+                "gain_relative_median": null,
+                "raw_count": 3,
+                "raw_median": -0.5735984260458085,
+                "scope": "all scored completed local fits"
+              }
+            }
+          ],
+          "depth": 1,
+          "relations": [],
+          "shared_comembership": [],
+          "target": "a"
+        }
+      ],
+      "finalized": true,
+      "new_nodes": [],
+      "promoted_parents": {},
+      "targets": [
+        "a"
+      ]
+    }
+  ],
+  "schema": "open.layer_evidence",
+  "schema_version": 1
+}

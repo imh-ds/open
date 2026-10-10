@@ -1,0 +1,1035 @@
+{
+  "layers": [
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Perceived Stress",
+        "Social Support",
+        "Physical Activity",
+        "Work Demands"
+      ],
+      "depth": 0,
+      "evidence": [
+        {
+          "assessments": [
+            [
+              0,
+              "Well-being",
+              0
+            ],
+            [
+              0,
+              "Well-being",
+              1
+            ],
+            [
+              0,
+              "Well-being",
+              2
+            ],
+            [
+              0,
+              "Well-being",
+              3
+            ],
+            [
+              0,
+              "Well-being",
+              4
+            ],
+            [
+              0,
+              "Well-being",
+              5
+            ],
+            [
+              0,
+              "Well-being",
+              6
+            ],
+            [
+              0,
+              "Well-being",
+              7
+            ],
+            [
+              0,
+              "Well-being",
+              8
+            ],
+            [
+              0,
+              "Well-being",
+              9
+            ]
+          ],
+          "candidates": [
+            "Sleep Quality",
+            "Perceived Stress",
+            "Social Support",
+            "Physical Activity",
+            "Work Demands"
+          ],
+          "candidates_evidence": [
+            {
+              "broad": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": 0.33607228228460373,
+                "gain_relative_count": 10,
+                "gain_relative_median": 0.7004040564325337,
+                "raw_count": 10,
+                "raw_median": 0.16111751976472372,
+                "scope": "all scored completed local fits"
+              },
+              "classes": {
+                "PROXIMAL_UNIQUE": {
+                  "completed": 10,
+                  "planned": 10,
+                  "selected": 7
+                },
+                "SCREENED_GENERAL": {
+                  "completed": 10,
+                  "planned": 10,
+                  "selected": 3
+                }
+              },
+              "promotion": {
+                "completed": 10,
+                "planned": 10,
+                "selected": 7
+              },
+              "source": "Perceived Stress",
+              "target": "Well-being",
+              "unique": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": 0.03994340981129226,
+                "gain_relative_count": 10,
+                "gain_relative_median": 0.08295028184419398,
+                "raw_count": 10,
+                "raw_median": 0.021731859729337638,
+                "scope": "all scored completed local fits"
+              }
+            },
+            {
+              "broad": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": 0.007070876558164566,
+                "gain_relative_count": 10,
+                "gain_relative_median": 0.018635790572966993,
+                "raw_count": 10,
+                "raw_median": 0.0038540879148632468,
+                "scope": "all scored completed local fits"
+              },
+              "classes": {
+                "NEGLIGIBLE": {
+                  "completed": 10,
+                  "planned": 10,
+                  "selected": 6
+                },
+                "PROXIMAL_UNIQUE": {
+                  "completed": 10,
+                  "planned": 10,
+                  "selected": 4
+                }
+              },
+              "promotion": {
+                "completed": 10,
+                "planned": 10,
+                "selected": 4
+              },
+              "source": "Physical Activity",
+              "target": "Well-being",
+              "unique": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": 0.015274392882424154,
+                "gain_relative_count": 10,
+                "gain_relative_median": 0.03265780304136194,
+                "raw_count": 10,
+                "raw_median": 0.00794581447774255,
+                "scope": "all scored completed local fits"
+              }
+            },
+            {
+              "broad": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": 0.24254456730486615,
+                "gain_relative_count": 10,
+                "gain_relative_median": 0.486546982639393,
+                "raw_count": 10,
+                "raw_median": 0.11945085114300263,
+                "scope": "all scored completed local fits"
+              },
+              "classes": {
+                "NEGLIGIBLE": {
+                  "completed": 10,
+                  "planned": 10,
+                  "selected": 1
+                },
+                "PROXIMAL_UNIQUE": {
+                  "completed": 10,
+                  "planned": 10,
+                  "selected": 8
+                },
+                "SCREENED_GENERAL": {
+                  "completed": 10,
+                  "planned": 10,
+                  "selected": 1
+                }
+              },
+              "promotion": {
+                "completed": 10,
+                "planned": 10,
+                "selected": 8
+              },
+              "source": "Sleep Quality",
+              "target": "Well-being",
+              "unique": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": 0.05036945948378392,
+                "gain_relative_count": 10,
+                "gain_relative_median": 0.09953471674728295,
+                "raw_count": 10,
+                "raw_median": 0.025359325643438888,
+                "scope": "all scored completed local fits"
+              }
+            },
+            {
+              "broad": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": 0.28285755313234023,
+                "gain_relative_count": 10,
+                "gain_relative_median": 0.5958610430673486,
+                "raw_count": 10,
+                "raw_median": 0.1552495922505936,
+                "scope": "all scored completed local fits"
+              },
+              "classes": {
+                "PROXIMAL_UNIQUE": {
+                  "completed": 10,
+                  "planned": 10,
+                  "selected": 10
+                }
+              },
+              "promotion": {
+                "completed": 10,
+                "planned": 10,
+                "selected": 10
+              },
+              "source": "Social Support",
+              "target": "Well-being",
+              "unique": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": 0.07382159497685181,
+                "gain_relative_count": 10,
+                "gain_relative_median": 0.16241833001950387,
+                "raw_count": 10,
+                "raw_median": 0.039294287831563995,
+                "scope": "all scored completed local fits"
+              }
+            },
+            {
+              "broad": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": 0.05469269864446802,
+                "gain_relative_count": 10,
+                "gain_relative_median": 0.1106571475034911,
+                "raw_count": 10,
+                "raw_median": 0.025660664589172294,
+                "scope": "all scored completed local fits"
+              },
+              "classes": {
+                "NEGLIGIBLE": {
+                  "completed": 10,
+                  "planned": 10,
+                  "selected": 3
+                },
+                "SCREENED_BY_PARTNER": {
+                  "completed": 10,
+                  "planned": 10,
+                  "selected": 1
+                },
+                "SCREENED_GENERAL": {
+                  "completed": 10,
+                  "planned": 10,
+                  "selected": 6
+                }
+              },
+              "promotion": {
+                "completed": 10,
+                "planned": 10,
+                "selected": 0
+              },
+              "source": "Work Demands",
+              "target": "Well-being",
+              "unique": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": -0.00020203218237934098,
+                "gain_relative_count": 10,
+                "gain_relative_median": -0.0003988153584010343,
+                "raw_count": 10,
+                "raw_median": -0.00011029967643166882,
+                "scope": "all scored completed local fits"
+              }
+            }
+          ],
+          "depth": 0,
+          "relations": [
+            {
+              "frequency": {
+                "completed": 10,
+                "planned": 10,
+                "selected": 7
+              },
+              "members": [],
+              "qualifies": true,
+              "relation": "PROXIMAL_UNIQUE",
+              "screened_by": [],
+              "source": "Perceived Stress",
+              "strength": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": 0.03994340981129226,
+                "gain_relative_count": 10,
+                "gain_relative_median": 0.08295028184419398,
+                "raw_count": 10,
+                "raw_median": 0.021731859729337638,
+                "scope": "all scored completed local fits"
+              },
+              "target": "Well-being"
+            },
+            {
+              "frequency": {
+                "completed": 10,
+                "planned": 10,
+                "selected": 4
+              },
+              "members": [],
+              "qualifies": false,
+              "relation": "PROXIMAL_UNIQUE",
+              "screened_by": [],
+              "source": "Physical Activity",
+              "strength": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": 0.015274392882424154,
+                "gain_relative_count": 10,
+                "gain_relative_median": 0.03265780304136194,
+                "raw_count": 10,
+                "raw_median": 0.00794581447774255,
+                "scope": "all scored completed local fits"
+              },
+              "target": "Well-being"
+            },
+            {
+              "frequency": {
+                "completed": 10,
+                "planned": 10,
+                "selected": 8
+              },
+              "members": [],
+              "qualifies": true,
+              "relation": "PROXIMAL_UNIQUE",
+              "screened_by": [],
+              "source": "Sleep Quality",
+              "strength": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": 0.05036945948378392,
+                "gain_relative_count": 10,
+                "gain_relative_median": 0.09953471674728295,
+                "raw_count": 10,
+                "raw_median": 0.025359325643438888,
+                "scope": "all scored completed local fits"
+              },
+              "target": "Well-being"
+            },
+            {
+              "frequency": {
+                "completed": 10,
+                "planned": 10,
+                "selected": 10
+              },
+              "members": [],
+              "qualifies": true,
+              "relation": "PROXIMAL_UNIQUE",
+              "screened_by": [],
+              "source": "Social Support",
+              "strength": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": 0.07382159497685181,
+                "gain_relative_count": 10,
+                "gain_relative_median": 0.16241833001950387,
+                "raw_count": 10,
+                "raw_median": 0.039294287831563995,
+                "scope": "all scored completed local fits"
+              },
+              "target": "Well-being"
+            },
+            {
+              "frequency": {
+                "completed": 10,
+                "planned": 10,
+                "selected": 1
+              },
+              "members": [],
+              "qualifies": false,
+              "relation": "SCREENED_BY_PARTNER",
+              "screened_by": [
+                "Perceived Stress"
+              ],
+              "source": "Work Demands",
+              "strength": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": -0.00020203218237934098,
+                "gain_relative_count": 10,
+                "gain_relative_median": -0.0003988153584010343,
+                "raw_count": 10,
+                "raw_median": -0.00011029967643166882,
+                "scope": "all scored completed local fits"
+              },
+              "target": "Well-being"
+            },
+            {
+              "frequency": {
+                "completed": 10,
+                "planned": 10,
+                "selected": 3
+              },
+              "members": [],
+              "qualifies": false,
+              "relation": "SCREENED_GENERAL",
+              "screened_by": [],
+              "source": "Perceived Stress",
+              "strength": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": 0.03994340981129226,
+                "gain_relative_count": 10,
+                "gain_relative_median": 0.08295028184419398,
+                "raw_count": 10,
+                "raw_median": 0.021731859729337638,
+                "scope": "all scored completed local fits"
+              },
+              "target": "Well-being"
+            },
+            {
+              "frequency": {
+                "completed": 10,
+                "planned": 10,
+                "selected": 1
+              },
+              "members": [],
+              "qualifies": false,
+              "relation": "SCREENED_GENERAL",
+              "screened_by": [],
+              "source": "Sleep Quality",
+              "strength": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": 0.05036945948378392,
+                "gain_relative_count": 10,
+                "gain_relative_median": 0.09953471674728295,
+                "raw_count": 10,
+                "raw_median": 0.025359325643438888,
+                "scope": "all scored completed local fits"
+              },
+              "target": "Well-being"
+            },
+            {
+              "frequency": {
+                "completed": 10,
+                "planned": 10,
+                "selected": 6
+              },
+              "members": [],
+              "qualifies": false,
+              "relation": "SCREENED_GENERAL",
+              "screened_by": [],
+              "source": "Work Demands",
+              "strength": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": -0.00020203218237934098,
+                "gain_relative_count": 10,
+                "gain_relative_median": -0.0003988153584010343,
+                "raw_count": 10,
+                "raw_median": -0.00011029967643166882,
+                "scope": "all scored completed local fits"
+              },
+              "target": "Well-being"
+            }
+          ],
+          "shared_comembership": [],
+          "target": "Well-being"
+        }
+      ],
+      "finalized": true,
+      "new_nodes": [
+        "Sleep Quality",
+        "Perceived Stress",
+        "Social Support"
+      ],
+      "promoted_parents": {
+        "Perceived Stress": [
+          "Well-being"
+        ],
+        "Sleep Quality": [
+          "Well-being"
+        ],
+        "Social Support": [
+          "Well-being"
+        ]
+      },
+      "targets": [
+        "Well-being"
+      ]
+    },
+    {
+      "candidates": [
+        "Physical Activity",
+        "Work Demands"
+      ],
+      "depth": 1,
+      "evidence": [
+        {
+          "assessments": [
+            [
+              1,
+              "Perceived Stress",
+              0
+            ],
+            [
+              1,
+              "Perceived Stress",
+              1
+            ],
+            [
+              1,
+              "Perceived Stress",
+              2
+            ],
+            [
+              1,
+              "Perceived Stress",
+              3
+            ],
+            [
+              1,
+              "Perceived Stress",
+              4
+            ],
+            [
+              1,
+              "Perceived Stress",
+              5
+            ],
+            [
+              1,
+              "Perceived Stress",
+              6
+            ],
+            [
+              1,
+              "Perceived Stress",
+              7
+            ],
+            [
+              1,
+              "Perceived Stress",
+              8
+            ],
+            [
+              1,
+              "Perceived Stress",
+              9
+            ]
+          ],
+          "candidates": [
+            "Physical Activity",
+            "Work Demands"
+          ],
+          "candidates_evidence": [
+            {
+              "broad": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": 8.798858844849773e-05,
+                "gain_relative_count": 10,
+                "gain_relative_median": 0.00025137313084230384,
+                "raw_count": 10,
+                "raw_median": 2.9251633523963427e-05,
+                "scope": "all scored completed local fits"
+              },
+              "classes": {
+                "NEGLIGIBLE": {
+                  "completed": 10,
+                  "planned": 10,
+                  "selected": 8
+                },
+                "PROXIMAL_UNIQUE": {
+                  "completed": 10,
+                  "planned": 10,
+                  "selected": 1
+                },
+                "SCREENED_GENERAL": {
+                  "completed": 10,
+                  "planned": 10,
+                  "selected": 1
+                }
+              },
+              "promotion": {
+                "completed": 10,
+                "planned": 10,
+                "selected": 1
+              },
+              "source": "Physical Activity",
+              "target": "Perceived Stress",
+              "unique": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": -0.01108651063927684,
+                "gain_relative_count": 10,
+                "gain_relative_median": -0.02921392634683798,
+                "raw_count": 10,
+                "raw_median": -0.0033015963737398624,
+                "scope": "all scored completed local fits"
+              }
+            },
+            {
+              "broad": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": 0.3782460164554012,
+                "gain_relative_count": 10,
+                "gain_relative_median": 1.0619015362887096,
+                "raw_count": 10,
+                "raw_median": 0.12287891401106096,
+                "scope": "all scored completed local fits"
+              },
+              "classes": {
+                "PROXIMAL_UNIQUE": {
+                  "completed": 10,
+                  "planned": 10,
+                  "selected": 10
+                }
+              },
+              "promotion": {
+                "completed": 10,
+                "planned": 10,
+                "selected": 10
+              },
+              "source": "Work Demands",
+              "target": "Perceived Stress",
+              "unique": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": 0.35916833959091976,
+                "gain_relative_count": 10,
+                "gain_relative_median": 0.9891396701135606,
+                "raw_count": 10,
+                "raw_median": 0.11540539172196353,
+                "scope": "all scored completed local fits"
+              }
+            }
+          ],
+          "depth": 1,
+          "relations": [
+            {
+              "frequency": {
+                "completed": 10,
+                "planned": 10,
+                "selected": 1
+              },
+              "members": [],
+              "qualifies": false,
+              "relation": "PROXIMAL_UNIQUE",
+              "screened_by": [],
+              "source": "Physical Activity",
+              "strength": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": -0.01108651063927684,
+                "gain_relative_count": 10,
+                "gain_relative_median": -0.02921392634683798,
+                "raw_count": 10,
+                "raw_median": -0.0033015963737398624,
+                "scope": "all scored completed local fits"
+              },
+              "target": "Perceived Stress"
+            },
+            {
+              "frequency": {
+                "completed": 10,
+                "planned": 10,
+                "selected": 10
+              },
+              "members": [],
+              "qualifies": true,
+              "relation": "PROXIMAL_UNIQUE",
+              "screened_by": [],
+              "source": "Work Demands",
+              "strength": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": 0.35916833959091976,
+                "gain_relative_count": 10,
+                "gain_relative_median": 0.9891396701135606,
+                "raw_count": 10,
+                "raw_median": 0.11540539172196353,
+                "scope": "all scored completed local fits"
+              },
+              "target": "Perceived Stress"
+            },
+            {
+              "frequency": {
+                "completed": 10,
+                "planned": 10,
+                "selected": 1
+              },
+              "members": [],
+              "qualifies": false,
+              "relation": "SCREENED_GENERAL",
+              "screened_by": [],
+              "source": "Physical Activity",
+              "strength": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": -0.01108651063927684,
+                "gain_relative_count": 10,
+                "gain_relative_median": -0.02921392634683798,
+                "raw_count": 10,
+                "raw_median": -0.0033015963737398624,
+                "scope": "all scored completed local fits"
+              },
+              "target": "Perceived Stress"
+            }
+          ],
+          "shared_comembership": [],
+          "target": "Perceived Stress"
+        },
+        {
+          "assessments": [
+            [
+              1,
+              "Sleep Quality",
+              0
+            ],
+            [
+              1,
+              "Sleep Quality",
+              1
+            ],
+            [
+              1,
+              "Sleep Quality",
+              2
+            ],
+            [
+              1,
+              "Sleep Quality",
+              3
+            ],
+            [
+              1,
+              "Sleep Quality",
+              4
+            ],
+            [
+              1,
+              "Sleep Quality",
+              5
+            ],
+            [
+              1,
+              "Sleep Quality",
+              6
+            ],
+            [
+              1,
+              "Sleep Quality",
+              7
+            ],
+            [
+              1,
+              "Sleep Quality",
+              8
+            ],
+            [
+              1,
+              "Sleep Quality",
+              9
+            ]
+          ],
+          "candidates": [
+            "Physical Activity",
+            "Work Demands"
+          ],
+          "candidates_evidence": [
+            {
+              "broad": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": 0.002045135271145271,
+                "gain_relative_count": 10,
+                "gain_relative_median": 0.008506035835608534,
+                "raw_count": 10,
+                "raw_median": 0.0008543787587537433,
+                "scope": "all scored completed local fits"
+              },
+              "classes": {
+                "NEGLIGIBLE": {
+                  "completed": 10,
+                  "planned": 10,
+                  "selected": 2
+                },
+                "PROXIMAL_UNIQUE": {
+                  "completed": 10,
+                  "planned": 10,
+                  "selected": 8
+                }
+              },
+              "promotion": {
+                "completed": 10,
+                "planned": 10,
+                "selected": 8
+              },
+              "source": "Physical Activity",
+              "target": "Sleep Quality",
+              "unique": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": 0.011345922709716554,
+                "gain_relative_count": 10,
+                "gain_relative_median": 0.18388167196534438,
+                "raw_count": 10,
+                "raw_median": 0.0043068126597333445,
+                "scope": "all scored completed local fits"
+              }
+            },
+            {
+              "broad": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": 0.12726682042113463,
+                "gain_relative_count": 10,
+                "gain_relative_median": 0.9829511734077938,
+                "raw_count": 10,
+                "raw_median": 0.04522056545771497,
+                "scope": "all scored completed local fits"
+              },
+              "classes": {
+                "PROXIMAL_UNIQUE": {
+                  "completed": 10,
+                  "planned": 10,
+                  "selected": 10
+                }
+              },
+              "promotion": {
+                "completed": 10,
+                "planned": 10,
+                "selected": 10
+              },
+              "source": "Work Demands",
+              "target": "Sleep Quality",
+              "unique": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": 0.10793059197403025,
+                "gain_relative_count": 10,
+                "gain_relative_median": 0.9092556386661736,
+                "raw_count": 10,
+                "raw_median": 0.03675676684716342,
+                "scope": "all scored completed local fits"
+              }
+            }
+          ],
+          "depth": 1,
+          "relations": [
+            {
+              "frequency": {
+                "completed": 10,
+                "planned": 10,
+                "selected": 8
+              },
+              "members": [],
+              "qualifies": true,
+              "relation": "PROXIMAL_UNIQUE",
+              "screened_by": [],
+              "source": "Physical Activity",
+              "strength": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": 0.011345922709716554,
+                "gain_relative_count": 10,
+                "gain_relative_median": 0.18388167196534438,
+                "raw_count": 10,
+                "raw_median": 0.0043068126597333445,
+                "scope": "all scored completed local fits"
+              },
+              "target": "Sleep Quality"
+            },
+            {
+              "frequency": {
+                "completed": 10,
+                "planned": 10,
+                "selected": 10
+              },
+              "members": [],
+              "qualifies": true,
+              "relation": "PROXIMAL_UNIQUE",
+              "screened_by": [],
+              "source": "Work Demands",
+              "strength": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": 0.10793059197403025,
+                "gain_relative_count": 10,
+                "gain_relative_median": 0.9092556386661736,
+                "raw_count": 10,
+                "raw_median": 0.03675676684716342,
+                "scope": "all scored completed local fits"
+              },
+              "target": "Sleep Quality"
+            }
+          ],
+          "shared_comembership": [],
+          "target": "Sleep Quality"
+        },
+        {
+          "assessments": [
+            [
+              1,
+              "Social Support",
+              0
+            ],
+            [
+              1,
+              "Social Support",
+              1
+            ],
+            [
+              1,
+              "Social Support",
+              2
+            ],
+            [
+              1,
+              "Social Support",
+              3
+            ],
+            [
+              1,
+              "Social Support",
+              4
+            ],
+            [
+              1,
+              "Social Support",
+              5
+            ],
+            [
+              1,
+              "Social Support",
+              6
+            ],
+            [
+              1,
+              "Social Support",
+              7
+            ],
+            [
+              1,
+              "Social Support",
+              8
+            ],
+            [
+              1,
+              "Social Support",
+              9
+            ]
+          ],
+          "candidates": [
+            "Physical Activity",
+            "Work Demands"
+          ],
+          "candidates_evidence": [
+            {
+              "broad": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": -0.0027975463871651915,
+                "gain_relative_count": 0,
+                "gain_relative_median": null,
+                "raw_count": 10,
+                "raw_median": -0.0009326010892609093,
+                "scope": "all scored completed local fits"
+              },
+              "classes": {
+                "LOW_TOTAL_GAIN": {
+                  "completed": 10,
+                  "planned": 10,
+                  "selected": 10
+                }
+              },
+              "promotion": {
+                "completed": 10,
+                "planned": 10,
+                "selected": 0
+              },
+              "source": "Physical Activity",
+              "target": "Social Support",
+              "unique": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": 0.0,
+                "gain_relative_count": 0,
+                "gain_relative_median": null,
+                "raw_count": 10,
+                "raw_median": 0.0,
+                "scope": "all scored completed local fits"
+              }
+            },
+            {
+              "broad": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": -0.005540136161858159,
+                "gain_relative_count": 0,
+                "gain_relative_median": null,
+                "raw_count": 10,
+                "raw_median": -0.001987855487501855,
+                "scope": "all scored completed local fits"
+              },
+              "classes": {
+                "LOW_TOTAL_GAIN": {
+                  "completed": 10,
+                  "planned": 10,
+                  "selected": 10
+                }
+              },
+              "promotion": {
+                "completed": 10,
+                "planned": 10,
+                "selected": 0
+              },
+              "source": "Work Demands",
+              "target": "Social Support",
+              "unique": {
+                "baseline_relative_count": 10,
+                "baseline_relative_median": 0.0,
+                "gain_relative_count": 0,
+                "gain_relative_median": null,
+                "raw_count": 10,
+                "raw_median": 0.0,
+                "scope": "all scored completed local fits"
+              }
+            }
+          ],
+          "depth": 1,
+          "relations": [],
+          "shared_comembership": [],
+          "target": "Social Support"
+        }
+      ],
+      "finalized": true,
+      "new_nodes": [
+        "Physical Activity",
+        "Work Demands"
+      ],
+      "promoted_parents": {
+        "Physical Activity": [
+          "Sleep Quality"
+        ],
+        "Work Demands": [
+          "Perceived Stress",
+          "Sleep Quality"
+        ]
+      },
+      "targets": [
+        "Perceived Stress",
+        "Sleep Quality",
+        "Social Support"
+      ]
+    }
+  ],
+  "schema": "open.layer_evidence",
+  "schema_version": 1
+}

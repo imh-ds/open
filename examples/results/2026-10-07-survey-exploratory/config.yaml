@@ -1,0 +1,43 @@
+analysis:
+  root: wellbeing
+  random_seed: 613
+  max_depth: 5
+outcome:
+  type: continuous
+  loss: mse
+learner:
+  mode: fixed
+  library:
+  - elastic_net
+  retune_ablation: false
+preprocessing:
+  missing: median
+  standardize_linear: true
+  one_hot_categorical: false
+dependence:
+  method: spearman
+  absolute: true
+thresholds:
+  min_total_gain_relative: 0.02
+  broad_relative: 0.05
+  unique_relative: 0.05
+  group_relative: 0.1
+  dependence_pair: 0.7
+  stability: 0.7
+performance_cv:
+  folds: 2
+  repeats: 1
+  grouped: false
+tuning_cv:
+  folds: 2
+stability:
+  method: subsample
+  fraction: 0.8
+  n_resamples: 20
+  final_resamples: 20
+visualization:
+  show_screened: true
+  show_unstable: true
+  distance_mode: visual_strength
+  edge_width: unique
+  edge_opacity: stability

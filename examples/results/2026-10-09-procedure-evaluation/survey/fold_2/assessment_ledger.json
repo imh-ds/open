@@ -1,0 +1,6044 @@
+{
+  "assessments": [
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Perceived Stress",
+        "Social Support",
+        "Physical Activity",
+        "Work Demands"
+      ],
+      "depth": 0,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Perceived Stress": 0.5400022018994927,
+          "Physical Activity": 0.07358280146624283,
+          "Sleep Quality": 0.38671328777099623,
+          "Social Support": 0.29052046731478387,
+          "Work Demands": 0.09326814833508994
+        },
+        "classes": {
+          "Perceived Stress": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Physical Activity": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Sleep Quality": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Social Support": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Work Demands": {
+            "dependence_components": [],
+            "kind": "SCREENED_GENERAL",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          }
+        },
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Perceived Stress",
+          "Social Support",
+          "Physical Activity",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 22,
+        "pair_ablations": {
+          "fold_scores": [
+            {
+              "fold_index": 0,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Perceived Stress",
+                  "b": "Physical Activity",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.010638297872340427
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.24457229700390795
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.35681719496309167
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.6504559270516718
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.17477203647416412
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.3050369083803734
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.03148067737733391
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.1062744246634824
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.14893617021276598
+                },
+                {
+                  "a": "Social Support",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.13645245332175424
+                }
+              ]
+            },
+            {
+              "fold_index": 1,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Perceived Stress",
+                  "b": "Physical Activity",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.12407729049066434
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.5791359096830221
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.3331524099001303
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.5239904472427269
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.25803300043421623
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.09411636995223623
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.0053191489361702135
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.014546244029526704
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.43443334780720794
+                },
+                {
+                  "a": "Social Support",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.2003907946157186
+                }
+              ]
+            }
+          ],
+          "pairs": []
+        },
+        "pair_classes": {
+          "members": {
+            "Perceived Stress": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Physical Activity": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Sleep Quality": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Social Support": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Work Demands": {
+              "proximal_unique": false,
+              "screened_by": []
+            }
+          },
+          "pairs": []
+        },
+        "promoted": [
+          "Perceived Stress",
+          "Physical Activity",
+          "Sleep Quality",
+          "Social Support"
+        ],
+        "reason": null,
+        "relevance": {
+          "baseline_risk": 0.4574537133904613,
+          "broad": {
+            "Perceived Stress": {
+              "normalized": 0.5400022018994927,
+              "raw": 0.15193429494580718
+            },
+            "Physical Activity": {
+              "normalized": 0.07358280146624283,
+              "raw": 0.020703158286365153
+            },
+            "Sleep Quality": {
+              "normalized": 0.38671328777099623,
+              "raw": 0.10880513175129064
+            },
+            "Social Support": {
+              "normalized": 0.29052046731478387,
+              "raw": 0.08174044886026893
+            },
+            "Work Demands": {
+              "normalized": 0.09326814833508994,
+              "raw": 0.0262418010673785
+            }
+          },
+          "full_risk": 0.176095055200979,
+          "relative_gain": 0.6150538293900077,
+          "stop_reason": null,
+          "total_gain": 0.2813586581894823,
+          "unique": {
+            "Perceived Stress": {
+              "normalized": 0.07653569570962132,
+              "raw": 0.021533980648457574
+            },
+            "Physical Activity": {
+              "normalized": 0.13580523178308732,
+              "raw": 0.038209977789601085
+            },
+            "Sleep Quality": {
+              "normalized": 0.0553842512622806,
+              "raw": 0.015582838619984413
+            },
+            "Social Support": {
+              "normalized": 0.16347944632102027,
+              "raw": 0.04599635765844176
+            },
+            "Work Demands": {
+              "normalized": 0.0011060947203753633,
+              "raw": 0.00031120932635528287
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": false,
+        "target": "Well-being",
+        "total_gain": 0.2813586581894823,
+        "total_gain_relative": 0.6150538293900077,
+        "tuning_model_fit_count": 600,
+        "unique": {
+          "Perceived Stress": 0.07653569570962132,
+          "Physical Activity": 0.13580523178308732,
+          "Sleep Quality": 0.0553842512622806,
+          "Social Support": 0.16347944632102027,
+          "Work Demands": 0.0011060947203753633
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 0,
+      "status": "completed",
+      "target": "Well-being",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Perceived Stress",
+        "Social Support",
+        "Physical Activity",
+        "Work Demands"
+      ],
+      "depth": 0,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Perceived Stress": 0.5384713712138975,
+          "Physical Activity": 0.1374354039417245,
+          "Sleep Quality": 0.3398983989667691,
+          "Social Support": 0.49719479769957653,
+          "Work Demands": 0.10482616562352791
+        },
+        "classes": {
+          "Perceived Stress": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Physical Activity": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Sleep Quality": {
+            "dependence_components": [],
+            "kind": "SCREENED_GENERAL",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Social Support": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Work Demands": {
+            "dependence_components": [],
+            "kind": "SCREENED_GENERAL",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          }
+        },
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Perceived Stress",
+          "Social Support",
+          "Physical Activity",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 22,
+        "pair_ablations": {
+          "fold_scores": [
+            {
+              "fold_index": 0,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Perceived Stress",
+                  "b": "Physical Activity",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.22210160660008685
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.39893617021276595
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.5057533651758576
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.6335214937038645
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.1812852800694746
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.08890577507598785
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.2248154580981329
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.08662613981762919
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.27952670429874077
+                },
+                {
+                  "a": "Social Support",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.15262700825010853
+                }
+              ]
+            },
+            {
+              "fold_index": 1,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Perceived Stress",
+                  "b": "Physical Activity",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.04722101606600087
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.5513460703430308
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.29255319148936165
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.5657837603126358
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.2600955275727312
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.22264437689969602
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.20657837603126358
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.10008684324793747
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.44474598349978284
+                },
+                {
+                  "a": "Social Support",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.1744463742943986
+                }
+              ]
+            }
+          ],
+          "pairs": []
+        },
+        "pair_classes": {
+          "members": {
+            "Perceived Stress": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Physical Activity": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Sleep Quality": {
+              "proximal_unique": false,
+              "screened_by": []
+            },
+            "Social Support": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Work Demands": {
+              "proximal_unique": false,
+              "screened_by": []
+            }
+          },
+          "pairs": []
+        },
+        "promoted": [
+          "Perceived Stress",
+          "Physical Activity",
+          "Social Support"
+        ],
+        "reason": null,
+        "relevance": {
+          "baseline_risk": 0.44730277683346426,
+          "broad": {
+            "Perceived Stress": {
+              "normalized": 0.5384713712138975,
+              "raw": 0.13225287879516257
+            },
+            "Physical Activity": {
+              "normalized": 0.1374354039417245,
+              "raw": 0.03375523526662838
+            },
+            "Sleep Quality": {
+              "normalized": 0.3398983989667691,
+              "raw": 0.08348176739625657
+            },
+            "Social Support": {
+              "normalized": 0.49719479769957653,
+              "raw": 0.12211502195467205
+            },
+            "Work Demands": {
+              "normalized": 0.10482616562352791,
+              "raw": 0.025746145325269365
+            }
+          },
+          "full_risk": 0.20169477264743,
+          "relative_gain": 0.5490866967666441,
+          "stop_reason": null,
+          "total_gain": 0.24560800418603426,
+          "unique": {
+            "Perceived Stress": {
+              "normalized": 0.10420954680790016,
+              "raw": 0.025594698808619476
+            },
+            "Physical Activity": {
+              "normalized": 0.14031490967658136,
+              "raw": 0.03446246492320881
+            },
+            "Sleep Quality": {
+              "normalized": 0.04973038168910711,
+              "raw": 0.0122141797940713
+            },
+            "Social Support": {
+              "normalized": 0.15552277877372098,
+              "raw": 0.038197639300079744
+            },
+            "Work Demands": {
+              "normalized": 0.0005321528394028922,
+              "raw": 0.00013070099680767555
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": false,
+        "target": "Well-being",
+        "total_gain": 0.24560800418603426,
+        "total_gain_relative": 0.5490866967666441,
+        "tuning_model_fit_count": 600,
+        "unique": {
+          "Perceived Stress": 0.10420954680790016,
+          "Physical Activity": 0.14031490967658136,
+          "Sleep Quality": 0.04973038168910711,
+          "Social Support": 0.15552277877372098,
+          "Work Demands": 0.0005321528394028922
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 1,
+      "status": "completed",
+      "target": "Well-being",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Perceived Stress",
+        "Social Support",
+        "Physical Activity",
+        "Work Demands"
+      ],
+      "depth": 0,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Perceived Stress": 0.5351396662457122,
+          "Physical Activity": 0.24709975157201436,
+          "Sleep Quality": 0.03390548438485324,
+          "Social Support": 0.654006054249806,
+          "Work Demands": -0.022987345866532276
+        },
+        "classes": {
+          "Perceived Stress": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Physical Activity": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Sleep Quality": {
+            "dependence_components": [],
+            "kind": "NEGLIGIBLE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Social Support": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Work Demands": {
+            "dependence_components": [],
+            "kind": "NEGLIGIBLE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          }
+        },
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Perceived Stress",
+          "Social Support",
+          "Physical Activity",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 22,
+        "pair_ablations": {
+          "fold_scores": [
+            {
+              "fold_index": 0,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Perceived Stress",
+                  "b": "Physical Activity",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.09661311333043857
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.3213200173686496
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.38080764220581853
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.5292010421189752
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.32881024750325655
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.1545809813287017
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.09639600521059487
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.12516283108988277
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.38916630481980025
+                },
+                {
+                  "a": "Social Support",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.07468519322622666
+                }
+              ]
+            },
+            {
+              "fold_index": 1,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Perceived Stress",
+                  "b": "Physical Activity",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.0034737299174989146
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.38287016934433343
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.35518888406426397
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.5690403821102908
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.24978289188015632
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.08315240990013026
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.08076422058184975
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.0687147199305254
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.27029960920538426
+                },
+                {
+                  "a": "Social Support",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.04895788102475033
+                }
+              ]
+            }
+          ],
+          "pairs": []
+        },
+        "pair_classes": {
+          "members": {
+            "Perceived Stress": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Physical Activity": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Sleep Quality": {
+              "proximal_unique": false,
+              "screened_by": []
+            },
+            "Social Support": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Work Demands": {
+              "proximal_unique": false,
+              "screened_by": []
+            }
+          },
+          "pairs": []
+        },
+        "promoted": [
+          "Perceived Stress",
+          "Physical Activity",
+          "Social Support"
+        ],
+        "reason": null,
+        "relevance": {
+          "baseline_risk": 0.4349057160303867,
+          "broad": {
+            "Perceived Stress": {
+              "normalized": 0.5351396662457122,
+              "raw": 0.12383293370676318
+            },
+            "Physical Activity": {
+              "normalized": 0.24709975157201436,
+              "raw": 0.057179628208171684
+            },
+            "Sleep Quality": {
+              "normalized": 0.03390548438485324,
+              "raw": 0.007845831406183612
+            },
+            "Social Support": {
+              "normalized": 0.654006054249806,
+              "raw": 0.15133897460434592
+            },
+            "Work Demands": {
+              "normalized": -0.022987345866532276,
+              "raw": -0.0053193412044281185
+            }
+          },
+          "full_risk": 0.20350269824342893,
+          "relative_gain": 0.5320762851753131,
+          "stop_reason": null,
+          "total_gain": 0.23140301778695777,
+          "unique": {
+            "Perceived Stress": {
+              "normalized": 0.08809738510373932,
+              "raw": 0.020386000772145058
+            },
+            "Physical Activity": {
+              "normalized": 0.16400094292715567,
+              "raw": 0.03795031311325045
+            },
+            "Sleep Quality": {
+              "normalized": -0.05670515519433034,
+              "raw": -0.013121744036045824
+            },
+            "Social Support": {
+              "normalized": 0.3125155543026233,
+              "raw": 0.0723170423709909
+            },
+            "Work Demands": {
+              "normalized": -0.03271908567911405,
+              "raw": -0.007571295165377023
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": false,
+        "target": "Well-being",
+        "total_gain": 0.23140301778695777,
+        "total_gain_relative": 0.5320762851753131,
+        "tuning_model_fit_count": 600,
+        "unique": {
+          "Perceived Stress": 0.08809738510373932,
+          "Physical Activity": 0.16400094292715567,
+          "Sleep Quality": -0.05670515519433034,
+          "Social Support": 0.3125155543026233,
+          "Work Demands": -0.03271908567911405
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 2,
+      "status": "completed",
+      "target": "Well-being",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Perceived Stress",
+        "Social Support",
+        "Physical Activity",
+        "Work Demands"
+      ],
+      "depth": 0,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Perceived Stress": 0.6412559428082251,
+          "Physical Activity": 0.15308498310869592,
+          "Sleep Quality": 0.12926653356071663,
+          "Social Support": 0.5474741446785951,
+          "Work Demands": -0.21680785757219212
+        },
+        "classes": {
+          "Perceived Stress": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Physical Activity": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Sleep Quality": {
+            "dependence_components": [],
+            "kind": "SCREENED_GENERAL",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Social Support": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Work Demands": {
+            "dependence_components": [],
+            "kind": "NEGLIGIBLE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          }
+        },
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Perceived Stress",
+          "Social Support",
+          "Physical Activity",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 22,
+        "pair_ablations": {
+          "fold_scores": [
+            {
+              "fold_index": 0,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Perceived Stress",
+                  "b": "Physical Activity",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.2206904038211029
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.3767911419887104
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.34976118106817194
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.5332175423360833
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.012266608771168043
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.026487190620929222
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.019865392965696917
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.06665219279201041
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.46862787668258793
+                },
+                {
+                  "a": "Social Support",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.11832392531480677
+                }
+              ]
+            },
+            {
+              "fold_index": 1,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Perceived Stress",
+                  "b": "Physical Activity",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.06187581415544941
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.5486322188449847
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.5167173252279634
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.5866261398176292
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.30666521927920104
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.1286365610073817
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.05753365175857577
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.1876899696048632
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.373643074250977
+                },
+                {
+                  "a": "Social Support",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.06513243595310465
+                }
+              ]
+            }
+          ],
+          "pairs": []
+        },
+        "pair_classes": {
+          "members": {
+            "Perceived Stress": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Physical Activity": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Sleep Quality": {
+              "proximal_unique": false,
+              "screened_by": []
+            },
+            "Social Support": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Work Demands": {
+              "proximal_unique": false,
+              "screened_by": []
+            }
+          },
+          "pairs": []
+        },
+        "promoted": [
+          "Perceived Stress",
+          "Physical Activity",
+          "Social Support"
+        ],
+        "reason": null,
+        "relevance": {
+          "baseline_risk": 0.39105518969518327,
+          "broad": {
+            "Perceived Stress": {
+              "normalized": 0.6412559428082251,
+              "raw": 0.12406723267328279
+            },
+            "Physical Activity": {
+              "normalized": 0.15308498310869592,
+              "raw": 0.02961817419571605
+            },
+            "Sleep Quality": {
+              "normalized": 0.12926653356071663,
+              "raw": 0.025009890786996447
+            },
+            "Social Support": {
+              "normalized": 0.5474741446785951,
+              "raw": 0.10592276430685504
+            },
+            "Work Demands": {
+              "normalized": -0.21680785757219212,
+              "raw": -0.04194698109620404
+            }
+          },
+          "full_risk": 0.1975798167731634,
+          "relative_gain": 0.4947520913169023,
+          "stop_reason": null,
+          "total_gain": 0.19347537292201986,
+          "unique": {
+            "Perceived Stress": {
+              "normalized": 0.15376158850495064,
+              "raw": 0.02974908067707749
+            },
+            "Physical Activity": {
+              "normalized": 0.16651582494296013,
+              "raw": 0.032216711328256986
+            },
+            "Sleep Quality": {
+              "normalized": -0.017471129777745988,
+              "raw": -0.003380233349118411
+            },
+            "Social Support": {
+              "normalized": 0.1621918221482022,
+              "raw": 0.031380123275025346
+            },
+            "Work Demands": {
+              "normalized": -0.08297575007381637,
+              "raw": -0.01605376418901594
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": false,
+        "target": "Well-being",
+        "total_gain": 0.19347537292201986,
+        "total_gain_relative": 0.4947520913169023,
+        "tuning_model_fit_count": 600,
+        "unique": {
+          "Perceived Stress": 0.15376158850495064,
+          "Physical Activity": 0.16651582494296013,
+          "Sleep Quality": -0.017471129777745988,
+          "Social Support": 0.1621918221482022,
+          "Work Demands": -0.08297575007381637
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 3,
+      "status": "completed",
+      "target": "Well-being",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Perceived Stress",
+        "Social Support",
+        "Physical Activity",
+        "Work Demands"
+      ],
+      "depth": 0,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Perceived Stress": 0.5862662285837801,
+          "Physical Activity": 0.09909794013777085,
+          "Sleep Quality": -0.0297794035156504,
+          "Social Support": 0.6508286513663033,
+          "Work Demands": 0.042139525545342484
+        },
+        "classes": {
+          "Perceived Stress": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Physical Activity": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Sleep Quality": {
+            "dependence_components": [],
+            "kind": "NEGLIGIBLE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Social Support": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Work Demands": {
+            "dependence_components": [],
+            "kind": "NEGLIGIBLE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          }
+        },
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Perceived Stress",
+          "Social Support",
+          "Physical Activity",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 22,
+        "pair_ablations": {
+          "fold_scores": [
+            {
+              "fold_index": 0,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Perceived Stress",
+                  "b": "Physical Activity",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.11115935735996527
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.46765089014329136
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.3943768996960486
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.4430091185410334
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.21678245766391663
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.09205384281372123
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.051237516283108984
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.07435953104646113
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.2912505427702996
+                },
+                {
+                  "a": "Social Support",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.060247503256621794
+                }
+              ]
+            },
+            {
+              "fold_index": 1,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Perceived Stress",
+                  "b": "Physical Activity",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.06621797655232306
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.3410768562744247
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.30026052974381245
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.6737950499348674
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.19756838905775073
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.06252713851498046
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.06589231437255753
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.07175423360833695
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.3264220581849761
+                },
+                {
+                  "a": "Social Support",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.012483716891011723
+                }
+              ]
+            }
+          ],
+          "pairs": []
+        },
+        "pair_classes": {
+          "members": {
+            "Perceived Stress": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Physical Activity": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Sleep Quality": {
+              "proximal_unique": false,
+              "screened_by": []
+            },
+            "Social Support": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Work Demands": {
+              "proximal_unique": false,
+              "screened_by": []
+            }
+          },
+          "pairs": []
+        },
+        "promoted": [
+          "Perceived Stress",
+          "Physical Activity",
+          "Social Support"
+        ],
+        "reason": null,
+        "relevance": {
+          "baseline_risk": 0.4085878199165231,
+          "broad": {
+            "Perceived Stress": {
+              "normalized": 0.5862662285837801,
+              "raw": 0.12753948307041685
+            },
+            "Physical Activity": {
+              "normalized": 0.09909794013777085,
+              "raw": 0.021558294580681703
+            },
+            "Sleep Quality": {
+              "normalized": -0.0297794035156504,
+              "raw": -0.0064783703125902425
+            },
+            "Social Support": {
+              "normalized": 0.6508286513663033,
+              "raw": 0.14158473696018614
+            },
+            "Work Demands": {
+              "normalized": 0.042139525545342484,
+              "raw": 0.00916725719963174
+            }
+          },
+          "full_risk": 0.1910424849609196,
+          "relative_gain": 0.5324322565465835,
+          "stop_reason": null,
+          "total_gain": 0.2175453349556035,
+          "unique": {
+            "Perceived Stress": {
+              "normalized": 0.08571946211784905,
+              "raw": 0.018647869098641634
+            },
+            "Physical Activity": {
+              "normalized": 0.09920164877797308,
+              "raw": 0.021580855911552288
+            },
+            "Sleep Quality": {
+              "normalized": -0.05957744338662562,
+              "raw": -0.012960794877341975
+            },
+            "Social Support": {
+              "normalized": 0.2912836609353864,
+              "raw": 0.06336740158528306
+            },
+            "Work Demands": {
+              "normalized": -0.002812528680898286,
+              "raw": -0.0006118524939582592
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": false,
+        "target": "Well-being",
+        "total_gain": 0.2175453349556035,
+        "total_gain_relative": 0.5324322565465835,
+        "tuning_model_fit_count": 600,
+        "unique": {
+          "Perceived Stress": 0.08571946211784905,
+          "Physical Activity": 0.09920164877797308,
+          "Sleep Quality": -0.05957744338662562,
+          "Social Support": 0.2912836609353864,
+          "Work Demands": -0.002812528680898286
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 4,
+      "status": "completed",
+      "target": "Well-being",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Perceived Stress",
+        "Social Support",
+        "Physical Activity",
+        "Work Demands"
+      ],
+      "depth": 0,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Perceived Stress": 0.5098153808426062,
+          "Physical Activity": 0.11538459680709288,
+          "Sleep Quality": 0.06729189740748957,
+          "Social Support": 0.606743650832168,
+          "Work Demands": 0.12613478215853485
+        },
+        "classes": {
+          "Perceived Stress": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Physical Activity": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Sleep Quality": {
+            "dependence_components": [],
+            "kind": "SCREENED_GENERAL",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Social Support": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Work Demands": {
+            "dependence_components": [],
+            "kind": "SCREENED_GENERAL",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          }
+        },
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Perceived Stress",
+          "Social Support",
+          "Physical Activity",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 22,
+        "pair_ablations": {
+          "fold_scores": [
+            {
+              "fold_index": 0,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Perceived Stress",
+                  "b": "Physical Activity",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.11571862787668259
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.18237082066869298
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.4146765089014329
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.6299392097264437
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.29168475900998697
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.1733608336951802
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.20603560573165436
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.135258358662614
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.16445940078158922
+                },
+                {
+                  "a": "Social Support",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.0003256621797655232
+                }
+              ]
+            },
+            {
+              "fold_index": 1,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Perceived Stress",
+                  "b": "Physical Activity",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.10670864090316978
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.58195831524099
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.4615718627876682
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.5526487190620929
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.238384715588363
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.052540165002171076
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.2003907946157186
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.26682587928788537
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.4878419452887538
+                },
+                {
+                  "a": "Social Support",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.09324793747286149
+                }
+              ]
+            }
+          ],
+          "pairs": []
+        },
+        "pair_classes": {
+          "members": {
+            "Perceived Stress": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Physical Activity": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Sleep Quality": {
+              "proximal_unique": false,
+              "screened_by": []
+            },
+            "Social Support": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Work Demands": {
+              "proximal_unique": false,
+              "screened_by": []
+            }
+          },
+          "pairs": []
+        },
+        "promoted": [
+          "Perceived Stress",
+          "Physical Activity",
+          "Social Support"
+        ],
+        "reason": null,
+        "relevance": {
+          "baseline_risk": 0.4691686997978011,
+          "broad": {
+            "Perceived Stress": {
+              "normalized": 0.5098153808426062,
+              "raw": 0.1476962114310736
+            },
+            "Physical Activity": {
+              "normalized": 0.11538459680709288,
+              "raw": 0.03342752778023944
+            },
+            "Sleep Quality": {
+              "normalized": 0.06729189740748957,
+              "raw": 0.019494818478540676
+            },
+            "Social Support": {
+              "normalized": 0.606743650832168,
+              "raw": 0.1757768437461787
+            },
+            "Work Demands": {
+              "normalized": 0.12613478215853485,
+              "raw": 0.03654191331714812
+            }
+          },
+          "full_risk": 0.1794634123916697,
+          "relative_gain": 0.6174863914216496,
+          "stop_reason": null,
+          "total_gain": 0.28970528740613144,
+          "unique": {
+            "Perceived Stress": {
+              "normalized": 0.0772077666571372,
+              "raw": 0.022367498229391464
+            },
+            "Physical Activity": {
+              "normalized": 0.10565206779599477,
+              "raw": 0.030607962665890748
+            },
+            "Sleep Quality": {
+              "normalized": 0.025069762897118212,
+              "raw": 0.0072628428653132016
+            },
+            "Social Support": {
+              "normalized": 0.22624775142983072,
+              "raw": 0.0655451698529701
+            },
+            "Work Demands": {
+              "normalized": 0.010476586925435155,
+              "raw": 0.0030351226262685105
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": false,
+        "target": "Well-being",
+        "total_gain": 0.28970528740613144,
+        "total_gain_relative": 0.6174863914216496,
+        "tuning_model_fit_count": 600,
+        "unique": {
+          "Perceived Stress": 0.0772077666571372,
+          "Physical Activity": 0.10565206779599477,
+          "Sleep Quality": 0.025069762897118212,
+          "Social Support": 0.22624775142983072,
+          "Work Demands": 0.010476586925435155
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 5,
+      "status": "completed",
+      "target": "Well-being",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Perceived Stress",
+        "Social Support",
+        "Physical Activity",
+        "Work Demands"
+      ],
+      "depth": 0,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Perceived Stress": 0.6391176719234739,
+          "Physical Activity": 0.01551605929778881,
+          "Sleep Quality": 0.43933789954730357,
+          "Social Support": 0.601114658776999,
+          "Work Demands": 0.03377329353945775
+        },
+        "classes": {
+          "Perceived Stress": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Physical Activity": {
+            "dependence_components": [],
+            "kind": "NEGLIGIBLE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Sleep Quality": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Social Support": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Work Demands": {
+            "dependence_components": [],
+            "kind": "NEGLIGIBLE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          }
+        },
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Perceived Stress",
+          "Social Support",
+          "Physical Activity",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 22,
+        "pair_ablations": {
+          "fold_scores": [
+            {
+              "fold_index": 0,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Perceived Stress",
+                  "b": "Physical Activity",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.007707338254450717
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.5367998263135041
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.26443768996960487
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.4950065132435953
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.1350412505427703
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.26682587928788537
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.2248154580981329
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.10204081632653061
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.4102257924446374
+                },
+                {
+                  "a": "Social Support",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.015306122448979591
+                }
+              ]
+            },
+            {
+              "fold_index": 1,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Perceived Stress",
+                  "b": "Physical Activity",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.0034737299174989146
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.368866695614416
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.510855405992184
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.5834780720798957
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.4424663482414242
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.03180633955709943
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.009552757273122015
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.13949196699956576
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.22231871471993053
+                },
+                {
+                  "a": "Social Support",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.03332609639600521
+                }
+              ]
+            }
+          ],
+          "pairs": []
+        },
+        "pair_classes": {
+          "members": {
+            "Perceived Stress": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Physical Activity": {
+              "proximal_unique": false,
+              "screened_by": []
+            },
+            "Sleep Quality": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Social Support": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Work Demands": {
+              "proximal_unique": false,
+              "screened_by": []
+            }
+          },
+          "pairs": []
+        },
+        "promoted": [
+          "Perceived Stress",
+          "Sleep Quality",
+          "Social Support"
+        ],
+        "reason": null,
+        "relevance": {
+          "baseline_risk": 0.434334939300153,
+          "broad": {
+            "Perceived Stress": {
+              "normalized": 0.6391176719234739,
+              "raw": 0.16264629455893592
+            },
+            "Physical Activity": {
+              "normalized": 0.01551605929778881,
+              "raw": 0.003948614882369028
+            },
+            "Sleep Quality": {
+              "normalized": 0.43933789954730357,
+              "raw": 0.11180520357952323
+            },
+            "Social Support": {
+              "normalized": 0.601114658776999,
+              "raw": 0.1529750719627177
+            },
+            "Work Demands": {
+              "normalized": 0.03377329353945775,
+              "raw": 0.008594819530982678
+            }
+          },
+          "full_risk": 0.1798492605214089,
+          "relative_gain": 0.5859203479895001,
+          "stop_reason": null,
+          "total_gain": 0.25448567877874406,
+          "unique": {
+            "Perceived Stress": {
+              "normalized": 0.0828115657793967,
+              "raw": 0.021074357528100385
+            },
+            "Physical Activity": {
+              "normalized": 0.01959852807157988,
+              "raw": 0.004987544719360276
+            },
+            "Sleep Quality": {
+              "normalized": 0.07868179955439494,
+              "raw": 0.02002339116713328
+            },
+            "Social Support": {
+              "normalized": 0.2731511979445107,
+              "raw": 0.06951306801813589
+            },
+            "Work Demands": {
+              "normalized": -0.00628313368672833,
+              "raw": -0.0015989675411246518
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": false,
+        "target": "Well-being",
+        "total_gain": 0.25448567877874406,
+        "total_gain_relative": 0.5859203479895001,
+        "tuning_model_fit_count": 600,
+        "unique": {
+          "Perceived Stress": 0.0828115657793967,
+          "Physical Activity": 0.01959852807157988,
+          "Sleep Quality": 0.07868179955439494,
+          "Social Support": 0.2731511979445107,
+          "Work Demands": -0.00628313368672833
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 6,
+      "status": "completed",
+      "target": "Well-being",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Perceived Stress",
+        "Social Support",
+        "Physical Activity",
+        "Work Demands"
+      ],
+      "depth": 0,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Perceived Stress": 0.5632991234834662,
+          "Physical Activity": 0.18938014898500086,
+          "Sleep Quality": 0.3348473495695741,
+          "Social Support": 0.6224913648536808,
+          "Work Demands": 0.09625287315116407
+        },
+        "classes": {
+          "Perceived Stress": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Physical Activity": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Sleep Quality": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Social Support": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Work Demands": {
+            "dependence_components": [],
+            "kind": "SCREENED_GENERAL",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          }
+        },
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Perceived Stress",
+          "Social Support",
+          "Physical Activity",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 22,
+        "pair_ablations": {
+          "fold_scores": [
+            {
+              "fold_index": 0,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Perceived Stress",
+                  "b": "Physical Activity",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.012809379070777246
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.6296135475466782
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.27149370386452454
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.4838254450716457
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.16630481980026052
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.17021276595744683
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.1374294398610508
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.008358662613981762
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.4614633087277464
+                },
+                {
+                  "a": "Social Support",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.28788536691272254
+                }
+              ]
+            },
+            {
+              "fold_index": 1,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Perceived Stress",
+                  "b": "Physical Activity",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.18920972644376902
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.3033000434216239
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.4582066869300912
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.6554494138080764
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.12624837168910116
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.07381676074685194
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.0584020842379505
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.06817194963091619
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.38645245332175426
+                },
+                {
+                  "a": "Social Support",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.24066435084672166
+                }
+              ]
+            }
+          ],
+          "pairs": []
+        },
+        "pair_classes": {
+          "members": {
+            "Perceived Stress": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Physical Activity": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Sleep Quality": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Social Support": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Work Demands": {
+              "proximal_unique": false,
+              "screened_by": []
+            }
+          },
+          "pairs": []
+        },
+        "promoted": [
+          "Perceived Stress",
+          "Physical Activity",
+          "Sleep Quality",
+          "Social Support"
+        ],
+        "reason": null,
+        "relevance": {
+          "baseline_risk": 0.48171866076701625,
+          "broad": {
+            "Perceived Stress": {
+              "normalized": 0.5632991234834662,
+              "raw": 0.15069992558741796
+            },
+            "Physical Activity": {
+              "normalized": 0.18938014898500086,
+              "raw": 0.050665043082765315
+            },
+            "Sleep Quality": {
+              "normalized": 0.3348473495695741,
+              "raw": 0.08958201523770004
+            },
+            "Social Support": {
+              "normalized": 0.6224913648536808,
+              "raw": 0.16653567962637422
+            },
+            "Work Demands": {
+              "normalized": 0.09625287315116407,
+              "raw": 0.025750618484463805
+            }
+          },
+          "full_risk": 0.2141877534659662,
+          "relative_gain": 0.5553675393746925,
+          "stop_reason": null,
+          "total_gain": 0.26753090730105006,
+          "unique": {
+            "Perceived Stress": {
+              "normalized": 0.09105231781613012,
+              "raw": 0.024359309197212853
+            },
+            "Physical Activity": {
+              "normalized": 0.09171905603355769,
+              "raw": 0.024537682277453537
+            },
+            "Sleep Quality": {
+              "normalized": 0.05626990660695999,
+              "raw": 0.015053939168305358
+            },
+            "Social Support": {
+              "normalized": 0.21203629841631288,
+              "raw": 0.05672626329607239
+            },
+            "Work Demands": {
+              "normalized": -0.029946321184308598,
+              "raw": -0.008011566476766735
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": false,
+        "target": "Well-being",
+        "total_gain": 0.26753090730105006,
+        "total_gain_relative": 0.5553675393746925,
+        "tuning_model_fit_count": 600,
+        "unique": {
+          "Perceived Stress": 0.09105231781613012,
+          "Physical Activity": 0.09171905603355769,
+          "Sleep Quality": 0.05626990660695999,
+          "Social Support": 0.21203629841631288,
+          "Work Demands": -0.029946321184308598
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 7,
+      "status": "completed",
+      "target": "Well-being",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Perceived Stress",
+        "Social Support",
+        "Physical Activity",
+        "Work Demands"
+      ],
+      "depth": 0,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Perceived Stress": 0.4860368573222547,
+          "Physical Activity": 0.20312893462313578,
+          "Sleep Quality": 0.3443603689790246,
+          "Social Support": 0.6656228957143666,
+          "Work Demands": 0.10414714145685157
+        },
+        "classes": {
+          "Perceived Stress": {
+            "dependence_components": [],
+            "kind": "SCREENED_GENERAL",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Physical Activity": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Sleep Quality": {
+            "dependence_components": [],
+            "kind": "SCREENED_GENERAL",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Social Support": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Work Demands": {
+            "dependence_components": [],
+            "kind": "SCREENED_GENERAL",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          }
+        },
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Perceived Stress",
+          "Social Support",
+          "Physical Activity",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 22,
+        "pair_ablations": {
+          "fold_scores": [
+            {
+              "fold_index": 0,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Perceived Stress",
+                  "b": "Physical Activity",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.10084672166739037
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.5103126356925749
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.395462440295267
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.5853234910985671
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.23295701259227092
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.1801997394702562
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.021819366044290054
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.0004342162396873643
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.31328701693443334
+                },
+                {
+                  "a": "Social Support",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.023013460703430307
+                }
+              ]
+            },
+            {
+              "fold_index": 1,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Perceived Stress",
+                  "b": "Physical Activity",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.10670864090316978
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.3427051671732523
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.4284628745115068
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.44333478072079896
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.3351063829787234
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.13438992618323925
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.07457663916630483
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.19409465914025184
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.3567086409031698
+                },
+                {
+                  "a": "Social Support",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.05666521927920104
+                }
+              ]
+            }
+          ],
+          "pairs": []
+        },
+        "pair_classes": {
+          "members": {
+            "Perceived Stress": {
+              "proximal_unique": false,
+              "screened_by": []
+            },
+            "Physical Activity": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Sleep Quality": {
+              "proximal_unique": false,
+              "screened_by": []
+            },
+            "Social Support": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Work Demands": {
+              "proximal_unique": false,
+              "screened_by": []
+            }
+          },
+          "pairs": []
+        },
+        "promoted": [
+          "Physical Activity",
+          "Social Support"
+        ],
+        "reason": null,
+        "relevance": {
+          "baseline_risk": 0.42094573322106044,
+          "broad": {
+            "Perceived Stress": {
+              "normalized": 0.4860368573222547,
+              "raw": 0.11075640511935503
+            },
+            "Physical Activity": {
+              "normalized": 0.20312893462313578,
+              "raw": 0.04628832203905553
+            },
+            "Sleep Quality": {
+              "normalized": 0.3443603689790246,
+              "raw": 0.07847165489427804
+            },
+            "Social Support": {
+              "normalized": 0.6656228957143666,
+              "raw": 0.15167985304780918
+            },
+            "Work Demands": {
+              "normalized": 0.10414714145685157,
+              "raw": 0.02373269190893862
+            }
+          },
+          "full_risk": 0.1930691772546047,
+          "relative_gain": 0.5413442588495984,
+          "stop_reason": null,
+          "total_gain": 0.22787655596645573,
+          "unique": {
+            "Perceived Stress": {
+              "normalized": 0.04579564251615045,
+              "raw": 0.010435753294851358
+            },
+            "Physical Activity": {
+              "normalized": 0.09103151225605345,
+              "raw": 0.020743947497327664
+            },
+            "Sleep Quality": {
+              "normalized": -0.012842392538654839,
+              "raw": -0.002926480182077973
+            },
+            "Social Support": {
+              "normalized": 0.2680078960143567,
+              "raw": 0.0610727163155676
+            },
+            "Work Demands": {
+              "normalized": -0.003976696031243954,
+              "raw": -0.0009061957957253453
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": false,
+        "target": "Well-being",
+        "total_gain": 0.22787655596645573,
+        "total_gain_relative": 0.5413442588495984,
+        "tuning_model_fit_count": 600,
+        "unique": {
+          "Perceived Stress": 0.04579564251615045,
+          "Physical Activity": 0.09103151225605345,
+          "Sleep Quality": -0.012842392538654839,
+          "Social Support": 0.2680078960143567,
+          "Work Demands": -0.003976696031243954
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 8,
+      "status": "completed",
+      "target": "Well-being",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Perceived Stress",
+        "Social Support",
+        "Physical Activity",
+        "Work Demands"
+      ],
+      "depth": 0,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Perceived Stress": 0.5989507621919932,
+          "Physical Activity": 0.025375349415703043,
+          "Sleep Quality": 0.43283974857412283,
+          "Social Support": 0.5523698696261715,
+          "Work Demands": 0.18530411656512055
+        },
+        "classes": {
+          "Perceived Stress": {
+            "dependence_components": [],
+            "kind": "SCREENED_GENERAL",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Physical Activity": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Sleep Quality": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Social Support": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Work Demands": {
+            "dependence_components": [],
+            "kind": "SCREENED_GENERAL",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          }
+        },
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Perceived Stress",
+          "Social Support",
+          "Physical Activity",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 22,
+        "pair_ablations": {
+          "fold_scores": [
+            {
+              "fold_index": 0,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Perceived Stress",
+                  "b": "Physical Activity",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.16044290056448113
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.5093356491532783
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.2331741207121146
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.672058184976118
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.1674989144594008
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.10540599218410766
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.017694311767260096
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.01606600086843248
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.47112462006079026
+                },
+                {
+                  "a": "Social Support",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.013569257490230134
+                }
+              ]
+            },
+            {
+              "fold_index": 1,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Perceived Stress",
+                  "b": "Physical Activity",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.04027355623100304
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.3573599652627008
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.6148501953973078
+                },
+                {
+                  "a": "Perceived Stress",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.4893617021276596
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Sleep Quality",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.28300043421623966
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.009335649153278332
+                },
+                {
+                  "a": "Physical Activity",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.004776378636561007
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Social Support",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.1606600086843248
+                },
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.2645462440295267
+                },
+                {
+                  "a": "Social Support",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.10594876248371689
+                }
+              ]
+            }
+          ],
+          "pairs": []
+        },
+        "pair_classes": {
+          "members": {
+            "Perceived Stress": {
+              "proximal_unique": false,
+              "screened_by": []
+            },
+            "Physical Activity": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Sleep Quality": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Social Support": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Work Demands": {
+              "proximal_unique": false,
+              "screened_by": []
+            }
+          },
+          "pairs": []
+        },
+        "promoted": [
+          "Physical Activity",
+          "Sleep Quality",
+          "Social Support"
+        ],
+        "reason": null,
+        "relevance": {
+          "baseline_risk": 0.42926526709395896,
+          "broad": {
+            "Perceived Stress": {
+              "normalized": 0.5989507621919932,
+              "raw": 0.148783720399928
+            },
+            "Physical Activity": {
+              "normalized": 0.025375349415703043,
+              "raw": 0.006303421133816378
+            },
+            "Sleep Quality": {
+              "normalized": 0.43283974857412283,
+              "raw": 0.1075205379055586
+            },
+            "Social Support": {
+              "normalized": 0.5523698696261715,
+              "raw": 0.13721268830017963
+            },
+            "Work Demands": {
+              "normalized": 0.18530411656512055,
+              "raw": 0.0460308886945584
+            }
+          },
+          "full_risk": 0.1808580026046027,
+          "relative_gain": 0.5786800925474925,
+          "stop_reason": null,
+          "total_gain": 0.24840726448935627,
+          "unique": {
+            "Perceived Stress": {
+              "normalized": 0.009887165041117295,
+              "raw": 0.002456043621418741
+            },
+            "Physical Activity": {
+              "normalized": 0.08211521637332593,
+              "raw": 0.020398016272249492
+            },
+            "Sleep Quality": {
+              "normalized": 0.06002377301206049,
+              "raw": 0.014910341258255994
+            },
+            "Social Support": {
+              "normalized": 0.16507889281540558,
+              "raw": 0.04100679618920655
+            },
+            "Work Demands": {
+              "normalized": -0.02819445679632463,
+              "raw": -0.007003707886538341
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": false,
+        "target": "Well-being",
+        "total_gain": 0.24840726448935627,
+        "total_gain_relative": 0.5786800925474925,
+        "tuning_model_fit_count": 600,
+        "unique": {
+          "Perceived Stress": 0.009887165041117295,
+          "Physical Activity": 0.08211521637332593,
+          "Sleep Quality": 0.06002377301206049,
+          "Social Support": 0.16507889281540558,
+          "Work Demands": -0.02819445679632463
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 9,
+      "status": "completed",
+      "target": "Well-being",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Work Demands"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Sleep Quality": 0.5337605643759515,
+          "Work Demands": 0.9857336285170597
+        },
+        "classes": {
+          "Sleep Quality": {
+            "dependence_components": [],
+            "kind": "SCREENED_GENERAL",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Work Demands": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          }
+        },
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 10,
+        "pair_ablations": {
+          "fold_scores": [
+            {
+              "fold_index": 0,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.14893617021276598
+                }
+              ]
+            },
+            {
+              "fold_index": 1,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.43443334780720794
+                }
+              ]
+            }
+          ],
+          "pairs": []
+        },
+        "pair_classes": {
+          "members": {
+            "Sleep Quality": {
+              "proximal_unique": false,
+              "screened_by": []
+            },
+            "Work Demands": {
+              "proximal_unique": true,
+              "screened_by": []
+            }
+          },
+          "pairs": []
+        },
+        "promoted": [
+          "Work Demands"
+        ],
+        "reason": null,
+        "relevance": {
+          "baseline_risk": 0.36077743356766656,
+          "broad": {
+            "Sleep Quality": {
+              "normalized": 0.5337605643759515,
+              "raw": 0.06681045871331648
+            },
+            "Work Demands": {
+              "normalized": 0.9857336285170597,
+              "raw": 0.12338362982541437
+            }
+          },
+          "full_risk": 0.23560809140873765,
+          "relative_gain": 0.3469433798038603,
+          "stop_reason": null,
+          "total_gain": 0.12516934215892891,
+          "unique": {
+            "Sleep Quality": {
+              "normalized": 0.01426637148294033,
+              "raw": 0.0017857123335145442
+            },
+            "Work Demands": {
+              "normalized": 0.46164632471138856,
+              "raw": 0.0577839667742118
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": false,
+        "target": "Perceived Stress",
+        "total_gain": 0.12516934215892891,
+        "total_gain_relative": 0.3469433798038603,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "Sleep Quality": 0.01426637148294033,
+          "Work Demands": 0.46164632471138856
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 0,
+      "status": "completed",
+      "target": "Perceived Stress",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Work Demands"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Sleep Quality": 0.422330192038928,
+          "Work Demands": 0.8975140340573935
+        },
+        "classes": {
+          "Sleep Quality": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Work Demands": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          }
+        },
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 10,
+        "pair_ablations": {
+          "fold_scores": [
+            {
+              "fold_index": 0,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.27952670429874077
+                }
+              ]
+            },
+            {
+              "fold_index": 1,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.44474598349978284
+                }
+              ]
+            }
+          ],
+          "pairs": []
+        },
+        "pair_classes": {
+          "members": {
+            "Sleep Quality": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Work Demands": {
+              "proximal_unique": true,
+              "screened_by": []
+            }
+          },
+          "pairs": []
+        },
+        "promoted": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "reason": null,
+        "relevance": {
+          "baseline_risk": 0.32174821501858014,
+          "broad": {
+            "Sleep Quality": {
+              "normalized": 0.422330192038928,
+              "raw": 0.060536763537010985
+            },
+            "Work Demands": {
+              "normalized": 0.8975140340573935,
+              "raw": 0.12864956348153575
+            }
+          },
+          "full_risk": 0.1784083243876232,
+          "relative_gain": 0.44550329711286646,
+          "stop_reason": null,
+          "total_gain": 0.14333989063095695,
+          "unique": {
+            "Sleep Quality": {
+              "normalized": 0.10097496170940126,
+              "raw": 0.014473739967890642
+            },
+            "Work Demands": {
+              "normalized": 0.5330441644280473,
+              "raw": 0.07640649223058613
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": false,
+        "target": "Perceived Stress",
+        "total_gain": 0.14333989063095695,
+        "total_gain_relative": 0.44550329711286646,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "Sleep Quality": 0.10097496170940126,
+          "Work Demands": 0.5330441644280473
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 1,
+      "status": "completed",
+      "target": "Perceived Stress",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Work Demands"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Sleep Quality": 0.4360583305500219,
+          "Work Demands": 2.2974053384820348
+        },
+        "classes": {
+          "Sleep Quality": {
+            "dependence_components": [],
+            "kind": "SCREENED_GENERAL",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Work Demands": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          }
+        },
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 10,
+        "pair_ablations": {
+          "fold_scores": [
+            {
+              "fold_index": 0,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.38916630481980025
+                }
+              ]
+            },
+            {
+              "fold_index": 1,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.27029960920538426
+                }
+              ]
+            }
+          ],
+          "pairs": []
+        },
+        "pair_classes": {
+          "members": {
+            "Sleep Quality": {
+              "proximal_unique": false,
+              "screened_by": []
+            },
+            "Work Demands": {
+              "proximal_unique": true,
+              "screened_by": []
+            }
+          },
+          "pairs": []
+        },
+        "promoted": [
+          "Work Demands"
+        ],
+        "reason": null,
+        "relevance": {
+          "baseline_risk": 0.2762281245699662,
+          "broad": {
+            "Sleep Quality": {
+              "normalized": 0.4360583305500219,
+              "raw": 0.01695356159228223
+            },
+            "Work Demands": {
+              "normalized": 2.2974053384820348,
+              "raw": 0.08932108431288224
+            }
+          },
+          "full_risk": 0.23734901045948043,
+          "relative_gain": 0.1407500201907863,
+          "stop_reason": null,
+          "total_gain": 0.03887911411048578,
+          "unique": {
+            "Sleep Quality": {
+              "normalized": 0.001057660252674342,
+              "raw": 4.1120893653850965e-05
+            },
+            "Work Demands": {
+              "normalized": 0.6140449120950346,
+              "raw": 0.023873522206306064
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": false,
+        "target": "Perceived Stress",
+        "total_gain": 0.03887911411048578,
+        "total_gain_relative": 0.1407500201907863,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "Sleep Quality": 0.001057660252674342,
+          "Work Demands": 0.6140449120950346
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 2,
+      "status": "completed",
+      "target": "Perceived Stress",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Work Demands"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Sleep Quality": 0.6481550746003022,
+          "Work Demands": 0.8652762845723241
+        },
+        "classes": {
+          "Sleep Quality": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Work Demands": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          }
+        },
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 10,
+        "pair_ablations": {
+          "fold_scores": [
+            {
+              "fold_index": 0,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.46862787668258793
+                }
+              ]
+            },
+            {
+              "fold_index": 1,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.373643074250977
+                }
+              ]
+            }
+          ],
+          "pairs": []
+        },
+        "pair_classes": {
+          "members": {
+            "Sleep Quality": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Work Demands": {
+              "proximal_unique": true,
+              "screened_by": []
+            }
+          },
+          "pairs": []
+        },
+        "promoted": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "reason": null,
+        "relevance": {
+          "baseline_risk": 0.32653175965430953,
+          "broad": {
+            "Sleep Quality": {
+              "normalized": 0.6481550746003022,
+              "raw": 0.08425954221647855
+            },
+            "Work Demands": {
+              "normalized": 0.8652762845723241,
+              "raw": 0.1124850926667503
+            }
+          },
+          "full_risk": 0.1965327123299653,
+          "relative_gain": 0.39812068345808305,
+          "stop_reason": null,
+          "total_gain": 0.12999904732434422,
+          "unique": {
+            "Sleep Quality": {
+              "normalized": 0.1571860420169717,
+              "raw": 0.020434035714890664
+            },
+            "Work Demands": {
+              "normalized": 0.31520634067128783,
+              "raw": 0.040976523997860115
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": false,
+        "target": "Perceived Stress",
+        "total_gain": 0.12999904732434422,
+        "total_gain_relative": 0.39812068345808305,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "Sleep Quality": 0.1571860420169717,
+          "Work Demands": 0.31520634067128783
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 3,
+      "status": "completed",
+      "target": "Perceived Stress",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Work Demands"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Sleep Quality": 0.34616602452578704,
+          "Work Demands": 0.9459125917094985
+        },
+        "classes": {
+          "Sleep Quality": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Work Demands": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          }
+        },
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 10,
+        "pair_ablations": {
+          "fold_scores": [
+            {
+              "fold_index": 0,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.2912505427702996
+                }
+              ]
+            },
+            {
+              "fold_index": 1,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.3264220581849761
+                }
+              ]
+            }
+          ],
+          "pairs": []
+        },
+        "pair_classes": {
+          "members": {
+            "Sleep Quality": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Work Demands": {
+              "proximal_unique": true,
+              "screened_by": []
+            }
+          },
+          "pairs": []
+        },
+        "promoted": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "reason": null,
+        "relevance": {
+          "baseline_risk": 0.30893578486382756,
+          "broad": {
+            "Sleep Quality": {
+              "normalized": 0.34616602452578704,
+              "raw": 0.04762152887099841
+            },
+            "Work Demands": {
+              "normalized": 0.9459125917094985,
+              "raw": 0.13012774392646728
+            }
+          },
+          "full_risk": 0.17136731916522194,
+          "relative_gain": 0.44529793063384654,
+          "stop_reason": null,
+          "total_gain": 0.13756846569860562,
+          "unique": {
+            "Sleep Quality": {
+              "normalized": 0.07061567168727313,
+              "raw": 0.00971448960829463
+            },
+            "Work Demands": {
+              "normalized": 0.5367353076943817,
+              "raw": 0.07383785276578508
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": false,
+        "target": "Perceived Stress",
+        "total_gain": 0.13756846569860562,
+        "total_gain_relative": 0.44529793063384654,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "Sleep Quality": 0.07061567168727313,
+          "Work Demands": 0.5367353076943817
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 4,
+      "status": "completed",
+      "target": "Perceived Stress",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Work Demands"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Sleep Quality": -0.23505848900524215,
+          "Work Demands": 1.121239540001986
+        },
+        "classes": {
+          "Sleep Quality": {
+            "dependence_components": [],
+            "kind": "NEGLIGIBLE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Work Demands": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          }
+        },
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 10,
+        "pair_ablations": {
+          "fold_scores": [
+            {
+              "fold_index": 0,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.16445940078158922
+                }
+              ]
+            },
+            {
+              "fold_index": 1,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.4878419452887538
+                }
+              ]
+            }
+          ],
+          "pairs": []
+        },
+        "pair_classes": {
+          "members": {
+            "Sleep Quality": {
+              "proximal_unique": false,
+              "screened_by": []
+            },
+            "Work Demands": {
+              "proximal_unique": true,
+              "screened_by": []
+            }
+          },
+          "pairs": []
+        },
+        "promoted": [
+          "Work Demands"
+        ],
+        "reason": null,
+        "relevance": {
+          "baseline_risk": 0.2865979464490349,
+          "broad": {
+            "Sleep Quality": {
+              "normalized": -0.23505848900524215,
+              "raw": -0.023856165527225526
+            },
+            "Work Demands": {
+              "normalized": 1.121239540001986,
+              "raw": 0.11379498002882615
+            }
+          },
+          "full_risk": 0.18510760832857887,
+          "relative_gain": 0.3541209536841669,
+          "stop_reason": null,
+          "total_gain": 0.10149033812045605,
+          "unique": {
+            "Sleep Quality": {
+              "normalized": -0.11725062670190127,
+              "raw": -0.011899805748811332
+            },
+            "Work Demands": {
+              "normalized": 0.9080305357537082,
+              "raw": 0.0921563260973427
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": false,
+        "target": "Perceived Stress",
+        "total_gain": 0.10149033812045605,
+        "total_gain_relative": 0.3541209536841669,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "Sleep Quality": -0.11725062670190127,
+          "Work Demands": 0.9080305357537082
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 5,
+      "status": "completed",
+      "target": "Perceived Stress",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Work Demands"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Sleep Quality": 0.5516604833938508,
+          "Work Demands": 0.7075397872733007
+        },
+        "classes": {
+          "Sleep Quality": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Work Demands": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          }
+        },
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 10,
+        "pair_ablations": {
+          "fold_scores": [
+            {
+              "fold_index": 0,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.4102257924446374
+                }
+              ]
+            },
+            {
+              "fold_index": 1,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.22231871471993053
+                }
+              ]
+            }
+          ],
+          "pairs": []
+        },
+        "pair_classes": {
+          "members": {
+            "Sleep Quality": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Work Demands": {
+              "proximal_unique": true,
+              "screened_by": []
+            }
+          },
+          "pairs": []
+        },
+        "promoted": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "reason": null,
+        "relevance": {
+          "baseline_risk": 0.28312144256648836,
+          "broad": {
+            "Sleep Quality": {
+              "normalized": 0.5516604833938508,
+              "raw": 0.06679772826894506
+            },
+            "Work Demands": {
+              "normalized": 0.7075397872733007,
+              "raw": 0.08567235078900334
+            }
+          },
+          "full_risk": 0.16203659005357834,
+          "relative_gain": 0.4276781419848636,
+          "stop_reason": null,
+          "total_gain": 0.12108485251291001,
+          "unique": {
+            "Sleep Quality": {
+              "normalized": 0.24779642527294107,
+              "raw": 0.030004393607400398
+            },
+            "Work Demands": {
+              "normalized": 0.4478292261045426,
+              "raw": 0.054225335793839174
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": false,
+        "target": "Perceived Stress",
+        "total_gain": 0.12108485251291001,
+        "total_gain_relative": 0.4276781419848636,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "Sleep Quality": 0.24779642527294107,
+          "Work Demands": 0.4478292261045426
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 6,
+      "status": "completed",
+      "target": "Perceived Stress",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Work Demands"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Sleep Quality": 0.1479662384160588,
+          "Work Demands": 1.1521486393452542
+        },
+        "classes": {
+          "Sleep Quality": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Work Demands": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          }
+        },
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 10,
+        "pair_ablations": {
+          "fold_scores": [
+            {
+              "fold_index": 0,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.4614633087277464
+                }
+              ]
+            },
+            {
+              "fold_index": 1,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.38645245332175426
+                }
+              ]
+            }
+          ],
+          "pairs": []
+        },
+        "pair_classes": {
+          "members": {
+            "Sleep Quality": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Work Demands": {
+              "proximal_unique": true,
+              "screened_by": []
+            }
+          },
+          "pairs": []
+        },
+        "promoted": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "reason": null,
+        "relevance": {
+          "baseline_risk": 0.30811646111981106,
+          "broad": {
+            "Sleep Quality": {
+              "normalized": 0.1479662384160588,
+              "raw": 0.012402610049743634
+            },
+            "Work Demands": {
+              "normalized": 1.1521486393452542,
+              "raw": 0.09657372145233264
+            }
+          },
+          "full_risk": 0.22429592082284575,
+          "relative_gain": 0.2720417467873347,
+          "stop_reason": null,
+          "total_gain": 0.08382054029696531,
+          "unique": {
+            "Sleep Quality": {
+              "normalized": 0.051929315587163585,
+              "raw": 0.004352743289767674
+            },
+            "Work Demands": {
+              "normalized": 0.5387842895630947,
+              "raw": 0.0451611902546952
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": false,
+        "target": "Perceived Stress",
+        "total_gain": 0.08382054029696531,
+        "total_gain_relative": 0.2720417467873347,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "Sleep Quality": 0.051929315587163585,
+          "Work Demands": 0.5387842895630947
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 7,
+      "status": "completed",
+      "target": "Perceived Stress",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Work Demands"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Sleep Quality": 0.3982741032479652,
+          "Work Demands": 0.8237059902436362
+        },
+        "classes": {
+          "Sleep Quality": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Work Demands": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          }
+        },
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 10,
+        "pair_ablations": {
+          "fold_scores": [
+            {
+              "fold_index": 0,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.31328701693443334
+                }
+              ]
+            },
+            {
+              "fold_index": 1,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.3567086409031698
+                }
+              ]
+            }
+          ],
+          "pairs": []
+        },
+        "pair_classes": {
+          "members": {
+            "Sleep Quality": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Work Demands": {
+              "proximal_unique": true,
+              "screened_by": []
+            }
+          },
+          "pairs": []
+        },
+        "promoted": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "reason": null,
+        "relevance": {
+          "baseline_risk": 0.26733344554807376,
+          "broad": {
+            "Sleep Quality": {
+              "normalized": 0.3982741032479652,
+              "raw": 0.043973682840571876
+            },
+            "Work Demands": {
+              "normalized": 0.8237059902436362,
+              "raw": 0.09094587288870609
+            }
+          },
+          "full_risk": 0.15692284520533972,
+          "relative_gain": 0.41300705984010233,
+          "stop_reason": null,
+          "total_gain": 0.11041060034273403,
+          "unique": {
+            "Sleep Quality": {
+              "normalized": 0.17327002145019252,
+              "raw": 0.01913084708971416
+            },
+            "Work Demands": {
+              "normalized": 0.4565260297519804,
+              "raw": 0.05040531301700102
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": false,
+        "target": "Perceived Stress",
+        "total_gain": 0.11041060034273403,
+        "total_gain_relative": 0.41300705984010233,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "Sleep Quality": 0.17327002145019252,
+          "Work Demands": 0.4565260297519804
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 8,
+      "status": "completed",
+      "target": "Perceived Stress",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Work Demands"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Sleep Quality": 0.507420857517526,
+          "Work Demands": 0.8036778670672486
+        },
+        "classes": {
+          "Sleep Quality": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Work Demands": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          }
+        },
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 10,
+        "pair_ablations": {
+          "fold_scores": [
+            {
+              "fold_index": 0,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.47112462006079026
+                }
+              ]
+            },
+            {
+              "fold_index": 1,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Sleep Quality",
+                  "b": "Work Demands",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.2645462440295267
+                }
+              ]
+            }
+          ],
+          "pairs": []
+        },
+        "pair_classes": {
+          "members": {
+            "Sleep Quality": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Work Demands": {
+              "proximal_unique": true,
+              "screened_by": []
+            }
+          },
+          "pairs": []
+        },
+        "promoted": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "reason": null,
+        "relevance": {
+          "baseline_risk": 0.3087037705435971,
+          "broad": {
+            "Sleep Quality": {
+              "normalized": 0.507420857517526,
+              "raw": 0.06705693294973183
+            },
+            "Work Demands": {
+              "normalized": 0.8036778670672486,
+              "raw": 0.1062080362813044
+            }
+          },
+          "full_risk": 0.17655127433404635,
+          "relative_gain": 0.4280883773361211,
+          "stop_reason": null,
+          "total_gain": 0.13215249620955075,
+          "unique": {
+            "Sleep Quality": {
+              "normalized": 0.1963221329327514,
+              "raw": 0.025944459928246344
+            },
+            "Work Demands": {
+              "normalized": 0.5108978489568647,
+              "raw": 0.06751642604773969
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": false,
+        "target": "Perceived Stress",
+        "total_gain": 0.13215249620955075,
+        "total_gain_relative": 0.4280883773361211,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "Sleep Quality": 0.1963221329327514,
+          "Work Demands": 0.5108978489568647
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 9,
+      "status": "completed",
+      "target": "Perceived Stress",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Work Demands"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        },
+        "classes": {},
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 10,
+        "pair_ablations": null,
+        "pair_classes": null,
+        "promoted": [],
+        "reason": "LOW_TOTAL_GAIN",
+        "relevance": {
+          "baseline_risk": 0.3609604075882922,
+          "broad": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": 0.005238350337107844
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": 0.0
+            }
+          },
+          "full_risk": 0.36087671459369464,
+          "relative_gain": 0.00023186197942517544,
+          "stop_reason": "LOW_TOTAL_GAIN",
+          "total_gain": 8.369299459753954e-05,
+          "unique": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": 2.2840022366910073e-05
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": -0.0009900801228309164
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": true,
+        "target": "Physical Activity",
+        "total_gain": 8.369299459753954e-05,
+        "total_gain_relative": 0.00023186197942517544,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 0,
+      "status": "completed",
+      "target": "Physical Activity",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Work Demands"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        },
+        "classes": {},
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 10,
+        "pair_ablations": null,
+        "pair_classes": null,
+        "promoted": [],
+        "reason": "LOW_TOTAL_GAIN",
+        "relevance": {
+          "baseline_risk": 0.3428598997144821,
+          "broad": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": 0.004822928004291849
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": -0.005514786441017772
+            }
+          },
+          "full_risk": 0.3442235025993649,
+          "relative_gain": -0.00397714310136106,
+          "stop_reason": "LOW_TOTAL_GAIN",
+          "total_gain": -0.0013636028848827975,
+          "unique": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": 0.004151183556134974
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": -0.003457514884637858
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": true,
+        "target": "Physical Activity",
+        "total_gain": -0.0013636028848827975,
+        "total_gain_relative": -0.00397714310136106,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 1,
+      "status": "completed",
+      "target": "Physical Activity",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Work Demands"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        },
+        "classes": {},
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 10,
+        "pair_ablations": null,
+        "pair_classes": null,
+        "promoted": [],
+        "reason": "LOW_TOTAL_GAIN",
+        "relevance": {
+          "baseline_risk": 0.3548489648367013,
+          "broad": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": 0.0025364463852606267
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": -0.006510142047821854
+            }
+          },
+          "full_risk": 0.3523125184514407,
+          "relative_gain": 0.007147960503218261,
+          "stop_reason": "LOW_TOTAL_GAIN",
+          "total_gain": 0.0025364463852606267,
+          "unique": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": 0.0025364463852606267
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": 0.0
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": true,
+        "target": "Physical Activity",
+        "total_gain": 0.0025364463852606267,
+        "total_gain_relative": 0.007147960503218261,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 2,
+      "status": "completed",
+      "target": "Physical Activity",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Work Demands"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        },
+        "classes": {},
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 10,
+        "pair_ablations": null,
+        "pair_classes": null,
+        "promoted": [],
+        "reason": "LOW_TOTAL_GAIN",
+        "relevance": {
+          "baseline_risk": 0.38106409082647713,
+          "broad": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": -0.0032508864930047565
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": 3.518402665536602e-05
+            }
+          },
+          "full_risk": 0.38997185005807533,
+          "relative_gain": -0.023376013237769163,
+          "stop_reason": "LOW_TOTAL_GAIN",
+          "total_gain": -0.0089077592315982,
+          "unique": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": -0.008988151917494636
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": 1.3206190939973883e-05
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": true,
+        "target": "Physical Activity",
+        "total_gain": -0.0089077592315982,
+        "total_gain_relative": -0.023376013237769163,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 3,
+      "status": "completed",
+      "target": "Physical Activity",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Work Demands"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        },
+        "classes": {},
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 10,
+        "pair_ablations": null,
+        "pair_classes": null,
+        "promoted": [],
+        "reason": "LOW_TOTAL_GAIN",
+        "relevance": {
+          "baseline_risk": 0.3714280802170212,
+          "broad": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": 0.003970532940522631
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": -0.0009529938774947566
+            }
+          },
+          "full_risk": 0.3698603497053436,
+          "relative_gain": 0.004220818498056398,
+          "stop_reason": "LOW_TOTAL_GAIN",
+          "total_gain": 0.0015677305116775786,
+          "unique": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": 0.0019546049028212886
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": 0.00010012856957969385
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": true,
+        "target": "Physical Activity",
+        "total_gain": 0.0015677305116775786,
+        "total_gain_relative": 0.004220818498056398,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 4,
+      "status": "completed",
+      "target": "Physical Activity",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Work Demands"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        },
+        "classes": {},
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 10,
+        "pair_ablations": null,
+        "pair_classes": null,
+        "promoted": [],
+        "reason": "LOW_TOTAL_GAIN",
+        "relevance": {
+          "baseline_risk": 0.33073047280917595,
+          "broad": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": 0.0070469736501682645
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": 0.0
+            }
+          },
+          "full_risk": 0.33107688364983207,
+          "relative_gain": -0.0010474113186902821,
+          "stop_reason": "LOW_TOTAL_GAIN",
+          "total_gain": -0.0003464108406561195,
+          "unique": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": 0.01114513663640182
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": -0.006843576430384468
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": true,
+        "target": "Physical Activity",
+        "total_gain": -0.0003464108406561195,
+        "total_gain_relative": -0.0010474113186902821,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 5,
+      "status": "completed",
+      "target": "Physical Activity",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Work Demands"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        },
+        "classes": {},
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 10,
+        "pair_ablations": null,
+        "pair_classes": null,
+        "promoted": [],
+        "reason": "LOW_TOTAL_GAIN",
+        "relevance": {
+          "baseline_risk": 0.2859142730251002,
+          "broad": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": 0.009938591680332898
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": -0.0028917960747285587
+            }
+          },
+          "full_risk": 0.2867421024657402,
+          "relative_gain": -0.002895376407344841,
+          "stop_reason": "LOW_TOTAL_GAIN",
+          "total_gain": -0.0008278294406400266,
+          "unique": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": 0.0011532836819194703
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": -0.002162396392587196
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": true,
+        "target": "Physical Activity",
+        "total_gain": -0.0008278294406400266,
+        "total_gain_relative": -0.002895376407344841,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 6,
+      "status": "completed",
+      "target": "Physical Activity",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Work Demands"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        },
+        "classes": {},
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 10,
+        "pair_ablations": null,
+        "pair_classes": null,
+        "promoted": [],
+        "reason": "LOW_TOTAL_GAIN",
+        "relevance": {
+          "baseline_risk": 0.3856203834505833,
+          "broad": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": 0.0
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": 0.0
+            }
+          },
+          "full_risk": 0.3856203834505833,
+          "relative_gain": 0.0,
+          "stop_reason": "LOW_TOTAL_GAIN",
+          "total_gain": 0.0,
+          "unique": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": 0.0
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": 0.0
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": true,
+        "target": "Physical Activity",
+        "total_gain": 0.0,
+        "total_gain_relative": 0.0,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 7,
+      "status": "completed",
+      "target": "Physical Activity",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Work Demands"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        },
+        "classes": {},
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 10,
+        "pair_ablations": null,
+        "pair_classes": null,
+        "promoted": [],
+        "reason": "LOW_TOTAL_GAIN",
+        "relevance": {
+          "baseline_risk": 0.41281762640003894,
+          "broad": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": 0.0034743908914267596
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": -0.0005387106856823975
+            }
+          },
+          "full_risk": 0.4093432355086122,
+          "relative_gain": 0.008416285229206559,
+          "stop_reason": "LOW_TOTAL_GAIN",
+          "total_gain": 0.0034743908914267596,
+          "unique": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": 0.0034743908914267596
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": 0.0
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": true,
+        "target": "Physical Activity",
+        "total_gain": 0.0034743908914267596,
+        "total_gain_relative": 0.008416285229206559,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 8,
+      "status": "completed",
+      "target": "Physical Activity",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Work Demands"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        },
+        "classes": {},
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 10,
+        "pair_ablations": null,
+        "pair_classes": null,
+        "promoted": [],
+        "reason": "LOW_TOTAL_GAIN",
+        "relevance": {
+          "baseline_risk": 0.3775496167705576,
+          "broad": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": 0.00044888747899307635
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": 0.0
+            }
+          },
+          "full_risk": 0.3771007292915645,
+          "relative_gain": 0.0011889496348393112,
+          "stop_reason": "LOW_TOTAL_GAIN",
+          "total_gain": 0.00044888747899307635,
+          "unique": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": 0.00044888747899307635
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": 0.0
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": true,
+        "target": "Physical Activity",
+        "total_gain": 0.00044888747899307635,
+        "total_gain_relative": 0.0011889496348393112,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 9,
+      "status": "completed",
+      "target": "Physical Activity",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Work Demands"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        },
+        "classes": {},
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 10,
+        "pair_ablations": null,
+        "pair_classes": null,
+        "promoted": [],
+        "reason": "LOW_TOTAL_GAIN",
+        "relevance": {
+          "baseline_risk": 0.3322695304158621,
+          "broad": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": 0.0
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": -0.038435257562767444
+            }
+          },
+          "full_risk": 0.3537105530886823,
+          "relative_gain": -0.06452900645444393,
+          "stop_reason": "LOW_TOTAL_GAIN",
+          "total_gain": -0.02144102267282022,
+          "unique": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": 0.0030229727464430867
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": -0.020615825856461822
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": true,
+        "target": "Social Support",
+        "total_gain": -0.02144102267282022,
+        "total_gain_relative": -0.06452900645444393,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 0,
+      "status": "completed",
+      "target": "Social Support",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Work Demands"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        },
+        "classes": {},
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 10,
+        "pair_ablations": null,
+        "pair_classes": null,
+        "promoted": [],
+        "reason": "LOW_TOTAL_GAIN",
+        "relevance": {
+          "baseline_risk": 0.37392367949066746,
+          "broad": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": 0.0026631768363042374
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": 0.0
+            }
+          },
+          "full_risk": 0.37392367949066746,
+          "relative_gain": 0.0,
+          "stop_reason": "LOW_TOTAL_GAIN",
+          "total_gain": 0.0,
+          "unique": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": 0.0
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": 0.0
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": true,
+        "target": "Social Support",
+        "total_gain": 0.0,
+        "total_gain_relative": 0.0,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 1,
+      "status": "completed",
+      "target": "Social Support",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Work Demands"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        },
+        "classes": {},
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 10,
+        "pair_ablations": null,
+        "pair_classes": null,
+        "promoted": [],
+        "reason": "LOW_TOTAL_GAIN",
+        "relevance": {
+          "baseline_risk": 0.3818599800162395,
+          "broad": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": -0.00606861383483176
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": 0.0012090329562091107
+            }
+          },
+          "full_risk": 0.3965800879678116,
+          "relative_gain": -0.03854844372784515,
+          "stop_reason": "LOW_TOTAL_GAIN",
+          "total_gain": -0.014720107951572081,
+          "unique": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": -0.012684788561715954
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": -0.009532660171671814
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": true,
+        "target": "Social Support",
+        "total_gain": -0.014720107951572081,
+        "total_gain_relative": -0.03854844372784515,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 2,
+      "status": "completed",
+      "target": "Social Support",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Work Demands"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        },
+        "classes": {},
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 10,
+        "pair_ablations": null,
+        "pair_classes": null,
+        "promoted": [],
+        "reason": "LOW_TOTAL_GAIN",
+        "relevance": {
+          "baseline_risk": 0.3409466133701649,
+          "broad": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": -0.012036959270341985
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": 0.0
+            }
+          },
+          "full_risk": 0.3455743414866506,
+          "relative_gain": -0.013573175198139876,
+          "stop_reason": "LOW_TOTAL_GAIN",
+          "total_gain": -0.004627728116485708,
+          "unique": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": -0.0035089918390781016
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": 0.0
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": true,
+        "target": "Social Support",
+        "total_gain": -0.004627728116485708,
+        "total_gain_relative": -0.013573175198139876,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 3,
+      "status": "completed",
+      "target": "Social Support",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Work Demands"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        },
+        "classes": {},
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 10,
+        "pair_ablations": null,
+        "pair_classes": null,
+        "promoted": [],
+        "reason": "LOW_TOTAL_GAIN",
+        "relevance": {
+          "baseline_risk": 0.3422267107650295,
+          "broad": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": 0.0
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": -0.003836893573818556
+            }
+          },
+          "full_risk": 0.3496233463068949,
+          "relative_gain": -0.021613261937768222,
+          "stop_reason": "LOW_TOTAL_GAIN",
+          "total_gain": -0.007396635541865426,
+          "unique": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": -0.00355974196804687
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": -0.005722654118200721
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": true,
+        "target": "Social Support",
+        "total_gain": -0.007396635541865426,
+        "total_gain_relative": -0.021613261937768222,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 4,
+      "status": "completed",
+      "target": "Social Support",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Work Demands"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        },
+        "classes": {},
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 10,
+        "pair_ablations": null,
+        "pair_classes": null,
+        "promoted": [],
+        "reason": "LOW_TOTAL_GAIN",
+        "relevance": {
+          "baseline_risk": 0.3594356064053283,
+          "broad": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": -0.0077512390843706425
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": -0.0022477159196414576
+            }
+          },
+          "full_risk": 0.36653865030438465,
+          "relative_gain": -0.01976165903565603,
+          "stop_reason": "LOW_TOTAL_GAIN",
+          "total_gain": -0.0071030438990563605,
+          "unique": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": -0.003809244659782607
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": -0.00033116000102673127
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": true,
+        "target": "Social Support",
+        "total_gain": -0.0071030438990563605,
+        "total_gain_relative": -0.01976165903565603,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 5,
+      "status": "completed",
+      "target": "Social Support",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Work Demands"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        },
+        "classes": {},
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 10,
+        "pair_ablations": null,
+        "pair_classes": null,
+        "promoted": [],
+        "reason": "LOW_TOTAL_GAIN",
+        "relevance": {
+          "baseline_risk": 0.35324110595387204,
+          "broad": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": 0.0
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": 0.0
+            }
+          },
+          "full_risk": 0.35324110595387204,
+          "relative_gain": 0.0,
+          "stop_reason": "LOW_TOTAL_GAIN",
+          "total_gain": 0.0,
+          "unique": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": 0.0
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": 0.0
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": true,
+        "target": "Social Support",
+        "total_gain": 0.0,
+        "total_gain_relative": 0.0,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 6,
+      "status": "completed",
+      "target": "Social Support",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Work Demands"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        },
+        "classes": {},
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 10,
+        "pair_ablations": null,
+        "pair_classes": null,
+        "promoted": [],
+        "reason": "LOW_TOTAL_GAIN",
+        "relevance": {
+          "baseline_risk": 0.37305868526348407,
+          "broad": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": 0.0
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": -0.045913155346883394
+            }
+          },
+          "full_risk": 0.4453769920835513,
+          "relative_gain": -0.19385236070563597,
+          "stop_reason": "LOW_TOTAL_GAIN",
+          "total_gain": -0.07231830682006724,
+          "unique": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": -0.0171083248489583
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": -0.07328115709822242
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": true,
+        "target": "Social Support",
+        "total_gain": -0.07231830682006724,
+        "total_gain_relative": -0.19385236070563597,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 7,
+      "status": "completed",
+      "target": "Social Support",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Work Demands"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        },
+        "classes": {},
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 10,
+        "pair_ablations": null,
+        "pair_classes": null,
+        "promoted": [],
+        "reason": "LOW_TOTAL_GAIN",
+        "relevance": {
+          "baseline_risk": 0.3546915989267602,
+          "broad": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": 0.0011584554183391438
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": 0.0
+            }
+          },
+          "full_risk": 0.35403341202062116,
+          "relative_gain": 0.0018556597002314843,
+          "stop_reason": "LOW_TOTAL_GAIN",
+          "total_gain": 0.0006581869061390577,
+          "unique": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": 0.0006581869061390577
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": 0.0
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": true,
+        "target": "Social Support",
+        "total_gain": 0.0006581869061390577,
+        "total_gain_relative": 0.0018556597002314843,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 8,
+      "status": "completed",
+      "target": "Social Support",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Sleep Quality",
+        "Work Demands"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        },
+        "classes": {},
+        "dependence_components": [],
+        "input_candidates": [
+          "Sleep Quality",
+          "Work Demands"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 96,
+        "outer_model_fit_count": 10,
+        "pair_ablations": null,
+        "pair_classes": null,
+        "promoted": [],
+        "reason": "LOW_TOTAL_GAIN",
+        "relevance": {
+          "baseline_risk": 0.35476393988161425,
+          "broad": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": -0.00560320273947007
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": 0.0
+            }
+          },
+          "full_risk": 0.3579974873694769,
+          "relative_gain": -0.009114645329910607,
+          "stop_reason": "LOW_TOTAL_GAIN",
+          "total_gain": -0.0032335474878626425,
+          "unique": {
+            "Sleep Quality": {
+              "normalized": null,
+              "raw": -0.0029933543596804557
+            },
+            "Work Demands": {
+              "normalized": null,
+              "raw": -0.00038892613203977966
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": true,
+        "target": "Social Support",
+        "total_gain": -0.0032335474878626425,
+        "total_gain_relative": -0.009114645329910607,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "Sleep Quality": null,
+          "Work Demands": null
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 96,
+      "run_index": 9,
+      "status": "completed",
+      "target": "Social Support",
+      "warnings": []
+    }
+  ],
+  "schema": "open.layer_assessments",
+  "schema_version": 1
+}

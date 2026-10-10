@@ -1,0 +1,517 @@
+[
+  {
+    "sample": "chain",
+    "n_rows": 80,
+    "data_seed": 271828,
+    "sample_sha256": "97252aea5684a060bf7eb4542b7f4147017ba2d3d560694472eb677ce6b01fef",
+    "code_revision": "8daca3f2cca13a9fed6ea0f1c1d254f3fec30805",
+    "config": {
+      "analysis": {
+        "root": "Anxiety",
+        "random_seed": 27,
+        "max_depth": 3
+      },
+      "outcome": {
+        "type": "continuous",
+        "loss": "mse"
+      },
+      "learner": {
+        "mode": "fixed",
+        "library": [
+          "elastic_net"
+        ],
+        "retune_ablation": false
+      },
+      "preprocessing": {
+        "missing": "median",
+        "standardize_linear": true,
+        "one_hot_categorical": false
+      },
+      "dependence": {
+        "method": "spearman",
+        "absolute": true
+      },
+      "thresholds": {
+        "min_total_gain_relative": 0.02,
+        "broad_relative": 0.05,
+        "unique_relative": 0.15,
+        "group_relative": 0.1,
+        "dependence_pair": 0.7,
+        "stability": 0.7
+      },
+      "performance_cv": {
+        "folds": 2,
+        "repeats": 1,
+        "grouped": false
+      },
+      "tuning_cv": {
+        "folds": 2
+      },
+      "stability": {
+        "method": "subsample",
+        "fraction": 0.8,
+        "n_resamples": 20,
+        "final_resamples": 500
+      },
+      "visualization": {
+        "show_screened": true,
+        "show_unstable": false,
+        "distance_mode": "visual_strength",
+        "edge_width": "unique",
+        "edge_opacity": "stability"
+      }
+    },
+    "completed": 20,
+    "failed": 0,
+    "denominator": 20,
+    "elapsed_seconds": 142.91273250000086,
+    "warnings": {},
+    "single_run": {
+      "depths": {
+        "Anxiety": 0,
+        "Depression": 1,
+        "Stress": 2
+      },
+      "edges": [
+        {
+          "source": "Depression",
+          "target": "Anxiety",
+          "unique_raw": 0.41946290912628437,
+          "unique_normalized": 0.3528218486231867
+        },
+        {
+          "source": "Stress",
+          "target": "Depression",
+          "unique_raw": 0.8675797843002457,
+          "unique_normalized": 1.0
+        }
+      ],
+      "shared_relations": [],
+      "stop_reasons": {
+        "Stress": "NO_UNASSIGNED"
+      },
+      "targets": {
+        "Anxiety": {
+          "baseline_risk": 1.2483043593042726,
+          "full_risk": 0.05942416165452289,
+          "relative_gain": 0.9523960953820252,
+          "observed_target_rows": 80,
+          "missing_target_rows": 0,
+          "candidates": {
+            "Depression": {
+              "class": "PROXIMAL_UNIQUE",
+              "broad": 0.9989272259330131,
+              "unique": 0.3528218486231867,
+              "screened_by": []
+            },
+            "Stress": {
+              "class": "SCREENED_BY_PARTNER",
+              "broad": 0.6492017961404364,
+              "unique": 0.001322413518197804,
+              "screened_by": [
+                "Depression"
+              ]
+            }
+          }
+        },
+        "Depression": {
+          "baseline_risk": 1.2488272004353869,
+          "full_risk": 0.3812474161351411,
+          "relative_gain": 0.6947156371976648,
+          "observed_target_rows": 80,
+          "missing_target_rows": 0,
+          "candidates": {
+            "Stress": {
+              "class": "PROXIMAL_UNIQUE",
+              "broad": 1.0,
+              "unique": 1.0,
+              "screened_by": []
+            }
+          }
+        }
+      }
+    },
+    "nodes": [
+      {
+        "name": "Depression",
+        "depth": 1,
+        "selection_probability": 1.0
+      },
+      {
+        "name": "Stress",
+        "depth": 2,
+        "selection_probability": 1.0
+      }
+    ],
+    "edges": [
+      {
+        "source": "Depression",
+        "target": "Anxiety",
+        "class": "PROXIMAL_UNIQUE",
+        "probability": 1.0,
+        "count": 20,
+        "unique_mean": 0.37711060549955167,
+        "broad_mean": 1.0034484917439512
+      },
+      {
+        "source": "Stress",
+        "target": "Anxiety",
+        "class": "SCREENED_BY_PARTNER",
+        "probability": 1.0,
+        "count": 20,
+        "unique_mean": -0.0007085790227974253,
+        "broad_mean": 0.6179771654790143
+      },
+      {
+        "source": "Stress",
+        "target": "Depression",
+        "class": "PROXIMAL_UNIQUE",
+        "probability": 1.0,
+        "count": 20,
+        "unique_mean": 1.0,
+        "broad_mean": 1.0
+      }
+    ],
+    "paths": [
+      {
+        "nodes": [
+          "Stress",
+          "Depression",
+          "Anxiety"
+        ],
+        "count": 20,
+        "denominator": 20,
+        "probability": 1.0
+      }
+    ],
+    "shared_relations": []
+  },
+  {
+    "sample": "chain_missing",
+    "n_rows": 80,
+    "data_seed": 271828,
+    "sample_sha256": "61c0c9891f50c61beb877eb293863141448b04e0f34deb6a22d62fb343f13b19",
+    "code_revision": "8daca3f2cca13a9fed6ea0f1c1d254f3fec30805",
+    "config": {
+      "analysis": {
+        "root": "Anxiety",
+        "random_seed": 27,
+        "max_depth": 3
+      },
+      "outcome": {
+        "type": "continuous",
+        "loss": "mse"
+      },
+      "learner": {
+        "mode": "fixed",
+        "library": [
+          "elastic_net"
+        ],
+        "retune_ablation": false
+      },
+      "preprocessing": {
+        "missing": "median",
+        "standardize_linear": true,
+        "one_hot_categorical": false
+      },
+      "dependence": {
+        "method": "spearman",
+        "absolute": true
+      },
+      "thresholds": {
+        "min_total_gain_relative": 0.02,
+        "broad_relative": 0.05,
+        "unique_relative": 0.15,
+        "group_relative": 0.1,
+        "dependence_pair": 0.7,
+        "stability": 0.7
+      },
+      "performance_cv": {
+        "folds": 2,
+        "repeats": 1,
+        "grouped": false
+      },
+      "tuning_cv": {
+        "folds": 2
+      },
+      "stability": {
+        "method": "subsample",
+        "fraction": 0.8,
+        "n_resamples": 20,
+        "final_resamples": 500
+      },
+      "visualization": {
+        "show_screened": true,
+        "show_unstable": false,
+        "distance_mode": "visual_strength",
+        "edge_width": "unique",
+        "edge_opacity": "stability"
+      }
+    },
+    "completed": 20,
+    "failed": 0,
+    "denominator": 20,
+    "elapsed_seconds": 140.98646820001886,
+    "warnings": {},
+    "single_run": {
+      "depths": {
+        "Anxiety": 0,
+        "Depression": 1,
+        "Stress": 2
+      },
+      "edges": [
+        {
+          "source": "Depression",
+          "target": "Anxiety",
+          "unique_raw": 0.4161269381429794,
+          "unique_normalized": 0.3510007714457518
+        },
+        {
+          "source": "Stress",
+          "target": "Depression",
+          "unique_raw": 0.8796966578498333,
+          "unique_normalized": 1.0
+        }
+      ],
+      "shared_relations": [],
+      "stop_reasons": {
+        "Stress": "NO_UNASSIGNED"
+      },
+      "targets": {
+        "Anxiety": {
+          "baseline_risk": 1.2483043593042726,
+          "full_risk": 0.06276013263782784,
+          "relative_gain": 0.9497236934486023,
+          "observed_target_rows": 80,
+          "missing_target_rows": 0,
+          "candidates": {
+            "Depression": {
+              "class": "PROXIMAL_UNIQUE",
+              "broad": 0.99889633048174,
+              "unique": 0.3510007714457518,
+              "screened_by": []
+            },
+            "Stress": {
+              "class": "SCREENED_BY_PARTNER",
+              "broad": 0.6510285675973929,
+              "unique": 0.0013460223324241055,
+              "screened_by": [
+                "Depression"
+              ]
+            }
+          }
+        },
+        "Depression": {
+          "baseline_risk": 1.2637314527155978,
+          "full_risk": 0.3840347948657645,
+          "relative_gain": 0.6961104402042675,
+          "observed_target_rows": 79,
+          "missing_target_rows": 1,
+          "candidates": {
+            "Stress": {
+              "class": "PROXIMAL_UNIQUE",
+              "broad": 1.0,
+              "unique": 1.0,
+              "screened_by": []
+            }
+          }
+        }
+      }
+    },
+    "nodes": [
+      {
+        "name": "Depression",
+        "depth": 1,
+        "selection_probability": 1.0
+      },
+      {
+        "name": "Stress",
+        "depth": 2,
+        "selection_probability": 1.0
+      }
+    ],
+    "edges": [
+      {
+        "source": "Depression",
+        "target": "Anxiety",
+        "class": "PROXIMAL_UNIQUE",
+        "probability": 1.0,
+        "count": 20,
+        "unique_mean": 0.37618261177534573,
+        "broad_mean": 1.0033618191487388
+      },
+      {
+        "source": "Stress",
+        "target": "Anxiety",
+        "class": "SCREENED_BY_PARTNER",
+        "probability": 1.0,
+        "count": 20,
+        "unique_mean": -0.0006064582132643443,
+        "broad_mean": 0.6189144428251386
+      },
+      {
+        "source": "Stress",
+        "target": "Depression",
+        "class": "PROXIMAL_UNIQUE",
+        "probability": 1.0,
+        "count": 20,
+        "unique_mean": 1.0,
+        "broad_mean": 1.0
+      }
+    ],
+    "paths": [
+      {
+        "nodes": [
+          "Stress",
+          "Depression",
+          "Anxiety"
+        ],
+        "count": 20,
+        "denominator": 20,
+        "probability": 1.0
+      }
+    ],
+    "shared_relations": []
+  },
+  {
+    "sample": "shared_predictors",
+    "n_rows": 80,
+    "data_seed": 120,
+    "sample_sha256": "9217a24b664c7b98efff51cb69f141642e239afafcdb3e99cb9a7400980c8276",
+    "code_revision": "8daca3f2cca13a9fed6ea0f1c1d254f3fec30805",
+    "config": {
+      "analysis": {
+        "root": "Outcome",
+        "random_seed": 27,
+        "max_depth": 3
+      },
+      "outcome": {
+        "type": "continuous",
+        "loss": "mse"
+      },
+      "learner": {
+        "mode": "fixed",
+        "library": [
+          "elastic_net"
+        ],
+        "retune_ablation": false
+      },
+      "preprocessing": {
+        "missing": "median",
+        "standardize_linear": true,
+        "one_hot_categorical": false
+      },
+      "dependence": {
+        "method": "spearman",
+        "absolute": true
+      },
+      "thresholds": {
+        "min_total_gain_relative": 0.02,
+        "broad_relative": 0.05,
+        "unique_relative": 0.15,
+        "group_relative": 0.1,
+        "dependence_pair": 0.7,
+        "stability": 0.7
+      },
+      "performance_cv": {
+        "folds": 2,
+        "repeats": 1,
+        "grouped": false
+      },
+      "tuning_cv": {
+        "folds": 2
+      },
+      "stability": {
+        "method": "subsample",
+        "fraction": 0.8,
+        "n_resamples": 20,
+        "final_resamples": 500
+      },
+      "visualization": {
+        "show_screened": true,
+        "show_unstable": false,
+        "distance_mode": "visual_strength",
+        "edge_width": "unique",
+        "edge_opacity": "stability"
+      }
+    },
+    "completed": 20,
+    "failed": 0,
+    "denominator": 20,
+    "elapsed_seconds": 127.28673310001614,
+    "warnings": {
+      "ConvergenceWarning": 268
+    },
+    "single_run": {
+      "depths": {
+        "Outcome": 0,
+        "Scale_A": 1,
+        "Scale_B": 1
+      },
+      "edges": [],
+      "shared_relations": [
+        {
+          "target": "Outcome",
+          "members": [
+            "Scale_A",
+            "Scale_B"
+          ],
+          "raw": 0.9185219850332664,
+          "normalized": 1.0
+        }
+      ],
+      "stop_reasons": {
+        "Scale_A": "NO_UNASSIGNED",
+        "Scale_B": "NO_UNASSIGNED"
+      },
+      "targets": {
+        "Outcome": {
+          "baseline_risk": 0.9385485844758676,
+          "full_risk": 0.020026599442601267,
+          "relative_gain": 0.9786621600907479,
+          "observed_target_rows": 80,
+          "missing_target_rows": 0,
+          "candidates": {
+            "Scale_A": {
+              "class": "SHARED_GROUP_MEMBER",
+              "broad": 0.9998577060027359,
+              "unique": -7.221328116376852e-05,
+              "screened_by": []
+            },
+            "Scale_B": {
+              "class": "SHARED_GROUP_MEMBER",
+              "broad": 1.0000575177673192,
+              "unique": 0.0001308974947724454,
+              "screened_by": []
+            }
+          }
+        }
+      }
+    },
+    "nodes": [
+      {
+        "name": "Scale_A",
+        "depth": 1,
+        "selection_probability": 1.0
+      },
+      {
+        "name": "Scale_B",
+        "depth": 1,
+        "selection_probability": 1.0
+      }
+    ],
+    "edges": [],
+    "paths": [],
+    "shared_relations": [
+      {
+        "target": "Outcome",
+        "members": [
+          "Scale_A",
+          "Scale_B"
+        ],
+        "count": 20,
+        "probability": 1.0
+      }
+    ]
+  }
+]

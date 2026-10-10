@@ -31,13 +31,14 @@ performance_cv:
 tuning_cv:
   folds: 3
 stability:
+  scope: layer_consensus
   method: subsample
   fraction: 0.80
   n_resamples: 100
   final_resamples: 500
 visualization:
   show_screened: true
-  show_unstable: false
+  show_unstable: true
   distance_mode: visual_strength
   edge_width: unique
   edge_opacity: stability

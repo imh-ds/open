@@ -1,0 +1,111 @@
+[
+  {
+    "method": "layer_consensus",
+    "threshold": 0.7,
+    "status": "COMPLETE",
+    "planned_per_target": 20,
+    "assigned_depth": {
+      "Anxiety": 0,
+      "Depression": 1,
+      "Stress": 2
+    },
+    "parents": {
+      "Depression": [
+        "Anxiety"
+      ],
+      "Stress": [
+        "Depression"
+      ]
+    },
+    "stop_reasons": {
+      "Stress": "NO_UNASSIGNED"
+    },
+    "assessment_count": 40,
+    "completed_count": 40,
+    "failed_count": 0,
+    "infeasible_count": 0,
+    "warning_count": 0,
+    "outer_model_fit_count": 280,
+    "tuning_model_fit_count": 10000,
+    "elapsed_seconds": 242.14370789995883,
+    "peak_traced_memory_bytes": 2045735,
+    "engine_revision": "9ed7aa896a3636d3e03150d37240a24ce54b7e8e",
+    "path_frequency_available": false,
+    "sample_sha256": "97252aea5684a060bf7eb4542b7f4147017ba2d3d560694472eb677ce6b01fef",
+    "data_seed": 271828,
+    "fixture": "chain"
+  },
+  {
+    "method": "layer_consensus",
+    "threshold": 0.7,
+    "status": "COMPLETE",
+    "planned_per_target": 20,
+    "assigned_depth": {
+      "Anxiety": 0,
+      "Depression": 1,
+      "Stress": 2
+    },
+    "parents": {
+      "Depression": [
+        "Anxiety"
+      ],
+      "Stress": [
+        "Depression"
+      ]
+    },
+    "stop_reasons": {
+      "Stress": "NO_UNASSIGNED"
+    },
+    "assessment_count": 40,
+    "completed_count": 40,
+    "failed_count": 0,
+    "infeasible_count": 0,
+    "warning_count": 0,
+    "outer_model_fit_count": 280,
+    "tuning_model_fit_count": 10000,
+    "elapsed_seconds": 242.54237850004574,
+    "peak_traced_memory_bytes": 1596278,
+    "engine_revision": "9ed7aa896a3636d3e03150d37240a24ce54b7e8e",
+    "path_frequency_available": false,
+    "sample_sha256": "61c0c9891f50c61beb877eb293863141448b04e0f34deb6a22d62fb343f13b19",
+    "data_seed": 271828,
+    "fixture": "chain_missing"
+  },
+  {
+    "method": "layer_consensus",
+    "threshold": 0.7,
+    "status": "COMPLETE",
+    "planned_per_target": 20,
+    "assigned_depth": {
+      "Outcome": 0,
+      "Scale_A": 1,
+      "Scale_B": 1
+    },
+    "parents": {
+      "Scale_A": [
+        "Outcome"
+      ],
+      "Scale_B": [
+        "Outcome"
+      ]
+    },
+    "stop_reasons": {
+      "Scale_A": "NO_UNASSIGNED",
+      "Scale_B": "NO_UNASSIGNED"
+    },
+    "assessment_count": 20,
+    "completed_count": 20,
+    "failed_count": 0,
+    "infeasible_count": 0,
+    "warning_count": 0,
+    "outer_model_fit_count": 200,
+    "tuning_model_fit_count": 6000,
+    "elapsed_seconds": 152.1477176999906,
+    "peak_traced_memory_bytes": 1914077,
+    "engine_revision": "9ed7aa896a3636d3e03150d37240a24ce54b7e8e",
+    "path_frequency_available": false,
+    "sample_sha256": "9217a24b664c7b98efff51cb69f141642e239afafcdb3e99cb9a7400980c8276",
+    "data_seed": 120,
+    "fixture": "shared_predictors"
+  }
+]

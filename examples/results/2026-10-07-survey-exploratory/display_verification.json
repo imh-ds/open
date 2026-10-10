@@ -1,0 +1,49 @@
+{
+  "reference": "../2026-10-07-survey-depth5",
+  "sample_bytes_and_hash_match": true,
+  "sampled_positions_and_seeds_match": true,
+  "analysis_config_matches_except_display_default": true,
+  "six_analytical_csv_tables_match": true,
+  "all_unique_edges_consensus_paths_and_risks_match": true,
+  "all_path_counts_independently_recounted_from_whole_networks": true,
+  "local_regressions": 86,
+  "exploratory_relations": 16,
+  "unique_relations": 15,
+  "independently_recounted_selection_eligibility_and_signed_strength": true,
+  "report_links_and_png_headers_valid": true,
+  "original_comparison": {
+    "original_data_seed": 613,
+    "original_rows": 180,
+    "original_max_depth": 2,
+    "rerun_max_depth": 5,
+    "original_first_five_run_seeds": [
+      613,
+      614,
+      615,
+      616,
+      617
+    ],
+    "first_five_consensus_edges": [
+      {
+        "source": "sleep_quality",
+        "target": "wellbeing",
+        "class": "PROXIMAL_UNIQUE",
+        "count": 4,
+        "probability": 0.8
+      },
+      {
+        "source": "social_support",
+        "target": "wellbeing",
+        "class": "PROXIMAL_UNIQUE",
+        "count": 5,
+        "probability": 1.0
+      }
+    ],
+    "reproduced_original_rounded_csv_exactly": true,
+    "original_rounded_csv_sha256": "691706ced8fdb696568ad2a1d1567e3502dadcd773746b1723a75058a8b72cc0",
+    "original_engine_revision": "45652a7975f1e5b80add977d0068793295899291",
+    "first_five_sampled_positions_match_original": true,
+    "matched_original_local_regressions": 19,
+    "max_absolute_local_full_mse_change": 8.326672684688674e-17
+  }
+}

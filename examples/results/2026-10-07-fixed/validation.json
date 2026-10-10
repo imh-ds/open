@@ -1,0 +1,50 @@
+[
+  {
+    "sample": "chain",
+    "checks_passed": [
+      "input_sha256",
+      "identical_before_after_input",
+      "20_complete_run_ledgers",
+      "64_distinct_rows_per_resample",
+      "observed_plus_missing_coverage",
+      "gain_arithmetic",
+      "relative_gain_arithmetic",
+      "structural_frequencies",
+      "six_file_bundle_reload",
+      "png_signature",
+      "zero_captured_warnings"
+    ]
+  },
+  {
+    "sample": "chain_missing",
+    "checks_passed": [
+      "input_sha256",
+      "identical_before_after_input",
+      "20_complete_run_ledgers",
+      "64_distinct_rows_per_resample",
+      "observed_plus_missing_coverage",
+      "gain_arithmetic",
+      "relative_gain_arithmetic",
+      "structural_frequencies",
+      "six_file_bundle_reload",
+      "png_signature",
+      "zero_captured_warnings"
+    ]
+  },
+  {
+    "sample": "shared_predictors",
+    "checks_passed": [
+      "input_sha256",
+      "identical_before_after_input",
+      "20_complete_run_ledgers",
+      "64_distinct_rows_per_resample",
+      "observed_plus_missing_coverage",
+      "gain_arithmetic",
+      "relative_gain_arithmetic",
+      "structural_frequencies",
+      "six_file_bundle_reload",
+      "png_signature",
+      "zero_captured_warnings"
+    ]
+  }
+]

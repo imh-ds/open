@@ -1,0 +1,33 @@
+{
+  "original_data_seed": 613,
+  "original_rows": 180,
+  "original_first_five_run_seeds": [
+    613,
+    614,
+    615,
+    616,
+    617
+  ],
+  "first_five_consensus_edges": [
+    {
+      "source": "sleep_quality",
+      "target": "wellbeing",
+      "class": "PROXIMAL_UNIQUE",
+      "count": 4,
+      "probability": 0.8
+    },
+    {
+      "source": "social_support",
+      "target": "wellbeing",
+      "class": "PROXIMAL_UNIQUE",
+      "count": 5,
+      "probability": 1.0
+    }
+  ],
+  "reproduced_original_rounded_csv_exactly": true,
+  "original_rounded_csv_sha256": "691706ced8fdb696568ad2a1d1567e3502dadcd773746b1723a75058a8b72cc0",
+  "original_engine_revision": "45652a7975f1e5b80add977d0068793295899291",
+  "first_five_sampled_positions_match_original": true,
+  "matched_original_local_regressions": 19,
+  "max_absolute_local_full_mse_change": 8.326672684688674e-17
+}

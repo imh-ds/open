@@ -1,0 +1,581 @@
+{
+  "assessments": [
+    {
+      "candidates": [
+        "a",
+        "b"
+      ],
+      "depth": 0,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "a": -1.6541639414472404,
+          "b": 0.052125101962148965
+        },
+        "classes": {
+          "a": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "b": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          }
+        },
+        "dependence_components": [],
+        "input_candidates": [
+          "a",
+          "b"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 43,
+        "outer_model_fit_count": 10,
+        "pair_ablations": {
+          "fold_scores": [
+            {
+              "fold_index": 0,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "a",
+                  "b": "b",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.5831168831168831
+                }
+              ]
+            },
+            {
+              "fold_index": 1,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "a",
+                  "b": "b",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.3077357425183513
+                }
+              ]
+            }
+          ],
+          "pairs": []
+        },
+        "pair_classes": {
+          "members": {
+            "a": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "b": {
+              "proximal_unique": true,
+              "screened_by": []
+            }
+          },
+          "pairs": []
+        },
+        "promoted": [
+          "a",
+          "b"
+        ],
+        "reason": null,
+        "relevance": {
+          "baseline_risk": 7.073747592833275,
+          "broad": {
+            "a": {
+              "normalized": -1.6541639414472404,
+              "raw": -2.9266092228602396
+            },
+            "b": {
+              "normalized": 0.052125101962148965,
+              "raw": 0.0922216960015998
+            }
+          },
+          "full_risk": 5.304509883359493,
+          "relative_gain": 0.2501132089115358,
+          "stop_reason": null,
+          "total_gain": 1.7692377094737823,
+          "unique": {
+            "a": {
+              "normalized": 1.128995642227559,
+              "raw": 1.9974616640605687
+            },
+            "b": {
+              "normalized": 2.8494122247419016,
+              "raw": 5.041287557848956
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": false,
+        "target": "y",
+        "total_gain": 1.7692377094737823,
+        "total_gain_relative": 0.2501132089115358,
+        "tuning_model_fit_count": 48,
+        "unique": {
+          "a": 1.128995642227559,
+          "b": 2.8494122247419016
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 43,
+      "run_index": 0,
+      "status": "completed",
+      "target": "y",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "a",
+        "b"
+      ],
+      "depth": 0,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "a": -1.2169596186843055,
+          "b": 0.10387060569077125
+        },
+        "classes": {
+          "a": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "b": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          }
+        },
+        "dependence_components": [],
+        "input_candidates": [
+          "a",
+          "b"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 43,
+        "outer_model_fit_count": 10,
+        "pair_ablations": {
+          "fold_scores": [
+            {
+              "fold_index": 0,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "a",
+                  "b": "b",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.37272727272727274
+                }
+              ]
+            },
+            {
+              "fold_index": 1,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "a",
+                  "b": "b",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.1293054771315641
+                }
+              ]
+            }
+          ],
+          "pairs": []
+        },
+        "pair_classes": {
+          "members": {
+            "a": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "b": {
+              "proximal_unique": true,
+              "screened_by": []
+            }
+          },
+          "pairs": []
+        },
+        "promoted": [
+          "a",
+          "b"
+        ],
+        "reason": null,
+        "relevance": {
+          "baseline_risk": 3.2369438468933,
+          "broad": {
+            "a": {
+              "normalized": -1.2169596186843055,
+              "raw": -1.0477948839489524
+            },
+            "b": {
+              "normalized": 0.10387060569077125,
+              "raw": 0.08943196435156509
+            }
+          },
+          "full_risk": 2.375949884676413,
+          "relative_gain": 0.26598977397869833,
+          "stop_reason": null,
+          "total_gain": 0.8609939622168872,
+          "unique": {
+            "a": {
+              "normalized": 1.416932720796849,
+              "raw": 1.2199705174736333
+            },
+            "b": {
+              "normalized": 3.2093322077809634,
+              "raw": 2.763215653647602
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": false,
+        "target": "y",
+        "total_gain": 0.8609939622168872,
+        "total_gain_relative": 0.26598977397869833,
+        "tuning_model_fit_count": 48,
+        "unique": {
+          "a": 1.416932720796849,
+          "b": 3.2093322077809634
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 43,
+      "run_index": 1,
+      "status": "completed",
+      "target": "y",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "a",
+        "b"
+      ],
+      "depth": 0,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "a": -13.727610583126111,
+          "b": 1.6359055854310174
+        },
+        "classes": {
+          "a": {
+            "dependence_components": [],
+            "kind": "NEGLIGIBLE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "b": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          }
+        },
+        "dependence_components": [],
+        "input_candidates": [
+          "a",
+          "b"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 43,
+        "outer_model_fit_count": 10,
+        "pair_ablations": {
+          "fold_scores": [
+            {
+              "fold_index": 0,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "a",
+                  "b": "b",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.06493506493506493
+                }
+              ]
+            },
+            {
+              "fold_index": 1,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "a",
+                  "b": "b",
+                  "candidate": false,
+                  "reason": null,
+                  "score": 0.25352907961603616
+                }
+              ]
+            }
+          ],
+          "pairs": []
+        },
+        "pair_classes": {
+          "members": {
+            "a": {
+              "proximal_unique": false,
+              "screened_by": []
+            },
+            "b": {
+              "proximal_unique": true,
+              "screened_by": []
+            }
+          },
+          "pairs": []
+        },
+        "promoted": [
+          "b"
+        ],
+        "reason": null,
+        "relevance": {
+          "baseline_risk": 4.338223348142493,
+          "broad": {
+            "a": {
+              "normalized": -13.727610583126111,
+              "raw": -4.428708833017436
+            },
+            "b": {
+              "normalized": 1.6359055854310174,
+              "raw": 0.5277647899690825
+            }
+          },
+          "full_risk": 4.015610115038315,
+          "relative_gain": 0.07436528901683022,
+          "stop_reason": null,
+          "total_gain": 0.32261323310417733,
+          "unique": {
+            "a": {
+              "normalized": -0.5510852067930296,
+              "raw": -0.17778738027938346
+            },
+            "b": {
+              "normalized": 15.348514984460206,
+              "raw": 4.951634042484619
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": false,
+        "target": "y",
+        "total_gain": 0.32261323310417733,
+        "total_gain_relative": 0.07436528901683022,
+        "tuning_model_fit_count": 48,
+        "unique": {
+          "a": -0.5510852067930296,
+          "b": 15.348514984460206
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 43,
+      "run_index": 2,
+      "status": "completed",
+      "target": "y",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "a"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "a": null
+        },
+        "classes": {},
+        "dependence_components": [],
+        "input_candidates": [
+          "a"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 43,
+        "outer_model_fit_count": 4,
+        "pair_ablations": null,
+        "pair_classes": null,
+        "promoted": [],
+        "reason": "LOW_TOTAL_GAIN",
+        "relevance": {
+          "baseline_risk": 0.9673505443831549,
+          "broad": {
+            "a": {
+              "normalized": null,
+              "raw": -0.7109577494902217
+            }
+          },
+          "full_risk": 1.6783082938733767,
+          "relative_gain": -0.734953583908483,
+          "stop_reason": "LOW_TOTAL_GAIN",
+          "total_gain": -0.7109577494902217,
+          "unique": {
+            "a": {
+              "normalized": null,
+              "raw": -0.7109577494902217
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": true,
+        "target": "b",
+        "total_gain": -0.7109577494902217,
+        "total_gain_relative": -0.734953583908483,
+        "tuning_model_fit_count": 32,
+        "unique": {
+          "a": null
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 43,
+      "run_index": 0,
+      "status": "completed",
+      "target": "b",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "a"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "a": null
+        },
+        "classes": {},
+        "dependence_components": [],
+        "input_candidates": [
+          "a"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 43,
+        "outer_model_fit_count": 4,
+        "pair_ablations": null,
+        "pair_classes": null,
+        "promoted": [],
+        "reason": "LOW_TOTAL_GAIN",
+        "relevance": {
+          "baseline_risk": 1.032865015323205,
+          "broad": {
+            "a": {
+              "normalized": null,
+              "raw": -0.22813044087674017
+            }
+          },
+          "full_risk": 1.2609954561999452,
+          "relative_gain": -0.2208714957833608,
+          "stop_reason": "LOW_TOTAL_GAIN",
+          "total_gain": -0.22813044087674017,
+          "unique": {
+            "a": {
+              "normalized": null,
+              "raw": -0.22813044087674017
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": true,
+        "target": "b",
+        "total_gain": -0.22813044087674017,
+        "total_gain_relative": -0.2208714957833608,
+        "tuning_model_fit_count": 32,
+        "unique": {
+          "a": null
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 43,
+      "run_index": 1,
+      "status": "completed",
+      "target": "b",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "a"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "a": null
+        },
+        "classes": {},
+        "dependence_components": [],
+        "input_candidates": [
+          "a"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 43,
+        "outer_model_fit_count": 4,
+        "pair_ablations": null,
+        "pair_classes": null,
+        "promoted": [],
+        "reason": "LOW_TOTAL_GAIN",
+        "relevance": {
+          "baseline_risk": 1.1157212731731867,
+          "broad": {
+            "a": {
+              "normalized": null,
+              "raw": -0.669473213357048
+            }
+          },
+          "full_risk": 1.7851944865302347,
+          "relative_gain": -0.6000362540843386,
+          "stop_reason": "LOW_TOTAL_GAIN",
+          "total_gain": -0.669473213357048,
+          "unique": {
+            "a": {
+              "normalized": null,
+              "raw": -0.669473213357048
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": true,
+        "target": "b",
+        "total_gain": -0.669473213357048,
+        "total_gain_relative": -0.6000362540843386,
+        "tuning_model_fit_count": 32,
+        "unique": {
+          "a": null
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 43,
+      "run_index": 2,
+      "status": "completed",
+      "target": "b",
+      "warnings": []
+    }
+  ],
+  "schema": "open.layer_assessments",
+  "schema_version": 1
+}

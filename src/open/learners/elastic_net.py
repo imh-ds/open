@@ -18,7 +18,9 @@ from open.preprocessing import make_preprocessor
 
 ALPHA_GRID = (0.0001, 0.001, 0.01, 0.1, 1.0)
 L1_RATIO_GRID = (0.1, 0.5, 0.9, 0.95, 1.0)
-MAX_ITER = 10000
+# Near-copy predictors can need more than 40,000 coordinate-descent steps.
+# Keep the solver tolerance unchanged; allow both tuning and outer fits to finish.
+MAX_ITER = 100000
 _DEFAULT_PARAMS = {"alpha": 1.0, "l1_ratio": 0.5}
 
 
@@ -29,6 +31,9 @@ class ElasticNetPredictor(Predictor):
     GridSearchCV fits fresh preprocessing state on each inner training fold.
     ``cv`` must be built from the outer-training rows passed as ``X`` and ``y``.
     """
+
+    engine_name = "elastic_net"
+    tuning_grid_size = len(ALPHA_GRID) * len(L1_RATIO_GRID)
 
     def __init__(self, preprocessing: PreprocessingConfig | OpenConfig | None = None):
         if isinstance(preprocessing, OpenConfig):

@@ -1,0 +1,251 @@
+{
+  "layers": [
+    {
+      "candidates": [
+        "Scale_A",
+        "Scale_B"
+      ],
+      "depth": 0,
+      "evidence": [
+        {
+          "assessments": [
+            [
+              0,
+              "Outcome",
+              0
+            ],
+            [
+              0,
+              "Outcome",
+              1
+            ],
+            [
+              0,
+              "Outcome",
+              2
+            ],
+            [
+              0,
+              "Outcome",
+              3
+            ],
+            [
+              0,
+              "Outcome",
+              4
+            ],
+            [
+              0,
+              "Outcome",
+              5
+            ],
+            [
+              0,
+              "Outcome",
+              6
+            ],
+            [
+              0,
+              "Outcome",
+              7
+            ],
+            [
+              0,
+              "Outcome",
+              8
+            ],
+            [
+              0,
+              "Outcome",
+              9
+            ],
+            [
+              0,
+              "Outcome",
+              10
+            ],
+            [
+              0,
+              "Outcome",
+              11
+            ],
+            [
+              0,
+              "Outcome",
+              12
+            ],
+            [
+              0,
+              "Outcome",
+              13
+            ],
+            [
+              0,
+              "Outcome",
+              14
+            ],
+            [
+              0,
+              "Outcome",
+              15
+            ],
+            [
+              0,
+              "Outcome",
+              16
+            ],
+            [
+              0,
+              "Outcome",
+              17
+            ],
+            [
+              0,
+              "Outcome",
+              18
+            ],
+            [
+              0,
+              "Outcome",
+              19
+            ]
+          ],
+          "candidates": [
+            "Scale_A",
+            "Scale_B"
+          ],
+          "candidates_evidence": [
+            {
+              "broad": {
+                "baseline_relative_count": 20,
+                "baseline_relative_median": 0.9779843657360082,
+                "gain_relative_count": 20,
+                "gain_relative_median": 0.9998023045905178,
+                "raw_count": 20,
+                "raw_median": 0.9167050802275221,
+                "scope": "all scored completed local fits"
+              },
+              "classes": {
+                "SHARED_GROUP_MEMBER": {
+                  "completed": 20,
+                  "planned": 20,
+                  "selected": 20
+                }
+              },
+              "promotion": {
+                "completed": 20,
+                "planned": 20,
+                "selected": 20
+              },
+              "source": "Scale_A",
+              "target": "Outcome",
+              "unique": {
+                "baseline_relative_count": 20,
+                "baseline_relative_median": -0.0001288154392817106,
+                "gain_relative_count": 20,
+                "gain_relative_median": -0.00013158660500314757,
+                "raw_count": 20,
+                "raw_median": -0.00012411122591289396,
+                "scope": "all scored completed local fits"
+              }
+            },
+            {
+              "broad": {
+                "baseline_relative_count": 20,
+                "baseline_relative_median": 0.9786446150283789,
+                "gain_relative_count": 20,
+                "gain_relative_median": 1.0001652351006254,
+                "raw_count": 20,
+                "raw_median": 0.9170485890295763,
+                "scope": "all scored completed local fits"
+              },
+              "classes": {
+                "SHARED_GROUP_MEMBER": {
+                  "completed": 20,
+                  "planned": 20,
+                  "selected": 20
+                }
+              },
+              "promotion": {
+                "completed": 20,
+                "planned": 20,
+                "selected": 20
+              },
+              "source": "Scale_B",
+              "target": "Outcome",
+              "unique": {
+                "baseline_relative_count": 20,
+                "baseline_relative_median": 0.000268197959227193,
+                "gain_relative_count": 20,
+                "gain_relative_median": 0.00027366929434029,
+                "raw_count": 20,
+                "raw_median": 0.0002896492856280051,
+                "scope": "all scored completed local fits"
+              }
+            }
+          ],
+          "depth": 0,
+          "relations": [
+            {
+              "frequency": {
+                "completed": 20,
+                "planned": 20,
+                "selected": 20
+              },
+              "members": [
+                "Scale_A",
+                "Scale_B"
+              ],
+              "qualifies": true,
+              "relation": "SHARED_GROUP",
+              "screened_by": [],
+              "source": null,
+              "strength": {
+                "baseline_relative_count": 20,
+                "baseline_relative_median": 0.9782034960713761,
+                "gain_relative_count": 20,
+                "gain_relative_median": 1.0,
+                "raw_count": 20,
+                "raw_median": 0.9169426889656477,
+                "scope": "selected joint ablations"
+              },
+              "target": "Outcome"
+            }
+          ],
+          "shared_comembership": [
+            {
+              "frequency": {
+                "completed": 20,
+                "planned": 20,
+                "selected": 20
+              },
+              "members": [
+                "Scale_A",
+                "Scale_B"
+              ]
+            }
+          ],
+          "target": "Outcome"
+        }
+      ],
+      "finalized": true,
+      "new_nodes": [
+        "Scale_A",
+        "Scale_B"
+      ],
+      "promoted_parents": {
+        "Scale_A": [
+          "Outcome"
+        ],
+        "Scale_B": [
+          "Outcome"
+        ]
+      },
+      "targets": [
+        "Outcome"
+      ]
+    }
+  ],
+  "schema": "open.layer_evidence",
+  "schema_version": 1
+}

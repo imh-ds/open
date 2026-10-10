@@ -1,0 +1,65 @@
+{
+  "depths": {
+    "Anxiety": 0,
+    "Depression": 1,
+    "Stress": 2
+  },
+  "edges": [
+    {
+      "source": "Depression",
+      "target": "Anxiety",
+      "unique_raw": 0.4161269381429794,
+      "unique_normalized": 0.3510007714457518
+    },
+    {
+      "source": "Stress",
+      "target": "Depression",
+      "unique_raw": 0.8796966578498333,
+      "unique_normalized": 1.0
+    }
+  ],
+  "shared_relations": [],
+  "stop_reasons": {
+    "Stress": "NO_UNASSIGNED"
+  },
+  "targets": {
+    "Anxiety": {
+      "baseline_risk": 1.2483043593042726,
+      "full_risk": 0.06276013263782784,
+      "relative_gain": 0.9497236934486023,
+      "observed_target_rows": 80,
+      "missing_target_rows": 0,
+      "candidates": {
+        "Depression": {
+          "class": "PROXIMAL_UNIQUE",
+          "broad": 0.99889633048174,
+          "unique": 0.3510007714457518,
+          "screened_by": []
+        },
+        "Stress": {
+          "class": "SCREENED_BY_PARTNER",
+          "broad": 0.6510285675973929,
+          "unique": 0.0013460223324241055,
+          "screened_by": [
+            "Depression"
+          ]
+        }
+      }
+    },
+    "Depression": {
+      "baseline_risk": 1.2637314527155978,
+      "full_risk": 0.3840347948657645,
+      "relative_gain": 0.6961104402042675,
+      "observed_target_rows": 79,
+      "missing_target_rows": 1,
+      "candidates": {
+        "Stress": {
+          "class": "PROXIMAL_UNIQUE",
+          "broad": 1.0,
+          "unique": 1.0,
+          "screened_by": []
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "layers": [
+    {
+      "candidates": [
+        "a",
+        "b"
+      ],
+      "depth": 0,
+      "evidence": [
+        {
+          "assessments": [
+            [
+              0,
+              "y",
+              0
+            ],
+            [
+              0,
+              "y",
+              1
+            ],
+            [
+              0,
+              "y",
+              2
+            ]
+          ],
+          "candidates": [
+            "a",
+            "b"
+          ],
+          "candidates_evidence": [
+            {
+              "broad": {
+                "baseline_relative_count": 3,
+                "baseline_relative_median": -0.6622870536993648,
+                "gain_relative_count": 2,
+                "gain_relative_median": -1.8348146728565262,
+                "raw_count": 3,
+                "raw_median": -2.7888836710300153,
+                "scope": "all scored completed local fits"
+              },
+              "classes": {
+                "LOW_TOTAL_GAIN": {
+                  "completed": 3,
+                  "planned": 3,
+                  "selected": 1
+                },
+                "PROXIMAL_UNIQUE": {
+                  "completed": 3,
+                  "planned": 3,
+                  "selected": 2
+                }
+              },
+              "promotion": {
+                "completed": 3,
+                "planned": 3,
+                "selected": 2
+              },
+              "source": "a",
+              "target": "y",
+              "unique": {
+                "baseline_relative_count": 3,
+                "baseline_relative_median": 0.4660791189842467,
+                "gain_relative_count": 2,
+                "gain_relative_median": 1.667795130324787,
+                "raw_count": 3,
+                "raw_median": 2.5746540445539114,
+                "scope": "all scored completed local fits"
+              }
+            },
+            {
+              "broad": {
+                "baseline_relative_count": 3,
+                "baseline_relative_median": -0.20164899803637637,
+                "gain_relative_count": 2,
+                "gain_relative_median": -0.40116770402554813,
+                "raw_count": 3,
+                "raw_median": -1.1139233388229695,
+                "scope": "all scored completed local fits"
+              },
+              "classes": {
+                "LOW_TOTAL_GAIN": {
+                  "completed": 3,
+                  "planned": 3,
+                  "selected": 1
+                },
+                "PROXIMAL_UNIQUE": {
+                  "completed": 3,
+                  "planned": 3,
+                  "selected": 2
+                }
+              },
+              "promotion": {
+                "completed": 3,
+                "planned": 3,
+                "selected": 2
+              },
+              "source": "b",
+              "target": "y",
+              "unique": {
+                "baseline_relative_count": 3,
+                "baseline_relative_median": 0.6358026555186774,
+                "gain_relative_count": 2,
+                "gain_relative_median": 3.4850651978027103,
+                "raw_count": 3,
+                "raw_median": 3.0321329951021685,
+                "scope": "all scored completed local fits"
+              }
+            }
+          ],
+          "depth": 0,
+          "relations": [
+            {
+              "frequency": {
+                "completed": 3,
+                "planned": 3,
+                "selected": 2
+              },
+              "members": [],
+              "qualifies": false,
+              "relation": "PROXIMAL_UNIQUE",
+              "screened_by": [],
+              "source": "a",
+              "strength": {
+                "baseline_relative_count": 3,
+                "baseline_relative_median": 0.4660791189842467,
+                "gain_relative_count": 2,
+                "gain_relative_median": 1.667795130324787,
+                "raw_count": 3,
+                "raw_median": 2.5746540445539114,
+                "scope": "all scored completed local fits"
+              },
+              "target": "y"
+            },
+            {
+              "frequency": {
+                "completed": 3,
+                "planned": 3,
+                "selected": 2
+              },
+              "members": [],
+              "qualifies": false,
+              "relation": "PROXIMAL_UNIQUE",
+              "screened_by": [],
+              "source": "b",
+              "strength": {
+                "baseline_relative_count": 3,
+                "baseline_relative_median": 0.6358026555186774,
+                "gain_relative_count": 2,
+                "gain_relative_median": 3.4850651978027103,
+                "raw_count": 3,
+                "raw_median": 3.0321329951021685,
+                "scope": "all scored completed local fits"
+              },
+              "target": "y"
+            }
+          ],
+          "shared_comembership": [],
+          "target": "y"
+        }
+      ],
+      "finalized": true,
+      "new_nodes": [],
+      "promoted_parents": {},
+      "targets": [
+        "y"
+      ]
+    }
+  ],
+  "schema": "open.layer_evidence",
+  "schema_version": 1
+}

@@ -1,0 +1,87 @@
+run_index,seed,target,depth,input_candidates,promoted,baseline_mse,full_mse,relative_gain,stop_reason
+0,613,sleep_quality,1,perceived_stress | physical_activity | work_demands,perceived_stress,0.32179747105950374,0.25225468482119584,0.2161073112518299,
+0,613,social_support,1,perceived_stress | physical_activity | work_demands,perceived_stress | physical_activity | work_demands,0.3562341172896162,0.26714131235728683,0.2500962165280128,
+0,613,wellbeing,0,sleep_quality | perceived_stress | social_support | physical_activity | work_demands,sleep_quality | social_support,0.4518558383290406,0.20641765450062824,0.5431780736441093,
+1,614,perceived_stress,1,physical_activity | work_demands,work_demands,0.29604080712398945,0.18126110854176736,0.3877158007279362,
+1,614,sleep_quality,1,physical_activity | work_demands,work_demands,0.3174259447785835,0.2804926934548851,0.11635233959675455,
+1,614,social_support,1,physical_activity | work_demands,,0.31864575593401934,0.31864575593401934,0.0,LOW_TOTAL_GAIN
+1,614,wellbeing,0,sleep_quality | perceived_stress | social_support | physical_activity | work_demands,perceived_stress | sleep_quality | social_support,0.45305264918599053,0.24392461847730415,0.4615976334857135,
+1,614,work_demands,2,physical_activity,,0.3928217957678693,0.3925006047618907,0.0008176506737635474,LOW_TOTAL_GAIN
+2,615,perceived_stress,2,work_demands,work_demands,0.30513598551446247,0.19038372326017022,0.37606925338818603,
+2,615,physical_activity,1,perceived_stress | work_demands,,0.34946541683877347,0.3492904053878454,0.0005007976254452017,LOW_TOTAL_GAIN
+2,615,sleep_quality,1,perceived_stress | work_demands,perceived_stress,0.32798606883663894,0.2409195173437146,0.2654580781487089,
+2,615,social_support,1,perceived_stress | work_demands,perceived_stress,0.3468563114837221,0.2763453478106796,0.20328580261787038,
+2,615,wellbeing,0,sleep_quality | perceived_stress | social_support | physical_activity | work_demands,physical_activity | sleep_quality | social_support,0.4550434307201543,0.22475885680474483,0.5060716370544232,
+3,616,physical_activity,1,perceived_stress | work_demands,,0.40153314913519433,0.4005893637927235,0.002350454363490402,LOW_TOTAL_GAIN
+3,616,sleep_quality,1,perceived_stress | work_demands,perceived_stress | work_demands,0.3345765031349402,0.2427863469881929,0.27434728765076133,
+3,616,social_support,1,perceived_stress | work_demands,perceived_stress | work_demands,0.3708729597729961,0.2420372685602813,0.34738496786493295,
+3,616,wellbeing,0,sleep_quality | perceived_stress | social_support | physical_activity | work_demands,physical_activity | sleep_quality | social_support,0.4738536836795349,0.21269754690347428,0.5511324397610452,
+4,617,perceived_stress,1,sleep_quality | work_demands,sleep_quality | work_demands,0.2848510122652744,0.15364164510576747,0.4606245423390492,
+4,617,physical_activity,1,sleep_quality | work_demands,,0.3735937198842519,0.3698538119366119,0.010010628521268291,LOW_TOTAL_GAIN
+4,617,social_support,1,sleep_quality | work_demands,,0.29611794880032616,0.31591064434900423,-0.06684058034599041,LOW_TOTAL_GAIN
+4,617,wellbeing,0,sleep_quality | perceived_stress | social_support | physical_activity | work_demands,perceived_stress | physical_activity | social_support,0.4682713336597545,0.23213014555812167,0.5042828188009749,
+5,618,perceived_stress,1,physical_activity | work_demands,work_demands,0.3052230363330566,0.19286474985666477,0.3681186316284053,
+5,618,sleep_quality,1,physical_activity | work_demands,physical_activity | work_demands,0.3585137659509069,0.29406510483459875,0.17976621049785138,
+5,618,social_support,1,physical_activity | work_demands,,0.3660410082983853,0.3660410082983853,0.0,LOW_TOTAL_GAIN
+5,618,wellbeing,0,sleep_quality | perceived_stress | social_support | physical_activity | work_demands,perceived_stress | sleep_quality | social_support,0.5149906408903571,0.2754798363919883,0.46507797517306976,
+6,619,physical_activity,1,perceived_stress | work_demands,,0.38233611468362944,0.3810500448392287,0.0033637153149000776,LOW_TOTAL_GAIN
+6,619,sleep_quality,1,perceived_stress | work_demands,perceived_stress,0.38828353551427336,0.2923242580204731,0.24713712716843425,
+6,619,social_support,1,perceived_stress | work_demands,perceived_stress | work_demands,0.3011444322479649,0.22138014683141066,0.2648705301344427,
+6,619,wellbeing,0,sleep_quality | perceived_stress | social_support | physical_activity | work_demands,physical_activity | sleep_quality | social_support,0.4696542579068212,0.26781817249736894,0.429754616319259,
+7,620,physical_activity,1,perceived_stress | work_demands,,0.383476638587699,0.3812723623939536,0.005748136840521649,LOW_TOTAL_GAIN
+7,620,sleep_quality,1,perceived_stress | work_demands,perceived_stress | work_demands,0.36466884504859615,0.2546798000203657,0.3016134954264414,
+7,620,social_support,1,perceived_stress | work_demands,perceived_stress | work_demands,0.35023487106182405,0.27740472456717025,0.2079465881676805,
+7,620,wellbeing,0,sleep_quality | perceived_stress | social_support | physical_activity | work_demands,physical_activity | sleep_quality | social_support,0.47743084202754954,0.20538677528948063,0.5698083215209858,
+8,621,perceived_stress,1,work_demands,work_demands,0.31738407119437323,0.1725748910519268,0.45625849967045756,
+8,621,physical_activity,1,work_demands,,0.3949834802845872,0.39386625242634554,0.002828543253091688,LOW_TOTAL_GAIN
+8,621,sleep_quality,1,work_demands,work_demands,0.33668740828931326,0.2785157077197764,0.1727765848598362,
+8,621,social_support,1,work_demands,,0.35666678944119506,0.35666678944119506,0.0,LOW_TOTAL_GAIN
+8,621,wellbeing,0,sleep_quality | perceived_stress | social_support | physical_activity | work_demands,perceived_stress | physical_activity | sleep_quality | social_support,0.4997769472052273,0.2380419562429315,0.5237036090318458,
+9,622,perceived_stress,1,sleep_quality | work_demands,sleep_quality | work_demands,0.30726550206462544,0.15758217332842994,0.48714654827964854,
+9,622,physical_activity,1,sleep_quality | work_demands,,0.3902761690613615,0.390837399430762,-0.0014380339203142428,LOW_TOTAL_GAIN
+9,622,social_support,1,sleep_quality | work_demands,,0.34190614649706774,0.34165662243190464,0.0007298028061780927,LOW_TOTAL_GAIN
+9,622,wellbeing,0,sleep_quality | perceived_stress | social_support | physical_activity | work_demands,perceived_stress | physical_activity | social_support,0.47394628693231056,0.23659358392179264,0.5008008492836169,
+10,623,perceived_stress,2,physical_activity,,0.3041753851943921,0.3020418529230008,0.007014151621860514,LOW_TOTAL_GAIN
+10,623,sleep_quality,1,perceived_stress | physical_activity | work_demands,perceived_stress,0.337064167680003,0.2694668349081015,0.20054737125328626,
+10,623,social_support,1,perceived_stress | physical_activity | work_demands,perceived_stress | work_demands,0.34958706512626797,0.2611131514820216,0.25308119913501476,
+10,623,wellbeing,0,sleep_quality | perceived_stress | social_support | physical_activity | work_demands,sleep_quality | social_support,0.44031931417812964,0.23053570126315048,0.47643518274129565,
+10,623,work_demands,2,physical_activity,,0.385952319247401,0.39707858850693206,-0.028828092758263715,LOW_TOTAL_GAIN
+11,624,perceived_stress,1,sleep_quality | work_demands,sleep_quality | work_demands,0.31233346347386454,0.16794131818710195,0.4623012330500572,
+11,624,physical_activity,1,sleep_quality | work_demands,,0.44435822974457495,0.4475007009461345,-0.0070719320386299035,LOW_TOTAL_GAIN
+11,624,social_support,1,sleep_quality | work_demands,,0.3637316336207419,0.36129404783784375,0.006701605132975025,LOW_TOTAL_GAIN
+11,624,wellbeing,0,sleep_quality | perceived_stress | social_support | physical_activity | work_demands,perceived_stress | physical_activity | social_support,0.4664940779334948,0.2295810271652478,0.5078586459612511,
+12,625,physical_activity,1,perceived_stress | work_demands,,0.38756576838187384,0.3964986139707674,-0.02304859282642298,LOW_TOTAL_GAIN
+12,625,sleep_quality,1,perceived_stress | work_demands,perceived_stress,0.3675329746442702,0.25454719898278316,0.30741670395926873,
+12,625,social_support,1,perceived_stress | work_demands,perceived_stress | work_demands,0.35278794829131294,0.27312259907385034,0.2258165269060703,
+12,625,wellbeing,0,sleep_quality | perceived_stress | social_support | physical_activity | work_demands,physical_activity | sleep_quality | social_support,0.5085209924448596,0.2256513064353912,0.5562596042485715,
+13,626,perceived_stress,2,work_demands,work_demands,0.3206446424775808,0.18333936825980196,0.4282163368046266,
+13,626,physical_activity,1,sleep_quality | perceived_stress | work_demands,perceived_stress | sleep_quality,0.3968154778603906,0.37863645598253615,0.045812280246412915,
+13,626,sleep_quality,2,work_demands,work_demands,0.34924310099422073,0.2811741053798022,0.19490433861296216,
+13,626,social_support,1,sleep_quality | perceived_stress | work_demands,perceived_stress | sleep_quality,0.3139984322306231,0.2599087514396375,0.17226098998882347,
+13,626,wellbeing,0,sleep_quality | perceived_stress | social_support | physical_activity | work_demands,physical_activity | social_support,0.4599024157197079,0.22438735505479526,0.5120978986299772,
+14,627,perceived_stress,1,physical_activity | work_demands,work_demands,0.29318229996357975,0.18521477204560366,0.36826073037624796,
+14,627,sleep_quality,1,physical_activity | work_demands,work_demands,0.29601503025914955,0.2629705042356396,0.11163124384116829,
+14,627,social_support,1,physical_activity | work_demands,,0.3293137290059577,0.3327147530110143,-0.01032761074165562,LOW_TOTAL_GAIN
+14,627,wellbeing,0,sleep_quality | perceived_stress | social_support | physical_activity | work_demands,perceived_stress | sleep_quality | social_support,0.43890419934815245,0.2582802577762985,0.4115338651125036,
+14,627,work_demands,2,physical_activity,,0.39329015419773866,0.4048873857416495,-0.029487724063592968,LOW_TOTAL_GAIN
+15,628,perceived_stress,1,physical_activity | work_demands,work_demands,0.29980803758616736,0.18975240947751462,0.3670869833735589,
+15,628,sleep_quality,1,physical_activity | work_demands,physical_activity | work_demands,0.34969082809151797,0.2912004593708656,0.1672630907704128,
+15,628,social_support,1,physical_activity | work_demands,,0.33583965009254985,0.33583965009254985,0.0,LOW_TOTAL_GAIN
+15,628,wellbeing,0,sleep_quality | perceived_stress | social_support | physical_activity | work_demands,perceived_stress | sleep_quality | social_support,0.45496701546399554,0.2111649898457378,0.5358674746335569,
+16,629,physical_activity,1,perceived_stress | work_demands,,0.3821018925174689,0.3768370688170509,0.013778585773890871,LOW_TOTAL_GAIN
+16,629,sleep_quality,1,perceived_stress | work_demands,perceived_stress,0.3365666776051648,0.23589258561743837,0.2991207944413019,
+16,629,social_support,1,perceived_stress | work_demands,perceived_stress | work_demands,0.3927135470301564,0.2910138682590662,0.25896656619100705,
+16,629,wellbeing,0,sleep_quality | perceived_stress | social_support | physical_activity | work_demands,physical_activity | sleep_quality | social_support,0.4480202925602465,0.19698299613128067,0.5603257276459372,
+17,630,perceived_stress,1,work_demands,work_demands,0.2489946824718661,0.2040971898518184,0.18031506606620268,
+17,630,physical_activity,1,work_demands,,0.37597263067366354,0.37597263067366354,0.0,LOW_TOTAL_GAIN
+17,630,sleep_quality,1,work_demands,work_demands,0.3251579051229016,0.29822269956823494,0.08283730805955902,
+17,630,social_support,1,work_demands,,0.35083414199460883,0.35165208105452717,-0.002331412374143754,LOW_TOTAL_GAIN
+17,630,wellbeing,0,sleep_quality | perceived_stress | social_support | physical_activity | work_demands,perceived_stress | physical_activity | sleep_quality | social_support,0.4223239573943318,0.22987446985430823,0.4556916181772039,
+18,631,perceived_stress,1,sleep_quality | work_demands,sleep_quality | work_demands,0.32277624383538733,0.1654542354589796,0.4874026864772625,
+18,631,physical_activity,1,sleep_quality | work_demands,,0.40108872371652265,0.3981190022185162,0.00740415105787257,LOW_TOTAL_GAIN
+18,631,social_support,1,sleep_quality | work_demands,,0.3728393883207183,0.3788659168583205,-0.01616387304127365,LOW_TOTAL_GAIN
+18,631,wellbeing,0,sleep_quality | perceived_stress | social_support | physical_activity | work_demands,perceived_stress | physical_activity | social_support,0.4944378532756133,0.23350053355640427,0.5277454345182495,
+19,632,physical_activity,1,perceived_stress | work_demands,,0.41990954110384116,0.41990954110384116,0.0,LOW_TOTAL_GAIN
+19,632,sleep_quality,1,perceived_stress | work_demands,perceived_stress,0.32234141540713734,0.24047393919346394,0.2539775291061177,
+19,632,social_support,1,perceived_stress | work_demands,perceived_stress | work_demands,0.3274908591742046,0.2751958248686434,0.1596839509885176,
+19,632,wellbeing,0,sleep_quality | perceived_stress | social_support | physical_activity | work_demands,physical_activity | sleep_quality | social_support,0.4657900856067349,0.2329664472087835,0.4998467026078431,

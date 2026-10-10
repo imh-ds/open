@@ -1,0 +1,40 @@
+[
+  {
+    "sample": "chain",
+    "input_identical": true,
+    "configuration_identical": true,
+    "resample_seeds_and_rows_identical": true,
+    "before_revision": "8daca3f2cca13a9fed6ea0f1c1d254f3fec30805",
+    "after_revision": "2e96b418ed17677b646d26e621d91851e2fdc115",
+    "before_warnings": {},
+    "after_warnings": {},
+    "before_root_full_mse": 0.05942416165452289,
+    "after_root_full_mse": 0.05942416165452289
+  },
+  {
+    "sample": "chain_missing",
+    "input_identical": true,
+    "configuration_identical": true,
+    "resample_seeds_and_rows_identical": true,
+    "before_revision": "8daca3f2cca13a9fed6ea0f1c1d254f3fec30805",
+    "after_revision": "2e96b418ed17677b646d26e621d91851e2fdc115",
+    "before_warnings": {},
+    "after_warnings": {},
+    "before_root_full_mse": 0.06276013263782784,
+    "after_root_full_mse": 0.06276013263782784
+  },
+  {
+    "sample": "shared_predictors",
+    "input_identical": true,
+    "configuration_identical": true,
+    "resample_seeds_and_rows_identical": true,
+    "before_revision": "8daca3f2cca13a9fed6ea0f1c1d254f3fec30805",
+    "after_revision": "2e96b418ed17677b646d26e621d91851e2fdc115",
+    "before_warnings": {
+      "ConvergenceWarning": 268
+    },
+    "after_warnings": {},
+    "before_root_full_mse": 0.020026599442601267,
+    "after_root_full_mse": 0.020026599442601267
+  }
+]

@@ -1,0 +1,67 @@
+{
+  "full_suite": {
+    "command": "python -m pytest -q --basetemp=.superpowers/pytest-procedure-final-full",
+    "passed": 493,
+    "warnings": 29,
+    "elapsed_seconds": 527.03
+  },
+  "focused": {
+    "passed": 19,
+    "elapsed_seconds": 82.41
+  },
+  "initial_full_attempt": {
+    "passed": 487,
+    "failed": 1,
+    "warnings": 29,
+    "elapsed_seconds": 642.73,
+    "failure": "tests/test_report_template.py::test_report_template_covers_spec_50_and_predictive_language",
+    "cause": "new guide link was mistaken for an artifact placeholder",
+    "correction_commit": "7cf2764"
+  },
+  "independent_review": {
+    "agent": "review_procedure_evaluation",
+    "actionable_findings": 0,
+    "coverage_recommendations": "mixed failures, actual joint-only aggregation, independent params, malformed prediction and staging cleanup; added and passing"
+  },
+  "python": "3.11.9",
+  "dependencies": {
+    "numpy": "1.26.4",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.3.0",
+    "matplotlib": "3.9.2"
+  },
+  "code_revision": "7cf2764",
+  "source_fingerprints": "source_fingerprints.json",
+  "provenance_note": "Evaluation began with core commit248ba86 and then-uncommitted reporting/runner. Their functional source content is identical to commits58089e7/ff29444 and recorded fingerprints. Commits advanced while computing; individual network bundles retain actual observed HEAD.",
+  "scientific_claim": "software and predefined development integration only; P6 calibration not accepted",
+  "initial_demonstration_launch": {
+    "status": "failed_before_any_analysis",
+    "error": "ModuleNotFoundError: open",
+    "correction": "Added repository src import path, matching existing example runners; reran unchanged protocol."
+  },
+  "artifact_audit": {
+    "evaluations": 11,
+    "folds": 33,
+    "failed_folds": 0,
+    "predictions": 980,
+    "verified_networks": 34,
+    "recomputed_scores": 132,
+    "warnings": 0,
+    "input_datasets_verified": 11,
+    "training_baselines_verified": 33
+  },
+  "figures_inspected": [
+    "survey/prediction.png",
+    "survey/reference_network.png",
+    "survey/root_curves.png",
+    "pilot_prediction.png"
+  ],
+  "auditor_note": "Post-fit audit additionally verifies source-data fingerprints, observed outcomes and training-only baseline means. Its final source fingerprint is recorded.",
+  "elapsed_demonstration_seconds": 2896.2581979000242,
+  "discovery_accounting": {
+    "recorded_local_assessments": 290,
+    "outer_fits": 3181,
+    "tuning_fits": 81132,
+    "scope": "excludes final prediction refits and root effects"
+  }
+}

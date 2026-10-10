@@ -1,0 +1,109 @@
+{
+  "same_run_ids_rerun_for_diagnostics": 20,
+  "completed": 20,
+  "outer_model_fit_count": 200,
+  "outer_fit_warnings": [
+    {
+      "category": "ConvergenceWarning",
+      "message": "Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 1.489e-01, tolerance: 3.113e-03",
+      "params": {
+        "alpha": 0.0001,
+        "l1_ratio": 0.1
+      }
+    },
+    {
+      "category": "ConvergenceWarning",
+      "message": "Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 1.069e-01, tolerance: 2.102e-03",
+      "params": {
+        "alpha": 0.0001,
+        "l1_ratio": 0.1
+      }
+    },
+    {
+      "category": "ConvergenceWarning",
+      "message": "Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 6.525e-02, tolerance: 2.339e-03",
+      "params": {
+        "alpha": 0.0001,
+        "l1_ratio": 1.0
+      }
+    },
+    {
+      "category": "ConvergenceWarning",
+      "message": "Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 1.572e-01, tolerance: 3.818e-03",
+      "params": {
+        "alpha": 0.0001,
+        "l1_ratio": 0.1
+      }
+    },
+    {
+      "category": "ConvergenceWarning",
+      "message": "Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 1.133e-01, tolerance: 2.279e-03",
+      "params": {
+        "alpha": 0.0001,
+        "l1_ratio": 0.1
+      }
+    },
+    {
+      "category": "ConvergenceWarning",
+      "message": "Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 1.281e-01, tolerance: 2.128e-03",
+      "params": {
+        "alpha": 0.0001,
+        "l1_ratio": 0.1
+      }
+    },
+    {
+      "category": "ConvergenceWarning",
+      "message": "Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 2.360e-01, tolerance: 2.460e-03",
+      "params": {
+        "alpha": 0.0001,
+        "l1_ratio": 0.1
+      }
+    },
+    {
+      "category": "ConvergenceWarning",
+      "message": "Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 3.704e-02, tolerance: 3.400e-03",
+      "params": {
+        "alpha": 0.0001,
+        "l1_ratio": 1.0
+      }
+    },
+    {
+      "category": "ConvergenceWarning",
+      "message": "Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 2.410e-01, tolerance: 2.395e-03",
+      "params": {
+        "alpha": 0.0001,
+        "l1_ratio": 0.1
+      }
+    },
+    {
+      "category": "ConvergenceWarning",
+      "message": "Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 3.195e-03, tolerance: 2.647e-03",
+      "params": {
+        "alpha": 0.0001,
+        "l1_ratio": 0.1
+      }
+    },
+    {
+      "category": "ConvergenceWarning",
+      "message": "Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 8.255e-02, tolerance: 2.969e-03",
+      "params": {
+        "alpha": 0.0001,
+        "l1_ratio": 0.5
+      }
+    },
+    {
+      "category": "ConvergenceWarning",
+      "message": "Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 1.175e-01, tolerance: 2.612e-03",
+      "params": {
+        "alpha": 0.0001,
+        "l1_ratio": 0.1
+      }
+    }
+  ],
+  "outer_convergence_warning_count": 12,
+  "tuning_convergence_warning_count": 249,
+  "maximum_selected_outer_iterations": 10000,
+  "maximum_iterations": 10000,
+  "shared_group_count_matches_original": true,
+  "note": "Diagnostic rerun of the same 20 planned seeds, not additional independent stability evidence."
+}

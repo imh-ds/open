@@ -1,0 +1,14 @@
+{
+  "assessments": 80,
+  "reconstructed_outer_models": 160,
+  "max_absolute_full_mse_difference": 1.1102230246251565e-16,
+  "tolerance": 1e-12,
+  "coefficient_prediction_reconstruction_verified": true,
+  "sample_sha256": "105cec06b74d47f0ff67e0cc6e0e4fa5719d8595ef477fa58a47ea16f8db6548",
+  "warnings": [],
+  "beta_definition": "raw b * training SD(X) / training SD(Y); SD uses ddof=0",
+  "aggregation": "median of outer-fold coefficients per assessment, then median across all 20 assessments",
+  "interval": "10th-90th percentiles across assessment medians; descriptive spread, not a confidence interval",
+  "delta_cv_r2_definition": "(ablated MSE - full MSE) / held-out outcome variance; same rows and folds",
+  "conditioning": "original complete candidate sets; never refitted to retained predictors only"
+}

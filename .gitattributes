@@ -1,2 +1,7 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Keep saved synthetic input hashes stable across Windows and Unix checkouts.
+examples/results/**/sample.csv text eol=lf
+examples/selection_actions.py text eol=lf
+.github/workflows/*.yml text eol=lf

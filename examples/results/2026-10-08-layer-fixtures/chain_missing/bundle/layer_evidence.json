@@ -1,0 +1,446 @@
+{
+  "layers": [
+    {
+      "candidates": [
+        "Depression",
+        "Stress"
+      ],
+      "depth": 0,
+      "evidence": [
+        {
+          "assessments": [
+            [
+              0,
+              "Anxiety",
+              0
+            ],
+            [
+              0,
+              "Anxiety",
+              1
+            ],
+            [
+              0,
+              "Anxiety",
+              2
+            ],
+            [
+              0,
+              "Anxiety",
+              3
+            ],
+            [
+              0,
+              "Anxiety",
+              4
+            ],
+            [
+              0,
+              "Anxiety",
+              5
+            ],
+            [
+              0,
+              "Anxiety",
+              6
+            ],
+            [
+              0,
+              "Anxiety",
+              7
+            ],
+            [
+              0,
+              "Anxiety",
+              8
+            ],
+            [
+              0,
+              "Anxiety",
+              9
+            ],
+            [
+              0,
+              "Anxiety",
+              10
+            ],
+            [
+              0,
+              "Anxiety",
+              11
+            ],
+            [
+              0,
+              "Anxiety",
+              12
+            ],
+            [
+              0,
+              "Anxiety",
+              13
+            ],
+            [
+              0,
+              "Anxiety",
+              14
+            ],
+            [
+              0,
+              "Anxiety",
+              15
+            ],
+            [
+              0,
+              "Anxiety",
+              16
+            ],
+            [
+              0,
+              "Anxiety",
+              17
+            ],
+            [
+              0,
+              "Anxiety",
+              18
+            ],
+            [
+              0,
+              "Anxiety",
+              19
+            ]
+          ],
+          "candidates": [
+            "Depression",
+            "Stress"
+          ],
+          "candidates_evidence": [
+            {
+              "broad": {
+                "baseline_relative_count": 20,
+                "baseline_relative_median": 0.9461803372541853,
+                "gain_relative_count": 20,
+                "gain_relative_median": 1.0004684738051068,
+                "raw_count": 20,
+                "raw_median": 1.2131515443742926,
+                "scope": "all scored completed local fits"
+              },
+              "classes": {
+                "PROXIMAL_UNIQUE": {
+                  "completed": 20,
+                  "planned": 20,
+                  "selected": 20
+                }
+              },
+              "promotion": {
+                "completed": 20,
+                "planned": 20,
+                "selected": 20
+              },
+              "source": "Depression",
+              "target": "Anxiety",
+              "unique": {
+                "baseline_relative_count": 20,
+                "baseline_relative_median": 0.3333495371272591,
+                "gain_relative_count": 20,
+                "gain_relative_median": 0.353199137777767,
+                "raw_count": 20,
+                "raw_median": 0.43824234241383075,
+                "scope": "all scored completed local fits"
+              }
+            },
+            {
+              "broad": {
+                "baseline_relative_count": 20,
+                "baseline_relative_median": 0.6062403221850513,
+                "gain_relative_count": 20,
+                "gain_relative_median": 0.6446688061038919,
+                "raw_count": 20,
+                "raw_median": 0.7719336466313992,
+                "scope": "all scored completed local fits"
+              },
+              "classes": {
+                "SCREENED_BY_PARTNER": {
+                  "completed": 20,
+                  "planned": 20,
+                  "selected": 20
+                }
+              },
+              "promotion": {
+                "completed": 20,
+                "planned": 20,
+                "selected": 0
+              },
+              "source": "Stress",
+              "target": "Anxiety",
+              "unique": {
+                "baseline_relative_count": 20,
+                "baseline_relative_median": -4.813814061670061e-05,
+                "gain_relative_count": 20,
+                "gain_relative_median": -5.100014186043694e-05,
+                "raw_count": 20,
+                "raw_median": -5.307076927775489e-05,
+                "scope": "all scored completed local fits"
+              }
+            }
+          ],
+          "depth": 0,
+          "relations": [
+            {
+              "frequency": {
+                "completed": 20,
+                "planned": 20,
+                "selected": 20
+              },
+              "members": [],
+              "qualifies": true,
+              "relation": "PROXIMAL_UNIQUE",
+              "screened_by": [],
+              "source": "Depression",
+              "strength": {
+                "baseline_relative_count": 20,
+                "baseline_relative_median": 0.3333495371272591,
+                "gain_relative_count": 20,
+                "gain_relative_median": 0.353199137777767,
+                "raw_count": 20,
+                "raw_median": 0.43824234241383075,
+                "scope": "all scored completed local fits"
+              },
+              "target": "Anxiety"
+            },
+            {
+              "frequency": {
+                "completed": 20,
+                "planned": 20,
+                "selected": 20
+              },
+              "members": [],
+              "qualifies": false,
+              "relation": "SCREENED_BY_PARTNER",
+              "screened_by": [
+                "Depression"
+              ],
+              "source": "Stress",
+              "strength": {
+                "baseline_relative_count": 20,
+                "baseline_relative_median": -4.813814061670061e-05,
+                "gain_relative_count": 20,
+                "gain_relative_median": -5.100014186043694e-05,
+                "raw_count": 20,
+                "raw_median": -5.307076927775489e-05,
+                "scope": "all scored completed local fits"
+              },
+              "target": "Anxiety"
+            }
+          ],
+          "shared_comembership": [],
+          "target": "Anxiety"
+        }
+      ],
+      "finalized": true,
+      "new_nodes": [
+        "Depression"
+      ],
+      "promoted_parents": {
+        "Depression": [
+          "Anxiety"
+        ]
+      },
+      "targets": [
+        "Anxiety"
+      ]
+    },
+    {
+      "candidates": [
+        "Stress"
+      ],
+      "depth": 1,
+      "evidence": [
+        {
+          "assessments": [
+            [
+              1,
+              "Depression",
+              0
+            ],
+            [
+              1,
+              "Depression",
+              1
+            ],
+            [
+              1,
+              "Depression",
+              2
+            ],
+            [
+              1,
+              "Depression",
+              3
+            ],
+            [
+              1,
+              "Depression",
+              4
+            ],
+            [
+              1,
+              "Depression",
+              5
+            ],
+            [
+              1,
+              "Depression",
+              6
+            ],
+            [
+              1,
+              "Depression",
+              7
+            ],
+            [
+              1,
+              "Depression",
+              8
+            ],
+            [
+              1,
+              "Depression",
+              9
+            ],
+            [
+              1,
+              "Depression",
+              10
+            ],
+            [
+              1,
+              "Depression",
+              11
+            ],
+            [
+              1,
+              "Depression",
+              12
+            ],
+            [
+              1,
+              "Depression",
+              13
+            ],
+            [
+              1,
+              "Depression",
+              14
+            ],
+            [
+              1,
+              "Depression",
+              15
+            ],
+            [
+              1,
+              "Depression",
+              16
+            ],
+            [
+              1,
+              "Depression",
+              17
+            ],
+            [
+              1,
+              "Depression",
+              18
+            ],
+            [
+              1,
+              "Depression",
+              19
+            ]
+          ],
+          "candidates": [
+            "Stress"
+          ],
+          "candidates_evidence": [
+            {
+              "broad": {
+                "baseline_relative_count": 20,
+                "baseline_relative_median": 0.6880023329508274,
+                "gain_relative_count": 20,
+                "gain_relative_median": 1.0,
+                "raw_count": 20,
+                "raw_median": 0.8868749283109549,
+                "scope": "all scored completed local fits"
+              },
+              "classes": {
+                "PROXIMAL_UNIQUE": {
+                  "completed": 20,
+                  "planned": 20,
+                  "selected": 20
+                }
+              },
+              "promotion": {
+                "completed": 20,
+                "planned": 20,
+                "selected": 20
+              },
+              "source": "Stress",
+              "target": "Depression",
+              "unique": {
+                "baseline_relative_count": 20,
+                "baseline_relative_median": 0.6880023329508274,
+                "gain_relative_count": 20,
+                "gain_relative_median": 1.0,
+                "raw_count": 20,
+                "raw_median": 0.8868749283109549,
+                "scope": "all scored completed local fits"
+              }
+            }
+          ],
+          "depth": 1,
+          "relations": [
+            {
+              "frequency": {
+                "completed": 20,
+                "planned": 20,
+                "selected": 20
+              },
+              "members": [],
+              "qualifies": true,
+              "relation": "PROXIMAL_UNIQUE",
+              "screened_by": [],
+              "source": "Stress",
+              "strength": {
+                "baseline_relative_count": 20,
+                "baseline_relative_median": 0.6880023329508274,
+                "gain_relative_count": 20,
+                "gain_relative_median": 1.0,
+                "raw_count": 20,
+                "raw_median": 0.8868749283109549,
+                "scope": "all scored completed local fits"
+              },
+              "target": "Depression"
+            }
+          ],
+          "shared_comembership": [],
+          "target": "Depression"
+        }
+      ],
+      "finalized": true,
+      "new_nodes": [
+        "Stress"
+      ],
+      "promoted_parents": {
+        "Stress": [
+          "Depression"
+        ]
+      },
+      "targets": [
+        "Depression"
+      ]
+    }
+  ],
+  "schema": "open.layer_evidence",
+  "schema_version": 1
+}

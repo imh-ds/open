@@ -9,6 +9,9 @@ from typing import Any, Mapping
 class Predictor(ABC):
     """A predictor that can tune, fit, predict, and create an unfitted clone."""
 
+    engine_name: str
+    tuning_grid_size: int
+
     @abstractmethod
     def tune(self, X: Any, y: Any, cv: Any, loss: str) -> Mapping[str, Any]:
         """Select hyperparameters using only the supplied training-row folds."""

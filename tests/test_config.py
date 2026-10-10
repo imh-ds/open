@@ -73,3 +73,17 @@ def test_yaml_round_trip(tmp_path: Path) -> None:
     target = tmp_path / "round-trip.yaml"
     dump_config(original, target)
     assert load_config(target) == original
+
+@pytest.mark.parametrize('section', ['performance_cv', 'tuning_cv'])
+def test_one_cv_fold_rejected_when_loading_configuration(section):
+    with pytest.raises(ValueError, match=section + r'\.folds.*at least 2'):
+        parse_config({'analysis': {'root': 'y', 'random_seed': 17},
+                      section: {'folds': 1}})
+
+
+@pytest.mark.parametrize('kind', ['outer', 'inner'])
+def test_one_cv_fold_rejected_by_direct_constructor(kind):
+    from open.config import PerformanceCVConfig, TuningCVConfig
+    constructor = PerformanceCVConfig if kind == 'outer' else TuningCVConfig
+    with pytest.raises(ValueError, match=r'folds.*at least 2'):
+        constructor(folds=1)

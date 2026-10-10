@@ -1,0 +1,222 @@
+{
+  "assessments": [
+    {
+      "candidates": [
+        "a",
+        "b"
+      ],
+      "depth": 0,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "a": null,
+          "b": null
+        },
+        "classes": {},
+        "dependence_components": [],
+        "input_candidates": [
+          "a",
+          "b"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 42,
+        "outer_model_fit_count": 10,
+        "pair_ablations": null,
+        "pair_classes": null,
+        "promoted": [],
+        "reason": "LOW_TOTAL_GAIN",
+        "relevance": {
+          "baseline_risk": 2.9248165896469307,
+          "broad": {
+            "a": {
+              "normalized": null,
+              "raw": -0.08126949028138553
+            },
+            "b": {
+              "normalized": null,
+              "raw": -0.10022233144124382
+            }
+          },
+          "full_risk": 3.0164474651691564,
+          "relative_gain": -0.0313287595012195,
+          "stop_reason": "LOW_TOTAL_GAIN",
+          "total_gain": -0.09163087552222571,
+          "unique": {
+            "a": {
+              "normalized": null,
+              "raw": 0.00859145591901811
+            },
+            "b": {
+              "normalized": null,
+              "raw": -0.0940431287264123
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": true,
+        "target": "y",
+        "total_gain": -0.09163087552222571,
+        "total_gain_relative": -0.0313287595012195,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "a": null,
+          "b": null
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 42,
+      "run_index": 0,
+      "status": "completed",
+      "target": "y",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "a",
+        "b"
+      ],
+      "depth": 0,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "a": null,
+          "b": null
+        },
+        "classes": {},
+        "dependence_components": [],
+        "input_candidates": [
+          "a",
+          "b"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 42,
+        "outer_model_fit_count": 10,
+        "pair_ablations": null,
+        "pair_classes": null,
+        "promoted": [],
+        "reason": "LOW_TOTAL_GAIN",
+        "relevance": {
+          "baseline_risk": 2.0924436345227506,
+          "broad": {
+            "a": {
+              "normalized": null,
+              "raw": 0.0
+            },
+            "b": {
+              "normalized": null,
+              "raw": -0.7681997165168122
+            }
+          },
+          "full_risk": 2.258436936712763,
+          "relative_gain": -0.07932987988365696,
+          "stop_reason": "LOW_TOTAL_GAIN",
+          "total_gain": -0.1659933021900124,
+          "unique": {
+            "a": {
+              "normalized": null,
+              "raw": -0.013562778912405538
+            },
+            "b": {
+              "normalized": null,
+              "raw": -0.16161733730175287
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": true,
+        "target": "y",
+        "total_gain": -0.1659933021900124,
+        "total_gain_relative": -0.07932987988365696,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "a": null,
+          "b": null
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 42,
+      "run_index": 1,
+      "status": "completed",
+      "target": "y",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "a",
+        "b"
+      ],
+      "depth": 0,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "a": null,
+          "b": null
+        },
+        "classes": {},
+        "dependence_components": [],
+        "input_candidates": [
+          "a",
+          "b"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 42,
+        "outer_model_fit_count": 10,
+        "pair_ablations": null,
+        "pair_classes": null,
+        "promoted": [],
+        "reason": "LOW_TOTAL_GAIN",
+        "relevance": {
+          "baseline_risk": 1.5476181811163836,
+          "broad": {
+            "a": {
+              "normalized": null,
+              "raw": -0.12915791991152292
+            },
+            "b": {
+              "normalized": null,
+              "raw": -0.032496716087203614
+            }
+          },
+          "full_risk": 1.6124110906922415,
+          "relative_gain": -0.04186621116658062,
+          "stop_reason": "LOW_TOTAL_GAIN",
+          "total_gain": -0.06479290957585793,
+          "unique": {
+            "a": {
+              "normalized": null,
+              "raw": -0.03229619348865431
+            },
+            "b": {
+              "normalized": null,
+              "raw": -0.04107428085869036
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": true,
+        "target": "y",
+        "total_gain": -0.06479290957585793,
+        "total_gain_relative": -0.04186621116658062,
+        "tuning_model_fit_count": 300,
+        "unique": {
+          "a": null,
+          "b": null
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 42,
+      "run_index": 2,
+      "status": "completed",
+      "target": "y",
+      "warnings": []
+    }
+  ],
+  "schema": "open.layer_assessments",
+  "schema_version": 1
+}
