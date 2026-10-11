@@ -38,6 +38,8 @@ PROTOCOL = Path(__file__).with_name('selection_investigation_protocol.md')
 MANIFEST = ROOT/'examples/study_manifests/selection-investigation.json'
 ARCHIVE = ROOT/'examples/results/2026-10-10-sample-size-pilot/actions-evidence.zip'
 ARCHIVE_HASH = 'a7d9c6a27d0318a52f8b51f293ab33212bbc8431eef6ad274dc59add96a5d13a'
+SMOKE_ARCHIVE = ROOT/'examples/study_transfers/selection-investigation-smoke.zip'
+SMOKE_HASH = '45cd4e528d9bd8fbb46b423a57833a1de629e79e603f96a7674a42ba3cb43406'
 CHAIN = 'chain-n300-p15'
 
 
@@ -84,6 +86,7 @@ def make_manifest():
             ('examples/selection_investigation.py','.github/workflows/selection-investigation.yml',
              '.github/actions/investigation-setup/action.yml')}},
         protocol_hash=pilot.text_hash(PROTOCOL.read_bytes()), archive_sha256=ARCHIVE_HASH,
+        smoke_archive_sha256=SMOKE_HASH,
         continuation=CHAIN, assessment_bucket=10, workers=4, max_parallel=256,
         hard_job_minutes=360, test_n=2000, automatic_reruns=False)
 
@@ -190,6 +193,33 @@ def prepare(output):
     case = Path(output)/'continuation'/CHAIN
     # Preserve the original result/stop separately; continuation gets checkpoints only.
     merge_files([original/CHAIN/'checkpoints'], case/'checkpoints')
+    if hashlib.sha256(SMOKE_ARCHIVE.read_bytes()).hexdigest() != SMOKE_HASH:
+        raise ValueError('smoke checkpoint archive checksum differs')
+    with zipfile.ZipFile(SMOKE_ARCHIVE) as archive:
+        receipt=json.loads(archive.read('receipt.json'))
+        observed_manifest=json.loads(archive.read('source-manifest.json'))
+        if receipt['manifest'] != pilot.fingerprint(observed_manifest):
+            raise ValueError('smoke receipt differs from recorded manifest')
+        if any(observed_manifest['sources'].get(k)!=v for k,v in pilot.sources().items()):
+            raise ValueError('smoke production sources differ')
+        _,config,train,_,_=case_data(CHAIN)
+        # Transfer is fixed to the four previously missing original run identities.
+        task=receipt['task']
+        fixed=dict(id='d1-x1-010',depth=1,target='x1',
+            candidates=[n for n in train if n not in ('y','x1')],indices=[16,17,18,19])
+        if task!=fixed:
+            raise ValueError('smoke comparison identity differs')
+        names={f"checkpoints/d1-x1/{i:03d}.json.gz" for i in task['indices']}
+        names|={f"checkpoints/d1-x1/{i:03d}.json.metrics.json" for i in task['indices']}
+        if set(archive.namelist())!=names|{'receipt.json','source-manifest.json'}:
+            raise ValueError('foreign smoke checkpoint files')
+        for name in sorted(names):
+            target=case/name
+            value=archive.read(name)
+            if target.exists() and target.read_bytes()!=value:
+                raise ValueError('conflicting duplicate smoke checkpoint')
+            target.parent.mkdir(parents=True,exist_ok=True)
+            target.write_bytes(value)
     return stage(output)
 
 

@@ -79,11 +79,19 @@ The ten overlapping samples are not ten independent population replications.
 
 ## Operational completion of chain N300/p15
 
-Reuse all116 original checkpoints:100root and16at the next target. Derive the
+Reuse all116 original checkpoints:100root and16at the next target. Also transfer
+the four native production smoke assessments at runs16–19, independently
+validated with the original context/plans/arithmetic. Their fixed transfer archive
+SHA256 is45cd4e528d9bd8fbb46b423a57833a1de629e79e603f96a7674a42ba3cb43406.
+No scientific sources changed during these fits; the orchestration helper was
+being revised, so its receipt records file hashes observed at receipt time rather
+than asserting an immutable loaded helper. Production checkpoint contexts remain
+the strict source/data/config identity. Derive the
 frozen next target/candidate comparisons using production consensus aggregation.
 Split outstanding assessments into nonoverlapping ranges of ten run IDs; each
 shard uses four single-threaded workers and the original production assessment
-function. Check all context/source/data/sample identities before reuse.
+function. Check all context/source/data/sample identities before reuse. With
+120saved assessments the first unfinished layer requires eight shards (runs20–99).
 
 Aggregate all100 planned assessments for every target in a layer, then finalize
 the layer and derive the next frontier. Never advance from partial evidence or
