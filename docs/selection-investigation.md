@@ -70,3 +70,16 @@ The continuation's finalization elapsed time excludes distributed assessment
 computation; individual checkpoint metrics retain those assessment durations.
 Completion of the interrupted chain does not guarantee recovery of its intended
 structure. Original reports, source hashes, protocol and denominators stay intact.
+
+## Verified follow-up results
+
+[The completed investigation report](../examples/results/2026-10-10-selection-investigation/REPORT.md)
+records 74/74 completed diagnostics and successful continuation of the interrupted
+chain. All three intended chain links were retained in 100/100 assessments each,
+with no extra links. The local offline audit passed with zero errors or warnings.
+
+The diagnostic examples still expose scientific limitations: known signal inputs
+helped the interaction models, and the small-chain noise input remained apparently
+useful under retuned ablation but worsened test prediction in a matched GBM
+comparison. No production repair or minimum sample-size guidance follows.
+The run peaked at 20 concurrent jobs and finished in about 48 minutes.
