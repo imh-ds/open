@@ -81,6 +81,12 @@ first-order curve while still helping prediction. Retain ΔCV R² and the curve
 alongside this summary. Magnitude depends on the reference distribution and bin
 resolution; it is not a new form of Cohen's d or a scientifically calibrated cutoff.
 
+An optional [bounded pair-screening supplement](pair-interaction-screening.md)
+examines joint patterns in the existing fitted models, without product features
+or additional fits. It exports descriptive local mixed contrasts and a separate
+exploratory junction view. This does not certify population interactions or
+standalone main effects, and does not change recursive graph selection.
+
 ## Scientific boundaries
 
 For corresponding rescaled predictions, unit changes do not change standardized

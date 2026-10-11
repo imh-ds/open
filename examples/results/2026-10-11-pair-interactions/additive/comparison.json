@@ -1,0 +1,3065 @@
+{
+  "target": "wellbeing",
+  "engines": [
+    {
+      "engine": "known_function",
+      "interactions": {
+        "planned_folds": 1,
+        "pairs": [
+          {
+            "members": [
+              "perceived_stress",
+              "physical_activity"
+            ],
+            "planned_folds": 1,
+            "supported_screen_folds": 1,
+            "shortlisted_folds": 0,
+            "supported_detail_folds": 0,
+            "status": "complete_descriptive",
+            "mean_screen_rms": 0.0,
+            "folds": [
+              {
+                "members": [
+                  "perceived_stress",
+                  "physical_activity"
+                ],
+                "screen": {
+                  "status": "available",
+                  "raw_rms": 0.0,
+                  "standardized_rms": 0.0,
+                  "prediction_rows": 256,
+                  "edges": [
+                    [
+                      -3.262872975843061,
+                      0.020825413722448637,
+                      3.1168214284938864
+                    ],
+                    [
+                      -3.465364508632609,
+                      0.009040576573118865,
+                      3.2038076354852927
+                    ]
+                  ],
+                  "reference_rows": 64,
+                  "missing_reference_rows": 0,
+                  "reference_positions": [
+                    1,
+                    3,
+                    4,
+                    8,
+                    12,
+                    16,
+                    18,
+                    22,
+                    40,
+                    46,
+                    50,
+                    72,
+                    95,
+                    99,
+                    145,
+                    150,
+                    154,
+                    166,
+                    172,
+                    221,
+                    225,
+                    232,
+                    233,
+                    243,
+                    271,
+                    275,
+                    276,
+                    301,
+                    306,
+                    309,
+                    310,
+                    312,
+                    333,
+                    342,
+                    349,
+                    355,
+                    360,
+                    375,
+                    377,
+                    387,
+                    390,
+                    402,
+                    407,
+                    411,
+                    412,
+                    421,
+                    432,
+                    444,
+                    448,
+                    455,
+                    456,
+                    475,
+                    480,
+                    481,
+                    492,
+                    500,
+                    501,
+                    519,
+                    534,
+                    565,
+                    574,
+                    580,
+                    588,
+                    592
+                  ],
+                  "cells": [
+                    {
+                      "i": 0,
+                      "j": 0,
+                      "count": 15,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 0,
+                      "j": 1,
+                      "count": 18,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 1,
+                      "j": 0,
+                      "count": 11,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 1,
+                      "j": 1,
+                      "count": 20,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    }
+                  ],
+                  "requested_bins": 2,
+                  "realized_bins": [
+                    2,
+                    2
+                  ]
+                },
+                "selected_for_detail": false,
+                "detail": {
+                  "status": "not_shortlisted",
+                  "standardized_rms": null,
+                  "raw_rms": null,
+                  "prediction_rows": 0,
+                  "reference_rows": 0,
+                  "cells": []
+                }
+              }
+            ]
+          },
+          {
+            "members": [
+              "perceived_stress",
+              "sleep_quality"
+            ],
+            "planned_folds": 1,
+            "supported_screen_folds": 1,
+            "shortlisted_folds": 0,
+            "supported_detail_folds": 0,
+            "status": "complete_descriptive",
+            "mean_screen_rms": 0.0,
+            "folds": [
+              {
+                "members": [
+                  "perceived_stress",
+                  "sleep_quality"
+                ],
+                "screen": {
+                  "status": "available",
+                  "raw_rms": 0.0,
+                  "standardized_rms": 0.0,
+                  "prediction_rows": 256,
+                  "edges": [
+                    [
+                      -3.262872975843061,
+                      0.020825413722448637,
+                      3.1168214284938864
+                    ],
+                    [
+                      -3.4662541918772347,
+                      -0.016322294557029597,
+                      3.4853974414748476
+                    ]
+                  ],
+                  "reference_rows": 64,
+                  "missing_reference_rows": 0,
+                  "reference_positions": [
+                    1,
+                    3,
+                    4,
+                    8,
+                    12,
+                    16,
+                    18,
+                    22,
+                    40,
+                    46,
+                    50,
+                    72,
+                    95,
+                    99,
+                    145,
+                    150,
+                    154,
+                    166,
+                    172,
+                    221,
+                    225,
+                    232,
+                    233,
+                    243,
+                    271,
+                    275,
+                    276,
+                    301,
+                    306,
+                    309,
+                    310,
+                    312,
+                    333,
+                    342,
+                    349,
+                    355,
+                    360,
+                    375,
+                    377,
+                    387,
+                    390,
+                    402,
+                    407,
+                    411,
+                    412,
+                    421,
+                    432,
+                    444,
+                    448,
+                    455,
+                    456,
+                    475,
+                    480,
+                    481,
+                    492,
+                    500,
+                    501,
+                    519,
+                    534,
+                    565,
+                    574,
+                    580,
+                    588,
+                    592
+                  ],
+                  "cells": [
+                    {
+                      "i": 0,
+                      "j": 0,
+                      "count": 14,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 0,
+                      "j": 1,
+                      "count": 19,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 1,
+                      "j": 0,
+                      "count": 13,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 1,
+                      "j": 1,
+                      "count": 18,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    }
+                  ],
+                  "requested_bins": 2,
+                  "realized_bins": [
+                    2,
+                    2
+                  ]
+                },
+                "selected_for_detail": false,
+                "detail": {
+                  "status": "not_shortlisted",
+                  "standardized_rms": null,
+                  "raw_rms": null,
+                  "prediction_rows": 0,
+                  "reference_rows": 0,
+                  "cells": []
+                }
+              }
+            ]
+          },
+          {
+            "members": [
+              "perceived_stress",
+              "social_support"
+            ],
+            "planned_folds": 1,
+            "supported_screen_folds": 1,
+            "shortlisted_folds": 0,
+            "supported_detail_folds": 0,
+            "status": "complete_descriptive",
+            "mean_screen_rms": 5.077732315074785e-16,
+            "folds": [
+              {
+                "members": [
+                  "perceived_stress",
+                  "social_support"
+                ],
+                "screen": {
+                  "status": "available",
+                  "raw_rms": 7.704999430931316e-16,
+                  "standardized_rms": 5.077732315074785e-16,
+                  "prediction_rows": 256,
+                  "edges": [
+                    [
+                      -3.262872975843061,
+                      0.020825413722448637,
+                      3.1168214284938864
+                    ],
+                    [
+                      -3.4677792689839904,
+                      -0.1118023472458898,
+                      2.7938342878128637
+                    ]
+                  ],
+                  "reference_rows": 64,
+                  "missing_reference_rows": 0,
+                  "reference_positions": [
+                    1,
+                    3,
+                    4,
+                    8,
+                    12,
+                    16,
+                    18,
+                    22,
+                    40,
+                    46,
+                    50,
+                    72,
+                    95,
+                    99,
+                    145,
+                    150,
+                    154,
+                    166,
+                    172,
+                    221,
+                    225,
+                    232,
+                    233,
+                    243,
+                    271,
+                    275,
+                    276,
+                    301,
+                    306,
+                    309,
+                    310,
+                    312,
+                    333,
+                    342,
+                    349,
+                    355,
+                    360,
+                    375,
+                    377,
+                    387,
+                    390,
+                    402,
+                    407,
+                    411,
+                    412,
+                    421,
+                    432,
+                    444,
+                    448,
+                    455,
+                    456,
+                    475,
+                    480,
+                    481,
+                    492,
+                    500,
+                    501,
+                    519,
+                    534,
+                    565,
+                    574,
+                    580,
+                    588,
+                    592
+                  ],
+                  "cells": [
+                    {
+                      "i": 0,
+                      "j": 0,
+                      "count": 15,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 0,
+                      "j": 1,
+                      "count": 18,
+                      "raw_mean": 5.551115123125783e-17,
+                      "raw_rms": 5.551115123125783e-17,
+                      "standardized_mean": 3.6582840658288156e-17,
+                      "standardized_rms": 3.6582840658288156e-17
+                    },
+                    {
+                      "i": 1,
+                      "j": 0,
+                      "count": 12,
+                      "raw_mean": -1.7763568394002505e-15,
+                      "raw_rms": 1.7763568394002505e-15,
+                      "standardized_mean": -1.170650901065221e-15,
+                      "standardized_rms": 1.170650901065221e-15
+                    },
+                    {
+                      "i": 1,
+                      "j": 1,
+                      "count": 19,
+                      "raw_mean": -6.245004513516506e-17,
+                      "raw_rms": 6.245004513516506e-17,
+                      "standardized_mean": -4.115569574057418e-17,
+                      "standardized_rms": 4.115569574057418e-17
+                    }
+                  ],
+                  "requested_bins": 2,
+                  "realized_bins": [
+                    2,
+                    2
+                  ]
+                },
+                "selected_for_detail": false,
+                "detail": {
+                  "status": "not_shortlisted",
+                  "standardized_rms": null,
+                  "raw_rms": null,
+                  "prediction_rows": 0,
+                  "reference_rows": 0,
+                  "cells": []
+                }
+              }
+            ]
+          },
+          {
+            "members": [
+              "perceived_stress",
+              "work_demands"
+            ],
+            "planned_folds": 1,
+            "supported_screen_folds": 1,
+            "shortlisted_folds": 0,
+            "supported_detail_folds": 0,
+            "status": "complete_descriptive",
+            "mean_screen_rms": 0.0,
+            "folds": [
+              {
+                "members": [
+                  "perceived_stress",
+                  "work_demands"
+                ],
+                "screen": {
+                  "status": "available",
+                  "raw_rms": 0.0,
+                  "standardized_rms": 0.0,
+                  "prediction_rows": 256,
+                  "edges": [
+                    [
+                      -3.262872975843061,
+                      0.020825413722448637,
+                      3.1168214284938864
+                    ],
+                    [
+                      -3.4867311804136167,
+                      0.02441543242638263,
+                      2.979998405680301
+                    ]
+                  ],
+                  "reference_rows": 64,
+                  "missing_reference_rows": 0,
+                  "reference_positions": [
+                    1,
+                    3,
+                    4,
+                    8,
+                    12,
+                    16,
+                    18,
+                    22,
+                    40,
+                    46,
+                    50,
+                    72,
+                    95,
+                    99,
+                    145,
+                    150,
+                    154,
+                    166,
+                    172,
+                    221,
+                    225,
+                    232,
+                    233,
+                    243,
+                    271,
+                    275,
+                    276,
+                    301,
+                    306,
+                    309,
+                    310,
+                    312,
+                    333,
+                    342,
+                    349,
+                    355,
+                    360,
+                    375,
+                    377,
+                    387,
+                    390,
+                    402,
+                    407,
+                    411,
+                    412,
+                    421,
+                    432,
+                    444,
+                    448,
+                    455,
+                    456,
+                    475,
+                    480,
+                    481,
+                    492,
+                    500,
+                    501,
+                    519,
+                    534,
+                    565,
+                    574,
+                    580,
+                    588,
+                    592
+                  ],
+                  "cells": [
+                    {
+                      "i": 0,
+                      "j": 0,
+                      "count": 17,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 0,
+                      "j": 1,
+                      "count": 16,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 1,
+                      "j": 0,
+                      "count": 16,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 1,
+                      "j": 1,
+                      "count": 15,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    }
+                  ],
+                  "requested_bins": 2,
+                  "realized_bins": [
+                    2,
+                    2
+                  ]
+                },
+                "selected_for_detail": false,
+                "detail": {
+                  "status": "not_shortlisted",
+                  "standardized_rms": null,
+                  "raw_rms": null,
+                  "prediction_rows": 0,
+                  "reference_rows": 0,
+                  "cells": []
+                }
+              }
+            ]
+          },
+          {
+            "members": [
+              "physical_activity",
+              "sleep_quality"
+            ],
+            "planned_folds": 1,
+            "supported_screen_folds": 1,
+            "shortlisted_folds": 0,
+            "supported_detail_folds": 0,
+            "status": "complete_descriptive",
+            "mean_screen_rms": 0.0,
+            "folds": [
+              {
+                "members": [
+                  "physical_activity",
+                  "sleep_quality"
+                ],
+                "screen": {
+                  "status": "available",
+                  "raw_rms": 0.0,
+                  "standardized_rms": 0.0,
+                  "prediction_rows": 256,
+                  "edges": [
+                    [
+                      -3.465364508632609,
+                      0.009040576573118865,
+                      3.2038076354852927
+                    ],
+                    [
+                      -3.4662541918772347,
+                      -0.016322294557029597,
+                      3.4853974414748476
+                    ]
+                  ],
+                  "reference_rows": 64,
+                  "missing_reference_rows": 0,
+                  "reference_positions": [
+                    1,
+                    3,
+                    4,
+                    8,
+                    12,
+                    16,
+                    18,
+                    22,
+                    40,
+                    46,
+                    50,
+                    72,
+                    95,
+                    99,
+                    145,
+                    150,
+                    154,
+                    166,
+                    172,
+                    221,
+                    225,
+                    232,
+                    233,
+                    243,
+                    271,
+                    275,
+                    276,
+                    301,
+                    306,
+                    309,
+                    310,
+                    312,
+                    333,
+                    342,
+                    349,
+                    355,
+                    360,
+                    375,
+                    377,
+                    387,
+                    390,
+                    402,
+                    407,
+                    411,
+                    412,
+                    421,
+                    432,
+                    444,
+                    448,
+                    455,
+                    456,
+                    475,
+                    480,
+                    481,
+                    492,
+                    500,
+                    501,
+                    519,
+                    534,
+                    565,
+                    574,
+                    580,
+                    588,
+                    592
+                  ],
+                  "cells": [
+                    {
+                      "i": 0,
+                      "j": 0,
+                      "count": 10,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 0,
+                      "j": 1,
+                      "count": 16,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 1,
+                      "j": 0,
+                      "count": 17,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 1,
+                      "j": 1,
+                      "count": 21,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    }
+                  ],
+                  "requested_bins": 2,
+                  "realized_bins": [
+                    2,
+                    2
+                  ]
+                },
+                "selected_for_detail": false,
+                "detail": {
+                  "status": "not_shortlisted",
+                  "standardized_rms": null,
+                  "raw_rms": null,
+                  "prediction_rows": 0,
+                  "reference_rows": 0,
+                  "cells": []
+                }
+              }
+            ]
+          },
+          {
+            "members": [
+              "physical_activity",
+              "social_support"
+            ],
+            "planned_folds": 1,
+            "supported_screen_folds": 1,
+            "shortlisted_folds": 0,
+            "supported_detail_folds": 0,
+            "status": "complete_descriptive",
+            "mean_screen_rms": 1.8974679757221414e-16,
+            "folds": [
+              {
+                "members": [
+                  "physical_activity",
+                  "social_support"
+                ],
+                "screen": {
+                  "status": "available",
+                  "raw_rms": 2.8792359986653163e-16,
+                  "standardized_rms": 1.8974679757221414e-16,
+                  "prediction_rows": 256,
+                  "edges": [
+                    [
+                      -3.465364508632609,
+                      0.009040576573118865,
+                      3.2038076354852927
+                    ],
+                    [
+                      -3.4677792689839904,
+                      -0.1118023472458898,
+                      2.7938342878128637
+                    ]
+                  ],
+                  "reference_rows": 64,
+                  "missing_reference_rows": 0,
+                  "reference_positions": [
+                    1,
+                    3,
+                    4,
+                    8,
+                    12,
+                    16,
+                    18,
+                    22,
+                    40,
+                    46,
+                    50,
+                    72,
+                    95,
+                    99,
+                    145,
+                    150,
+                    154,
+                    166,
+                    172,
+                    221,
+                    225,
+                    232,
+                    233,
+                    243,
+                    271,
+                    275,
+                    276,
+                    301,
+                    306,
+                    309,
+                    310,
+                    312,
+                    333,
+                    342,
+                    349,
+                    355,
+                    360,
+                    375,
+                    377,
+                    387,
+                    390,
+                    402,
+                    407,
+                    411,
+                    412,
+                    421,
+                    432,
+                    444,
+                    448,
+                    455,
+                    456,
+                    475,
+                    480,
+                    481,
+                    492,
+                    500,
+                    501,
+                    519,
+                    534,
+                    565,
+                    574,
+                    580,
+                    588,
+                    592
+                  ],
+                  "cells": [
+                    {
+                      "i": 0,
+                      "j": 0,
+                      "count": 11,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 0,
+                      "j": 1,
+                      "count": 15,
+                      "raw_mean": -1.258252761241844e-16,
+                      "raw_rms": 2.490795521017214e-16,
+                      "standardized_mean": -8.292110549211983e-17,
+                      "standardized_rms": 1.6414787594324205e-16
+                    },
+                    {
+                      "i": 1,
+                      "j": 0,
+                      "count": 16,
+                      "raw_mean": -1.1102230246251565e-16,
+                      "raw_rms": 4.440892098500626e-16,
+                      "standardized_mean": -7.316568131657631e-17,
+                      "standardized_rms": 2.9266272526630525e-16
+                    },
+                    {
+                      "i": 1,
+                      "j": 1,
+                      "count": 22,
+                      "raw_mean": -7.254298172266648e-18,
+                      "raw_rms": 2.354441633318346e-16,
+                      "standardized_mean": -4.780712131480839e-18,
+                      "standardized_rms": 1.5516191107639024e-16
+                    }
+                  ],
+                  "requested_bins": 2,
+                  "realized_bins": [
+                    2,
+                    2
+                  ]
+                },
+                "selected_for_detail": false,
+                "detail": {
+                  "status": "not_shortlisted",
+                  "standardized_rms": null,
+                  "raw_rms": null,
+                  "prediction_rows": 0,
+                  "reference_rows": 0,
+                  "cells": []
+                }
+              }
+            ]
+          },
+          {
+            "members": [
+              "physical_activity",
+              "work_demands"
+            ],
+            "planned_folds": 1,
+            "supported_screen_folds": 1,
+            "shortlisted_folds": 0,
+            "supported_detail_folds": 0,
+            "status": "complete_descriptive",
+            "mean_screen_rms": 0.0,
+            "folds": [
+              {
+                "members": [
+                  "physical_activity",
+                  "work_demands"
+                ],
+                "screen": {
+                  "status": "available",
+                  "raw_rms": 0.0,
+                  "standardized_rms": 0.0,
+                  "prediction_rows": 256,
+                  "edges": [
+                    [
+                      -3.465364508632609,
+                      0.009040576573118865,
+                      3.2038076354852927
+                    ],
+                    [
+                      -3.4867311804136167,
+                      0.02441543242638263,
+                      2.979998405680301
+                    ]
+                  ],
+                  "reference_rows": 64,
+                  "missing_reference_rows": 0,
+                  "reference_positions": [
+                    1,
+                    3,
+                    4,
+                    8,
+                    12,
+                    16,
+                    18,
+                    22,
+                    40,
+                    46,
+                    50,
+                    72,
+                    95,
+                    99,
+                    145,
+                    150,
+                    154,
+                    166,
+                    172,
+                    221,
+                    225,
+                    232,
+                    233,
+                    243,
+                    271,
+                    275,
+                    276,
+                    301,
+                    306,
+                    309,
+                    310,
+                    312,
+                    333,
+                    342,
+                    349,
+                    355,
+                    360,
+                    375,
+                    377,
+                    387,
+                    390,
+                    402,
+                    407,
+                    411,
+                    412,
+                    421,
+                    432,
+                    444,
+                    448,
+                    455,
+                    456,
+                    475,
+                    480,
+                    481,
+                    492,
+                    500,
+                    501,
+                    519,
+                    534,
+                    565,
+                    574,
+                    580,
+                    588,
+                    592
+                  ],
+                  "cells": [
+                    {
+                      "i": 0,
+                      "j": 0,
+                      "count": 15,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 0,
+                      "j": 1,
+                      "count": 11,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 1,
+                      "j": 0,
+                      "count": 18,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 1,
+                      "j": 1,
+                      "count": 20,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    }
+                  ],
+                  "requested_bins": 2,
+                  "realized_bins": [
+                    2,
+                    2
+                  ]
+                },
+                "selected_for_detail": false,
+                "detail": {
+                  "status": "not_shortlisted",
+                  "standardized_rms": null,
+                  "raw_rms": null,
+                  "prediction_rows": 0,
+                  "reference_rows": 0,
+                  "cells": []
+                }
+              }
+            ]
+          },
+          {
+            "members": [
+              "sleep_quality",
+              "social_support"
+            ],
+            "planned_folds": 1,
+            "supported_screen_folds": 1,
+            "shortlisted_folds": 0,
+            "supported_detail_folds": 0,
+            "status": "complete_descriptive",
+            "mean_screen_rms": 1.8974679757221414e-16,
+            "folds": [
+              {
+                "members": [
+                  "sleep_quality",
+                  "social_support"
+                ],
+                "screen": {
+                  "status": "available",
+                  "raw_rms": 2.8792359986653163e-16,
+                  "standardized_rms": 1.8974679757221414e-16,
+                  "prediction_rows": 256,
+                  "edges": [
+                    [
+                      -3.4662541918772347,
+                      -0.016322294557029597,
+                      3.4853974414748476
+                    ],
+                    [
+                      -3.4677792689839904,
+                      -0.1118023472458898,
+                      2.7938342878128637
+                    ]
+                  ],
+                  "reference_rows": 64,
+                  "missing_reference_rows": 0,
+                  "reference_positions": [
+                    1,
+                    3,
+                    4,
+                    8,
+                    12,
+                    16,
+                    18,
+                    22,
+                    40,
+                    46,
+                    50,
+                    72,
+                    95,
+                    99,
+                    145,
+                    150,
+                    154,
+                    166,
+                    172,
+                    221,
+                    225,
+                    232,
+                    233,
+                    243,
+                    271,
+                    275,
+                    276,
+                    301,
+                    306,
+                    309,
+                    310,
+                    312,
+                    333,
+                    342,
+                    349,
+                    355,
+                    360,
+                    375,
+                    377,
+                    387,
+                    390,
+                    402,
+                    407,
+                    411,
+                    412,
+                    421,
+                    432,
+                    444,
+                    448,
+                    455,
+                    456,
+                    475,
+                    480,
+                    481,
+                    492,
+                    500,
+                    501,
+                    519,
+                    534,
+                    565,
+                    574,
+                    580,
+                    588,
+                    592
+                  ],
+                  "cells": [
+                    {
+                      "i": 0,
+                      "j": 0,
+                      "count": 8,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 0,
+                      "j": 1,
+                      "count": 19,
+                      "raw_mean": -8.764918615461762e-17,
+                      "raw_rms": 2.5085299841641333e-16,
+                      "standardized_mean": -5.776237998677078e-17,
+                      "standardized_rms": 1.6531660875651275e-16
+                    },
+                    {
+                      "i": 1,
+                      "j": 0,
+                      "count": 19,
+                      "raw_mean": -9.349246523159212e-17,
+                      "raw_rms": 4.075242079270001e-16,
+                      "standardized_mean": -6.161320531922216e-17,
+                      "standardized_rms": 2.685657355741121e-16
+                    },
+                    {
+                      "i": 1,
+                      "j": 1,
+                      "count": 18,
+                      "raw_mean": -2.1202175817494308e-17,
+                      "raw_rms": 2.3028231811878747e-16,
+                      "standardized_mean": -1.3972612751429504e-17,
+                      "standardized_rms": 1.51760162837645e-16
+                    }
+                  ],
+                  "requested_bins": 2,
+                  "realized_bins": [
+                    2,
+                    2
+                  ]
+                },
+                "selected_for_detail": false,
+                "detail": {
+                  "status": "not_shortlisted",
+                  "standardized_rms": null,
+                  "raw_rms": null,
+                  "prediction_rows": 0,
+                  "reference_rows": 0,
+                  "cells": []
+                }
+              }
+            ]
+          },
+          {
+            "members": [
+              "sleep_quality",
+              "work_demands"
+            ],
+            "planned_folds": 1,
+            "supported_screen_folds": 1,
+            "shortlisted_folds": 0,
+            "supported_detail_folds": 0,
+            "status": "complete_descriptive",
+            "mean_screen_rms": 0.0,
+            "folds": [
+              {
+                "members": [
+                  "sleep_quality",
+                  "work_demands"
+                ],
+                "screen": {
+                  "status": "available",
+                  "raw_rms": 0.0,
+                  "standardized_rms": 0.0,
+                  "prediction_rows": 256,
+                  "edges": [
+                    [
+                      -3.4662541918772347,
+                      -0.016322294557029597,
+                      3.4853974414748476
+                    ],
+                    [
+                      -3.4867311804136167,
+                      0.02441543242638263,
+                      2.979998405680301
+                    ]
+                  ],
+                  "reference_rows": 64,
+                  "missing_reference_rows": 0,
+                  "reference_positions": [
+                    1,
+                    3,
+                    4,
+                    8,
+                    12,
+                    16,
+                    18,
+                    22,
+                    40,
+                    46,
+                    50,
+                    72,
+                    95,
+                    99,
+                    145,
+                    150,
+                    154,
+                    166,
+                    172,
+                    221,
+                    225,
+                    232,
+                    233,
+                    243,
+                    271,
+                    275,
+                    276,
+                    301,
+                    306,
+                    309,
+                    310,
+                    312,
+                    333,
+                    342,
+                    349,
+                    355,
+                    360,
+                    375,
+                    377,
+                    387,
+                    390,
+                    402,
+                    407,
+                    411,
+                    412,
+                    421,
+                    432,
+                    444,
+                    448,
+                    455,
+                    456,
+                    475,
+                    480,
+                    481,
+                    492,
+                    500,
+                    501,
+                    519,
+                    534,
+                    565,
+                    574,
+                    580,
+                    588,
+                    592
+                  ],
+                  "cells": [
+                    {
+                      "i": 0,
+                      "j": 0,
+                      "count": 15,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 0,
+                      "j": 1,
+                      "count": 12,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 1,
+                      "j": 0,
+                      "count": 18,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 1,
+                      "j": 1,
+                      "count": 19,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    }
+                  ],
+                  "requested_bins": 2,
+                  "realized_bins": [
+                    2,
+                    2
+                  ]
+                },
+                "selected_for_detail": false,
+                "detail": {
+                  "status": "not_shortlisted",
+                  "standardized_rms": null,
+                  "raw_rms": null,
+                  "prediction_rows": 0,
+                  "reference_rows": 0,
+                  "cells": []
+                }
+              }
+            ]
+          },
+          {
+            "members": [
+              "social_support",
+              "work_demands"
+            ],
+            "planned_folds": 1,
+            "supported_screen_folds": 1,
+            "shortlisted_folds": 0,
+            "supported_detail_folds": 0,
+            "status": "complete_descriptive",
+            "mean_screen_rms": 0.0,
+            "folds": [
+              {
+                "members": [
+                  "social_support",
+                  "work_demands"
+                ],
+                "screen": {
+                  "status": "available",
+                  "raw_rms": 0.0,
+                  "standardized_rms": 0.0,
+                  "prediction_rows": 256,
+                  "edges": [
+                    [
+                      -3.4677792689839904,
+                      -0.1118023472458898,
+                      2.7938342878128637
+                    ],
+                    [
+                      -3.4867311804136167,
+                      0.02441543242638263,
+                      2.979998405680301
+                    ]
+                  ],
+                  "reference_rows": 64,
+                  "missing_reference_rows": 0,
+                  "reference_positions": [
+                    1,
+                    3,
+                    4,
+                    8,
+                    12,
+                    16,
+                    18,
+                    22,
+                    40,
+                    46,
+                    50,
+                    72,
+                    95,
+                    99,
+                    145,
+                    150,
+                    154,
+                    166,
+                    172,
+                    221,
+                    225,
+                    232,
+                    233,
+                    243,
+                    271,
+                    275,
+                    276,
+                    301,
+                    306,
+                    309,
+                    310,
+                    312,
+                    333,
+                    342,
+                    349,
+                    355,
+                    360,
+                    375,
+                    377,
+                    387,
+                    390,
+                    402,
+                    407,
+                    411,
+                    412,
+                    421,
+                    432,
+                    444,
+                    448,
+                    455,
+                    456,
+                    475,
+                    480,
+                    481,
+                    492,
+                    500,
+                    501,
+                    519,
+                    534,
+                    565,
+                    574,
+                    580,
+                    588,
+                    592
+                  ],
+                  "cells": [
+                    {
+                      "i": 0,
+                      "j": 0,
+                      "count": 13,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 0,
+                      "j": 1,
+                      "count": 14,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 1,
+                      "j": 0,
+                      "count": 20,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 1,
+                      "j": 1,
+                      "count": 17,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    }
+                  ],
+                  "requested_bins": 2,
+                  "realized_bins": [
+                    2,
+                    2
+                  ]
+                },
+                "selected_for_detail": false,
+                "detail": {
+                  "status": "not_shortlisted",
+                  "standardized_rms": null,
+                  "raw_rms": null,
+                  "prediction_rows": 0,
+                  "reference_rows": 0,
+                  "cells": []
+                }
+              }
+            ]
+          }
+        ],
+        "prediction_rows": 2560,
+        "additional_model_fits": 0,
+        "inference": "descriptive_overlapping_cv_folds_not_stability_probability",
+        "fold_screens": [
+          {
+            "schema": "open.pair_interaction_screen",
+            "schema_version": 1,
+            "inference": "exploratory_fitted_model_nonadditivity",
+            "config": {
+              "max_pairs": 250,
+              "screen_rows": 64,
+              "screen_bins": 2,
+              "max_details": 2,
+              "detail_rows": 256,
+              "detail_bins": 4,
+              "min_cell": 3,
+              "prediction_rows": 100000,
+              "seed": 0
+            },
+            "outcome_sd": 1.5174095349722738,
+            "planned_pairs": 10,
+            "screened_pairs": 10,
+            "shortlisted_pairs": 0,
+            "detailed_pairs": 0,
+            "prediction_rows": 2560,
+            "additional_model_fits": 0,
+            "pairs": [
+              {
+                "members": [
+                  "perceived_stress",
+                  "physical_activity"
+                ],
+                "screen": {
+                  "status": "available",
+                  "raw_rms": 0.0,
+                  "standardized_rms": 0.0,
+                  "prediction_rows": 256,
+                  "edges": [
+                    [
+                      -3.262872975843061,
+                      0.020825413722448637,
+                      3.1168214284938864
+                    ],
+                    [
+                      -3.465364508632609,
+                      0.009040576573118865,
+                      3.2038076354852927
+                    ]
+                  ],
+                  "reference_rows": 64,
+                  "missing_reference_rows": 0,
+                  "reference_positions": [
+                    1,
+                    3,
+                    4,
+                    8,
+                    12,
+                    16,
+                    18,
+                    22,
+                    40,
+                    46,
+                    50,
+                    72,
+                    95,
+                    99,
+                    145,
+                    150,
+                    154,
+                    166,
+                    172,
+                    221,
+                    225,
+                    232,
+                    233,
+                    243,
+                    271,
+                    275,
+                    276,
+                    301,
+                    306,
+                    309,
+                    310,
+                    312,
+                    333,
+                    342,
+                    349,
+                    355,
+                    360,
+                    375,
+                    377,
+                    387,
+                    390,
+                    402,
+                    407,
+                    411,
+                    412,
+                    421,
+                    432,
+                    444,
+                    448,
+                    455,
+                    456,
+                    475,
+                    480,
+                    481,
+                    492,
+                    500,
+                    501,
+                    519,
+                    534,
+                    565,
+                    574,
+                    580,
+                    588,
+                    592
+                  ],
+                  "cells": [
+                    {
+                      "i": 0,
+                      "j": 0,
+                      "count": 15,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 0,
+                      "j": 1,
+                      "count": 18,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 1,
+                      "j": 0,
+                      "count": 11,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 1,
+                      "j": 1,
+                      "count": 20,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    }
+                  ],
+                  "requested_bins": 2,
+                  "realized_bins": [
+                    2,
+                    2
+                  ]
+                },
+                "selected_for_detail": false,
+                "detail": {
+                  "status": "not_shortlisted",
+                  "standardized_rms": null,
+                  "raw_rms": null,
+                  "prediction_rows": 0,
+                  "reference_rows": 0,
+                  "cells": []
+                }
+              },
+              {
+                "members": [
+                  "perceived_stress",
+                  "sleep_quality"
+                ],
+                "screen": {
+                  "status": "available",
+                  "raw_rms": 0.0,
+                  "standardized_rms": 0.0,
+                  "prediction_rows": 256,
+                  "edges": [
+                    [
+                      -3.262872975843061,
+                      0.020825413722448637,
+                      3.1168214284938864
+                    ],
+                    [
+                      -3.4662541918772347,
+                      -0.016322294557029597,
+                      3.4853974414748476
+                    ]
+                  ],
+                  "reference_rows": 64,
+                  "missing_reference_rows": 0,
+                  "reference_positions": [
+                    1,
+                    3,
+                    4,
+                    8,
+                    12,
+                    16,
+                    18,
+                    22,
+                    40,
+                    46,
+                    50,
+                    72,
+                    95,
+                    99,
+                    145,
+                    150,
+                    154,
+                    166,
+                    172,
+                    221,
+                    225,
+                    232,
+                    233,
+                    243,
+                    271,
+                    275,
+                    276,
+                    301,
+                    306,
+                    309,
+                    310,
+                    312,
+                    333,
+                    342,
+                    349,
+                    355,
+                    360,
+                    375,
+                    377,
+                    387,
+                    390,
+                    402,
+                    407,
+                    411,
+                    412,
+                    421,
+                    432,
+                    444,
+                    448,
+                    455,
+                    456,
+                    475,
+                    480,
+                    481,
+                    492,
+                    500,
+                    501,
+                    519,
+                    534,
+                    565,
+                    574,
+                    580,
+                    588,
+                    592
+                  ],
+                  "cells": [
+                    {
+                      "i": 0,
+                      "j": 0,
+                      "count": 14,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 0,
+                      "j": 1,
+                      "count": 19,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 1,
+                      "j": 0,
+                      "count": 13,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 1,
+                      "j": 1,
+                      "count": 18,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    }
+                  ],
+                  "requested_bins": 2,
+                  "realized_bins": [
+                    2,
+                    2
+                  ]
+                },
+                "selected_for_detail": false,
+                "detail": {
+                  "status": "not_shortlisted",
+                  "standardized_rms": null,
+                  "raw_rms": null,
+                  "prediction_rows": 0,
+                  "reference_rows": 0,
+                  "cells": []
+                }
+              },
+              {
+                "members": [
+                  "perceived_stress",
+                  "social_support"
+                ],
+                "screen": {
+                  "status": "available",
+                  "raw_rms": 7.704999430931316e-16,
+                  "standardized_rms": 5.077732315074785e-16,
+                  "prediction_rows": 256,
+                  "edges": [
+                    [
+                      -3.262872975843061,
+                      0.020825413722448637,
+                      3.1168214284938864
+                    ],
+                    [
+                      -3.4677792689839904,
+                      -0.1118023472458898,
+                      2.7938342878128637
+                    ]
+                  ],
+                  "reference_rows": 64,
+                  "missing_reference_rows": 0,
+                  "reference_positions": [
+                    1,
+                    3,
+                    4,
+                    8,
+                    12,
+                    16,
+                    18,
+                    22,
+                    40,
+                    46,
+                    50,
+                    72,
+                    95,
+                    99,
+                    145,
+                    150,
+                    154,
+                    166,
+                    172,
+                    221,
+                    225,
+                    232,
+                    233,
+                    243,
+                    271,
+                    275,
+                    276,
+                    301,
+                    306,
+                    309,
+                    310,
+                    312,
+                    333,
+                    342,
+                    349,
+                    355,
+                    360,
+                    375,
+                    377,
+                    387,
+                    390,
+                    402,
+                    407,
+                    411,
+                    412,
+                    421,
+                    432,
+                    444,
+                    448,
+                    455,
+                    456,
+                    475,
+                    480,
+                    481,
+                    492,
+                    500,
+                    501,
+                    519,
+                    534,
+                    565,
+                    574,
+                    580,
+                    588,
+                    592
+                  ],
+                  "cells": [
+                    {
+                      "i": 0,
+                      "j": 0,
+                      "count": 15,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 0,
+                      "j": 1,
+                      "count": 18,
+                      "raw_mean": 5.551115123125783e-17,
+                      "raw_rms": 5.551115123125783e-17,
+                      "standardized_mean": 3.6582840658288156e-17,
+                      "standardized_rms": 3.6582840658288156e-17
+                    },
+                    {
+                      "i": 1,
+                      "j": 0,
+                      "count": 12,
+                      "raw_mean": -1.7763568394002505e-15,
+                      "raw_rms": 1.7763568394002505e-15,
+                      "standardized_mean": -1.170650901065221e-15,
+                      "standardized_rms": 1.170650901065221e-15
+                    },
+                    {
+                      "i": 1,
+                      "j": 1,
+                      "count": 19,
+                      "raw_mean": -6.245004513516506e-17,
+                      "raw_rms": 6.245004513516506e-17,
+                      "standardized_mean": -4.115569574057418e-17,
+                      "standardized_rms": 4.115569574057418e-17
+                    }
+                  ],
+                  "requested_bins": 2,
+                  "realized_bins": [
+                    2,
+                    2
+                  ]
+                },
+                "selected_for_detail": false,
+                "detail": {
+                  "status": "not_shortlisted",
+                  "standardized_rms": null,
+                  "raw_rms": null,
+                  "prediction_rows": 0,
+                  "reference_rows": 0,
+                  "cells": []
+                }
+              },
+              {
+                "members": [
+                  "perceived_stress",
+                  "work_demands"
+                ],
+                "screen": {
+                  "status": "available",
+                  "raw_rms": 0.0,
+                  "standardized_rms": 0.0,
+                  "prediction_rows": 256,
+                  "edges": [
+                    [
+                      -3.262872975843061,
+                      0.020825413722448637,
+                      3.1168214284938864
+                    ],
+                    [
+                      -3.4867311804136167,
+                      0.02441543242638263,
+                      2.979998405680301
+                    ]
+                  ],
+                  "reference_rows": 64,
+                  "missing_reference_rows": 0,
+                  "reference_positions": [
+                    1,
+                    3,
+                    4,
+                    8,
+                    12,
+                    16,
+                    18,
+                    22,
+                    40,
+                    46,
+                    50,
+                    72,
+                    95,
+                    99,
+                    145,
+                    150,
+                    154,
+                    166,
+                    172,
+                    221,
+                    225,
+                    232,
+                    233,
+                    243,
+                    271,
+                    275,
+                    276,
+                    301,
+                    306,
+                    309,
+                    310,
+                    312,
+                    333,
+                    342,
+                    349,
+                    355,
+                    360,
+                    375,
+                    377,
+                    387,
+                    390,
+                    402,
+                    407,
+                    411,
+                    412,
+                    421,
+                    432,
+                    444,
+                    448,
+                    455,
+                    456,
+                    475,
+                    480,
+                    481,
+                    492,
+                    500,
+                    501,
+                    519,
+                    534,
+                    565,
+                    574,
+                    580,
+                    588,
+                    592
+                  ],
+                  "cells": [
+                    {
+                      "i": 0,
+                      "j": 0,
+                      "count": 17,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 0,
+                      "j": 1,
+                      "count": 16,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 1,
+                      "j": 0,
+                      "count": 16,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 1,
+                      "j": 1,
+                      "count": 15,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    }
+                  ],
+                  "requested_bins": 2,
+                  "realized_bins": [
+                    2,
+                    2
+                  ]
+                },
+                "selected_for_detail": false,
+                "detail": {
+                  "status": "not_shortlisted",
+                  "standardized_rms": null,
+                  "raw_rms": null,
+                  "prediction_rows": 0,
+                  "reference_rows": 0,
+                  "cells": []
+                }
+              },
+              {
+                "members": [
+                  "physical_activity",
+                  "sleep_quality"
+                ],
+                "screen": {
+                  "status": "available",
+                  "raw_rms": 0.0,
+                  "standardized_rms": 0.0,
+                  "prediction_rows": 256,
+                  "edges": [
+                    [
+                      -3.465364508632609,
+                      0.009040576573118865,
+                      3.2038076354852927
+                    ],
+                    [
+                      -3.4662541918772347,
+                      -0.016322294557029597,
+                      3.4853974414748476
+                    ]
+                  ],
+                  "reference_rows": 64,
+                  "missing_reference_rows": 0,
+                  "reference_positions": [
+                    1,
+                    3,
+                    4,
+                    8,
+                    12,
+                    16,
+                    18,
+                    22,
+                    40,
+                    46,
+                    50,
+                    72,
+                    95,
+                    99,
+                    145,
+                    150,
+                    154,
+                    166,
+                    172,
+                    221,
+                    225,
+                    232,
+                    233,
+                    243,
+                    271,
+                    275,
+                    276,
+                    301,
+                    306,
+                    309,
+                    310,
+                    312,
+                    333,
+                    342,
+                    349,
+                    355,
+                    360,
+                    375,
+                    377,
+                    387,
+                    390,
+                    402,
+                    407,
+                    411,
+                    412,
+                    421,
+                    432,
+                    444,
+                    448,
+                    455,
+                    456,
+                    475,
+                    480,
+                    481,
+                    492,
+                    500,
+                    501,
+                    519,
+                    534,
+                    565,
+                    574,
+                    580,
+                    588,
+                    592
+                  ],
+                  "cells": [
+                    {
+                      "i": 0,
+                      "j": 0,
+                      "count": 10,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 0,
+                      "j": 1,
+                      "count": 16,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 1,
+                      "j": 0,
+                      "count": 17,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 1,
+                      "j": 1,
+                      "count": 21,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    }
+                  ],
+                  "requested_bins": 2,
+                  "realized_bins": [
+                    2,
+                    2
+                  ]
+                },
+                "selected_for_detail": false,
+                "detail": {
+                  "status": "not_shortlisted",
+                  "standardized_rms": null,
+                  "raw_rms": null,
+                  "prediction_rows": 0,
+                  "reference_rows": 0,
+                  "cells": []
+                }
+              },
+              {
+                "members": [
+                  "physical_activity",
+                  "social_support"
+                ],
+                "screen": {
+                  "status": "available",
+                  "raw_rms": 2.8792359986653163e-16,
+                  "standardized_rms": 1.8974679757221414e-16,
+                  "prediction_rows": 256,
+                  "edges": [
+                    [
+                      -3.465364508632609,
+                      0.009040576573118865,
+                      3.2038076354852927
+                    ],
+                    [
+                      -3.4677792689839904,
+                      -0.1118023472458898,
+                      2.7938342878128637
+                    ]
+                  ],
+                  "reference_rows": 64,
+                  "missing_reference_rows": 0,
+                  "reference_positions": [
+                    1,
+                    3,
+                    4,
+                    8,
+                    12,
+                    16,
+                    18,
+                    22,
+                    40,
+                    46,
+                    50,
+                    72,
+                    95,
+                    99,
+                    145,
+                    150,
+                    154,
+                    166,
+                    172,
+                    221,
+                    225,
+                    232,
+                    233,
+                    243,
+                    271,
+                    275,
+                    276,
+                    301,
+                    306,
+                    309,
+                    310,
+                    312,
+                    333,
+                    342,
+                    349,
+                    355,
+                    360,
+                    375,
+                    377,
+                    387,
+                    390,
+                    402,
+                    407,
+                    411,
+                    412,
+                    421,
+                    432,
+                    444,
+                    448,
+                    455,
+                    456,
+                    475,
+                    480,
+                    481,
+                    492,
+                    500,
+                    501,
+                    519,
+                    534,
+                    565,
+                    574,
+                    580,
+                    588,
+                    592
+                  ],
+                  "cells": [
+                    {
+                      "i": 0,
+                      "j": 0,
+                      "count": 11,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 0,
+                      "j": 1,
+                      "count": 15,
+                      "raw_mean": -1.258252761241844e-16,
+                      "raw_rms": 2.490795521017214e-16,
+                      "standardized_mean": -8.292110549211983e-17,
+                      "standardized_rms": 1.6414787594324205e-16
+                    },
+                    {
+                      "i": 1,
+                      "j": 0,
+                      "count": 16,
+                      "raw_mean": -1.1102230246251565e-16,
+                      "raw_rms": 4.440892098500626e-16,
+                      "standardized_mean": -7.316568131657631e-17,
+                      "standardized_rms": 2.9266272526630525e-16
+                    },
+                    {
+                      "i": 1,
+                      "j": 1,
+                      "count": 22,
+                      "raw_mean": -7.254298172266648e-18,
+                      "raw_rms": 2.354441633318346e-16,
+                      "standardized_mean": -4.780712131480839e-18,
+                      "standardized_rms": 1.5516191107639024e-16
+                    }
+                  ],
+                  "requested_bins": 2,
+                  "realized_bins": [
+                    2,
+                    2
+                  ]
+                },
+                "selected_for_detail": false,
+                "detail": {
+                  "status": "not_shortlisted",
+                  "standardized_rms": null,
+                  "raw_rms": null,
+                  "prediction_rows": 0,
+                  "reference_rows": 0,
+                  "cells": []
+                }
+              },
+              {
+                "members": [
+                  "physical_activity",
+                  "work_demands"
+                ],
+                "screen": {
+                  "status": "available",
+                  "raw_rms": 0.0,
+                  "standardized_rms": 0.0,
+                  "prediction_rows": 256,
+                  "edges": [
+                    [
+                      -3.465364508632609,
+                      0.009040576573118865,
+                      3.2038076354852927
+                    ],
+                    [
+                      -3.4867311804136167,
+                      0.02441543242638263,
+                      2.979998405680301
+                    ]
+                  ],
+                  "reference_rows": 64,
+                  "missing_reference_rows": 0,
+                  "reference_positions": [
+                    1,
+                    3,
+                    4,
+                    8,
+                    12,
+                    16,
+                    18,
+                    22,
+                    40,
+                    46,
+                    50,
+                    72,
+                    95,
+                    99,
+                    145,
+                    150,
+                    154,
+                    166,
+                    172,
+                    221,
+                    225,
+                    232,
+                    233,
+                    243,
+                    271,
+                    275,
+                    276,
+                    301,
+                    306,
+                    309,
+                    310,
+                    312,
+                    333,
+                    342,
+                    349,
+                    355,
+                    360,
+                    375,
+                    377,
+                    387,
+                    390,
+                    402,
+                    407,
+                    411,
+                    412,
+                    421,
+                    432,
+                    444,
+                    448,
+                    455,
+                    456,
+                    475,
+                    480,
+                    481,
+                    492,
+                    500,
+                    501,
+                    519,
+                    534,
+                    565,
+                    574,
+                    580,
+                    588,
+                    592
+                  ],
+                  "cells": [
+                    {
+                      "i": 0,
+                      "j": 0,
+                      "count": 15,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 0,
+                      "j": 1,
+                      "count": 11,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 1,
+                      "j": 0,
+                      "count": 18,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 1,
+                      "j": 1,
+                      "count": 20,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    }
+                  ],
+                  "requested_bins": 2,
+                  "realized_bins": [
+                    2,
+                    2
+                  ]
+                },
+                "selected_for_detail": false,
+                "detail": {
+                  "status": "not_shortlisted",
+                  "standardized_rms": null,
+                  "raw_rms": null,
+                  "prediction_rows": 0,
+                  "reference_rows": 0,
+                  "cells": []
+                }
+              },
+              {
+                "members": [
+                  "sleep_quality",
+                  "social_support"
+                ],
+                "screen": {
+                  "status": "available",
+                  "raw_rms": 2.8792359986653163e-16,
+                  "standardized_rms": 1.8974679757221414e-16,
+                  "prediction_rows": 256,
+                  "edges": [
+                    [
+                      -3.4662541918772347,
+                      -0.016322294557029597,
+                      3.4853974414748476
+                    ],
+                    [
+                      -3.4677792689839904,
+                      -0.1118023472458898,
+                      2.7938342878128637
+                    ]
+                  ],
+                  "reference_rows": 64,
+                  "missing_reference_rows": 0,
+                  "reference_positions": [
+                    1,
+                    3,
+                    4,
+                    8,
+                    12,
+                    16,
+                    18,
+                    22,
+                    40,
+                    46,
+                    50,
+                    72,
+                    95,
+                    99,
+                    145,
+                    150,
+                    154,
+                    166,
+                    172,
+                    221,
+                    225,
+                    232,
+                    233,
+                    243,
+                    271,
+                    275,
+                    276,
+                    301,
+                    306,
+                    309,
+                    310,
+                    312,
+                    333,
+                    342,
+                    349,
+                    355,
+                    360,
+                    375,
+                    377,
+                    387,
+                    390,
+                    402,
+                    407,
+                    411,
+                    412,
+                    421,
+                    432,
+                    444,
+                    448,
+                    455,
+                    456,
+                    475,
+                    480,
+                    481,
+                    492,
+                    500,
+                    501,
+                    519,
+                    534,
+                    565,
+                    574,
+                    580,
+                    588,
+                    592
+                  ],
+                  "cells": [
+                    {
+                      "i": 0,
+                      "j": 0,
+                      "count": 8,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 0,
+                      "j": 1,
+                      "count": 19,
+                      "raw_mean": -8.764918615461762e-17,
+                      "raw_rms": 2.5085299841641333e-16,
+                      "standardized_mean": -5.776237998677078e-17,
+                      "standardized_rms": 1.6531660875651275e-16
+                    },
+                    {
+                      "i": 1,
+                      "j": 0,
+                      "count": 19,
+                      "raw_mean": -9.349246523159212e-17,
+                      "raw_rms": 4.075242079270001e-16,
+                      "standardized_mean": -6.161320531922216e-17,
+                      "standardized_rms": 2.685657355741121e-16
+                    },
+                    {
+                      "i": 1,
+                      "j": 1,
+                      "count": 18,
+                      "raw_mean": -2.1202175817494308e-17,
+                      "raw_rms": 2.3028231811878747e-16,
+                      "standardized_mean": -1.3972612751429504e-17,
+                      "standardized_rms": 1.51760162837645e-16
+                    }
+                  ],
+                  "requested_bins": 2,
+                  "realized_bins": [
+                    2,
+                    2
+                  ]
+                },
+                "selected_for_detail": false,
+                "detail": {
+                  "status": "not_shortlisted",
+                  "standardized_rms": null,
+                  "raw_rms": null,
+                  "prediction_rows": 0,
+                  "reference_rows": 0,
+                  "cells": []
+                }
+              },
+              {
+                "members": [
+                  "sleep_quality",
+                  "work_demands"
+                ],
+                "screen": {
+                  "status": "available",
+                  "raw_rms": 0.0,
+                  "standardized_rms": 0.0,
+                  "prediction_rows": 256,
+                  "edges": [
+                    [
+                      -3.4662541918772347,
+                      -0.016322294557029597,
+                      3.4853974414748476
+                    ],
+                    [
+                      -3.4867311804136167,
+                      0.02441543242638263,
+                      2.979998405680301
+                    ]
+                  ],
+                  "reference_rows": 64,
+                  "missing_reference_rows": 0,
+                  "reference_positions": [
+                    1,
+                    3,
+                    4,
+                    8,
+                    12,
+                    16,
+                    18,
+                    22,
+                    40,
+                    46,
+                    50,
+                    72,
+                    95,
+                    99,
+                    145,
+                    150,
+                    154,
+                    166,
+                    172,
+                    221,
+                    225,
+                    232,
+                    233,
+                    243,
+                    271,
+                    275,
+                    276,
+                    301,
+                    306,
+                    309,
+                    310,
+                    312,
+                    333,
+                    342,
+                    349,
+                    355,
+                    360,
+                    375,
+                    377,
+                    387,
+                    390,
+                    402,
+                    407,
+                    411,
+                    412,
+                    421,
+                    432,
+                    444,
+                    448,
+                    455,
+                    456,
+                    475,
+                    480,
+                    481,
+                    492,
+                    500,
+                    501,
+                    519,
+                    534,
+                    565,
+                    574,
+                    580,
+                    588,
+                    592
+                  ],
+                  "cells": [
+                    {
+                      "i": 0,
+                      "j": 0,
+                      "count": 15,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 0,
+                      "j": 1,
+                      "count": 12,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 1,
+                      "j": 0,
+                      "count": 18,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 1,
+                      "j": 1,
+                      "count": 19,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    }
+                  ],
+                  "requested_bins": 2,
+                  "realized_bins": [
+                    2,
+                    2
+                  ]
+                },
+                "selected_for_detail": false,
+                "detail": {
+                  "status": "not_shortlisted",
+                  "standardized_rms": null,
+                  "raw_rms": null,
+                  "prediction_rows": 0,
+                  "reference_rows": 0,
+                  "cells": []
+                }
+              },
+              {
+                "members": [
+                  "social_support",
+                  "work_demands"
+                ],
+                "screen": {
+                  "status": "available",
+                  "raw_rms": 0.0,
+                  "standardized_rms": 0.0,
+                  "prediction_rows": 256,
+                  "edges": [
+                    [
+                      -3.4677792689839904,
+                      -0.1118023472458898,
+                      2.7938342878128637
+                    ],
+                    [
+                      -3.4867311804136167,
+                      0.02441543242638263,
+                      2.979998405680301
+                    ]
+                  ],
+                  "reference_rows": 64,
+                  "missing_reference_rows": 0,
+                  "reference_positions": [
+                    1,
+                    3,
+                    4,
+                    8,
+                    12,
+                    16,
+                    18,
+                    22,
+                    40,
+                    46,
+                    50,
+                    72,
+                    95,
+                    99,
+                    145,
+                    150,
+                    154,
+                    166,
+                    172,
+                    221,
+                    225,
+                    232,
+                    233,
+                    243,
+                    271,
+                    275,
+                    276,
+                    301,
+                    306,
+                    309,
+                    310,
+                    312,
+                    333,
+                    342,
+                    349,
+                    355,
+                    360,
+                    375,
+                    377,
+                    387,
+                    390,
+                    402,
+                    407,
+                    411,
+                    412,
+                    421,
+                    432,
+                    444,
+                    448,
+                    455,
+                    456,
+                    475,
+                    480,
+                    481,
+                    492,
+                    500,
+                    501,
+                    519,
+                    534,
+                    565,
+                    574,
+                    580,
+                    588,
+                    592
+                  ],
+                  "cells": [
+                    {
+                      "i": 0,
+                      "j": 0,
+                      "count": 13,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 0,
+                      "j": 1,
+                      "count": 14,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 1,
+                      "j": 0,
+                      "count": 20,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    },
+                    {
+                      "i": 1,
+                      "j": 1,
+                      "count": 17,
+                      "raw_mean": 0.0,
+                      "raw_rms": 0.0,
+                      "standardized_mean": 0.0,
+                      "standardized_rms": 0.0
+                    }
+                  ],
+                  "requested_bins": 2,
+                  "realized_bins": [
+                    2,
+                    2
+                  ]
+                },
+                "selected_for_detail": false,
+                "detail": {
+                  "status": "not_shortlisted",
+                  "standardized_rms": null,
+                  "raw_rms": null,
+                  "prediction_rows": 0,
+                  "reference_rows": 0,
+                  "cells": []
+                }
+              }
+            ],
+            "repeat": 0,
+            "fold": 0
+          }
+        ]
+      }
+    }
+  ]
+}
