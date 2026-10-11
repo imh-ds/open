@@ -1,0 +1,631 @@
+{
+  "schema": "open.selection_investigation.v1",
+  "tasks": [
+    {
+      "id": "interaction-n80-p5-full-gbm_shipped-all",
+      "kind": "model",
+      "case": "interaction-n80-p5",
+      "scope": "full",
+      "variant": "gbm_shipped",
+      "inputs": "all"
+    },
+    {
+      "id": "interaction-n80-p5-full-gbm_shipped-signal",
+      "kind": "model",
+      "case": "interaction-n80-p5",
+      "scope": "full",
+      "variant": "gbm_shipped",
+      "inputs": "signal"
+    },
+    {
+      "id": "interaction-n80-p5-full-gbm_deeper-all",
+      "kind": "model",
+      "case": "interaction-n80-p5",
+      "scope": "full",
+      "variant": "gbm_deeper",
+      "inputs": "all"
+    },
+    {
+      "id": "interaction-n80-p5-full-gbm_deeper-signal",
+      "kind": "model",
+      "case": "interaction-n80-p5",
+      "scope": "full",
+      "variant": "gbm_deeper",
+      "inputs": "signal"
+    },
+    {
+      "id": "interaction-n80-p5-full-rf_shipped-all",
+      "kind": "model",
+      "case": "interaction-n80-p5",
+      "scope": "full",
+      "variant": "rf_shipped",
+      "inputs": "all"
+    },
+    {
+      "id": "interaction-n80-p5-full-rf_shipped-signal",
+      "kind": "model",
+      "case": "interaction-n80-p5",
+      "scope": "full",
+      "variant": "rf_shipped",
+      "inputs": "signal"
+    },
+    {
+      "id": "interaction-n80-p5-full-linear-product",
+      "kind": "model",
+      "case": "interaction-n80-p5",
+      "scope": "full",
+      "variant": "linear",
+      "inputs": "product"
+    },
+    {
+      "id": "interaction-n80-p5-sample0-gbm_shipped-all",
+      "kind": "model",
+      "case": "interaction-n80-p5",
+      "scope": "sample0",
+      "variant": "gbm_shipped",
+      "inputs": "all"
+    },
+    {
+      "id": "interaction-n80-p5-sample0-gbm_shipped-signal",
+      "kind": "model",
+      "case": "interaction-n80-p5",
+      "scope": "sample0",
+      "variant": "gbm_shipped",
+      "inputs": "signal"
+    },
+    {
+      "id": "interaction-n80-p5-sample0-gbm_deeper-all",
+      "kind": "model",
+      "case": "interaction-n80-p5",
+      "scope": "sample0",
+      "variant": "gbm_deeper",
+      "inputs": "all"
+    },
+    {
+      "id": "interaction-n80-p5-sample0-gbm_deeper-signal",
+      "kind": "model",
+      "case": "interaction-n80-p5",
+      "scope": "sample0",
+      "variant": "gbm_deeper",
+      "inputs": "signal"
+    },
+    {
+      "id": "interaction-n80-p5-sample0-rf_shipped-all",
+      "kind": "model",
+      "case": "interaction-n80-p5",
+      "scope": "sample0",
+      "variant": "rf_shipped",
+      "inputs": "all"
+    },
+    {
+      "id": "interaction-n80-p5-sample0-rf_shipped-signal",
+      "kind": "model",
+      "case": "interaction-n80-p5",
+      "scope": "sample0",
+      "variant": "rf_shipped",
+      "inputs": "signal"
+    },
+    {
+      "id": "interaction-n80-p5-sample0-linear-product",
+      "kind": "model",
+      "case": "interaction-n80-p5",
+      "scope": "sample0",
+      "variant": "linear",
+      "inputs": "product"
+    },
+    {
+      "id": "interaction-n300-p5-full-gbm_shipped-all",
+      "kind": "model",
+      "case": "interaction-n300-p5",
+      "scope": "full",
+      "variant": "gbm_shipped",
+      "inputs": "all"
+    },
+    {
+      "id": "interaction-n300-p5-full-gbm_shipped-signal",
+      "kind": "model",
+      "case": "interaction-n300-p5",
+      "scope": "full",
+      "variant": "gbm_shipped",
+      "inputs": "signal"
+    },
+    {
+      "id": "interaction-n300-p5-full-gbm_deeper-all",
+      "kind": "model",
+      "case": "interaction-n300-p5",
+      "scope": "full",
+      "variant": "gbm_deeper",
+      "inputs": "all"
+    },
+    {
+      "id": "interaction-n300-p5-full-gbm_deeper-signal",
+      "kind": "model",
+      "case": "interaction-n300-p5",
+      "scope": "full",
+      "variant": "gbm_deeper",
+      "inputs": "signal"
+    },
+    {
+      "id": "interaction-n300-p5-full-rf_shipped-all",
+      "kind": "model",
+      "case": "interaction-n300-p5",
+      "scope": "full",
+      "variant": "rf_shipped",
+      "inputs": "all"
+    },
+    {
+      "id": "interaction-n300-p5-full-rf_shipped-signal",
+      "kind": "model",
+      "case": "interaction-n300-p5",
+      "scope": "full",
+      "variant": "rf_shipped",
+      "inputs": "signal"
+    },
+    {
+      "id": "interaction-n300-p5-full-linear-product",
+      "kind": "model",
+      "case": "interaction-n300-p5",
+      "scope": "full",
+      "variant": "linear",
+      "inputs": "product"
+    },
+    {
+      "id": "interaction-n300-p5-sample0-gbm_shipped-all",
+      "kind": "model",
+      "case": "interaction-n300-p5",
+      "scope": "sample0",
+      "variant": "gbm_shipped",
+      "inputs": "all"
+    },
+    {
+      "id": "interaction-n300-p5-sample0-gbm_shipped-signal",
+      "kind": "model",
+      "case": "interaction-n300-p5",
+      "scope": "sample0",
+      "variant": "gbm_shipped",
+      "inputs": "signal"
+    },
+    {
+      "id": "interaction-n300-p5-sample0-gbm_deeper-all",
+      "kind": "model",
+      "case": "interaction-n300-p5",
+      "scope": "sample0",
+      "variant": "gbm_deeper",
+      "inputs": "all"
+    },
+    {
+      "id": "interaction-n300-p5-sample0-gbm_deeper-signal",
+      "kind": "model",
+      "case": "interaction-n300-p5",
+      "scope": "sample0",
+      "variant": "gbm_deeper",
+      "inputs": "signal"
+    },
+    {
+      "id": "interaction-n300-p5-sample0-rf_shipped-all",
+      "kind": "model",
+      "case": "interaction-n300-p5",
+      "scope": "sample0",
+      "variant": "rf_shipped",
+      "inputs": "all"
+    },
+    {
+      "id": "interaction-n300-p5-sample0-rf_shipped-signal",
+      "kind": "model",
+      "case": "interaction-n300-p5",
+      "scope": "sample0",
+      "variant": "rf_shipped",
+      "inputs": "signal"
+    },
+    {
+      "id": "interaction-n300-p5-sample0-linear-product",
+      "kind": "model",
+      "case": "interaction-n300-p5",
+      "scope": "sample0",
+      "variant": "linear",
+      "inputs": "product"
+    },
+    {
+      "id": "interaction-n300-p15-full-gbm_shipped-all",
+      "kind": "model",
+      "case": "interaction-n300-p15",
+      "scope": "full",
+      "variant": "gbm_shipped",
+      "inputs": "all"
+    },
+    {
+      "id": "interaction-n300-p15-full-gbm_shipped-signal",
+      "kind": "model",
+      "case": "interaction-n300-p15",
+      "scope": "full",
+      "variant": "gbm_shipped",
+      "inputs": "signal"
+    },
+    {
+      "id": "interaction-n300-p15-full-gbm_deeper-all",
+      "kind": "model",
+      "case": "interaction-n300-p15",
+      "scope": "full",
+      "variant": "gbm_deeper",
+      "inputs": "all"
+    },
+    {
+      "id": "interaction-n300-p15-full-gbm_deeper-signal",
+      "kind": "model",
+      "case": "interaction-n300-p15",
+      "scope": "full",
+      "variant": "gbm_deeper",
+      "inputs": "signal"
+    },
+    {
+      "id": "interaction-n300-p15-full-rf_shipped-all",
+      "kind": "model",
+      "case": "interaction-n300-p15",
+      "scope": "full",
+      "variant": "rf_shipped",
+      "inputs": "all"
+    },
+    {
+      "id": "interaction-n300-p15-full-rf_shipped-signal",
+      "kind": "model",
+      "case": "interaction-n300-p15",
+      "scope": "full",
+      "variant": "rf_shipped",
+      "inputs": "signal"
+    },
+    {
+      "id": "interaction-n300-p15-full-linear-product",
+      "kind": "model",
+      "case": "interaction-n300-p15",
+      "scope": "full",
+      "variant": "linear",
+      "inputs": "product"
+    },
+    {
+      "id": "interaction-n300-p15-sample0-gbm_shipped-all",
+      "kind": "model",
+      "case": "interaction-n300-p15",
+      "scope": "sample0",
+      "variant": "gbm_shipped",
+      "inputs": "all"
+    },
+    {
+      "id": "interaction-n300-p15-sample0-gbm_shipped-signal",
+      "kind": "model",
+      "case": "interaction-n300-p15",
+      "scope": "sample0",
+      "variant": "gbm_shipped",
+      "inputs": "signal"
+    },
+    {
+      "id": "interaction-n300-p15-sample0-gbm_deeper-all",
+      "kind": "model",
+      "case": "interaction-n300-p15",
+      "scope": "sample0",
+      "variant": "gbm_deeper",
+      "inputs": "all"
+    },
+    {
+      "id": "interaction-n300-p15-sample0-gbm_deeper-signal",
+      "kind": "model",
+      "case": "interaction-n300-p15",
+      "scope": "sample0",
+      "variant": "gbm_deeper",
+      "inputs": "signal"
+    },
+    {
+      "id": "interaction-n300-p15-sample0-rf_shipped-all",
+      "kind": "model",
+      "case": "interaction-n300-p15",
+      "scope": "sample0",
+      "variant": "rf_shipped",
+      "inputs": "all"
+    },
+    {
+      "id": "interaction-n300-p15-sample0-rf_shipped-signal",
+      "kind": "model",
+      "case": "interaction-n300-p15",
+      "scope": "sample0",
+      "variant": "rf_shipped",
+      "inputs": "signal"
+    },
+    {
+      "id": "interaction-n300-p15-sample0-linear-product",
+      "kind": "model",
+      "case": "interaction-n300-p15",
+      "scope": "sample0",
+      "variant": "linear",
+      "inputs": "product"
+    },
+    {
+      "id": "chain-n80-p5-full-gbm_shipped-all",
+      "kind": "model",
+      "case": "chain-n80-p5",
+      "scope": "full",
+      "variant": "gbm_shipped",
+      "inputs": "all"
+    },
+    {
+      "id": "chain-n80-p5-full-gbm_shipped-signal",
+      "kind": "model",
+      "case": "chain-n80-p5",
+      "scope": "full",
+      "variant": "gbm_shipped",
+      "inputs": "signal"
+    },
+    {
+      "id": "chain-n80-p5-full-gbm_shipped-signal_noise",
+      "kind": "model",
+      "case": "chain-n80-p5",
+      "scope": "full",
+      "variant": "gbm_shipped",
+      "inputs": "signal_noise"
+    },
+    {
+      "id": "chain-n80-p5-full-gbm_shipped-noise",
+      "kind": "model",
+      "case": "chain-n80-p5",
+      "scope": "full",
+      "variant": "gbm_shipped",
+      "inputs": "noise"
+    },
+    {
+      "id": "chain-n80-p5-full-gbm_shipped-without_noise",
+      "kind": "model",
+      "case": "chain-n80-p5",
+      "scope": "full",
+      "variant": "gbm_shipped",
+      "inputs": "without_noise"
+    },
+    {
+      "id": "chain-n80-p5-full-rf_shipped-all",
+      "kind": "model",
+      "case": "chain-n80-p5",
+      "scope": "full",
+      "variant": "rf_shipped",
+      "inputs": "all"
+    },
+    {
+      "id": "chain-n80-p5-full-rf_shipped-signal_noise",
+      "kind": "model",
+      "case": "chain-n80-p5",
+      "scope": "full",
+      "variant": "rf_shipped",
+      "inputs": "signal_noise"
+    },
+    {
+      "id": "chain-n80-p5-full-linear-all",
+      "kind": "model",
+      "case": "chain-n80-p5",
+      "scope": "full",
+      "variant": "linear",
+      "inputs": "all"
+    },
+    {
+      "id": "chain-n80-p5-full-linear-signal",
+      "kind": "model",
+      "case": "chain-n80-p5",
+      "scope": "full",
+      "variant": "linear",
+      "inputs": "signal"
+    },
+    {
+      "id": "chain-n80-p5-full-linear-signal_noise",
+      "kind": "model",
+      "case": "chain-n80-p5",
+      "scope": "full",
+      "variant": "linear",
+      "inputs": "signal_noise"
+    },
+    {
+      "id": "chain-n80-p5-full-linear-noise",
+      "kind": "model",
+      "case": "chain-n80-p5",
+      "scope": "full",
+      "variant": "linear",
+      "inputs": "noise"
+    },
+    {
+      "id": "chain-n80-p5-sample0-gbm_shipped-all",
+      "kind": "model",
+      "case": "chain-n80-p5",
+      "scope": "sample0",
+      "variant": "gbm_shipped",
+      "inputs": "all"
+    },
+    {
+      "id": "chain-n80-p5-sample0-gbm_shipped-signal",
+      "kind": "model",
+      "case": "chain-n80-p5",
+      "scope": "sample0",
+      "variant": "gbm_shipped",
+      "inputs": "signal"
+    },
+    {
+      "id": "chain-n80-p5-sample0-gbm_shipped-signal_noise",
+      "kind": "model",
+      "case": "chain-n80-p5",
+      "scope": "sample0",
+      "variant": "gbm_shipped",
+      "inputs": "signal_noise"
+    },
+    {
+      "id": "chain-n80-p5-sample0-gbm_shipped-noise",
+      "kind": "model",
+      "case": "chain-n80-p5",
+      "scope": "sample0",
+      "variant": "gbm_shipped",
+      "inputs": "noise"
+    },
+    {
+      "id": "chain-n80-p5-sample0-gbm_shipped-without_noise",
+      "kind": "model",
+      "case": "chain-n80-p5",
+      "scope": "sample0",
+      "variant": "gbm_shipped",
+      "inputs": "without_noise"
+    },
+    {
+      "id": "chain-n80-p5-sample0-rf_shipped-all",
+      "kind": "model",
+      "case": "chain-n80-p5",
+      "scope": "sample0",
+      "variant": "rf_shipped",
+      "inputs": "all"
+    },
+    {
+      "id": "chain-n80-p5-sample0-rf_shipped-signal_noise",
+      "kind": "model",
+      "case": "chain-n80-p5",
+      "scope": "sample0",
+      "variant": "rf_shipped",
+      "inputs": "signal_noise"
+    },
+    {
+      "id": "chain-n80-p5-sample0-linear-all",
+      "kind": "model",
+      "case": "chain-n80-p5",
+      "scope": "sample0",
+      "variant": "linear",
+      "inputs": "all"
+    },
+    {
+      "id": "chain-n80-p5-sample0-linear-signal",
+      "kind": "model",
+      "case": "chain-n80-p5",
+      "scope": "sample0",
+      "variant": "linear",
+      "inputs": "signal"
+    },
+    {
+      "id": "chain-n80-p5-sample0-linear-signal_noise",
+      "kind": "model",
+      "case": "chain-n80-p5",
+      "scope": "sample0",
+      "variant": "linear",
+      "inputs": "signal_noise"
+    },
+    {
+      "id": "chain-n80-p5-sample0-linear-noise",
+      "kind": "model",
+      "case": "chain-n80-p5",
+      "scope": "sample0",
+      "variant": "linear",
+      "inputs": "noise"
+    },
+    {
+      "id": "chain-n80-p5-loco-000",
+      "kind": "loco",
+      "case": "chain-n80-p5",
+      "run": 0
+    },
+    {
+      "id": "chain-n80-p5-loco-001",
+      "kind": "loco",
+      "case": "chain-n80-p5",
+      "run": 1
+    },
+    {
+      "id": "chain-n80-p5-loco-002",
+      "kind": "loco",
+      "case": "chain-n80-p5",
+      "run": 2
+    },
+    {
+      "id": "chain-n80-p5-loco-003",
+      "kind": "loco",
+      "case": "chain-n80-p5",
+      "run": 3
+    },
+    {
+      "id": "chain-n80-p5-loco-004",
+      "kind": "loco",
+      "case": "chain-n80-p5",
+      "run": 4
+    },
+    {
+      "id": "chain-n80-p5-loco-005",
+      "kind": "loco",
+      "case": "chain-n80-p5",
+      "run": 5
+    },
+    {
+      "id": "chain-n80-p5-loco-006",
+      "kind": "loco",
+      "case": "chain-n80-p5",
+      "run": 6
+    },
+    {
+      "id": "chain-n80-p5-loco-007",
+      "kind": "loco",
+      "case": "chain-n80-p5",
+      "run": 7
+    },
+    {
+      "id": "chain-n80-p5-loco-008",
+      "kind": "loco",
+      "case": "chain-n80-p5",
+      "run": 8
+    },
+    {
+      "id": "chain-n80-p5-loco-009",
+      "kind": "loco",
+      "case": "chain-n80-p5",
+      "run": 9
+    }
+  ],
+  "sources": {
+    "src/open/__init__.py": "c5a4a22fb1e642599b509753a57139d3223b954f26b4ef4439d82ecde72aad07",
+    "src/open/aggregation.py": "caacf41c36d795ffe9f312c67a5b933e5935a492124854adfb24bd8130e8e492",
+    "src/open/analysis.py": "502a595b0113c501bb005ecd0528e622faa2114f87884f471e830b316219089a",
+    "src/open/classify.py": "89beb02eceb94625bf78be942e65ac55d0410547a50870c8bf9ace94b82b76f6",
+    "src/open/config.py": "8035f8da5fefe953ad723ecfbf4a4ba4fefe70c11a9e438fe9020c382d102330",
+    "src/open/consensus.py": "5b199c5d78df4e73f7dd70cc48937853e7dd31de56390188d1d5b4fb389c60fb",
+    "src/open/dependence/spearman.py": "d57922a5aca7ac7c3929a6b85c9049033ca5819a2cb803d0bb626dc9ba51c83e",
+    "src/open/diagnostics.py": "7eb8b2ad497fc8e79e9b9b50bd79f70811b2b8e0d8fb0c24b5db87a84698d359",
+    "src/open/effects.py": "2869b95e4b871964dbed79f881a501c2e0ec947a3df027bdce6e5fad6b46a36f",
+    "src/open/evaluation.py": "4c22a3eb13ba68377c91d534cc2217c26c6caeb1dbafc31c8415f71a4203f9e3",
+    "src/open/exploration.py": "f02bba4f32f0223595d230ef14bebd0ece593a80d5b61230bfe8ff1208fe0a28",
+    "src/open/exploratory_visualization.py": "ee1b3c1e179f977f3cd1b760dd0d2597d64c7a8610001eb1e5e3698127bd5cc5",
+    "src/open/graph.py": "e6281bc5de47ce4e1458a1d77e864b7e74cabf896ca1a6c898fa45c95686cc90",
+    "src/open/grouping.py": "2d5fcca16114f17457947e509623aea345b5256c796ae6acb3b6aaa96bfd588b",
+    "src/open/io.py": "4d21399d169cb468248679b6d3c29c804240404be888c5d9665ce1464a6320dc",
+    "src/open/layer_artifacts.py": "971d2e53edea6b8b335c63320be4deea5e92d7e385a838e187eebf40503b5885",
+    "src/open/layer_consensus.py": "7db99886ab5baa6889d148a9c58d47bc567eeb92e8d522e252126529db5568cf",
+    "src/open/layer_io.py": "631f63ed1d6b8a0d5c9878d43a0c92aea20d31b0fecd525cc01ff85844281359",
+    "src/open/layer_sensitivity.py": "ff6d3a68704416ed00c316c2f21de00d4f40150da1cd8094f9b2eb6c08976a5f",
+    "src/open/layer_stability.py": "d9fc389dcec490ff0a44da5603d218f9b0426e318bc551f2e2b0214bdc378207",
+    "src/open/layer_types.py": "67c7d2dac27ec4fe25af67d5c8fccbde7dfbdbd20e99cbbfcfb756441b8e06cf",
+    "src/open/layer_visualization.py": "6fe2fdca8f6aced947a62621808078ed08be58dde8810950c8b5c5b2d28fa5fd",
+    "src/open/learners/__init__.py": "7ead0b9a67d455b46002936cc2de788b0a753a8df7eefa97ab7b2812f8178e09",
+    "src/open/learners/base.py": "13bee646851ad61efc4ce16e70b61f94dd22861c12d7d4e9c3c4ea4616037329",
+    "src/open/learners/elastic_net.py": "42575dd04ec4bda6e8eca5ff98a347bf2fd87f4a65a5174e4f97d1a3301dace8",
+    "src/open/learners/trees.py": "35352cabf0b870bec666833ab3110f9ecc0e521fab176ce35715edfd98a7647a",
+    "src/open/local_target.py": "a19b2e4f2bb02e1d2aa9a587d014a1ef4cda7365611a07a918ba9e6f9187447b",
+    "src/open/metadata.py": "d0fbc4e5a49d8d7fd1a1ab98002f6082eba52985f918d13210bca53447849e7d",
+    "src/open/preprocessing.py": "5cc7ffefc457b1dd81a4680b1921d12bafdf89aa2e9af986060f60a954f87e68",
+    "src/open/recurse.py": "4f0830437194bb5650fa790e40eedf07d5eb75fe9bafe8faf0c530814aac248c",
+    "src/open/relevance.py": "179799d68636d025304c139b6a9803f695937537a63b27c9a80c8e4deff603a1",
+    "src/open/reporting.py": "94b8a972e23c7a502685c885b11407ec3e98e3d1b7da1d81ff036560f5c76f05",
+    "src/open/risk.py": "04efafb485a9cfe2e86a41093c1c4eadca6198372797dc59dc9aac3dd501d4f2",
+    "src/open/splits.py": "868e71436eeaae91973917dc83412cc760eb72fca7b25283679b2a438c7664ba",
+    "src/open/stability.py": "f9ee4dbda96bd9447d497a24eac786a2089dd4da7f2ee6489e8f1b5c007cb4b5",
+    "src/open/stability_types.py": "5de840aac8ad4ffc7afa1e4f9dd4429b4bf164bc8ad532ba498863ac27c8f0ce",
+    "src/open/visualization.py": "9f2e9a3ed954611388861c7702e721689e89714841362c0225829397071c5a92",
+    "examples/sample_size_pilot.py": "dfb7327bbe5a2096a6d2942de5768dae0ced56bed906df61aead68f14e7b0486",
+    "examples/run_selection_reliability.py": "6d3ae3522725a129a1ad67832e3a1bb93101fb83550e34689595223169b71315",
+    "examples/selection_investigation.py": "6a83645dc9cfcbeae4ee3b960ec8271b8f6ef8fa6c4e5a2a6662529dff271112",
+    ".github/workflows/selection-investigation.yml": "14fc05ecda0bf227083513226ab35686fa52e6367b186772df61ce023990d9bf",
+    ".github/actions/investigation-setup/action.yml": "0592f3653a936a479c2641e6ddddccccac26a8a2db7fa90c83542b7b69f5d8a8"
+  },
+  "protocol_hash": "1389bae60b5898bb2584fa1b3aecf192ed003d120f7688f7da3e403c93c88f06",
+  "archive_sha256": "a7d9c6a27d0318a52f8b51f293ab33212bbc8431eef6ad274dc59add96a5d13a",
+  "smoke_archive_sha256": "45cd4e528d9bd8fbb46b423a57833a1de629e79e603f96a7674a42ba3cb43406",
+  "continuation": "chain-n300-p15",
+  "assessment_bucket": 10,
+  "workers": 4,
+  "max_parallel": 256,
+  "hard_job_minutes": 360,
+  "test_n": 2000,
+  "automatic_reruns": false
+}
