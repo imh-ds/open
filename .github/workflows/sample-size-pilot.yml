@@ -1,0 +1,117 @@
+name: Sample-size feasibility pilot
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/actions-selection-reliability]
+    paths:
+      - .github/workflows/sample-size-pilot.yml
+      - examples/sample_size_pilot.py
+      - examples/sample_size_pilot_protocol.md
+      - examples/study_manifests/sample-size-pilot.json
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sample-size-pilot-${{ github.ref }}
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  prepare:
+    # Register the workflow on push without accidentally starting costly fitting.
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[run-sample-size-pilot]')
+    runs-on: windows-2022
+    timeout-minutes: 15
+    outputs:
+      cases: ${{ steps.matrix.outputs.cases }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: 3.11.9
+      - run: python -m pip install numpy==1.26.4 pandas==2.2.3 scipy==1.11.2 scikit-learn==1.3.0 PyYAML==6.0.2
+      - run: |
+          New-Item -ItemType Directory -Force examples/results/2026-10-10-sample-size-pilot | Out-Null
+          Copy-Item examples/study_manifests/sample-size-pilot.json examples/results/2026-10-10-sample-size-pilot/manifest.json
+          python examples/sample_size_pilot.py freeze
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - id: matrix
+        run: |
+          $cases = python examples/sample_size_pilot.py matrix
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          "cases=$cases" >> $env:GITHUB_OUTPUT
+
+  case:
+    needs: prepare
+    runs-on: windows-2022
+    timeout-minutes: 110
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        case: ${{ fromJSON(needs.prepare.outputs.cases) }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: 3.11.9
+      - run: python -m pip install numpy==1.26.4 pandas==2.2.3 scipy==1.11.2 scikit-learn==1.3.0 PyYAML==6.0.2
+      - run: |
+          New-Item -ItemType Directory -Force examples/results/2026-10-10-sample-size-pilot | Out-Null
+          Copy-Item examples/study_manifests/sample-size-pilot.json examples/results/2026-10-10-sample-size-pilot/manifest.json
+          python examples/sample_size_pilot.py case --case '${{ matrix.case }}'
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: sample-size-case-${{ matrix.case }}
+          retention-days: 14
+          if-no-files-found: warn
+          path: examples/results/2026-10-10-sample-size-pilot/${{ matrix.case }}/
+
+  audit:
+    needs: [prepare, case]
+    if: always() && needs.prepare.result == 'success'
+    runs-on: windows-2022
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: 3.11.9
+      - run: python -m pip install numpy==1.26.4 pandas==2.2.3 scipy==1.11.2 scikit-learn==1.3.0 PyYAML==6.0.2
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        continue-on-error: true
+        with:
+          pattern: sample-size-case-*
+          merge-multiple: false
+          path: .superpowers/sample-size-artifacts
+      - run: |
+          New-Item -ItemType Directory -Force examples/results/2026-10-10-sample-size-pilot | Out-Null
+          Copy-Item examples/study_manifests/sample-size-pilot.json examples/results/2026-10-10-sample-size-pilot/manifest.json
+          if (Test-Path .superpowers/sample-size-artifacts) {
+            Get-ChildItem .superpowers/sample-size-artifacts -Directory | ForEach-Object {
+              $caseName = $_.Name.Substring('sample-size-case-'.Length)
+              Copy-Item -LiteralPath $_.FullName -Destination "examples/results/2026-10-10-sample-size-pilot/$caseName" -Recurse
+            }
+          }
+          python examples/sample_size_pilot.py audit
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: sample-size-pilot-results
+          retention-days: 30
+          if-no-files-found: error
+          path: examples/results/2026-10-10-sample-size-pilot/
