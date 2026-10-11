@@ -128,5 +128,3 @@ def test_fold_aggregation_keeps_unsupported_in_planned_denominator():
     assert pair['planned_folds']==2 and pair['supported_screen_folds']==1
     assert pair['mean_screen_rms'] is None
     assert pair['status']=='incomplete_support'
-
-

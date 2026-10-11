@@ -37,4 +37,3 @@ flowchart LR
 ![Local joint contrasts](interaction-known_function-0.png)
 
 This shows the first supported detailed fold in saved order, not an aggregate population surface. Cell counts refer to sampled reference observations. Signed means may cancel when effects vary with other variables; RMS retains their magnitude. Bin corners may leave the observed manifold. Other folds and boundaries remain in comparison.json.
-

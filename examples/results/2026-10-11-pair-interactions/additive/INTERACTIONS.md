@@ -24,4 +24,3 @@ Planned folds: 1; evaluated prediction rows: 2560; additional model fits: 0.
 Displayed 0 of 0 supported detailed candidates; rank is not statistical acceptance.
 
 No supported detailed candidates are displayed. Unsupported or unexamined pairs remain unavailable, not zero.
-
