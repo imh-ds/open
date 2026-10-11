@@ -1,0 +1,33 @@
+{
+  "run_id": 38133443512,
+  "source_commit": "31f85727a5e93528a4bec4970764bd0b4365f797",
+  "archive_bytes": 85732366,
+  "archive_sha256": "3ab8bb780b716c478eff2004f7e3967f98f5de86f7a6d90843d3ae4b2e98212f",
+  "complete": 960,
+  "planned": 960,
+  "independent_datasets": 240,
+  "outer_fold_fits": 9600,
+  "cv_prediction_rows": 435200,
+  "test_prediction_rows": 1920000,
+  "unique_test_participants": 480000,
+  "recorded_warnings": 0,
+  "local_aggregate_matches_actions": true,
+  "peak_allocated_jobs": 20,
+  "summed_job_minutes": 222.46666666666673,
+  "workflow_wall_minutes": 15.983333333333333,
+  "cv_positive_counts": {
+    "noise": {
+      "gbm_shipped": 0,
+      "gbm_deeper": 0,
+      "rf_shipped": 3,
+      "benchmark": 0
+    },
+    "interaction": {
+      "gbm_shipped": 37,
+      "gbm_deeper": 45,
+      "rf_shipped": 51,
+      "benchmark": 60
+    }
+  },
+  "local_audit_scope": "Regenerated data/splits, declared-grid and training-size checks, arithmetic and identities. Saved-setting fold/final refits were performed on Actions; tuning winners were not independently retuned."
+}
