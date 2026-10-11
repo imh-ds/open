@@ -51,3 +51,8 @@ Keep prediction, direct-link recovery and recursive-path recovery separate when
 interpreting results. One dataset per condition measures feasibility and exposes
 possible failures; guidance needs a separate study with many independent datasets
 and uncertainty bounds. Historical studies remain unchanged.
+
+The [completed pilot report](results/2026-10-10-sample-size-pilot/REPORT.md)
+records 11 complete cases and one soft-budget stop. It includes interaction
+misses and a stable false root link in the small chain; these findings do not
+support a minimum-N recommendation. Raw evidence is retained in the report folder.
