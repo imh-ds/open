@@ -215,7 +215,7 @@ def _supported_resolution(observed,data,candidates,splits,bins):
 
 def compare_target_engines(data, target, candidates, config, split_plan, *,
                            engines=("elastic_net","random_forest","gbm"), joint_groups=(), bins=10,
-                           adaptive_bins=False):
+                           adaptive_bins=False, interaction_screen=None):
     """Nested-CV comparison on one frozen local problem, with paired ablations.
 
     Reference quantiles/SD are descriptive constants computed from observed
@@ -223,6 +223,9 @@ def compare_target_engines(data, target, candidates, config, split_plan, *,
     ALE uses each outer model on that fold's held-out reference covariates.
     """
     _validate_inputs(data,target,candidates,config,split_plan)
+    from open.interactions import PairScreenConfig,screen_pair_interactions,aggregate_pair_screens
+    if interaction_screen is not None and not isinstance(interaction_screen,PairScreenConfig):
+        raise ValueError('interaction_screen must be PairScreenConfig or None')
     if (not isinstance(engines,tuple) or not engines or len(set(engines))!=len(engines)
             or any(type(e) is not str or e not in ('elastic_net','random_forest','gbm','lightgbm') for e in engines)):
         raise ValueError("engines must be distinct supported engine names")
@@ -293,6 +296,7 @@ def compare_target_engines(data, target, candidates, config, split_plan, *,
             else: joint.append(dict(members=list(group),delta_cv_r2=delta,ablated_mse=ablation.aggregate_risk))
         fold_effects={source:[] for source in candidates}
         coefficients={source:[] for source in candidates}
+        pair_screens=[]
         for split in splits:
             train,test=list(split.train_indices),list(split.test_indices)
             model=predictor.clone().fit(data.iloc[train][list(candidates)],data.iloc[train][target],
@@ -301,6 +305,11 @@ def compare_target_engines(data, target, candidates, config, split_plan, *,
             scored=next(f for f in full.folds if (f.repeat_index,f.fold_index)==(split.repeat,split.fold))
             np.testing.assert_allclose(model.predict(data.iloc[test][list(candidates)]),
                 [row.predicted for row in scored.observations],rtol=1e-12,atol=1e-12)
+            if interaction_screen is not None:
+                screen=screen_pair_interactions(model,data.iloc[test][list(candidates)],
+                    candidates,outcome_sd=outcome_sd,config=interaction_screen)
+                screen.update(repeat=split.repeat,fold=split.fold)
+                pair_screens.append(screen)
             for i,source in enumerate(candidates):
                 ref=reference[source]
                 ale=accumulated_local_effects(model,data.iloc[test][list(candidates)],source,
@@ -357,6 +366,10 @@ def compare_target_engines(data, target, candidates, config, split_plan, *,
             scored_outer_fit_count=sum(r.outer_model_fit_count for r in fits),
             explanatory_refit_count=len(splits),tuning_model_fit_count=full.tuning_model_fit_count,
             effects=effects,joint=joint))
+        if interaction_screen is not None:
+            summary=aggregate_pair_screens(pair_screens)
+            summary.update(config=asdict(interaction_screen),fold_screens=pair_screens)
+            result['engines'][-1]['interactions']=summary
     return json.loads(json.dumps(result,allow_nan=False))
 
 
@@ -385,3 +398,35 @@ def save_engine_comparison(result, directory):
             for engine in result['engines']:
                 for effect in engine['effects']:
                     writer.writerows(dict(engine=effect['engine'],source=effect['source'],target=effect['target'],**row) for row in effect.get(key,()))
+    if any('interactions' in e for e in result['engines']):
+        fields=('engine','target','first','second','planned_folds','supported_screen_folds',
+                'shortlisted_folds','supported_detail_folds','status','mean_screen_rms')
+        with (directory/'interaction_pairs.csv').open('w',newline='',encoding='utf-8') as stream:
+            writer=csv.DictWriter(stream,fields,extrasaction='ignore')
+            writer.writeheader()
+            for engine in result['engines']:
+                for pair in engine.get('interactions',{}).get('pairs',[]):
+                    writer.writerow(dict(engine=engine['engine'],target=result['target'],
+                        first=pair['members'][0],second=pair['members'][1],**pair))
+        fields=('engine','target','first','second','repeat','fold','stage','status',
+                'i','j','count','raw_mean','raw_rms','standardized_mean','standardized_rms')
+        with (directory/'interaction_cells.csv').open('w',newline='',encoding='utf-8') as stream:
+            writer=csv.DictWriter(stream,fields,extrasaction='ignore')
+            writer.writeheader()
+            for engine in result['engines']:
+                for fold in engine.get('interactions',{}).get('fold_screens',[]):
+                    for pair in fold['pairs']:
+                        for stage in ('screen','detail'):
+                            diagnostic=pair[stage]
+                            for cell in diagnostic['cells']:
+                                writer.writerow(dict(engine=engine['engine'],target=result['target'],
+                                    first=pair['members'][0],second=pair['members'][1],
+                                    repeat=fold['repeat'],fold=fold['fold'],stage=stage,
+                                    status=diagnostic['status'],**cell))
+        from open.interaction_visualization import save_interaction_report
+        save_interaction_report(result,directory)
+    else:
+        # These derived files belong to the optional supplement, not the current
+        # opt-out payload. Never leave an older pair report beside a new run.
+        for filename in ('interaction_pairs.csv','interaction_cells.csv','INTERACTIONS.md'):
+            (directory/filename).unlink(missing_ok=True)
