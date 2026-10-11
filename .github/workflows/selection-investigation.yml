@@ -1,0 +1,253 @@
+name: Selection diagnostics and sharded recursive continuation
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/actions-selection-reliability]
+    paths:
+      - .github/workflows/selection-investigation.yml
+      - .github/actions/investigation-setup/action.yml
+      - examples/selection_investigation.py
+      - examples/selection_investigation_protocol.md
+      - examples/study_manifests/selection-investigation.json
+
+permissions:
+  contents: read
+concurrency:
+  group: selection-investigation-${{ github.ref }}
+  cancel-in-progress: false
+defaults:
+  run:
+    shell: pwsh
+env:
+  STUDY_OUT: .superpowers/selection-investigation
+
+jobs:
+  prepare:
+    # Push registers this branch workflow; explicit dispatch starts computation.
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[run-selection-investigation]')
+    runs-on: windows-2022
+    timeout-minutes: 360
+    outputs:
+      tasks: ${{ steps.matrix.outputs.tasks }}
+      shards: ${{ steps.matrix.outputs.shards }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/investigation-setup
+      - id: matrix
+        run: |
+          $tasks = python examples/selection_investigation.py matrix
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          "tasks=$tasks" >> $env:GITHUB_OUTPUT
+          $shards = python examples/selection_investigation.py prepare --output $env:STUDY_OUT
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          if (($shards | ConvertFrom-Json).Count -eq 0) { $shards = '[{"id":"none"}]' }
+          "shards=$shards" >> $env:GITHUB_OUTPUT
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: state-0
+          path: |
+            .superpowers/selection-investigation/continuation/
+            .superpowers/selection-investigation/pending.json
+          include-hidden-files: true
+          retention-days: 30
+          if-no-files-found: error
+
+  diagnostic:
+    needs: prepare
+    runs-on: windows-2022
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      max-parallel: 256
+      matrix:
+        task: ${{ fromJSON(needs.prepare.outputs.tasks) }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/investigation-setup
+      - run: |
+          python examples/selection_investigation.py task --id '${{ matrix.task }}' --output $env:STUDY_OUT
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: diagnostic-${{ matrix.task }}
+          path: .superpowers/selection-investigation/diagnostics/${{ matrix.task }}/
+          include-hidden-files: true
+          retention-days: 30
+          if-no-files-found: warn
+
+  layer-1:
+    needs: prepare
+    runs-on: windows-2022
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      max-parallel: 256
+      matrix:
+        shard: ${{ fromJSON(needs.prepare.outputs.shards) }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/investigation-setup
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: state-0
+          path: .superpowers/selection-investigation/
+      - if: matrix.shard.id != 'none'
+        run: |
+          python examples/selection_investigation.py assessment --id '${{ matrix.shard.id }}' --output $env:STUDY_OUT
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always() && matrix.shard.id != 'none'
+        with:
+          name: completion-1-${{ matrix.shard.id }}
+          path: .superpowers/selection-investigation/shard/
+          include-hidden-files: true
+          retention-days: 30
+          if-no-files-found: warn
+
+  aggregate-1:
+    needs: [prepare, layer-1]
+    if: always() && needs.prepare.result == 'success'
+    runs-on: windows-2022
+    timeout-minutes: 360
+    outputs:
+      shards: ${{ steps.matrix.outputs.shards }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/investigation-setup
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: state-0
+          path: .superpowers/selection-investigation/
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        continue-on-error: true
+        with:
+          pattern: completion-1-*
+          merge-multiple: false
+          path: .superpowers/shards/
+      - id: matrix
+        run: |
+          $shards = python examples/selection_investigation.py merge --downloads .superpowers/shards --output $env:STUDY_OUT
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          if (($shards | ConvertFrom-Json).Count -eq 0) { $shards = '[{"id":"none"}]' }
+          "shards=$shards" >> $env:GITHUB_OUTPUT
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: state-1
+          path: |
+            .superpowers/selection-investigation/continuation/
+            .superpowers/selection-investigation/pending.json
+          include-hidden-files: true
+          retention-days: 30
+          if-no-files-found: warn
+
+  layer-2:
+    needs: aggregate-1
+    runs-on: windows-2022
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      max-parallel: 256
+      matrix:
+        shard: ${{ fromJSON(needs.aggregate-1.outputs.shards) }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/investigation-setup
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: state-1
+          path: .superpowers/selection-investigation/
+      - if: matrix.shard.id != 'none'
+        run: |
+          python examples/selection_investigation.py assessment --id '${{ matrix.shard.id }}' --output $env:STUDY_OUT
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always() && matrix.shard.id != 'none'
+        with:
+          name: completion-2-${{ matrix.shard.id }}
+          path: .superpowers/selection-investigation/shard/
+          include-hidden-files: true
+          retention-days: 30
+          if-no-files-found: warn
+
+  aggregate-2:
+    needs: [aggregate-1, layer-2]
+    if: always() && needs.aggregate-1.result == 'success'
+    runs-on: windows-2022
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/investigation-setup
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: state-1
+          path: .superpowers/selection-investigation/
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        continue-on-error: true
+        with:
+          pattern: completion-2-*
+          merge-multiple: false
+          path: .superpowers/shards/
+      - run: |
+          python examples/selection_investigation.py merge --downloads .superpowers/shards --output $env:STUDY_OUT
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python examples/selection_investigation.py finalize --output $env:STUDY_OUT
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: state-2
+          path: |
+            .superpowers/selection-investigation/continuation/
+            .superpowers/selection-investigation/pending.json
+            .superpowers/selection-investigation/continuation-audit.json
+          include-hidden-files: true
+          retention-days: 30
+          if-no-files-found: warn
+
+  audit:
+    needs: [prepare, diagnostic, aggregate-1, aggregate-2]
+    if: always() && needs.prepare.result == 'success'
+    runs-on: windows-2022
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/investigation-setup
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        continue-on-error: true
+        with:
+          pattern: diagnostic-*
+          merge-multiple: false
+          path: .superpowers/diagnostic-artifacts/
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        continue-on-error: true
+        with:
+          name: state-${{ needs.aggregate-2.result != 'skipped' && '2' || needs.aggregate-1.result != 'skipped' && '1' || '0' }}
+          path: .superpowers/selection-investigation/
+      - run: |
+          python examples/selection_investigation.py audit --downloads .superpowers/diagnostic-artifacts --output $env:STUDY_OUT
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: selection-investigation-results
+          path: .superpowers/selection-investigation/
+          include-hidden-files: true
+          retention-days: 30
+          if-no-files-found: error
