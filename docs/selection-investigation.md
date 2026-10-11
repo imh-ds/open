@@ -83,3 +83,7 @@ helped the interaction models, and the small-chain noise input remained apparent
 useful under retuned ablation but worsened test prediction in a matched GBM
 comparison. No production repair or minimum sample-size guidance follows.
 The run peaked at 20 concurrent jobs and finished in about 48 minutes.
+
+The next [fresh independent learner screen](fresh-learning-investigation.md)
+tests whether those model-learning patterns recur across independently generated
+datasets. It is a development prediction study, preceding further network tests.
