@@ -89,5 +89,14 @@ def test_complete_null_gate_is_separate_from_missing_alternatives_and_control_er
     signal=next(s for s in summary['signal_cells'] if (s['cell'],s['scenario'],s['b'])==(c['cell'],'mixed',c['b']))
     assert signal['control_detected']==1 and signal['unknown']==29 and not signal['provisional_good_detection']
     assert signal['control_lower']==1 and signal['control_upper']==30
+    group=[t for t in planned if (t['cell'],t['scenario'],t['b'])==(c['cell'],'mixed',c['b'])]
+    fullrows=[r for r in rows if r['scenario'] in ('noise','additive')]+[
+        dict(**t,pair=p,qualifies=(p=='x1:x2'),pattern_consistent=True,truth_cosine=1.)
+        for t in group for p in ('x1:x2','x1:x3')]
+    summary=m.confirmation_summary(fullrows,[dict(id=group[0]['id'],error='foreign failure context')],
+                                   {t['id'] for t in null+group})
+    assert summary['null_qualified']
+    signal=next(s for s in summary['signal_cells'] if (s['cell'],s['scenario'],s['b'])==(c['cell'],'mixed',c['b']))
+    assert not signal['provisional_good_detection']
     complete.remove(null[0]['id']);rows=[r for r in rows if r['id']!=null[0]['id']]
     assert not m.confirmation_summary(rows,[],complete)['null_qualified']

@@ -217,7 +217,11 @@ def confirmation_summary(rows,errors,completed):
     all_ids={c['id'] for c in planned}
     null_errors=any(e['id'] in null_ids or e['id'] not in all_ids for e in errors)
     qualified=not null_errors and null_ids<=set(completed) and all(c['upper_bound']<=.05 for c in null)
-    for c in signals:c['provisional_good_detection']=bool(qualified and c['unknown']==0 and c['lower_bound']>=.8)
+    invalid_ids={e['id'] for e in errors}
+    for c in signals:
+        ids={t['id'] for t in planned if (t['cell'],t['scenario'],t['b'])==(c['cell'],c['scenario'],c['b'])}
+        c['audit_invalid']=bool(ids&invalid_ids)
+        c['provisional_good_detection']=bool(qualified and not c['audit_invalid'] and c['unknown']==0 and c['lower_bound']>=.8)
     return dict(null_qualified=bool(qualified),null_cells=null,signal_cells=signals)
 
 
