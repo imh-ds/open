@@ -1,0 +1,97 @@
+scenario,n,p,cutoff,planned,complete,true_complete_count,true_complete_bounds,true_conditional_count,any_incidental_complete_count,any_incidental_conditional_count,complete_incidental_pairs,conditional_incidental_pairs,unknown_incidental_pair_count,unassessed_incidental_pair_count,incidental_scope,missing
+noise,80,5,0.0,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+noise,80,5,0.01,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+noise,80,5,0.02,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+noise,80,5,0.05,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+noise,300,5,0.0,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+noise,300,5,0.01,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+noise,300,5,0.02,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+noise,300,5,0.05,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+noise,600,5,0.0,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+noise,600,5,0.01,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+noise,600,5,0.02,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+noise,600,5,0.05,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+noise,300,15,0.0,10,0,,,,0,0,0,0,1050,1050,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+noise,300,15,0.01,10,0,,,,0,0,0,0,1050,1050,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+noise,300,15,0.02,10,0,,,,0,0,0,0,1050,1050,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+noise,300,15,0.05,10,0,,,,0,0,0,0,1050,1050,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+additive,80,5,0.0,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+additive,80,5,0.01,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+additive,80,5,0.02,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+additive,80,5,0.05,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+additive,300,5,0.0,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+additive,300,5,0.01,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+additive,300,5,0.02,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+additive,300,5,0.05,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+additive,600,5,0.0,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+additive,600,5,0.01,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+additive,600,5,0.02,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+additive,600,5,0.05,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+additive,300,15,0.0,10,0,,,,0,0,0,0,1050,1050,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+additive,300,15,0.01,10,0,,,,0,0,0,0,1050,1050,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+additive,300,15,0.02,10,0,,,,0,0,0,0,1050,1050,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+additive,300,15,0.05,10,0,,,,0,0,0,0,1050,1050,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+pure,80,5,0.0,10,0,0.0,"[0, 10]",0.0,0,0,0,0,90,90,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+pure,80,5,0.01,10,0,0.0,"[0, 10]",0.0,0,0,0,0,90,90,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+pure,80,5,0.02,10,0,0.0,"[0, 10]",0.0,0,0,0,0,90,90,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+pure,80,5,0.05,10,0,0.0,"[0, 10]",0.0,0,0,0,0,90,90,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+pure,300,5,0.0,10,0,0.0,"[0, 10]",0.0,0,0,0,0,90,90,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+pure,300,5,0.01,10,0,0.0,"[0, 10]",0.0,0,0,0,0,90,90,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+pure,300,5,0.02,10,0,0.0,"[0, 10]",0.0,0,0,0,0,90,90,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+pure,300,5,0.05,10,0,0.0,"[0, 10]",0.0,0,0,0,0,90,90,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+pure,600,5,0.0,10,0,0.0,"[0, 10]",0.0,0,0,0,0,90,90,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+pure,600,5,0.01,10,0,0.0,"[0, 10]",0.0,0,0,0,0,90,90,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+pure,600,5,0.02,10,0,0.0,"[0, 10]",0.0,0,0,0,0,90,90,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+pure,600,5,0.05,10,0,0.0,"[0, 10]",0.0,0,0,0,0,90,90,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+pure,300,15,0.0,10,0,0.0,"[0, 10]",0.0,0,0,0,0,1040,1040,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+pure,300,15,0.01,10,0,0.0,"[0, 10]",0.0,0,0,0,0,1040,1040,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+pure,300,15,0.02,10,0,0.0,"[0, 10]",0.0,0,0,0,0,1040,1040,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+pure,300,15,0.05,10,0,0.0,"[0, 10]",0.0,0,0,0,0,1040,1040,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+mixed,80,5,0.0,10,1,0.0,"[0, 9]",0.0,0,1,0,3,90,87,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",9
+mixed,80,5,0.01,10,1,0.0,"[0, 9]",0.0,0,1,0,3,90,87,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",9
+mixed,80,5,0.02,10,1,0.0,"[0, 9]",0.0,0,1,0,3,90,87,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",9
+mixed,80,5,0.05,10,1,0.0,"[0, 9]",0.0,0,1,0,3,90,87,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",9
+mixed,300,5,0.0,10,0,0.0,"[0, 10]",0.0,0,0,0,0,90,90,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+mixed,300,5,0.01,10,0,0.0,"[0, 10]",0.0,0,0,0,0,90,90,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+mixed,300,5,0.02,10,0,0.0,"[0, 10]",0.0,0,0,0,0,90,90,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+mixed,300,5,0.05,10,0,0.0,"[0, 10]",0.0,0,0,0,0,90,90,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+mixed,600,5,0.0,10,0,0.0,"[0, 10]",0.0,0,0,0,0,90,90,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+mixed,600,5,0.01,10,0,0.0,"[0, 10]",0.0,0,0,0,0,90,90,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+mixed,600,5,0.02,10,0,0.0,"[0, 10]",0.0,0,0,0,0,90,90,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+mixed,600,5,0.05,10,0,0.0,"[0, 10]",0.0,0,0,0,0,90,90,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+mixed,300,15,0.0,10,0,0.0,"[0, 10]",0.0,0,0,0,0,1040,1040,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+mixed,300,15,0.01,10,0,0.0,"[0, 10]",0.0,0,0,0,0,1040,1040,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+mixed,300,15,0.02,10,0,0.0,"[0, 10]",0.0,0,0,0,0,1040,1040,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+mixed,300,15,0.05,10,0,0.0,"[0, 10]",0.0,0,0,0,0,1040,1040,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+correlated_additive,80,5,0.0,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+correlated_additive,80,5,0.01,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+correlated_additive,80,5,0.02,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+correlated_additive,80,5,0.05,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+correlated_additive,300,5,0.0,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+correlated_additive,300,5,0.01,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+correlated_additive,300,5,0.02,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+correlated_additive,300,5,0.05,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+correlated_additive,600,5,0.0,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+correlated_additive,600,5,0.01,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+correlated_additive,600,5,0.02,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+correlated_additive,600,5,0.05,10,0,,,,0,0,0,0,100,100,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+correlated_additive,300,15,0.0,10,0,,,,0,0,0,0,1050,1050,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+correlated_additive,300,15,0.01,10,0,,,,0,0,0,0,1050,1050,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+correlated_additive,300,15,0.02,10,0,,,,0,0,0,0,1050,1050,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+correlated_additive,300,15,0.05,10,0,,,,0,0,0,0,1050,1050,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+correlated_mixed,80,5,0.0,10,0,0.0,"[0, 10]",0.0,0,0,0,0,90,90,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+correlated_mixed,80,5,0.01,10,0,0.0,"[0, 10]",0.0,0,0,0,0,90,90,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+correlated_mixed,80,5,0.02,10,0,0.0,"[0, 10]",0.0,0,0,0,0,90,90,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+correlated_mixed,80,5,0.05,10,0,0.0,"[0, 10]",0.0,0,0,0,0,90,90,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+correlated_mixed,300,5,0.0,10,1,0.0,"[0, 9]",0.0,0,0,1,1,89,89,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",9
+correlated_mixed,300,5,0.01,10,1,0.0,"[0, 9]",0.0,0,0,1,1,89,89,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",9
+correlated_mixed,300,5,0.02,10,1,0.0,"[0, 9]",0.0,0,0,1,1,89,89,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",9
+correlated_mixed,300,5,0.05,10,1,0.0,"[0, 9]",0.0,0,0,1,1,89,89,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",9
+correlated_mixed,600,5,0.0,10,0,0.0,"[0, 10]",0.0,0,0,0,0,90,90,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+correlated_mixed,600,5,0.01,10,0,0.0,"[0, 10]",0.0,0,0,0,0,90,90,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+correlated_mixed,600,5,0.02,10,0,0.0,"[0, 10]",0.0,0,0,0,0,90,90,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+correlated_mixed,600,5,0.05,10,0,0.0,"[0, 10]",0.0,0,0,0,0,90,90,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+correlated_mixed,300,15,0.0,10,0,0.0,"[0, 10]",0.0,0,0,0,0,1040,1040,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+correlated_mixed,300,15,0.01,10,0,0.0,"[0, 10]",0.0,0,0,0,0,1040,1040,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+correlated_mixed,300,15,0.02,10,0,0.0,"[0, 10]",0.0,0,0,0,0,1040,1040,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10
+correlated_mixed,300,15,0.05,10,0,0.0,"[0, 10]",0.0,0,0,0,0,1040,1040,"shortlisted pairs only; unselected pairs unknown, not a false-positive rate",10

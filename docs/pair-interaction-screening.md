@@ -106,3 +106,8 @@ show pure, mixed and absent fitted interactions. The RF example ranks the known
 Support–Stress interaction first, but also shortlists incidental patterns among
 other pairs. This demonstrates why the view remains exploratory rather than a
 validated population interaction detector.
+
+An experimental [validation and adaptive-grid revision](pair-validation-development.md)
+adds an opt-in supported detail mode and a separate held-out additive-versus-joint
+prediction check. It does not change ordinary recursive selection or automatically
+accept candidate interactions.
