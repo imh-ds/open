@@ -24,3 +24,5 @@ Results are pending; this preflight archive is separate from the eventual study 
 Startup verified: preparation succeeded, all 240 shards materialized, and
 20 were running with 220 queued at the recorded snapshot. This is operational
 startup evidence, not a completed scientific study.
+
+The study is now complete: see the [audited findings](../2026-10-11-pair-screen/REPORT.md). Earlier startup statements above are historical snapshots.
