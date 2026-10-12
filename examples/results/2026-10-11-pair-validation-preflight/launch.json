@@ -1,0 +1,74 @@
+{
+  "conclusion": "",
+  "createdAt": "2026-10-12T02:44:50Z",
+  "databaseId": 38196995390,
+  "event": "workflow_dispatch",
+  "headSha": "ef0742fe0b72b8463ed80a02cad84931c2254922",
+  "jobs": [
+    {
+      "completedAt": "0001-01-01T00:00:00Z",
+      "conclusion": "",
+      "databaseId": 114641774742,
+      "name": "prepare",
+      "startedAt": "2026-10-12T02:44:54Z",
+      "status": "in_progress",
+      "steps": [
+        {
+          "completedAt": "2026-10-12T02:44:55Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-12T02:44:55Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-12T02:45:07Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 2,
+          "startedAt": "2026-10-12T02:44:55Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "0001-01-01T00:00:00Z",
+          "conclusion": "",
+          "name": "Run ./.github/actions/pair-validation-setup",
+          "number": 3,
+          "startedAt": "2026-10-12T02:45:07Z",
+          "status": "in_progress"
+        },
+        {
+          "completedAt": "0001-01-01T00:00:00Z",
+          "conclusion": "",
+          "name": "Run $shards = python examples/pair_validation_study.py matrix",
+          "number": 4,
+          "startedAt": "0001-01-01T00:00:00Z",
+          "status": "pending"
+        },
+        {
+          "completedAt": "0001-01-01T00:00:00Z",
+          "conclusion": "",
+          "name": "Post Run ./.github/actions/pair-validation-setup",
+          "number": 7,
+          "startedAt": "0001-01-01T00:00:00Z",
+          "status": "pending"
+        },
+        {
+          "completedAt": "0001-01-01T00:00:00Z",
+          "conclusion": "",
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 8,
+          "startedAt": "0001-01-01T00:00:00Z",
+          "status": "pending"
+        }
+      ],
+      "url": "https://github.com/imh-ds/open/actions/runs/38196995390/job/114641774742"
+    }
+  ],
+  "status": "in_progress",
+  "url": "https://github.com/imh-ds/open/actions/runs/38196995390",
+  "planned_tasks": 240,
+  "shards": 120,
+  "scientific_results": "pending",
+  "dispatches": 1
+}
