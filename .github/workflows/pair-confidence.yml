@@ -1,0 +1,111 @@
+name: Interaction confidence calibration and confirmation
+
+on:
+  workflow_dispatch:
+    inputs:
+      stage:
+        description: Frozen study stage
+        required: true
+        type: choice
+        default: calibration
+        options: [calibration, confirmation]
+  push:
+    branches: [codex/actions-selection-reliability]
+    paths: [.github/workflows/pair-confidence.yml]
+
+permissions:
+  contents: read
+concurrency:
+  group: pair-confidence-${{ github.ref }}
+  cancel-in-progress: false
+defaults:
+  run:
+    shell: pwsh
+env:
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+  STUDY_OUT: .superpowers/pair-confidence
+
+jobs:
+  prepare:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: windows-2022
+    timeout-minutes: 15
+    outputs:
+      shards: ${{ steps.matrix.outputs.shards }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/pair-confidence-setup
+        with:
+          stage: ${{ inputs.stage }}
+      - id: matrix
+        run: |
+          $shards = python examples/pair_confidence_study.py matrix --stage '${{ inputs.stage }}'
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          "shards=$shards" >> $env:GITHUB_OUTPUT
+
+  study:
+    needs: prepare
+    runs-on: windows-2022
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      max-parallel: 256
+      matrix:
+        shard: ${{ fromJSON(needs.prepare.outputs.shards) }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/pair-confidence-setup
+        with:
+          stage: ${{ inputs.stage }}
+        timeout-minutes: 4
+      - timeout-minutes: 22
+        run: |
+          python examples/pair_confidence_study.py shard --stage '${{ inputs.stage }}' --id '${{ matrix.shard }}' --output $env:STUDY_OUT
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: confidence-${{ inputs.stage }}-shard-${{ matrix.shard }}
+          path: .superpowers/pair-confidence/
+          include-hidden-files: true
+          retention-days: 30
+          if-no-files-found: error
+
+  aggregate:
+    if: always() && needs.prepare.result == 'success'
+    needs: [prepare, study]
+    runs-on: windows-2022
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/pair-confidence-setup
+        with:
+          stage: ${{ inputs.stage }}
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          pattern: confidence-${{ inputs.stage }}-shard-*
+          path: .superpowers/pair-confidence-downloads/
+          merge-multiple: false
+      - run: |
+          python examples/pair_confidence_study.py aggregate --stage '${{ inputs.stage }}' --input .superpowers/pair-confidence-downloads --output $env:STUDY_OUT
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: confidence-${{ inputs.stage }}-combined-evidence
+          path: |
+            .superpowers/pair-confidence/
+            .superpowers/pair-confidence-downloads/
+            examples/study_manifests/pair-confidence-${{ inputs.stage }}.json
+            examples/study_manifests/pair-confidence-thresholds.json
+          include-hidden-files: true
+          retention-days: 30
+          if-no-files-found: error
