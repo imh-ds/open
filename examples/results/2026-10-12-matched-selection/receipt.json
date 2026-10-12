@@ -1,0 +1,46 @@
+{
+  "run": 38293442091,
+  "url": "https://github.com/imh-ds/open/actions/runs/38293442091",
+  "source_commit": "08a66f06af03f0bb2f72d85ce40d65ad51fc81a2",
+  "original_artifact": {
+    "id": 11768780701,
+    "bytes": 242085818,
+    "sha256": "4af40185a2a526dbaa00d79e11cd500c6518f7dd6c2d22bb0d9baf5ad3d88a10"
+  },
+  "retained_archive": {
+    "bytes": 123491681,
+    "sha256": "c5f0baa94182e0ca3b948e9d2a7ef4629a2d9f8e4e7274f0a6ee0557f184cdd1",
+    "files": 2287,
+    "parts": [
+      {
+        "file": "raw-evidence.zip.part01",
+        "bytes": 33554432,
+        "sha256": "6e6b3c90bbc437e0292396632252200c9d8af30dab97044874326298b71fe527"
+      },
+      {
+        "file": "raw-evidence.zip.part02",
+        "bytes": 33554432,
+        "sha256": "f18e122a31248bafbd0dde72497130540033fcacc01845da40b0c6a4cba7234a"
+      },
+      {
+        "file": "raw-evidence.zip.part03",
+        "bytes": 33554432,
+        "sha256": "0d9805dc484f1a3681882d75a82d6f743ebf7b5b1da8ebc650dc9d90bfca9310"
+      },
+      {
+        "file": "raw-evidence.zip.part04",
+        "bytes": 22828385,
+        "sha256": "e613b50b9d258757d52d40b75ab487cff2577cbf7bd71e0d8e3cf94c20bf142c"
+      }
+    ]
+  },
+  "duplicated_worker_files_byte_verified_omitted": 2280,
+  "offline_audit": "exact JSON and tabular agreement with Actions; no additional model refits",
+  "jobs": 122,
+  "successful_jobs": 122,
+  "wall_minutes": 15.0,
+  "summed_job_minutes": 198.01666666666665,
+  "fitting_tuning_fits": 219840,
+  "saved_setting_refits": 12480,
+  "disposition": "matched scoring supported as research comparison; no production adoption or calibrated decision rule"
+}
