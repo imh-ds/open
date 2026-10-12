@@ -1,0 +1,41 @@
+{
+  "run": 38279504044,
+  "url": "https://github.com/imh-ds/open/actions/runs/38279504044",
+  "source_commit": "87420b857ef9cbc65f6713a9c8ed9a652727843d",
+  "original_artifact": {
+    "id": 11760972823,
+    "bytes": 170702981,
+    "sha256": "b92968dad5da5e09a84225896c756209e45815f122d291de969130caaae3f829"
+  },
+  "retained_archive": {
+    "bytes": 87092837,
+    "sha256": "5560327ebadd36ba1ae3de6b86a6f3424c6a5dbe110e6c4ffb8e810b4bd9fade",
+    "files": 2287,
+    "parts": [
+      {
+        "file": "raw-evidence.zip.part01",
+        "bytes": 33554432,
+        "sha256": "0316a31500d94d00b9385cffeadacfb068efcdd97d5d9e00550539c93ff732e6"
+      },
+      {
+        "file": "raw-evidence.zip.part02",
+        "bytes": 33554432,
+        "sha256": "7b96630c5232453399b7e65e7fb36de52e777757e682c96d32e3412050c3cf6c"
+      },
+      {
+        "file": "raw-evidence.zip.part03",
+        "bytes": 19983973,
+        "sha256": "643ee15e699173e8efbe3ece743ad4c69569f8bbfc478d399a2941ad0084ef22"
+      }
+    ]
+  },
+  "duplicated_worker_files_byte_verified_omitted": 2280,
+  "offline_audit": "exact JSON and tabular agreement with Actions; no additional model refits",
+  "jobs": 122,
+  "successful_jobs": 122,
+  "wall_minutes": 14.833333333333334,
+  "summed_job_minutes": 171.40000000000006,
+  "fitting_tuning_fits": 214080,
+  "saved_setting_refits": 6720,
+  "disposition": "do not adopt one-SE penalty selector as production default; development only"
+}
