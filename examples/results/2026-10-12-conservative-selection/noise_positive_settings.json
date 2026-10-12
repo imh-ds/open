@@ -1,0 +1,41 @@
+[
+  {
+    "id": "one-se--noise-rho0.7-n80-p5-r03",
+    "independent_gain": 0.0433987313169493,
+    "baseline_parameters": {
+      "curves__n_knots": 5,
+      "ridge__alpha": 100.0
+    },
+    "conservative_parameters": {
+      "curves__joint_weight": 1.0,
+      "curves__n_knots": 3,
+      "ridge__alpha": 100.0
+    }
+  },
+  {
+    "id": "one-se--noise-rho0.7-n600-p5-r03",
+    "independent_gain": 0.0304001123990123,
+    "baseline_parameters": {
+      "curves__n_knots": 5,
+      "ridge__alpha": 100.0
+    },
+    "conservative_parameters": {
+      "curves__joint_weight": 1.0,
+      "curves__n_knots": 3,
+      "ridge__alpha": 100.0
+    }
+  },
+  {
+    "id": "one-se--noise-rho0.9-n300-p5-r00",
+    "independent_gain": 0.0536846622394332,
+    "baseline_parameters": {
+      "curves__n_knots": 5,
+      "ridge__alpha": 100.0
+    },
+    "conservative_parameters": {
+      "curves__joint_weight": 1.0,
+      "curves__n_knots": 3,
+      "ridge__alpha": 100.0
+    }
+  }
+]
