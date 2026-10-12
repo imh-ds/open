@@ -1,0 +1,7886 @@
+{
+  "acceptance": "none: development only",
+  "audit_errors": [],
+  "cells": [
+    {
+      "any_displayed_bounds": [
+        0,
+        0
+      ],
+      "any_displayed_wilson": [
+        0.0,
+        0.16112515805281938
+      ],
+      "complete": 20,
+      "engine": "random_forest",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 4.528099999999986,
+      "mean_incidental_details": 0.0,
+      "mean_test_skill": -0.11241880538279365,
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_detail_bounds": [
+        0,
+        20
+      ],
+      "true_detail_wilson": null,
+      "true_top1_bounds": [
+        0,
+        20
+      ],
+      "true_top1_wilson": null,
+      "true_top5_bounds": [
+        0,
+        20
+      ],
+      "true_top5_wilson": null
+    },
+    {
+      "any_displayed_bounds": [
+        0,
+        0
+      ],
+      "any_displayed_wilson": [
+        0.0,
+        0.16112515805281938
+      ],
+      "complete": 20,
+      "engine": "gbm",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 2.330500000000009,
+      "mean_incidental_details": 0.0,
+      "mean_test_skill": -0.24455803305466367,
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_detail_bounds": [
+        0,
+        20
+      ],
+      "true_detail_wilson": null,
+      "true_top1_bounds": [
+        0,
+        20
+      ],
+      "true_top1_wilson": null,
+      "true_top5_bounds": [
+        0,
+        20
+      ],
+      "true_top5_wilson": null
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "random_forest",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 7.263900000000001,
+      "mean_incidental_details": 7.6,
+      "mean_test_skill": -0.0652558730311604,
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_detail_bounds": [
+        0,
+        20
+      ],
+      "true_detail_wilson": null,
+      "true_top1_bounds": [
+        0,
+        20
+      ],
+      "true_top1_wilson": null,
+      "true_top5_bounds": [
+        0,
+        20
+      ],
+      "true_top5_wilson": null
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "gbm",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 4.356800000000009,
+      "mean_incidental_details": 7.6,
+      "mean_test_skill": -0.06685597404984277,
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_detail_bounds": [
+        0,
+        20
+      ],
+      "true_detail_wilson": null,
+      "true_top1_bounds": [
+        0,
+        20
+      ],
+      "true_top1_wilson": null,
+      "true_top5_bounds": [
+        0,
+        20
+      ],
+      "true_top5_wilson": null
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "random_forest",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 10.983649999999997,
+      "mean_incidental_details": 8.4,
+      "mean_test_skill": -0.05241211385730943,
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_detail_bounds": [
+        0,
+        20
+      ],
+      "true_detail_wilson": null,
+      "true_top1_bounds": [
+        0,
+        20
+      ],
+      "true_top1_wilson": null,
+      "true_top5_bounds": [
+        0,
+        20
+      ],
+      "true_top5_wilson": null
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "gbm",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 6.361650000000012,
+      "mean_incidental_details": 8.4,
+      "mean_test_skill": -0.036415021976082006,
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_detail_bounds": [
+        0,
+        20
+      ],
+      "true_detail_wilson": null,
+      "true_top1_bounds": [
+        0,
+        20
+      ],
+      "true_top1_wilson": null,
+      "true_top5_bounds": [
+        0,
+        20
+      ],
+      "true_top5_wilson": null
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "random_forest",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 13.574150000000003,
+      "mean_incidental_details": 11.35,
+      "mean_test_skill": -0.047127665574670685,
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_detail_bounds": [
+        0,
+        20
+      ],
+      "true_detail_wilson": null,
+      "true_top1_bounds": [
+        0,
+        20
+      ],
+      "true_top1_wilson": null,
+      "true_top5_bounds": [
+        0,
+        20
+      ],
+      "true_top5_wilson": null
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "gbm",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 9.217950000000013,
+      "mean_incidental_details": 10.9,
+      "mean_test_skill": -0.06359958339946284,
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_detail_bounds": [
+        0,
+        20
+      ],
+      "true_detail_wilson": null,
+      "true_top1_bounds": [
+        0,
+        20
+      ],
+      "true_top1_wilson": null,
+      "true_top5_bounds": [
+        0,
+        20
+      ],
+      "true_top5_wilson": null
+    },
+    {
+      "any_displayed_bounds": [
+        0,
+        0
+      ],
+      "any_displayed_wilson": [
+        0.0,
+        0.16112515805281938
+      ],
+      "complete": 20,
+      "engine": "random_forest",
+      "mean_assessed_pair_fraction": 0.99,
+      "mean_fit_screen_seconds": 5.086699999999991,
+      "mean_incidental_details": 0.0,
+      "mean_test_skill": 0.39683308127742867,
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_detail_bounds": [
+        0,
+        20
+      ],
+      "true_detail_wilson": null,
+      "true_top1_bounds": [
+        0,
+        20
+      ],
+      "true_top1_wilson": null,
+      "true_top5_bounds": [
+        0,
+        20
+      ],
+      "true_top5_wilson": null
+    },
+    {
+      "any_displayed_bounds": [
+        0,
+        0
+      ],
+      "any_displayed_wilson": [
+        0.0,
+        0.16112515805281938
+      ],
+      "complete": 20,
+      "engine": "gbm",
+      "mean_assessed_pair_fraction": 0.99,
+      "mean_fit_screen_seconds": 2.6576499999999923,
+      "mean_incidental_details": 0.0,
+      "mean_test_skill": 0.42715482110191544,
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_detail_bounds": [
+        0,
+        20
+      ],
+      "true_detail_wilson": null,
+      "true_top1_bounds": [
+        0,
+        20
+      ],
+      "true_top1_wilson": null,
+      "true_top5_bounds": [
+        0,
+        20
+      ],
+      "true_top5_wilson": null
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "random_forest",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 7.503900000000013,
+      "mean_incidental_details": 6.25,
+      "mean_test_skill": 0.5083065016672978,
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_detail_bounds": [
+        0,
+        20
+      ],
+      "true_detail_wilson": null,
+      "true_top1_bounds": [
+        0,
+        20
+      ],
+      "true_top1_wilson": null,
+      "true_top5_bounds": [
+        0,
+        20
+      ],
+      "true_top5_wilson": null
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "gbm",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 4.2493,
+      "mean_incidental_details": 6.4,
+      "mean_test_skill": 0.5332862287918504,
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_detail_bounds": [
+        0,
+        20
+      ],
+      "true_detail_wilson": null,
+      "true_top1_bounds": [
+        0,
+        20
+      ],
+      "true_top1_wilson": null,
+      "true_top5_bounds": [
+        0,
+        20
+      ],
+      "true_top5_wilson": null
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "random_forest",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 12.12495,
+      "mean_incidental_details": 6.55,
+      "mean_test_skill": 0.5196782812012796,
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_detail_bounds": [
+        0,
+        20
+      ],
+      "true_detail_wilson": null,
+      "true_top1_bounds": [
+        0,
+        20
+      ],
+      "true_top1_wilson": null,
+      "true_top5_bounds": [
+        0,
+        20
+      ],
+      "true_top5_wilson": null
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "gbm",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 7.050949999999996,
+      "mean_incidental_details": 7.5,
+      "mean_test_skill": 0.5452759504765516,
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_detail_bounds": [
+        0,
+        20
+      ],
+      "true_detail_wilson": null,
+      "true_top1_bounds": [
+        0,
+        20
+      ],
+      "true_top1_wilson": null,
+      "true_top5_bounds": [
+        0,
+        20
+      ],
+      "true_top5_wilson": null
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "random_forest",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 14.832800000000024,
+      "mean_incidental_details": 8.0,
+      "mean_test_skill": 0.4814731461830247,
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_detail_bounds": [
+        0,
+        20
+      ],
+      "true_detail_wilson": null,
+      "true_top1_bounds": [
+        0,
+        20
+      ],
+      "true_top1_wilson": null,
+      "true_top5_bounds": [
+        0,
+        20
+      ],
+      "true_top5_wilson": null
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "gbm",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 9.983800000000011,
+      "mean_incidental_details": 8.75,
+      "mean_test_skill": 0.5045860153487678,
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_detail_bounds": [
+        0,
+        20
+      ],
+      "true_detail_wilson": null,
+      "true_top1_bounds": [
+        0,
+        20
+      ],
+      "true_top1_wilson": null,
+      "true_top5_bounds": [
+        0,
+        20
+      ],
+      "true_top5_wilson": null
+    },
+    {
+      "any_displayed_bounds": [
+        0,
+        0
+      ],
+      "any_displayed_wilson": [
+        0.0,
+        0.16112515805281938
+      ],
+      "complete": 20,
+      "engine": "random_forest",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 4.048300000000009,
+      "mean_incidental_details": 0.0,
+      "mean_test_skill": 0.0672357853596121,
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_detail_bounds": [
+        0,
+        0
+      ],
+      "true_detail_wilson": [
+        0.0,
+        0.16112515805281938
+      ],
+      "true_top1_bounds": [
+        20,
+        20
+      ],
+      "true_top1_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "true_top5_bounds": [
+        20,
+        20
+      ],
+      "true_top5_wilson": [
+        0.8388748419471806,
+        1.0
+      ]
+    },
+    {
+      "any_displayed_bounds": [
+        0,
+        0
+      ],
+      "any_displayed_wilson": [
+        0.0,
+        0.16112515805281938
+      ],
+      "complete": 20,
+      "engine": "gbm",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 2.146050000000001,
+      "mean_incidental_details": 0.0,
+      "mean_test_skill": 0.04117001382637418,
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_detail_bounds": [
+        0,
+        0
+      ],
+      "true_detail_wilson": [
+        0.0,
+        0.16112515805281938
+      ],
+      "true_top1_bounds": [
+        18,
+        18
+      ],
+      "true_top1_wilson": [
+        0.6989663547715128,
+        0.9721335187862319
+      ],
+      "true_top5_bounds": [
+        20,
+        20
+      ],
+      "true_top5_wilson": [
+        0.8388748419471806,
+        1.0
+      ]
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "random_forest",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 7.225749999999981,
+      "mean_incidental_details": 5.6,
+      "mean_test_skill": 0.33161806516880193,
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_detail_bounds": [
+        20,
+        20
+      ],
+      "true_detail_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "true_top1_bounds": [
+        20,
+        20
+      ],
+      "true_top1_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "true_top5_bounds": [
+        20,
+        20
+      ],
+      "true_top5_wilson": [
+        0.8388748419471806,
+        1.0
+      ]
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "gbm",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 4.014750000000008,
+      "mean_incidental_details": 6.15,
+      "mean_test_skill": 0.24967741164781634,
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_detail_bounds": [
+        20,
+        20
+      ],
+      "true_detail_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "true_top1_bounds": [
+        20,
+        20
+      ],
+      "true_top1_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "true_top5_bounds": [
+        20,
+        20
+      ],
+      "true_top5_wilson": [
+        0.8388748419471806,
+        1.0
+      ]
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "random_forest",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 14.377350000000002,
+      "mean_incidental_details": 5.9,
+      "mean_test_skill": 0.4338861304510348,
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_detail_bounds": [
+        20,
+        20
+      ],
+      "true_detail_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "true_top1_bounds": [
+        20,
+        20
+      ],
+      "true_top1_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "true_top5_bounds": [
+        20,
+        20
+      ],
+      "true_top5_wilson": [
+        0.8388748419471806,
+        1.0
+      ]
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "gbm",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 7.374950000000008,
+      "mean_incidental_details": 7.15,
+      "mean_test_skill": 0.3414529900550315,
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_detail_bounds": [
+        20,
+        20
+      ],
+      "true_detail_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "true_top1_bounds": [
+        20,
+        20
+      ],
+      "true_top1_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "true_top5_bounds": [
+        20,
+        20
+      ],
+      "true_top5_wilson": [
+        0.8388748419471806,
+        1.0
+      ]
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "random_forest",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 15.846950000000003,
+      "mean_incidental_details": 7.8,
+      "mean_test_skill": 0.14994511098147495,
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_detail_bounds": [
+        20,
+        20
+      ],
+      "true_detail_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "true_top1_bounds": [
+        20,
+        20
+      ],
+      "true_top1_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "true_top5_bounds": [
+        20,
+        20
+      ],
+      "true_top5_wilson": [
+        0.8388748419471806,
+        1.0
+      ]
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "gbm",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 9.939799999999998,
+      "mean_incidental_details": 8.95,
+      "mean_test_skill": 0.018138512469343487,
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_detail_bounds": [
+        20,
+        20
+      ],
+      "true_detail_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "true_top1_bounds": [
+        17,
+        17
+      ],
+      "true_top1_wilson": [
+        0.6395811352592431,
+        0.9476312541037835
+      ],
+      "true_top5_bounds": [
+        20,
+        20
+      ],
+      "true_top5_wilson": [
+        0.8388748419471806,
+        1.0
+      ]
+    },
+    {
+      "any_displayed_bounds": [
+        0,
+        0
+      ],
+      "any_displayed_wilson": [
+        0.0,
+        0.16112515805281938
+      ],
+      "complete": 20,
+      "engine": "random_forest",
+      "mean_assessed_pair_fraction": 0.9899999999999999,
+      "mean_fit_screen_seconds": 4.7976499999999715,
+      "mean_incidental_details": 0.0,
+      "mean_test_skill": 0.4047211567107472,
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_detail_bounds": [
+        0,
+        0
+      ],
+      "true_detail_wilson": [
+        0.0,
+        0.16112515805281938
+      ],
+      "true_top1_bounds": [
+        20,
+        20
+      ],
+      "true_top1_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "true_top5_bounds": [
+        20,
+        20
+      ],
+      "true_top5_wilson": [
+        0.8388748419471806,
+        1.0
+      ]
+    },
+    {
+      "any_displayed_bounds": [
+        0,
+        0
+      ],
+      "any_displayed_wilson": [
+        0.0,
+        0.16112515805281938
+      ],
+      "complete": 20,
+      "engine": "gbm",
+      "mean_assessed_pair_fraction": 0.9899999999999999,
+      "mean_fit_screen_seconds": 2.5016500000000024,
+      "mean_incidental_details": 0.0,
+      "mean_test_skill": 0.375931353688527,
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_detail_bounds": [
+        0,
+        0
+      ],
+      "true_detail_wilson": [
+        0.0,
+        0.16112515805281938
+      ],
+      "true_top1_bounds": [
+        20,
+        20
+      ],
+      "true_top1_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "true_top5_bounds": [
+        20,
+        20
+      ],
+      "true_top5_wilson": [
+        0.8388748419471806,
+        1.0
+      ]
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "random_forest",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 7.421049999999999,
+      "mean_incidental_details": 5.2,
+      "mean_test_skill": 0.5082052766698281,
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_detail_bounds": [
+        20,
+        20
+      ],
+      "true_detail_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "true_top1_bounds": [
+        20,
+        20
+      ],
+      "true_top1_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "true_top5_bounds": [
+        20,
+        20
+      ],
+      "true_top5_wilson": [
+        0.8388748419471806,
+        1.0
+      ]
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "gbm",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 4.549099999999998,
+      "mean_incidental_details": 5.8,
+      "mean_test_skill": 0.5045836733876884,
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_detail_bounds": [
+        20,
+        20
+      ],
+      "true_detail_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "true_top1_bounds": [
+        20,
+        20
+      ],
+      "true_top1_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "true_top5_bounds": [
+        20,
+        20
+      ],
+      "true_top5_wilson": [
+        0.8388748419471806,
+        1.0
+      ]
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "random_forest",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 9.552349999999993,
+      "mean_incidental_details": 5.55,
+      "mean_test_skill": 0.5416675464830003,
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_detail_bounds": [
+        20,
+        20
+      ],
+      "true_detail_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "true_top1_bounds": [
+        20,
+        20
+      ],
+      "true_top1_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "true_top5_bounds": [
+        20,
+        20
+      ],
+      "true_top5_wilson": [
+        0.8388748419471806,
+        1.0
+      ]
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "gbm",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 6.01339999999999,
+      "mean_incidental_details": 6.75,
+      "mean_test_skill": 0.5471231151524006,
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_detail_bounds": [
+        20,
+        20
+      ],
+      "true_detail_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "true_top1_bounds": [
+        20,
+        20
+      ],
+      "true_top1_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "true_top5_bounds": [
+        20,
+        20
+      ],
+      "true_top5_wilson": [
+        0.8388748419471806,
+        1.0
+      ]
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "random_forest",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 13.55555,
+      "mean_incidental_details": 7.7,
+      "mean_test_skill": 0.49443351791882384,
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_detail_bounds": [
+        20,
+        20
+      ],
+      "true_detail_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "true_top1_bounds": [
+        20,
+        20
+      ],
+      "true_top1_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "true_top5_bounds": [
+        20,
+        20
+      ],
+      "true_top5_wilson": [
+        0.8388748419471806,
+        1.0
+      ]
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "gbm",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 9.402399999999991,
+      "mean_incidental_details": 8.45,
+      "mean_test_skill": 0.481228693701206,
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_detail_bounds": [
+        20,
+        20
+      ],
+      "true_detail_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "true_top1_bounds": [
+        20,
+        20
+      ],
+      "true_top1_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "true_top5_bounds": [
+        20,
+        20
+      ],
+      "true_top5_wilson": [
+        0.8388748419471806,
+        1.0
+      ]
+    },
+    {
+      "any_displayed_bounds": [
+        0,
+        0
+      ],
+      "any_displayed_wilson": [
+        0.0,
+        0.16112515805281938
+      ],
+      "complete": 20,
+      "engine": "random_forest",
+      "mean_assessed_pair_fraction": 0.96,
+      "mean_fit_screen_seconds": 4.911649999999987,
+      "mean_incidental_details": 0.0,
+      "mean_test_skill": 0.4252435296241119,
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_detail_bounds": [
+        0,
+        20
+      ],
+      "true_detail_wilson": null,
+      "true_top1_bounds": [
+        0,
+        20
+      ],
+      "true_top1_wilson": null,
+      "true_top5_bounds": [
+        0,
+        20
+      ],
+      "true_top5_wilson": null
+    },
+    {
+      "any_displayed_bounds": [
+        0,
+        0
+      ],
+      "any_displayed_wilson": [
+        0.0,
+        0.16112515805281938
+      ],
+      "complete": 20,
+      "engine": "gbm",
+      "mean_assessed_pair_fraction": 0.96,
+      "mean_fit_screen_seconds": 2.5225500000000025,
+      "mean_incidental_details": 0.0,
+      "mean_test_skill": 0.42186276209349094,
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_detail_bounds": [
+        0,
+        20
+      ],
+      "true_detail_wilson": null,
+      "true_top1_bounds": [
+        0,
+        20
+      ],
+      "true_top1_wilson": null,
+      "true_top5_bounds": [
+        0,
+        20
+      ],
+      "true_top5_wilson": null
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "random_forest",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 7.146099999999978,
+      "mean_incidental_details": 5.3,
+      "mean_test_skill": 0.501313829058498,
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_detail_bounds": [
+        0,
+        20
+      ],
+      "true_detail_wilson": null,
+      "true_top1_bounds": [
+        0,
+        20
+      ],
+      "true_top1_wilson": null,
+      "true_top5_bounds": [
+        0,
+        20
+      ],
+      "true_top5_wilson": null
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "gbm",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 4.203949999999999,
+      "mean_incidental_details": 6.0,
+      "mean_test_skill": 0.5237381879865664,
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_detail_bounds": [
+        0,
+        20
+      ],
+      "true_detail_wilson": null,
+      "true_top1_bounds": [
+        0,
+        20
+      ],
+      "true_top1_wilson": null,
+      "true_top5_bounds": [
+        0,
+        20
+      ],
+      "true_top5_wilson": null
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "random_forest",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 11.338199999999993,
+      "mean_incidental_details": 5.55,
+      "mean_test_skill": 0.5413909573700463,
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_detail_bounds": [
+        0,
+        20
+      ],
+      "true_detail_wilson": null,
+      "true_top1_bounds": [
+        0,
+        20
+      ],
+      "true_top1_wilson": null,
+      "true_top5_bounds": [
+        0,
+        20
+      ],
+      "true_top5_wilson": null
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "gbm",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 6.723299999999995,
+      "mean_incidental_details": 6.5,
+      "mean_test_skill": 0.5568420877340358,
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_detail_bounds": [
+        0,
+        20
+      ],
+      "true_detail_wilson": null,
+      "true_top1_bounds": [
+        0,
+        20
+      ],
+      "true_top1_wilson": null,
+      "true_top5_bounds": [
+        0,
+        20
+      ],
+      "true_top5_wilson": null
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "random_forest",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 15.371150000000004,
+      "mean_incidental_details": 7.7,
+      "mean_test_skill": 0.5039688173260315,
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_detail_bounds": [
+        0,
+        20
+      ],
+      "true_detail_wilson": null,
+      "true_top1_bounds": [
+        0,
+        20
+      ],
+      "true_top1_wilson": null,
+      "true_top5_bounds": [
+        0,
+        20
+      ],
+      "true_top5_wilson": null
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "gbm",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 10.434400000000009,
+      "mean_incidental_details": 8.0,
+      "mean_test_skill": 0.5112370677530619,
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_detail_bounds": [
+        0,
+        20
+      ],
+      "true_detail_wilson": null,
+      "true_top1_bounds": [
+        0,
+        20
+      ],
+      "true_top1_wilson": null,
+      "true_top5_bounds": [
+        0,
+        20
+      ],
+      "true_top5_wilson": null
+    },
+    {
+      "any_displayed_bounds": [
+        0,
+        0
+      ],
+      "any_displayed_wilson": [
+        0.0,
+        0.16112515805281938
+      ],
+      "complete": 20,
+      "engine": "random_forest",
+      "mean_assessed_pair_fraction": 0.9400000000000001,
+      "mean_fit_screen_seconds": 4.590749999999998,
+      "mean_incidental_details": 0.0,
+      "mean_test_skill": 0.4630453341405856,
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 8,
+      "true_detail_bounds": [
+        0,
+        0
+      ],
+      "true_detail_wilson": [
+        0.0,
+        0.16112515805281938
+      ],
+      "true_top1_bounds": [
+        6,
+        18
+      ],
+      "true_top1_wilson": null,
+      "true_top5_bounds": [
+        8,
+        20
+      ],
+      "true_top5_wilson": null
+    },
+    {
+      "any_displayed_bounds": [
+        0,
+        0
+      ],
+      "any_displayed_wilson": [
+        0.0,
+        0.16112515805281938
+      ],
+      "complete": 20,
+      "engine": "gbm",
+      "mean_assessed_pair_fraction": 0.9400000000000001,
+      "mean_fit_screen_seconds": 2.3812000000000113,
+      "mean_incidental_details": 0.0,
+      "mean_test_skill": 0.43269178336762815,
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 8,
+      "true_detail_bounds": [
+        0,
+        0
+      ],
+      "true_detail_wilson": [
+        0.0,
+        0.16112515805281938
+      ],
+      "true_top1_bounds": [
+        6,
+        18
+      ],
+      "true_top1_wilson": null,
+      "true_top5_bounds": [
+        8,
+        20
+      ],
+      "true_top5_wilson": null
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "random_forest",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 6.509500000000012,
+      "mean_incidental_details": 5.4,
+      "mean_test_skill": 0.5229455184212004,
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 20,
+      "true_detail_bounds": [
+        0,
+        0
+      ],
+      "true_detail_wilson": [
+        0.0,
+        0.16112515805281938
+      ],
+      "true_top1_bounds": [
+        20,
+        20
+      ],
+      "true_top1_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "true_top5_bounds": [
+        20,
+        20
+      ],
+      "true_top5_wilson": [
+        0.8388748419471806,
+        1.0
+      ]
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "gbm",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 3.964049999999993,
+      "mean_incidental_details": 5.95,
+      "mean_test_skill": 0.5306560605016775,
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 20,
+      "true_detail_bounds": [
+        0,
+        0
+      ],
+      "true_detail_wilson": [
+        0.0,
+        0.16112515805281938
+      ],
+      "true_top1_bounds": [
+        20,
+        20
+      ],
+      "true_top1_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "true_top5_bounds": [
+        20,
+        20
+      ],
+      "true_top5_wilson": [
+        0.8388748419471806,
+        1.0
+      ]
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "random_forest",
+      "mean_assessed_pair_fraction": 0.9949999999999999,
+      "mean_fit_screen_seconds": 10.8235,
+      "mean_incidental_details": 5.95,
+      "mean_test_skill": 0.5530389477515656,
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 19,
+      "true_detail_bounds": [
+        0,
+        0
+      ],
+      "true_detail_wilson": [
+        0.0,
+        0.16112515805281938
+      ],
+      "true_top1_bounds": [
+        19,
+        20
+      ],
+      "true_top1_wilson": null,
+      "true_top5_bounds": [
+        19,
+        20
+      ],
+      "true_top5_wilson": null
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "gbm",
+      "mean_assessed_pair_fraction": 0.9949999999999999,
+      "mean_fit_screen_seconds": 6.410900000000001,
+      "mean_incidental_details": 6.75,
+      "mean_test_skill": 0.564762601626361,
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 19,
+      "true_detail_bounds": [
+        0,
+        0
+      ],
+      "true_detail_wilson": [
+        0.0,
+        0.16112515805281938
+      ],
+      "true_top1_bounds": [
+        19,
+        20
+      ],
+      "true_top1_wilson": null,
+      "true_top5_bounds": [
+        19,
+        20
+      ],
+      "true_top5_wilson": null
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "random_forest",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 14.56474999999999,
+      "mean_incidental_details": 7.8,
+      "mean_test_skill": 0.5117768221688455,
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 20,
+      "true_detail_bounds": [
+        0,
+        0
+      ],
+      "true_detail_wilson": [
+        0.0,
+        0.16112515805281938
+      ],
+      "true_top1_bounds": [
+        20,
+        20
+      ],
+      "true_top1_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "true_top5_bounds": [
+        20,
+        20
+      ],
+      "true_top5_wilson": [
+        0.8388748419471806,
+        1.0
+      ]
+    },
+    {
+      "any_displayed_bounds": [
+        20,
+        20
+      ],
+      "any_displayed_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "complete": 20,
+      "engine": "gbm",
+      "mean_assessed_pair_fraction": 1.0,
+      "mean_fit_screen_seconds": 10.01735000000002,
+      "mean_incidental_details": 8.3,
+      "mean_test_skill": 0.5176548037401842,
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 20,
+      "true_detail_bounds": [
+        0,
+        0
+      ],
+      "true_detail_wilson": [
+        0.0,
+        0.16112515805281938
+      ],
+      "true_top1_bounds": [
+        20,
+        20
+      ],
+      "true_top1_wilson": [
+        0.8388748419471806,
+        1.0
+      ],
+      "true_top5_bounds": [
+        20,
+        20
+      ],
+      "true_top5_wilson": [
+        0.8388748419471806,
+        1.0
+      ]
+    }
+  ],
+  "complete": 960,
+  "cutoffs": [
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 11,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        11,
+        11
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 3,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        3,
+        3
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 19,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        19,
+        19
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 11,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        11,
+        11
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 3,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        3,
+        3
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 2,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        2,
+        2
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 16,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        16,
+        16
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 3,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        3,
+        3
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 7,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        7,
+        7
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 16,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        16,
+        16
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 6,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        6,
+        6
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 2,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        2,
+        2
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 1,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        1,
+        1
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 18,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        18,
+        18
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 1,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        1,
+        1
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 18,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        18,
+        18
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 2,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        2,
+        2
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "noise",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 2,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 2,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 12,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        12,
+        14
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 2,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 3,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        3,
+        5
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 2,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        2
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 2,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        2
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 2,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 2,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 2,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 2,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 13,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        13,
+        14
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 2,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 6,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        6,
+        8
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 2,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 3,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        3,
+        5
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 2,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 19,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        19,
+        19
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 19,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        19,
+        19
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 18,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        18,
+        18
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 12,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        12,
+        12
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 19,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        19,
+        19
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 13,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        13,
+        13
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 5,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        5,
+        5
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 18,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        18,
+        18
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 13,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        13,
+        13
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 16,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        16,
+        16
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 7,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        7,
+        7
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 18,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        18,
+        18
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 13,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        13,
+        13
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 6,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        6,
+        6
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 18,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        18,
+        18
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 16,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        16,
+        16
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 11,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        11,
+        11
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 4,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        4,
+        4
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 19,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        19,
+        19
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 6,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        6,
+        6
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 19,
+      "true_exceeds_bounds": [
+        19,
+        19
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 8,
+      "true_exceeds_bounds": [
+        8,
+        8
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 5,
+      "true_exceeds_bounds": [
+        5,
+        5
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": [
+        0,
+        0
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": [
+        0,
+        0
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 12,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        12,
+        12
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 4,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        4,
+        4
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 18,
+      "true_exceeds_bounds": [
+        18,
+        18
+      ]
+    },
+    {
+      "any_incidental_exceeds": 1,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        1,
+        1
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 16,
+      "true_exceeds_bounds": [
+        16,
+        16
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 12,
+      "true_exceeds_bounds": [
+        12,
+        12
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 7,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        7,
+        7
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 1,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        1,
+        1
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 1,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        1,
+        1
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 19,
+      "true_exceeds_bounds": [
+        19,
+        19
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 19,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        19,
+        19
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 15,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        15,
+        15
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 3,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        3,
+        3
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 15,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        15,
+        15
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 2,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        2,
+        2
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 17,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        17,
+        17
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 12,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        12,
+        12
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 4,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        4,
+        4
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 10,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        10,
+        10
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 18,
+      "true_exceeds_bounds": [
+        18,
+        18
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 13,
+      "true_exceeds_bounds": [
+        13,
+        13
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 4,
+      "true_exceeds_bounds": [
+        4,
+        4
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 1,
+      "true_exceeds_bounds": [
+        1,
+        1
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 11,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        11,
+        11
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 15,
+      "true_exceeds_bounds": [
+        15,
+        15
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 8,
+      "true_exceeds_bounds": [
+        8,
+        8
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "pure",
+      "true_assessed": 20,
+      "true_exceeds": 6,
+      "true_exceeds_bounds": [
+        6,
+        6
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 2,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 18,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        18,
+        19
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 2,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        2
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 2,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 19,
+      "true_exceeds_bounds": [
+        19,
+        19
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        2
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 2,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 12,
+      "true_exceeds_bounds": [
+        12,
+        12
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        2
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 2,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 5,
+      "true_exceeds_bounds": [
+        5,
+        5
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        2
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 2,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 2,
+      "true_exceeds_bounds": [
+        2,
+        2
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 2,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 2,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 10,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        10,
+        11
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 2,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 3,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        3,
+        5
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 2,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 1,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        1,
+        3
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 2,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 19,
+      "true_exceeds_bounds": [
+        19,
+        19
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        0,
+        2
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 2,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 13,
+      "true_exceeds_bounds": [
+        13,
+        13
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 9,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        9,
+        9
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 11,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        11,
+        11
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 2,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        2,
+        2
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 5,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        5,
+        5
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 19,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        19,
+        19
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 5,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        5,
+        5
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 1,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        1,
+        1
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 13,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        13,
+        13
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 18,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        18,
+        18
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 3,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        3,
+        3
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 1,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        1,
+        1
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "mixed",
+      "true_assessed": 20,
+      "true_exceeds": 19,
+      "true_exceeds_bounds": [
+        19,
+        19
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 7,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 19,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        19,
+        20
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 7,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 7,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        7,
+        14
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 7,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 3,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        3,
+        10
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 7,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        7
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 7,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        7
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 7,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 7,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 7,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 18,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        18,
+        19
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 7,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 11,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        11,
+        18
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 7,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 2,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        2,
+        9
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 7,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        0,
+        7
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 7,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 16,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        16,
+        16
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 11,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        11,
+        11
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 16,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        16,
+        16
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 12,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        12,
+        12
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 19,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        19,
+        19
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 13,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        13,
+        13
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 16,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        16,
+        16
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 17,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        17,
+        17
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 12,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        12,
+        12
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 9,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        9,
+        9
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 19,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        19,
+        19
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 18,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        18,
+        18
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 13,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        13,
+        13
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 8,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        8,
+        8
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_additive",
+      "true_assessed": 0,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": null
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 12,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 8,
+      "true_exceeds": 8,
+      "true_exceeds_bounds": [
+        8,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 17,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        17,
+        19
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 12,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 8,
+      "true_exceeds": 7,
+      "true_exceeds_bounds": [
+        7,
+        19
+      ]
+    },
+    {
+      "any_incidental_exceeds": 1,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        1,
+        12
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 12,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 8,
+      "true_exceeds": 5,
+      "true_exceeds_bounds": [
+        5,
+        17
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        12
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 12,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 8,
+      "true_exceeds": 2,
+      "true_exceeds_bounds": [
+        2,
+        14
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        12
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 12,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 8,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": [
+        0,
+        12
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        12
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 12,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 8,
+      "true_exceeds": 0,
+      "true_exceeds_bounds": [
+        0,
+        12
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 12,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 8,
+      "true_exceeds": 8,
+      "true_exceeds_bounds": [
+        8,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 19,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        19,
+        20
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 12,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 8,
+      "true_exceeds": 8,
+      "true_exceeds_bounds": [
+        8,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 12,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        12,
+        18
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 12,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 8,
+      "true_exceeds": 7,
+      "true_exceeds_bounds": [
+        7,
+        19
+      ]
+    },
+    {
+      "any_incidental_exceeds": 4,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        4,
+        13
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 12,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 8,
+      "true_exceeds": 6,
+      "true_exceeds_bounds": [
+        6,
+        18
+      ]
+    },
+    {
+      "any_incidental_exceeds": 1,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        1,
+        13
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 12,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 8,
+      "true_exceeds": 3,
+      "true_exceeds_bounds": [
+        3,
+        15
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        0,
+        12
+      ],
+      "missing": 0,
+      "n": 80,
+      "p": 5,
+      "partially_assessed": 12,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 8,
+      "true_exceeds": 2,
+      "true_exceeds_bounds": [
+        2,
+        14
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 18,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        18,
+        18
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 4,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        4,
+        4
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 20,
+      "true_exceeds": 19,
+      "true_exceeds_bounds": [
+        19,
+        19
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 20,
+      "true_exceeds": 15,
+      "true_exceeds_bounds": [
+        15,
+        15
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 20,
+      "true_exceeds": 10,
+      "true_exceeds_bounds": [
+        10,
+        10
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 18,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        18,
+        18
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 3,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        3,
+        3
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 1,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        1,
+        1
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 20,
+      "true_exceeds": 19,
+      "true_exceeds_bounds": [
+        19,
+        19
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 20,
+      "true_exceeds": 19,
+      "true_exceeds_bounds": [
+        19,
+        19
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 5,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 20,
+      "true_exceeds": 16,
+      "true_exceeds_bounds": [
+        16,
+        16
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 1,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 19,
+      "true_exceeds": 19,
+      "true_exceeds_bounds": [
+        19,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 1,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 19,
+      "true_exceeds": 19,
+      "true_exceeds_bounds": [
+        19,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 4,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        4,
+        5
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 1,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 19,
+      "true_exceeds": 19,
+      "true_exceeds_bounds": [
+        19,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        1
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 1,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 19,
+      "true_exceeds": 19,
+      "true_exceeds_bounds": [
+        19,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        1
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 1,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 19,
+      "true_exceeds": 18,
+      "true_exceeds_bounds": [
+        18,
+        19
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        1
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 1,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 19,
+      "true_exceeds": 18,
+      "true_exceeds_bounds": [
+        18,
+        19
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 1,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 19,
+      "true_exceeds": 19,
+      "true_exceeds_bounds": [
+        19,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 18,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        18,
+        18
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 1,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 19,
+      "true_exceeds": 19,
+      "true_exceeds_bounds": [
+        19,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 5,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        5,
+        6
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 1,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 19,
+      "true_exceeds": 19,
+      "true_exceeds_bounds": [
+        19,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        0,
+        1
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 1,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 19,
+      "true_exceeds": 19,
+      "true_exceeds_bounds": [
+        19,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        0,
+        1
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 1,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 19,
+      "true_exceeds": 19,
+      "true_exceeds_bounds": [
+        19,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        0,
+        1
+      ],
+      "missing": 0,
+      "n": 600,
+      "p": 5,
+      "partially_assessed": 1,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 19,
+      "true_exceeds": 18,
+      "true_exceeds_bounds": [
+        18,
+        19
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 8,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        8,
+        8
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 20,
+      "true_exceeds": 16,
+      "true_exceeds_bounds": [
+        16,
+        16
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 20,
+      "true_exceeds": 11,
+      "true_exceeds_bounds": [
+        11,
+        11
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "random_forest",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 20,
+      "true_exceeds": 7,
+      "true_exceeds_bounds": [
+        7,
+        7
+      ]
+    },
+    {
+      "any_incidental_exceeds": 20,
+      "complete": 20,
+      "cutoff": 0.05,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        20,
+        20
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 14,
+      "complete": 20,
+      "cutoff": 0.1,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        14,
+        14
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 20,
+      "true_exceeds": 20,
+      "true_exceeds_bounds": [
+        20,
+        20
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.2,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 20,
+      "true_exceeds": 19,
+      "true_exceeds_bounds": [
+        19,
+        19
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.3,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 20,
+      "true_exceeds": 17,
+      "true_exceeds_bounds": [
+        17,
+        17
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.4,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 20,
+      "true_exceeds": 13,
+      "true_exceeds_bounds": [
+        13,
+        13
+      ]
+    },
+    {
+      "any_incidental_exceeds": 0,
+      "complete": 20,
+      "cutoff": 0.5,
+      "engine": "gbm",
+      "incidental_exceeds_bounds": [
+        0,
+        0
+      ],
+      "missing": 0,
+      "n": 300,
+      "p": 15,
+      "partially_assessed": 0,
+      "planned": 20,
+      "scenario": "correlated_mixed",
+      "true_assessed": 20,
+      "true_exceeds": 12,
+      "true_exceeds_bounds": [
+        12,
+        12
+      ]
+    }
+  ],
+  "failed_tasks": [],
+  "missing": 0,
+  "planned": 960,
+  "prediction_rows": 28548128,
+  "warning_count": 0
+}
