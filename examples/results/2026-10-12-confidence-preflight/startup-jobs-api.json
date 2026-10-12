@@ -1,0 +1,2576 @@
+[
+  {
+    "id": 115056085585,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeCKUQ",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056085585",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056085585",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-10-12T23:39:43Z",
+    "started_at": "2026-10-12T23:39:44Z",
+    "completed_at": "2026-10-12T23:40:54Z",
+    "name": "prepare",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-12T23:39:45Z",
+        "completed_at": "2026-10-12T23:39:45Z"
+      },
+      {
+        "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-12T23:39:45Z",
+        "completed_at": "2026-10-12T23:40:08Z"
+      },
+      {
+        "name": "Run ./.github/actions/pair-confidence-setup",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-10-12T23:40:08Z",
+        "completed_at": "2026-10-12T23:40:49Z"
+      },
+      {
+        "name": "Run $shards = python examples/pair_confidence_study.py matrix --stage 'calibration'",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-10-12T23:40:49Z",
+        "completed_at": "2026-10-12T23:40:51Z"
+      },
+      {
+        "name": "Post Run ./.github/actions/pair-confidence-setup",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-10-12T23:40:51Z",
+        "completed_at": "2026-10-12T23:40:51Z"
+      },
+      {
+        "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-10-12T23:40:51Z",
+        "completed_at": "2026-10-12T23:40:53Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9,
+        "started_at": "2026-10-12T23:40:53Z",
+        "completed_at": "2026-10-12T23:40:53Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056085585",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": 1000018085,
+    "runner_name": "GitHub Actions 1000018085",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 115056426779,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeW_Gw",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056426779",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056426779",
+    "status": "in_progress",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:56Z",
+    "completed_at": null,
+    "name": "study (012)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-12T23:40:56Z",
+        "completed_at": "2026-10-12T23:40:57Z"
+      },
+      {
+        "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-12T23:40:57Z",
+        "completed_at": "2026-10-12T23:41:19Z"
+      },
+      {
+        "name": "Run ./.github/actions/pair-confidence-setup",
+        "status": "in_progress",
+        "conclusion": null,
+        "number": 3,
+        "started_at": "2026-10-12T23:41:19Z",
+        "completed_at": null
+      },
+      {
+        "name": "Run python examples/pair_confidence_study.py shard --stage 'calibration' --id '012' --output $env:STUDY_OUT",
+        "status": "pending",
+        "conclusion": null,
+        "number": 4,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+        "status": "pending",
+        "conclusion": null,
+        "number": 5,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run ./.github/actions/pair-confidence-setup",
+        "status": "pending",
+        "conclusion": null,
+        "number": 9,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "pending",
+        "conclusion": null,
+        "number": 10,
+        "started_at": null,
+        "completed_at": null
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056426779",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": 1000018089,
+    "runner_name": "GitHub Actions 1000018089",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 115056426794,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeW_Kg",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056426794",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056426794",
+    "status": "in_progress",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:56Z",
+    "completed_at": null,
+    "name": "study (003)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-12T23:40:57Z",
+        "completed_at": "2026-10-12T23:40:58Z"
+      },
+      {
+        "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-12T23:40:58Z",
+        "completed_at": "2026-10-12T23:41:18Z"
+      },
+      {
+        "name": "Run ./.github/actions/pair-confidence-setup",
+        "status": "in_progress",
+        "conclusion": null,
+        "number": 3,
+        "started_at": "2026-10-12T23:41:18Z",
+        "completed_at": null
+      },
+      {
+        "name": "Run python examples/pair_confidence_study.py shard --stage 'calibration' --id '003' --output $env:STUDY_OUT",
+        "status": "pending",
+        "conclusion": null,
+        "number": 4,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+        "status": "pending",
+        "conclusion": null,
+        "number": 5,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run ./.github/actions/pair-confidence-setup",
+        "status": "pending",
+        "conclusion": null,
+        "number": 9,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "pending",
+        "conclusion": null,
+        "number": 10,
+        "started_at": null,
+        "completed_at": null
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056426794",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": 1000018087,
+    "runner_name": "GitHub Actions 1000018087",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 115056426815,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeW_Pw",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056426815",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056426815",
+    "status": "in_progress",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:56Z",
+    "completed_at": null,
+    "name": "study (006)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-12T23:40:57Z",
+        "completed_at": "2026-10-12T23:40:58Z"
+      },
+      {
+        "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-12T23:40:58Z",
+        "completed_at": "2026-10-12T23:41:20Z"
+      },
+      {
+        "name": "Run ./.github/actions/pair-confidence-setup",
+        "status": "in_progress",
+        "conclusion": null,
+        "number": 3,
+        "started_at": "2026-10-12T23:41:20Z",
+        "completed_at": null
+      },
+      {
+        "name": "Run python examples/pair_confidence_study.py shard --stage 'calibration' --id '006' --output $env:STUDY_OUT",
+        "status": "pending",
+        "conclusion": null,
+        "number": 4,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+        "status": "pending",
+        "conclusion": null,
+        "number": 5,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run ./.github/actions/pair-confidence-setup",
+        "status": "pending",
+        "conclusion": null,
+        "number": 9,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "pending",
+        "conclusion": null,
+        "number": 10,
+        "started_at": null,
+        "completed_at": null
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056426815",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": 1000018086,
+    "runner_name": "GitHub Actions 1000018086",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 115056426824,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeW_SA",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056426824",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056426824",
+    "status": "in_progress",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:56Z",
+    "completed_at": null,
+    "name": "study (020)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-12T23:40:57Z",
+        "completed_at": "2026-10-12T23:40:58Z"
+      },
+      {
+        "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-12T23:40:58Z",
+        "completed_at": "2026-10-12T23:41:19Z"
+      },
+      {
+        "name": "Run ./.github/actions/pair-confidence-setup",
+        "status": "in_progress",
+        "conclusion": null,
+        "number": 3,
+        "started_at": "2026-10-12T23:41:19Z",
+        "completed_at": null
+      },
+      {
+        "name": "Run python examples/pair_confidence_study.py shard --stage 'calibration' --id '020' --output $env:STUDY_OUT",
+        "status": "pending",
+        "conclusion": null,
+        "number": 4,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+        "status": "pending",
+        "conclusion": null,
+        "number": 5,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run ./.github/actions/pair-confidence-setup",
+        "status": "pending",
+        "conclusion": null,
+        "number": 9,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "pending",
+        "conclusion": null,
+        "number": 10,
+        "started_at": null,
+        "completed_at": null
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056426824",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": 1000018088,
+    "runner_name": "GitHub Actions 1000018088",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 115056426831,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeW_Tw",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056426831",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056426831",
+    "status": "in_progress",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:56Z",
+    "completed_at": null,
+    "name": "study (009)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-12T23:40:57Z",
+        "completed_at": "2026-10-12T23:40:58Z"
+      },
+      {
+        "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-12T23:40:58Z",
+        "completed_at": "2026-10-12T23:41:24Z"
+      },
+      {
+        "name": "Run ./.github/actions/pair-confidence-setup",
+        "status": "in_progress",
+        "conclusion": null,
+        "number": 3,
+        "started_at": "2026-10-12T23:41:24Z",
+        "completed_at": null
+      },
+      {
+        "name": "Run python examples/pair_confidence_study.py shard --stage 'calibration' --id '009' --output $env:STUDY_OUT",
+        "status": "pending",
+        "conclusion": null,
+        "number": 4,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+        "status": "pending",
+        "conclusion": null,
+        "number": 5,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run ./.github/actions/pair-confidence-setup",
+        "status": "pending",
+        "conclusion": null,
+        "number": 9,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "pending",
+        "conclusion": null,
+        "number": 10,
+        "started_at": null,
+        "completed_at": null
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056426831",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": 1000018094,
+    "runner_name": "GitHub Actions 1000018094",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 115056426837,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeW_VQ",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056426837",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056426837",
+    "status": "in_progress",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:56Z",
+    "completed_at": null,
+    "name": "study (001)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-12T23:40:57Z",
+        "completed_at": "2026-10-12T23:40:58Z"
+      },
+      {
+        "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-12T23:40:59Z",
+        "completed_at": "2026-10-12T23:41:29Z"
+      },
+      {
+        "name": "Run ./.github/actions/pair-confidence-setup",
+        "status": "in_progress",
+        "conclusion": null,
+        "number": 3,
+        "started_at": "2026-10-12T23:41:29Z",
+        "completed_at": null
+      },
+      {
+        "name": "Run python examples/pair_confidence_study.py shard --stage 'calibration' --id '001' --output $env:STUDY_OUT",
+        "status": "pending",
+        "conclusion": null,
+        "number": 4,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+        "status": "pending",
+        "conclusion": null,
+        "number": 5,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run ./.github/actions/pair-confidence-setup",
+        "status": "pending",
+        "conclusion": null,
+        "number": 9,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "pending",
+        "conclusion": null,
+        "number": 10,
+        "started_at": null,
+        "completed_at": null
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056426837",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": 1000018090,
+    "runner_name": "GitHub Actions 1000018090",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 115056426855,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeW_Zw",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056426855",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056426855",
+    "status": "in_progress",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:56Z",
+    "completed_at": null,
+    "name": "study (004)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-12T23:40:57Z",
+        "completed_at": "2026-10-12T23:40:58Z"
+      },
+      {
+        "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-12T23:40:58Z",
+        "completed_at": "2026-10-12T23:41:21Z"
+      },
+      {
+        "name": "Run ./.github/actions/pair-confidence-setup",
+        "status": "in_progress",
+        "conclusion": null,
+        "number": 3,
+        "started_at": "2026-10-12T23:41:21Z",
+        "completed_at": null
+      },
+      {
+        "name": "Run python examples/pair_confidence_study.py shard --stage 'calibration' --id '004' --output $env:STUDY_OUT",
+        "status": "pending",
+        "conclusion": null,
+        "number": 4,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+        "status": "pending",
+        "conclusion": null,
+        "number": 5,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run ./.github/actions/pair-confidence-setup",
+        "status": "pending",
+        "conclusion": null,
+        "number": 9,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "pending",
+        "conclusion": null,
+        "number": 10,
+        "started_at": null,
+        "completed_at": null
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056426855",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": 1000018100,
+    "runner_name": "GitHub Actions 1000018100",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 115056426872,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeW_eA",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056426872",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056426872",
+    "status": "queued",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:54Z",
+    "completed_at": null,
+    "name": "study (013)",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056426872",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  },
+  {
+    "id": 115056426875,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeW_ew",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056426875",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056426875",
+    "status": "in_progress",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:56Z",
+    "completed_at": null,
+    "name": "study (000)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-12T23:40:57Z",
+        "completed_at": "2026-10-12T23:40:58Z"
+      },
+      {
+        "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-12T23:40:58Z",
+        "completed_at": "2026-10-12T23:41:18Z"
+      },
+      {
+        "name": "Run ./.github/actions/pair-confidence-setup",
+        "status": "in_progress",
+        "conclusion": null,
+        "number": 3,
+        "started_at": "2026-10-12T23:41:18Z",
+        "completed_at": null
+      },
+      {
+        "name": "Run python examples/pair_confidence_study.py shard --stage 'calibration' --id '000' --output $env:STUDY_OUT",
+        "status": "pending",
+        "conclusion": null,
+        "number": 4,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+        "status": "pending",
+        "conclusion": null,
+        "number": 5,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run ./.github/actions/pair-confidence-setup",
+        "status": "pending",
+        "conclusion": null,
+        "number": 9,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "pending",
+        "conclusion": null,
+        "number": 10,
+        "started_at": null,
+        "completed_at": null
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056426875",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": 1000018103,
+    "runner_name": "GitHub Actions 1000018103",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 115056426896,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeW_kA",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056426896",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056426896",
+    "status": "queued",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:54Z",
+    "completed_at": null,
+    "name": "study (002)",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056426896",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  },
+  {
+    "id": 115056426897,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeW_kQ",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056426897",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056426897",
+    "status": "queued",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:54Z",
+    "completed_at": null,
+    "name": "study (017)",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056426897",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  },
+  {
+    "id": 115056426899,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeW_kw",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056426899",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056426899",
+    "status": "queued",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:54Z",
+    "completed_at": null,
+    "name": "study (011)",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056426899",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  },
+  {
+    "id": 115056426904,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeW_mA",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056426904",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056426904",
+    "status": "queued",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:54Z",
+    "completed_at": null,
+    "name": "study (022)",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056426904",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  },
+  {
+    "id": 115056426921,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeW_qQ",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056426921",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056426921",
+    "status": "in_progress",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:56Z",
+    "completed_at": null,
+    "name": "study (024)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-12T23:40:57Z",
+        "completed_at": "2026-10-12T23:40:57Z"
+      },
+      {
+        "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-12T23:40:57Z",
+        "completed_at": "2026-10-12T23:41:22Z"
+      },
+      {
+        "name": "Run ./.github/actions/pair-confidence-setup",
+        "status": "in_progress",
+        "conclusion": null,
+        "number": 3,
+        "started_at": "2026-10-12T23:41:22Z",
+        "completed_at": null
+      },
+      {
+        "name": "Run python examples/pair_confidence_study.py shard --stage 'calibration' --id '024' --output $env:STUDY_OUT",
+        "status": "pending",
+        "conclusion": null,
+        "number": 4,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+        "status": "pending",
+        "conclusion": null,
+        "number": 5,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run ./.github/actions/pair-confidence-setup",
+        "status": "pending",
+        "conclusion": null,
+        "number": 9,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "pending",
+        "conclusion": null,
+        "number": 10,
+        "started_at": null,
+        "completed_at": null
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056426921",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": 1000018091,
+    "runner_name": "GitHub Actions 1000018091",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 115056426922,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeW_qg",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056426922",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056426922",
+    "status": "in_progress",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:56Z",
+    "completed_at": null,
+    "name": "study (018)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-12T23:40:57Z",
+        "completed_at": "2026-10-12T23:40:58Z"
+      },
+      {
+        "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-12T23:40:58Z",
+        "completed_at": "2026-10-12T23:41:19Z"
+      },
+      {
+        "name": "Run ./.github/actions/pair-confidence-setup",
+        "status": "in_progress",
+        "conclusion": null,
+        "number": 3,
+        "started_at": "2026-10-12T23:41:19Z",
+        "completed_at": null
+      },
+      {
+        "name": "Run python examples/pair_confidence_study.py shard --stage 'calibration' --id '018' --output $env:STUDY_OUT",
+        "status": "pending",
+        "conclusion": null,
+        "number": 4,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+        "status": "pending",
+        "conclusion": null,
+        "number": 5,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run ./.github/actions/pair-confidence-setup",
+        "status": "pending",
+        "conclusion": null,
+        "number": 9,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "pending",
+        "conclusion": null,
+        "number": 10,
+        "started_at": null,
+        "completed_at": null
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056426922",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": 1000018092,
+    "runner_name": "GitHub Actions 1000018092",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 115056426923,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeW_qw",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056426923",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056426923",
+    "status": "queued",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:54Z",
+    "completed_at": null,
+    "name": "study (010)",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056426923",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  },
+  {
+    "id": 115056426924,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeW_rA",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056426924",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056426924",
+    "status": "queued",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:54Z",
+    "completed_at": null,
+    "name": "study (019)",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056426924",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  },
+  {
+    "id": 115056426926,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeW_rg",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056426926",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056426926",
+    "status": "in_progress",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:56Z",
+    "completed_at": null,
+    "name": "study (033)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-12T23:40:57Z",
+        "completed_at": "2026-10-12T23:40:58Z"
+      },
+      {
+        "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-12T23:40:58Z",
+        "completed_at": "2026-10-12T23:41:19Z"
+      },
+      {
+        "name": "Run ./.github/actions/pair-confidence-setup",
+        "status": "in_progress",
+        "conclusion": null,
+        "number": 3,
+        "started_at": "2026-10-12T23:41:19Z",
+        "completed_at": null
+      },
+      {
+        "name": "Run python examples/pair_confidence_study.py shard --stage 'calibration' --id '033' --output $env:STUDY_OUT",
+        "status": "pending",
+        "conclusion": null,
+        "number": 4,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+        "status": "pending",
+        "conclusion": null,
+        "number": 5,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run ./.github/actions/pair-confidence-setup",
+        "status": "pending",
+        "conclusion": null,
+        "number": 9,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "pending",
+        "conclusion": null,
+        "number": 10,
+        "started_at": null,
+        "completed_at": null
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056426926",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": 1000018093,
+    "runner_name": "GitHub Actions 1000018093",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 115056426932,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeW_tA",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056426932",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056426932",
+    "status": "queued",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:54Z",
+    "completed_at": null,
+    "name": "study (008)",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056426932",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  },
+  {
+    "id": 115056426954,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeW_yg",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056426954",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056426954",
+    "status": "queued",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:54Z",
+    "completed_at": null,
+    "name": "study (007)",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056426954",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  },
+  {
+    "id": 115056426961,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeW_0Q",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056426961",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056426961",
+    "status": "queued",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:54Z",
+    "completed_at": null,
+    "name": "study (023)",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056426961",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  },
+  {
+    "id": 115056426966,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeW_1g",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056426966",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056426966",
+    "status": "in_progress",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:56Z",
+    "completed_at": null,
+    "name": "study (021)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-12T23:40:57Z",
+        "completed_at": "2026-10-12T23:40:58Z"
+      },
+      {
+        "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-12T23:40:58Z",
+        "completed_at": "2026-10-12T23:41:19Z"
+      },
+      {
+        "name": "Run ./.github/actions/pair-confidence-setup",
+        "status": "in_progress",
+        "conclusion": null,
+        "number": 3,
+        "started_at": "2026-10-12T23:41:19Z",
+        "completed_at": null
+      },
+      {
+        "name": "Run python examples/pair_confidence_study.py shard --stage 'calibration' --id '021' --output $env:STUDY_OUT",
+        "status": "pending",
+        "conclusion": null,
+        "number": 4,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+        "status": "pending",
+        "conclusion": null,
+        "number": 5,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run ./.github/actions/pair-confidence-setup",
+        "status": "pending",
+        "conclusion": null,
+        "number": 9,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "pending",
+        "conclusion": null,
+        "number": 10,
+        "started_at": null,
+        "completed_at": null
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056426966",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": 1000018105,
+    "runner_name": "GitHub Actions 1000018105",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 115056426977,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeW_4Q",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056426977",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056426977",
+    "status": "queued",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:54Z",
+    "completed_at": null,
+    "name": "study (049)",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056426977",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  },
+  {
+    "id": 115056426979,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeW_4w",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056426979",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056426979",
+    "status": "queued",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:54Z",
+    "completed_at": null,
+    "name": "study (005)",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056426979",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  },
+  {
+    "id": 115056426984,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeW_6A",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056426984",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056426984",
+    "status": "in_progress",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:57Z",
+    "completed_at": null,
+    "name": "study (045)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-12T23:40:58Z",
+        "completed_at": "2026-10-12T23:40:58Z"
+      },
+      {
+        "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-12T23:40:59Z",
+        "completed_at": "2026-10-12T23:41:24Z"
+      },
+      {
+        "name": "Run ./.github/actions/pair-confidence-setup",
+        "status": "in_progress",
+        "conclusion": null,
+        "number": 3,
+        "started_at": "2026-10-12T23:41:24Z",
+        "completed_at": null
+      },
+      {
+        "name": "Run python examples/pair_confidence_study.py shard --stage 'calibration' --id '045' --output $env:STUDY_OUT",
+        "status": "pending",
+        "conclusion": null,
+        "number": 4,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+        "status": "pending",
+        "conclusion": null,
+        "number": 5,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run ./.github/actions/pair-confidence-setup",
+        "status": "pending",
+        "conclusion": null,
+        "number": 9,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "pending",
+        "conclusion": null,
+        "number": 10,
+        "started_at": null,
+        "completed_at": null
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056426984",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": 1000018099,
+    "runner_name": "GitHub Actions 1000018099",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 115056426988,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeW_7A",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056426988",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056426988",
+    "status": "queued",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:54Z",
+    "completed_at": null,
+    "name": "study (015)",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056426988",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  },
+  {
+    "id": 115056426991,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeW_7w",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056426991",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056426991",
+    "status": "in_progress",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:56Z",
+    "completed_at": null,
+    "name": "study (038)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-12T23:40:57Z",
+        "completed_at": "2026-10-12T23:40:58Z"
+      },
+      {
+        "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-12T23:40:58Z",
+        "completed_at": "2026-10-12T23:41:23Z"
+      },
+      {
+        "name": "Run ./.github/actions/pair-confidence-setup",
+        "status": "in_progress",
+        "conclusion": null,
+        "number": 3,
+        "started_at": "2026-10-12T23:41:23Z",
+        "completed_at": null
+      },
+      {
+        "name": "Run python examples/pair_confidence_study.py shard --stage 'calibration' --id '038' --output $env:STUDY_OUT",
+        "status": "pending",
+        "conclusion": null,
+        "number": 4,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+        "status": "pending",
+        "conclusion": null,
+        "number": 5,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run ./.github/actions/pair-confidence-setup",
+        "status": "pending",
+        "conclusion": null,
+        "number": 9,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "pending",
+        "conclusion": null,
+        "number": 10,
+        "started_at": null,
+        "completed_at": null
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056426991",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": 1000018096,
+    "runner_name": "GitHub Actions 1000018096",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 115056426995,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeW_8w",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056426995",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056426995",
+    "status": "queued",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:54Z",
+    "completed_at": null,
+    "name": "study (030)",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056426995",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  },
+  {
+    "id": 115056427001,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeW_-Q",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056427001",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056427001",
+    "status": "queued",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:54Z",
+    "completed_at": null,
+    "name": "study (014)",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056427001",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  },
+  {
+    "id": 115056427005,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeW__Q",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056427005",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056427005",
+    "status": "in_progress",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:56Z",
+    "completed_at": null,
+    "name": "study (028)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-12T23:40:57Z",
+        "completed_at": "2026-10-12T23:40:57Z"
+      },
+      {
+        "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-12T23:40:57Z",
+        "completed_at": "2026-10-12T23:41:20Z"
+      },
+      {
+        "name": "Run ./.github/actions/pair-confidence-setup",
+        "status": "in_progress",
+        "conclusion": null,
+        "number": 3,
+        "started_at": "2026-10-12T23:41:20Z",
+        "completed_at": null
+      },
+      {
+        "name": "Run python examples/pair_confidence_study.py shard --stage 'calibration' --id '028' --output $env:STUDY_OUT",
+        "status": "pending",
+        "conclusion": null,
+        "number": 4,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+        "status": "pending",
+        "conclusion": null,
+        "number": 5,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run ./.github/actions/pair-confidence-setup",
+        "status": "pending",
+        "conclusion": null,
+        "number": 9,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "pending",
+        "conclusion": null,
+        "number": 10,
+        "started_at": null,
+        "completed_at": null
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056427005",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": 1000018095,
+    "runner_name": "GitHub Actions 1000018095",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 115056427011,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeXAAw",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056427011",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056427011",
+    "status": "in_progress",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:56Z",
+    "completed_at": null,
+    "name": "study (047)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-12T23:40:57Z",
+        "completed_at": "2026-10-12T23:40:58Z"
+      },
+      {
+        "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-12T23:40:58Z",
+        "completed_at": "2026-10-12T23:41:31Z"
+      },
+      {
+        "name": "Run ./.github/actions/pair-confidence-setup",
+        "status": "in_progress",
+        "conclusion": null,
+        "number": 3,
+        "started_at": "2026-10-12T23:41:31Z",
+        "completed_at": null
+      },
+      {
+        "name": "Run python examples/pair_confidence_study.py shard --stage 'calibration' --id '047' --output $env:STUDY_OUT",
+        "status": "pending",
+        "conclusion": null,
+        "number": 4,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+        "status": "pending",
+        "conclusion": null,
+        "number": 5,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run ./.github/actions/pair-confidence-setup",
+        "status": "pending",
+        "conclusion": null,
+        "number": 9,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "pending",
+        "conclusion": null,
+        "number": 10,
+        "started_at": null,
+        "completed_at": null
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056427011",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": 1000018097,
+    "runner_name": "GitHub Actions 1000018097",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 115056427013,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeXABQ",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056427013",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056427013",
+    "status": "queued",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:54Z",
+    "completed_at": null,
+    "name": "study (039)",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056427013",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  },
+  {
+    "id": 115056427032,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeXAGA",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056427032",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056427032",
+    "status": "in_progress",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:56Z",
+    "completed_at": null,
+    "name": "study (041)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-12T23:40:57Z",
+        "completed_at": "2026-10-12T23:40:57Z"
+      },
+      {
+        "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-12T23:40:57Z",
+        "completed_at": "2026-10-12T23:41:18Z"
+      },
+      {
+        "name": "Run ./.github/actions/pair-confidence-setup",
+        "status": "in_progress",
+        "conclusion": null,
+        "number": 3,
+        "started_at": "2026-10-12T23:41:18Z",
+        "completed_at": null
+      },
+      {
+        "name": "Run python examples/pair_confidence_study.py shard --stage 'calibration' --id '041' --output $env:STUDY_OUT",
+        "status": "pending",
+        "conclusion": null,
+        "number": 4,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+        "status": "pending",
+        "conclusion": null,
+        "number": 5,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run ./.github/actions/pair-confidence-setup",
+        "status": "pending",
+        "conclusion": null,
+        "number": 9,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "pending",
+        "conclusion": null,
+        "number": 10,
+        "started_at": null,
+        "completed_at": null
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056427032",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": 1000018098,
+    "runner_name": "GitHub Actions 1000018098",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 115056427037,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeXAHQ",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056427037",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056427037",
+    "status": "queued",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:54Z",
+    "completed_at": null,
+    "name": "study (044)",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056427037",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  },
+  {
+    "id": 115056427050,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeXAKg",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056427050",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056427050",
+    "status": "queued",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:54Z",
+    "completed_at": null,
+    "name": "study (035)",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056427050",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  },
+  {
+    "id": 115056427057,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeXAMQ",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056427057",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056427057",
+    "status": "queued",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:54Z",
+    "completed_at": null,
+    "name": "study (025)",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056427057",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  },
+  {
+    "id": 115056427065,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeXAOQ",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056427065",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056427065",
+    "status": "in_progress",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:57Z",
+    "completed_at": null,
+    "name": "study (036)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-12T23:40:58Z",
+        "completed_at": "2026-10-12T23:40:58Z"
+      },
+      {
+        "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-12T23:40:59Z",
+        "completed_at": "2026-10-12T23:41:23Z"
+      },
+      {
+        "name": "Run ./.github/actions/pair-confidence-setup",
+        "status": "in_progress",
+        "conclusion": null,
+        "number": 3,
+        "started_at": "2026-10-12T23:41:23Z",
+        "completed_at": null
+      },
+      {
+        "name": "Run python examples/pair_confidence_study.py shard --stage 'calibration' --id '036' --output $env:STUDY_OUT",
+        "status": "pending",
+        "conclusion": null,
+        "number": 4,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+        "status": "pending",
+        "conclusion": null,
+        "number": 5,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run ./.github/actions/pair-confidence-setup",
+        "status": "pending",
+        "conclusion": null,
+        "number": 9,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "pending",
+        "conclusion": null,
+        "number": 10,
+        "started_at": null,
+        "completed_at": null
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056427065",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": 1000018102,
+    "runner_name": "GitHub Actions 1000018102",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 115056427074,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeXAQg",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056427074",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056427074",
+    "status": "in_progress",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:56Z",
+    "completed_at": null,
+    "name": "study (043)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-12T23:40:57Z",
+        "completed_at": "2026-10-12T23:40:57Z"
+      },
+      {
+        "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-12T23:40:57Z",
+        "completed_at": "2026-10-12T23:41:17Z"
+      },
+      {
+        "name": "Run ./.github/actions/pair-confidence-setup",
+        "status": "in_progress",
+        "conclusion": null,
+        "number": 3,
+        "started_at": "2026-10-12T23:41:17Z",
+        "completed_at": null
+      },
+      {
+        "name": "Run python examples/pair_confidence_study.py shard --stage 'calibration' --id '043' --output $env:STUDY_OUT",
+        "status": "pending",
+        "conclusion": null,
+        "number": 4,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+        "status": "pending",
+        "conclusion": null,
+        "number": 5,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run ./.github/actions/pair-confidence-setup",
+        "status": "pending",
+        "conclusion": null,
+        "number": 9,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "pending",
+        "conclusion": null,
+        "number": 10,
+        "started_at": null,
+        "completed_at": null
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056427074",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": 1000018104,
+    "runner_name": "GitHub Actions 1000018104",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 115056427101,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeXAXQ",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056427101",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056427101",
+    "status": "in_progress",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:56Z",
+    "completed_at": null,
+    "name": "study (046)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-12T23:40:57Z",
+        "completed_at": "2026-10-12T23:40:58Z"
+      },
+      {
+        "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-12T23:40:58Z",
+        "completed_at": "2026-10-12T23:41:19Z"
+      },
+      {
+        "name": "Run ./.github/actions/pair-confidence-setup",
+        "status": "in_progress",
+        "conclusion": null,
+        "number": 3,
+        "started_at": "2026-10-12T23:41:19Z",
+        "completed_at": null
+      },
+      {
+        "name": "Run python examples/pair_confidence_study.py shard --stage 'calibration' --id '046' --output $env:STUDY_OUT",
+        "status": "pending",
+        "conclusion": null,
+        "number": 4,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+        "status": "pending",
+        "conclusion": null,
+        "number": 5,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run ./.github/actions/pair-confidence-setup",
+        "status": "pending",
+        "conclusion": null,
+        "number": 9,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "status": "pending",
+        "conclusion": null,
+        "number": 10,
+        "started_at": null,
+        "completed_at": null
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056427101",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": 1000018101,
+    "runner_name": "GitHub Actions 1000018101",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 115056427106,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeXAYg",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056427106",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056427106",
+    "status": "queued",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:54Z",
+    "completed_at": null,
+    "name": "study (016)",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056427106",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  },
+  {
+    "id": 115056427116,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeXAbA",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056427116",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056427116",
+    "status": "queued",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:54Z",
+    "completed_at": null,
+    "name": "study (031)",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056427116",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  },
+  {
+    "id": 115056427141,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeXAhQ",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056427141",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056427141",
+    "status": "queued",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:54Z",
+    "completed_at": null,
+    "name": "study (027)",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056427141",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  },
+  {
+    "id": 115056427146,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeXAig",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056427146",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056427146",
+    "status": "queued",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:54Z",
+    "completed_at": null,
+    "name": "study (034)",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056427146",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  },
+  {
+    "id": 115056427160,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeXAmA",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056427160",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056427160",
+    "status": "queued",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:54Z",
+    "completed_at": null,
+    "name": "study (026)",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056427160",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  },
+  {
+    "id": 115056427162,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeXAmg",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056427162",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056427162",
+    "status": "queued",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:54Z",
+    "completed_at": null,
+    "name": "study (040)",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056427162",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  },
+  {
+    "id": 115056427185,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeXAsQ",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056427185",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056427185",
+    "status": "queued",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:54Z",
+    "completed_at": null,
+    "name": "study (029)",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056427185",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  },
+  {
+    "id": 115056427225,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeXA2Q",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056427225",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056427225",
+    "status": "queued",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:54Z",
+    "completed_at": null,
+    "name": "study (037)",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056427225",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  },
+  {
+    "id": 115056427230,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeXA3g",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056427230",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056427230",
+    "status": "queued",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:54Z",
+    "completed_at": null,
+    "name": "study (042)",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056427230",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  },
+  {
+    "id": 115056427275,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeXBCw",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056427275",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056427275",
+    "status": "queued",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:54Z",
+    "completed_at": null,
+    "name": "study (048)",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056427275",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  },
+  {
+    "id": 115056427529,
+    "run_id": 38323296605,
+    "workflow_name": "Interaction confidence calibration and confirmation",
+    "head_branch": "codex/actions-selection-reliability",
+    "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38323296605",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVD_Yg88AAAAayeXCCQ",
+    "head_sha": "cdde3cc5bb949c5bd1c8a642c326eee6764dfae3",
+    "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115056427529",
+    "html_url": "https://github.com/imh-ds/open/actions/runs/38323296605/job/115056427529",
+    "status": "queued",
+    "conclusion": null,
+    "created_at": "2026-10-12T23:40:54Z",
+    "started_at": "2026-10-12T23:40:54Z",
+    "completed_at": null,
+    "name": "study (032)",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115056427529",
+    "labels": [
+      "windows-2022"
+    ],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  }
+]
