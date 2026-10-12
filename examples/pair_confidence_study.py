@@ -20,6 +20,11 @@ THRESHOLDS=ROOT/'examples/study_manifests/pair-confidence-thresholds.json'
 def digest(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
+def threshold_digest():
+    # Git checkouts may change only line endings on Windows.
+    return hashlib.sha256(THRESHOLDS.read_bytes().replace(b'\r\n',b'\n')).hexdigest()
+
+
 def sources():
     paths=list((ROOT/'src/open').rglob('*.py'))+[ROOT/f'examples/{n}' for n in (
         'pair_confidence_study.py','pair_confidence_models.py','pair_confidence_rules.py','pair_confidence_protocol.md',
@@ -58,7 +63,7 @@ def manifest(stage):
         base_grid=models.BASE_GRID,joint_grid=models.JOINT_GRID)
     if stage=='calibration':value['preregistered_confirmation_tasks']=rules.tasks('confirmation')
     else:
-        validate_rule();value['thresholds_sha256']=digest(THRESHOLDS)
+        validate_rule();value['thresholds_sha256']=threshold_digest()
     return value
 
 
@@ -183,6 +188,39 @@ def truth_cosine(folds,pos,c):
     return min(cos)
 
 
+def confirmation_summary(rows,errors,completed):
+    planned=rules.tasks('confirmation')
+    null=[];signals=[]
+    for n,p,rho in rules.CELLS:
+        cell=rules.cell_id(n,p,rho)
+        for scenario in ('noise','additive'):
+            cases=[c for c in planned if c['cell']==cell and c['scenario']==scenario]
+            assessed=[c for c in cases if c['id'] in completed]
+            k=sum(any(r['qualifies'] for r in rows if r['id']==c['id']) for c in assessed);missing=len(cases)-len(assessed)
+            upper=rules.false_alarm_bound(k+missing,len(cases))
+            null.append(dict(cell=cell,scenario=scenario,planned=len(cases),assessed=len(assessed),above=k,
+                unknown=missing,lower=k,upper=k+missing,upper_bound=upper))
+        for scenario in ('pure','mixed'):
+            for b in (.2,.8):
+                group=[r for r in rows if r['cell']==cell and r['scenario']==scenario and r['b']==b and r['pair']=='x1:x2']
+                controls=[r for r in rows if r['cell']==cell and r['scenario']==scenario and r['b']==b and r['pair']=='x1:x3']
+                k=sum(r['qualifies'] for r in group);missing=30-len(group)
+                signals.append(dict(cell=cell,scenario=scenario,b=b,planned=30,assessed=len(group),detected=k,
+                    unknown=missing,lower=k,upper=k+missing,lower_bound=rules.detection_bound(k,30),
+                    control_detected=sum(r['qualifies'] for r in controls),control_unknown=30-len(controls),
+                    control_lower=sum(r['qualifies'] for r in controls),
+                    control_upper=sum(r['qualifies'] for r in controls)+30-len(controls),
+                    simultaneous_lower_bound=rules.detection_bound(k,30,40),
+                    detected_consistent=sum(r['qualifies'] and r['pattern_consistent'] for r in group),
+                    stable_wrong=sum(r['pattern_consistent'] and r['truth_cosine'] is not None and r['truth_cosine']<.8 for r in group)))
+    null_ids={c['id'] for c in planned if c['scenario'] in ('noise','additive')}
+    all_ids={c['id'] for c in planned}
+    null_errors=any(e['id'] in null_ids or e['id'] not in all_ids for e in errors)
+    qualified=not null_errors and null_ids<=set(completed) and all(c['upper_bound']<=.05 for c in null)
+    for c in signals:c['provisional_good_detection']=bool(qualified and c['unknown']==0 and c['lower_bound']>=.8)
+    return dict(null_qualified=bool(qualified),null_cells=null,signal_cells=signals)
+
+
 def aggregate(stage,output):
     output=Path(output);output.mkdir(parents=True,exist_ok=True);planned=rules.tasks(stage)
     completed={};errors=[];failures=[];rows=[];unknown=[]
@@ -190,7 +228,11 @@ def aggregate(stage,output):
     for c in planned:
         folder=output/c['id']
         if not folder.exists():continue
-        if (folder/'error.json').exists():failures.append(dict(id=c['id'],error=io.read(folder/'error.json')))
+        if (folder/'error.json').exists():
+            try:
+                failure=io.read(folder/'error.json');failures.append(dict(id=c['id'],error=failure))
+                if failure['task']!=c or failure['context']!=context(c):raise ValueError('failure context differs')
+            except Exception as e:errors.append(dict(id=c['id'],error=repr(e)))
         if (folder/'result.json').exists():
             try:
                 v=check_result(c,folder)
@@ -208,6 +250,12 @@ def aggregate(stage,output):
             except Exception as e:errors.append(dict(id=c['id'],checkpoint=p.name,error=repr(e)))
     foreign=[p.name for p in output.glob('confidence--*') if p.is_dir() and p.name not in {c['id'] for c in planned}]
     errors.extend(dict(id=i,error='foreign task identity') for i in foreign)
+    for path in output.glob('shard-*.json'):
+        try:
+            stamp=io.read(path);i=stamp['id']
+            if (path.name!=f'shard-{i}.json' or stamp!=dict(stage=stage,id=i,tasks=shard_tasks(stage,i),manifest=identity(stage))):
+                raise ValueError('shard stamp differs')
+        except Exception as e:errors.append(dict(id=path.name,error=repr(e)))
     audit=dict(stage=stage,planned=len(planned),complete=len(completed),missing=len(planned)-len(completed),
         missing_ids=[c['id'] for c in planned if c['id'] not in completed],audit_errors=errors,
         failed_tasks=[f for f in failures if f['id'] not in completed],historical_failed_tasks=[f for f in failures if f['id'] in completed],
@@ -223,31 +271,11 @@ def aggregate(stage,output):
         else:io.write(output/'learned-thresholds.json',dict(status='unavailable',reason='incomplete or invalid calibration',complete=len(completed)))
         audit['thresholds_ready']=audit['missing']==0 and not errors
     else:
-        rule=validate_rule();audit['thresholds_sha256']=digest(THRESHOLDS)
+        rule=validate_rule();audit['thresholds_sha256']=threshold_digest()
         for r in rows:r['qualifies']=rules.qualifies(r['score'],rule['thresholds'][r['cell']])
-        null=[];signals=[]
-        for n,p,rho in rules.CELLS:
-            cell=rules.cell_id(n,p,rho)
-            for scenario in ('noise','additive'):
-                cases=[c for c in planned if c['cell']==cell and c['scenario']==scenario]
-                assessed=[c for c in cases if c['id'] in completed]
-                k=sum(any(r['qualifies'] for r in rows if r['id']==c['id']) for c in assessed);missing=len(cases)-len(assessed)
-                upper=rules.false_alarm_bound(k+missing,len(cases))
-                null.append(dict(cell=cell,scenario=scenario,planned=len(cases),assessed=len(assessed),above=k,
-                    unknown=missing,lower=k,upper=k+missing,upper_bound=upper))
-            for scenario in ('pure','mixed'):
-                for b in (.2,.8):
-                    group=[r for r in rows if r['cell']==cell and r['scenario']==scenario and r['b']==b and r['pair']=='x1:x2']
-                    k=sum(r['qualifies'] for r in group);missing=30-len(group)
-                    signals.append(dict(cell=cell,scenario=scenario,b=b,planned=30,assessed=len(group),detected=k,
-                        unknown=missing,lower=k,upper=k+missing,lower_bound=rules.detection_bound(k,30),
-                        simultaneous_lower_bound=rules.detection_bound(k,30,40),
-                        detected_consistent=sum(r['qualifies'] and r['pattern_consistent'] for r in group),
-                        stable_wrong=sum(r['pattern_consistent'] and r['truth_cosine'] is not None and r['truth_cosine']<.8 for r in group)))
-        qualified=not errors and audit['missing']==0 and all(c['upper_bound']<=.05 for c in null)
-        for c in signals:c['provisional_good_detection']=bool(qualified and c['unknown']==0 and c['lower_bound']>=.8)
-        audit.update(null_qualified=bool(qualified),null_cells=null,signal_cells=signals)
-        pd.DataFrame(null).to_csv(output/'null_summary.csv',index=False);pd.DataFrame(signals).to_csv(output/'signal_summary.csv',index=False)
+        audit.update(confirmation_summary(rows,errors,set(completed)))
+        pd.DataFrame(audit['null_cells']).to_csv(output/'null_summary.csv',index=False)
+        pd.DataFrame(audit['signal_cells']).to_csv(output/'signal_summary.csv',index=False)
     io.write(output/'audit.json',audit);pd.DataFrame(rows).to_csv(output/'case_metrics.csv',index=False)
     report=['# Interaction confidence study', '',f"Stage {stage}: {audit['complete']}/{audit['planned']} datasets; missing {audit['missing']}; audit errors {len(errors)}.",
         'Fixed-pair Gaussian spline research only; thresholds are not a general p-value or a posterior probability.',
@@ -259,7 +287,48 @@ def aggregate(stage,output):
             'Good-detection flags require the null gate and pointwise sensitivity lower bound >=.8; consult simultaneous bounds separately.',
             'Weak detection is uncertain evidence, not proof of no interaction. Stable-looking curves can still be wrong.']
     (output/'REPORT.md').write_text('\n'.join(report)+'\n',encoding='utf-8')
+    if rows:
+        plot(stage,output,rows,audit)
+        with (output/'REPORT.md').open('a',encoding='utf-8') as f:f.write('\n![Research study summary](SUMMARY.png)\n')
     return audit
+
+
+def plot(stage,output,rows,audit):
+    import matplotlib
+    matplotlib.use('Agg')
+    import matplotlib.pyplot as plt
+    cells=[rules.cell_id(*c) for c in rules.CELLS]
+    fig,axes=plt.subplots(1,2,figsize=(14,5),layout='constrained')
+    if stage=='calibration':
+        scores={i:max(r['score'] for r in rows if r['id']==i) for i in {r['id'] for r in rows}}
+        for scenario,color,offset in (('noise','#708090',-.12),('additive','#2166ac',.12)):
+            for i,cell in enumerate(cells):
+                data=[r for r in rows if r['pair']=='x1:x2' and r['cell']==cell and r['scenario']==scenario]
+                axes[0].scatter([i+offset]*len(data),[scores[r['id']] for r in data],s=12,alpha=.5,color=color,
+                    label=scenario if i==0 else None)
+        if audit['thresholds_ready']:
+            thresholds=io.read(output/'learned-thresholds.json')['thresholds']
+            axes[0].plot(range(10),[thresholds[c] for c in cells],marker='x',color='#c78b36',label='Frozen rule threshold')
+        axes[0].set(ylabel='Two-pair maximum eligible CV score',title='Null calibration; no confirmation results')
+        assessed=[sum(r['cell']==c and r['pair']=='x1:x2' for r in rows) for c in cells]
+        axes[1].bar(range(10),assessed,color='#2166ac');axes[1].axhline(200,color='black',ls='--',label='Planned per cell')
+        axes[1].set(ylabel='Independent calibration datasets',title='Coverage; incomplete cells cannot learn a rule');axes[1].legend()
+    else:
+        for scenario,color,offset in (('noise','#708090',-.12),('additive','#2166ac',.12)):
+            c=[z for z in audit['null_cells'] if z['scenario']==scenario]
+            axes[0].plot([cells.index(z['cell'])+offset for z in c],[z['upper_bound'] for z in c],marker='o',ls='',color=color,label=scenario)
+        axes[0].axhline(.05,color='black',ls='--',label='Prespecified upper-bound gate')
+        axes[0].set(ylabel='Simultaneous 95% false-alarm upper bound',title='Null confirmation: two fixed pairs')
+        for scenario,color in (('pure','#2166ac'),('mixed','#c78b36')):
+            for b,offset,marker in ((.2,-.13,'o'),(.8,.13,'x')):
+                c=[z for z in audit['signal_cells'] if z['scenario']==scenario and z['b']==b]
+                axes[1].plot([cells.index(z['cell'])+offset for z in c],[z['lower_bound'] for z in c],ls='',marker=marker,color=color,label=f'{scenario}, b={b}')
+        axes[1].axhline(.8,color='black',ls='--');axes[1].set(ylabel='Pointwise 95% detection lower bound',title='Sensitivity; pure b levels are scale checks');axes[1].legend(fontsize=8)
+        for ax in axes:ax.set_ylim(-.02,1.02)
+    for ax in axes:ax.set_xticks(range(10),cells,rotation=70,fontsize=8)
+    axes[0].legend(fontsize=8)
+    fig.suptitle(f"Research {stage}: {audit['complete']}/{audit['planned']} datasets\nConditional Gaussian spline evidence; not a general significance test or production rule")
+    fig.savefig(output/'SUMMARY.png',dpi=150);plt.close(fig)
 
 
 def run_shard(stage,shard,output):

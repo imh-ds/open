@@ -34,6 +34,14 @@ def test_partial_checkpoints_cost_and_no_threshold_learning(tmp_path):
     assert m.io.read(out/'learned-thresholds.json')['status']=='unavailable'
 
 
+def test_foreign_failure_and_shard_identity_are_audit_errors(tmp_path):
+    m=module(tmp_path);c=m.rules.tasks('calibration')[0];out=tmp_path/'out'
+    m.io.write(out/c['id']/'error.json',dict(task=c,context='wrong source',error='failure'))
+    m.io.write(out/'shard-999.json',dict(stage='calibration',id='999',tasks=[],manifest=m.identity('calibration')))
+    audit=m.aggregate('calibration',out)
+    assert len(audit['audit_errors'])==2 and not audit['thresholds_ready']
+
+
 def test_native_resume_stamp_and_tampering(tmp_path):
     m=module(tmp_path);c=m.rules.tasks('calibration')[100];out=tmp_path/'out'
     v=m.run_task(c,out);audit=m.aggregate('calibration',out)
@@ -49,7 +57,12 @@ def test_native_resume_stamp_and_tampering(tmp_path):
 def test_threshold_provenance_and_strict_complete_identity_validation(tmp_path):
     m=module(tmp_path);planned=m.rules.tasks('calibration')
     rows=[dict(id=c['id'],cell=c['cell'],scenario=c['scenario'],score=0.,result_sha256='a'*64) for c in planned]
-    rule=m.make_rule(rows);m.io.write(m.THRESHOLDS,rule);m.freeze('confirmation',False);m.freeze('confirmation')
+    rule=m.make_rule(rows);m.io.write(m.THRESHOLDS,rule)
+    m.THRESHOLDS.write_bytes(m.THRESHOLDS.read_bytes().replace(b'\r\n',b'\n'))
+    m.freeze('confirmation',False);m.freeze('confirmation')
+    data=m.THRESHOLDS.read_bytes().replace(b'\r\n',b'\n')
+    m.THRESHOLDS.write_bytes(data.replace(b'\n',b'\r\n'))
+    m.freeze('confirmation')
     rule['thresholds'][planned[0]['cell']]=.1;m.io.write(m.THRESHOLDS,rule)
     with pytest.raises(ValueError):m.freeze('confirmation')
 
@@ -61,3 +74,20 @@ def test_error_and_missing_confirmation_cannot_qualify(tmp_path):
     audit=m.aggregate('confirmation',tmp_path/'out')
     assert not audit['null_qualified'] and audit['missing']==5200
     assert all(c['upper_bound']==1. for c in audit['null_cells'])
+
+
+def test_complete_null_gate_is_separate_from_missing_alternatives_and_control_errors(tmp_path):
+    m=module(tmp_path);planned=m.rules.tasks('confirmation')
+    null=[c for c in planned if c['scenario'] in ('noise','additive')]
+    rows=[dict(**c,pair=p,qualifies=False,pattern_consistent=False,truth_cosine=None)
+          for c in null for p in ('x1:x2','x1:x3')]
+    c=next(c for c in planned if c['scenario']=='mixed')
+    rows.extend([dict(**c,pair=p,qualifies=True,pattern_consistent=True,truth_cosine=1.) for p in ('x1:x2','x1:x3')])
+    complete={t['id'] for t in null}|{c['id']}
+    summary=m.confirmation_summary(rows,[],complete)
+    assert summary['null_qualified']
+    signal=next(s for s in summary['signal_cells'] if (s['cell'],s['scenario'],s['b'])==(c['cell'],'mixed',c['b']))
+    assert signal['control_detected']==1 and signal['unknown']==29 and not signal['provisional_good_detection']
+    assert signal['control_lower']==1 and signal['control_upper']==30
+    complete.remove(null[0]['id']);rows=[r for r in rows if r['id']!=null[0]['id']]
+    assert not m.confirmation_summary(rows,[],complete)['null_qualified']
