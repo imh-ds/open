@@ -1,0 +1,35 @@
+{
+  "run": 38208169760,
+  "url": "https://github.com/imh-ds/open/actions/runs/38208169760",
+  "source_commit": "57280d969f75521ef23a4034a9e398bf16b04a76",
+  "original_artifact": {
+    "id": 11728841244,
+    "bytes": 131916181,
+    "sha256": "4e733a8e8503bd1bab1e15987c91541b0a858eca522b3043d334a2ea06d0fbde"
+  },
+  "retained_archive": {
+    "bytes": 66020610,
+    "sha256": "c5c95dcc81a3abd78558456c4f52958007994493eb90f8631292ccf23cce3e77",
+    "files": 2287,
+    "parts": [
+      {
+        "file": "raw-evidence.zip.part01",
+        "bytes": 33554432,
+        "sha256": "18c4b90f01a82e530150e7093cad589cb22e3c5ec5495f8793d9e491145c65ed"
+      },
+      {
+        "file": "raw-evidence.zip.part02",
+        "bytes": 32466178,
+        "sha256": "ec18fc7b8f5e3f454d92bb87c6c33b68bf638e89a6b7d8502ba39f828ca76965"
+      }
+    ]
+  },
+  "duplicate_files_byte_verified": 2280,
+  "offline_audit_exact_match": true,
+  "planned": 240,
+  "complete": 240,
+  "missing": 0,
+  "worker_saved_setting_refits": 4800,
+  "local_replay": "40 saved-setting refits measured; maxpredictiondelta2.8532e-7, maxMSEdelta5.1971e-8; frozen stricthelper1e-9 fails locally, unchanged",
+  "acceptance": "none: development only"
+}
