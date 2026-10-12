@@ -49,8 +49,9 @@ class SplinePairFeatures(BaseEstimator, TransformerMixin):
         self.splines_=SplineTransformer(n_knots=self.n_knots,degree=3,knots='quantile',
             extrapolation='linear',include_bias=False).fit(X)
         self.width_=self.splines_.n_features_out_//X.shape[1]
+        base=self.splines_.transform(X)
+        self.marginal_scaler_=StandardScaler().fit(base)
         if self.pair is not None:
-            base=self.splines_.transform(X)
             a,b=self._pair_blocks(base)
             marginal=np.column_stack([np.ones(len(X)),a,b])
             tensor=(a[:,:,None]*b[:,None,:]).reshape(len(X),-1)
@@ -64,18 +65,22 @@ class SplinePairFeatures(BaseEstimator, TransformerMixin):
 
     def transform(self,X):
         base=self.splines_.transform(X)
+        marginal=self.marginal_scaler_.transform(base)
         if self.pair is None:
-            return base
+            return marginal
         a,b=self._pair_blocks(base)
         tensor=(a[:,:,None]*b[:,None,:]).reshape(len(X),-1)
         residual=tensor-np.column_stack([np.ones(len(X)),a,b])@self.projection_
-        return np.column_stack([base,residual])
+        # Tensor columns stay on their natural spline scale. Dividing each by
+        # its own (possibly almost zero) training SD destroys ridge shrinkage
+        # for weakly supported directions and can explode held-out predictions.
+        return np.column_stack([marginal,residual])
 
 
 def _estimator(pair=None):
     return Pipeline([('imputer',SimpleImputer(strategy='median',keep_empty_features=True)),
-        ('curves',SplinePairFeatures(pair=pair)),('scale',StandardScaler()),
-        ('ridge',Ridge(solver='lsqr'))])
+        ('curves',SplinePairFeatures(pair=pair)),
+        ('ridge',Ridge(solver='lsqr',tol=1e-8))])
 
 
 def _tune(X,y,pair,config):
@@ -120,7 +125,9 @@ def validate_pairs(X,y,train_indices,assessment_indices,pairs,*,config=PairValid
     cost=len(config.knots)*len(config.alphas)*config.inner_folds+1
     records=[dict(members=list(p),status='pair_limit' if i>=config.max_pairs else 'fit_budget',
         gain=None,predicted=None,baseline_predicted=None) for i,p in enumerate(pairs)]
-    result=dict(schema='open.experimental_pair_validation.v1',config=asdict(config),
+    result=dict(schema='open.experimental_pair_validation.v2',config=asdict(config),
+        feature_scaling='standardized_marginals_natural_joint',
+        solver=dict(name='lsqr',tol=1e-8),
         train_indices=train,assessment_indices=assessment,additional_fits=0,
         baseline_parameters=None,pairs=records,
         interpretation='heldout predictive gain; no significance or certified moderation')
