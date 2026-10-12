@@ -45,7 +45,7 @@ Noise variance is signal variance*2/3 (unit variance for noise-only).
 The expected population incremental skill gap is product coefficient squared
 times residual variance divided by total outcome variance. It is zero for
 noise/additive signals. For mixed rho=.7 it is about .02126; for rho=.9 about
-.00214. Closely related inputs allow separate curves to capture much of the
+.00213. Closely related inputs allow separate curves to capture much of the
 product signal. Dependent-input decompositions generally require care; see
 [Chastaing, Gamboa and Prieur](https://arxiv.org/abs/1112.1788).
 
