@@ -1,0 +1,34 @@
+{
+  "audit_errors": 0,
+  "confirmation_tasks_fitted": 0,
+  "construction_task": {
+    "b": 0.8,
+    "cell": "n80-p5-rho0.7",
+    "id": "construction--mixed-rho0.7-n80-p5",
+    "n": 80,
+    "p": 5,
+    "replicate": 0,
+    "rho": 0.7,
+    "scenario": "mixed",
+    "seed": 298000001,
+    "split_seed": 298200001,
+    "stage": "construction",
+    "test_seed": 298100001
+  },
+  "elapsed_seconds": 6.609000000054948,
+  "environment": {
+    "PyYAML": "6.0.2",
+    "matplotlib": "3.9.2",
+    "numpy": "1.26.4",
+    "pandas": "2.2.3",
+    "python": "3.11.9",
+    "scipy": "1.11.2",
+    "sklearn": "1.3.0"
+  },
+  "fits": 1384,
+  "manifest": "51d209de26d2cfc8e8f213f71710a23355d9571530607f60ad32b281311e3595",
+  "planned_calibration_id": "confidence--calibration--n80-p5-rho0.7--additive-b0-r000",
+  "saved_setting_refits": 40,
+  "scope": "One planned calibration identity and one disposable alternative construction case; no learned rule or rates.",
+  "source_commit": "68a1bdb980f6313784d0277fd3f1e750cc73b43c"
+}
