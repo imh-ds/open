@@ -84,3 +84,17 @@ The frozen [development protocol](../examples/pair_validation_protocol.md) uses
 RF for shortlisting and these comparators for evaluation. Replay earlier frozen
 studies from their recorded source commits; their manifests are intentionally
 unchanged by this revision.
+
+## Completed development evidence
+
+The [240-dataset study](../examples/results/2026-10-11-pair-validation/REPORT.md)
+completed and passed its evidence audit. Adaptive grids improved plotting
+availability. The comparator showed useful gains for larger independent-input
+simulations, but poor discrimination with correlated inputs. A saved-setting
+refit also reproduced an extreme held-out prediction caused by amplification of
+a nearly constant residualized tensor feature during standardization.
+
+This limitation has been diagnosed, not patched. Keep the comparator experimental
+and separate from automatic interaction decisions. Stabilizing its joint basis
+and examining correlated-input identifiability require a new development revision;
+the existing frozen evidence and sensitivity cutoffs remain unchanged.

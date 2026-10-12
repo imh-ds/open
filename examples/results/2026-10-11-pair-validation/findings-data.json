@@ -1,0 +1,8573 @@
+{
+  "detail_counts": {
+    "adaptive": {
+      "available": 1440,
+      "bins": {
+        "2": 464,
+        "3": 227,
+        "4": 749
+      },
+      "partial": 5,
+      "planned_locked_pair_details": 1440
+    },
+    "fixed": {
+      "available": 749,
+      "bins": {
+        "2": 0,
+        "3": 0,
+        "4": 749
+      },
+      "partial": 0,
+      "planned_locked_pair_details": 1440
+    }
+  },
+  "diagnosis": {
+    "assessment_position": 291,
+    "baseline_mse": 3.008102731963207,
+    "feature60_prediction_contribution": 88.66585015442219,
+    "feature60_training_scale": 9.646800432187983e-08,
+    "fold": 1,
+    "interpretation": "Near-constant residualized joint spline feature, amplified by standardization, creates extreme heldout prediction. Saved-setting refit reproduces it. Not an arithmetic discrepancy; experimental comparator instability.",
+    "joint_mse": 86.05196600553973,
+    "largest_error_fraction": 0.9124024584906223,
+    "largest_joint_standardized_feature": 1370.6178294475335,
+    "observed": -0.33219152876633595,
+    "pair_gain": -15.34590507699886,
+    "parameters": {
+      "curves__n_knots": 5,
+      "ridge__alpha": 100.0
+    },
+    "patch_applied": false,
+    "pooled_gain": -4.82057673149442,
+    "predicted": 88.27594880913146,
+    "predictors": [
+      0.7749823297819071,
+      -1.6887883900317395
+    ],
+    "task": "correlated_mixed-n300-p5-r03--random_forest"
+  },
+  "independent_test": [
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.0016322178973912872,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.31569628915905634,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n80-p5-r00--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.07640550447706829,
+          "members": [
+            "x2",
+            "x4"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.03709513397901333,
+          "members": [
+            "x3",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n80-p5-r01--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.03891084078062587,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.3412221533009701,
+          "members": [
+            "x2",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n80-p5-r02--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.1512233627339271,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.15709712472838944,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n80-p5-r03--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.11107211476932084,
+          "members": [
+            "x3",
+            "x5"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -2.8792793215038324,
+          "members": [
+            "x2",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n80-p5-r04--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.04346546052810208,
+          "members": [
+            "x4",
+            "x5"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.03361901012878784,
+          "members": [
+            "x3",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n80-p5-r05--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.08341474610461111,
+          "members": [
+            "x2",
+            "x3"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -5.979229192550361,
+          "members": [
+            "x4",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n80-p5-r06--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.29674759331417067,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.24873916208534333,
+          "members": [
+            "x3",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n80-p5-r07--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.023619193470195452,
+          "members": [
+            "x3",
+            "x5"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.09945710267697994,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n80-p5-r08--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.1471216472995919,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.504611516970245,
+          "members": [
+            "x3",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n80-p5-r09--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.047247783717692976,
+          "members": [
+            "x3",
+            "x5"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.01734750417179531,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n300-p5-r00--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.012583869251059154,
+          "members": [
+            "x3",
+            "x4"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.003797449629539149,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n300-p5-r01--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.0733171623658511,
+          "members": [
+            "x3",
+            "x5"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.03352155130793167,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n300-p5-r02--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.0406732220878641,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.060089747898328896,
+          "members": [
+            "x2",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n300-p5-r03--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.005565179210558419,
+          "members": [
+            "x2",
+            "x4"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.025150016177593902,
+          "members": [
+            "x2",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n300-p5-r04--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.00010472269552350007,
+          "members": [
+            "x2",
+            "x4"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.016771890228372856,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n300-p5-r05--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.019699615347061876,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.004306053870742528,
+          "members": [
+            "x4",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n300-p5-r06--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.02125201639763813,
+          "members": [
+            "x2",
+            "x4"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.04778599086341901,
+          "members": [
+            "x4",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n300-p5-r07--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.04368586079939776,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.18135140465517005,
+          "members": [
+            "x3",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n300-p5-r08--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.012537193897544287,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.25030521667035033,
+          "members": [
+            "x3",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n300-p5-r09--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.013144042202319971,
+          "members": [
+            "x3",
+            "x4"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.03368784723624159,
+          "members": [
+            "x3",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n600-p5-r00--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.0005155126103794865,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.01605413240222625,
+          "members": [
+            "x3",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n600-p5-r01--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.017619051576005317,
+          "members": [
+            "x2",
+            "x3"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.009233798973177998,
+          "members": [
+            "x2",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n600-p5-r02--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.0032510134476312767,
+          "members": [
+            "x2",
+            "x3"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.000590883177344144,
+          "members": [
+            "x2",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n600-p5-r03--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.015623935226481872,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.006047892687793872,
+          "members": [
+            "x2",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n600-p5-r04--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.003688228103421989,
+          "members": [
+            "x2",
+            "x3"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.004197828631044692,
+          "members": [
+            "x3",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n600-p5-r05--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.008066835826669132,
+          "members": [
+            "x2",
+            "x4"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.008893665788523181,
+          "members": [
+            "x2",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n600-p5-r06--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.04146586779620341,
+          "members": [
+            "x3",
+            "x5"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.02621457645953101,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n600-p5-r07--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.0072925545042819674,
+          "members": [
+            "x2",
+            "x5"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.01569178561742797,
+          "members": [
+            "x3",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n600-p5-r08--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.01638686137203823,
+          "members": [
+            "x3",
+            "x5"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.013606990823584072,
+          "members": [
+            "x4",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n600-p5-r09--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": -0.001773650106214304,
+          "members": [
+            "x12",
+            "x5"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.06559930577760147,
+          "members": [
+            "x1",
+            "x12"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n300-p15-r00--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": -0.0018912797462433116,
+          "members": [
+            "x3",
+            "x9"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.02174431552985931,
+          "members": [
+            "x2",
+            "x6"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n300-p15-r01--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": -0.005352922733121765,
+          "members": [
+            "x10",
+            "x8"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.013798070620155348,
+          "members": [
+            "x10",
+            "x13"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n300-p15-r02--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": -0.011914553808550462,
+          "members": [
+            "x12",
+            "x8"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.02234814937639575,
+          "members": [
+            "x15",
+            "x6"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n300-p15-r03--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": 0.0014889658766974818,
+          "members": [
+            "x13",
+            "x4"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.019332285054961842,
+          "members": [
+            "x13",
+            "x14"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n300-p15-r04--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": 0.004272164786781035,
+          "members": [
+            "x10",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.0359031325310889,
+          "members": [
+            "x13",
+            "x7"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n300-p15-r05--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": -0.053113093585602004,
+          "members": [
+            "x4",
+            "x9"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.04020832248109874,
+          "members": [
+            "x3",
+            "x9"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n300-p15-r06--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": -0.020842746310435024,
+          "members": [
+            "x13",
+            "x6"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.05867279245802966,
+          "members": [
+            "x12",
+            "x13"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n300-p15-r07--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": -0.05930098486837964,
+          "members": [
+            "x7",
+            "x8"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.007396833917987466,
+          "members": [
+            "x11",
+            "x13"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n300-p15-r08--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": -0.005463671846905673,
+          "members": [
+            "x12",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.030979122311480253,
+          "members": [
+            "x2",
+            "x8"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "noise",
+      "task": "noise-n300-p15-r09--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.017419402719547283,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.0001389706408391101,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n80-p5-r00--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.03397056595594842,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.0661553925390618,
+          "members": [
+            "x2",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n80-p5-r01--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.10140779374623338,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.0017563737600431511,
+          "members": [
+            "x2",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n80-p5-r02--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.26329490436532854,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.1920247797667451,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n80-p5-r03--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.05627925148037257,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.10620447966783056,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n80-p5-r04--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -1.5907567866124337,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.26193067278083587,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n80-p5-r05--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.07752013832463954,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.0032795682528097133,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n80-p5-r06--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.06508450591852909,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.05671219180973262,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n80-p5-r07--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.14660072202129631,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -6.971590514501141,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n80-p5-r08--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.03474608536343028,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.37840104090542936,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n80-p5-r09--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.008120890845605609,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.04230607534707333,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n300-p5-r00--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.03842180646900603,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.028407548396370753,
+          "members": [
+            "x2",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n300-p5-r01--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.025686515598337567,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.022880923067849206,
+          "members": [
+            "x2",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n300-p5-r02--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.028147794973288814,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.037801877073512784,
+          "members": [
+            "x2",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n300-p5-r03--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.020152559375238525,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.03449158675914984,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n300-p5-r04--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.0647726857862169,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.2440724041881688,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n300-p5-r05--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.022760129861065476,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.05667732926872924,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n300-p5-r06--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.04322255817637996,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.005609146485465933,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n300-p5-r07--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.013973307586851415,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.025102182302109782,
+          "members": [
+            "x2",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n300-p5-r08--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.023032757855685922,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.014035587675470204,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n300-p5-r09--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.020581031848506414,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.008726035392051077,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n600-p5-r00--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.01066860696473202,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.01574731225796962,
+          "members": [
+            "x2",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n600-p5-r01--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.007863764539748646,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.00829174024001229,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n600-p5-r02--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.022283757577621913,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.017123757478477747,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n600-p5-r03--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.009630468304935387,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.0025250571472090044,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n600-p5-r04--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.010102718507960896,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.01197730214665569,
+          "members": [
+            "x2",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n600-p5-r05--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.0034310808505048952,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.007985108486087843,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n600-p5-r06--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.012294524364816007,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.013724459237018632,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n600-p5-r07--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.0030515637569610617,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.01154502490064247,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n600-p5-r08--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.018139635627221873,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.009992592342805895,
+          "members": [
+            "x2",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n600-p5-r09--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": -0.005180750000401692,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.019805505003386088,
+          "members": [
+            "x1",
+            "x13"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n300-p15-r00--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": -0.006449399137059299,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.026328920540070678,
+          "members": [
+            "x1",
+            "x10"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n300-p15-r01--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": -0.01938597046731418,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.010039343418786685,
+          "members": [
+            "x1",
+            "x9"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n300-p15-r02--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": -0.01397848674109297,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.015498710995516049,
+          "members": [
+            "x1",
+            "x10"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n300-p15-r03--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": -0.008203864803122435,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.11791246555048003,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n300-p15-r04--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": -0.00923989456311427,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.010823847080462324,
+          "members": [
+            "x1",
+            "x14"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n300-p15-r05--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": -0.002539653093033745,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.017009945915395987,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n300-p15-r06--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": -0.005303903167954075,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.04884061478671504,
+          "members": [
+            "x1",
+            "x9"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n300-p15-r07--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": -0.007528015817077304,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.0751344920309484,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n300-p15-r08--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": -0.029394267502128497,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.026221444123758927,
+          "members": [
+            "x2",
+            "x8"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "additive",
+      "task": "additive-n300-p15-r09--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.6469866143606169,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.07606950540146987,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n80-p5-r00--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.44931499887039694,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.05957400702814144,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n80-p5-r01--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.07150279093923159,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.45382843734911504,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n80-p5-r02--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -1.0991112994346157,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -1.4375195880251126,
+          "members": [
+            "x2",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n80-p5-r03--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.10875829136272355,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.16998979263247543,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n80-p5-r04--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.19883885639385881,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.2856615651903693,
+          "members": [
+            "x2",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n80-p5-r05--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.43016795876279895,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.04091111723012285,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n80-p5-r06--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.4129049913850439,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.07911138924491817,
+          "members": [
+            "x2",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n80-p5-r07--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.30424113356659277,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.2034744452142818,
+          "members": [
+            "x2",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n80-p5-r08--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.00950703399854051,
+          "members": [
+            "x2",
+            "x3"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.1564020106466047,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n80-p5-r09--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.6273663112592834,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.0056931280544605485,
+          "members": [
+            "x2",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n300-p5-r00--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.7269057478994445,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.12881099496679338,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n300-p5-r01--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.5461461018754699,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.06186668651108913,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n300-p5-r02--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.5980043824062388,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.1362697102469481,
+          "members": [
+            "x2",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n300-p5-r03--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.5537717074592228,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -1.141677793253194,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n300-p5-r04--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.19458295518188992,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.055768848712505904,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n300-p5-r05--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.6162209471693766,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.019923320206425368,
+          "members": [
+            "x2",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n300-p5-r06--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.6341653740573256,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.0072240235268630736,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n300-p5-r07--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.6779579346700503,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.01973612026532345,
+          "members": [
+            "x2",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n300-p5-r08--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.523582885030627,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.04265902721643456,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n300-p5-r09--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.559696549910598,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.03470851788063316,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n600-p5-r00--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.6281725794352316,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.036347087003669336,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n600-p5-r01--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.5106340480044221,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.0008051769134165647,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n600-p5-r02--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.5282303094301678,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.03309351335892813,
+          "members": [
+            "x2",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n600-p5-r03--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.5696971443488416,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.03871163748570906,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n600-p5-r04--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.5794415399685503,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.029286653665959513,
+          "members": [
+            "x2",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n600-p5-r05--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.6743572135748511,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.020110952073834322,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n600-p5-r06--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.5920429449674478,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.059180151375636814,
+          "members": [
+            "x2",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n600-p5-r07--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.6122668651722296,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.06874587404264444,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n600-p5-r08--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.5794942245566186,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.013838739889631291,
+          "members": [
+            "x2",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n600-p5-r09--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": 0.5807383152826933,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.11773480693400513,
+          "members": [
+            "x2",
+            "x7"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n300-p15-r00--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": 0.6421005783249927,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.017445148031987746,
+          "members": [
+            "x2",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n300-p15-r01--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": 0.7115204492059404,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.03421009197642061,
+          "members": [
+            "x2",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n300-p15-r02--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": 0.6697779996093491,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.028404540067450038,
+          "members": [
+            "x1",
+            "x6"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n300-p15-r03--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": 0.6012195926833859,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.038020403447273456,
+          "members": [
+            "x1",
+            "x10"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n300-p15-r04--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": 0.5770816482697658,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.09366324247442753,
+          "members": [
+            "x1",
+            "x14"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n300-p15-r05--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": 0.5914194426764697,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.06592245645072786,
+          "members": [
+            "x1",
+            "x9"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n300-p15-r06--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": 0.5691199840274015,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.03824781756933246,
+          "members": [
+            "x1",
+            "x14"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n300-p15-r07--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": 0.2559624787539961,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.0018338211190409468,
+          "members": [
+            "x14",
+            "x2"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n300-p15-r08--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": 0.5670731381454851,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.06438046091186164,
+          "members": [
+            "x1",
+            "x15"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "pure",
+      "task": "pure-n300-p15-r09--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.658104547368874,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.1829954555684596,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n80-p5-r00--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.3498300163230982,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.25626903479214874,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n80-p5-r01--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.9765308469347732,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.03253024675879009,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n80-p5-r02--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.1338734414459548,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.05841017018657708,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n80-p5-r03--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.1489706962595489,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.11343046403854419,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n80-p5-r04--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.07598071673015061,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.06313860068395563,
+          "members": [
+            "x2",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n80-p5-r05--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.19118304481859932,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.5809768204909062,
+          "members": [
+            "x2",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n80-p5-r06--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.12797144209960507,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.5247371915049365,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n80-p5-r07--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.12716421254660543,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.08386240690677935,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n80-p5-r08--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.1675507058941883,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.05449949449664749,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n80-p5-r09--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.167653574529023,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.02452960336395272,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n300-p5-r00--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.16576117336524443,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.01616886417044938,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n300-p5-r01--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.1533162502779878,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.05173316598693828,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n300-p5-r02--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.19903972487950347,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.06900179750197834,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n300-p5-r03--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.15416367260834427,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.004230325508505846,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n300-p5-r04--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.09215765321699333,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.0061618576050022755,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n300-p5-r05--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.18320578613843183,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.006176552980687388,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n300-p5-r06--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.23702331101012228,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.25510223407005733,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n300-p5-r07--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.18018351638871238,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.23518083436043102,
+          "members": [
+            "x2",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n300-p5-r08--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.05991434522130064,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.021207862062209135,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n300-p5-r09--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.21684080092082006,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.00035661282068929866,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n600-p5-r00--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.2126521436195236,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.010412041054723209,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n600-p5-r01--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.20208849215465277,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.02167986499034398,
+          "members": [
+            "x2",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n600-p5-r02--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.23566627650492172,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.04960449195438361,
+          "members": [
+            "x2",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n600-p5-r03--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.15532743265419863,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.03948222357173733,
+          "members": [
+            "x2",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n600-p5-r04--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.22568618069557642,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.004872137568140884,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n600-p5-r05--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.16029065783675808,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.01697877187137495,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n600-p5-r06--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.16189003046539072,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.0012243949012379915,
+          "members": [
+            "x2",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n600-p5-r07--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.21518733210284277,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.03213434513129942,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n600-p5-r08--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.214927486753511,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.030373557338366476,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n600-p5-r09--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": 0.2200116224900084,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.04149865746618972,
+          "members": [
+            "x1",
+            "x15"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n300-p15-r00--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": 0.14443545677360498,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.005044418621401696,
+          "members": [
+            "x1",
+            "x15"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n300-p15-r01--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": 0.14065888717410185,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.007019116747380302,
+          "members": [
+            "x1",
+            "x13"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n300-p15-r02--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": 0.20142566254597122,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.004894616534770832,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n300-p15-r03--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": 0.1907736676319874,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.015815279388032503,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n300-p15-r04--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": 0.16794401320522498,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.00597977647632863,
+          "members": [
+            "x1",
+            "x15"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n300-p15-r05--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": 0.2058452762015542,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.013165426091303063,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n300-p15-r06--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": 0.15439636591560574,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.02077759077874663,
+          "members": [
+            "x1",
+            "x12"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n300-p15-r07--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": -0.18264311944107853,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.031377478358365594,
+          "members": [
+            "x1",
+            "x13"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n300-p15-r08--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": 0.19835008515562289,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.008655058993621324,
+          "members": [
+            "x1",
+            "x7"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "mixed",
+      "task": "mixed-n300-p15-r09--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.1506864801796618,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.26466023130266847,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n80-p5-r00--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.03519990705442478,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.04089897555257748,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n80-p5-r01--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.08320364037355257,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.10787190743879792,
+          "members": [
+            "x2",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n80-p5-r02--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.008821540260183499,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.11888413353525723,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n80-p5-r03--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -1.4392797499605778,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.21284499947347124,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n80-p5-r04--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.04909187896358714,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.12371898326833773,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n80-p5-r05--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.6608047298585185,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.09729856572430322,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n80-p5-r06--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -1.264766537929228,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.522397264512312,
+          "members": [
+            "x2",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n80-p5-r07--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.09737463357683572,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.03238158705744501,
+          "members": [
+            "x2",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n80-p5-r08--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.03833527987046236,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -3.253281497513423,
+          "members": [
+            "x2",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n80-p5-r09--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.005020000800079652,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.040551667370522106,
+          "members": [
+            "x2",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p5-r00--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.08507053091916562,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.038418340792502524,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p5-r01--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.023690368202440786,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.06331974042827448,
+          "members": [
+            "x2",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p5-r02--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.016916401989556656,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.024604577031236623,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p5-r03--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.005961300234521192,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.022826289740769053,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p5-r04--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.014280581631428172,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.015073466487302048,
+          "members": [
+            "x2",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p5-r05--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.01983754820981293,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.023336085416091196,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p5-r06--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.012678274879331505,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.013667981973925486,
+          "members": [
+            "x2",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p5-r07--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.07072079993849549,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.05808478509177009,
+          "members": [
+            "x2",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p5-r08--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.3618333406618555,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.0010234224060051466,
+          "members": [
+            "x2",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p5-r09--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.009373289623572662,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.004756246691482151,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n600-p5-r00--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.25040864157580994,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.03140401913878877,
+          "members": [
+            "x2",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n600-p5-r01--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.07122085241868994,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.026246364464484685,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n600-p5-r02--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.006289791445613345,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.004470280746172612,
+          "members": [
+            "x2",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n600-p5-r03--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.03157929526479239,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.010886053023411816,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n600-p5-r04--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.021929671498998757,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.024205855751471363,
+          "members": [
+            "x2",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n600-p5-r05--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.03316689800201965,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.04736708770360206,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n600-p5-r06--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.03990047958086487,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.014015029597521031,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n600-p5-r07--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.008729743581473142,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.00506125737315174,
+          "members": [
+            "x2",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n600-p5-r08--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.008587738956591682,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.00741231611083246,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n600-p5-r09--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": 0.021534915071386745,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.006517881460496293,
+          "members": [
+            "x2",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p15-r00--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": -0.052155958430126964,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.006162173519360711,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p15-r01--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": 0.004194087064979103,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.0033464556386168685,
+          "members": [
+            "x1",
+            "x11"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p15-r02--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": 0.012332709425811628,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.0022768145642203504,
+          "members": [
+            "x2",
+            "x7"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p15-r03--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": -0.013546627728799944,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.03357418354895933,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p15-r04--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": -0.0079234389049465,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.0005751422712354483,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p15-r05--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": -0.006166697190649661,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.004726952107590339,
+          "members": [
+            "x1",
+            "x14"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p15-r06--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": -0.022696409198482405,
+          "members": [
+            "x1",
+            "x11"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.004630968239618314,
+          "members": [
+            "x11",
+            "x2"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p15-r07--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": -0.019108913512184852,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.020139094660292935,
+          "members": [
+            "x1",
+            "x15"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p15-r08--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": -0.005513132984558737,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.22878194593894907,
+          "members": [
+            "x1",
+            "x7"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p15-r09--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.006652819029593718,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.008125157752890268,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n80-p5-r00--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.24276022521428536,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.07562766861617161,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n80-p5-r01--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.07651136981254252,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.22005312503946903,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n80-p5-r02--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.10202741268894706,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.0385905853966034,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n80-p5-r03--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.055669212804839475,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.09773766209847733,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n80-p5-r04--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.0104324843144418,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.05801983243161799,
+          "members": [
+            "x2",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n80-p5-r05--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.13355087545026556,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.006765126170291905,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n80-p5-r06--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.020453899447344496,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -6.988869280178081e-05,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n80-p5-r07--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.04663341187880791,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.1560674672903984,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n80-p5-r08--random_forest"
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.15063823770491105,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.11114448290958084,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n80-p5-r09--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.02098607678377127,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.008874442669432577,
+          "members": [
+            "x2",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p5-r00--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.014728876879413271,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.04034359489949516,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p5-r01--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.01897235480073428,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.017941640433201143,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p5-r02--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.016374277574157055,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.01174938276587891,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p5-r03--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.023169820071612193,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.0055026850726683394,
+          "members": [
+            "x2",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p5-r04--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.011352786075887897,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.007170288650960449,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p5-r05--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.026894181472356223,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.0004356454824262332,
+          "members": [
+            "x2",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p5-r06--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.019961177564938662,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.028940387998357235,
+          "members": [
+            "x2",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p5-r07--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.030101917186589017,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.001342572871022126,
+          "members": [
+            "x2",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p5-r08--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.0003720699809624429,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.027669181236474504,
+          "members": [
+            "x2",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p5-r09--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.006338652250692463,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.039756202268681484,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n600-p5-r00--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.046539994781876606,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": 0.0005484948137090394,
+          "members": [
+            "x2",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n600-p5-r01--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.0041818711506676366,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.0017805945256892763,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n600-p5-r02--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.0034710350047859797,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.014580621966612741,
+          "members": [
+            "x2",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n600-p5-r03--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.03959363769553538,
+          "members": [
+            "x2",
+            "x5"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.0772674393855957,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n600-p5-r04--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.014945697657987523,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.012111963939073368,
+          "members": [
+            "x2",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n600-p5-r05--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": -0.17451310001896256,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.02865660728467841,
+          "members": [
+            "x1",
+            "x5"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n600-p5-r06--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.01704112973544607,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.02076762662470361,
+          "members": [
+            "x2",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n600-p5-r07--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.014464927430355934,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.07816313022435233,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n600-p5-r08--random_forest"
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "pairs": [
+        {
+          "gain": 0.018554592233230475,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.031164762166004955,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n600-p5-r09--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": -0.0017942564082270712,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.004758168889956107,
+          "members": [
+            "x1",
+            "x8"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p15-r00--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": -0.021292387992268364,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.15283376849619262,
+          "members": [
+            "x1",
+            "x7"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p15-r01--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": 0.0013531273412457296,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.0037868641263889263,
+          "members": [
+            "x1",
+            "x6"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p15-r02--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": -0.002082418884151241,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.01152360058673929,
+          "members": [
+            "x1",
+            "x12"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p15-r03--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": 0.026969695865970072,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.007847072172240106,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p15-r04--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": -0.009539087314990785,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.013395193925026755,
+          "members": [
+            "x11",
+            "x2"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p15-r05--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": 0.002661376450302938,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.01003899352429396,
+          "members": [
+            "x1",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p15-r06--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": 0.019546352944032543,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.010141400967565422,
+          "members": [
+            "x2",
+            "x3"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p15-r07--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": 0.014174655827457912,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.06850589717966343,
+          "members": [
+            "x1",
+            "x15"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p15-r08--random_forest"
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "pairs": [
+        {
+          "gain": 0.015416770752204703,
+          "members": [
+            "x1",
+            "x2"
+          ],
+          "status": "available"
+        },
+        {
+          "gain": -0.005034340187136717,
+          "members": [
+            "x1",
+            "x4"
+          ],
+          "status": "available"
+        }
+      ],
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p15-r09--random_forest"
+    }
+  ],
+  "per_dataset": [
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "noise",
+      "task": "noise-n80-p5-r00--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "noise",
+      "task": "noise-n80-p5-r01--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "noise",
+      "task": "noise-n80-p5-r02--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "noise",
+      "task": "noise-n80-p5-r03--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "noise",
+      "task": "noise-n80-p5-r04--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "noise",
+      "task": "noise-n80-p5-r05--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "noise",
+      "task": "noise-n80-p5-r06--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "noise",
+      "task": "noise-n80-p5-r07--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "noise",
+      "task": "noise-n80-p5-r08--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "noise",
+      "task": "noise-n80-p5-r09--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "noise",
+      "task": "noise-n300-p5-r00--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "noise",
+      "task": "noise-n300-p5-r01--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "noise",
+      "task": "noise-n300-p5-r02--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "noise",
+      "task": "noise-n300-p5-r03--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "noise",
+      "task": "noise-n300-p5-r04--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "noise",
+      "task": "noise-n300-p5-r05--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "noise",
+      "task": "noise-n300-p5-r06--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "noise",
+      "task": "noise-n300-p5-r07--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "noise",
+      "task": "noise-n300-p5-r08--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "noise",
+      "task": "noise-n300-p5-r09--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "noise",
+      "task": "noise-n600-p5-r00--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "noise",
+      "task": "noise-n600-p5-r01--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "noise",
+      "task": "noise-n600-p5-r02--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "noise",
+      "task": "noise-n600-p5-r03--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "noise",
+      "task": "noise-n600-p5-r04--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "noise",
+      "task": "noise-n600-p5-r05--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "noise",
+      "task": "noise-n600-p5-r06--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "noise",
+      "task": "noise-n600-p5-r07--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "noise",
+      "task": "noise-n600-p5-r08--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "noise",
+      "task": "noise-n600-p5-r09--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "noise",
+      "task": "noise-n300-p15-r00--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "noise",
+      "task": "noise-n300-p15-r01--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "noise",
+      "task": "noise-n300-p15-r02--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "noise",
+      "task": "noise-n300-p15-r03--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "noise",
+      "task": "noise-n300-p15-r04--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "noise",
+      "task": "noise-n300-p15-r05--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "noise",
+      "task": "noise-n300-p15-r06--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "noise",
+      "task": "noise-n300-p15-r07--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "noise",
+      "task": "noise-n300-p15-r08--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "noise",
+      "task": "noise-n300-p15-r09--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "additive",
+      "task": "additive-n80-p5-r00--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "additive",
+      "task": "additive-n80-p5-r01--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "additive",
+      "task": "additive-n80-p5-r02--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "additive",
+      "task": "additive-n80-p5-r03--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "additive",
+      "task": "additive-n80-p5-r04--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "additive",
+      "task": "additive-n80-p5-r05--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "additive",
+      "task": "additive-n80-p5-r06--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "additive",
+      "task": "additive-n80-p5-r07--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "additive",
+      "task": "additive-n80-p5-r08--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "additive",
+      "task": "additive-n80-p5-r09--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "additive",
+      "task": "additive-n300-p5-r00--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "additive",
+      "task": "additive-n300-p5-r01--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "additive",
+      "task": "additive-n300-p5-r02--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "additive",
+      "task": "additive-n300-p5-r03--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "additive",
+      "task": "additive-n300-p5-r04--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "additive",
+      "task": "additive-n300-p5-r05--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "additive",
+      "task": "additive-n300-p5-r06--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "additive",
+      "task": "additive-n300-p5-r07--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "additive",
+      "task": "additive-n300-p5-r08--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "additive",
+      "task": "additive-n300-p5-r09--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "additive",
+      "task": "additive-n600-p5-r00--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "additive",
+      "task": "additive-n600-p5-r01--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "additive",
+      "task": "additive-n600-p5-r02--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "additive",
+      "task": "additive-n600-p5-r03--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "additive",
+      "task": "additive-n600-p5-r04--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "additive",
+      "task": "additive-n600-p5-r05--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "additive",
+      "task": "additive-n600-p5-r06--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "additive",
+      "task": "additive-n600-p5-r07--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "additive",
+      "task": "additive-n600-p5-r08--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "additive",
+      "task": "additive-n600-p5-r09--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "additive",
+      "task": "additive-n300-p15-r00--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "additive",
+      "task": "additive-n300-p15-r01--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "additive",
+      "task": "additive-n300-p15-r02--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "additive",
+      "task": "additive-n300-p15-r03--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "additive",
+      "task": "additive-n300-p15-r04--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "additive",
+      "task": "additive-n300-p15-r05--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "additive",
+      "task": "additive-n300-p15-r06--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "additive",
+      "task": "additive-n300-p15-r07--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "additive",
+      "task": "additive-n300-p15-r08--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "additive",
+      "task": "additive-n300-p15-r09--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "pure",
+      "task": "pure-n80-p5-r00--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.037471041748290385,
+        "conditional_gain": 0.037471041748290385,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "pure",
+      "task": "pure-n80-p5-r01--random_forest",
+      "true_pair": {
+        "assessed_folds": 2,
+        "complete_gain": null,
+        "conditional_gain": 0.09284148350424704,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "pure",
+      "task": "pure-n80-p5-r02--random_forest",
+      "true_pair": {
+        "assessed_folds": 2,
+        "complete_gain": null,
+        "conditional_gain": 0.33172372151899787,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "pure",
+      "task": "pure-n80-p5-r03--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.06507807514785914,
+        "conditional_gain": 0.06507807514785914,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "pure",
+      "task": "pure-n80-p5-r04--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.4623434793926414,
+        "conditional_gain": 0.4623434793926414,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "pure",
+      "task": "pure-n80-p5-r05--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.09758166588350232,
+        "conditional_gain": 0.09758166588350232,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "pure",
+      "task": "pure-n80-p5-r06--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": -0.10325582877590747,
+        "conditional_gain": -0.10325582877590747,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "pure",
+      "task": "pure-n80-p5-r07--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.27083902189266196,
+        "conditional_gain": 0.27083902189266196,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "pure",
+      "task": "pure-n80-p5-r08--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.31512653234661386,
+        "conditional_gain": 0.31512653234661386,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "pure",
+      "task": "pure-n80-p5-r09--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.294678165625677,
+        "conditional_gain": 0.294678165625677,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "pure",
+      "task": "pure-n300-p5-r00--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.49939578043095173,
+        "conditional_gain": 0.49939578043095173,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "pure",
+      "task": "pure-n300-p5-r01--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.5615941326320225,
+        "conditional_gain": 0.5615941326320225,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "pure",
+      "task": "pure-n300-p5-r02--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.5920540302302593,
+        "conditional_gain": 0.5920540302302593,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "pure",
+      "task": "pure-n300-p5-r03--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.5465513339257664,
+        "conditional_gain": 0.5465513339257664,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "pure",
+      "task": "pure-n300-p5-r04--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.6965051055876507,
+        "conditional_gain": 0.6965051055876507,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "pure",
+      "task": "pure-n300-p5-r05--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.5410377317289983,
+        "conditional_gain": 0.5410377317289983,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "pure",
+      "task": "pure-n300-p5-r06--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.4806733675978302,
+        "conditional_gain": 0.4806733675978302,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "pure",
+      "task": "pure-n300-p5-r07--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.6065508500350971,
+        "conditional_gain": 0.6065508500350971,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "pure",
+      "task": "pure-n300-p5-r08--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.6084811426532665,
+        "conditional_gain": 0.6084811426532665,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "pure",
+      "task": "pure-n300-p5-r09--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.43435444853422345,
+        "conditional_gain": 0.43435444853422345,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "pure",
+      "task": "pure-n600-p5-r00--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.6703681075636262,
+        "conditional_gain": 0.6703681075636262,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "pure",
+      "task": "pure-n600-p5-r01--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.6392174482064965,
+        "conditional_gain": 0.6392174482064965,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "pure",
+      "task": "pure-n600-p5-r02--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.5677505856247187,
+        "conditional_gain": 0.5677505856247187,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "pure",
+      "task": "pure-n600-p5-r03--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.5482229712159832,
+        "conditional_gain": 0.5482229712159832,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "pure",
+      "task": "pure-n600-p5-r04--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.47669900603116894,
+        "conditional_gain": 0.47669900603116894,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "pure",
+      "task": "pure-n600-p5-r05--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.6312277889564706,
+        "conditional_gain": 0.6312277889564706,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "pure",
+      "task": "pure-n600-p5-r06--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.5139669473874205,
+        "conditional_gain": 0.5139669473874205,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "pure",
+      "task": "pure-n600-p5-r07--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.5886141483776114,
+        "conditional_gain": 0.5886141483776114,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "pure",
+      "task": "pure-n600-p5-r08--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.685038663653602,
+        "conditional_gain": 0.685038663653602,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "pure",
+      "task": "pure-n600-p5-r09--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.6367547785457165,
+        "conditional_gain": 0.6367547785457165,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "pure",
+      "task": "pure-n300-p15-r00--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.6504672453184834,
+        "conditional_gain": 0.6504672453184834,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "pure",
+      "task": "pure-n300-p15-r01--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.642220394856374,
+        "conditional_gain": 0.642220394856374,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "pure",
+      "task": "pure-n300-p15-r02--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.4745573260930561,
+        "conditional_gain": 0.4745573260930561,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "pure",
+      "task": "pure-n300-p15-r03--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.6071274272004465,
+        "conditional_gain": 0.6071274272004465,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "pure",
+      "task": "pure-n300-p15-r04--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.5987515182743615,
+        "conditional_gain": 0.5987515182743615,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "pure",
+      "task": "pure-n300-p15-r05--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.6112791758813025,
+        "conditional_gain": 0.6112791758813025,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "pure",
+      "task": "pure-n300-p15-r06--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.7281437539803806,
+        "conditional_gain": 0.7281437539803806,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "pure",
+      "task": "pure-n300-p15-r07--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.5509308269773469,
+        "conditional_gain": 0.5509308269773469,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "pure",
+      "task": "pure-n300-p15-r08--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.606001921715822,
+        "conditional_gain": 0.606001921715822,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "pure",
+      "task": "pure-n300-p15-r09--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.4336021578941632,
+        "conditional_gain": 0.4336021578941632,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "mixed",
+      "task": "mixed-n80-p5-r00--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": -0.014559398360258793,
+        "conditional_gain": -0.014559398360258793,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "mixed",
+      "task": "mixed-n80-p5-r01--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.0744203397541371,
+        "conditional_gain": 0.0744203397541371,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "mixed",
+      "task": "mixed-n80-p5-r02--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.521882168850368,
+        "conditional_gain": 0.521882168850368,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "mixed",
+      "task": "mixed-n80-p5-r03--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.00948297689093875,
+        "conditional_gain": 0.00948297689093875,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "mixed",
+      "task": "mixed-n80-p5-r04--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": -0.06669009517619706,
+        "conditional_gain": -0.06669009517619706,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "mixed",
+      "task": "mixed-n80-p5-r05--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": -0.011978114052212503,
+        "conditional_gain": -0.011978114052212503,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "mixed",
+      "task": "mixed-n80-p5-r06--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": -0.01015739713078572,
+        "conditional_gain": -0.01015739713078572,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "mixed",
+      "task": "mixed-n80-p5-r07--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": -0.8927093142980947,
+        "conditional_gain": -0.8927093142980947,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "mixed",
+      "task": "mixed-n80-p5-r08--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.2177374341271122,
+        "conditional_gain": 0.2177374341271122,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "mixed",
+      "task": "mixed-n80-p5-r09--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.2226523897297215,
+        "conditional_gain": 0.2226523897297215,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "mixed",
+      "task": "mixed-n300-p5-r00--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.13459930504985637,
+        "conditional_gain": 0.13459930504985637,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "mixed",
+      "task": "mixed-n300-p5-r01--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.1705179851885732,
+        "conditional_gain": 0.1705179851885732,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "mixed",
+      "task": "mixed-n300-p5-r02--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.14802561212421844,
+        "conditional_gain": 0.14802561212421844,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "mixed",
+      "task": "mixed-n300-p5-r03--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.14073347726305835,
+        "conditional_gain": 0.14073347726305835,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "mixed",
+      "task": "mixed-n300-p5-r04--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.24590910810186006,
+        "conditional_gain": 0.24590910810186006,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "mixed",
+      "task": "mixed-n300-p5-r05--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.052339019650340886,
+        "conditional_gain": 0.052339019650340886,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "mixed",
+      "task": "mixed-n300-p5-r06--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.20928851574157167,
+        "conditional_gain": 0.20928851574157167,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "mixed",
+      "task": "mixed-n300-p5-r07--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.1436697384106237,
+        "conditional_gain": 0.1436697384106237,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "mixed",
+      "task": "mixed-n300-p5-r08--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.38911735389629143,
+        "conditional_gain": 0.38911735389629143,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "mixed",
+      "task": "mixed-n300-p5-r09--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.17365798392367823,
+        "conditional_gain": 0.17365798392367823,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "mixed",
+      "task": "mixed-n600-p5-r00--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.1796318100297981,
+        "conditional_gain": 0.1796318100297981,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "mixed",
+      "task": "mixed-n600-p5-r01--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.14402885653537978,
+        "conditional_gain": 0.14402885653537978,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "mixed",
+      "task": "mixed-n600-p5-r02--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.16685490873513606,
+        "conditional_gain": 0.16685490873513606,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "mixed",
+      "task": "mixed-n600-p5-r03--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.1826952639840221,
+        "conditional_gain": 0.1826952639840221,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "mixed",
+      "task": "mixed-n600-p5-r04--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.19132273567923347,
+        "conditional_gain": 0.19132273567923347,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "mixed",
+      "task": "mixed-n600-p5-r05--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.19107033363633452,
+        "conditional_gain": 0.19107033363633452,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "mixed",
+      "task": "mixed-n600-p5-r06--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.17116971022520985,
+        "conditional_gain": 0.17116971022520985,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "mixed",
+      "task": "mixed-n600-p5-r07--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.2858206335896968,
+        "conditional_gain": 0.2858206335896968,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "mixed",
+      "task": "mixed-n600-p5-r08--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.1494948339304599,
+        "conditional_gain": 0.1494948339304599,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "mixed",
+      "task": "mixed-n600-p5-r09--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.17825955080621214,
+        "conditional_gain": 0.17825955080621214,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "mixed",
+      "task": "mixed-n300-p15-r00--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.16298305572247024,
+        "conditional_gain": 0.16298305572247024,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "mixed",
+      "task": "mixed-n300-p15-r01--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.15635781038413035,
+        "conditional_gain": 0.15635781038413035,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "mixed",
+      "task": "mixed-n300-p15-r02--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.13189985861447187,
+        "conditional_gain": 0.13189985861447187,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "mixed",
+      "task": "mixed-n300-p15-r03--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.04420308393023691,
+        "conditional_gain": 0.04420308393023691,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "mixed",
+      "task": "mixed-n300-p15-r04--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.22055710779864662,
+        "conditional_gain": 0.22055710779864662,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "mixed",
+      "task": "mixed-n300-p15-r05--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.11738879924323943,
+        "conditional_gain": 0.11738879924323943,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "mixed",
+      "task": "mixed-n300-p15-r06--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.22286114542575092,
+        "conditional_gain": 0.22286114542575092,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "mixed",
+      "task": "mixed-n300-p15-r07--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.25000869848704255,
+        "conditional_gain": 0.25000869848704255,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "mixed",
+      "task": "mixed-n300-p15-r08--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.12830073724449867,
+        "conditional_gain": 0.12830073724449867,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "mixed",
+      "task": "mixed-n300-p15-r09--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.16924847092964918,
+        "conditional_gain": 0.16924847092964918,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n80-p5-r00--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n80-p5-r01--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n80-p5-r02--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n80-p5-r03--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n80-p5-r04--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n80-p5-r05--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n80-p5-r06--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n80-p5-r07--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n80-p5-r08--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n80-p5-r09--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p5-r00--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p5-r01--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p5-r02--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p5-r03--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p5-r04--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p5-r05--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p5-r06--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p5-r07--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p5-r08--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p5-r09--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n600-p5-r00--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n600-p5-r01--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n600-p5-r02--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n600-p5-r03--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n600-p5-r04--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n600-p5-r05--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n600-p5-r06--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n600-p5-r07--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n600-p5-r08--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n600-p5-r09--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p15-r00--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p15-r01--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p15-r02--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p15-r03--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p15-r04--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p15-r05--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p15-r06--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p15-r07--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p15-r08--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "correlated_additive",
+      "task": "correlated_additive-n300-p15-r09--random_forest",
+      "true_pair": null
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n80-p5-r00--random_forest",
+      "true_pair": {
+        "assessed_folds": 2,
+        "complete_gain": null,
+        "conditional_gain": -1.0299032865830189,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n80-p5-r01--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.033763359571388415,
+        "conditional_gain": 0.033763359571388415,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n80-p5-r02--random_forest",
+      "true_pair": {
+        "assessed_folds": 2,
+        "complete_gain": null,
+        "conditional_gain": -1.0335842548736736,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n80-p5-r03--random_forest",
+      "true_pair": {
+        "assessed_folds": 2,
+        "complete_gain": null,
+        "conditional_gain": 0.28770268396663096,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n80-p5-r04--random_forest",
+      "true_pair": {
+        "assessed_folds": 2,
+        "complete_gain": null,
+        "conditional_gain": -0.013373840056520585,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n80-p5-r05--random_forest",
+      "true_pair": {
+        "assessed_folds": 2,
+        "complete_gain": null,
+        "conditional_gain": 0.09395274399580211,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n80-p5-r06--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.06371428939191784,
+        "conditional_gain": 0.06371428939191784,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n80-p5-r07--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": -0.12108141760858653,
+        "conditional_gain": -0.12108141760858653,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n80-p5-r08--random_forest",
+      "true_pair": {
+        "assessed_folds": 2,
+        "complete_gain": null,
+        "conditional_gain": -0.14700984051080332,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 80,
+      "p": 5,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n80-p5-r09--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.006946027705983916,
+        "conditional_gain": 0.006946027705983916,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p5-r00--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": -0.013933443670058119,
+        "conditional_gain": -0.013933443670058119,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p5-r01--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": -0.2707713453666298,
+        "conditional_gain": -0.2707713453666298,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p5-r02--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.03262267456012133,
+        "conditional_gain": 0.03262267456012133,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p5-r03--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": -4.82057673149442,
+        "conditional_gain": -4.82057673149442,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p5-r04--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": -0.003973807649336747,
+        "conditional_gain": -0.003973807649336747,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p5-r05--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.00978883162046049,
+        "conditional_gain": 0.00978883162046049,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p5-r06--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.01612195291575207,
+        "conditional_gain": 0.01612195291575207,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p5-r07--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.012363103854715791,
+        "conditional_gain": 0.012363103854715791,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p5-r08--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 3.070248646911337e-05,
+        "conditional_gain": 3.070248646911337e-05,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p5-r09--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": -0.000719661804438305,
+        "conditional_gain": -0.000719661804438305,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n600-p5-r00--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": -0.01622606917610568,
+        "conditional_gain": -0.01622606917610568,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n600-p5-r01--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": -0.02893666765401729,
+        "conditional_gain": -0.02893666765401729,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n600-p5-r02--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.006816753385712322,
+        "conditional_gain": 0.006816753385712322,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n600-p5-r03--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.00043108633192401736,
+        "conditional_gain": 0.00043108633192401736,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n600-p5-r04--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.027599534568244887,
+        "conditional_gain": 0.027599534568244887,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n600-p5-r05--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.0013653498222284284,
+        "conditional_gain": 0.0013653498222284284,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n600-p5-r06--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.005886242196917707,
+        "conditional_gain": 0.005886242196917707,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n600-p5-r07--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.012913382497460709,
+        "conditional_gain": 0.012913382497460709,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n600-p5-r08--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.03635105154324634,
+        "conditional_gain": 0.03635105154324634,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n600-p5-r09--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": -0.010900590922491718,
+        "conditional_gain": -0.010900590922491718,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p15-r00--random_forest",
+      "true_pair": {
+        "assessed_folds": 2,
+        "complete_gain": null,
+        "conditional_gain": 0.011734789267128926,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p15-r01--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.03782712346169913,
+        "conditional_gain": 0.03782712346169913,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p15-r02--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.03405438854945146,
+        "conditional_gain": 0.03405438854945146,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p15-r03--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": -0.007078209437138111,
+        "conditional_gain": -0.007078209437138111,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p15-r04--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": -0.073301642431349,
+        "conditional_gain": -0.073301642431349,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p15-r05--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.042762497662600964,
+        "conditional_gain": 0.042762497662600964,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p15-r06--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": -0.04093135512010423,
+        "conditional_gain": -0.04093135512010423,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p15-r07--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": 0.005865238238168463,
+        "conditional_gain": 0.005865238238168463,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p15-r08--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": -0.0021131433943420903,
+        "conditional_gain": -0.0021131433943420903,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "scenario": "correlated_mixed",
+      "task": "correlated_mixed-n300-p15-r09--random_forest",
+      "true_pair": {
+        "assessed_folds": 3,
+        "complete_gain": -0.10051470641011931,
+        "conditional_gain": -0.10051470641011931,
+        "members": [
+          "x1",
+          "x2"
+        ],
+        "planned_folds": 3
+      }
+    }
+  ]
+}
