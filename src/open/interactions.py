@@ -22,8 +22,11 @@ class PairScreenConfig:
     min_cell: int = 3
     prediction_rows: int = 100000
     seed: int = 0
+    adaptive_details: bool = False
 
     def __post_init__(self):
+        if type(self.adaptive_details) is not bool:
+            raise ValueError('adaptive_details must be boolean')
         for name in ('max_pairs','max_details','prediction_rows','seed'):
             value = getattr(self,name)
             if type(value) is not int or value < 0:
@@ -55,7 +58,7 @@ def _moments(values,outcome_sd):
     return mean,rms,standardized_mean,standardized_rms
 
 
-def _contrast(model,reference,pair,rows,bins,config,outcome_sd,remaining):
+def _contrast(model,reference,pair,rows,bins,config,outcome_sd,remaining,*,partial=False):
     if outcome_sd == 0:
         return _unavailable('constant_outcome')
     valid = np.isfinite(reference[list(pair)].to_numpy(float)).all(axis=1)
@@ -80,8 +83,19 @@ def _contrast(model,reference,pair,rows,bins,config,outcome_sd,remaining):
     metadata = dict(edges=[e.tolist() for e in edges],reference_rows=len(X),
         missing_reference_rows=int((~valid).sum()),reference_positions=positions.tolist(),
         cells=cells,requested_bins=bins,realized_bins=list(counts.shape))
-    if (counts < config.min_cell).any():
+    supported=counts>=config.min_cell
+    if partial:
+        for cell in cells:cell['supported']=bool(supported[cell['i'],cell['j']])
+        keep=supported[tuple(indices)]
+        metadata.update(coverage='complete' if supported.all() else 'partial',
+            supported_reference_rows=int(keep.sum()),supported_cells=int(supported.sum()),
+            evaluated_reference_positions=positions[keep].tolist())
+    else:
+        keep=np.ones(len(X),dtype=bool)
+    if (not supported.any()) or (not partial and not supported.all()):
         return {**_unavailable('unsupported_cells'),**metadata}
+    X=X.iloc[np.flatnonzero(keep)].copy()
+    indices=[index[keep] for index in indices]
     cost = 4*len(X)
     if cost > remaining:
         return {**_unavailable('prediction_budget'),**metadata}
@@ -101,12 +115,25 @@ def _contrast(model,reference,pair,rows,bins,config,outcome_sd,remaining):
         raise ValueError('mixed prediction contrasts must be finite')
     _,rms,_,standardized_rms=_moments(differences,outcome_sd)
     for cell in cells:
+        if partial and not cell['supported']:continue
         subset = differences[(indices[0]==cell['i']) & (indices[1]==cell['j'])]
         mean,magnitude,standardized_mean,standardized_magnitude=_moments(subset,outcome_sd)
         cell.update(raw_mean=mean,raw_rms=magnitude,
             standardized_mean=standardized_mean,standardized_rms=standardized_magnitude)
     return dict(status='available',raw_rms=rms,standardized_rms=standardized_rms,
                 prediction_rows=cost,**metadata)
+
+
+def _adaptive_detail(model,reference,pair,config,outcome_sd,remaining):
+    attempts=[]
+    for bins in range(config.detail_bins,1,-1):
+        value=_contrast(model,reference,pair,config.detail_rows,bins,config,outcome_sd,remaining)
+        attempts.append(dict(bins=bins,status=value['status']))
+        if value['status']!='unsupported_cells':
+            return dict(value,adaptive=True,coverage='complete' if value['status']=='available' else 'unavailable',
+                initial_requested_bins=config.detail_bins,attempts=attempts)
+    value=_contrast(model,reference,pair,config.detail_rows,2,config,outcome_sd,remaining,partial=True)
+    return dict(value,adaptive=True,initial_requested_bins=config.detail_bins,attempts=attempts)
 
 
 def screen_pair_interactions(model,reference,candidates,*,outcome_sd,
@@ -145,8 +172,10 @@ def screen_pair_interactions(model,reference,candidates,*,outcome_sd,
     supported.sort(key=lambda p:(-p['screen']['standardized_rms'],p['members']))
     for pair in supported[:config.max_details]:
         pair['selected_for_detail'] = True
-        value = _contrast(model,reference,tuple(pair['members']),config.detail_rows,
-            config.detail_bins,config,float(outcome_sd),config.prediction_rows-used)
+        value = (_adaptive_detail(model,reference,tuple(pair['members']),config,float(outcome_sd),
+            config.prediction_rows-used) if config.adaptive_details else
+            _contrast(model,reference,tuple(pair['members']),config.detail_rows,
+                config.detail_bins,config,float(outcome_sd),config.prediction_rows-used))
         pair['detail'] = value
         used += value['prediction_rows']
     return dict(schema='open.pair_interaction_screen',schema_version=1,

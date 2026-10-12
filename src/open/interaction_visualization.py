@@ -65,8 +65,8 @@ def save_interaction_report(comparison,directory,*,plots=False,max_displayed=5):
                 p['members']==pair['members'] and p['detail']['status']=='available' for p in f['pairs']))
             detail=next(p['detail'] for p in chosen['pairs'] if p['members']==pair['members'])
             shape=tuple(detail['realized_bins'])
-            mean=np.zeros(shape)
-            rms=np.zeros(shape)
+            mean=np.full(shape,np.nan)
+            rms=np.full(shape,np.nan)
             counts=np.zeros(shape,dtype=int)
             for cell in detail['cells']:
                 index=cell['i'],cell['j']
@@ -77,8 +77,11 @@ def save_interaction_report(comparison,directory,*,plots=False,max_displayed=5):
             fig.suptitle('Exploratory local joint contrasts: '+' + '.join(pair['members'])+
                 f"\n{engine['engine']}; repeat {chosen['repeat']}, fold {chosen['fold']}")
             for ax,values,title in zip(axes,[mean,rms],['Signed cell mean','Within-cell RMS magnitude']):
-                bound=max(float(np.max(np.abs(values))),1e-12)
-                image=ax.imshow(values.T,origin='lower',aspect='auto',cmap='coolwarm' if ax is axes[0] else 'viridis',
+                bound=max(float(np.nanmax(np.abs(values))),1e-12)
+                import matplotlib
+                cmap=matplotlib.colormaps['coolwarm' if ax is axes[0] else 'viridis'].copy()
+                cmap.set_bad('#eeeeee')
+                image=ax.imshow(np.ma.masked_invalid(values.T),origin='lower',aspect='auto',cmap=cmap,
                     vmin=-bound if ax is axes[0] else 0,vmax=bound)
                 ax.set_title(title+' (outcome SD)')
                 ax.set_xlabel(pair['members'][0]+' quantile bin')
@@ -87,15 +90,18 @@ def save_interaction_report(comparison,directory,*,plots=False,max_displayed=5):
                 ax.set_yticks(range(shape[1]),range(1,shape[1]+1))
                 for a in range(shape[0]):
                     for b in range(shape[1]):
-                        ax.text(a,b,f'n={counts[a,b]}',ha='center',va='center',fontsize=8,
+                        text=f'n={counts[a,b]}' if np.isfinite(values[a,b]) else f'unsupported\nn={counts[a,b]}'
+                        ax.text(a,b,text,ha='center',va='center',fontsize=8,
                                 bbox=dict(facecolor='white',alpha=.7,edgecolor='none'))
                 fig.colorbar(image,ax=ax)
             name=f"interaction-{engine['engine']}-{i}.png"
             fig.savefig(directory/name,dpi=150)
             plt.close(fig)
             lines += [f"![Local joint contrasts]({name})",'',
+                f"Detail grid: {shape[0]} by {shape[1]}; coverage: {detail.get('coverage','complete')}. "
+                'Unsupported cells are masked in grey, not assigned zero. Adaptive resolutions are descriptive.', '',
                 'This shows the first supported detailed fold in saved order, not an aggregate population '
                 'surface. Cell counts refer to sampled reference observations. Signed means may cancel '
                 'when effects vary with other variables; RMS retains their magnitude. Bin corners may '
                 'leave the observed manifold. Other folds and boundaries remain in comparison.json.','']
-    (directory/'INTERACTIONS.md').write_text('\n'.join(lines)+'\n',encoding='utf-8')
+    (directory/'INTERACTIONS.md').write_text('\n'.join(lines).rstrip()+'\n',encoding='utf-8')
