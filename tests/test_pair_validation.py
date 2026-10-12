@@ -60,3 +60,11 @@ def test_invalid_splits_and_insufficient_budget_stay_explicit():
         config=Config(knots=(3,),alphas=(1.,),max_fits=4))
     assert r['additional_fits']==4
     assert r['pairs'][0]['status']=='fit_budget' and r['pairs'][0]['gain'] is None
+
+
+def test_reversed_duplicate_cannot_consume_two_slots():
+    _,validate=api()
+    X,y=sample(n=120)
+    with pytest.raises(ValueError,match='distinct'):
+        validate(X,y,tuple(range(80)),tuple(range(80,120)),
+            (('a','b'),('b','a'),('a','noise')))

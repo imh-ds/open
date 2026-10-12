@@ -111,8 +111,10 @@ def validate_pairs(X,y,train_indices,assessment_indices,pairs,*,config=PairValid
         raise ValueError('training and assessment indices must be disjoint')
     if len(train_indices)<2*config.inner_folds:
         raise ValueError('training sample too small for inner folds')
-    if (type(pairs) is not tuple or len(set(pairs))!=len(pairs) or any(
+    if (type(pairs) is not tuple or any(
         type(p) is not tuple or len(p)!=2 or p[0]==p[1] or any(n not in X for n in p) for p in pairs)):
+        raise ValueError('pairs must be distinct two-feature tuples')
+    if len({frozenset(p) for p in pairs})!=len(pairs):
         raise ValueError('pairs must be distinct two-feature tuples')
     train=list(train_indices);assessment=list(assessment_indices)
     cost=len(config.knots)*len(config.alphas)*config.inner_folds+1
