@@ -94,7 +94,26 @@ simulations, but poor discrimination with correlated inputs. A saved-setting
 refit also reproduced an extreme held-out prediction caused by amplification of
 a nearly constant residualized tensor feature during standardization.
 
-This limitation has been diagnosed, not patched. Keep the comparator experimental
-and separate from automatic interaction decisions. Stabilizing its joint basis
-and examining correlated-input identifiability require a new development revision;
-the existing frozen evidence and sensitivity cutoffs remain unchanged.
+That study used comparator v1. Keep its frozen evidence and sensitivity cutoffs
+unchanged; it does not validate later revisions.
+
+## Numerical stabilization: comparator v2
+
+The repaired comparator standardizes the marginal spline curves inside each
+training partition and leaves residualized joint tensor columns on their natural
+spline scale. It no longer divides a nearly constant joint feature by its own
+tiny training standard deviation. Ridge shrinkage can suppress that weakly
+supported feature instead of amplifying it. LSQR uses a tighter `1e-8` stopping
+tolerance, checked against changes in predictor units.
+
+Returned results use schema `open.experimental_pair_validation.v2` and record
+the feature-scaling convention and solver tolerance. Knots, alpha search grids,
+training-only preprocessing, held-out risk calculations and fit caps remain the
+same. The changed feature geometry changes the effective joint penalty; old
+parameter values and v1 thresholds do not imply equivalent v2 performance.
+
+The diagnosed extreme case now passes a regression for both its saved settings
+and nested tuning. This addresses that numerical failure; it does not make
+arbitrary extrapolation safe or resolve correlated-input identifiability. The
+comparator remains experimental and separate from automatic interaction decisions.
+See the [repair evidence](../examples/results/2026-10-11-spline-stability/REPORT.md).

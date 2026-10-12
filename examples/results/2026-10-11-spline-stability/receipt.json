@@ -1,0 +1,27 @@
+{
+  "repair_commit": "1f60011",
+  "scope": "diagnosed numerical repair; no calibrated interaction detection",
+  "archive_sha256": "c5f1fd04184a81a7397c5b1977d7928815ea466dbec825cf2ff0535a39f5aa50",
+  "archive_bytes": 4267099,
+  "environment": {
+    "PyYAML": "6.0.2",
+    "matplotlib": "3.9.2",
+    "numpy": "1.26.4",
+    "pandas": "2.2.3",
+    "python": "3.11.9",
+    "scipy": "1.11.2",
+    "sklearn": "1.3.0"
+  },
+  "focused_tests": {
+    "passed": 38,
+    "seconds": 19.47
+  },
+  "independent_review": {
+    "passed": 8,
+    "actionable_findings": 0
+  },
+  "full_suite_rerun": false,
+  "frozen_manifests_changed": false,
+  "public_repair_commit": "37923b821033aa46a5b342a233af23020051f61e",
+  "public_smoke_source_commit": "b451fc290e8bd2df19eed7bcb1d4d058637e4e3b"
+}
