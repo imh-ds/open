@@ -16,5 +16,13 @@
     "fb87c09",
     "fe6fc44"
   ],
-  "verification": "28 focused tests passed in development and public export; native four-task shard audited"
+  "verification": "28 focused tests passed in development and public export; native four-task shard audited",
+  "startup_snapshot": {
+    "preparation": "success",
+    "materialized_jobs": 241,
+    "running_shards": 20,
+    "queued_shards": 220,
+    "failed_jobs": 0,
+    "note": "transient shared-account scheduling snapshot; scientific findings pending"
+  }
 }

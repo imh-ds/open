@@ -20,3 +20,7 @@ remain descriptive; no calibrated detection/retention rule is accepted.
 The [full Actions study](https://github.com/imh-ds/open/actions/runs/38191108998)
 was explicitly dispatched at public commit fe6fc446937530623afaaa258b90da6d42738327.
 Results are pending; this preflight archive is separate from the eventual study evidence.
+
+Startup verified: preparation succeeded, all 240 shards materialized, and
+20 were running with 220 queued at the recorded snapshot. This is operational
+startup evidence, not a completed scientific study.
