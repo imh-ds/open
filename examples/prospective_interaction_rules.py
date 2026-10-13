@@ -13,8 +13,12 @@ def bounds(k,n,endpoint):
         value=(1. if k==n else float(beta.ppf(1-alpha,k+1,n-k))) if direction=='upper' else (
             0. if not k else float(beta.ppf(alpha,k,n-k+1)))
     passed=value is not None and (value<=target if direction=='upper' else value>=target)
+    rate=k/n if n else None
+    observed_meets=n and (rate<=target if direction=='upper' else rate>=target)
+    explanation=('unresolved_no_observations' if not n else 'qualified' if passed else
+                 'uncertain_despite_observed_rate_meeting_target' if observed_meets else 'observed_rate_misses_target')
     return dict(k=k,n=n,alpha=alpha,target=target,direction=direction,bound=value,
-                status='complete' if n else 'unresolved',**{'pass':bool(passed)})
+                observed_rate=rate,explanation=explanation,status='complete' if n else 'unresolved',**{'pass':bool(passed)})
 
 
 def summarize_stratum(rows,planned,endpoint):
@@ -26,7 +30,7 @@ def summarize_stratum(rows,planned,endpoint):
     if key is None:raise ValueError('unknown endpoint')
     result=bounds(sum(bool(r[key]) for r in selected),len(selected),endpoint)
     result.update(planned=len(planned),complete=len(rows),missing=len(planned)-len(rows),displayed=sum(bool(r.get('displayed')) for r in rows))
-    if len(rows)!=len(planned):result.update(status='incomplete',**{'pass':False})
+    if len(rows)!=len(planned):result.update(status='incomplete',explanation='unknown_incomplete_stratum',**{'pass':False})
     return result
 
 

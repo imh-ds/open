@@ -44,3 +44,17 @@ def test_partial_receipt_context_and_unknown_failure_cost(tmp_path,monkeypatch):
     a=m.aggregate('null',[out],out,m.study.manifest())
     assert a['missing']==14400 and a['audit_errors'] and c['id'] in a['unknown_attempt_cost_ids']
     assert not (out/'proposed-selection.json').exists()
+
+
+def test_global_prediction_does_not_certify_curves():
+    m=load();assert hasattr(m,'global_flags'),'separate global endpoint flags missing'
+    c=[dict(predictive_support=True,curve_pattern_support=False) for _ in range(24)]
+    r=m.global_flags(c,0,[],[])
+    assert r['global_predictive_support'] and not r['global_curve_pattern_support'] and not r['global_support']
+
+
+def test_nonqualification_explains_observed_miss_versus_uncertainty():
+    m=load()
+    assert 'explanation' in m.rules.bounds(0,10,'false'),'interpretation status missing'
+    assert m.rules.bounds(0,10,'false')['explanation']=='uncertain_despite_observed_rate_meeting_target'
+    assert m.rules.bounds(100,1200,'false')['explanation']=='observed_rate_misses_target'

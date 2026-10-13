@@ -40,3 +40,35 @@ def test_partial_cost_and_repeat_history(tmp_path,monkeypatch):
     s=dict(context=m.context(c),result=v,population=m.population_record(c,data,v),fitting_seconds=1.,warnings=[])
     m.check_checkpoint(c,s,data);s['population']['gap']+=1
     with pytest.raises(ValueError):m.check_checkpoint(c,s,data)
+
+
+def test_failed_verification_attempt_survives_completed_resume(tmp_path,monkeypatch):
+    m=module(tmp_path,monkeypatch);c=m.d.tasks()[0];out=tmp_path/'out';original=m.audit_task
+    def interrupted(c,folder,refit=False):
+        if refit:raise RuntimeError('interrupted verification with unknown refit cost')
+        return original(c,folder,refit)
+    monkeypatch.setattr(m,'audit_task',interrupted)
+    with pytest.raises(RuntimeError):m.run_task(c,out)
+    m.record_failure(c,out/c['id'],'verification failed')
+    monkeypatch.setattr(m,'audit_task',original)
+    monkeypatch.setattr(m.old.models,'compare',lambda *a:pytest.fail('resume refitted tuning'))
+    m.run_task(c,out)
+    ledger=m.io.read(out/c['id']/'attempts.json')
+    assert len(ledger['attempts'])==2
+    assert ledger['attempts'][0]['unknown_verification_cost']
+    assert ledger['attempts'][1]['verification_refits']==20 and ledger['attempts'][1]['fits']==0
+    assert m.attempt_cost(c,out/c['id'])['unknown_verification_cost']
+    import prospective_interaction_report as report
+    monkeypatch.setattr(report,'study',m)
+    a=report.aggregate('null',[out],out,m.manifest())
+    assert a['complete']==1 and c['id'] in a['unknown_attempt_cost_ids']
+    assert a['known_attempt_cost']['verification_refits']==20
+
+
+def test_interrupted_fit_remains_unknown_after_success(tmp_path,monkeypatch):
+    m=module(tmp_path,monkeypatch);c=m.d.tasks()[0];out=tmp_path/'out';original=m.old.models.compare
+    def interrupted(*args):raise RuntimeError('interrupted partial tuning')
+    monkeypatch.setattr(m.old.models,'compare',interrupted)
+    with pytest.raises(RuntimeError):m.run_task(c,out)
+    monkeypatch.setattr(m.old.models,'compare',original);m.run_task(c,out)
+    a=m.attempt_cost(c,out/c['id']);assert a['fits']==692 and a['unknown_fit_cost']

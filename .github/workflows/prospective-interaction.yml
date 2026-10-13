@@ -80,11 +80,17 @@ jobs:
         run: |
           python examples/prospective_interaction_study.py shard --stage '${{ inputs.stage }}' --id '${{ matrix.shard }}' --output $env:STUDY_OUT
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - if: always()
+        timeout-minutes: 3
+        run: |
+          python examples/prospective_interaction_study.py pack --input $env:STUDY_OUT --output .superpowers/prospective-packages
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
+        timeout-minutes: 1
         with:
           name: prospective-interaction-${{ inputs.stage }}-shard-${{ matrix.shard }}
-          path: .superpowers/prospective-interaction/
+          path: .superpowers/prospective-packages/
           include-hidden-files: true
           retention-days: 30
           if-no-files-found: error

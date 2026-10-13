@@ -41,15 +41,38 @@ def strata_summary(stage,rows,planned):
     return result,passed
 
 
+def global_flags(conditions,missing,skipped,errors):
+    eligible=not missing and not skipped and not errors and len(conditions)==24
+    prediction=bool(eligible and all(c['predictive_support'] for c in conditions))
+    pattern=bool(prediction and all(c['curve_pattern_support'] for c in conditions))
+    return dict(global_predictive_support=prediction,global_curve_pattern_support=pattern,global_support=pattern)
+
+
 def aggregate(stage,input_paths,output,manifest,selection=None):
+    import prospective_interaction_archive as archive
+    if archive.archives(input_paths):return archive.aggregate_archives(stage,input_paths,output,manifest,selection)
+    return aggregate_leaf(stage,input_paths,output,manifest,selection)
+
+
+def aggregate_leaf(stage,input_paths,output,manifest,selection=None,subset=None):
     output=Path(output);merge=merge_inputs(input_paths,output)
     if study.io.fingerprint(manifest)!=study.identity():raise ValueError('aggregate manifest differs')
     if stage=='signal' and selection!=study.selection():raise ValueError('aggregate selection differs')
-    planned=study.d.stage_tasks(stage,selection);ids={c['id'] for c in planned}
+    universe=study.d.stage_tasks(stage,selection)
+    planned=universe if subset is None else subset
+    lookup={c['id']:c for c in universe}
+    if len({c['id'] for c in planned})!=len(planned) or any(lookup.get(c['id'])!=c for c in planned):raise ValueError('foreign audit subset')
+    ids={c['id'] for c in planned}
     rows=[];pair_rows=[];complete=[];errors=[];failures=[];unknown=[];cost=0;seconds=0.;warning_count=0
+    attempts=dict(fits=0,verification_refits=0,seconds=0.)
     for c in planned:
         folder=output/c['id']
         if not folder.exists():continue
+        try:
+            a=study.attempt_cost(c,folder)
+            for key in attempts:attempts[key]+=a[key]
+            if a['unknown_fit_cost'] or a['unknown_verification_cost']:unknown.append(c['id'])
+        except Exception as e:errors.append(dict(id=c['id'],error=repr(e)))
         if (folder/'receipt.json').exists():
             try:
                 expected=dict(task=c,context=study.context(c),environment=study.io.environment())
@@ -109,16 +132,17 @@ def aggregate(stage,input_paths,output,manifest,selection=None):
     audit=dict(stage=stage,planned=len(planned),complete=len(complete),missing=len(planned)-len(complete),
         missing_ids=[c['id'] for c in planned if c['id'] not in complete],skipped_ids=skipped,universe_signal_planned=10800,
         audit_errors=errors,failed_tasks=[f for f in failures if f['id'] not in complete],
-        historical_failed_tasks=[f for f in failures if f['id'] in complete],unknown_attempt_cost_ids=unknown,
+        historical_failed_tasks=[f for f in failures if f['id'] in complete],unknown_attempt_cost_ids=sorted(set(unknown)),
+        known_attempt_cost=attempts,
         checkpoint_fits=cost,retained_fitting_seconds=seconds,fits=692*len(complete),saved_setting_refits=20*len(complete),
         cost_scope='Complete totals overlap checkpoint totals; failed/interrupted attempt work may be additional unknown cost.',
         warning_count=warning_count,manifest=study.identity(),thresholds_sha256=study.old.threshold_digest(),
         selection=study.io.fingerprint(selection) if selection else None,merge=merge,strata=strata,conditions=conditions,
-        passed_cells=passed,global_support=bool(stage=='signal' and not errors and not skipped and not (len(planned)-len(complete))
-            and len(conditions)==24 and all(c['predictive_support'] for c in conditions)),production_accepted=False)
+        passed_cells=passed,**global_flags(conditions,len(planned)-len(complete),skipped,errors),production_accepted=False)
     study.io.write(output/'audit.json',audit)
-    if stage=='null' and not audit['missing'] and not errors:
+    if stage=='null' and subset is None and not audit['missing'] and not errors:
         study.io.write(output/'proposed-selection.json',study.d.make_selection(dict(identity=study.identity()),audit))
+    study.io.write(output/'dataset-metrics.json',rows)
     study.pd.DataFrame(pair_rows).to_csv(output/'case_metrics.csv',index=False)
     study.pd.json_normalize(strata).to_csv(output/'stratum_metrics.csv',index=False)
     study.pd.DataFrame(conditions).to_csv(output/'condition_metrics.csv',index=False)
@@ -138,14 +162,15 @@ def write_report(audit,strata,output):
             '| Condition | Null type | False alarms / completed | Upper bound | Status |', '|---|---|---:|---:|---|']
         for r in strata:
             b='unknown' if r['bound'] is None else f"{r['bound']:.4f}"
-            text.append(f"| {r['cell']} | {r['benchmark']} | {r['k']}/{r['complete']} | {b} | {'pass' if r['pass'] else r['status']+'; insufficient assurance'} |")
+            text.append(f"| {r['cell']} | {r['benchmark']} | {r['k']}/{r['complete']} | {b} | {r['explanation']} |")
+        text+=['', 'Observed-rate miss means the measured rate misses the requirement; it is descriptive. Uncertain despite an observed rate meeting the target means the bound is still too imprecise to qualify. Neither is a certificate of the underlying population rate.']
     else:
         text += [f"Skipped alternatives: {len(audit.get('skipped_ids',[]))}; these are unassessed, not failed detections.",
             'Predictive support requires low false alarms in both null classes and the alternative control pair, plus reliable true-pair detection.',
             'Curve support adds evidence that displayed patterns match the known relative pattern; report display frequency separately.', '',
             '| Condition | Benchmark | Detection | Displayed / planned | Predictive support | Pattern support |', '|---|---|---:|---:|---|---|']
         for r,c in zip(strata,audit.get('conditions',[])):
-            text.append(f"| {r['cell']} | {r['benchmark']} | {r['detection']['k']}/{r['detection']['n']} | {r['shape']['n']}/{r['detection']['planned']} | {c['predictive_support']} | {c['curve_pattern_support']} |")
+            text.append(f"| {r['cell']} | {r['benchmark']} | {r['detection']['k']}/{r['detection']['n']} ({r['detection']['explanation']}) | {r['shape']['n']}/{r['detection']['planned']} ({r['shape']['explanation']}) | {c['predictive_support']} | {c['curve_pattern_support']} |")
         text += ['', 'Lower/upper bounds crossing their targets mean uncertainty, not evidence that the effect is absent. Quantitative curve magnitude is not validated by this pattern criterion. No universal minimum N follows from these fixed conditions.']
     if strata:
         import matplotlib

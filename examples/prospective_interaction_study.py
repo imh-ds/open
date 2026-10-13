@@ -13,7 +13,7 @@ import pandas as pd
 MANIFEST=ROOT/'examples/study_manifests/prospective-interaction.json'
 SELECTION=ROOT/'examples/study_manifests/prospective-interaction-selection.json'
 STAGE_A=ROOT/'examples/study_manifests/prospective-interaction-null-audit.json'
-NEW_SOURCES=('examples/prospective_interaction_rules.py','examples/prospective_interaction_design.py',
+NEW_SOURCES=('examples/prospective_interaction_archive.py','examples/prospective_interaction_rules.py','examples/prospective_interaction_design.py',
  'examples/prospective_interaction_study.py','examples/prospective_interaction_report.py',
  'examples/prospective_interaction_protocol.md','examples/prospective_interaction_assurance.py',
  'examples/prospective_interaction_assurance.json','examples/confidence_diagnostic.py',
@@ -103,11 +103,40 @@ def check_checkpoint(c,s,data,refit=False):
 
 
 def verification(c,folder):
-    names=['receipt.json','result.json','timing.json']+[f'comparison-{i}.json' for i in range(4)]
+    names=['receipt.json','result.json','timing.json','attempts.json']+[f'comparison-{i}.json' for i in range(4)]
     return dict(context=context(c),saved_setting_refits=20,digests={n:old.digest(folder/n) for n in names})
 
 
+def attempt_cost(c,folder):
+    path=Path(folder)/'attempts.json'
+    if not path.exists():
+        return dict(fits=0,verification_refits=0,seconds=0.,unknown_fit_cost=True,unknown_verification_cost=True)
+    ledger=io.read(path)
+    if ledger['context']!=context(c) or not ledger['attempts']:raise ValueError('attempt ledger context differs')
+    for i,a in enumerate(ledger['attempts']):
+        if (a['id']!=i or a['status'] not in ('running','failed','complete') or type(a['fits']) is not int or
+            a['fits'] not in (0,173,346,519,692) or a['verification_refits'] not in (0,20) or
+            type(a['unknown_fit_cost']) is not bool or type(a['unknown_verification_cost']) is not bool or
+            not np.isfinite([a['started_at'],a['total_seconds']]).all() or a['total_seconds']<0 or
+            (a['status']=='complete' and (a['unknown_fit_cost'] or a['unknown_verification_cost']))):
+            raise ValueError('attempt cost record differs')
+    return dict(fits=sum(a['fits'] for a in ledger['attempts']),
+        verification_refits=sum(a['verification_refits'] for a in ledger['attempts']),
+        seconds=sum(a['total_seconds'] for a in ledger['attempts']),
+        unknown_fit_cost=any(a['unknown_fit_cost'] for a in ledger['attempts']),
+        unknown_verification_cost=any(a['unknown_verification_cost'] for a in ledger['attempts']))
+
+
+def update_attempt(c,folder,**values):
+    path=Path(folder)/'attempts.json';ledger=io.read(path)
+    if ledger['context']!=context(c):raise ValueError('attempt update context differs')
+    a=ledger['attempts'][-1];a.update(values);a['total_seconds']=time.monotonic()-a['started_monotonic']
+    io.write(path,ledger)
+
+
 def audit_task(c,folder,refit=False):
+    if not (folder/'attempts.json').exists():raise ValueError('complete task lacks attempt evidence')
+    attempt_cost(c,folder)
     v=io.read(folder/'result.json');receipt=io.read(folder/'receipt.json')
     if (v['task']!=c or v['context']!=context(c) or v['status']!='complete' or
         receipt!=dict(task=c,context=context(c),environment=io.environment()) or len(v['comparisons'])!=4 or len(v['population'])!=4):
@@ -126,6 +155,23 @@ def audit_task(c,folder,refit=False):
 
 
 def run_task(c,output):
+    validate_task(c);folder=Path(output)/c['id'];folder.mkdir(parents=True,exist_ok=True)
+    if (folder/'verified.json').exists():return _run_task(c,output)
+    path=folder/'attempts.json';ledger=io.read(path) if path.exists() else dict(context=context(c),attempts=[])
+    if ledger['context']!=context(c):raise ValueError('existing attempt context differs')
+    if path.exists():attempt_cost(c,folder)
+    ledger['attempts'].append(dict(id=len(ledger['attempts']),status='running',started_at=time.time(),
+        started_monotonic=time.monotonic(),total_seconds=0.,fits=0,verification_refits=0,
+        unknown_fit_cost=False,unknown_verification_cost=False))
+    io.write(path,ledger)
+    try:
+        v=_run_task(c,output);update_attempt(c,folder,status='complete')
+        io.write(folder/'verified.json',verification(c,folder));return v
+    except Exception as e:
+        update_attempt(c,folder,status='failed',error=repr(e));raise
+
+
+def _run_task(c,output):
     validate_task(c)
     io.validate_environment();folder=Path(output)/c['id'];folder.mkdir(parents=True,exist_ok=True);start=time.monotonic()
     receipt=dict(task=c,context=context(c),environment=io.environment())
@@ -141,17 +187,21 @@ def run_task(c,output):
         if path.exists():s=io.read(path);check_checkpoint(c,s,data);resumed+=1
         else:
             tick=time.monotonic()
+            update_attempt(c,folder,unknown_fit_cost=True)
             with warnings.catch_warnings(record=True) as caught:
                 warnings.simplefilter('always');v=old.models.compare(*data,c['split_seed'])
             s=dict(context=context(c),result=v,population=population_record(c,data,v),fitting_seconds=time.monotonic()-tick,
                 warnings=[dict(category=w.category.__name__,message=str(w.message)) for w in caught]);io.write(path,s)
+            a=io.read(folder/'attempts.json')['attempts'][-1]
+            update_attempt(c,folder,fits=a['fits']+173,unknown_fit_cost=False)
         records.append(s)
     v=dict(task=c,context=context(c),status='complete',comparisons=[s['result'] for s in records],population=[s['population'] for s in records],
         warnings=[w for s in records for w in s['warnings']]);io.write(folder/'result.json',v)
     costs=dict(fits=692,saved_setting_refits=20,resumed=resumed,fits_this_attempt=173*(4-resumed),retained_fitting_seconds=sum(s['fitting_seconds'] for s in records))
     io.write(folder/'timing.json',dict(costs,total_seconds=time.monotonic()-start,verification_seconds=0.))
-    tick=time.monotonic();audit_task(c,folder,True)
-    io.write(folder/'timing.json',dict(costs,total_seconds=time.monotonic()-start,verification_seconds=time.monotonic()-tick));io.write(folder/'verified.json',verification(c,folder));return v
+    tick=time.monotonic();update_attempt(c,folder,unknown_verification_cost=True);audit_task(c,folder,True)
+    update_attempt(c,folder,verification_refits=20,unknown_verification_cost=False)
+    io.write(folder/'timing.json',dict(costs,total_seconds=time.monotonic()-start,verification_seconds=time.monotonic()-tick));return v
 
 
 def result_rows(v):
@@ -194,7 +244,7 @@ def run_shard(stage,i,output):
 
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('command',choices=('freeze','matrix','shard','aggregate','selection'))
+    p=argparse.ArgumentParser();p.add_argument('command',choices=('freeze','matrix','shard','aggregate','selection','pack'))
     p.add_argument('--write',action='store_true');p.add_argument('--stage',choices=('null','signal'),default='null')
     p.add_argument('--id');p.add_argument('--input',type=Path);p.add_argument('--audit',type=Path)
     p.add_argument('--output',type=Path,default=ROOT/'.superpowers/prospective-interaction');a=p.parse_args()
@@ -202,6 +252,9 @@ def main():
     freeze()
     if a.command=='matrix':print(json.dumps(d.shards(a.stage,selection() if a.stage=='signal' else None)))
     elif a.command=='shard':run_shard(a.stage,a.id,a.output)
+    elif a.command=='pack':
+        import prospective_interaction_archive as archive
+        print(json.dumps(archive.pack(a.input,a.output)))
     elif a.command=='selection':
         audit=io.read(a.audit);s=d.make_selection(dict(identity=identity()),audit);io.write(a.output,s)
         print(json.dumps(dict(cells=s['cells'],selected=len(s['selected_ids']),skipped=len(s['skipped_ids']))))
