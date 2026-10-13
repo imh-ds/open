@@ -1,0 +1,137 @@
+name: Realistic interaction development study
+
+on:
+  workflow_dispatch:
+    inputs:
+      stage:
+        description: Frozen study stage (development requires audited committed calibration)
+        required: true
+        type: choice
+        default: 'calibration'
+        options: ['calibration', 'development']
+  push:
+    branches: [codex/actions-selection-reliability]
+    paths: [.github/workflows/realistic-interaction.yml]
+
+permissions:
+  contents: read
+concurrency:
+  group: realistic-interaction-${{ github.ref }}
+  cancel-in-progress: false
+defaults:
+  run:
+    shell: pwsh
+env:
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+  STUDY_OUT: .superpowers/realistic-interaction
+
+jobs:
+  prepare:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: windows-2022
+    timeout-minutes: 15
+    outputs:
+      shards: ${{ steps.matrix.outputs.shards }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/**
+            src/**
+            examples/*.py
+            examples/*protocol.md
+            examples/study_manifests/*.json
+            examples/prospective_interaction_assurance.json
+      - uses: ./.github/actions/realistic-interaction-setup
+      - id: matrix
+        run: |
+          $shards = python examples/realistic_interaction_study.py matrix --stage '${{ inputs.stage }}'
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          "shards=$shards" >> $env:GITHUB_OUTPUT
+
+  study:
+    needs: prepare
+    runs-on: windows-2022
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      max-parallel: 256
+      matrix:
+        shard: ${{ fromJSON(needs.prepare.outputs.shards) }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/**
+            src/**
+            examples/*.py
+            examples/*protocol.md
+            examples/study_manifests/*.json
+            examples/prospective_interaction_assurance.json
+      - uses: ./.github/actions/realistic-interaction-setup
+        timeout-minutes: 4
+      - timeout-minutes: 12
+        run: |
+          python examples/realistic_interaction_study.py shard --stage '${{ inputs.stage }}' --id '${{ matrix.shard }}' --output $env:STUDY_OUT
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - if: always()
+        timeout-minutes: 3
+        run: |
+          python examples/realistic_interaction_study.py pack --input $env:STUDY_OUT --output .superpowers/realistic-packages
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        timeout-minutes: 1
+        with:
+          name: realistic-interaction-${{ inputs.stage }}-shard-${{ matrix.shard }}
+          path: .superpowers/realistic-packages/
+          include-hidden-files: true
+          retention-days: 30
+          if-no-files-found: error
+
+  aggregate:
+    if: always() && needs.prepare.result == 'success'
+    needs: [prepare, study]
+    runs-on: windows-2022
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/**
+            src/**
+            examples/*.py
+            examples/*protocol.md
+            examples/study_manifests/*.json
+            examples/prospective_interaction_assurance.json
+      - uses: ./.github/actions/realistic-interaction-setup
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          pattern: realistic-interaction-${{ inputs.stage }}-shard-*
+          path: .superpowers/realistic-interaction-downloads/
+          merge-multiple: false
+      - run: |
+          python examples/realistic_interaction_study.py aggregate --stage '${{ inputs.stage }}' --input .superpowers/realistic-interaction-downloads --output $env:STUDY_OUT
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: realistic-interaction-${{ inputs.stage }}-combined-evidence
+          path: |
+            .superpowers/realistic-interaction/
+            .superpowers/realistic-interaction-downloads/
+            examples/study_manifests/prospective-interaction-realistic*.json
+            examples/study_manifests/*.json
+            examples/study_manifests/pair-confidence-calibration.json
+            examples/study_manifests/pair-confidence-confirmation.json
+          include-hidden-files: true
+          retention-days: 30
+          if-no-files-found: error

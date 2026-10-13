@@ -244,3 +244,27 @@ def run_shard(stage,i,output):
     if failed:raise RuntimeError('failed prospective tasks: '+','.join(failed))
 
 
+def main():
+    p=argparse.ArgumentParser();p.add_argument('command',choices=('freeze','matrix','shard','pack','aggregate'))
+    p.add_argument('--write',action='store_true');p.add_argument('--stage',choices=('calibration','development'),default='calibration')
+    p.add_argument('--id');p.add_argument('--input',type=Path);p.add_argument('--output',type=Path,default=ROOT/'.superpowers/realistic-interaction')
+    a=p.parse_args()
+    if a.command=='freeze':freeze(not a.write);print('frozen realistic context verified');return
+    freeze()
+    if a.command=='matrix':
+        if a.stage=='development':thresholds()
+        print(json.dumps(d.shards(a.stage)))
+    elif a.command=='shard':run_shard(a.stage,a.id,a.output)
+    elif a.command=='pack':
+        import prospective_interaction_archive as archive
+        print(json.dumps({k:v for k,v in archive.pack(a.input,a.output).items() if k!='inventory'}))
+    else:
+        import realistic_interaction_report as report
+        v=report.aggregate(a.stage,[a.input],a.output)
+        print(json.dumps({k:v[k] for k in ('planned','complete','missing','aggregation_seconds')}))
+        if v['missing'] or v['audit_errors']:sys.exit(1)
+
+
+if __name__=='__main__':main()
+
+
