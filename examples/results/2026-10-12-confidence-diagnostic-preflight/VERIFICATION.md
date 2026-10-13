@@ -1,0 +1,10 @@
+# Diagnostic development preflight verification
+
+- 37 focused tests passed in 55.66s (16 new, 21 prior confidence checks); no full-suite claim. Missing helper/runner/workflow witnesses failed before their implementations. Three-fold invariant and repeated-failure-history regressions failed before corrections.
+- Independent scientific/code review confirmed the matching coefficient and population additive projection, assurance assumptions, separate oracle calculations, fixed historical threshold/source chain, partial/resume/error history behavior, sparse coverage and 125-minute cap. No remaining review blocker.
+- Two planned native identities completed: correlated mixed q=.04 at N300/p5, and nonlinear additive null at N300/p15/rho.7. Four comparisons per case; 1,384 fit/tune calls plus40 saved-setting refits. These are development identities, not additional scientific replications when replayed on Actions. Automated test computation is separate from this native-case cost.
+- Two-worker process smoke used distinct process IDs and verified the same saved cases, adding zero fits. Partial study audit: 2/60 complete, 58 missing, zero errors. No threshold learning, accepted reliability labels or D-040 revision.
+- Explicit arithmetic reproducer: 16 pair comparisons, eight population-risk comparisons and four pooled pair rows; maximum score discrepancy zero.
+- Dedicated frozen manifest source/runtime guard passed. Copied only the required 58 source/manifest files into a sparse execution fixture; its guard passed, and no historical result archive was present. Actions sparse patterns are tested against every required frozen path.
+- Preserved 24 raw files in ZIP, 595,438 bytes, SHA256 005090e49caa20642a332ce75eccf8d6915b2c50b15fa70def5b56c594546e41. Standalone verifier recombined, checked all inventory hashes/sizes/CRC and extracted the evidence successfully.
+- Production and old frozen sources unchanged. The old confirmation remains failed. Prospective assurance examples concern simulated null replication counts, not participant sample size, and assume fixed equal rates and independent settings.

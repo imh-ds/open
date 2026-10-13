@@ -1,0 +1,15 @@
+{
+  "command": "python -m pytest tests/test_confidence_diagnostic.py tests/test_confidence_diagnostic_study.py tests/test_confidence_diagnostic_actions.py tests/test_pair_confidence_rules.py tests/test_pair_confidence_models.py tests/test_pair_confidence_study.py tests/test_pair_confidence_actions.py -q",
+  "passed": 37,
+  "seconds": 55.66,
+  "new_tests": 16,
+  "prior_tests": 21,
+  "full_suite": false,
+  "red_witnesses": {
+    "helpers": 7,
+    "runner": 5,
+    "workflow": 3,
+    "three_fold_invariant": 1,
+    "error_history": 1
+  }
+}
