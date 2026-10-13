@@ -11,3 +11,7 @@ All 37 focused tests, independent review, two-case native preflight, separate pr
 Run archive verification with `python verify_archive.py --output <fresh-directory> --extract`. Recompute raw arithmetic with `python recompute_preflight.py --input <extracted-directory>/.superpowers/diagnostic-native/raw --output <fresh-directory>`.
 
 The planned Actions run has six ten-case shards, ordinary Windows runners, two single-thread workers each, and a 125-runner-minute cap. No paid runners or automatic retries. Source/runtime/protocol and all 60 identities are frozen before dispatch.
+
+## Frozen development launch
+
+[Actions run38358091214](https://github.com/imh-ds/open/actions/runs/38358091214) launched once at `51de3e25400f7ffb1b301b562e054eb93bff76f5`. All74public source/manifest/evidence Git blobs were verified before dispatch; registration push38357973310 skipped all fits. Preparation passed and all six expected workers registered with no failures at startup. Launch/startup snapshots are retained here; scientific development results remain separate from this construction snapshot.
