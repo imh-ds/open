@@ -1,0 +1,27 @@
+{
+  "run": 38358091214,
+  "url": "https://github.com/imh-ds/open/actions/runs/38358091214",
+  "source_commit": "51de3e25400f7ffb1b301b562e054eb93bff76f5",
+  "download": {
+    "bytes": 31794880,
+    "sha256": "055c0128d7da61dde762554229939c6eec82b3393a64d98c606a7be8659397b6",
+    "verified_against_github_artifact_digest": true,
+    "crc_verified": true
+  },
+  "retained_archive": {
+    "bytes": 16372839,
+    "sha256": "f6a8d0913de88479331c9827faaf1388c89b4bcf2d3b95b0062f2d0f957e8f20",
+    "files": 498,
+    "parts": [
+      {
+        "file": "raw-evidence.zip.part000",
+        "bytes": 16372839,
+        "sha256": "f6a8d0913de88479331c9827faaf1388c89b4bcf2d3b95b0062f2d0f957e8f20"
+      }
+    ]
+  },
+  "deduplication": {
+    "worker_files_omitted_after_byte_equality_check": 486,
+    "policy": "Every worker file matched the combined copy byte for byte; all unique evidence retained."
+  }
+}
