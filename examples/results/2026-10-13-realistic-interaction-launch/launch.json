@@ -1,0 +1,31 @@
+{
+  "stage": "calibration",
+  "workflow_id": 383719695,
+  "branch": "codex/actions-selection-reliability",
+  "source": "9ece0250e04a6213b397dd871961759db6f0fdd3",
+  "manifest": "12e6b9e023f15d3e8d19656e7e4b7403884ba6a4c7ddc05d4d8629dae3d9c560",
+  "planned_datasets": 3600,
+  "shards": 45,
+  "workers_per_shard": 2,
+  "max_parallel": 256,
+  "account_limited": true,
+  "total_protocol_runner_minute_cap": 3750,
+  "dispatch_started_at": "2026-10-13T22:25:49.970874+00:00",
+  "status": "accepted",
+  "development_gate": "all3600 calibration identities independently audited and fresh thresholds committed/publicly verified",
+  "command": [
+    "gh",
+    "workflow",
+    "run",
+    "realistic-interaction.yml",
+    "--ref",
+    "codex/actions-selection-reliability",
+    "-f",
+    "stage=calibration"
+  ],
+  "command_exit_code": 0,
+  "command_stdout": "https://github.com/imh-ds/open/actions/runs/38477737386\n",
+  "command_stderr": "",
+  "run_id": 38477737386,
+  "url": "https://github.com/imh-ds/open/actions/runs/38477737386"
+}
