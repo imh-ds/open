@@ -1,0 +1,458 @@
+{
+  "status": "proposal; no empirical observations or model fits",
+  "assumptions": "All-grid power assumes independent equal-rate strata. Bounds use independent datasets within each stratum; union coverage does not require endpoint independence. Shape inference is conditional on a fixed truth-blind display rule; zero selected is unresolved.",
+  "alpha": {
+    "false": 0.02,
+    "detection": 0.02,
+    "shape": 0.01,
+    "total": 0.05
+  },
+  "families": {
+    "false": 36,
+    "detection": 24,
+    "shape": 24
+  },
+  "false_gates": [
+    {
+      "n": 300,
+      "max_false": 3,
+      "upper_at_boundary": 0.04518744677778723,
+      "upper_next": 0.05091435837311829,
+      "hypothetical": [
+        {
+          "true_rate": 0.005,
+          "single_pass": 0.9348298164213127,
+          "all_12_null_pass": 0.4454414930652531,
+          "all_24_control_pass": 0.19841812374420192
+        },
+        {
+          "true_rate": 0.01,
+          "single_pass": 0.6472337746425397,
+          "all_12_null_pass": 0.005404232988520008,
+          "all_24_control_pass": 2.9205734194207897e-05
+        },
+        {
+          "true_rate": 0.02,
+          "single_pass": 0.14851038151125728,
+          "all_12_null_pass": 1.1510170717658828e-10,
+          "all_24_control_pass": 1.3248402994965074e-20
+        },
+        {
+          "true_rate": 0.025,
+          "single_pass": 0.056957601833087346,
+          "all_12_null_pass": 1.1657900479703013e-15,
+          "all_24_control_pass": 1.3590664359465975e-30
+        }
+      ]
+    },
+    {
+      "n": 450,
+      "max_false": 8,
+      "upper_at_boundary": 0.048255237744915865,
+      "upper_next": 0.05156680952457674,
+      "hypothetical": [
+        {
+          "true_rate": 0.005,
+          "single_pass": 0.9994742995577076,
+          "all_12_null_pass": 0.9937098025910204,
+          "all_24_control_pass": 0.9874591717654846
+        },
+        {
+          "true_rate": 0.01,
+          "single_pass": 0.9605552045094198,
+          "all_12_null_pass": 0.6169755494689667,
+          "all_24_control_pass": 0.3806588286425333
+        },
+        {
+          "true_rate": 0.02,
+          "single_pass": 0.4543199336835695,
+          "all_12_null_pass": 7.73288421284147e-05,
+          "all_24_control_pass": 5.979749824921285e-09
+        },
+        {
+          "true_rate": 0.025,
+          "single_pass": 0.2071395788487248,
+          "all_12_null_pass": 6.239604562625618e-09,
+          "all_24_control_pass": 3.8932665097938424e-17
+        }
+      ]
+    },
+    {
+      "n": 600,
+      "max_false": 13,
+      "upper_at_boundary": 0.04844384521594294,
+      "upper_next": 0.050771497400826156,
+      "hypothetical": [
+        {
+          "true_rate": 0.005,
+          "single_pass": 0.9999969054266116,
+          "all_12_null_pass": 0.9999628657513737,
+          "all_24_control_pass": 0.9999257328816998
+        },
+        {
+          "true_rate": 0.01,
+          "single_pass": 0.996551380199891,
+          "all_12_null_pass": 0.9593925454513986,
+          "all_24_control_pass": 0.9204340562677139
+        },
+        {
+          "true_rate": 0.02,
+          "single_pass": 0.6826110278352533,
+          "all_12_null_pass": 0.010234805698428929,
+          "all_24_control_pass": 0.00010475124768459327
+        },
+        {
+          "true_rate": 0.025,
+          "single_pass": 0.36079114825022784,
+          "all_12_null_pass": 4.86486156886352e-06,
+          "all_24_control_pass": 2.3666878084205227e-11
+        }
+      ]
+    },
+    {
+      "n": 1000,
+      "max_false": 28,
+      "upper_at_boundary": 0.04927329336398523,
+      "upper_next": 0.05055103026842653,
+      "hypothetical": [
+        {
+          "true_rate": 0.005,
+          "single_pass": 0.9999999999998717,
+          "all_12_null_pass": 0.9999999999984599,
+          "all_24_control_pass": 0.9999999999969198
+        },
+        {
+          "true_rate": 0.01,
+          "single_pass": 0.9999993602783454,
+          "all_12_null_pass": 0.9999923233671543,
+          "all_24_control_pass": 0.9999846467932392
+        },
+        {
+          "true_rate": 0.02,
+          "single_pass": 0.9671184222321401,
+          "all_12_null_pass": 0.669508157151493,
+          "all_24_control_pass": 0.4482411724923884
+        },
+        {
+          "true_rate": 0.025,
+          "single_pass": 0.7658155176971697,
+          "all_12_null_pass": 0.04069021141804299,
+          "all_24_control_pass": 0.0016556933052450365
+        }
+      ]
+    },
+    {
+      "n": 1200,
+      "max_false": 36,
+      "upper_at_boundary": 0.049569892464090125,
+      "upper_next": 0.05060842452368993,
+      "hypothetical": [
+        {
+          "true_rate": 0.005,
+          "single_pass": 1.0,
+          "all_12_null_pass": 1.0,
+          "all_24_control_pass": 1.0
+        },
+        {
+          "true_rate": 0.01,
+          "single_pass": 0.9999999957379564,
+          "all_12_null_pass": 0.9999999488554779,
+          "all_24_control_pass": 0.9999998977109584
+        },
+        {
+          "true_rate": 0.02,
+          "single_pass": 0.9923729763113837,
+          "all_12_null_pass": 0.912219080307121,
+          "all_24_control_pass": 0.8321436504763696
+        },
+        {
+          "true_rate": 0.025,
+          "single_pass": 0.8832409038620611,
+          "all_12_null_pass": 0.225398012429552,
+          "all_24_control_pass": 0.050804264007192484
+        }
+      ]
+    },
+    {
+      "n": 1500,
+      "max_false": 48,
+      "upper_at_boundary": 0.04959681484743179,
+      "upper_next": 0.05040636765434132,
+      "hypothetical": [
+        {
+          "true_rate": 0.005,
+          "single_pass": 1.0,
+          "all_12_null_pass": 1.0,
+          "all_24_control_pass": 1.0
+        },
+        {
+          "true_rate": 0.01,
+          "single_pass": 0.9999999999979298,
+          "all_12_null_pass": 0.9999999999751572,
+          "all_24_control_pass": 0.9999999999503144
+        },
+        {
+          "true_rate": 0.02,
+          "single_pass": 0.9992171502007748,
+          "all_12_null_pass": 0.9906461453963743,
+          "all_24_control_pass": 0.9813797853886944
+        },
+        {
+          "true_rate": 0.025,
+          "single_pass": 0.9613655041154368,
+          "all_12_null_pass": 0.6232501844476328,
+          "all_24_control_pass": 0.3884407924140083
+        }
+      ]
+    }
+  ],
+  "detection_gates": [
+    {
+      "n": 100,
+      "min_success": 93,
+      "lower_at_boundary": 0.8135138908576245,
+      "lower_previous": 0.7996641542302059,
+      "hypothetical": [
+        {
+          "true_rate": 0.9,
+          "single_pass": 0.2060508618040108
+        },
+        {
+          "true_rate": 0.95,
+          "single_pass": 0.8720395213796204
+        }
+      ]
+    },
+    {
+      "n": 250,
+      "min_success": 220,
+      "lower_at_boundary": 0.8028710782385293,
+      "lower_previous": 0.7980968679641991,
+      "hypothetical": [
+        {
+          "true_rate": 0.9,
+          "single_pass": 0.8753286469299124
+        },
+        {
+          "true_rate": 0.95,
+          "single_pass": 0.9999963906096131
+        }
+      ]
+    },
+    {
+      "n": 300,
+      "min_success": 262,
+      "lower_at_boundary": 0.8027130187120285,
+      "lower_previous": 0.7988045661024039,
+      "hypothetical": [
+        {
+          "true_rate": 0.9,
+          "single_pass": 0.9450701959704771
+        },
+        {
+          "true_rate": 0.95,
+          "single_pass": 0.9999999366663169
+        }
+      ]
+    },
+    {
+      "n": 450,
+      "min_success": 387,
+      "lower_at_boundary": 0.8019695642842006,
+      "lower_previous": 0.7994487371362059,
+      "hypothetical": [
+        {
+          "true_rate": 0.9,
+          "single_pass": 0.9972414140600686
+        },
+        {
+          "true_rate": 0.95,
+          "single_pass": 0.99999999999991
+        }
+      ]
+    }
+  ],
+  "shape_gates": [
+    {
+      "n": 100,
+      "min_success": 99,
+      "lower_at_boundary": 0.9025702595615375,
+      "lower_previous": 0.8834523422206597,
+      "hypothetical": [
+        {
+          "true_rate": 0.99,
+          "single_pass": 0.7357619789229561
+        }
+      ]
+    },
+    {
+      "n": 150,
+      "min_success": 147,
+      "lower_at_boundary": 0.9090346089523086,
+      "lower_previous": 0.897828551568955,
+      "hypothetical": [
+        {
+          "true_rate": 0.99,
+          "single_pass": 0.9353053146886773
+        }
+      ]
+    },
+    {
+      "n": 200,
+      "min_success": 194,
+      "lower_at_boundary": 0.9066031249683584,
+      "lower_previous": 0.8989834241599342,
+      "hypothetical": [
+        {
+          "true_rate": 0.99,
+          "single_pass": 0.9957044576711485
+        }
+      ]
+    },
+    {
+      "n": 250,
+      "min_success": 240,
+      "lower_at_boundary": 0.9009582317808437,
+      "lower_previous": 0.8952836426131336,
+      "hypothetical": [
+        {
+          "true_rate": 0.99,
+          "single_pass": 0.999946101370953
+        }
+      ]
+    },
+    {
+      "n": 300,
+      "min_success": 287,
+      "lower_at_boundary": 0.9029288265417648,
+      "lower_previous": 0.8983485324839307,
+      "hypothetical": [
+        {
+          "true_rate": 0.99,
+          "single_pass": 0.9999971908387492
+        }
+      ]
+    }
+  ],
+  "matched_information": [
+    {
+      "n": 300,
+      "p": 5,
+      "rho": 0.0,
+      "q": 0.01,
+      "b": 0.15182505543429622,
+      "recovered_q": 0.01,
+      "q_limit": 0.6
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "rho": 0.0,
+      "q": 0.04,
+      "b": 0.31167748898959186,
+      "recovered_q": 0.039999999999999994,
+      "q_limit": 0.6
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "rho": 0.7,
+      "q": 0.01,
+      "b": 0.49485810359176996,
+      "recovered_q": 0.009999999999999998,
+      "q_limit": 0.07029413089500473
+    },
+    {
+      "n": 300,
+      "p": 5,
+      "rho": 0.7,
+      "q": 0.04,
+      "b": 1.3962685407872475,
+      "recovered_q": 0.04000000000000001,
+      "q_limit": 0.07029413089500473
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "rho": 0.0,
+      "q": 0.01,
+      "b": 0.15182505543429622,
+      "recovered_q": 0.01,
+      "q_limit": 0.6
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "rho": 0.0,
+      "q": 0.04,
+      "b": 0.31167748898959186,
+      "recovered_q": 0.039999999999999994,
+      "q_limit": 0.6
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "rho": 0.7,
+      "q": 0.01,
+      "b": 0.49485810359176996,
+      "recovered_q": 0.009999999999999998,
+      "q_limit": 0.07029413089500473
+    },
+    {
+      "n": 600,
+      "p": 5,
+      "rho": 0.7,
+      "q": 0.04,
+      "b": 1.3962685407872475,
+      "recovered_q": 0.04000000000000001,
+      "q_limit": 0.07029413089500473
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "rho": 0.7,
+      "q": 0.01,
+      "b": 0.49485810359176996,
+      "recovered_q": 0.009999999999999998,
+      "q_limit": 0.07029413089500473
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "rho": 0.7,
+      "q": 0.04,
+      "b": 1.3962685407872475,
+      "recovered_q": 0.04000000000000001,
+      "q_limit": 0.07029413089500473
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "rho": 0.9,
+      "q": 0.002,
+      "b": 0.7646251610448039,
+      "recovered_q": 0.0019999999999999996,
+      "q_limit": 0.006611519794878053
+    },
+    {
+      "n": 300,
+      "p": 15,
+      "rho": 0.9,
+      "q": 0.005,
+      "b": 2.045138882468415,
+      "recovered_q": 0.004999999999999998,
+      "q_limit": 0.006611519794878053
+    }
+  ],
+  "budget": {
+    "null_datasets": 14400,
+    "maximum_signal_datasets": 10800,
+    "maximum_datasets": 25200,
+    "null_shards": 180,
+    "maximum_signal_shards": 135,
+    "tasks_per_shard": 80,
+    "fit_tune_calls": 17438400,
+    "saved_setting_refits": 504000,
+    "timeout_runner_minutes": 6450
+  }
+}
