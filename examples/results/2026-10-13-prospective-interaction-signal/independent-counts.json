@@ -1,0 +1,584 @@
+{
+  "datasets": 10800,
+  "pair_rows": 21600,
+  "verified_bounds": 72,
+  "conditions": [
+    {
+      "cell": "n300-p5-rho0",
+      "benchmark": "matched-q0.01",
+      "control": {
+        "k": 2,
+        "n": 450,
+        "bound": 0.026213932250261227,
+        "passed": true
+      },
+      "detection": {
+        "k": 49,
+        "n": 450,
+        "bound": 0.06785698220970024,
+        "passed": false
+      },
+      "shape": {
+        "k": 30,
+        "n": 35,
+        "bound": 0.579252903071778,
+        "passed": false
+      },
+      "predictive": false,
+      "pattern": false
+    },
+    {
+      "cell": "n300-p5-rho0",
+      "benchmark": "matched-q0.04",
+      "control": {
+        "k": 0,
+        "n": 450,
+        "bound": 0.016518803083611575,
+        "passed": true
+      },
+      "detection": {
+        "k": 338,
+        "n": 450,
+        "bound": 0.6823320314500712,
+        "passed": false
+      },
+      "shape": {
+        "k": 260,
+        "n": 272,
+        "bound": 0.8983413626762893,
+        "passed": false
+      },
+      "predictive": false,
+      "pattern": false
+    },
+    {
+      "cell": "n300-p5-rho0",
+      "benchmark": "mixed-b0.8",
+      "control": {
+        "k": 4,
+        "n": 450,
+        "bound": 0.03416179330043318,
+        "passed": true
+      },
+      "detection": {
+        "k": 447,
+        "n": 450,
+        "bound": 0.9707961260824463,
+        "passed": true
+      },
+      "shape": {
+        "k": 423,
+        "n": 425,
+        "bound": 0.9714845782994554,
+        "passed": true
+      },
+      "predictive": true,
+      "pattern": true
+    },
+    {
+      "cell": "n300-p5-rho0",
+      "benchmark": "pure-b0.8",
+      "control": {
+        "k": 22,
+        "n": 450,
+        "bound": 0.0910550852646899,
+        "passed": false
+      },
+      "detection": {
+        "k": 450,
+        "n": 450,
+        "bound": 0.984367745838981,
+        "passed": true
+      },
+      "shape": {
+        "k": 448,
+        "n": 448,
+        "bound": 0.9827767771442859,
+        "passed": true
+      },
+      "predictive": false,
+      "pattern": false
+    },
+    {
+      "cell": "n300-p5-rho0.7",
+      "benchmark": "matched-q0.01",
+      "control": {
+        "k": 0,
+        "n": 450,
+        "bound": 0.016518803083611575,
+        "passed": true
+      },
+      "detection": {
+        "k": 14,
+        "n": 450,
+        "bound": 0.011422954661419397,
+        "passed": false
+      },
+      "shape": {
+        "k": 9,
+        "n": 13,
+        "bound": 0.22417097891833893,
+        "passed": false
+      },
+      "predictive": false,
+      "pattern": false
+    },
+    {
+      "cell": "n300-p5-rho0.7",
+      "benchmark": "matched-q0.04",
+      "control": {
+        "k": 1,
+        "n": 450,
+        "bound": 0.021746150497226224,
+        "passed": true
+      },
+      "detection": {
+        "k": 227,
+        "n": 450,
+        "bound": 0.4296253902918895,
+        "passed": false
+      },
+      "shape": {
+        "k": 205,
+        "n": 210,
+        "bound": 0.9184074302426983,
+        "passed": true
+      },
+      "predictive": false,
+      "pattern": false
+    },
+    {
+      "cell": "n300-p5-rho0.7",
+      "benchmark": "mixed-b0.8",
+      "control": {
+        "k": 0,
+        "n": 450,
+        "bound": 0.016518803083611575,
+        "passed": true
+      },
+      "detection": {
+        "k": 89,
+        "n": 450,
+        "bound": 0.14263875661451894,
+        "passed": false
+      },
+      "shape": {
+        "k": 78,
+        "n": 81,
+        "bound": 0.8367783237521149,
+        "passed": false
+      },
+      "predictive": false,
+      "pattern": false
+    },
+    {
+      "cell": "n300-p5-rho0.7",
+      "benchmark": "pure-b0.8",
+      "control": {
+        "k": 3,
+        "n": 450,
+        "bound": 0.030306098423491704,
+        "passed": true
+      },
+      "detection": {
+        "k": 368,
+        "n": 450,
+        "bound": 0.7547207206386666,
+        "passed": false
+      },
+      "shape": {
+        "k": 345,
+        "n": 347,
+        "bound": 0.965169269365401,
+        "passed": true
+      },
+      "predictive": false,
+      "pattern": false
+    },
+    {
+      "cell": "n600-p5-rho0",
+      "benchmark": "matched-q0.01",
+      "control": {
+        "k": 0,
+        "n": 450,
+        "bound": 0.016518803083611575,
+        "passed": true
+      },
+      "detection": {
+        "k": 72,
+        "n": 450,
+        "bound": 0.11009833594678098,
+        "passed": false
+      },
+      "shape": {
+        "k": 54,
+        "n": 57,
+        "bound": 0.774640912985413,
+        "passed": false
+      },
+      "predictive": false,
+      "pattern": false
+    },
+    {
+      "cell": "n600-p5-rho0",
+      "benchmark": "matched-q0.04",
+      "control": {
+        "k": 0,
+        "n": 450,
+        "bound": 0.016518803083611575,
+        "passed": true
+      },
+      "detection": {
+        "k": 436,
+        "n": 450,
+        "bound": 0.9341370716142616,
+        "passed": true
+      },
+      "shape": {
+        "k": 388,
+        "n": 399,
+        "bound": 0.9335907204543995,
+        "passed": true
+      },
+      "predictive": true,
+      "pattern": true
+    },
+    {
+      "cell": "n600-p5-rho0",
+      "benchmark": "mixed-b0.8",
+      "control": {
+        "k": 1,
+        "n": 450,
+        "bound": 0.021746150497226224,
+        "passed": true
+      },
+      "detection": {
+        "k": 450,
+        "n": 450,
+        "bound": 0.984367745838981,
+        "passed": true
+      },
+      "shape": {
+        "k": 447,
+        "n": 447,
+        "bound": 0.9827385809196099,
+        "passed": true
+      },
+      "predictive": true,
+      "pattern": true
+    },
+    {
+      "cell": "n600-p5-rho0",
+      "benchmark": "pure-b0.8",
+      "control": {
+        "k": 12,
+        "n": 450,
+        "bound": 0.0611781116176778,
+        "passed": false
+      },
+      "detection": {
+        "k": 450,
+        "n": 450,
+        "bound": 0.984367745838981,
+        "passed": true
+      },
+      "shape": {
+        "k": 450,
+        "n": 450,
+        "bound": 0.982852664715077,
+        "passed": true
+      },
+      "predictive": false,
+      "pattern": false
+    },
+    {
+      "cell": "n600-p5-rho0.7",
+      "benchmark": "matched-q0.01",
+      "control": {
+        "k": 0,
+        "n": 450,
+        "bound": 0.016518803083611575,
+        "passed": true
+      },
+      "detection": {
+        "k": 8,
+        "n": 450,
+        "bound": 0.004279213196122127,
+        "passed": false
+      },
+      "shape": {
+        "k": 8,
+        "n": 8,
+        "bound": 0.3779841550712675,
+        "passed": false
+      },
+      "predictive": false,
+      "pattern": false
+    },
+    {
+      "cell": "n600-p5-rho0.7",
+      "benchmark": "matched-q0.04",
+      "control": {
+        "k": 0,
+        "n": 450,
+        "bound": 0.016518803083611575,
+        "passed": true
+      },
+      "detection": {
+        "k": 348,
+        "n": 450,
+        "bound": 0.7062071254968343,
+        "passed": false
+      },
+      "shape": {
+        "k": 326,
+        "n": 333,
+        "bound": 0.938476622588084,
+        "passed": true
+      },
+      "predictive": false,
+      "pattern": false
+    },
+    {
+      "cell": "n600-p5-rho0.7",
+      "benchmark": "mixed-b0.8",
+      "control": {
+        "k": 0,
+        "n": 450,
+        "bound": 0.016518803083611575,
+        "passed": true
+      },
+      "detection": {
+        "k": 95,
+        "n": 450,
+        "bound": 0.15433173276707207,
+        "passed": false
+      },
+      "shape": {
+        "k": 89,
+        "n": 92,
+        "bound": 0.8551115527699333,
+        "passed": false
+      },
+      "predictive": false,
+      "pattern": false
+    },
+    {
+      "cell": "n600-p5-rho0.7",
+      "benchmark": "pure-b0.8",
+      "control": {
+        "k": 0,
+        "n": 450,
+        "bound": 0.016518803083611575,
+        "passed": true
+      },
+      "detection": {
+        "k": 438,
+        "n": 450,
+        "bound": 0.9402772762961876,
+        "passed": true
+      },
+      "shape": {
+        "k": 432,
+        "n": 433,
+        "bound": 0.9766941800186597,
+        "passed": true
+      },
+      "predictive": true,
+      "pattern": true
+    },
+    {
+      "cell": "n300-p15-rho0.7",
+      "benchmark": "matched-q0.01",
+      "control": {
+        "k": 1,
+        "n": 450,
+        "bound": 0.021746150497226224,
+        "passed": true
+      },
+      "detection": {
+        "k": 43,
+        "n": 450,
+        "bound": 0.05729653828107421,
+        "passed": false
+      },
+      "shape": {
+        "k": 33,
+        "n": 37,
+        "bound": 0.6331621619184487,
+        "passed": false
+      },
+      "predictive": false,
+      "pattern": false
+    },
+    {
+      "cell": "n300-p15-rho0.7",
+      "benchmark": "matched-q0.04",
+      "control": {
+        "k": 3,
+        "n": 450,
+        "bound": 0.030306098423491704,
+        "passed": true
+      },
+      "detection": {
+        "k": 246,
+        "n": 450,
+        "bound": 0.47150597884223033,
+        "passed": false
+      },
+      "shape": {
+        "k": 224,
+        "n": 233,
+        "bound": 0.9001447373638882,
+        "passed": true
+      },
+      "predictive": false,
+      "pattern": false
+    },
+    {
+      "cell": "n300-p15-rho0.7",
+      "benchmark": "mixed-b0.8",
+      "control": {
+        "k": 1,
+        "n": 450,
+        "bound": 0.021746150497226224,
+        "passed": true
+      },
+      "detection": {
+        "k": 103,
+        "n": 450,
+        "bound": 0.17007045800860576,
+        "passed": false
+      },
+      "shape": {
+        "k": 93,
+        "n": 97,
+        "bound": 0.8454012306229062,
+        "passed": false
+      },
+      "predictive": false,
+      "pattern": false
+    },
+    {
+      "cell": "n300-p15-rho0.7",
+      "benchmark": "pure-b0.8",
+      "control": {
+        "k": 1,
+        "n": 450,
+        "bound": 0.021746150497226224,
+        "passed": true
+      },
+      "detection": {
+        "k": 364,
+        "n": 450,
+        "bound": 0.744928244242407,
+        "passed": false
+      },
+      "shape": {
+        "k": 350,
+        "n": 353,
+        "bound": 0.9605120532916382,
+        "passed": true
+      },
+      "predictive": false,
+      "pattern": false
+    },
+    {
+      "cell": "n300-p15-rho0.9",
+      "benchmark": "matched-q0.002",
+      "control": {
+        "k": 0,
+        "n": 450,
+        "bound": 0.016518803083611575,
+        "passed": true
+      },
+      "detection": {
+        "k": 1,
+        "n": 450,
+        "bound": 1.8526221696210597e-06,
+        "passed": false
+      },
+      "shape": {
+        "k": 0,
+        "n": 0,
+        "bound": null,
+        "passed": false
+      },
+      "predictive": false,
+      "pattern": false
+    },
+    {
+      "cell": "n300-p15-rho0.9",
+      "benchmark": "matched-q0.005",
+      "control": {
+        "k": 0,
+        "n": 450,
+        "bound": 0.016518803083611575,
+        "passed": true
+      },
+      "detection": {
+        "k": 6,
+        "n": 450,
+        "bound": 0.0023840619501117252,
+        "passed": false
+      },
+      "shape": {
+        "k": 4,
+        "n": 5,
+        "bound": 0.09750397763967764,
+        "passed": false
+      },
+      "predictive": false,
+      "pattern": false
+    },
+    {
+      "cell": "n300-p15-rho0.9",
+      "benchmark": "mixed-b0.8",
+      "control": {
+        "k": 0,
+        "n": 450,
+        "bound": 0.016518803083611575,
+        "passed": true
+      },
+      "detection": {
+        "k": 2,
+        "n": 450,
+        "bound": 9.207814572338645e-05,
+        "passed": false
+      },
+      "shape": {
+        "k": 0,
+        "n": 0,
+        "bound": null,
+        "passed": false
+      },
+      "predictive": false,
+      "pattern": false
+    },
+    {
+      "cell": "n300-p15-rho0.9",
+      "benchmark": "pure-b0.8",
+      "control": {
+        "k": 1,
+        "n": 450,
+        "bound": 0.021746150497226224,
+        "passed": true
+      },
+      "detection": {
+        "k": 4,
+        "n": 450,
+        "bound": 0.0009088085731585193,
+        "passed": false
+      },
+      "shape": {
+        "k": 2,
+        "n": 2,
+        "bound": 0.020412414523193152,
+        "passed": false
+      },
+      "predictive": false,
+      "pattern": false
+    }
+  ],
+  "qualified": 4
+}

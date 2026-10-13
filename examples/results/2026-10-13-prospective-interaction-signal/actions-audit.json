@@ -1,0 +1,2185 @@
+{
+  "audit_errors": [],
+  "checkpoint_fits": 7473600,
+  "complete": 10800,
+  "conditions": [
+    {
+      "benchmark": "matched-q0.01",
+      "cell": "n300-p5-rho0",
+      "curve_pattern_support": false,
+      "predictive_support": false,
+      "reasons": [
+        "detection",
+        "curve_pattern_unresolved_or_unsupported"
+      ]
+    },
+    {
+      "benchmark": "matched-q0.04",
+      "cell": "n300-p5-rho0",
+      "curve_pattern_support": false,
+      "predictive_support": false,
+      "reasons": [
+        "detection",
+        "curve_pattern_unresolved_or_unsupported"
+      ]
+    },
+    {
+      "benchmark": "mixed-b0.8",
+      "cell": "n300-p5-rho0",
+      "curve_pattern_support": true,
+      "predictive_support": true,
+      "reasons": []
+    },
+    {
+      "benchmark": "pure-b0.8",
+      "cell": "n300-p5-rho0",
+      "curve_pattern_support": false,
+      "predictive_support": false,
+      "reasons": [
+        "control"
+      ]
+    },
+    {
+      "benchmark": "matched-q0.01",
+      "cell": "n300-p5-rho0.7",
+      "curve_pattern_support": false,
+      "predictive_support": false,
+      "reasons": [
+        "detection",
+        "curve_pattern_unresolved_or_unsupported"
+      ]
+    },
+    {
+      "benchmark": "matched-q0.04",
+      "cell": "n300-p5-rho0.7",
+      "curve_pattern_support": false,
+      "predictive_support": false,
+      "reasons": [
+        "detection"
+      ]
+    },
+    {
+      "benchmark": "mixed-b0.8",
+      "cell": "n300-p5-rho0.7",
+      "curve_pattern_support": false,
+      "predictive_support": false,
+      "reasons": [
+        "detection",
+        "curve_pattern_unresolved_or_unsupported"
+      ]
+    },
+    {
+      "benchmark": "pure-b0.8",
+      "cell": "n300-p5-rho0.7",
+      "curve_pattern_support": false,
+      "predictive_support": false,
+      "reasons": [
+        "detection"
+      ]
+    },
+    {
+      "benchmark": "matched-q0.01",
+      "cell": "n600-p5-rho0",
+      "curve_pattern_support": false,
+      "predictive_support": false,
+      "reasons": [
+        "detection",
+        "curve_pattern_unresolved_or_unsupported"
+      ]
+    },
+    {
+      "benchmark": "matched-q0.04",
+      "cell": "n600-p5-rho0",
+      "curve_pattern_support": true,
+      "predictive_support": true,
+      "reasons": []
+    },
+    {
+      "benchmark": "mixed-b0.8",
+      "cell": "n600-p5-rho0",
+      "curve_pattern_support": true,
+      "predictive_support": true,
+      "reasons": []
+    },
+    {
+      "benchmark": "pure-b0.8",
+      "cell": "n600-p5-rho0",
+      "curve_pattern_support": false,
+      "predictive_support": false,
+      "reasons": [
+        "control"
+      ]
+    },
+    {
+      "benchmark": "matched-q0.01",
+      "cell": "n600-p5-rho0.7",
+      "curve_pattern_support": false,
+      "predictive_support": false,
+      "reasons": [
+        "detection",
+        "curve_pattern_unresolved_or_unsupported"
+      ]
+    },
+    {
+      "benchmark": "matched-q0.04",
+      "cell": "n600-p5-rho0.7",
+      "curve_pattern_support": false,
+      "predictive_support": false,
+      "reasons": [
+        "detection"
+      ]
+    },
+    {
+      "benchmark": "mixed-b0.8",
+      "cell": "n600-p5-rho0.7",
+      "curve_pattern_support": false,
+      "predictive_support": false,
+      "reasons": [
+        "detection",
+        "curve_pattern_unresolved_or_unsupported"
+      ]
+    },
+    {
+      "benchmark": "pure-b0.8",
+      "cell": "n600-p5-rho0.7",
+      "curve_pattern_support": true,
+      "predictive_support": true,
+      "reasons": []
+    },
+    {
+      "benchmark": "matched-q0.01",
+      "cell": "n300-p15-rho0.7",
+      "curve_pattern_support": false,
+      "predictive_support": false,
+      "reasons": [
+        "detection",
+        "curve_pattern_unresolved_or_unsupported"
+      ]
+    },
+    {
+      "benchmark": "matched-q0.04",
+      "cell": "n300-p15-rho0.7",
+      "curve_pattern_support": false,
+      "predictive_support": false,
+      "reasons": [
+        "detection"
+      ]
+    },
+    {
+      "benchmark": "mixed-b0.8",
+      "cell": "n300-p15-rho0.7",
+      "curve_pattern_support": false,
+      "predictive_support": false,
+      "reasons": [
+        "detection",
+        "curve_pattern_unresolved_or_unsupported"
+      ]
+    },
+    {
+      "benchmark": "pure-b0.8",
+      "cell": "n300-p15-rho0.7",
+      "curve_pattern_support": false,
+      "predictive_support": false,
+      "reasons": [
+        "detection"
+      ]
+    },
+    {
+      "benchmark": "matched-q0.002",
+      "cell": "n300-p15-rho0.9",
+      "curve_pattern_support": false,
+      "predictive_support": false,
+      "reasons": [
+        "detection",
+        "curve_pattern_unresolved_or_unsupported"
+      ]
+    },
+    {
+      "benchmark": "matched-q0.005",
+      "cell": "n300-p15-rho0.9",
+      "curve_pattern_support": false,
+      "predictive_support": false,
+      "reasons": [
+        "detection",
+        "curve_pattern_unresolved_or_unsupported"
+      ]
+    },
+    {
+      "benchmark": "mixed-b0.8",
+      "cell": "n300-p15-rho0.9",
+      "curve_pattern_support": false,
+      "predictive_support": false,
+      "reasons": [
+        "detection",
+        "curve_pattern_unresolved_or_unsupported"
+      ]
+    },
+    {
+      "benchmark": "pure-b0.8",
+      "cell": "n300-p15-rho0.9",
+      "curve_pattern_support": false,
+      "predictive_support": false,
+      "reasons": [
+        "detection",
+        "curve_pattern_unresolved_or_unsupported"
+      ]
+    }
+  ],
+  "cost_scope": "Attempt/checkpoint/effective totals overlap. Interrupted costs remain unknown even after completion.",
+  "failed_tasks": [],
+  "fits": 7473600,
+  "global_curve_pattern_support": false,
+  "global_predictive_support": false,
+  "global_support": false,
+  "historical_failed_tasks": [],
+  "known_attempt_cost": {
+    "fits": 7473600,
+    "seconds": 83015.75299999998,
+    "verification_refits": 216000
+  },
+  "manifest": "5a383f67f965c36ec9ffd07175e8153940d6b8844d5e021e25620c87862f5f4a",
+  "merge": {
+    "archives": [
+      {
+        "bytes": 20379407,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-000\\raw-shard.zip",
+        "sha256": "bb5e05f89f4f987aa8b880eebbacb4b07719dc2089a6dd55254709a89f4bb818"
+      },
+      {
+        "bytes": 20370306,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-001\\raw-shard.zip",
+        "sha256": "7b0acb2ed3b252c1be96321a3b912d87a15ca5fb48ecbdc41cb9406a8c54fd82"
+      },
+      {
+        "bytes": 20384219,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-002\\raw-shard.zip",
+        "sha256": "e9dd5d51f3dfcf7718aec2ee81bb3fa122c1c72468d61d7a33401f445d5b87c8"
+      },
+      {
+        "bytes": 20373345,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-003\\raw-shard.zip",
+        "sha256": "3dd4e79283d6879b1da75b1ee8c2d3e1881b2615af2c4458cbaf5043a194dd1e"
+      },
+      {
+        "bytes": 20384932,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-004\\raw-shard.zip",
+        "sha256": "0d2cb52a3fca064862b6d82e006f96b66df40332bb262d827499838d2f60f50b"
+      },
+      {
+        "bytes": 20416440,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-005\\raw-shard.zip",
+        "sha256": "0f3290bb5f35eaa147f325ff0a84e0e337125195e8949fd6fd20484a6fc7b86c"
+      },
+      {
+        "bytes": 20474815,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-006\\raw-shard.zip",
+        "sha256": "af8886b3ca93e58b04e07a35795ba2b484716ccefeb321ecdc6786b0262d6f01"
+      },
+      {
+        "bytes": 20442470,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-007\\raw-shard.zip",
+        "sha256": "344375f870a2553083921e0d2753b055df9af0e160030b72a168fa242f5a6462"
+      },
+      {
+        "bytes": 20463962,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-008\\raw-shard.zip",
+        "sha256": "1eb5dc63ba63bbc36efca59d374e8d1fa1b61f6ad9f9e38e90602f597862567d"
+      },
+      {
+        "bytes": 20460587,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-009\\raw-shard.zip",
+        "sha256": "3b95105c5f5c40f862da73064127fa2c3b1f3b41d72b8eae95eb6cd7bb660db4"
+      },
+      {
+        "bytes": 20485848,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-010\\raw-shard.zip",
+        "sha256": "f5baccc5dbd824d7186cea9599af1f3b63e463b570a82107eebcd703f4fec380"
+      },
+      {
+        "bytes": 20588172,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-011\\raw-shard.zip",
+        "sha256": "018a18595f5f742f8d8d258445f54ee9569118f29504447669255807ac716884"
+      },
+      {
+        "bytes": 20628793,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-012\\raw-shard.zip",
+        "sha256": "6010dd5b3cc1cf1ebb12235896219322f4a0539b438cb8725381e78e95836cb7"
+      },
+      {
+        "bytes": 20680764,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-013\\raw-shard.zip",
+        "sha256": "6b793fe6108912bb46351ec752ade3c7c310b7930487ad46ea4ab12232e374d6"
+      },
+      {
+        "bytes": 20683349,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-014\\raw-shard.zip",
+        "sha256": "0e953ac4244e14276b1feb65a9920e3d65469c2b25b763ddd8ff7d3a4fe20255"
+      },
+      {
+        "bytes": 20696305,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-015\\raw-shard.zip",
+        "sha256": "e943c24e4df04add5720879b855ef70808d5f6ea2dcfc62dc5f41799d1cc08bc"
+      },
+      {
+        "bytes": 20371523,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-016\\raw-shard.zip",
+        "sha256": "90effcf2bc31831d062bb84d7a1fe3c445a7851a42c3ecf188f4f5cca4b94165"
+      },
+      {
+        "bytes": 18679109,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-017\\raw-shard.zip",
+        "sha256": "e2ec9c68aa51511647bf01f09983f188d1b853a4d598152a4053ec52850eb149"
+      },
+      {
+        "bytes": 18654972,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-018\\raw-shard.zip",
+        "sha256": "da26bc3aeee72aff38a48a0516f30d0c3372a141b1ccf7cd330d3134abf80090"
+      },
+      {
+        "bytes": 18643210,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-019\\raw-shard.zip",
+        "sha256": "9fdca64a12b7e933a3a636e526ed4141d78117e900f23f9aa44b90644e49305a"
+      },
+      {
+        "bytes": 18701804,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-020\\raw-shard.zip",
+        "sha256": "c5644c6ec5becbe2e41ca4aad2e5ec7f001c874751fa233ecf1b1fd2a77dd894"
+      },
+      {
+        "bytes": 18624740,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-021\\raw-shard.zip",
+        "sha256": "051d3f80c56f313099936cbf09e4dee381a1fd56b1111342cd22aa86246732c7"
+      },
+      {
+        "bytes": 19544234,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-022\\raw-shard.zip",
+        "sha256": "61c9e7df3314a91f134f0a15e15973584751149862b318a063403d4b919413a3"
+      },
+      {
+        "bytes": 20392140,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-023\\raw-shard.zip",
+        "sha256": "d80fe42b2b8ff8825d12e8911bb3141c33d64af998797367357b02c4a7075b38"
+      },
+      {
+        "bytes": 20405868,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-024\\raw-shard.zip",
+        "sha256": "d2676f308708e68c46a7a7b05e30c37ded9917c8e427211914ce5a2a9f730e13"
+      },
+      {
+        "bytes": 20396200,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-025\\raw-shard.zip",
+        "sha256": "220bd7551bade0b8fef0b8b14dc638d56d9a90701575564ecae202dc6e454f19"
+      },
+      {
+        "bytes": 20397687,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-026\\raw-shard.zip",
+        "sha256": "9a1319ab41ba1b217a5a28c5880bed678545c3fe15a37cc8b7df313ca6ad7cc6"
+      },
+      {
+        "bytes": 20403615,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-027\\raw-shard.zip",
+        "sha256": "71827ee19af56b916a7f27f27c44d9f9b18b8c86a573564a4bfe606f98c34619"
+      },
+      {
+        "bytes": 20468206,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-028\\raw-shard.zip",
+        "sha256": "787d8cec0ae0d31bdce7551489a31e35115484973b7e66b87de64cd4c0c5e426"
+      },
+      {
+        "bytes": 20449130,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-029\\raw-shard.zip",
+        "sha256": "f6b1859bb8b13ef8e3a6efd6ea76dd428c79e248eb24e6daabc2da884115e535"
+      },
+      {
+        "bytes": 20468018,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-030\\raw-shard.zip",
+        "sha256": "280baa0bb033c646c807130de35f5bb753eb74e82540a6401e7ac70f4f5d2795"
+      },
+      {
+        "bytes": 20494809,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-031\\raw-shard.zip",
+        "sha256": "d1a24edb1421ea08debef1435aade6f4ae2c51b3609be82c76fac1f774702365"
+      },
+      {
+        "bytes": 20488474,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-032\\raw-shard.zip",
+        "sha256": "5649a08289b9efb15e0aae2dcb8d1cc14fb09ce24beeb5d749198af037bc62c4"
+      },
+      {
+        "bytes": 20484205,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-033\\raw-shard.zip",
+        "sha256": "dfd348c1e53219e2fed86f6cc1a05dc2461eda336ff20b2e331998007ece1098"
+      },
+      {
+        "bytes": 20429580,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-034\\raw-shard.zip",
+        "sha256": "09ce87b1bad3ab2cc54ebbcbd47ae6f29d3e8407787a5cf27b00806ca375d33d"
+      },
+      {
+        "bytes": 20405054,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-035\\raw-shard.zip",
+        "sha256": "d9a5cd69d96c62112d994a6c731974ef93a21bc6cec61859b2cdd1d5853480b1"
+      },
+      {
+        "bytes": 20425530,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-036\\raw-shard.zip",
+        "sha256": "33a38f5557157e2bf65c731e96c84e30e05a78f669de481f2454d2cecc8516ff"
+      },
+      {
+        "bytes": 20411391,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-037\\raw-shard.zip",
+        "sha256": "1e584ce29a80f313fe38cdc80848bb163bc27fc55e1efb9206baf62e71bfd3af"
+      },
+      {
+        "bytes": 20424079,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-038\\raw-shard.zip",
+        "sha256": "1e4fc38dcf4bec859493ed0f4b7c6fa60f37661313b9631438342e89acf5f8b8"
+      },
+      {
+        "bytes": 20423075,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-039\\raw-shard.zip",
+        "sha256": "6a528b5fb5af5452d053e3fcc02d78c849d2c158c560f8a3a50395eb2cf1b4c9"
+      },
+      {
+        "bytes": 20444541,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-040\\raw-shard.zip",
+        "sha256": "6dd606b6d2eb93c6a7d3c0b3deb4995d28761794669d32bab8dffc9fb57c5db9"
+      },
+      {
+        "bytes": 20435854,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-041\\raw-shard.zip",
+        "sha256": "2cdabf0dcb6e9eac92a76067e85eece9684add989a92ae133a60b0ea2fe0e17a"
+      },
+      {
+        "bytes": 20433172,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-042\\raw-shard.zip",
+        "sha256": "9bde2477ee285a47f967dd482f11085bc6a89f340a6a2df24c64b94f21510b09"
+      },
+      {
+        "bytes": 20456444,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-043\\raw-shard.zip",
+        "sha256": "a4f1bb9631233b2d6c7e88e748fea02e73fcb2c95b7e4c09841a82f0dc3bc47a"
+      },
+      {
+        "bytes": 20442333,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-044\\raw-shard.zip",
+        "sha256": "e0ae18f51d1507a2f21f9fc80e0b845ed0dba13b13c91f6728ca7341a84a4a1d"
+      },
+      {
+        "bytes": 24469738,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-045\\raw-shard.zip",
+        "sha256": "e0aae7c689c9bca7f32a377d6d8876b1a99cabeb013e9c9fd21f443459f1953c"
+      },
+      {
+        "bytes": 24563563,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-046\\raw-shard.zip",
+        "sha256": "6661174a906c71c6f17edfa92f2d1f5faffb86597309870c770bb888bf17ebfe"
+      },
+      {
+        "bytes": 24454349,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-047\\raw-shard.zip",
+        "sha256": "5ce229784b3a48d922607bea854e78708a789b2e93556114189c5f7902cdb619"
+      },
+      {
+        "bytes": 24455590,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-048\\raw-shard.zip",
+        "sha256": "08d0626dbc0efbdb9f0239595d64090b48d013f85d5750ccafc4f672050d9239"
+      },
+      {
+        "bytes": 24567922,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-049\\raw-shard.zip",
+        "sha256": "b64d3097c9f06e867781f417b4f662b4e720ee4839c257a2e4373899960be2d0"
+      },
+      {
+        "bytes": 24604247,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-050\\raw-shard.zip",
+        "sha256": "f9cfb64564f5d1a7b716ba84f09a7f4dd9f27b92450abaee1749ca569a1b1fa5"
+      },
+      {
+        "bytes": 24722036,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-051\\raw-shard.zip",
+        "sha256": "9b95c7d2bcae84ef68611142db0203cb5e492d8844fe8a58a74b0b2163c2c841"
+      },
+      {
+        "bytes": 24706483,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-052\\raw-shard.zip",
+        "sha256": "9aa0ae13b4c6574b2fa944055766b5e9645c994ac2a6580917b1db86e7af17ed"
+      },
+      {
+        "bytes": 24701274,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-053\\raw-shard.zip",
+        "sha256": "77cc803b2deb21dfbb879ae0c8c2e50cca310ca19c126933b6e99790f92d3e06"
+      },
+      {
+        "bytes": 24795913,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-054\\raw-shard.zip",
+        "sha256": "2fcb124493d142b4e2c0f67c4c502e4fa9ef6476da70dc8b74a30a6a3305ed3d"
+      },
+      {
+        "bytes": 24649198,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-055\\raw-shard.zip",
+        "sha256": "41b8b2e7e72e4f5434e9401d92328506ea8049c70bfaacd454bab89bf82571b2"
+      },
+      {
+        "bytes": 24951474,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-056\\raw-shard.zip",
+        "sha256": "4fca20aecd0b52cf08a81e3324874b92e62959ca352ee6160de605d83143d478"
+      },
+      {
+        "bytes": 25043273,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-057\\raw-shard.zip",
+        "sha256": "bcb2e7927033d0a88b50e82fbd852f0b2e0afad6dd36cabcfee8b4d20d2ce44f"
+      },
+      {
+        "bytes": 25088310,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-058\\raw-shard.zip",
+        "sha256": "53e175baba670510538e78cd1414f881847d10d8f98305ecdd0c6372c71a22af"
+      },
+      {
+        "bytes": 24989229,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-059\\raw-shard.zip",
+        "sha256": "24e0ee02a39c7a2cd3f7c00383e97da0e396377813749f579b709a7ead9758e3"
+      },
+      {
+        "bytes": 25087600,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-060\\raw-shard.zip",
+        "sha256": "42efe88d43eb0b4c0ca1105737d840beb3a62af6436ca8ae92bdcfca8329d1ef"
+      },
+      {
+        "bytes": 24715334,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-061\\raw-shard.zip",
+        "sha256": "9c9f58c8ef5e6f3295a644a6d55e991a92ff5054fad6fd57708e535ade8b1625"
+      },
+      {
+        "bytes": 22773133,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-062\\raw-shard.zip",
+        "sha256": "9af48f07886394a2f0b94c86bd6ff90e67582d3d5a5a9d08676413f2ad9517bc"
+      },
+      {
+        "bytes": 22658249,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-063\\raw-shard.zip",
+        "sha256": "0a8a1346e98ac0227f4569c111553d57021f1d226bbb8d3c0b63583bf5c6c4fa"
+      },
+      {
+        "bytes": 22646593,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-064\\raw-shard.zip",
+        "sha256": "fccbd413fefe38d6a897eac9e86b44fd3ac7cdc945f1a8f720cbaa2872f068af"
+      },
+      {
+        "bytes": 22686620,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-065\\raw-shard.zip",
+        "sha256": "79056b3086a7ee87a4f3200c9101adb4b9e86973c9dca546071df47158d0d486"
+      },
+      {
+        "bytes": 22604077,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-066\\raw-shard.zip",
+        "sha256": "3b0fcb28f640c7d28900c010e662d1031be64df3424054662d408eb9a21b46eb"
+      },
+      {
+        "bytes": 23635588,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-067\\raw-shard.zip",
+        "sha256": "5f6445ad92766878f14cf19cb4cecfaf38bd2595db5d8d0928a26159c3f0b569"
+      },
+      {
+        "bytes": 24496279,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-068\\raw-shard.zip",
+        "sha256": "b517587f30ac43831de40ba13fa5ecb8e48008dbf7a676fd916f40585217eb2d"
+      },
+      {
+        "bytes": 24546438,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-069\\raw-shard.zip",
+        "sha256": "a365de9e476ed86566cc3caecb9643df02cc8ed713891cbae42a7a8cb6ce82b3"
+      },
+      {
+        "bytes": 24512983,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-070\\raw-shard.zip",
+        "sha256": "615d1b0c7f369bc164f68b84de6df0cc78bf3eafebbe0b914a3eae031ced1c95"
+      },
+      {
+        "bytes": 24538021,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-071\\raw-shard.zip",
+        "sha256": "033115a52665f1b565e0c55935ab079a6adc8daf8bc372523cdecf01725b0f0a"
+      },
+      {
+        "bytes": 24471130,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-072\\raw-shard.zip",
+        "sha256": "a825f72b8654aa458161b7cd418962184d0875f50eca0efba631b02d3dc1bb80"
+      },
+      {
+        "bytes": 24672368,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-073\\raw-shard.zip",
+        "sha256": "7930d7e36f31d2df0e38cb34f2d90e0e2251c4e87f4f4d65e830f773829e8c62"
+      },
+      {
+        "bytes": 24733236,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-074\\raw-shard.zip",
+        "sha256": "be66ab08debd3b01f5d46373d3bf6ec092d5c15659bba9d4c492dfc0fd2a929f"
+      },
+      {
+        "bytes": 24709089,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-075\\raw-shard.zip",
+        "sha256": "5639833a539914dc19c05f21729e9dcbf2a925bc2f08f17fc28256a7a919cf0b"
+      },
+      {
+        "bytes": 24723668,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-076\\raw-shard.zip",
+        "sha256": "cd63a21ed9868b1b2d60d284c5fe2201b33ce2a44e50b8be2c1586b0aa8bc25a"
+      },
+      {
+        "bytes": 24709385,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-077\\raw-shard.zip",
+        "sha256": "3690baa53e0aa8cd01a02381e752ca63d1d29c8b2cf30fe9eb3e927621158e77"
+      },
+      {
+        "bytes": 24698936,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-078\\raw-shard.zip",
+        "sha256": "5d60598d2777217750a7cd93ba0fc43ce12b5fe83704e62aee7bad6ce4de9937"
+      },
+      {
+        "bytes": 24527556,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-079\\raw-shard.zip",
+        "sha256": "ae5b9cc50a95edbdeeb87b63a51c8302b07ca06f6ffc76fc10f5732f80ca92a3"
+      },
+      {
+        "bytes": 24584238,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-080\\raw-shard.zip",
+        "sha256": "ae8d34af36b3cf989ea60af3292c09de68ad584bea208bd10ef217fea2f9cd58"
+      },
+      {
+        "bytes": 24561764,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-081\\raw-shard.zip",
+        "sha256": "04174785be1067abbc9ef7951b9e95dfe5395f40c240d2e90e678af1a6632792"
+      },
+      {
+        "bytes": 24668392,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-082\\raw-shard.zip",
+        "sha256": "325a1db8b02b77648e4eb24f3abd985bf5442d557b0e4fbfcf1ba3322ae07fe4"
+      },
+      {
+        "bytes": 24600276,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-083\\raw-shard.zip",
+        "sha256": "bbb9fddd37dcb8f2dd0ae114445741811408c3ac11f938407c810aa4203793eb"
+      },
+      {
+        "bytes": 24728020,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-084\\raw-shard.zip",
+        "sha256": "80d8db4f7abbbdce096ddf6b85d20313acbf4fb98439433a895b0756eeb5224f"
+      },
+      {
+        "bytes": 24716357,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-085\\raw-shard.zip",
+        "sha256": "d7c12038c89fa2c2e33ce5295c617b7e399f1816926e5e25e06babaf52bc2cb5"
+      },
+      {
+        "bytes": 24721481,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-086\\raw-shard.zip",
+        "sha256": "0f693266942eb347c65adbcf13636759085cbce4b4ca76ebf97318b620495727"
+      },
+      {
+        "bytes": 24660082,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-087\\raw-shard.zip",
+        "sha256": "e92ca409e26add83240f69fea359c36d890378e684172fd05347250298a21c4c"
+      },
+      {
+        "bytes": 24685950,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-088\\raw-shard.zip",
+        "sha256": "dd29eafcb2e1f256d10aa4b38b45ad5a4a11e79cfe2fa926b315ca72e7402135"
+      },
+      {
+        "bytes": 24686650,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-089\\raw-shard.zip",
+        "sha256": "ada04850bc12879fa9f8c804cdf1025696410c10663da7b15ce5a3d9163c66bb"
+      },
+      {
+        "bytes": 20353127,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-090\\raw-shard.zip",
+        "sha256": "fa7fa90a1bafbb4740977156700dfdfffed27c4a04e817d6483c79045f1b1b20"
+      },
+      {
+        "bytes": 20348345,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-091\\raw-shard.zip",
+        "sha256": "c87dd82d321dd8ec241e7fa40d7bc7cc136aa33b5a375a31a46b4dcac90dddb7"
+      },
+      {
+        "bytes": 20343530,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-092\\raw-shard.zip",
+        "sha256": "b2f74aea31d3df74fa794b73dcc391051caad8d9d0d9906d0b0db3c0fb2d5c81"
+      },
+      {
+        "bytes": 20345617,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-093\\raw-shard.zip",
+        "sha256": "6440b86ea2f70b6e89649ab9e71e750a3cea03aeb8144d0b90bbbe69720dd10b"
+      },
+      {
+        "bytes": 20338341,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-094\\raw-shard.zip",
+        "sha256": "7e49eaf348209abf543a6299d8e8481f46a6e3e4dea4b32f1f2255f8e4f3181d"
+      },
+      {
+        "bytes": 20356819,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-095\\raw-shard.zip",
+        "sha256": "db94116775e990e52f2d3f09120f71b2226fa6aeda1ff286535b6bc76df9846d"
+      },
+      {
+        "bytes": 20402667,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-096\\raw-shard.zip",
+        "sha256": "09516cdea397d1df96e2e0992148c5d0a643b0e0be5534050a2b3ce816bb7c29"
+      },
+      {
+        "bytes": 20395323,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-097\\raw-shard.zip",
+        "sha256": "3ae5f3f3b6ed5297b854cb42c47695950027471fa07d4422f57494e6a81fb097"
+      },
+      {
+        "bytes": 20390907,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-098\\raw-shard.zip",
+        "sha256": "3f910a713ef4da3fd59bc955e328ddcbccff2176df3aaefe8390442092d3cb94"
+      },
+      {
+        "bytes": 20369848,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-099\\raw-shard.zip",
+        "sha256": "e35f6485151bb1ae6baff3142eced44a6aa2f74a8447659f7ea2c7b71639dacf"
+      },
+      {
+        "bytes": 20399686,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-100\\raw-shard.zip",
+        "sha256": "45ec14a3c618943c807f0460ad747cafb4513b0bf7b377497d94100b9e27fdb5"
+      },
+      {
+        "bytes": 20364169,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-101\\raw-shard.zip",
+        "sha256": "b85dbd4e1cdd084cd102adbc17cc33283088c5f8c49a8b546dc1709e9b0c175b"
+      },
+      {
+        "bytes": 20346512,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-102\\raw-shard.zip",
+        "sha256": "ef856f0f45522463414d31dfb0f3d0b8651055292438b15df571734ad3d85c96"
+      },
+      {
+        "bytes": 20332280,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-103\\raw-shard.zip",
+        "sha256": "cfe49bf73bd660801b71d05d5944d110bc273a2199dd0d22f5c7ebd5b5839489"
+      },
+      {
+        "bytes": 20343740,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-104\\raw-shard.zip",
+        "sha256": "07ebc809d112d64284b2214a143311466f98edf735b3afbdf4aae780cc7c8ff0"
+      },
+      {
+        "bytes": 20332849,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-105\\raw-shard.zip",
+        "sha256": "632b52ebbc103054e8275c25639541af61041783a50d130fbe5deca7eb72f771"
+      },
+      {
+        "bytes": 20335772,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-106\\raw-shard.zip",
+        "sha256": "0057dc0c71e5c9f192121aaeb00c4b8e7be441e48d1365be65a40779dc7ec4f5"
+      },
+      {
+        "bytes": 20302458,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-107\\raw-shard.zip",
+        "sha256": "859dd6214fed38b5690434162ca7ee36b3f6bf1366c666fa2c6f345caad908ba"
+      },
+      {
+        "bytes": 20336136,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-108\\raw-shard.zip",
+        "sha256": "892422153b039b2e4a67bbc46bd203d1a1e033b734b2accd659ec292557de370"
+      },
+      {
+        "bytes": 20338177,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-109\\raw-shard.zip",
+        "sha256": "12926d342d708b7cedafed336e522c708820fea132af861e9905eb6e9df9bc0f"
+      },
+      {
+        "bytes": 20317311,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-110\\raw-shard.zip",
+        "sha256": "dae099c34350f1b60c06ba1fc942cbcae6669c1816216e251ad5ecfc8348b959"
+      },
+      {
+        "bytes": 20314307,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-111\\raw-shard.zip",
+        "sha256": "ede87caa8f9f05e9c6f0b1269436b0d5629e18482a753c3848c6ce7da4ac4870"
+      },
+      {
+        "bytes": 20307889,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-112\\raw-shard.zip",
+        "sha256": "937ab12936e7ebb35ab049063423c96a9ba77ce50364f359d73c3673af5f6ed3"
+      },
+      {
+        "bytes": 20321541,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-113\\raw-shard.zip",
+        "sha256": "76b11fcf099e5b11c0cfbeb42b4f14ad1009560e990199a56429bc74282a34a0"
+      },
+      {
+        "bytes": 20318510,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-114\\raw-shard.zip",
+        "sha256": "5943d67b464b09395c872f2a3abf9fa2627e1aa0e4cb7c8c661e7c7ff3c6b7df"
+      },
+      {
+        "bytes": 20307226,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-115\\raw-shard.zip",
+        "sha256": "16d5562a120350ee45f4432f9abb4f87f5c9d2895ffc5f60a47c57a825f2cffa"
+      },
+      {
+        "bytes": 20303638,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-116\\raw-shard.zip",
+        "sha256": "3d683707af1826d57ab211f5cd32e045eddae4e12e395dc3ba30df121d2a268a"
+      },
+      {
+        "bytes": 20294037,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-117\\raw-shard.zip",
+        "sha256": "ce4533d6e280b6eea8dbbd921f2a3f2b7ae1c8d349a0bc6aa22388fe1d52f9d2"
+      },
+      {
+        "bytes": 20367646,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-118\\raw-shard.zip",
+        "sha256": "e33b121fcff1b141697e7010aba218c4df1b2afcd984c639c871b8ac85c511fd"
+      },
+      {
+        "bytes": 20394497,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-119\\raw-shard.zip",
+        "sha256": "e73e0afe9986aee617b4b121c342b51b071218434c776e4394c753da60041529"
+      },
+      {
+        "bytes": 20390871,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-120\\raw-shard.zip",
+        "sha256": "7ea546688d0d478becf88b2f28d14178aac10f2c5c6233438e23492c32a2fcde"
+      },
+      {
+        "bytes": 20388833,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-121\\raw-shard.zip",
+        "sha256": "dba7a8fc7fd44c5ac8589189f5ab7ddc0df882fe5789a88cfbdfde77caafd37b"
+      },
+      {
+        "bytes": 20393308,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-122\\raw-shard.zip",
+        "sha256": "b3b1d7e704afaff9c9c8d2f76973a0c62c62b372e0e0334774dd8e5be1d13f48"
+      },
+      {
+        "bytes": 20357039,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-123\\raw-shard.zip",
+        "sha256": "0c917e40fb751ae8932677e3a80611992defe96711d4198a335e3255f0230a58"
+      },
+      {
+        "bytes": 20319822,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-124\\raw-shard.zip",
+        "sha256": "934730bd7921cf747cd973df860257db68e30563667f37d932ec9edf118ec75f"
+      },
+      {
+        "bytes": 20286738,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-125\\raw-shard.zip",
+        "sha256": "b37fddd5543ad786dd622a6fc7cbfab72f1a0346b280c41cc2af58ec67361763"
+      },
+      {
+        "bytes": 20324503,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-126\\raw-shard.zip",
+        "sha256": "e2cafc3e5afa9fb089108817fb407ac072e00af37e31dae20b02f0e268521dae"
+      },
+      {
+        "bytes": 20270339,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-127\\raw-shard.zip",
+        "sha256": "b17d104c7aeab973dc706950e8505a8b37eb844239f633ea6e2bc6710f704964"
+      },
+      {
+        "bytes": 20292359,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-128\\raw-shard.zip",
+        "sha256": "a76ea904f13f98ab6e1886aee3c4d9a84c57bd2523149f94d9d9065aca6105c2"
+      },
+      {
+        "bytes": 20275863,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-129\\raw-shard.zip",
+        "sha256": "c9cf486edae8e68e62cd471ca0405bc475ac438353196ce9cc57470a06f5cc48"
+      },
+      {
+        "bytes": 20294552,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-130\\raw-shard.zip",
+        "sha256": "5b0ddba6195a6d3b9591f4c740c420bdc69433cc9f8b1c4e6326252a68275e33"
+      },
+      {
+        "bytes": 20242971,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-131\\raw-shard.zip",
+        "sha256": "b8300de2cfc2534f3c0879e86280880d1fca178cfcc72bf537ab9705f75db7b1"
+      },
+      {
+        "bytes": 20248306,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-132\\raw-shard.zip",
+        "sha256": "2cea834b1dd091c9a9da22efd4c708415acda43532ff0249168ce09da6cd2bb5"
+      },
+      {
+        "bytes": 20244597,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-133\\raw-shard.zip",
+        "sha256": "41f1323d97a409693034b7dea484c9a3ce31927d082aeda2d0dec0bcb091b7a3"
+      },
+      {
+        "bytes": 20229904,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-signal-shard-134\\raw-shard.zip",
+        "sha256": "7c946cf92f4e13e16ac49062687172174368718f7cd482240273141575630f32"
+      }
+    ],
+    "identical_archive_duplicates": 0
+  },
+  "missing": 0,
+  "missing_ids": [],
+  "passed_cells": [],
+  "planned": 10800,
+  "production_accepted": false,
+  "retained_fitting_seconds": 79225.26899999994,
+  "saved_setting_refits": 216000,
+  "selection": "0686c0d6a8fb92e6b034a0a74e7b7e02f3331583e5c13b438f2fb41d7616f79f",
+  "skipped_ids": [],
+  "stage": "signal",
+  "strata": [
+    {
+      "benchmark": "matched-q0.01",
+      "cell": "n300-p5-rho0",
+      "control": {
+        "alpha": 0.0005555555555555556,
+        "bound": 0.026213932250261227,
+        "complete": 450,
+        "direction": "upper",
+        "displayed": 35,
+        "explanation": "qualified",
+        "k": 2,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.0044444444444444444,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.05
+      },
+      "detection": {
+        "alpha": 0.0008333333333333334,
+        "bound": 0.06785698220970024,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 35,
+        "explanation": "observed_rate_misses_target",
+        "k": 49,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.10888888888888888,
+        "pass": false,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.8
+      },
+      "shape": {
+        "alpha": 0.0004166666666666667,
+        "bound": 0.579252903071778,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 35,
+        "explanation": "observed_rate_misses_target",
+        "k": 30,
+        "missing": 0,
+        "n": 35,
+        "observed_rate": 0.8571428571428571,
+        "pass": false,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.9
+      }
+    },
+    {
+      "benchmark": "matched-q0.04",
+      "cell": "n300-p5-rho0",
+      "control": {
+        "alpha": 0.0005555555555555556,
+        "bound": 0.016518803083611575,
+        "complete": 450,
+        "direction": "upper",
+        "displayed": 272,
+        "explanation": "qualified",
+        "k": 0,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.0,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.05
+      },
+      "detection": {
+        "alpha": 0.0008333333333333334,
+        "bound": 0.6823320314500712,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 272,
+        "explanation": "observed_rate_misses_target",
+        "k": 338,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.7511111111111111,
+        "pass": false,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.8
+      },
+      "shape": {
+        "alpha": 0.0004166666666666667,
+        "bound": 0.8983413626762893,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 272,
+        "explanation": "uncertain_despite_observed_rate_meeting_target",
+        "k": 260,
+        "missing": 0,
+        "n": 272,
+        "observed_rate": 0.9558823529411765,
+        "pass": false,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.9
+      }
+    },
+    {
+      "benchmark": "mixed-b0.8",
+      "cell": "n300-p5-rho0",
+      "control": {
+        "alpha": 0.0005555555555555556,
+        "bound": 0.03416179330043318,
+        "complete": 450,
+        "direction": "upper",
+        "displayed": 425,
+        "explanation": "qualified",
+        "k": 4,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.008888888888888889,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.05
+      },
+      "detection": {
+        "alpha": 0.0008333333333333334,
+        "bound": 0.9707961260824463,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 425,
+        "explanation": "qualified",
+        "k": 447,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.9933333333333333,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.8
+      },
+      "shape": {
+        "alpha": 0.0004166666666666667,
+        "bound": 0.9714845782994554,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 425,
+        "explanation": "qualified",
+        "k": 423,
+        "missing": 0,
+        "n": 425,
+        "observed_rate": 0.9952941176470588,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.9
+      }
+    },
+    {
+      "benchmark": "pure-b0.8",
+      "cell": "n300-p5-rho0",
+      "control": {
+        "alpha": 0.0005555555555555556,
+        "bound": 0.0910550852646899,
+        "complete": 450,
+        "direction": "upper",
+        "displayed": 448,
+        "explanation": "uncertain_despite_observed_rate_meeting_target",
+        "k": 22,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.04888888888888889,
+        "pass": false,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.05
+      },
+      "detection": {
+        "alpha": 0.0008333333333333334,
+        "bound": 0.984367745838981,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 448,
+        "explanation": "qualified",
+        "k": 450,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 1.0,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.8
+      },
+      "shape": {
+        "alpha": 0.0004166666666666667,
+        "bound": 0.9827767771442859,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 448,
+        "explanation": "qualified",
+        "k": 448,
+        "missing": 0,
+        "n": 448,
+        "observed_rate": 1.0,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.9
+      }
+    },
+    {
+      "benchmark": "matched-q0.01",
+      "cell": "n300-p5-rho0.7",
+      "control": {
+        "alpha": 0.0005555555555555556,
+        "bound": 0.016518803083611575,
+        "complete": 450,
+        "direction": "upper",
+        "displayed": 13,
+        "explanation": "qualified",
+        "k": 0,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.0,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.05
+      },
+      "detection": {
+        "alpha": 0.0008333333333333334,
+        "bound": 0.011422954661419397,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 13,
+        "explanation": "observed_rate_misses_target",
+        "k": 14,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.03111111111111111,
+        "pass": false,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.8
+      },
+      "shape": {
+        "alpha": 0.0004166666666666667,
+        "bound": 0.22417097891833893,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 13,
+        "explanation": "observed_rate_misses_target",
+        "k": 9,
+        "missing": 0,
+        "n": 13,
+        "observed_rate": 0.6923076923076923,
+        "pass": false,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.9
+      }
+    },
+    {
+      "benchmark": "matched-q0.04",
+      "cell": "n300-p5-rho0.7",
+      "control": {
+        "alpha": 0.0005555555555555556,
+        "bound": 0.021746150497226224,
+        "complete": 450,
+        "direction": "upper",
+        "displayed": 210,
+        "explanation": "qualified",
+        "k": 1,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.0022222222222222222,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.05
+      },
+      "detection": {
+        "alpha": 0.0008333333333333334,
+        "bound": 0.4296253902918895,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 210,
+        "explanation": "observed_rate_misses_target",
+        "k": 227,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.5044444444444445,
+        "pass": false,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.8
+      },
+      "shape": {
+        "alpha": 0.0004166666666666667,
+        "bound": 0.9184074302426983,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 210,
+        "explanation": "qualified",
+        "k": 205,
+        "missing": 0,
+        "n": 210,
+        "observed_rate": 0.9761904761904762,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.9
+      }
+    },
+    {
+      "benchmark": "mixed-b0.8",
+      "cell": "n300-p5-rho0.7",
+      "control": {
+        "alpha": 0.0005555555555555556,
+        "bound": 0.016518803083611575,
+        "complete": 450,
+        "direction": "upper",
+        "displayed": 81,
+        "explanation": "qualified",
+        "k": 0,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.0,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.05
+      },
+      "detection": {
+        "alpha": 0.0008333333333333334,
+        "bound": 0.14263875661451894,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 81,
+        "explanation": "observed_rate_misses_target",
+        "k": 89,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.19777777777777777,
+        "pass": false,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.8
+      },
+      "shape": {
+        "alpha": 0.0004166666666666667,
+        "bound": 0.8367783237521149,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 81,
+        "explanation": "uncertain_despite_observed_rate_meeting_target",
+        "k": 78,
+        "missing": 0,
+        "n": 81,
+        "observed_rate": 0.9629629629629629,
+        "pass": false,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.9
+      }
+    },
+    {
+      "benchmark": "pure-b0.8",
+      "cell": "n300-p5-rho0.7",
+      "control": {
+        "alpha": 0.0005555555555555556,
+        "bound": 0.030306098423491704,
+        "complete": 450,
+        "direction": "upper",
+        "displayed": 347,
+        "explanation": "qualified",
+        "k": 3,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.006666666666666667,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.05
+      },
+      "detection": {
+        "alpha": 0.0008333333333333334,
+        "bound": 0.7547207206386666,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 347,
+        "explanation": "uncertain_despite_observed_rate_meeting_target",
+        "k": 368,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.8177777777777778,
+        "pass": false,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.8
+      },
+      "shape": {
+        "alpha": 0.0004166666666666667,
+        "bound": 0.965169269365401,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 347,
+        "explanation": "qualified",
+        "k": 345,
+        "missing": 0,
+        "n": 347,
+        "observed_rate": 0.9942363112391931,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.9
+      }
+    },
+    {
+      "benchmark": "matched-q0.01",
+      "cell": "n600-p5-rho0",
+      "control": {
+        "alpha": 0.0005555555555555556,
+        "bound": 0.016518803083611575,
+        "complete": 450,
+        "direction": "upper",
+        "displayed": 57,
+        "explanation": "qualified",
+        "k": 0,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.0,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.05
+      },
+      "detection": {
+        "alpha": 0.0008333333333333334,
+        "bound": 0.11009833594678098,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 57,
+        "explanation": "observed_rate_misses_target",
+        "k": 72,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.16,
+        "pass": false,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.8
+      },
+      "shape": {
+        "alpha": 0.0004166666666666667,
+        "bound": 0.774640912985413,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 57,
+        "explanation": "uncertain_despite_observed_rate_meeting_target",
+        "k": 54,
+        "missing": 0,
+        "n": 57,
+        "observed_rate": 0.9473684210526315,
+        "pass": false,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.9
+      }
+    },
+    {
+      "benchmark": "matched-q0.04",
+      "cell": "n600-p5-rho0",
+      "control": {
+        "alpha": 0.0005555555555555556,
+        "bound": 0.016518803083611575,
+        "complete": 450,
+        "direction": "upper",
+        "displayed": 399,
+        "explanation": "qualified",
+        "k": 0,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.0,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.05
+      },
+      "detection": {
+        "alpha": 0.0008333333333333334,
+        "bound": 0.9341370716142616,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 399,
+        "explanation": "qualified",
+        "k": 436,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.9688888888888889,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.8
+      },
+      "shape": {
+        "alpha": 0.0004166666666666667,
+        "bound": 0.9335907204543995,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 399,
+        "explanation": "qualified",
+        "k": 388,
+        "missing": 0,
+        "n": 399,
+        "observed_rate": 0.9724310776942355,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.9
+      }
+    },
+    {
+      "benchmark": "mixed-b0.8",
+      "cell": "n600-p5-rho0",
+      "control": {
+        "alpha": 0.0005555555555555556,
+        "bound": 0.021746150497226224,
+        "complete": 450,
+        "direction": "upper",
+        "displayed": 447,
+        "explanation": "qualified",
+        "k": 1,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.0022222222222222222,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.05
+      },
+      "detection": {
+        "alpha": 0.0008333333333333334,
+        "bound": 0.984367745838981,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 447,
+        "explanation": "qualified",
+        "k": 450,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 1.0,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.8
+      },
+      "shape": {
+        "alpha": 0.0004166666666666667,
+        "bound": 0.9827385809196099,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 447,
+        "explanation": "qualified",
+        "k": 447,
+        "missing": 0,
+        "n": 447,
+        "observed_rate": 1.0,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.9
+      }
+    },
+    {
+      "benchmark": "pure-b0.8",
+      "cell": "n600-p5-rho0",
+      "control": {
+        "alpha": 0.0005555555555555556,
+        "bound": 0.0611781116176778,
+        "complete": 450,
+        "direction": "upper",
+        "displayed": 450,
+        "explanation": "uncertain_despite_observed_rate_meeting_target",
+        "k": 12,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.02666666666666667,
+        "pass": false,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.05
+      },
+      "detection": {
+        "alpha": 0.0008333333333333334,
+        "bound": 0.984367745838981,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 450,
+        "explanation": "qualified",
+        "k": 450,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 1.0,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.8
+      },
+      "shape": {
+        "alpha": 0.0004166666666666667,
+        "bound": 0.982852664715077,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 450,
+        "explanation": "qualified",
+        "k": 450,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 1.0,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.9
+      }
+    },
+    {
+      "benchmark": "matched-q0.01",
+      "cell": "n600-p5-rho0.7",
+      "control": {
+        "alpha": 0.0005555555555555556,
+        "bound": 0.016518803083611575,
+        "complete": 450,
+        "direction": "upper",
+        "displayed": 8,
+        "explanation": "qualified",
+        "k": 0,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.0,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.05
+      },
+      "detection": {
+        "alpha": 0.0008333333333333334,
+        "bound": 0.004279213196122127,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 8,
+        "explanation": "observed_rate_misses_target",
+        "k": 8,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.017777777777777778,
+        "pass": false,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.8
+      },
+      "shape": {
+        "alpha": 0.0004166666666666667,
+        "bound": 0.3779841550712675,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 8,
+        "explanation": "uncertain_despite_observed_rate_meeting_target",
+        "k": 8,
+        "missing": 0,
+        "n": 8,
+        "observed_rate": 1.0,
+        "pass": false,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.9
+      }
+    },
+    {
+      "benchmark": "matched-q0.04",
+      "cell": "n600-p5-rho0.7",
+      "control": {
+        "alpha": 0.0005555555555555556,
+        "bound": 0.016518803083611575,
+        "complete": 450,
+        "direction": "upper",
+        "displayed": 333,
+        "explanation": "qualified",
+        "k": 0,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.0,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.05
+      },
+      "detection": {
+        "alpha": 0.0008333333333333334,
+        "bound": 0.7062071254968343,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 333,
+        "explanation": "observed_rate_misses_target",
+        "k": 348,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.7733333333333333,
+        "pass": false,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.8
+      },
+      "shape": {
+        "alpha": 0.0004166666666666667,
+        "bound": 0.938476622588084,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 333,
+        "explanation": "qualified",
+        "k": 326,
+        "missing": 0,
+        "n": 333,
+        "observed_rate": 0.978978978978979,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.9
+      }
+    },
+    {
+      "benchmark": "mixed-b0.8",
+      "cell": "n600-p5-rho0.7",
+      "control": {
+        "alpha": 0.0005555555555555556,
+        "bound": 0.016518803083611575,
+        "complete": 450,
+        "direction": "upper",
+        "displayed": 92,
+        "explanation": "qualified",
+        "k": 0,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.0,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.05
+      },
+      "detection": {
+        "alpha": 0.0008333333333333334,
+        "bound": 0.15433173276707207,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 92,
+        "explanation": "observed_rate_misses_target",
+        "k": 95,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.2111111111111111,
+        "pass": false,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.8
+      },
+      "shape": {
+        "alpha": 0.0004166666666666667,
+        "bound": 0.8551115527699333,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 92,
+        "explanation": "uncertain_despite_observed_rate_meeting_target",
+        "k": 89,
+        "missing": 0,
+        "n": 92,
+        "observed_rate": 0.967391304347826,
+        "pass": false,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.9
+      }
+    },
+    {
+      "benchmark": "pure-b0.8",
+      "cell": "n600-p5-rho0.7",
+      "control": {
+        "alpha": 0.0005555555555555556,
+        "bound": 0.016518803083611575,
+        "complete": 450,
+        "direction": "upper",
+        "displayed": 433,
+        "explanation": "qualified",
+        "k": 0,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.0,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.05
+      },
+      "detection": {
+        "alpha": 0.0008333333333333334,
+        "bound": 0.9402772762961876,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 433,
+        "explanation": "qualified",
+        "k": 438,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.9733333333333334,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.8
+      },
+      "shape": {
+        "alpha": 0.0004166666666666667,
+        "bound": 0.9766941800186597,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 433,
+        "explanation": "qualified",
+        "k": 432,
+        "missing": 0,
+        "n": 433,
+        "observed_rate": 0.9976905311778291,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.9
+      }
+    },
+    {
+      "benchmark": "matched-q0.01",
+      "cell": "n300-p15-rho0.7",
+      "control": {
+        "alpha": 0.0005555555555555556,
+        "bound": 0.021746150497226224,
+        "complete": 450,
+        "direction": "upper",
+        "displayed": 37,
+        "explanation": "qualified",
+        "k": 1,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.0022222222222222222,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.05
+      },
+      "detection": {
+        "alpha": 0.0008333333333333334,
+        "bound": 0.05729653828107421,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 37,
+        "explanation": "observed_rate_misses_target",
+        "k": 43,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.09555555555555556,
+        "pass": false,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.8
+      },
+      "shape": {
+        "alpha": 0.0004166666666666667,
+        "bound": 0.6331621619184487,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 37,
+        "explanation": "observed_rate_misses_target",
+        "k": 33,
+        "missing": 0,
+        "n": 37,
+        "observed_rate": 0.8918918918918919,
+        "pass": false,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.9
+      }
+    },
+    {
+      "benchmark": "matched-q0.04",
+      "cell": "n300-p15-rho0.7",
+      "control": {
+        "alpha": 0.0005555555555555556,
+        "bound": 0.030306098423491704,
+        "complete": 450,
+        "direction": "upper",
+        "displayed": 233,
+        "explanation": "qualified",
+        "k": 3,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.006666666666666667,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.05
+      },
+      "detection": {
+        "alpha": 0.0008333333333333334,
+        "bound": 0.47150597884223033,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 233,
+        "explanation": "observed_rate_misses_target",
+        "k": 246,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.5466666666666666,
+        "pass": false,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.8
+      },
+      "shape": {
+        "alpha": 0.0004166666666666667,
+        "bound": 0.9001447373638882,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 233,
+        "explanation": "qualified",
+        "k": 224,
+        "missing": 0,
+        "n": 233,
+        "observed_rate": 0.9613733905579399,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.9
+      }
+    },
+    {
+      "benchmark": "mixed-b0.8",
+      "cell": "n300-p15-rho0.7",
+      "control": {
+        "alpha": 0.0005555555555555556,
+        "bound": 0.021746150497226224,
+        "complete": 450,
+        "direction": "upper",
+        "displayed": 97,
+        "explanation": "qualified",
+        "k": 1,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.0022222222222222222,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.05
+      },
+      "detection": {
+        "alpha": 0.0008333333333333334,
+        "bound": 0.17007045800860576,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 97,
+        "explanation": "observed_rate_misses_target",
+        "k": 103,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.2288888888888889,
+        "pass": false,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.8
+      },
+      "shape": {
+        "alpha": 0.0004166666666666667,
+        "bound": 0.8454012306229062,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 97,
+        "explanation": "uncertain_despite_observed_rate_meeting_target",
+        "k": 93,
+        "missing": 0,
+        "n": 97,
+        "observed_rate": 0.9587628865979382,
+        "pass": false,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.9
+      }
+    },
+    {
+      "benchmark": "pure-b0.8",
+      "cell": "n300-p15-rho0.7",
+      "control": {
+        "alpha": 0.0005555555555555556,
+        "bound": 0.021746150497226224,
+        "complete": 450,
+        "direction": "upper",
+        "displayed": 353,
+        "explanation": "qualified",
+        "k": 1,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.0022222222222222222,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.05
+      },
+      "detection": {
+        "alpha": 0.0008333333333333334,
+        "bound": 0.744928244242407,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 353,
+        "explanation": "uncertain_despite_observed_rate_meeting_target",
+        "k": 364,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.8088888888888889,
+        "pass": false,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.8
+      },
+      "shape": {
+        "alpha": 0.0004166666666666667,
+        "bound": 0.9605120532916382,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 353,
+        "explanation": "qualified",
+        "k": 350,
+        "missing": 0,
+        "n": 353,
+        "observed_rate": 0.9915014164305949,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.9
+      }
+    },
+    {
+      "benchmark": "matched-q0.002",
+      "cell": "n300-p15-rho0.9",
+      "control": {
+        "alpha": 0.0005555555555555556,
+        "bound": 0.016518803083611575,
+        "complete": 450,
+        "direction": "upper",
+        "displayed": 0,
+        "explanation": "qualified",
+        "k": 0,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.0,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.05
+      },
+      "detection": {
+        "alpha": 0.0008333333333333334,
+        "bound": 1.8526221696210597e-06,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 0,
+        "explanation": "observed_rate_misses_target",
+        "k": 1,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.0022222222222222222,
+        "pass": false,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.8
+      },
+      "shape": {
+        "alpha": 0.0004166666666666667,
+        "bound": null,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 0,
+        "explanation": "unresolved_no_observations",
+        "k": 0,
+        "missing": 0,
+        "n": 0,
+        "observed_rate": null,
+        "pass": false,
+        "planned": 450,
+        "status": "unresolved",
+        "target": 0.9
+      }
+    },
+    {
+      "benchmark": "matched-q0.005",
+      "cell": "n300-p15-rho0.9",
+      "control": {
+        "alpha": 0.0005555555555555556,
+        "bound": 0.016518803083611575,
+        "complete": 450,
+        "direction": "upper",
+        "displayed": 5,
+        "explanation": "qualified",
+        "k": 0,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.0,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.05
+      },
+      "detection": {
+        "alpha": 0.0008333333333333334,
+        "bound": 0.0023840619501117252,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 5,
+        "explanation": "observed_rate_misses_target",
+        "k": 6,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.013333333333333334,
+        "pass": false,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.8
+      },
+      "shape": {
+        "alpha": 0.0004166666666666667,
+        "bound": 0.09750397763967764,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 5,
+        "explanation": "observed_rate_misses_target",
+        "k": 4,
+        "missing": 0,
+        "n": 5,
+        "observed_rate": 0.8,
+        "pass": false,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.9
+      }
+    },
+    {
+      "benchmark": "mixed-b0.8",
+      "cell": "n300-p15-rho0.9",
+      "control": {
+        "alpha": 0.0005555555555555556,
+        "bound": 0.016518803083611575,
+        "complete": 450,
+        "direction": "upper",
+        "displayed": 0,
+        "explanation": "qualified",
+        "k": 0,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.0,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.05
+      },
+      "detection": {
+        "alpha": 0.0008333333333333334,
+        "bound": 9.207814572338645e-05,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 0,
+        "explanation": "observed_rate_misses_target",
+        "k": 2,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.0044444444444444444,
+        "pass": false,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.8
+      },
+      "shape": {
+        "alpha": 0.0004166666666666667,
+        "bound": null,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 0,
+        "explanation": "unresolved_no_observations",
+        "k": 0,
+        "missing": 0,
+        "n": 0,
+        "observed_rate": null,
+        "pass": false,
+        "planned": 450,
+        "status": "unresolved",
+        "target": 0.9
+      }
+    },
+    {
+      "benchmark": "pure-b0.8",
+      "cell": "n300-p15-rho0.9",
+      "control": {
+        "alpha": 0.0005555555555555556,
+        "bound": 0.021746150497226224,
+        "complete": 450,
+        "direction": "upper",
+        "displayed": 2,
+        "explanation": "qualified",
+        "k": 1,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.0022222222222222222,
+        "pass": true,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.05
+      },
+      "detection": {
+        "alpha": 0.0008333333333333334,
+        "bound": 0.0009088085731585193,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 2,
+        "explanation": "observed_rate_misses_target",
+        "k": 4,
+        "missing": 0,
+        "n": 450,
+        "observed_rate": 0.008888888888888889,
+        "pass": false,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.8
+      },
+      "shape": {
+        "alpha": 0.0004166666666666667,
+        "bound": 0.020412414523193152,
+        "complete": 450,
+        "direction": "lower",
+        "displayed": 2,
+        "explanation": "uncertain_despite_observed_rate_meeting_target",
+        "k": 2,
+        "missing": 0,
+        "n": 2,
+        "observed_rate": 1.0,
+        "pass": false,
+        "planned": 450,
+        "status": "complete",
+        "target": 0.9
+      }
+    }
+  ],
+  "thresholds_sha256": "755a6fe65f908c8b3f61a6ca4fa2d5aa5622a912519b53238b470773dbecbf17",
+  "universe_signal_planned": 10800,
+  "unknown_attempt_cost_ids": [],
+  "warning_count": 0
+}

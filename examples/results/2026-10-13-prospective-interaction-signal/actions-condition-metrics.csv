@@ -1,0 +1,25 @@
+cell,benchmark,predictive_support,curve_pattern_support,reasons
+n300-p5-rho0,matched-q0.01,False,False,"['detection', 'curve_pattern_unresolved_or_unsupported']"
+n300-p5-rho0,matched-q0.04,False,False,"['detection', 'curve_pattern_unresolved_or_unsupported']"
+n300-p5-rho0,mixed-b0.8,True,True,[]
+n300-p5-rho0,pure-b0.8,False,False,['control']
+n300-p5-rho0.7,matched-q0.01,False,False,"['detection', 'curve_pattern_unresolved_or_unsupported']"
+n300-p5-rho0.7,matched-q0.04,False,False,['detection']
+n300-p5-rho0.7,mixed-b0.8,False,False,"['detection', 'curve_pattern_unresolved_or_unsupported']"
+n300-p5-rho0.7,pure-b0.8,False,False,['detection']
+n600-p5-rho0,matched-q0.01,False,False,"['detection', 'curve_pattern_unresolved_or_unsupported']"
+n600-p5-rho0,matched-q0.04,True,True,[]
+n600-p5-rho0,mixed-b0.8,True,True,[]
+n600-p5-rho0,pure-b0.8,False,False,['control']
+n600-p5-rho0.7,matched-q0.01,False,False,"['detection', 'curve_pattern_unresolved_or_unsupported']"
+n600-p5-rho0.7,matched-q0.04,False,False,['detection']
+n600-p5-rho0.7,mixed-b0.8,False,False,"['detection', 'curve_pattern_unresolved_or_unsupported']"
+n600-p5-rho0.7,pure-b0.8,True,True,[]
+n300-p15-rho0.7,matched-q0.01,False,False,"['detection', 'curve_pattern_unresolved_or_unsupported']"
+n300-p15-rho0.7,matched-q0.04,False,False,['detection']
+n300-p15-rho0.7,mixed-b0.8,False,False,"['detection', 'curve_pattern_unresolved_or_unsupported']"
+n300-p15-rho0.7,pure-b0.8,False,False,['detection']
+n300-p15-rho0.9,matched-q0.002,False,False,"['detection', 'curve_pattern_unresolved_or_unsupported']"
+n300-p15-rho0.9,matched-q0.005,False,False,"['detection', 'curve_pattern_unresolved_or_unsupported']"
+n300-p15-rho0.9,mixed-b0.8,False,False,"['detection', 'curve_pattern_unresolved_or_unsupported']"
+n300-p15-rho0.9,pure-b0.8,False,False,"['detection', 'curve_pattern_unresolved_or_unsupported']"
