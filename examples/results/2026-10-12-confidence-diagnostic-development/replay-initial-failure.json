@@ -1,0 +1,15 @@
+{
+  "scope": "supplemental post-hoc replay only; no primary data failure",
+  "criterion": {
+    "rtol": 1e-09,
+    "atol": 1e-09
+  },
+  "failed_after_refits": 74,
+  "id": "diagnostic--n300-p5-rho0.7--mixed-q0.04-r02",
+  "outer_fold": 0,
+  "model": "joint",
+  "first_max_absolute_difference": 2.17646301e-08,
+  "mismatched": 43,
+  "assessment_rows": 100,
+  "disposition": "historical frozen guards preserved; completed supplemental replay uses explicitly separate numerical precision screen and reports drift"
+}

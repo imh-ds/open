@@ -1,0 +1,11 @@
+# Completed diagnostic verification
+
+- All60planned tasks/eight Actions jobs completed successfully at frozen51de3e2; no missing results, errors, warnings or failed primary attempts. Full native frozen-context aggregate passed. Stored Actions audit remains exact; no model/protocol/threshold change.
+- Explicit primary arithmetic verified480pair comparisons,240population comparisons and120pooled rows with maximum score discrepancy0. Standalone extraction/recomputation repeated this from the retained archive, adding zero fits.
+- Original artifact API SHA256, all member CRCs, all498unique inventory hashes/sizes and retained ZIP SHA256 verified. All486omitted worker copies matched retained combined copies byte for byte. Frozen source/manifests and completed run/jobs/artifacts metadata retained.
+- Independent review checked primary pass counts, model/ideal comparisons, hypothesis limits, differing historical thresholds and interpretation. Zero flags for12null and48incorrect controls are diagnostic only, not rare-error certification.
+- Supplemental post-hoc24-case replay:216completed fixed-setting refits, no tuning. Initial strict1e-9check failed after74refits; retained separately. Primary strict guards unchanged. The separate diagnostic precision screen was declared before completing the replay; all observed drift remains within1e-6training-SD predictions and1e-7normalized matched gains. Maxima5.8958e-7 and3.3529e-8. Approximate cross-runtime replay, not exact fitted-model identity; no production adoption or decision replacement.
+- Independent supplemental vector audit reproduced72fold risks, pooled assessment gains, normalized prediction drifts and matched-gain differences without fitting. Raw vectors gzip/hash integrity checked. Independent reviewer also checked these72fold calculations and stressed that assessment/training/model-selection contributions are not causally isolated.
+- Both result graphs visually inspected. Code tests37passed55.66s are preserved in construction evidence; no full-suite claim for the evidence closeout.
+
+The completed D-040 global assurance failure remains unchanged. No new confidence rule, universal participant sample minimum, causal interaction claim or general RF/GBM evidence is inferred from this six-replication development design.

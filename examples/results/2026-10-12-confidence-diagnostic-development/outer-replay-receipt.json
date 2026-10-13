@@ -1,0 +1,27 @@
+{
+  "cases": 24,
+  "diagnostic_precision_limits": {
+    "cv_gain_delta": 1e-07,
+    "normalized_prediction_drift": 1e-06
+  },
+  "historical_CI_guard_changed": false,
+  "manifest": "f0f5842e54ef371ad10218f7cf4f2f5ee96ed7fa1ecb9c1abbfd9bb5659b7bd7",
+  "maximum_cv_gain_delta": 3.3529009312027735e-08,
+  "maximum_normalized_prediction_drift": 5.895814643592558e-07,
+  "preliminary_failed_refits": 74,
+  "saved_setting_refits": 216,
+  "seconds": 2.7339999999385327,
+  "source": "post-hoc diagnostic; post-hoc cross-runtime numerical replay; precision screen separate from historical frozen guard; original study decisions unchanged",
+  "tuning_fits": 0,
+  "preliminary_failure_location": [
+    "diagnostic--n300-p5-rho0.7--mixed-q0.04-r02",
+    0,
+    1
+  ],
+  "raw_vectors": {
+    "file": "outer-replay-raw.json.gz",
+    "bytes": 3095315,
+    "sha256": "467986c090586e20dee1c11a58cc2591fea2bd74a32541a408f7c45140da447e",
+    "uncompressed_sha256": "182bbcf7cd4eda206f5ebd821f015b3bf3e410bf5346e08778f46de6eecd5c9b"
+  }
+}

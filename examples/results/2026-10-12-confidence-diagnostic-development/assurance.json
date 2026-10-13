@@ -1,0 +1,215 @@
+{
+  "accepted_method_revision": false,
+  "calibration": {
+    "expected_exceedance": 0.009900990099009901,
+    "failure_per_class": 0.0059205292203339975,
+    "limit": 0.05,
+    "m": 100,
+    "minimum_m_for_union_bound": 117,
+    "scope": "continuous specified-null maximum reference; per-class conservative bound for max of two classes; no posterior claim",
+    "strata": 20,
+    "union_failure_upper": 0.11841058440667995
+  },
+  "historical_allowable": 2,
+  "historical_n": 200,
+  "interpretation": "Design calculations do not rescue the failed confirmation; no new threshold is learned.",
+  "population_references": [
+    {
+      "b": 0.8,
+      "distinct_gap": 0.19200000000000003,
+      "rho": 0.0
+    },
+    {
+      "b": 0.8,
+      "distinct_gap": 0.0212558609910821,
+      "rho": 0.7
+    },
+    {
+      "b": 0.8,
+      "distinct_gap": 0.002128386096705963,
+      "rho": 0.9
+    }
+  ],
+  "prospective": [
+    {
+      "all_pass": 0.9775672163333151,
+      "allowable": 2,
+      "assumption": "independent strata with equal fixed true rates; hypothetical",
+      "n": 200,
+      "single_pass": 0.9988662319025373,
+      "strata": 20,
+      "true_rate": 0.001
+    },
+    {
+      "all_pass": 0.18935307715142352,
+      "allowable": 2,
+      "assumption": "independent strata with equal fixed true rates; hypothetical",
+      "n": 200,
+      "single_pass": 0.9201605680470227,
+      "strata": 20,
+      "true_rate": 0.005
+    },
+    {
+      "all_pass": 0.000405181917810057,
+      "allowable": 2,
+      "assumption": "independent strata with equal fixed true rates; hypothetical",
+      "n": 200,
+      "single_pass": 0.6766786945356569,
+      "strata": 20,
+      "true_rate": 0.01
+    },
+    {
+      "all_pass": 2.671965222442083e-13,
+      "allowable": 2,
+      "assumption": "independent strata with equal fixed true rates; hypothetical",
+      "n": 200,
+      "single_pass": 0.23514813577270488,
+      "strata": 20,
+      "true_rate": 0.02
+    },
+    {
+      "all_pass": 0.9999999907141923,
+      "allowable": 8,
+      "assumption": "independent strata with equal fixed true rates; hypothetical",
+      "n": 400,
+      "single_pass": 0.9999999995357096,
+      "strata": 20,
+      "true_rate": 0.001
+    },
+    {
+      "all_pass": 0.9955140684668102,
+      "allowable": 8,
+      "assumption": "independent strata with equal fixed true rates; hypothetical",
+      "n": 400,
+      "single_pass": 0.9997752240900581,
+      "strata": 20,
+      "true_rate": 0.005
+    },
+    {
+      "all_pass": 0.657214262622079,
+      "allowable": 8,
+      "assumption": "independent strata with equal fixed true rates; hypothetical",
+      "n": 400,
+      "single_pass": 0.9792314403415632,
+      "strata": 20,
+      "true_rate": 0.01
+    },
+    {
+      "all_pass": 2.8479389351178657e-05,
+      "allowable": 8,
+      "assumption": "independent strata with equal fixed true rates; hypothetical",
+      "n": 400,
+      "single_pass": 0.5925520891566919,
+      "strata": 20,
+      "true_rate": 0.02
+    },
+    {
+      "all_pass": 1.0,
+      "allowable": 15,
+      "assumption": "independent strata with equal fixed true rates; hypothetical",
+      "n": 600,
+      "single_pass": 1.0,
+      "strata": 20,
+      "true_rate": 0.001
+    },
+    {
+      "all_pass": 0.9999978288933796,
+      "allowable": 15,
+      "assumption": "independent strata with equal fixed true rates; hypothetical",
+      "n": 600,
+      "single_pass": 0.999999891444557,
+      "strata": 20,
+      "true_rate": 0.005
+    },
+    {
+      "all_pass": 0.990642414124183,
+      "allowable": 15,
+      "assumption": "independent strata with equal fixed true rates; hypothetical",
+      "n": 600,
+      "single_pass": 0.9995300283140874,
+      "strata": 20,
+      "true_rate": 0.01
+    },
+    {
+      "all_pass": 0.03578743077683626,
+      "allowable": 15,
+      "assumption": "independent strata with equal fixed true rates; hypothetical",
+      "n": 600,
+      "single_pass": 0.8466161056626197,
+      "strata": 20,
+      "true_rate": 0.02
+    },
+    {
+      "all_pass": 1.0,
+      "allowable": 31,
+      "assumption": "independent strata with equal fixed true rates; hypothetical",
+      "n": 1000,
+      "single_pass": 1.0,
+      "strata": 20,
+      "true_rate": 0.001
+    },
+    {
+      "all_pass": 0.9999999999999911,
+      "allowable": 31,
+      "assumption": "independent strata with equal fixed true rates; hypothetical",
+      "n": 1000,
+      "single_pass": 0.9999999999999996,
+      "strata": 20,
+      "true_rate": 0.005
+    },
+    {
+      "all_pass": 0.9999996123689353,
+      "allowable": 31,
+      "assumption": "independent strata with equal fixed true rates; hypothetical",
+      "n": 1000,
+      "single_pass": 0.9999999806184432,
+      "strata": 20,
+      "true_rate": 0.01
+    },
+    {
+      "all_pass": 0.8600832027307989,
+      "allowable": 31,
+      "assumption": "independent strata with equal fixed true rates; hypothetical",
+      "n": 1000,
+      "single_pass": 0.9924920194072205,
+      "strata": 20,
+      "true_rate": 0.02
+    },
+    {
+      "all_pass": 1.0,
+      "allowable": 73,
+      "assumption": "independent strata with equal fixed true rates; hypothetical",
+      "n": 2000,
+      "single_pass": 1.0,
+      "strata": 20,
+      "true_rate": 0.001
+    },
+    {
+      "all_pass": 1.0,
+      "allowable": 73,
+      "assumption": "independent strata with equal fixed true rates; hypothetical",
+      "n": 2000,
+      "single_pass": 1.0,
+      "strata": 20,
+      "true_rate": 0.005
+    },
+    {
+      "all_pass": 1.0,
+      "allowable": 73,
+      "assumption": "independent strata with equal fixed true rates; hypothetical",
+      "n": 2000,
+      "single_pass": 1.0,
+      "strata": 20,
+      "true_rate": 0.01
+    },
+    {
+      "all_pass": 0.9999856324169957,
+      "allowable": 73,
+      "assumption": "independent strata with equal fixed true rates; hypothetical",
+      "n": 2000,
+      "single_pass": 0.9999992816159471,
+      "strata": 20,
+      "true_rate": 0.02
+    }
+  ]
+}
