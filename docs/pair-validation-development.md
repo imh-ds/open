@@ -5,6 +5,11 @@ incidental candidates under additive and noise outcomes. Its detailed grids also
 failed systematically with small samples and correlated inputs. This revision
 investigates those two limits; no production interaction-retention rule is adopted.
 
+For the later frozen reliability benchmark, tested sample-size conditions and
+plain-language interpretation, see [when to trust an interaction finding](../examples/prospective_interaction_guidance.md).
+Those results concern two prespecified pairs; they do not certify the complete
+candidate-screening or recursive workflow described elsewhere.
+
 ## Prediction check
 
 Compare a model allowing a separate curved relationship for every predictor with
