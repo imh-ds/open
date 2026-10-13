@@ -1,0 +1,121 @@
+name: Fresh interaction confidence diagnostic probe
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/actions-selection-reliability]
+    paths: [.github/workflows/confidence-diagnostic.yml]
+
+permissions:
+  contents: read
+concurrency:
+  group: confidence-diagnostic-${{ github.ref }}
+  cancel-in-progress: false
+defaults:
+  run:
+    shell: pwsh
+env:
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+  STUDY_OUT: .superpowers/confidence-diagnostic
+
+jobs:
+  prepare:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: windows-2022
+    timeout-minutes: 15
+    outputs:
+      shards: ${{ steps.matrix.outputs.shards }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/**
+            src/**
+            examples/*.py
+            examples/*protocol.md
+            examples/study_manifests/*.json
+      - uses: ./.github/actions/confidence-diagnostic-setup
+      - id: matrix
+        run: |
+          $shards = python examples/confidence_diagnostic_study.py matrix
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          "shards=$shards" >> $env:GITHUB_OUTPUT
+
+  study:
+    needs: prepare
+    runs-on: windows-2022
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      max-parallel: 256
+      matrix:
+        shard: ${{ fromJSON(needs.prepare.outputs.shards) }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/**
+            src/**
+            examples/*.py
+            examples/*protocol.md
+            examples/study_manifests/*.json
+      - uses: ./.github/actions/confidence-diagnostic-setup
+        timeout-minutes: 4
+      - timeout-minutes: 8
+        run: |
+          python examples/confidence_diagnostic_study.py shard --id '${{ matrix.shard }}' --output $env:STUDY_OUT
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: confidence-diagnostic-shard-${{ matrix.shard }}
+          path: .superpowers/confidence-diagnostic/
+          include-hidden-files: true
+          retention-days: 30
+          if-no-files-found: error
+
+  aggregate:
+    if: always() && needs.prepare.result == 'success'
+    needs: [prepare, study]
+    runs-on: windows-2022
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/**
+            src/**
+            examples/*.py
+            examples/*protocol.md
+            examples/study_manifests/*.json
+      - uses: ./.github/actions/confidence-diagnostic-setup
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          pattern: confidence-diagnostic-shard-*
+          path: .superpowers/confidence-diagnostic-downloads/
+          merge-multiple: false
+      - run: |
+          python examples/confidence_diagnostic_study.py aggregate --input .superpowers/confidence-diagnostic-downloads --output $env:STUDY_OUT
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: confidence-diagnostic-combined-evidence
+          path: |
+            .superpowers/confidence-diagnostic/
+            .superpowers/confidence-diagnostic-downloads/
+            examples/study_manifests/confidence-diagnostic.json
+            examples/study_manifests/pair-confidence-thresholds.json
+            examples/study_manifests/pair-confidence-calibration.json
+            examples/study_manifests/pair-confidence-confirmation.json
+          include-hidden-files: true
+          retention-days: 30
+          if-no-files-found: error

@@ -74,6 +74,7 @@ def population_predictions(X,c):
 
 
 def decision(folds,threshold):
+    if len(folds)!=3:raise ValueError('three outer folds required')
     if not np.isfinite(threshold) or threshold<0:raise ValueError('invalid frozen threshold')
     overall=previous.rules.pooled(folds,'overall');matched=previous.rules.pooled(folds,'matched')
     positive=sum(z['matched_additive_mse']>z['joint_mse'] for z in folds);reasons=[]

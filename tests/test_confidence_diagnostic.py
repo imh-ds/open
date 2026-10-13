@@ -69,6 +69,7 @@ def test_oracle_additive_projection_and_orthogonal_remainder():
 
 def test_raw_decision_attribution_keeps_nonpositive_and_fold_reasons():
     m=module();f=[dict(n=10,reference_mse=1.,baseline_mse=1.,joint_mse=.96,matched_additive_mse=1.) for _ in range(3)]
+    with pytest.raises(ValueError):m.decision(f[:2],.05)
     d=m.decision(f,.05);assert d['eligible'] and not d['above_threshold'];assert d['score']==pytest.approx(.04)
     assert d['reasons']==['fixed_threshold_not_exceeded']
     f[0]['matched_additive_mse']=.95;f[1]['matched_additive_mse']=.95

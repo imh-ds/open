@@ -19,7 +19,7 @@ Fresh seeds508000000/518000000/528000000 plus manifest indices. Check against th
 
 ## Assurance calculations
 
-Historical simultaneous tail .05/20, target upper false-alarm limit .05. Compute exact allowable count at n200 and prospective n400/600/1000/2000; illustrative fixed true rates .001/.005/.01/.02. For independent equal-rate strata, joint gate-passing probability is single-stratum passing probability to power20; clearly hypothetical, actual rates differ and calibration thresholds are random. Distribution-free continuous-null maximum-of-m reference: expected future exceedance1/(m+1), conditional probability exceedance rate exceeds p is (1-p) to power m; per-class bound for historical max of two classes is conservative. Do not claim arbitrary-population interaction significance or posterior confidence.
+Historical simultaneous tail .05/20, target upper false-alarm limit .05. Compute exact allowable count at n200 and prospective n400/600/1000/2000; illustrative fixed true rates .001/.005/.01/.02. For independent equal-rate strata, joint gate-passing probability is single-stratum passing probability to power20; clearly hypothetical, actual rates differ and calibration thresholds are random. Distribution-free continuous-null maximum-of-m reference: expected future exceedance1/(m+1), over repeated calibration samples, the probability that their conditional future exceedance rate exceeds p is (1-p) to power m; per-class bound for historical max of two classes is conservative. Do not claim arbitrary-population interaction significance or posterior confidence.
 
 ## Execution and provenance
 
@@ -29,4 +29,4 @@ Research scripts are dedicated diagnostic utilities, not production method chang
 
 ## Stop and interpretation
 
-Report this small probe as diagnostic evidence, not confirmation. If matched-information cases improve, prior correlation misses partly reflect information differences; if they remain poor, inspect model/comparator selection. If independent gains exist but cutoff rejects cases, describe decision conservatism rather than disappearance of interaction. If patterns lack support, withhold curve interpretation. Assurance design limitations do not retroactively pass D-040. Any method revision or revised confidence claim needs a separate frozen confirmation protocol.
+Report this small probe as diagnostic evidence, not confirmation. If matched-information cases improve, this is consistent with an information-difference contribution; if they remain poor, inspect model/comparator selection. If independent gains exist but cutoff rejects cases, describe decision conservatism rather than disappearance of interaction. If patterns lack support, withhold curve interpretation. Assurance design limitations do not retroactively pass D-040. Any method revision or revised confidence claim needs a separate frozen confirmation protocol.
