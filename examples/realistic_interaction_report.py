@@ -82,8 +82,12 @@ def summarize(rows,planned):
         control=interval(sum(z['control'] for z in rows),len(rows)),
         false_finding=interval(sum(z['any_selected'] for z in rows),len(rows)),
         display=interval(len(displayed),len(rows)),
-        pattern=interval(sum(z['shape_correct'] is True for z in assessed),len(assessed)),
+        pattern=interval(sum(z['shape_correct'] is True for z in assessed),len(displayed)),
+        pattern_assessed=interval(sum(z['shape_correct'] is True for z in assessed),len(assessed)),
         displayed=len(displayed),pattern_unassessed=len(displayed)-len(assessed))
+    r['pattern']['unknown']=r['pattern_unassessed']
+    if r['pattern_unassessed']:
+        r['pattern'].update(rate=None,low=None,high=None,status='unresolved_pattern_outcomes')
     return r
 
 
@@ -138,7 +142,8 @@ def aggregate(stage,inputs,output):
         audit_errors=errors,rows=rows,standalone=dict(status='complete' if not missing and not errors else 'incomplete',checked=len(rows),max_score_difference=difference),
         merge=merge,inventories=inventories,warning_count=warnings,failed_tasks=failures,
         attempt_costs=costs,known_attempt_cost={k:sum(c[k] for c in costs) for k in ('fits','verification_refits','seconds')},
-        unknown_attempt_cost_ids=[c['id'] for c in costs if c['unknown_fit_cost'] or c['unknown_verification_cost']],
+        unknown_attempt_cost_ids=sorted({c['id'] for c in planned}-{c['id'] for c in costs} |
+            {c['id'] for c in costs if c['unknown_fit_cost'] or c['unknown_verification_cost']}),
         checkpoint_fits=checkpoint_fits,fits=692*len(rows),saved_setting_refits=20*len(rows),
         cost_scope='effective, checkpoint and attempt counts overlap; missing/interrupted costs remain unknown',
         aggregation_seconds=time.monotonic()-start,production_accepted=False)
@@ -166,11 +171,11 @@ def write_report(audit,groups,output):
         'Magnitude errors and standardized contrast RMSE are descriptive; pattern agreement alone does not prove accurate effect sizes.',
         'N150 uses outer training100 / inner66–67; N300 uses200 /133–134; N600 uses400 /266–267. Independent assessment adds no training participants.']
     if groups:
-        text+=['','|Context (latent gamma / observed rho / reliability)|Benchmark|Detected|Unrelated pair|Displayed|Correct pattern / assessed displays|',
+        text+=['','|Context (latent gamma / observed rho / reliability)|Benchmark|Detected|Unrelated pair|Displayed|Correct pattern / displayed (unknown)|',
                '|---|---|---:|---:|---:|---:|']
         for r in groups:
             fmt=lambda z:f"{z['k']}/{z['n']}" if z['n'] else 'unresolved'
-            text.append(f"|N{r['n']} / {r['gamma']} / {r['observed_rho']:.2f} / {r['reliability']}|{r['benchmark']}|{fmt(r['detection'])}|{fmt(r['control'])}|{fmt(r['display'])}|{fmt(r['pattern'])}|")
+            text.append(f"|N{r['n']} / {r['gamma']} / {r['observed_rho']:.2f} / {r['reliability']}|{r['benchmark']}|{fmt(r['detection'])}|{fmt(r['control'])}|{fmt(r['display'])}|{fmt(r['pattern'])} ({r['pattern_unassessed']} unknown)|")
         plots(groups,output)
         text+=['','![Detection across sample sizes](detection.png)','![Display coverage and conditional pattern agreement](display-pattern.png)',
                'Read each panel separately: rising detection with N suggests a sample-size limitation in that condition. Compare reliability panels to see the additional loss from measurement error. A strong reference succeeding while weaker signals fail suggests limited sensitivity, rather than complete inability to model interactions.']
@@ -190,8 +195,8 @@ def plots(groups,output):
                     values=sorted([x for x in groups if x['reliability']==r and x['gamma']==g and x['benchmark']==bench],key=lambda x:x['n'])
                     values=[x for x in values if x['status']=='complete']
                     if not values:continue
-                    ax.plot([x['n'] for x in values],[x[kind]['rate'] for x in values],'o-',label=bench)
-                    if kind=='display':ax.plot([x['n'] for x in values],[x['pattern']['rate'] if x['pattern']['rate'] is not None else np.nan for x in values],':',alpha=.65)
+                    line,=ax.plot([x['n'] for x in values],[x[kind]['rate'] for x in values],'o-',label=bench)
+                    if kind=='display':ax.plot([x['n'] for x in values],[x['pattern']['rate'] if x['pattern']['rate'] is not None else np.nan for x in values],':',alpha=.65,color=line.get_color())
                 ax.set(title=f'Latent correlation {g}; observed {r*g:.2f}; reliability {r}',ylim=(0,1.05),xticks=(150,300,600))
                 ax.grid(alpha=.2);ax.set_xlabel('People per dataset');ax.set_ylabel('Detection rate' if kind=='detection' else 'Solid: display rate; dotted: correct / displayed')
         axes[0,0].legend(fontsize=8);fig.suptitle('Development estimates; interpret each condition separately');fig.tight_layout()
