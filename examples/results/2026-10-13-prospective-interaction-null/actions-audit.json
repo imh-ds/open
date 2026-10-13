@@ -1,0 +1,1163 @@
+{
+  "audit_errors": [],
+  "checkpoint_fits": 9964800,
+  "complete": 14400,
+  "conditions": [],
+  "cost_scope": "Attempt/checkpoint/effective totals overlap. Interrupted costs remain unknown even after completion.",
+  "failed_tasks": [],
+  "fits": 9964800,
+  "global_curve_pattern_support": false,
+  "global_predictive_support": false,
+  "global_support": false,
+  "historical_failed_tasks": [],
+  "known_attempt_cost": {
+    "fits": 9964800,
+    "seconds": 108246.79600000006,
+    "verification_refits": 288000
+  },
+  "manifest": "5a383f67f965c36ec9ffd07175e8153940d6b8844d5e021e25620c87862f5f4a",
+  "merge": {
+    "archives": [
+      {
+        "bytes": 16196027,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-000\\raw-shard.zip",
+        "sha256": "5943def66d38a322693fe3b01b3a309112519e637bb7bf5567258bc2dbc5e488"
+      },
+      {
+        "bytes": 16149498,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-001\\raw-shard.zip",
+        "sha256": "df13cfe8ad8c5d76a218114908eae2423f79b55a4fdac5d37d5bf32cd7315eda"
+      },
+      {
+        "bytes": 16184238,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-002\\raw-shard.zip",
+        "sha256": "037556849721420f111ca3269156e29f64d815e93604da8f7b1feae3319267d0"
+      },
+      {
+        "bytes": 16181598,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-003\\raw-shard.zip",
+        "sha256": "aadced065d97de0201f91f9cecf3acf639bc3adc04ffa0b4ed1587f5b704d726"
+      },
+      {
+        "bytes": 16169744,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-004\\raw-shard.zip",
+        "sha256": "ab69712b7a5da7dbe4362a147308673639518b10483ec3ece59cddd78bca4f62"
+      },
+      {
+        "bytes": 16172816,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-005\\raw-shard.zip",
+        "sha256": "f0b2b6d5abb7f977dbadd2df96ecd3a5b0f9c8a9fa958aec322d819c63762f35"
+      },
+      {
+        "bytes": 16163359,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-006\\raw-shard.zip",
+        "sha256": "b19a276fbbff61569c8ece78f9481a684c5e66e45d2a71421160adc1b6ee60bd"
+      },
+      {
+        "bytes": 16160392,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-007\\raw-shard.zip",
+        "sha256": "db65af28ead944f694b4204d223c0d0c4c225de8ecb54ae2974923ef655283ee"
+      },
+      {
+        "bytes": 16185401,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-008\\raw-shard.zip",
+        "sha256": "4b096553d8f93847da372a593221ea20af01be4c480b8a03347d175a98f1e70f"
+      },
+      {
+        "bytes": 16174890,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-009\\raw-shard.zip",
+        "sha256": "b3dc76ce331d9df9d315672875828b870b4d1e39e3a74a275f9c881813d3fff9"
+      },
+      {
+        "bytes": 16176435,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-010\\raw-shard.zip",
+        "sha256": "180bff1b59b931c3c13011d556c0d9750264b996951a0a69ff3c153fe9fc010f"
+      },
+      {
+        "bytes": 16184658,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-011\\raw-shard.zip",
+        "sha256": "d660eb7ec87a13a725ca2d711117e0a1213e79b3479aebb1c9de3910f355e332"
+      },
+      {
+        "bytes": 16174151,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-012\\raw-shard.zip",
+        "sha256": "d346ba9116ce5038859b3e46e3588210173eb3d76411dd36edb0849c4117fbaf"
+      },
+      {
+        "bytes": 16191098,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-013\\raw-shard.zip",
+        "sha256": "ea385d7ef8b18c165f33f7676e032885fad76ea95af845e9acc27e28c6ba5ada"
+      },
+      {
+        "bytes": 16168142,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-014\\raw-shard.zip",
+        "sha256": "3c22724c5e617042cffadfc4d36b0edc0f39f3e9089767093a464e3b0bcf24e0"
+      },
+      {
+        "bytes": 18451358,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-015\\raw-shard.zip",
+        "sha256": "0f39c78123c728e2af625d8e9bbb3d157a8d1f16ddb095dc52adb14c1bf506e8"
+      },
+      {
+        "bytes": 18419679,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-016\\raw-shard.zip",
+        "sha256": "947a0c0e1557d48544ca28744b3b35c0bd88520b36d32efd15ba2054f8d9a681"
+      },
+      {
+        "bytes": 18422300,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-017\\raw-shard.zip",
+        "sha256": "dfdc6463a7cbe9cf3f7b2ac26c495642e642b14af3b7278aee18156df893c806"
+      },
+      {
+        "bytes": 18436538,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-018\\raw-shard.zip",
+        "sha256": "b24645865efc5d81a01566c9f994ec1c5b4a05708fc444a85540aa44bd30cdf4"
+      },
+      {
+        "bytes": 18428024,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-019\\raw-shard.zip",
+        "sha256": "3e56ad6934841091b308e689e7fafe3feb598af046c870c7f4b9eb37cd6a705b"
+      },
+      {
+        "bytes": 18441270,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-020\\raw-shard.zip",
+        "sha256": "636fd238a9b64dbc4544a63833b213b15b35e9d0fcc20048f6d05797ca00bfb7"
+      },
+      {
+        "bytes": 18428634,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-021\\raw-shard.zip",
+        "sha256": "5733e810d7f02d5950cea1e936666fa3c146e5bcf178105ba80e330cfac88273"
+      },
+      {
+        "bytes": 18423742,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-022\\raw-shard.zip",
+        "sha256": "2eab10a061c5a473904e928572776f4e076ea13bd83d4eedf8d62d4310c22e7a"
+      },
+      {
+        "bytes": 18424373,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-023\\raw-shard.zip",
+        "sha256": "b72082eb92dde4e8802e2f7c266c5a1317597f33c490e5dcac77f00a4ef919db"
+      },
+      {
+        "bytes": 18448146,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-024\\raw-shard.zip",
+        "sha256": "5383c591a2285ac47d9e5809f818f6b4d951ccad51de514db94b013bbb15435b"
+      },
+      {
+        "bytes": 18407142,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-025\\raw-shard.zip",
+        "sha256": "9305aaf43d185a09e708a9d94497f0ea28b274b77c607dda907bfd9cdba317a5"
+      },
+      {
+        "bytes": 18451378,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-026\\raw-shard.zip",
+        "sha256": "935fa3fefda77497565f9b6f0ece902794a67bfe037b51df508207275939e832"
+      },
+      {
+        "bytes": 18433008,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-027\\raw-shard.zip",
+        "sha256": "c87f2879d96d7124764913b3491e4fd0ca2923fe777887c0c328fc0b47aa4d80"
+      },
+      {
+        "bytes": 18403337,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-028\\raw-shard.zip",
+        "sha256": "3789140cc02e584c272268dfaa0f26c3b73e0f32297bacae00f5c421b21dd89d"
+      },
+      {
+        "bytes": 18432977,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-029\\raw-shard.zip",
+        "sha256": "b868df8c06c5925b5d6c707ce33c809e447f71f2c52b71a406053af54cbcc443"
+      },
+      {
+        "bytes": 16158467,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-030\\raw-shard.zip",
+        "sha256": "9941a8845e6323619d5d508825598d7882a25267592819b3ce02a4919da5f9d9"
+      },
+      {
+        "bytes": 16208221,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-031\\raw-shard.zip",
+        "sha256": "fa93a9c2ff85e006b8e7346aa4a07061242759765083a4c4b32048c4b0802dbe"
+      },
+      {
+        "bytes": 16203757,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-032\\raw-shard.zip",
+        "sha256": "c7701aacac3d449a44daf73abf5d40f3219804fd96d93cf676c85efed840bdff"
+      },
+      {
+        "bytes": 16188378,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-033\\raw-shard.zip",
+        "sha256": "6af6757bc3633a40a6aa0eeb719f37dd4f95888492bf0c47e766d1d6840f2c5e"
+      },
+      {
+        "bytes": 16170573,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-034\\raw-shard.zip",
+        "sha256": "6e8c8a55c052603518dcaa8f94008a4e2eca9728cfb24286c3df3733629d4275"
+      },
+      {
+        "bytes": 16197261,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-035\\raw-shard.zip",
+        "sha256": "49b301a9e67753ddba44729d63d2f6d006f42502659b76d3f4f41cd9673d40ed"
+      },
+      {
+        "bytes": 16193631,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-036\\raw-shard.zip",
+        "sha256": "a67de7cec16d3b042ad50d1c84b0414e11139a57a5f1e8a10f56f38b8c203dcc"
+      },
+      {
+        "bytes": 16178387,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-037\\raw-shard.zip",
+        "sha256": "3b49d444f41b1c9c5edf62ec9cd1d5856ea75781ae7db0ffb9e4fe5e3a580367"
+      },
+      {
+        "bytes": 16143443,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-038\\raw-shard.zip",
+        "sha256": "38746b49db70a7905b0c67b6d9f600d7260a11088619b57a4e6e06942527eb69"
+      },
+      {
+        "bytes": 16191795,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-039\\raw-shard.zip",
+        "sha256": "c2c1c1b0ff3377ef6c2183c2e8d3bff752573e71b2057266832ebddd8dc645c0"
+      },
+      {
+        "bytes": 16200773,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-040\\raw-shard.zip",
+        "sha256": "7e2cd97fd18bf3bb9ae44baae778988e0a1a01c5b783efeb7b7b10073e3e2324"
+      },
+      {
+        "bytes": 16178430,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-041\\raw-shard.zip",
+        "sha256": "b29264756482fe7860da46980ca0a75a7dec11f87c3e74ec28d3659c43fb4876"
+      },
+      {
+        "bytes": 16187188,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-042\\raw-shard.zip",
+        "sha256": "6c621107b3a66bc7c6f4cb7dc15cfb52d58159dfbc3e7eb60586fdcd07f6e98b"
+      },
+      {
+        "bytes": 16195056,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-043\\raw-shard.zip",
+        "sha256": "4c4141c390bde7f93f8b9179ff1fd84e38156d1766508f5d5f37e56df56b15f8"
+      },
+      {
+        "bytes": 16202686,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-044\\raw-shard.zip",
+        "sha256": "4e373e448685ac923cc6c84ac9bc7507a94a0477cd8d868cb7c71093593045fb"
+      },
+      {
+        "bytes": 18435168,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-045\\raw-shard.zip",
+        "sha256": "49ac6c16e1dce9a9d6636ac6205bb5d16d38a660f9fe8145607e80ecacfc79af"
+      },
+      {
+        "bytes": 18413488,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-046\\raw-shard.zip",
+        "sha256": "11d2f05cc70c0b818ca2497a0c06cc1b65b13a34411fdd051f2238ddc09ef123"
+      },
+      {
+        "bytes": 18425462,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-047\\raw-shard.zip",
+        "sha256": "6b9322a0d4de0d32d3a258ec1ad4ad535ab51d306ea67331109396478e6724d4"
+      },
+      {
+        "bytes": 18422666,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-048\\raw-shard.zip",
+        "sha256": "378aab8353621c6703c61b1561f4457f885cc45fc4e4e5ccbd3cffbf245bb602"
+      },
+      {
+        "bytes": 18419546,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-049\\raw-shard.zip",
+        "sha256": "d74fdc90d486a735b1ee8ac73dd259859af54e70d95c24fdc115dceedf3cd7c1"
+      },
+      {
+        "bytes": 18430009,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-050\\raw-shard.zip",
+        "sha256": "e9d4a8bea774cbbf1fd92612bfcfeeb9b86f8b6e695eab96bc21058aea673e0c"
+      },
+      {
+        "bytes": 18446698,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-051\\raw-shard.zip",
+        "sha256": "b451b26bf70ae0cb94d26c51945b7b1b45e8983e71a8b920293164d9dbdf37dd"
+      },
+      {
+        "bytes": 18437270,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-052\\raw-shard.zip",
+        "sha256": "d80fe714c18522b2acb04c54b3528d30fc753751372f511dcb037967c540cad6"
+      },
+      {
+        "bytes": 18444127,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-053\\raw-shard.zip",
+        "sha256": "5d05f5f1243412c2fda193f1c34231a9a51f50d74d3ccf46a434681199abde29"
+      },
+      {
+        "bytes": 18440331,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-054\\raw-shard.zip",
+        "sha256": "f063b6cc0668489df3c9be99eb2613eb9440d03eb1723c4abb27926b776fb779"
+      },
+      {
+        "bytes": 18429240,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-055\\raw-shard.zip",
+        "sha256": "7ed3c35aed0a07df8e2d60efce61da35cc3c5cb5bf2e021a4110e598c1e6df83"
+      },
+      {
+        "bytes": 18436410,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-056\\raw-shard.zip",
+        "sha256": "0865cacd97eb540b753d3d969d5b45836dea9685b020a1e5ce5fe6ff34cc3755"
+      },
+      {
+        "bytes": 18446266,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-057\\raw-shard.zip",
+        "sha256": "4ab40226687fa66768fde6cd18798c2f20eb825fa13f1750d6827b52b48fcd39"
+      },
+      {
+        "bytes": 18427457,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-058\\raw-shard.zip",
+        "sha256": "cc407b93301e2fb1f3205f8c7f855f4f847bb1d7b46ee59b793b7d55d9fc72b0"
+      },
+      {
+        "bytes": 18445482,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-059\\raw-shard.zip",
+        "sha256": "1392b77c5479dd8a05faf49813253c16f12426cbd36832e8eb21067ef58001f0"
+      },
+      {
+        "bytes": 19105809,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-060\\raw-shard.zip",
+        "sha256": "664eebae89087f0e134a74244463e69be49e99bd820b9734dcbeaf258e12692c"
+      },
+      {
+        "bytes": 19059566,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-061\\raw-shard.zip",
+        "sha256": "cba1ec9024cef6d22a93076edb8efd86407b72cb6faa72edd70f228845e726b9"
+      },
+      {
+        "bytes": 19091815,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-062\\raw-shard.zip",
+        "sha256": "d7de0ed98abb4837c4098c7cbedddc08c7aa91127de4bbc4495a03b3866d4b16"
+      },
+      {
+        "bytes": 19045930,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-063\\raw-shard.zip",
+        "sha256": "50af7c82f3f48f3b4f8e0423a030868cff7297dea0da0ff7b84178dc82def774"
+      },
+      {
+        "bytes": 19044153,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-064\\raw-shard.zip",
+        "sha256": "9ec919b6297c87065cc584c7fecc3987c1b52b308aae45499e68aa883bc1d15b"
+      },
+      {
+        "bytes": 19066031,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-065\\raw-shard.zip",
+        "sha256": "d470f56401e16bcc2851c6d4d94bc497c509c8ee46393c2d5db77da996e5932f"
+      },
+      {
+        "bytes": 19064914,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-066\\raw-shard.zip",
+        "sha256": "754549810b98b92b065e9adbb3ffcf81c9bf42ae03aa733e52c5184035f4626f"
+      },
+      {
+        "bytes": 19087974,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-067\\raw-shard.zip",
+        "sha256": "9e000503d2467ffd3d9ed36815adaab30622c93600ba4a79b47ea328c6006c94"
+      },
+      {
+        "bytes": 19067629,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-068\\raw-shard.zip",
+        "sha256": "e30f4491a4e23d83073ae67925dd4eecad9ed3732ad2ba8c372bd0f2ee3ef7bc"
+      },
+      {
+        "bytes": 19104415,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-069\\raw-shard.zip",
+        "sha256": "9cc1430feffac52936ad0cdf81def1e536646c371e4b595ba43711d7551cc8f0"
+      },
+      {
+        "bytes": 19079129,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-070\\raw-shard.zip",
+        "sha256": "4f3fb79916da6c1b4058242a9638cef1a738bc1cdb0810b0dca3561877d51a6c"
+      },
+      {
+        "bytes": 19061956,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-071\\raw-shard.zip",
+        "sha256": "49b64f1d668bba2e0ea8ecbd00ce3d165117341e20e10710a2451dec60f98423"
+      },
+      {
+        "bytes": 19068948,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-072\\raw-shard.zip",
+        "sha256": "fb3514d7f17f961cf554bb55469e53a9a584c8a63971e33518777a7235a16632"
+      },
+      {
+        "bytes": 19113821,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-073\\raw-shard.zip",
+        "sha256": "390ffa5f7320b6fda2e8f97213f5e36cb5a6d95afcf0e073efe065581e256650"
+      },
+      {
+        "bytes": 19061421,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-074\\raw-shard.zip",
+        "sha256": "5fd6e0143a6b2abfb581ac8eee6dcbf1a0a0f7d1133b2b5243a3f50383964c97"
+      },
+      {
+        "bytes": 22066714,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-075\\raw-shard.zip",
+        "sha256": "769b40dc029160593dfe371c00b023a2f568b4a07737e1c5a0135eb802d58806"
+      },
+      {
+        "bytes": 22032527,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-076\\raw-shard.zip",
+        "sha256": "01e739e8f98b87dcd5ab4bfc95a5c86ba7b659fe3f1e26500a62fc8491206ddc"
+      },
+      {
+        "bytes": 22039109,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-077\\raw-shard.zip",
+        "sha256": "cae4d8583aa94c6a66eb9d488a52ed2311f3ce6cc43cb170eb29bac97086cea5"
+      },
+      {
+        "bytes": 22015068,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-078\\raw-shard.zip",
+        "sha256": "ba5915c4817982a8547cf7cbb5e789cd2f20ddcd8de7f72afde5f268a5491654"
+      },
+      {
+        "bytes": 22093223,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-079\\raw-shard.zip",
+        "sha256": "ab9b944908997d58d6678474804b87dd0f38bb5077679c4bc075fbfce211e555"
+      },
+      {
+        "bytes": 22071029,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-080\\raw-shard.zip",
+        "sha256": "842f0a46fcd61582d21c5f154eedb6410fdcd451c2a7d0039fc2d4f5ae0016f9"
+      },
+      {
+        "bytes": 22006714,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-081\\raw-shard.zip",
+        "sha256": "3c0cef0ad6ed0a88e736dec61cdace1b82e0f3d4d5e376ca14cc2e72ea4f1168"
+      },
+      {
+        "bytes": 21977888,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-082\\raw-shard.zip",
+        "sha256": "6efe059c60226c8087c89f8c68b41655d7428bcf6eb63a91e8f309689c2c893b"
+      },
+      {
+        "bytes": 22026324,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-083\\raw-shard.zip",
+        "sha256": "42d4d0ef606cedc4736041a36948b0a5ff3c90eca84487d244979dce8073ed75"
+      },
+      {
+        "bytes": 22028237,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-084\\raw-shard.zip",
+        "sha256": "3b60b9f0b1fad7be11af2b52ba72327fd0b1f73c8573ab8f2c96cce089f269ce"
+      },
+      {
+        "bytes": 22004719,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-085\\raw-shard.zip",
+        "sha256": "8bd8f052b47b5514697d76b15fe4b2868cc91df092f80858eff06b5fe4e9f380"
+      },
+      {
+        "bytes": 22069110,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-086\\raw-shard.zip",
+        "sha256": "c7bf3e63e68f4c7da864a95da783877813ede5f409234d265a86e680daae12aa"
+      },
+      {
+        "bytes": 22042819,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-087\\raw-shard.zip",
+        "sha256": "fed510b0c736807b2d0097a6bdd999d8cf48238eecc6015e207d1ceaed176df7"
+      },
+      {
+        "bytes": 22119668,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-088\\raw-shard.zip",
+        "sha256": "2544041d6dc78cccf3aa9d8e153a1f5a6a5954b64d87232bee2fdc0494fa0d34"
+      },
+      {
+        "bytes": 22013024,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-089\\raw-shard.zip",
+        "sha256": "f8647c4cdfa35dacc3d342dbeffac10dc848ada0f9b489f64bcbabed36a899f6"
+      },
+      {
+        "bytes": 19096477,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-090\\raw-shard.zip",
+        "sha256": "648b6955a661a899b685246b510ff557ae6a721a2c4e1c1ee2845039f100481d"
+      },
+      {
+        "bytes": 19108171,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-091\\raw-shard.zip",
+        "sha256": "797f0e7b96cec571264b70e699eb9f8cda30f3b9babb0f03d09167f015d160ea"
+      },
+      {
+        "bytes": 19087822,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-092\\raw-shard.zip",
+        "sha256": "44ab0f01be4b688121fbd680b17efa510a3387b848dac1cd1a36a4c647640204"
+      },
+      {
+        "bytes": 19058871,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-093\\raw-shard.zip",
+        "sha256": "081bbae9b9380e3889c5eb0eaf750ed2f9089a8b5fda64c06540611274213154"
+      },
+      {
+        "bytes": 19103645,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-094\\raw-shard.zip",
+        "sha256": "86e827797cce45e2092dbb8a3b0018d0e17c8dd6a0ba748fe50ac202da6a2c09"
+      },
+      {
+        "bytes": 19103422,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-095\\raw-shard.zip",
+        "sha256": "857a8dea480a4753de7edab826b36c5917215bfd9b5548ca6911d414f93e2c28"
+      },
+      {
+        "bytes": 19135098,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-096\\raw-shard.zip",
+        "sha256": "3045e1669b92940cb082b0b236e000d23b436a22116322c4255d9cd2200e7c11"
+      },
+      {
+        "bytes": 19086623,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-097\\raw-shard.zip",
+        "sha256": "ecf1f79d60dadf451e642c4ff5fa1d50251f8417c68f690de72cc841a2f27e63"
+      },
+      {
+        "bytes": 19094144,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-098\\raw-shard.zip",
+        "sha256": "c2828b370fc240fe8720d1a6981f429e9ea6dcd9b8d6c591bb08f6e271084535"
+      },
+      {
+        "bytes": 19110844,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-099\\raw-shard.zip",
+        "sha256": "d877a5d1c1a0d2840cb0c952c186369f171311dd02a2b4088a1691b69fd497a0"
+      },
+      {
+        "bytes": 19048359,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-100\\raw-shard.zip",
+        "sha256": "dcc10d2258acb3e04bf8638c60986884dffd43549e4d034c8d26633dc5e5089a"
+      },
+      {
+        "bytes": 19131449,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-101\\raw-shard.zip",
+        "sha256": "628bdb3082b793e8430d38ce7e078e6e9ab428d0b62f827b5deaaf8a5d2e5276"
+      },
+      {
+        "bytes": 19143079,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-102\\raw-shard.zip",
+        "sha256": "a8c9136e93321883fbbdb50595c64502a57f2559ddce9b22239a19dc45ef436d"
+      },
+      {
+        "bytes": 19090823,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-103\\raw-shard.zip",
+        "sha256": "8067b3b6dcb8b91fbe6b4b6091c7dd005353a490cd62546588d3db1b34806d7a"
+      },
+      {
+        "bytes": 19073092,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-104\\raw-shard.zip",
+        "sha256": "de47eb230c3d1fed1ddfaccbedbf49bd91914e099c814d7d3d08d423f9355a02"
+      },
+      {
+        "bytes": 21999481,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-105\\raw-shard.zip",
+        "sha256": "cb3822fe5d6773a10042b48375a955b653d6098b3749e5084bc8aa9f140352cb"
+      },
+      {
+        "bytes": 22060083,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-106\\raw-shard.zip",
+        "sha256": "03204aa383b200352d9d4f7fde29e7221082d2b7d33cbc4c1706d305bafe1b6b"
+      },
+      {
+        "bytes": 22014899,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-107\\raw-shard.zip",
+        "sha256": "88539f732b0c76097eabd5b5a2e5e230c9e174dde8a7b86fae2c1a15734f98b3"
+      },
+      {
+        "bytes": 22103703,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-108\\raw-shard.zip",
+        "sha256": "375dd6de32689b96151f8f58b9229989e3174f2839eda7f9225979b7b6111862"
+      },
+      {
+        "bytes": 21992618,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-109\\raw-shard.zip",
+        "sha256": "967fd48a5f689c19824c422f9725faa0c2c8f3df55444c1398b6f5fdcb58a3e0"
+      },
+      {
+        "bytes": 21976996,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-110\\raw-shard.zip",
+        "sha256": "2195a4607b55e950e78d3777bb4b488b25ec1c7efb21960e87848428b75eb881"
+      },
+      {
+        "bytes": 22054122,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-111\\raw-shard.zip",
+        "sha256": "d870d1611d97854e6d8ba9ac802e8a6d6457c8c6504ff14d9ddf483477fbea8e"
+      },
+      {
+        "bytes": 22000687,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-112\\raw-shard.zip",
+        "sha256": "3f892d280fa495f5bcc3777fe6f725b2675dad185924f42eca58288eabf1fce8"
+      },
+      {
+        "bytes": 21990165,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-113\\raw-shard.zip",
+        "sha256": "f3b4ba864accb4e2c647c5012d5798b18bcc93811ee092dc7b9d2865bad587ac"
+      },
+      {
+        "bytes": 22007299,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-114\\raw-shard.zip",
+        "sha256": "cc63f879a28068dc2a346f76e7e5b4a1b20e32f6498e589f4ac8ce3fcbcd01bd"
+      },
+      {
+        "bytes": 22008730,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-115\\raw-shard.zip",
+        "sha256": "e405b7f243a7e1ef09b9cdb69b2d9f82458fd7ef7e0d2551f9bad93df1359766"
+      },
+      {
+        "bytes": 21967468,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-116\\raw-shard.zip",
+        "sha256": "af0860aa93997f16d1502c370d922c0edb02daeb0481153877130a3e788b0b7b"
+      },
+      {
+        "bytes": 21989308,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-117\\raw-shard.zip",
+        "sha256": "16bba238cf1a43d9eba582bea604b7bd18c62431843b4fe89883d978049997c8"
+      },
+      {
+        "bytes": 22043521,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-118\\raw-shard.zip",
+        "sha256": "c7531e907b6b3a1d1febc2def7be341a947c8dff54c50b4d00a7bf99656d6eaf"
+      },
+      {
+        "bytes": 22037204,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-119\\raw-shard.zip",
+        "sha256": "567e33a84cb79078b2ff5c059bda3bb30db82829653489670be4b72ed98ee8a4"
+      },
+      {
+        "bytes": 16166254,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-120\\raw-shard.zip",
+        "sha256": "a02c327a1a443bab6728a0a7806647565aa1704a1f3117f017f9f47d6a60470c"
+      },
+      {
+        "bytes": 16158875,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-121\\raw-shard.zip",
+        "sha256": "ad62d6411ba1dbf04b15de44e60ecff793400d24e376d35fe30f4450348c8f7d"
+      },
+      {
+        "bytes": 16160006,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-122\\raw-shard.zip",
+        "sha256": "7c1c690463b856ba92b674d9339db785f444a13b8b393adb13508723879c9684"
+      },
+      {
+        "bytes": 16167620,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-123\\raw-shard.zip",
+        "sha256": "fc2a9b8e3f7aead551fe12bca6e4e8e6e89297f2c302ce53b2bae4de15614082"
+      },
+      {
+        "bytes": 16167693,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-124\\raw-shard.zip",
+        "sha256": "58b1e4dccd3f73ffbe55ff0d9785c882162f930e1fe4f87360c9f5bd63273959"
+      },
+      {
+        "bytes": 16168054,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-125\\raw-shard.zip",
+        "sha256": "ef4d00db245fe9f3d48f13d53036c32ef246f1ed9f3c762e67a3ea3a56f280b9"
+      },
+      {
+        "bytes": 16165288,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-126\\raw-shard.zip",
+        "sha256": "833fe872aae6b31154b56e80a2d375d77d5b1f2dfc8f2534eab42f5c1628f31f"
+      },
+      {
+        "bytes": 16165400,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-127\\raw-shard.zip",
+        "sha256": "a0ffa22a9da15a1b047317c22031a1c837f35682ecd2882664eed32cd12748ef"
+      },
+      {
+        "bytes": 16164181,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-128\\raw-shard.zip",
+        "sha256": "8ec7be0a16ae13fbd575008e0848bf193fd1a2d7ddaf6cb996356a1635776079"
+      },
+      {
+        "bytes": 16169247,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-129\\raw-shard.zip",
+        "sha256": "55a91b5feb3b13a731d9a5af34e5aaf36263d8ce72e4c5b91416037161a30768"
+      },
+      {
+        "bytes": 16169037,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-130\\raw-shard.zip",
+        "sha256": "4c29b9dc576c8d1a8143545227fe10f36365c2ff7941f6198e1d7243715c4fee"
+      },
+      {
+        "bytes": 16157130,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-131\\raw-shard.zip",
+        "sha256": "99d5cc0e1ce286dcd35edbe6abb0af4e696eef1f34abf042bf6b5249b306395e"
+      },
+      {
+        "bytes": 16161547,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-132\\raw-shard.zip",
+        "sha256": "a7ea0e8c0f2b5ba3d01320b2a4ecd427d3e35b74ac12dd6bf55fd9dd0f9d5c46"
+      },
+      {
+        "bytes": 16155995,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-133\\raw-shard.zip",
+        "sha256": "1cb3b14928b33609bd3e2cc13ef31a903aa1cbc972e0a5a94d84e6d0b27681d7"
+      },
+      {
+        "bytes": 16157099,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-134\\raw-shard.zip",
+        "sha256": "4448609f04299c94022201e6bc61b256c6147d9ecb9bca6375ec91a710afe6f6"
+      },
+      {
+        "bytes": 18399711,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-135\\raw-shard.zip",
+        "sha256": "72db37177d12003cb121a9cd51740fa118a1d2c5fb3a7aab3579eb84231e2924"
+      },
+      {
+        "bytes": 18378900,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-136\\raw-shard.zip",
+        "sha256": "df03b9180c4307a9e084505fc644d14884a422408f1bb37733fb2977a350b884"
+      },
+      {
+        "bytes": 18392796,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-137\\raw-shard.zip",
+        "sha256": "8504939804ca127f774633d877df50c1c77aff5b0656adbe938e381680340bad"
+      },
+      {
+        "bytes": 18380715,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-138\\raw-shard.zip",
+        "sha256": "754caf1d328625d14d5ab405d7168cc4d90f27ed98adcbf388b1476f31ba723f"
+      },
+      {
+        "bytes": 18374423,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-139\\raw-shard.zip",
+        "sha256": "9d722011007308ecd912a3f837663c65c7a22963b74c0b63a9d2ddb81449dd60"
+      },
+      {
+        "bytes": 18380826,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-140\\raw-shard.zip",
+        "sha256": "3f4a0d5885cfac334b41791df036ec28f42a890db9ff29d67d50223937235a8d"
+      },
+      {
+        "bytes": 18361034,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-141\\raw-shard.zip",
+        "sha256": "bd964a8b0e1c74d1bc041770e11d38a855a24e46198157444976a033e5cd8fb3"
+      },
+      {
+        "bytes": 18369626,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-142\\raw-shard.zip",
+        "sha256": "9446aa6fd5f0991a743ef40083df45871e118ec2406d19287f87b7cb8fef3180"
+      },
+      {
+        "bytes": 18400858,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-143\\raw-shard.zip",
+        "sha256": "f97f90e877a7f1dba4bb01df3abc811916fee1bb0164ec6a48d2569d892392be"
+      },
+      {
+        "bytes": 18387864,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-144\\raw-shard.zip",
+        "sha256": "eb7277e39376551a1d01f440e526f6b3b72405e3503136a2585e90b8576607b4"
+      },
+      {
+        "bytes": 18396103,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-145\\raw-shard.zip",
+        "sha256": "9a0fc1b2e1d0a2f4e4eee11769d64f18348c30f6a6bb45c735735fbc19fb1756"
+      },
+      {
+        "bytes": 18390553,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-146\\raw-shard.zip",
+        "sha256": "d6647ff24948eb7e175f9689ec05c4faa55ec9a18ac3b88e36ea64287bba4f36"
+      },
+      {
+        "bytes": 18379154,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-147\\raw-shard.zip",
+        "sha256": "6cd74d01988fb0de68886667c9bba8c4010540425c4199b29172addfe43aa5af"
+      },
+      {
+        "bytes": 18373040,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-148\\raw-shard.zip",
+        "sha256": "9bb4f9340d4471bc0d53ac9adda2738ab3459811ea48db9c845059b017720ca2"
+      },
+      {
+        "bytes": 18378830,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-149\\raw-shard.zip",
+        "sha256": "c35a5921032e2845d9c32cdf0f47a063df82fe463c30088540e7a08688216b0c"
+      },
+      {
+        "bytes": 16154928,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-150\\raw-shard.zip",
+        "sha256": "5733548ceb45107c5b031522f8a0a605b6e253bbc5c8aa3e42b4af9ab525ceb3"
+      },
+      {
+        "bytes": 16164042,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-151\\raw-shard.zip",
+        "sha256": "3ce053f4da001ba3ffe162ce7118f1dde5788029810241a1bff83e70772f3ab7"
+      },
+      {
+        "bytes": 16152226,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-152\\raw-shard.zip",
+        "sha256": "ae3fcb35a72f095394dd845cda386a0b2a102ced0d7e6ceead9d3e41a62446fa"
+      },
+      {
+        "bytes": 16162974,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-153\\raw-shard.zip",
+        "sha256": "39b7bc25c3d774cdcb2cec157cb27c3d6244f687b3791d475d37dc311001d3f7"
+      },
+      {
+        "bytes": 16166062,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-154\\raw-shard.zip",
+        "sha256": "9754b1b5cec57fcce6889140aa3f03ea6fe6dc8765be5360829bd31d86d0d113"
+      },
+      {
+        "bytes": 16163340,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-155\\raw-shard.zip",
+        "sha256": "1194f33015c49ba799521ffd8369861e337ac4cd4d5fe6681ec65146aee6e0b6"
+      },
+      {
+        "bytes": 16156451,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-156\\raw-shard.zip",
+        "sha256": "95d851465b77b5b8de29d1fb38ab3557d1c27872d691d981b0b5876813a158e8"
+      },
+      {
+        "bytes": 16159247,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-157\\raw-shard.zip",
+        "sha256": "2ee58a5d3d0d500c3ec659cbabcee701e3ce07a5d1ac2cbcb11e2d494bcd1c90"
+      },
+      {
+        "bytes": 16155748,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-158\\raw-shard.zip",
+        "sha256": "2f1223e8183b6d56e8445bc5c17575fe00ff043ea0f06019ffec6ffd2b0640fa"
+      },
+      {
+        "bytes": 16162591,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-159\\raw-shard.zip",
+        "sha256": "5aaea6507cb691e65ddbd8645026dcfb26b3223e99073dd505e7253bf310eb2e"
+      },
+      {
+        "bytes": 16163995,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-160\\raw-shard.zip",
+        "sha256": "8171042e4b0bed23ba120b2542dc3a4f4750a1e10c4a79d44d7d422a5638511d"
+      },
+      {
+        "bytes": 16153947,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-161\\raw-shard.zip",
+        "sha256": "59507183f1482a115cecc0c8c93d7c3b2453bc56c555ab42de6303c8724ed284"
+      },
+      {
+        "bytes": 16148188,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-162\\raw-shard.zip",
+        "sha256": "ca0f03def36027a5f1d3e194b6fad5da3806ab3c0f160073fdeda6adf5cc801b"
+      },
+      {
+        "bytes": 16164633,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-163\\raw-shard.zip",
+        "sha256": "15b4f5092cecf984c01a3570efe82a160a7ee92002f26e6f196e991a3cbb163d"
+      },
+      {
+        "bytes": 16173164,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-164\\raw-shard.zip",
+        "sha256": "62f11e5fd8291199d4e734f11b3202cb22a1172c8804fde1ab2c651ff5eee4d1"
+      },
+      {
+        "bytes": 18345109,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-165\\raw-shard.zip",
+        "sha256": "ee6da098b9661593c943d7094a938c49e38a54e185365bb8a0f093a68958bab9"
+      },
+      {
+        "bytes": 18355815,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-166\\raw-shard.zip",
+        "sha256": "fca4985ea1c297f6016cfc31fad3b1d4bc4ab00ae3548ee192438b5f724a8212"
+      },
+      {
+        "bytes": 18361280,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-167\\raw-shard.zip",
+        "sha256": "319a51556b8f603693ca592b2051bf67116a2ab14ed3ca40bdf8237c40392824"
+      },
+      {
+        "bytes": 18367453,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-168\\raw-shard.zip",
+        "sha256": "4f92a3657eeaa9e19642897989e3138c19973021c6f757da150a31627706def1"
+      },
+      {
+        "bytes": 18373294,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-169\\raw-shard.zip",
+        "sha256": "224622857f40605b6e89e126b1fc9412f00318265196a76d265cacf1bb7aac08"
+      },
+      {
+        "bytes": 18350479,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-170\\raw-shard.zip",
+        "sha256": "722464e30b1dd6eb40b72caa8242984b439a98370adc261c37323e0cc6fe0473"
+      },
+      {
+        "bytes": 18348924,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-171\\raw-shard.zip",
+        "sha256": "2cbc73abb3c61b1b169d5d9d9719bcfffdeca3f392059838927edf5b3d24dbe3"
+      },
+      {
+        "bytes": 18359291,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-172\\raw-shard.zip",
+        "sha256": "7361af2a2403e60b919c3ac00695ce87fd34b7c2b309f082aa0af2a53e9ba2a8"
+      },
+      {
+        "bytes": 18364598,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-173\\raw-shard.zip",
+        "sha256": "b114129b82dda7d47496417b5a0cd3680944c975fa1e618ccdea4096dda54f45"
+      },
+      {
+        "bytes": 18354601,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-174\\raw-shard.zip",
+        "sha256": "98dcb44230c7b3f51e852f5b6695cd9cdbd0d9694e4b1ee505eda47d3d2635ec"
+      },
+      {
+        "bytes": 18354156,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-175\\raw-shard.zip",
+        "sha256": "46efcbb111e0116a44d28ffd9e5e014436ace864c838038b99ab6231982b2468"
+      },
+      {
+        "bytes": 18356805,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-176\\raw-shard.zip",
+        "sha256": "1da8f9f51ae2723566f4ea2c9f8b82a67fadf355af81eeb774e57dfe30877601"
+      },
+      {
+        "bytes": 18354220,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-177\\raw-shard.zip",
+        "sha256": "3ed5c5747c8e63fdc70619ab0570266f76f83bfc8448401dd36b34bc0ea1d12f"
+      },
+      {
+        "bytes": 18336708,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-178\\raw-shard.zip",
+        "sha256": "415c16bba82690ab1b9fe61295b4a74e1b72172bccc082a7b6175b21adbe04a1"
+      },
+      {
+        "bytes": 18359712,
+        "path": ".superpowers\\prospective-interaction-downloads\\prospective-interaction-null-shard-179\\raw-shard.zip",
+        "sha256": "d284a396cbc465b52c729a23628bfdf92e6cb65c778aa0f673b6440060d028d8"
+      }
+    ],
+    "identical_archive_duplicates": 0
+  },
+  "missing": 0,
+  "missing_ids": [],
+  "passed_cells": [
+    "n300-p5-rho0",
+    "n300-p5-rho0.7",
+    "n600-p5-rho0",
+    "n600-p5-rho0.7",
+    "n300-p15-rho0.7",
+    "n300-p15-rho0.9"
+  ],
+  "planned": 14400,
+  "production_accepted": false,
+  "retained_fitting_seconds": 103813.33899999998,
+  "saved_setting_refits": 288000,
+  "selection": null,
+  "skipped_ids": [],
+  "stage": "null",
+  "strata": [
+    {
+      "alpha": 0.0005555555555555556,
+      "benchmark": "noise",
+      "bound": 0.043267891108259356,
+      "cell": "n300-p5-rho0",
+      "complete": 1200,
+      "direction": "upper",
+      "displayed": 6,
+      "explanation": "qualified",
+      "k": 30,
+      "missing": 0,
+      "n": 1200,
+      "observed_rate": 0.025,
+      "pass": true,
+      "planned": 1200,
+      "status": "complete",
+      "target": 0.05
+    },
+    {
+      "alpha": 0.0005555555555555556,
+      "benchmark": "additive",
+      "bound": 0.016986865869332648,
+      "cell": "n300-p5-rho0",
+      "complete": 1200,
+      "direction": "upper",
+      "displayed": 1,
+      "explanation": "qualified",
+      "k": 7,
+      "missing": 0,
+      "n": 1200,
+      "observed_rate": 0.005833333333333334,
+      "pass": true,
+      "planned": 1200,
+      "status": "complete",
+      "target": 0.05
+    },
+    {
+      "alpha": 0.0005555555555555556,
+      "benchmark": "noise",
+      "bound": 0.016986865869332648,
+      "cell": "n300-p5-rho0.7",
+      "complete": 1200,
+      "direction": "upper",
+      "displayed": 1,
+      "explanation": "qualified",
+      "k": 7,
+      "missing": 0,
+      "n": 1200,
+      "observed_rate": 0.005833333333333334,
+      "pass": true,
+      "planned": 1200,
+      "status": "complete",
+      "target": 0.05
+    },
+    {
+      "alpha": 0.0005555555555555556,
+      "benchmark": "additive",
+      "bound": 0.011450310307776124,
+      "cell": "n300-p5-rho0.7",
+      "complete": 1200,
+      "direction": "upper",
+      "displayed": 0,
+      "explanation": "qualified",
+      "k": 3,
+      "missing": 0,
+      "n": 1200,
+      "observed_rate": 0.0025,
+      "pass": true,
+      "planned": 1200,
+      "status": "complete",
+      "target": 0.05
+    },
+    {
+      "alpha": 0.0005555555555555556,
+      "benchmark": "noise",
+      "bound": 0.021995462350744236,
+      "cell": "n600-p5-rho0",
+      "complete": 1200,
+      "direction": "upper",
+      "displayed": 2,
+      "explanation": "qualified",
+      "k": 11,
+      "missing": 0,
+      "n": 1200,
+      "observed_rate": 0.009166666666666667,
+      "pass": true,
+      "planned": 1200,
+      "status": "complete",
+      "target": 0.05
+    },
+    {
+      "alpha": 0.0005555555555555556,
+      "benchmark": "additive",
+      "bound": 0.009898150474596154,
+      "cell": "n600-p5-rho0",
+      "complete": 1200,
+      "direction": "upper",
+      "displayed": 1,
+      "explanation": "qualified",
+      "k": 2,
+      "missing": 0,
+      "n": 1200,
+      "observed_rate": 0.0016666666666666668,
+      "pass": true,
+      "planned": 1200,
+      "status": "complete",
+      "target": 0.05
+    },
+    {
+      "alpha": 0.0005555555555555556,
+      "benchmark": "noise",
+      "bound": 0.009898150474596154,
+      "cell": "n600-p5-rho0.7",
+      "complete": 1200,
+      "direction": "upper",
+      "displayed": 1,
+      "explanation": "qualified",
+      "k": 2,
+      "missing": 0,
+      "n": 1200,
+      "observed_rate": 0.0016666666666666668,
+      "pass": true,
+      "planned": 1200,
+      "status": "complete",
+      "target": 0.05
+    },
+    {
+      "alpha": 0.0005555555555555556,
+      "benchmark": "additive",
+      "bound": 0.006226817469618079,
+      "cell": "n600-p5-rho0.7",
+      "complete": 1200,
+      "direction": "upper",
+      "displayed": 0,
+      "explanation": "qualified",
+      "k": 0,
+      "missing": 0,
+      "n": 1200,
+      "observed_rate": 0.0,
+      "pass": true,
+      "planned": 1200,
+      "status": "complete",
+      "target": 0.05
+    },
+    {
+      "alpha": 0.0005555555555555556,
+      "benchmark": "noise",
+      "bound": 0.03572502763891863,
+      "cell": "n300-p15-rho0.7",
+      "complete": 1200,
+      "direction": "upper",
+      "displayed": 4,
+      "explanation": "qualified",
+      "k": 23,
+      "missing": 0,
+      "n": 1200,
+      "observed_rate": 0.019166666666666665,
+      "pass": true,
+      "planned": 1200,
+      "status": "complete",
+      "target": 0.05
+    },
+    {
+      "alpha": 0.0005555555555555556,
+      "benchmark": "additive",
+      "bound": 0.016986865869332648,
+      "cell": "n300-p15-rho0.7",
+      "complete": 1200,
+      "direction": "upper",
+      "displayed": 2,
+      "explanation": "qualified",
+      "k": 7,
+      "missing": 0,
+      "n": 1200,
+      "observed_rate": 0.005833333333333334,
+      "pass": true,
+      "planned": 1200,
+      "status": "complete",
+      "target": 0.05
+    },
+    {
+      "alpha": 0.0005555555555555556,
+      "benchmark": "noise",
+      "bound": 0.011450310307776124,
+      "cell": "n300-p15-rho0.9",
+      "complete": 1200,
+      "direction": "upper",
+      "displayed": 1,
+      "explanation": "qualified",
+      "k": 3,
+      "missing": 0,
+      "n": 1200,
+      "observed_rate": 0.0025,
+      "pass": true,
+      "planned": 1200,
+      "status": "complete",
+      "target": 0.05
+    },
+    {
+      "alpha": 0.0005555555555555556,
+      "benchmark": "additive",
+      "bound": 0.009898150474596154,
+      "cell": "n300-p15-rho0.9",
+      "complete": 1200,
+      "direction": "upper",
+      "displayed": 1,
+      "explanation": "qualified",
+      "k": 2,
+      "missing": 0,
+      "n": 1200,
+      "observed_rate": 0.0016666666666666668,
+      "pass": true,
+      "planned": 1200,
+      "status": "complete",
+      "target": 0.05
+    }
+  ],
+  "thresholds_sha256": "755a6fe65f908c8b3f61a6ca4fa2d5aa5622a912519b53238b470773dbecbf17",
+  "universe_signal_planned": 10800,
+  "unknown_attempt_cost_ids": [],
+  "warning_count": 0
+}
