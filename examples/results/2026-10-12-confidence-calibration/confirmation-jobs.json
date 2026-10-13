@@ -1,0 +1,81 @@
+{
+  "total_count": 1,
+  "jobs": [
+    {
+      "id": 115077910434,
+      "run_id": 38330174633,
+      "workflow_name": "Interaction confidence calibration and confirmation",
+      "head_branch": "codex/actions-selection-reliability",
+      "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38330174633",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOVD_Yg88AAAAayy2Pog",
+      "head_sha": "c213bf92c5fd5a28720497cdf238c1a0ea812d5e",
+      "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115077910434",
+      "html_url": "https://github.com/imh-ds/open/actions/runs/38330174633/job/115077910434",
+      "status": "in_progress",
+      "conclusion": null,
+      "created_at": "2026-10-13T01:02:05Z",
+      "started_at": "2026-10-13T01:02:07Z",
+      "completed_at": null,
+      "name": "prepare",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-13T01:02:08Z",
+          "completed_at": "2026-10-13T01:02:09Z"
+        },
+        {
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-13T01:02:09Z",
+          "completed_at": "2026-10-13T01:04:16Z"
+        },
+        {
+          "name": "Run ./.github/actions/pair-confidence-setup",
+          "status": "in_progress",
+          "conclusion": null,
+          "number": 3,
+          "started_at": "2026-10-13T01:04:16Z",
+          "completed_at": null
+        },
+        {
+          "name": "Run $shards = python examples/pair_confidence_study.py matrix --stage 'confirmation'",
+          "status": "pending",
+          "conclusion": null,
+          "number": 4,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Post Run ./.github/actions/pair-confidence-setup",
+          "status": "pending",
+          "conclusion": null,
+          "number": 7,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "status": "pending",
+          "conclusion": null,
+          "number": 8,
+          "started_at": null,
+          "completed_at": null
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115077910434",
+      "labels": [
+        "windows-2022"
+      ],
+      "runner_id": 1000018137,
+      "runner_name": "GitHub Actions 1000018137",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}

@@ -29,3 +29,7 @@ Recompute scores and all ten thresholds without fitting: `python recompute_calib
 The original run is [38323296605](https://github.com/imh-ds/open/actions/runs/38323296605), source `cdde3cc5bb949c5bd1c8a642c326eee6764dfae3`. Total recorded job duration is 187.88 runner minutes (not billed rounded minutes), below the 1,575-minute Stage A cap. Raw complete-task cost is 1,384,000 fit/tune calls and 40,000 saved-setting verification refits; verification refits are not new replications.
 
 Separate arithmetic verification reproduced all 16,000 pair comparisons, all 4,000 pooled pair rows and all ten thresholds, with maximum score discrepancy zero. All 2,000 calibration result hashes match the learned rule. Independent review checked threshold-setting cases and found no provenance/scientific blocker to a frozen confirmation stage. Archive verification checked all 16,059 retained files. Full offline runner audit status is recorded in VERIFICATION.md.
+
+## Fresh confirmation launch
+
+The audited cutoffs and disjoint Stage B manifest were separately committed and their remote Git blobs verified before dispatch. [Confirmation run38330174633](https://github.com/imh-ds/open/actions/runs/38330174633) started once at source `c213bf92c5fd5a28720497cdf238c1a0ea812d5e`: 5,200 datasets/130 forty-task shards; 4,000null and1,200signal cases. Stage B runner-minute cap3,975, within the approved combined5,550cap. These confirmation results are pending; launch does not establish scientific acceptance. See confirmation-launch.json and startup metadata.
