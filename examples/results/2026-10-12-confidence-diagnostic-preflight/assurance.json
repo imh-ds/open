@@ -1,0 +1,215 @@
+{
+  "historical_n": 200,
+  "historical_allowable": 2,
+  "accepted_method_revision": false,
+  "calibration": {
+    "m": 100,
+    "limit": 0.05,
+    "strata": 20,
+    "expected_exceedance": 0.009900990099009901,
+    "failure_per_class": 0.0059205292203339975,
+    "union_failure_upper": 0.11841058440667995,
+    "minimum_m_for_union_bound": 117,
+    "scope": "continuous specified-null maximum reference; per-class conservative bound for max of two classes; no posterior claim"
+  },
+  "prospective": [
+    {
+      "n": 200,
+      "true_rate": 0.001,
+      "strata": 20,
+      "allowable": 2,
+      "single_pass": 0.9988662319025373,
+      "all_pass": 0.9775672163333151,
+      "assumption": "independent strata with equal fixed true rates; hypothetical"
+    },
+    {
+      "n": 200,
+      "true_rate": 0.005,
+      "strata": 20,
+      "allowable": 2,
+      "single_pass": 0.9201605680470227,
+      "all_pass": 0.18935307715142352,
+      "assumption": "independent strata with equal fixed true rates; hypothetical"
+    },
+    {
+      "n": 200,
+      "true_rate": 0.01,
+      "strata": 20,
+      "allowable": 2,
+      "single_pass": 0.6766786945356569,
+      "all_pass": 0.000405181917810057,
+      "assumption": "independent strata with equal fixed true rates; hypothetical"
+    },
+    {
+      "n": 200,
+      "true_rate": 0.02,
+      "strata": 20,
+      "allowable": 2,
+      "single_pass": 0.23514813577270488,
+      "all_pass": 2.671965222442083e-13,
+      "assumption": "independent strata with equal fixed true rates; hypothetical"
+    },
+    {
+      "n": 400,
+      "true_rate": 0.001,
+      "strata": 20,
+      "allowable": 8,
+      "single_pass": 0.9999999995357096,
+      "all_pass": 0.9999999907141923,
+      "assumption": "independent strata with equal fixed true rates; hypothetical"
+    },
+    {
+      "n": 400,
+      "true_rate": 0.005,
+      "strata": 20,
+      "allowable": 8,
+      "single_pass": 0.9997752240900581,
+      "all_pass": 0.9955140684668102,
+      "assumption": "independent strata with equal fixed true rates; hypothetical"
+    },
+    {
+      "n": 400,
+      "true_rate": 0.01,
+      "strata": 20,
+      "allowable": 8,
+      "single_pass": 0.9792314403415632,
+      "all_pass": 0.657214262622079,
+      "assumption": "independent strata with equal fixed true rates; hypothetical"
+    },
+    {
+      "n": 400,
+      "true_rate": 0.02,
+      "strata": 20,
+      "allowable": 8,
+      "single_pass": 0.5925520891566919,
+      "all_pass": 2.8479389351178657e-05,
+      "assumption": "independent strata with equal fixed true rates; hypothetical"
+    },
+    {
+      "n": 600,
+      "true_rate": 0.001,
+      "strata": 20,
+      "allowable": 15,
+      "single_pass": 1.0,
+      "all_pass": 1.0,
+      "assumption": "independent strata with equal fixed true rates; hypothetical"
+    },
+    {
+      "n": 600,
+      "true_rate": 0.005,
+      "strata": 20,
+      "allowable": 15,
+      "single_pass": 0.999999891444557,
+      "all_pass": 0.9999978288933796,
+      "assumption": "independent strata with equal fixed true rates; hypothetical"
+    },
+    {
+      "n": 600,
+      "true_rate": 0.01,
+      "strata": 20,
+      "allowable": 15,
+      "single_pass": 0.9995300283140874,
+      "all_pass": 0.990642414124183,
+      "assumption": "independent strata with equal fixed true rates; hypothetical"
+    },
+    {
+      "n": 600,
+      "true_rate": 0.02,
+      "strata": 20,
+      "allowable": 15,
+      "single_pass": 0.8466161056626197,
+      "all_pass": 0.03578743077683626,
+      "assumption": "independent strata with equal fixed true rates; hypothetical"
+    },
+    {
+      "n": 1000,
+      "true_rate": 0.001,
+      "strata": 20,
+      "allowable": 31,
+      "single_pass": 1.0,
+      "all_pass": 1.0,
+      "assumption": "independent strata with equal fixed true rates; hypothetical"
+    },
+    {
+      "n": 1000,
+      "true_rate": 0.005,
+      "strata": 20,
+      "allowable": 31,
+      "single_pass": 0.9999999999999996,
+      "all_pass": 0.9999999999999911,
+      "assumption": "independent strata with equal fixed true rates; hypothetical"
+    },
+    {
+      "n": 1000,
+      "true_rate": 0.01,
+      "strata": 20,
+      "allowable": 31,
+      "single_pass": 0.9999999806184432,
+      "all_pass": 0.9999996123689353,
+      "assumption": "independent strata with equal fixed true rates; hypothetical"
+    },
+    {
+      "n": 1000,
+      "true_rate": 0.02,
+      "strata": 20,
+      "allowable": 31,
+      "single_pass": 0.9924920194072205,
+      "all_pass": 0.8600832027307989,
+      "assumption": "independent strata with equal fixed true rates; hypothetical"
+    },
+    {
+      "n": 2000,
+      "true_rate": 0.001,
+      "strata": 20,
+      "allowable": 73,
+      "single_pass": 1.0,
+      "all_pass": 1.0,
+      "assumption": "independent strata with equal fixed true rates; hypothetical"
+    },
+    {
+      "n": 2000,
+      "true_rate": 0.005,
+      "strata": 20,
+      "allowable": 73,
+      "single_pass": 1.0,
+      "all_pass": 1.0,
+      "assumption": "independent strata with equal fixed true rates; hypothetical"
+    },
+    {
+      "n": 2000,
+      "true_rate": 0.01,
+      "strata": 20,
+      "allowable": 73,
+      "single_pass": 1.0,
+      "all_pass": 1.0,
+      "assumption": "independent strata with equal fixed true rates; hypothetical"
+    },
+    {
+      "n": 2000,
+      "true_rate": 0.02,
+      "strata": 20,
+      "allowable": 73,
+      "single_pass": 0.9999992816159471,
+      "all_pass": 0.9999856324169957,
+      "assumption": "independent strata with equal fixed true rates; hypothetical"
+    }
+  ],
+  "population_references": [
+    {
+      "rho": 0.0,
+      "b": 0.8,
+      "distinct_gap": 0.19200000000000003
+    },
+    {
+      "rho": 0.7,
+      "b": 0.8,
+      "distinct_gap": 0.0212558609910821
+    },
+    {
+      "rho": 0.9,
+      "b": 0.8,
+      "distinct_gap": 0.002128386096705963
+    }
+  ],
+  "interpretation": "Design calculations do not rescue the failed confirmation; no new threshold is learned."
+}
