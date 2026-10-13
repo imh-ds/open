@@ -1,0 +1,43 @@
+{
+  "datasets": 10800,
+  "shards": 135,
+  "raw_files": 97335,
+  "pair_risk_checks": 86400,
+  "population_risk_checks": 43200,
+  "curve_checks": 86400,
+  "max_gain_difference": 0.0,
+  "bounds_checked": 72,
+  "qualified": 4,
+  "inner_training_sizes": {
+    "n300-p5-rho0": [
+      133,
+      134
+    ],
+    "n300-p5-rho0.7": [
+      133,
+      134
+    ],
+    "n600-p5-rho0": [
+      266,
+      267
+    ],
+    "n600-p5-rho0.7": [
+      266,
+      267
+    ],
+    "n300-p15-rho0.7": [
+      133,
+      134
+    ],
+    "n300-p15-rho0.9": [
+      133,
+      134
+    ]
+  },
+  "known_fitting_calls": 7473600,
+  "known_verification_refits": 216000,
+  "model_fits_performed": 0,
+  "manifest": "5a383f67f965c36ec9ffd07175e8153940d6b8844d5e021e25620c87862f5f4a",
+  "selection": "0686c0d6a8fb92e6b034a0a74e7b7e02f3331583e5c13b438f2fb41d7616f79f",
+  "scope": "Independent reconstruction of outcomes, indices, saved tuning winners, prediction risks, diagnostic population vectors, curve contrasts/support/cosines, decisions and bounds. Saved model predictions are inputs; this does not independently retrain models or establish causal or effect-size accuracy."
+}
