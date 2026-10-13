@@ -1,6 +1,6 @@
 # Prospective, condition-specific interaction validation proposal
 
-Status: design prepared 2026-10-13; awaiting design approval. No new model fits, threshold learning, confidence adoption or Actions dispatch. This is the prospective response to the completed confidence diagnostic probe, not a revision of the failed historical confirmation.
+Status: design approved by the user on 2026-10-13; implementation plan prepared and awaiting review. No new model fits, threshold learning, confidence adoption or Actions dispatch. This is the prospective response to the completed confidence diagnostic probe, not a revision of the failed historical confirmation.
 
 ## Purpose and alternatives
 
