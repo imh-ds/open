@@ -33,3 +33,5 @@ Separate arithmetic verification reproduced all 16,000 pair comparisons, all 4,0
 ## Fresh confirmation launch
 
 The audited cutoffs and disjoint Stage B manifest were separately committed and their remote Git blobs verified before dispatch. [Confirmation run38330174633](https://github.com/imh-ds/open/actions/runs/38330174633) started once at source `c213bf92c5fd5a28720497cdf238c1a0ea812d5e`: 5,200 datasets/130 forty-task shards; 4,000null and1,200signal cases. Stage B runner-minute cap3,975, within the approved combined5,550cap. These confirmation results are pending; launch does not establish scientific acceptance. See confirmation-launch.json and startup metadata.
+
+Confirmation startup verified: preparation succeeded, all130expected workers registered, 20active/110queued, no failures at snapshot. Scientific confirmation results remain pending.
