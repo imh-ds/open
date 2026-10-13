@@ -1,6 +1,6 @@
-# Proposed realistic-interaction development study (D-043)
+# Approved realistic-interaction development study (D-043)
 
-**Status: proposed parameters, awaiting owner approval. No datasets have been generated, models fitted or Actions workflows dispatched under this protocol.**
+**Status: owner approved these parameters, implementation and staged GitHub Actions launch on 2026-10-13. Implementation is underway; calibration dispatch requires the verification gates below. Development dispatch remains gated on completed independently audited calibration.**
 
 ## Purpose and decision
 
@@ -131,4 +131,4 @@ Retain every raw prediction, curve, checkpoint, attempt-cost record, inventory, 
 
 This proposal covers continuous Gaussian latent variables with classical predictor measurement error, five predictors, two fixed pairs and one spline candidate. It does not validate ordinal item scores, missingness, outliers, clusters, searched-pair multiplicity, other engines, causal moderation, a universal minimum N or a production confidence feature. Those remain separate investigations.
 
-Owner approval of these parameters and the development-only purpose is required before implementation and generation. This document is the concrete proposed design, not an implemented or launched study. Following approval, prepare the implementation plan, add tests/independent verifiers and pass the frozen launch gates. Preserve the existing studies and their decisions.
+The owner approved these parameters and the development-only purpose, including implementation and staged launch, on 2026-10-13 ("Approved proceed with the action"). Prepare the implementation plan, add tests/independent verifiers and pass the frozen launch gates before dispatch. Approval does not imply implementation completion or scientific validation. Preserve the existing studies and their decisions.
