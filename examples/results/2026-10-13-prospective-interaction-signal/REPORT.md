@@ -43,13 +43,15 @@ Twenty-two combinations passed the unrelated-pair control criterion. Eleven pass
 
 Treat interaction findings as exploratory unless the study's conditions have been validated. Retain the distinction between detecting an interaction and validating its displayed relative pattern. Do not turn these simulations into a universal minimum sample size, automatically label any study with 600 people reliable, or interpret absence from the graph as absence of an interaction.
 
-Next, complete the separate independent saved-vector arithmetic review required for formal study closeout, then translate these results into clear condition-specific guidance and display labels. The present evidence does not justify a general production confidence claim.
+The independent saved-vector arithmetic review is now complete, and [researcher guidance](../../prospective_interaction_guidance.md) explains these evidence levels and the actual tuning sample sizes. The large raw archives are committed locally; publishing and verifying those archives remotely remains a separate archival closeout task. The present evidence does not justify a general production confidence claim or automatic confidence labels for individual studies.
 
 ## Verification and scope
 
 The source matches the frozen public commit `110ddfd617e8d9694d27688998d1d4cb1f719700`, run attempt 1. All 137 jobs (135 workers, preparation and aggregation) succeeded. No missing datasets, skipped identities, audit errors, warnings, failed tasks or unknown fitting costs were reported. Actions audited the saved prediction and curve records.
 
-The independent local summary verifier checked all 10,800 dataset identities, 21,600 pair records, score/threshold decisions, and all 72 endpoint bounds and support decisions. `verify_archives.py` verifies the original artifact's API digest, raw inventories, CRCs, contexts, source hashes and attempt costs and retains all 135 raw shards locally. These checks are not a separate model refit or full independent recomputation of saved-vector prediction and curve arithmetic.
+The independent local summary verifier checked all 10,800 dataset identities, 21,600 pair records, score/threshold decisions, and all 72 endpoint bounds and support decisions. `verify_archives.py` verified the original artifact's API digest, raw inventories, CRCs, contexts, source hashes and attempt costs and retained all 135 raw shards locally.
+
+The final [independent vector audit](independent-vectors-final/check.json) independently reconstructed generated outcomes, CV indices and saved tuning winners; checked 86,400 pair prediction-risk calculations, 43,200 ideal-population diagnostics and 86,400 curve calculations; then reproduced all dataset decisions and all 72 endpoint bounds. All 10,800 cases and 97,335 raw files passed. Recomputed prediction gains had a maximum difference of zero from their saved values. The four qualified combinations are unchanged. This uses saved predictions and tuning losses as inputs, rather than independently retraining models or validating numerical effect-size accuracy. See [verification details](VERIFICATION.md).
 
 Known Actions fitting costs are 7,473,600 fitting/tuning calls and 216,000 saved-setting verification refits. Local evidence checks add no model fits. All denominators and thresholds remain frozen; this study does not rescue the historical failed confirmation study.
 
