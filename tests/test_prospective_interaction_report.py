@@ -36,3 +36,11 @@ def test_duplicate_conflicts_and_foreign_folders(tmp_path):
 def test_plain_report_withholds_amplitude_claim(tmp_path):
     m=load();m.write_report(dict(stage='null',planned=14400,complete=0,missing=14400,audit_errors=[],passed_cells=[]),[],tmp_path)
     s=(tmp_path/'REPORT.md').read_text();assert 'unknown' in s and 'magnitude' in s and 'No' in s
+
+
+def test_partial_receipt_context_and_unknown_failure_cost(tmp_path,monkeypatch):
+    m=load();c=m.study.d.tasks()[0];out=tmp_path/'out'
+    m.study.io.write(out/c['id']/'receipt.json',dict(task=c,context='foreign',environment=m.study.io.environment()))
+    a=m.aggregate('null',[out],out,m.study.manifest())
+    assert a['missing']==14400 and a['audit_errors'] and c['id'] in a['unknown_attempt_cost_ids']
+    assert not (out/'proposed-selection.json').exists()

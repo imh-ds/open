@@ -2,6 +2,7 @@
 from functools import lru_cache
 import math
 import confidence_diagnostic as d
+import prospective_interaction_rules as rules
 
 CELLS=((300,5,0.),(300,5,.7),(600,5,0.),(600,5,.7),(300,15,.7),(300,15,.9))
 BUDGET_MINUTES=6450
@@ -73,6 +74,18 @@ def make_selection(manifest,audit):
         raise ValueError('selection requires complete matching audited null evidence')
     cells=audit['passed_cells']
     if cells!=[c for c in cell_ids() if c in cells]:raise ValueError('invalid passed condition order')
+    strata=audit.get('strata',[]);expected={(cell,s) for cell in cell_ids() for s in ('noise','additive')}
+    if len(strata)!=12 or {(r['cell'],r['benchmark']) for r in strata}!=expected:
+        raise ValueError('selection requires all twelve null strata')
+    checked={}
+    for r in strata:
+        if r['n']!=1200 or r.get('missing',0) or r.get('complete',1200)!=1200:
+            raise ValueError('null stratum is incomplete')
+        recomputed=rules.bounds(r['k'],r['n'],'false')
+        if any(r.get(k)!=v for k,v in recomputed.items()):raise ValueError('null bound or qualification differs')
+        checked[(r['cell'],r['benchmark'])]=recomputed['pass']
+    if cells!=[cell for cell in cell_ids() if all(checked[(cell,s)] for s in ('noise','additive'))]:
+        raise ValueError('selected condition did not pass both null gates')
     signal=[c for c in _tasks() if c['stage']=='signal']
     return dict(schema='open.prospective_selection.v1',manifest=identity,
         stage_a_audit=d.previous.io.fingerprint(audit),cells=cells,

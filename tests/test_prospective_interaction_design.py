@@ -25,6 +25,9 @@ def test_universe_shards_and_coefficients():
 
 def test_selection_context_completion_and_skips():
     m=load();manifest={'identity':'example'};audit=dict(stage='null',manifest='example',complete=14400,missing=0,audit_errors=[],passed_cells=[m.cell_ids()[0]])
+    import prospective_interaction_rules as rules
+    audit['strata']=[dict(cell=cell,benchmark=scenario,**rules.bounds(0 if cell==m.cell_ids()[0] else 100,1200,'false'))
+                     for cell in m.cell_ids() for scenario in ('noise','additive')]
     s=m.make_selection(manifest,audit);assert m.validate_selection(s,manifest,audit)==audit['passed_cells']
     assert len(s['skipped_ids'])==9000 and len(m.shards('signal',s))==23
     for key,value in [('manifest','foreign'),('cells',list(m.cell_ids()))]:
@@ -32,6 +35,12 @@ def test_selection_context_completion_and_skips():
         with pytest.raises(ValueError):m.validate_selection(bad,manifest,audit)
     bad=dict(audit,missing=1)
     with pytest.raises(ValueError):m.make_selection(manifest,bad)
+
+
+def test_selection_recomputes_null_gates_instead_of_trusting_passed_list():
+    m=load();manifest={'identity':'example'}
+    audit=dict(stage='null',manifest='example',complete=14400,missing=0,audit_errors=[],passed_cells=m.cell_ids(),strata=[])
+    with pytest.raises(ValueError):m.make_selection(manifest,audit)
 
 
 def test_historical_seed_fields_recursively_included():

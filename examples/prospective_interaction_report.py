@@ -50,6 +50,11 @@ def aggregate(stage,input_paths,output,manifest,selection=None):
     for c in planned:
         folder=output/c['id']
         if not folder.exists():continue
+        if (folder/'receipt.json').exists():
+            try:
+                expected=dict(task=c,context=study.context(c),environment=study.io.environment())
+                if study.io.read(folder/'receipt.json')!=expected:raise ValueError('partial receipt context differs')
+            except Exception as e:errors.append(dict(id=c['id'],error=repr(e)))
         if (folder/'error.json').exists():
             try:
                 f=study.io.read(folder/'error.json')
@@ -70,7 +75,7 @@ def aggregate(stage,input_paths,output,manifest,selection=None):
                 cost+=692;warning_count+=len(v['warnings']);seconds+=study.io.read(folder/'timing.json')['retained_fitting_seconds']
             except Exception as e:errors.append(dict(id=c['id'],error=repr(e)))
         if c['id'] not in complete:
-            if (folder/'receipt.json').exists() or any(folder.glob('comparison-*.json')):unknown.append(c['id'])
+            if (folder/'receipt.json').exists() or (folder/'error.json').exists() or any(folder.glob('comparison-*.json')):unknown.append(c['id'])
             data=study.old.comparisons(c)
             for i in range(4):
                 p=folder/f'comparison-{i}.json'
