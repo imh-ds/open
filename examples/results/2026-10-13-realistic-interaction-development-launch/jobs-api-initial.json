@@ -1,0 +1,81 @@
+{
+  "total_count": 1,
+  "jobs": [
+    {
+      "id": 115587741002,
+      "run_id": 38482368226,
+      "workflow_name": "Realistic interaction development study",
+      "head_branch": "codex/actions-selection-reliability",
+      "run_url": "https://api.github.com/repos/imh-ds/open/actions/runs/38482368226",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOVD_Yg88AAAAa6ZD1Sg",
+      "head_sha": "2005c0aea61f963386569bdc83d26be0d60efc04",
+      "url": "https://api.github.com/repos/imh-ds/open/actions/jobs/115587741002",
+      "html_url": "https://github.com/imh-ds/open/actions/runs/38482368226/job/115587741002",
+      "status": "in_progress",
+      "conclusion": null,
+      "created_at": "2026-10-13T23:08:23Z",
+      "started_at": "2026-10-13T23:08:25Z",
+      "completed_at": null,
+      "name": "prepare",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-13T23:08:26Z",
+          "completed_at": "2026-10-13T23:08:26Z"
+        },
+        {
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-13T23:08:26Z",
+          "completed_at": "2026-10-13T23:08:54Z"
+        },
+        {
+          "name": "Run ./.github/actions/realistic-interaction-setup",
+          "status": "in_progress",
+          "conclusion": null,
+          "number": 3,
+          "started_at": "2026-10-13T23:08:54Z",
+          "completed_at": null
+        },
+        {
+          "name": "Run $shards = python examples/realistic_interaction_study.py matrix --stage 'development'",
+          "status": "pending",
+          "conclusion": null,
+          "number": 4,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Post Run ./.github/actions/realistic-interaction-setup",
+          "status": "pending",
+          "conclusion": null,
+          "number": 7,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "status": "pending",
+          "conclusion": null,
+          "number": 8,
+          "started_at": null,
+          "completed_at": null
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/imh-ds/open/check-runs/115587741002",
+      "labels": [
+        "windows-2022"
+      ],
+      "runner_id": 1000018643,
+      "runner_name": "GitHub Actions 1000018643",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "branch": "codex/actions-selection-reliability",
+  "calibration_audit": "914bfe3cf3b4f53070f4b1615decc0a5a2695d894acc1ad67bb755904c95b8b4",
+  "calibration_run": 38477737386,
+  "command": [
+    "gh",
+    "workflow",
+    "run",
+    "realistic-interaction.yml",
+    "--ref",
+    "codex/actions-selection-reliability",
+    "-f",
+    "stage=development"
+  ],
+  "command_exit_code": 0,
+  "manifest": "12e6b9e023f15d3e8d19656e7e4b7403884ba6a4c7ddc05d4d8629dae3d9c560",
+  "planned_datasets": 10800,
+  "run_id": 38482368226,
+  "shards": 135,
+  "skipped_ids": [],
+  "source": "2005c0aea61f963386569bdc83d26be0d60efc04",
+  "stage": "development",
+  "started_at": "2026-10-13T23:08:20.722373+00:00",
+  "status": "accepted",
+  "stderr": "",
+  "stdout": "https://github.com/imh-ds/open/actions/runs/38482368226\n",
+  "thresholds": "8f3c5e0096c55e625457bf5ac5d2bf60232a06dbdd136d0246df7edfbd7383f5",
+  "total_protocol_runner_minute_cap": 3750,
+  "url": "https://github.com/imh-ds/open/actions/runs/38482368226",
+  "workers_per_shard": 2,
+  "workflow_id": 383719695
+}
