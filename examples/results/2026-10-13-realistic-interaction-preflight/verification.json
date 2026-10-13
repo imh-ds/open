@@ -1,0 +1,19 @@
+{
+  "full_suite": {
+    "passed": 712,
+    "warnings": 29,
+    "seconds": 402.85,
+    "command": "python -m pytest -q --basetemp=.superpowers/realistic-post-review-full-tmp"
+  },
+  "focused": {
+    "passed": 20,
+    "seconds": 19.02
+  },
+  "new_model_warning_count": 0,
+  "legacy_freeze": true,
+  "sparse_fixture": true,
+  "review": "one fresh read-only reviewer; two Important and one visual finding all fixed by RED/GREEN regressions",
+  "tested_source_manifest": "12e6b9e023f15d3e8d19656e7e4b7403884ba6a4c7ddc05d4d8629dae3d9c560",
+  "checked_at": "2026-10-13T22:23:59.026039+00:00",
+  "warning_scope": "29 pre-existing convergence/CJK-font warnings outside new study; first full-suite run also29"
+}
