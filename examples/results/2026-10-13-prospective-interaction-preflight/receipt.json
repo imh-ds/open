@@ -1,0 +1,34 @@
+{
+  "retained_archive": {
+    "files": 731,
+    "bytes": 18616251,
+    "sha256": "35e5481bfd2515d6c005b0ed68efa4830741631092de1b460c32fbf749ff1e15",
+    "parts": [
+      {
+        "file": "raw-evidence.zip",
+        "bytes": 18616251,
+        "sha256": "35e5481bfd2515d6c005b0ed68efa4830741631092de1b460c32fbf749ff1e15"
+      }
+    ]
+  },
+  "manifest": "5a383f67f965c36ec9ffd07175e8153940d6b8844d5e021e25620c87862f5f4a",
+  "source_commit": "297781d7006471a55ce8444bfbc3392c0aac18e5",
+  "environment": {
+    "python": "3.11.9",
+    "numpy": "1.26.4",
+    "pandas": "2.2.3",
+    "scipy": "1.11.2",
+    "sklearn": "1.3.0",
+    "matplotlib": "3.9.2",
+    "PyYAML": "6.0.2"
+  },
+  "storage_estimate": {
+    "preflight_unique_raw_bytes": 84552518,
+    "preflight_archive_bytes": 18616251,
+    "raw_bytes_per_task": 1056906.475,
+    "maximum_stage_a_raw_bytes": 15219453240.000002,
+    "maximum_all_cases_raw_bytes": 26634043170.000004,
+    "stage_a_merged_plus_download_estimate_bytes": 30438906480.000004,
+    "scope": "Measured high-overlap p15/N300 shard including repeated shared manifest; N600 rows and other curves can differ. Require conservative runtime and disk headroom, not exact forecast."
+  }
+}

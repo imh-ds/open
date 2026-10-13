@@ -1,0 +1,21 @@
+{
+  "pack_seconds": 2.35999999998603,
+  "stream_audit_seconds": 8.859000000054948,
+  "archive_bytes": 18360217,
+  "raw_bytes": 72639837,
+  "files": 722,
+  "archive_sha256": "51b8bdc82f3727e28792b20384ca3cd57f766e244f5210bada7f517b77f2eb8a",
+  "complete": 80,
+  "missing": 14320,
+  "audit_errors": 0,
+  "known_attempt_cost": {
+    "fits": 55360,
+    "verification_refits": 1600,
+    "seconds": 446.0629999997327
+  },
+  "maximum_stage_a_compressed_estimate": 3304839060,
+  "conservative_twofold_compressed_estimate": 6609678120,
+  "maximum_one_extracted_shard_estimate": 145279674,
+  "stage_a_audit_linear_minutes": 26.577000000164844,
+  "scope": "Measured final p15/N300 shard; 2x storage headroom for larger tasks, raw archives audited one shard at a time; timings are estimates not guarantees."
+}
