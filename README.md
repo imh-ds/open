@@ -25,13 +25,16 @@ See [complete-procedure evaluation and the researcher report](docs/procedure-eva
 for training-isolated discovery, held-out root prediction, and a unified report
 that keeps descriptive network/effect evidence distinct from generalization.
 
-After installing the package in a Python 3.11+ environment, load and inspect the
-example configuration:
+After installing the package in a Python 3.11+ environment, save the
+[example configuration](configs/default.yaml) as `my-study.yaml` in your working
+directory and set `analysis.root` to your outcome column. The YAML example is a
+repository file; installing the wheel does not copy it into your working directory.
+Then load and inspect your saved configuration:
 
 ```python
 from open.config import load_config
 
-config = load_config("configs/default.yaml")
+config = load_config("my-study.yaml")
 print(config.analysis.root, config.performance_cv.folds)
 ```
 

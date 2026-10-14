@@ -1,0 +1,1402 @@
+{
+  "assessments": [
+    {
+      "candidates": [
+        "Depression",
+        "Stress"
+      ],
+      "depth": 0,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Depression": 1.0004992801298258,
+          "Stress": 0.6851339830406001
+        },
+        "classes": {
+          "Depression": {
+            "dependence_components": [
+              [
+                "Depression",
+                "Stress"
+              ]
+            ],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          },
+          "Stress": {
+            "dependence_components": [
+              [
+                "Depression",
+                "Stress"
+              ]
+            ],
+            "kind": "SCREENED_BY_PARTNER",
+            "screened_by_partner": [
+              "Depression"
+            ],
+            "screened_by_set": [
+              "Depression"
+            ],
+            "shared_groups": []
+          }
+        },
+        "dependence_components": [
+          {
+            "edges": [
+              {
+                "a": "Depression",
+                "b": "Stress",
+                "evaluated_fold_count": 10,
+                "evaluation_frequency": 1.0,
+                "selected_fold_count": 10,
+                "selected_folds": [
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    0,
+                    2
+                  ],
+                  [
+                    0,
+                    3
+                  ],
+                  [
+                    0,
+                    4
+                  ],
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    2
+                  ],
+                  [
+                    1,
+                    3
+                  ],
+                  [
+                    1,
+                    4
+                  ]
+                ],
+                "selection_frequency": 1.0
+              }
+            ],
+            "members": [
+              "Depression",
+              "Stress"
+            ],
+            "negligible_members": [],
+            "screened_by_set": [
+              [
+                "Stress",
+                [
+                  "Depression"
+                ]
+              ]
+            ],
+            "strong_members": [
+              "Depression"
+            ]
+          }
+        ],
+        "input_candidates": [
+          "Depression",
+          "Stress"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 64,
+        "outer_model_fit_count": 50,
+        "pair_ablations": {
+          "fold_scores": [
+            {
+              "fold_index": 0,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Depression",
+                  "b": "Stress",
+                  "candidate": true,
+                  "reason": null,
+                  "score": 0.8141176470588236
+                }
+              ]
+            },
+            {
+              "fold_index": 1,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Depression",
+                  "b": "Stress",
+                  "candidate": true,
+                  "reason": null,
+                  "score": 0.8501357466063347
+                }
+              ]
+            },
+            {
+              "fold_index": 2,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Depression",
+                  "b": "Stress",
+                  "candidate": true,
+                  "reason": null,
+                  "score": 0.8302262443438913
+                }
+              ]
+            },
+            {
+              "fold_index": 3,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Depression",
+                  "b": "Stress",
+                  "candidate": true,
+                  "reason": null,
+                  "score": 0.8297737556561086
+                }
+              ]
+            },
+            {
+              "fold_index": 4,
+              "repeat_index": 0,
+              "scores": [
+                {
+                  "a": "Depression",
+                  "b": "Stress",
+                  "candidate": true,
+                  "reason": null,
+                  "score": 0.8630581405276189
+                }
+              ]
+            },
+            {
+              "fold_index": 0,
+              "repeat_index": 1,
+              "scores": [
+                {
+                  "a": "Depression",
+                  "b": "Stress",
+                  "candidate": true,
+                  "reason": null,
+                  "score": 0.8380995475113121
+                }
+              ]
+            },
+            {
+              "fold_index": 1,
+              "repeat_index": 1,
+              "scores": [
+                {
+                  "a": "Depression",
+                  "b": "Stress",
+                  "candidate": true,
+                  "reason": null,
+                  "score": 0.8729411764705882
+                }
+              ]
+            },
+            {
+              "fold_index": 2,
+              "repeat_index": 1,
+              "scores": [
+                {
+                  "a": "Depression",
+                  "b": "Stress",
+                  "candidate": true,
+                  "reason": null,
+                  "score": 0.8026244343891402
+                }
+              ]
+            },
+            {
+              "fold_index": 3,
+              "repeat_index": 1,
+              "scores": [
+                {
+                  "a": "Depression",
+                  "b": "Stress",
+                  "candidate": true,
+                  "reason": null,
+                  "score": 0.8438009049773755
+                }
+              ]
+            },
+            {
+              "fold_index": 4,
+              "repeat_index": 1,
+              "scores": [
+                {
+                  "a": "Depression",
+                  "b": "Stress",
+                  "candidate": true,
+                  "reason": null,
+                  "score": 0.8442755912234269
+                }
+              ]
+            }
+          ],
+          "pairs": [
+            {
+              "a": "Depression",
+              "ablated_risk": 1.3928761619055081,
+              "ablation": {
+                "aggregate_risk": 1.3928761619055081,
+                "candidate_set": [
+                  "Depression",
+                  "Stress"
+                ],
+                "folds": [
+                  {
+                    "fitted_parameters": null,
+                    "fold_index": 0,
+                    "observations": [
+                      {
+                        "loss": 0.1558576349367348,
+                        "observed": -0.3281139495036554,
+                        "predicted": 0.06667413914231021,
+                        "row_position": 0
+                      },
+                      {
+                        "loss": 0.017416875873206294,
+                        "observed": 0.1986471510546186,
+                        "predicted": 0.06667413914231021,
+                        "row_position": 17
+                      },
+                      {
+                        "loss": 0.053662470787346025,
+                        "observed": -0.1649774759769158,
+                        "predicted": 0.06667413914231021,
+                        "row_position": 25
+                      },
+                      {
+                        "loss": 0.05359530940280923,
+                        "observed": 0.2981807468294543,
+                        "predicted": 0.06667413914231021,
+                        "row_position": 26
+                      },
+                      {
+                        "loss": 10.898051501346249,
+                        "observed": -3.234545559900189,
+                        "predicted": 0.06667413914231021,
+                        "row_position": 30
+                      },
+                      {
+                        "loss": 0.16271675858796456,
+                        "observed": -0.3367075146149778,
+                        "predicted": 0.06667413914231021,
+                        "row_position": 38
+                      },
+                      {
+                        "loss": 1.2851041921523274,
+                        "observed": -1.0669502219898628,
+                        "predicted": 0.06667413914231021,
+                        "row_position": 42
+                      },
+                      {
+                        "loss": 0.9151331603529896,
+                        "observed": 1.0233000641270922,
+                        "predicted": 0.06667413914231021,
+                        "row_position": 52
+                      },
+                      {
+                        "loss": 2.998896996213459,
+                        "observed": 1.7984065076720028,
+                        "predicted": 0.06667413914231021,
+                        "row_position": 53
+                      },
+                      {
+                        "loss": 3.5563724444822986,
+                        "observed": -1.8191605419690269,
+                        "predicted": 0.06667413914231021,
+                        "row_position": 54
+                      },
+                      {
+                        "loss": 2.525359661555619,
+                        "observed": 1.6558121638448906,
+                        "predicted": 0.06667413914231021,
+                        "row_position": 58
+                      },
+                      {
+                        "loss": 1.5022289080420959,
+                        "observed": -1.158980342366282,
+                        "predicted": 0.06667413914231021,
+                        "row_position": 61
+                      },
+                      {
+                        "loss": 3.46677776795389,
+                        "observed": -1.7952543686027884,
+                        "predicted": 0.06667413914231021,
+                        "row_position": 62
+                      }
+                    ],
+                    "predictors": [],
+                    "repeat_index": 0,
+                    "risk": 2.122397975514384
+                  },
+                  {
+                    "fitted_parameters": null,
+                    "fold_index": 1,
+                    "observations": [
+                      {
+                        "loss": 0.2536414400992359,
+                        "observed": -0.4278551161576919,
+                        "predicted": 0.07577315955688298,
+                        "row_position": 3
+                      },
+                      {
+                        "loss": 0.27912352250223277,
+                        "observed": -0.4525482601321476,
+                        "predicted": 0.07577315955688298,
+                        "row_position": 4
+                      },
+                      {
+                        "loss": 0.20515143311828687,
+                        "observed": -0.3771632963817916,
+                        "predicted": 0.07577315955688298,
+                        "row_position": 10
+                      },
+                      {
+                        "loss": 0.6259374995726772,
+                        "observed": 0.8669352792091558,
+                        "predicted": 0.07577315955688298,
+                        "row_position": 16
+                      },
+                      {
+                        "loss": 0.6354851049598433,
+                        "observed": 0.8729463558949456,
+                        "predicted": 0.07577315955688298,
+                        "row_position": 23
+                      },
+                      {
+                        "loss": 0.0088046030927893,
+                        "observed": -0.0180596869990502,
+                        "predicted": 0.07577315955688298,
+                        "row_position": 24
+                      },
+                      {
+                        "loss": 0.3941672490122468,
+                        "observed": -0.5520542442829357,
+                        "predicted": 0.07577315955688298,
+                        "row_position": 45
+                      },
+                      {
+                        "loss": 0.025508530196062435,
+                        "observed": 0.2354870606302161,
+                        "predicted": 0.07577315955688298,
+                        "row_position": 46
+                      },
+                      {
+                        "loss": 0.8531177829568268,
+                        "observed": -0.8478705937142723,
+                        "predicted": 0.07577315955688298,
+                        "row_position": 47
+                      },
+                      {
+                        "loss": 3.011387536091151,
+                        "observed": -1.6595618329132025,
+                        "predicted": 0.07577315955688298,
+                        "row_position": 48
+                      },
+                      {
+                        "loss": 4.580210608637797,
+                        "observed": -2.0643695012575303,
+                        "predicted": 0.07577315955688298,
+                        "row_position": 51
+                      },
+                      {
+                        "loss": 0.08741541277193784,
+                        "observed": -0.2198878165152694,
+                        "predicted": 0.07577315955688298,
+                        "row_position": 55
+                      },
+                      {
+                        "loss": 0.6825484246031507,
+                        "observed": -0.7503917299192739,
+                        "predicted": 0.07577315955688298,
+                        "row_position": 60
+                      }
+                    ],
+                    "predictors": [],
+                    "repeat_index": 0,
+                    "risk": 0.8955768575087877
+                  },
+                  {
+                    "fitted_parameters": null,
+                    "fold_index": 2,
+                    "observations": [
+                      {
+                        "loss": 0.9698032062132295,
+                        "observed": 0.8742186467393079,
+                        "predicted": -0.11056722146414538,
+                        "row_position": 1
+                      },
+                      {
+                        "loss": 0.3351630978658286,
+                        "observed": -0.6894999445553769,
+                        "predicted": -0.11056722146414538,
+                        "row_position": 5
+                      },
+                      {
+                        "loss": 2.8594309211358966,
+                        "observed": 1.5804179710008557,
+                        "predicted": -0.11056722146414538,
+                        "row_position": 7
+                      },
+                      {
+                        "loss": 0.8460623985101826,
+                        "observed": -1.030383724093981,
+                        "predicted": -0.11056722146414538,
+                        "row_position": 11
+                      },
+                      {
+                        "loss": 0.3838231958861316,
+                        "observed": 0.5089674392983753,
+                        "predicted": -0.11056722146414538,
+                        "row_position": 18
+                      },
+                      {
+                        "loss": 0.3777071166755052,
+                        "observed": 0.5040115909557958,
+                        "predicted": -0.11056722146414538,
+                        "row_position": 20
+                      },
+                      {
+                        "loss": 1.0456443411435028,
+                        "observed": 0.9120003025378164,
+                        "predicted": -0.11056722146414538,
+                        "row_position": 22
+                      },
+                      {
+                        "loss": 2.7652925405341233,
+                        "observed": 1.5523496557531506,
+                        "predicted": -0.11056722146414538,
+                        "row_position": 31
+                      },
+                      {
+                        "loss": 10.902159925153056,
+                        "observed": 3.191274677408824,
+                        "predicted": -0.11056722146414538,
+                        "row_position": 40
+                      },
+                      {
+                        "loss": 0.027833015547089827,
+                        "observed": -0.2773995191378567,
+                        "predicted": -0.11056722146414538,
+                        "row_position": 41
+                      },
+                      {
+                        "loss": 0.2845512066556234,
+                        "observed": -0.6440006349804187,
+                        "predicted": -0.11056722146414538,
+                        "row_position": 44
+                      },
+                      {
+                        "loss": 1.4222184783013352,
+                        "observed": -1.303135239776449,
+                        "predicted": -0.11056722146414538,
+                        "row_position": 49
+                      },
+                      {
+                        "loss": 0.9202333713074058,
+                        "observed": -1.0698551716164475,
+                        "predicted": -0.11056722146414538,
+                        "row_position": 59
+                      }
+                    ],
+                    "predictors": [],
+                    "repeat_index": 0,
+                    "risk": 1.7799940626868391
+                  },
+                  {
+                    "fitted_parameters": null,
+                    "fold_index": 3,
+                    "observations": [
+                      {
+                        "loss": 1.2387988295954773,
+                        "observed": -1.2015624695225209,
+                        "predicted": -0.08854906906613937,
+                        "row_position": 2
+                      },
+                      {
+                        "loss": 0.03255309972793904,
+                        "observed": 0.0918757067489882,
+                        "predicted": -0.08854906906613937,
+                        "row_position": 6
+                      },
+                      {
+                        "loss": 0.09098550892139395,
+                        "observed": 0.213088973828642,
+                        "predicted": -0.08854906906613937,
+                        "row_position": 8
+                      },
+                      {
+                        "loss": 0.028997099248726347,
+                        "observed": 0.081736277481138,
+                        "predicted": -0.08854906906613937,
+                        "row_position": 9
+                      },
+                      {
+                        "loss": 0.7535498992911936,
+                        "observed": -0.956621588669884,
+                        "predicted": -0.08854906906613937,
+                        "row_position": 14
+                      },
+                      {
+                        "loss": 1.9336708267260032,
+                        "observed": 1.30201586171775,
+                        "predicted": -0.08854906906613937,
+                        "row_position": 19
+                      },
+                      {
+                        "loss": 0.0022933995006167436,
+                        "observed": -0.1364385198942366,
+                        "predicted": -0.08854906906613937,
+                        "row_position": 21
+                      },
+                      {
+                        "loss": 1.1853714163518538,
+                        "observed": -1.1772967057349195,
+                        "predicted": -0.08854906906613937,
+                        "row_position": 27
+                      },
+                      {
+                        "loss": 2.2536820002492783,
+                        "observed": 1.4126777626449376,
+                        "predicted": -0.08854906906613937,
+                        "row_position": 28
+                      },
+                      {
+                        "loss": 0.10220997053260472,
+                        "observed": -0.4082520101420774,
+                        "predicted": -0.08854906906613937,
+                        "row_position": 35
+                      },
+                      {
+                        "loss": 4.134497767703076,
+                        "observed": 1.9447973765016284,
+                        "predicted": -0.08854906906613937,
+                        "row_position": 37
+                      },
+                      {
+                        "loss": 1.9819322409342055,
+                        "observed": 1.319262083373777,
+                        "predicted": -0.08854906906613937,
+                        "row_position": 39
+                      },
+                      {
+                        "loss": 0.34728226640886034,
+                        "observed": 0.5007575289020663,
+                        "predicted": -0.08854906906613937,
+                        "row_position": 50
+                      }
+                    ],
+                    "predictors": [],
+                    "repeat_index": 0,
+                    "risk": 1.083524948091633
+                  },
+                  {
+                    "fitted_parameters": null,
+                    "fold_index": 4,
+                    "observations": [
+                      {
+                        "loss": 0.07015959055128597,
+                        "observed": 0.2027663572491487,
+                        "predicted": -0.062110199945492356,
+                        "row_position": 12
+                      },
+                      {
+                        "loss": 0.6156817601898562,
+                        "observed": 0.7225437111451593,
+                        "predicted": -0.062110199945492356,
+                        "row_position": 13
+                      },
+                      {
+                        "loss": 0.10328316467495834,
+                        "observed": -0.3834871821252346,
+                        "predicted": -0.062110199945492356,
+                        "row_position": 15
+                      },
+                      {
+                        "loss": 0.0951597175495179,
+                        "observed": -0.37058988736351,
+                        "predicted": -0.062110199945492356,
+                        "row_position": 29
+                      },
+                      {
+                        "loss": 0.2502573561160819,
+                        "observed": 0.4381470899724877,
+                        "predicted": -0.062110199945492356,
+                        "row_position": 32
+                      },
+                      {
+                        "loss": 3.0609153044385233,
+                        "observed": -1.811657371198249,
+                        "predicted": -0.062110199945492356,
+                        "row_position": 33
+                      },
+                      {
+                        "loss": 0.0012052768618994792,
+                        "observed": -0.0968272974897785,
+                        "predicted": -0.062110199945492356,
+                        "row_position": 34
+                      },
+                      {
+                        "loss": 1.9668192446990262,
+                        "observed": 1.3403231299133735,
+                        "predicted": -0.062110199945492356,
+                        "row_position": 36
+                      },
+                      {
+                        "loss": 6.1578912329877165,
+                        "observed": 2.419399669667707,
+                        "predicted": -0.062110199945492356,
+                        "row_position": 43
+                      },
+                      {
+                        "loss": 1.1206989178177755,
+                        "observed": -1.1207408805030583,
+                        "predicted": -0.062110199945492356,
+                        "row_position": 56
+                      },
+                      {
+                        "loss": 0.00285052884293293,
+                        "observed": -0.0087198558472106,
+                        "predicted": -0.062110199945492356,
+                        "row_position": 57
+                      },
+                      {
+                        "loss": 0.18552046660656932,
+                        "observed": 0.3686106686069488,
+                        "predicted": -0.062110199945492356,
+                        "row_position": 63
+                      }
+                    ],
+                    "predictors": [],
+                    "repeat_index": 0,
+                    "risk": 1.1358702134446788
+                  },
+                  {
+                    "fitted_parameters": null,
+                    "fold_index": 0,
+                    "observations": [
+                      {
+                        "loss": 0.0010641313987527386,
+                        "observed": 0.0918757067489882,
+                        "predicted": 0.059254679806956805,
+                        "row_position": 6
+                      },
+                      {
+                        "loss": 1.0320045928544304,
+                        "observed": -0.956621588669884,
+                        "predicted": 0.059254679806956805,
+                        "row_position": 14
+                      },
+                      {
+                        "loss": 0.2022415660493864,
+                        "observed": 0.5089674392983753,
+                        "predicted": 0.059254679806956805,
+                        "row_position": 18
+                      },
+                      {
+                        "loss": 1.5444553552643114,
+                        "observed": 1.30201586171775,
+                        "predicted": 0.059254679806956805,
+                        "row_position": 19
+                      },
+                      {
+                        "loss": 0.1978087100146563,
+                        "observed": 0.5040115909557958,
+                        "predicted": 0.059254679806956805,
+                        "row_position": 20
+                      },
+                      {
+                        "loss": 0.03829582840929117,
+                        "observed": -0.1364385198942366,
+                        "predicted": 0.059254679806956805,
+                        "row_position": 21
+                      },
+                      {
+                        "loss": 0.3736986006719419,
+                        "observed": -0.5520542442829357,
+                        "predicted": 0.059254679806956805,
+                        "row_position": 45
+                      },
+                      {
+                        "loss": 0.19492476575909898,
+                        "observed": 0.5007575289020663,
+                        "predicted": 0.059254679806956805,
+                        "row_position": 50
+                      },
+                      {
+                        "loss": 4.5097796624018125,
+                        "observed": -2.0643695012575303,
+                        "predicted": 0.059254679806956805,
+                        "row_position": 51
+                      },
+                      {
+                        "loss": 0.9293835030289576,
+                        "observed": 1.0233000641270922,
+                        "predicted": 0.059254679806956805,
+                        "row_position": 52
+                      },
+                      {
+                        "loss": 3.528443745399718,
+                        "observed": -1.8191605419690269,
+                        "predicted": 0.059254679806956805,
+                        "row_position": 54
+                      },
+                      {
+                        "loss": 1.4840965692494315,
+                        "observed": -1.158980342366282,
+                        "predicted": 0.059254679806956805,
+                        "row_position": 61
+                      },
+                      {
+                        "loss": 3.439203810633619,
+                        "observed": -1.7952543686027884,
+                        "predicted": 0.059254679806956805,
+                        "row_position": 62
+                      }
+                    ],
+                    "predictors": [],
+                    "repeat_index": 1,
+                    "risk": 1.344261603164262
+                  },
+                  {
+                    "fitted_parameters": null,
+                    "fold_index": 1,
+                    "observations": [
+                      {
+                        "loss": 1.3967704787879731,
+                        "observed": -1.2015624695225209,
+                        "predicted": -0.019712022643571237,
+                        "row_position": 2
+                      },
+                      {
+                        "loss": 0.16658078478327623,
+                        "observed": -0.4278551161576919,
+                        "predicted": -0.019712022643571237,
+                        "row_position": 3
+                      },
+                      {
+                        "loss": 0.05419630395845545,
+                        "observed": 0.213088973828642,
+                        "predicted": -0.019712022643571237,
+                        "row_position": 8
+                      },
+                      {
+                        "loss": 0.01029175759819308,
+                        "observed": 0.081736277481138,
+                        "predicted": -0.019712022643571237,
+                        "row_position": 9
+                      },
+                      {
+                        "loss": 0.13233236665590958,
+                        "observed": -0.3834871821252346,
+                        "predicted": -0.019712022643571237,
+                        "row_position": 15
+                      },
+                      {
+                        "loss": 0.021102051932142107,
+                        "observed": -0.1649774759769158,
+                        "predicted": -0.019712022643571237,
+                        "row_position": 25
+                      },
+                      {
+                        "loss": 2.0517404969988604,
+                        "observed": 1.4126777626449376,
+                        "predicted": -0.019712022643571237,
+                        "row_position": 28
+                      },
+                      {
+                        "loss": 0.005946765614606087,
+                        "observed": -0.0968272974897785,
+                        "predicted": -0.019712022643571237,
+                        "row_position": 34
+                      },
+                      {
+                        "loss": 0.10048614193019406,
+                        "observed": -0.3367075146149778,
+                        "predicted": -0.019712022643571237,
+                        "row_position": 38
+                      },
+                      {
+                        "loss": 5.949265847569587,
+                        "observed": 2.419399669667707,
+                        "predicted": -0.019712022643571237,
+                        "row_position": 43
+                      },
+                      {
+                        "loss": 0.04007034845216459,
+                        "observed": -0.2198878165152694,
+                        "predicted": -0.019712022643571237,
+                        "row_position": 55
+                      },
+                      {
+                        "loss": 1.1028006333346687,
+                        "observed": -1.0698551716164475,
+                        "predicted": -0.019712022643571237,
+                        "row_position": 59
+                      },
+                      {
+                        "loss": 0.5338928346245067,
+                        "observed": -0.7503917299192739,
+                        "predicted": -0.019712022643571237,
+                        "row_position": 60
+                      }
+                    ],
+                    "predictors": [],
+                    "repeat_index": 1,
+                    "risk": 0.8896520624800414
+                  },
+                  {
+                    "fitted_parameters": null,
+                    "fold_index": 2,
+                    "observations": [
+                      {
+                        "loss": 1.077067128078599,
+                        "observed": -1.030383724093981,
+                        "predicted": 0.007434722494148976,
+                        "row_position": 11
+                      },
+                      {
+                        "loss": 0.7387412069934066,
+                        "observed": 0.8669352792091558,
+                        "predicted": 0.007434722494148976,
+                        "row_position": 16
+                      },
+                      {
+                        "loss": 10.510436151433671,
+                        "observed": -3.234545559900189,
+                        "predicted": 0.007434722494148976,
+                        "row_position": 30
+                      },
+                      {
+                        "loss": 0.18551314349879552,
+                        "observed": 0.4381470899724877,
+                        "predicted": 0.007434722494148976,
+                        "row_position": 32
+                      },
+                      {
+                        "loss": 3.309096045334192,
+                        "observed": -1.811657371198249,
+                        "predicted": 0.007434722494148976,
+                        "row_position": 33
+                      },
+                      {
+                        "loss": 0.17279545968978152,
+                        "observed": -0.4082520101420774,
+                        "predicted": 0.007434722494148976,
+                        "row_position": 35
+                      },
+                      {
+                        "loss": 1.776591506632557,
+                        "observed": 1.3403231299133735,
+                        "predicted": 0.007434722494148976,
+                        "row_position": 36
+                      },
+                      {
+                        "loss": 3.7533740531429047,
+                        "observed": 1.9447973765016284,
+                        "predicted": 0.007434722494148976,
+                        "row_position": 37
+                      },
+                      {
+                        "loss": 10.136836858511082,
+                        "observed": 3.191274677408824,
+                        "predicted": 0.007434722494148976,
+                        "row_position": 40
+                      },
+                      {
+                        "loss": 1.1543030089339128,
+                        "observed": -1.0669502219898628,
+                        "predicted": 0.007434722494148976,
+                        "row_position": 42
+                      },
+                      {
+                        "loss": 0.7315471839343876,
+                        "observed": -0.8478705937142723,
+                        "predicted": 0.007434722494148976,
+                        "row_position": 47
+                      },
+                      {
+                        "loss": 2.7788775157399748,
+                        "observed": -1.6595618329132025,
+                        "predicted": 0.007434722494148976,
+                        "row_position": 48
+                      },
+                      {
+                        "loss": 0.1304480640504761,
+                        "observed": 0.3686106686069488,
+                        "predicted": 0.007434722494148976,
+                        "row_position": 63
+                      }
+                    ],
+                    "predictors": [],
+                    "repeat_index": 1,
+                    "risk": 2.8042790250749032
+                  },
+                  {
+                    "fitted_parameters": null,
+                    "fold_index": 3,
+                    "observations": [
+                      {
+                        "loss": 0.06043255786035397,
+                        "observed": -0.3281139495036554,
+                        "predicted": -0.08228360585105834,
+                        "row_position": 0
+                      },
+                      {
+                        "loss": 0.9148965592104448,
+                        "observed": 0.8742186467393079,
+                        "predicted": -0.08228360585105834,
+                        "row_position": 1
+                      },
+                      {
+                        "loss": 0.36871168198947774,
+                        "observed": -0.6894999445553769,
+                        "predicted": -0.08228360585105834,
+                        "row_position": 5
+                      },
+                      {
+                        "loss": 2.764576533665841,
+                        "observed": 1.5804179710008557,
+                        "predicted": -0.08228360585105834,
+                        "row_position": 7
+                      },
+                      {
+                        "loss": 0.9886004904810561,
+                        "observed": 0.9120003025378164,
+                        "predicted": -0.08228360585105834,
+                        "row_position": 22
+                      },
+                      {
+                        "loss": 0.9124642798172722,
+                        "observed": 0.8729463558949456,
+                        "predicted": -0.08228360585105834,
+                        "row_position": 23
+                      },
+                      {
+                        "loss": 1.199053688917263,
+                        "observed": -1.1772967057349195,
+                        "predicted": -0.08228360585105834,
+                        "row_position": 27
+                      },
+                      {
+                        "loss": 0.31552602081391473,
+                        "observed": -0.6440006349804187,
+                        "predicted": -0.08228360585105834,
+                        "row_position": 44
+                      },
+                      {
+                        "loss": 0.10097819647595335,
+                        "observed": 0.2354870606302161,
+                        "predicted": -0.08228360585105834,
+                        "row_position": 46
+                      },
+                      {
+                        "loss": 1.4904787120582963,
+                        "observed": -1.303135239776449,
+                        "predicted": -0.08228360585105834,
+                        "row_position": 49
+                      },
+                      {
+                        "loss": 3.5369953031033847,
+                        "observed": 1.7984065076720028,
+                        "predicted": -0.08228360585105834,
+                        "row_position": 53
+                      },
+                      {
+                        "loss": 1.0783935112776593,
+                        "observed": -1.1207408805030583,
+                        "predicted": -0.08228360585105834,
+                        "row_position": 56
+                      },
+                      {
+                        "loss": 3.0209769046349533,
+                        "observed": 1.6558121638448906,
+                        "predicted": -0.08228360585105834,
+                        "row_position": 58
+                      }
+                    ],
+                    "predictors": [],
+                    "repeat_index": 1,
+                    "risk": 1.2886218800235285
+                  },
+                  {
+                    "fitted_parameters": null,
+                    "fold_index": 4,
+                    "observations": [
+                      {
+                        "loss": 0.1365199906300174,
+                        "observed": -0.4525482601321476,
+                        "predicted": -0.08306214316695308,
+                        "row_position": 4
+                      },
+                      {
+                        "loss": 0.0864954883222979,
+                        "observed": -0.3771632963817916,
+                        "predicted": -0.08306214316695308,
+                        "row_position": 10
+                      },
+                      {
+                        "loss": 0.0816979316501175,
+                        "observed": 0.2027663572491487,
+                        "predicted": -0.08306214316695308,
+                        "row_position": 12
+                      },
+                      {
+                        "loss": 0.6490007925019483,
+                        "observed": 0.7225437111451593,
+                        "predicted": -0.08306214316695308,
+                        "row_position": 13
+                      },
+                      {
+                        "loss": 0.07936012645081605,
+                        "observed": 0.1986471510546186,
+                        "predicted": -0.08306214316695308,
+                        "row_position": 17
+                      },
+                      {
+                        "loss": 0.004225319307860136,
+                        "observed": -0.0180596869990502,
+                        "predicted": -0.08306214316695308,
+                        "row_position": 24
+                      },
+                      {
+                        "loss": 0.14534614117281278,
+                        "observed": 0.2981807468294543,
+                        "predicted": -0.08306214316695308,
+                        "row_position": 26
+                      },
+                      {
+                        "loss": 0.08267220368276067,
+                        "observed": -0.37058988736351,
+                        "predicted": -0.08306214316695308,
+                        "row_position": 29
+                      },
+                      {
+                        "loss": 2.67457175204709,
+                        "observed": 1.5523496557531506,
+                        "predicted": -0.08306214316695308,
+                        "row_position": 31
+                      },
+                      {
+                        "loss": 1.9665132363430569,
+                        "observed": 1.319262083373777,
+                        "predicted": -0.08306214316695308,
+                        "row_position": 39
+                      },
+                      {
+                        "loss": 0.03776701569925635,
+                        "observed": -0.2773995191378567,
+                        "predicted": -0.08306214316695308,
+                        "row_position": 41
+                      },
+                      {
+                        "loss": 0.005526775683931143,
+                        "observed": -0.0087198558472106,
+                        "predicted": -0.08306214316695308,
+                        "row_position": 57
+                      }
+                    ],
+                    "predictors": [],
+                    "repeat_index": 1,
+                    "risk": 0.49580806445766384
+                  }
+                ],
+                "learner": null,
+                "loss": "mse",
+                "outer_model_fit_count": 0,
+                "predictors": [],
+                "split_plan_id": "e368928eef86f5d0131b22fc489ce2154b3feb867cff9f5dfcdd1a70af95d542",
+                "split_seed": 20261004,
+                "target": "Anxiety",
+                "tuning_model_fit_count": 0
+              },
+              "b": "Stress",
+              "baseline_risk": 1.3928761619055081,
+              "evaluated_fold_count": 10,
+              "evaluation_frequency": 1.0,
+              "full_risk": 0.06790041202976768,
+              "normalized": 1.0,
+              "raw": 1.3249757498757404,
+              "selected_fold_count": 10,
+              "selected_folds": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  0,
+                  4
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  1,
+                  4
+                ]
+              ],
+              "selection_frequency": 1.0,
+              "total_gain": 1.3249757498757404
+            }
+          ]
+        },
+        "pair_classes": {
+          "members": {
+            "Depression": {
+              "proximal_unique": true,
+              "screened_by": []
+            },
+            "Stress": {
+              "proximal_unique": false,
+              "screened_by": [
+                "Depression"
+              ]
+            }
+          },
+          "pairs": [
+            {
+              "a": "Depression",
+              "b": "Stress",
+              "group_important": true,
+              "group_score": 1.0,
+              "relation": "partner_screening",
+              "screened_by": "Depression",
+              "screened_member": "Stress"
+            }
+          ]
+        },
+        "promoted": [
+          "Depression"
+        ],
+        "reason": null,
+        "relevance": {
+          "baseline_risk": 1.3928761619055081,
+          "broad": {
+            "Depression": {
+              "normalized": 1.0004992801298258,
+              "raw": 1.3256372839401545
+            },
+            "Stress": {
+              "normalized": 0.6851339830406001,
+              "raw": 0.907785912944572
+            }
+          },
+          "full_risk": 0.06790041202976768,
+          "relative_gain": 0.9512516518791755,
+          "stop_reason": null,
+          "total_gain": 1.3249757498757404,
+          "unique": {
+            "Depression": {
+              "normalized": 0.30699886616526456,
+              "raw": 0.40676605290832346
+            },
+            "Stress": {
+              "normalized": -0.00043244126926684606,
+              "raw": -0.0005729741950240563
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": false,
+        "target": "Anxiety",
+        "total_gain": 1.3249757498757404,
+        "total_gain_relative": 0.9512516518791755,
+        "tuning_model_fit_count": 2250,
+        "unique": {
+          "Depression": 0.30699886616526456,
+          "Stress": -0.00043244126926684606
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 64,
+      "run_index": 0,
+      "status": "completed",
+      "target": "Anxiety",
+      "warnings": []
+    },
+    {
+      "candidates": [
+        "Stress"
+      ],
+      "depth": 1,
+      "failure_message": null,
+      "failure_type": null,
+      "local": {
+        "broad": {
+          "Stress": 1.0
+        },
+        "classes": {
+          "Stress": {
+            "dependence_components": [],
+            "kind": "PROXIMAL_UNIQUE",
+            "screened_by_partner": [],
+            "screened_by_set": [],
+            "shared_groups": []
+          }
+        },
+        "dependence_components": [],
+        "input_candidates": [
+          "Stress"
+        ],
+        "n_missing_target_rows": 0,
+        "n_observed_target_rows": 64,
+        "outer_model_fit_count": 20,
+        "pair_ablations": {
+          "fold_scores": [
+            {
+              "fold_index": 0,
+              "repeat_index": 0,
+              "scores": []
+            },
+            {
+              "fold_index": 1,
+              "repeat_index": 0,
+              "scores": []
+            },
+            {
+              "fold_index": 2,
+              "repeat_index": 0,
+              "scores": []
+            },
+            {
+              "fold_index": 3,
+              "repeat_index": 0,
+              "scores": []
+            },
+            {
+              "fold_index": 4,
+              "repeat_index": 0,
+              "scores": []
+            },
+            {
+              "fold_index": 0,
+              "repeat_index": 1,
+              "scores": []
+            },
+            {
+              "fold_index": 1,
+              "repeat_index": 1,
+              "scores": []
+            },
+            {
+              "fold_index": 2,
+              "repeat_index": 1,
+              "scores": []
+            },
+            {
+              "fold_index": 3,
+              "repeat_index": 1,
+              "scores": []
+            },
+            {
+              "fold_index": 4,
+              "repeat_index": 1,
+              "scores": []
+            }
+          ],
+          "pairs": []
+        },
+        "pair_classes": {
+          "members": {
+            "Stress": {
+              "proximal_unique": true,
+              "screened_by": []
+            }
+          },
+          "pairs": []
+        },
+        "promoted": [
+          "Stress"
+        ],
+        "reason": null,
+        "relevance": {
+          "baseline_risk": 1.373394567634271,
+          "broad": {
+            "Stress": {
+              "normalized": 1.0,
+              "raw": 1.0148491417972156
+            }
+          },
+          "full_risk": 0.3585454258370554,
+          "relative_gain": 0.7389348740073549,
+          "stop_reason": null,
+          "total_gain": 1.0148491417972156,
+          "unique": {
+            "Stress": {
+              "normalized": 1.0,
+              "raw": 1.0148491417972156
+            }
+          }
+        },
+        "retained_pairs": [],
+        "shared_components": [],
+        "stop": false,
+        "target": "Depression",
+        "total_gain": 1.0148491417972156,
+        "total_gain_relative": 0.7389348740073549,
+        "tuning_model_fit_count": 1500,
+        "unique": {
+          "Stress": 1.0
+        }
+      },
+      "n_missing_target_rows": 0,
+      "n_observed_target_rows": 64,
+      "run_index": 0,
+      "status": "completed",
+      "target": "Depression",
+      "warnings": []
+    }
+  ],
+  "schema": "open.layer_assessments",
+  "schema_version": 1
+}

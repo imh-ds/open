@@ -1,0 +1,101 @@
+{
+  "layers": [
+    {
+      "candidates": [
+        "x"
+      ],
+      "depth": 0,
+      "evidence": [
+        {
+          "assessments": [
+            [
+              0,
+              "y",
+              0
+            ]
+          ],
+          "candidates": [
+            "x"
+          ],
+          "candidates_evidence": [
+            {
+              "broad": {
+                "baseline_relative_count": 1,
+                "baseline_relative_median": 0.9688159555126359,
+                "gain_relative_count": 1,
+                "gain_relative_median": 1.0,
+                "raw_count": 1,
+                "raw_median": 0.8805376766604345,
+                "scope": "all scored completed local fits"
+              },
+              "classes": {
+                "PROXIMAL_UNIQUE": {
+                  "completed": 1,
+                  "planned": 1,
+                  "selected": 1
+                }
+              },
+              "promotion": {
+                "completed": 1,
+                "planned": 1,
+                "selected": 1
+              },
+              "source": "x",
+              "target": "y",
+              "unique": {
+                "baseline_relative_count": 1,
+                "baseline_relative_median": 0.9688159555126359,
+                "gain_relative_count": 1,
+                "gain_relative_median": 1.0,
+                "raw_count": 1,
+                "raw_median": 0.8805376766604345,
+                "scope": "all scored completed local fits"
+              }
+            }
+          ],
+          "depth": 0,
+          "relations": [
+            {
+              "frequency": {
+                "completed": 1,
+                "planned": 1,
+                "selected": 1
+              },
+              "members": [],
+              "qualifies": true,
+              "relation": "PROXIMAL_UNIQUE",
+              "screened_by": [],
+              "source": "x",
+              "strength": {
+                "baseline_relative_count": 1,
+                "baseline_relative_median": 0.9688159555126359,
+                "gain_relative_count": 1,
+                "gain_relative_median": 1.0,
+                "raw_count": 1,
+                "raw_median": 0.8805376766604345,
+                "scope": "all scored completed local fits"
+              },
+              "target": "y"
+            }
+          ],
+          "shared_comembership": [],
+          "target": "y"
+        }
+      ],
+      "finalized": true,
+      "new_nodes": [
+        "x"
+      ],
+      "promoted_parents": {
+        "x": [
+          "y"
+        ]
+      },
+      "targets": [
+        "y"
+      ]
+    }
+  ],
+  "schema": "open.layer_evidence",
+  "schema_version": 1
+}

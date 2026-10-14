@@ -1,0 +1,256 @@
+{
+  "layers": [
+    {
+      "candidates": [
+        "Depression",
+        "Stress"
+      ],
+      "depth": 0,
+      "evidence": [
+        {
+          "assessments": [
+            [
+              0,
+              "Anxiety",
+              0
+            ]
+          ],
+          "candidates": [
+            "Depression",
+            "Stress"
+          ],
+          "candidates_evidence": [
+            {
+              "broad": {
+                "baseline_relative_count": 1,
+                "baseline_relative_median": 0.9517265929274227,
+                "gain_relative_count": 1,
+                "gain_relative_median": 1.0004992801298258,
+                "raw_count": 1,
+                "raw_median": 1.3256372839401545,
+                "scope": "all scored completed local fits"
+              },
+              "classes": {
+                "PROXIMAL_UNIQUE": {
+                  "completed": 1,
+                  "planned": 1,
+                  "selected": 1
+                }
+              },
+              "promotion": {
+                "completed": 1,
+                "planned": 1,
+                "selected": 1
+              },
+              "source": "Depression",
+              "target": "Anxiety",
+              "unique": {
+                "baseline_relative_count": 1,
+                "baseline_relative_median": 0.2920331785647418,
+                "gain_relative_count": 1,
+                "gain_relative_median": 0.30699886616526456,
+                "raw_count": 1,
+                "raw_median": 0.40676605290832346,
+                "scope": "all scored completed local fits"
+              }
+            },
+            {
+              "broad": {
+                "baseline_relative_count": 1,
+                "baseline_relative_median": 0.6517348331259298,
+                "gain_relative_count": 1,
+                "gain_relative_median": 0.6851339830406001,
+                "raw_count": 1,
+                "raw_median": 0.907785912944572,
+                "scope": "all scored completed local fits"
+              },
+              "classes": {
+                "SCREENED_BY_PARTNER": {
+                  "completed": 1,
+                  "planned": 1,
+                  "selected": 1
+                }
+              },
+              "promotion": {
+                "completed": 1,
+                "planned": 1,
+                "selected": 0
+              },
+              "source": "Stress",
+              "target": "Anxiety",
+              "unique": {
+                "baseline_relative_count": 1,
+                "baseline_relative_median": -0.0004113604717308146,
+                "gain_relative_count": 1,
+                "gain_relative_median": -0.00043244126926684606,
+                "raw_count": 1,
+                "raw_median": -0.0005729741950240563,
+                "scope": "all scored completed local fits"
+              }
+            }
+          ],
+          "depth": 0,
+          "relations": [
+            {
+              "frequency": {
+                "completed": 1,
+                "planned": 1,
+                "selected": 1
+              },
+              "members": [],
+              "qualifies": true,
+              "relation": "PROXIMAL_UNIQUE",
+              "screened_by": [],
+              "source": "Depression",
+              "strength": {
+                "baseline_relative_count": 1,
+                "baseline_relative_median": 0.2920331785647418,
+                "gain_relative_count": 1,
+                "gain_relative_median": 0.30699886616526456,
+                "raw_count": 1,
+                "raw_median": 0.40676605290832346,
+                "scope": "all scored completed local fits"
+              },
+              "target": "Anxiety"
+            },
+            {
+              "frequency": {
+                "completed": 1,
+                "planned": 1,
+                "selected": 1
+              },
+              "members": [],
+              "qualifies": false,
+              "relation": "SCREENED_BY_PARTNER",
+              "screened_by": [
+                "Depression"
+              ],
+              "source": "Stress",
+              "strength": {
+                "baseline_relative_count": 1,
+                "baseline_relative_median": -0.0004113604717308146,
+                "gain_relative_count": 1,
+                "gain_relative_median": -0.00043244126926684606,
+                "raw_count": 1,
+                "raw_median": -0.0005729741950240563,
+                "scope": "all scored completed local fits"
+              },
+              "target": "Anxiety"
+            }
+          ],
+          "shared_comembership": [],
+          "target": "Anxiety"
+        }
+      ],
+      "finalized": true,
+      "new_nodes": [
+        "Depression"
+      ],
+      "promoted_parents": {
+        "Depression": [
+          "Anxiety"
+        ]
+      },
+      "targets": [
+        "Anxiety"
+      ]
+    },
+    {
+      "candidates": [
+        "Stress"
+      ],
+      "depth": 1,
+      "evidence": [
+        {
+          "assessments": [
+            [
+              1,
+              "Depression",
+              0
+            ]
+          ],
+          "candidates": [
+            "Stress"
+          ],
+          "candidates_evidence": [
+            {
+              "broad": {
+                "baseline_relative_count": 1,
+                "baseline_relative_median": 0.7389348740073549,
+                "gain_relative_count": 1,
+                "gain_relative_median": 1.0,
+                "raw_count": 1,
+                "raw_median": 1.0148491417972156,
+                "scope": "all scored completed local fits"
+              },
+              "classes": {
+                "PROXIMAL_UNIQUE": {
+                  "completed": 1,
+                  "planned": 1,
+                  "selected": 1
+                }
+              },
+              "promotion": {
+                "completed": 1,
+                "planned": 1,
+                "selected": 1
+              },
+              "source": "Stress",
+              "target": "Depression",
+              "unique": {
+                "baseline_relative_count": 1,
+                "baseline_relative_median": 0.7389348740073549,
+                "gain_relative_count": 1,
+                "gain_relative_median": 1.0,
+                "raw_count": 1,
+                "raw_median": 1.0148491417972156,
+                "scope": "all scored completed local fits"
+              }
+            }
+          ],
+          "depth": 1,
+          "relations": [
+            {
+              "frequency": {
+                "completed": 1,
+                "planned": 1,
+                "selected": 1
+              },
+              "members": [],
+              "qualifies": true,
+              "relation": "PROXIMAL_UNIQUE",
+              "screened_by": [],
+              "source": "Stress",
+              "strength": {
+                "baseline_relative_count": 1,
+                "baseline_relative_median": 0.7389348740073549,
+                "gain_relative_count": 1,
+                "gain_relative_median": 1.0,
+                "raw_count": 1,
+                "raw_median": 1.0148491417972156,
+                "scope": "all scored completed local fits"
+              },
+              "target": "Depression"
+            }
+          ],
+          "shared_comembership": [],
+          "target": "Depression"
+        }
+      ],
+      "finalized": true,
+      "new_nodes": [
+        "Stress"
+      ],
+      "promoted_parents": {
+        "Stress": [
+          "Depression"
+        ]
+      },
+      "targets": [
+        "Depression"
+      ]
+    }
+  ],
+  "schema": "open.layer_evidence",
+  "schema_version": 1
+}

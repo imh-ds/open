@@ -1,0 +1,15 @@
+........................................................................ [ 88%]
+.........                                                                [100%]
+============================== warnings summary ===============================
+tests/test_layer_visualization.py::test_unique_fixed_depth_count_width_and_evidence
+tests/test_layer_visualization.py::test_one_joint_connector_and_no_unique_member_arrows
+  C:\Users\imhoh\GitHub\open\.worktrees\open-phase2\src\open\layer_visualization.py:77: UserWarning: Glyph 30561 (\N{CJK UNIFIED IDEOGRAPH-7761}) missing from font(s) DejaVu Sans.
+    bounds = text.get_window_extent(fig.canvas.get_renderer())
+
+tests/test_layer_visualization.py::test_unique_fixed_depth_count_width_and_evidence
+tests/test_layer_visualization.py::test_one_joint_connector_and_no_unique_member_arrows
+  C:\Users\imhoh\GitHub\open\.worktrees\open-phase2\src\open\layer_visualization.py:77: UserWarning: Glyph 30496 (\N{CJK UNIFIED IDEOGRAPH-7720}) missing from font(s) DejaVu Sans.
+    bounds = text.get_window_extent(fig.canvas.get_renderer())
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+81 passed, 4 warnings in 98.68s (0:01:38)

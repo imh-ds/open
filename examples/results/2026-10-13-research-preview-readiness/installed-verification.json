@@ -1,0 +1,176 @@
+{
+  "status": "passed",
+  "candidate_source": "f736222d5605a223f64bafb8428f58cf3fb6dcf2",
+  "wheel_sha256": "ff145d2a5a5f09c60b9e104cb5ee4355e2e34d06ae7b0c29bb05ec7571513f8a",
+  "cases": [
+    {
+      "status": "passed",
+      "case": "chain",
+      "installed_module": "C:\\Users\\imhoh\\GitHub\\open\\.worktrees\\open-phase2\\.superpowers\\sdd\\2026-10-13-research-preview-readiness\\venv\\Lib\\site-packages\\open\\__init__.py",
+      "isolated_mode": true,
+      "distribution_version": "0.1.0.dev0",
+      "new_fits_for_this_audit": 0,
+      "new_refits_for_this_audit": 0,
+      "assigned_depth": {
+        "Anxiety": 0,
+        "Depression": 1,
+        "Stress": 2
+      },
+      "provenance": {
+        "dependency_versions": {
+          "PyYAML": "6.0.2",
+          "numpy": "1.26.4",
+          "pandas": "2.2.3",
+          "scikit-learn": "1.3.0",
+          "scipy": "1.11.2"
+        },
+        "elapsed_seconds": 316.31768089998513,
+        "git_revision": "f736222d5605a223f64bafb8428f58cf3fb6dcf2",
+        "git_revision_unavailable_reason": null,
+        "learner_versions": {
+          "elastic_net": "1.3.0"
+        },
+        "package_version": "0.1.0.dev0",
+        "peak_memory_unavailable_reason": null,
+        "peak_traced_memory_bytes": 2048014,
+        "version_availability": {}
+      },
+      "scope": "fixed regression evidence; no independent scientific replication",
+      "recorder_recovery": "initial workflow completed but final mappingproxy serialization failed; saved exports independently checked with no fits",
+      "assessments": 40,
+      "planned_per_target": 20,
+      "completed_per_target": {
+        "Anxiety": 20,
+        "Depression": 20
+      },
+      "assessment_warning_count": 0,
+      "reference_structure_matched": true
+    },
+    {
+      "status": "passed",
+      "case": "chain_missing",
+      "installed_module": "C:\\Users\\imhoh\\GitHub\\open\\.worktrees\\open-phase2\\.superpowers\\sdd\\2026-10-13-research-preview-readiness\\venv\\Lib\\site-packages\\open\\__init__.py",
+      "isolated_mode": true,
+      "distribution_version": "0.1.0.dev0",
+      "new_fits_for_this_audit": 0,
+      "new_refits_for_this_audit": 0,
+      "assigned_depth": {
+        "Anxiety": 0,
+        "Depression": 1,
+        "Stress": 2
+      },
+      "provenance": {
+        "dependency_versions": {
+          "PyYAML": "6.0.2",
+          "numpy": "1.26.4",
+          "pandas": "2.2.3",
+          "scikit-learn": "1.3.0",
+          "scipy": "1.11.2"
+        },
+        "elapsed_seconds": 316.8932214000961,
+        "git_revision": "f736222d5605a223f64bafb8428f58cf3fb6dcf2",
+        "git_revision_unavailable_reason": null,
+        "learner_versions": {
+          "elastic_net": "1.3.0"
+        },
+        "package_version": "0.1.0.dev0",
+        "peak_memory_unavailable_reason": null,
+        "peak_traced_memory_bytes": 2047727,
+        "version_availability": {}
+      },
+      "scope": "fixed regression evidence; no independent scientific replication",
+      "recorder_recovery": "initial workflow completed but final mappingproxy serialization failed; saved exports independently checked with no fits",
+      "assessments": 40,
+      "planned_per_target": 20,
+      "completed_per_target": {
+        "Anxiety": 20,
+        "Depression": 20
+      },
+      "assessment_warning_count": 0,
+      "reference_structure_matched": true
+    },
+    {
+      "status": "passed",
+      "case": "shared_predictors",
+      "installed_module": "C:\\Users\\imhoh\\GitHub\\open\\.worktrees\\open-phase2\\.superpowers\\sdd\\2026-10-13-research-preview-readiness\\venv\\Lib\\site-packages\\open\\__init__.py",
+      "isolated_mode": true,
+      "distribution_version": "0.1.0.dev0",
+      "new_fits_for_this_audit": 0,
+      "new_refits_for_this_audit": 0,
+      "assigned_depth": {
+        "Outcome": 0,
+        "Scale_A": 1,
+        "Scale_B": 1
+      },
+      "provenance": {
+        "dependency_versions": {
+          "PyYAML": "6.0.2",
+          "numpy": "1.26.4",
+          "pandas": "2.2.3",
+          "scikit-learn": "1.3.0",
+          "scipy": "1.11.2"
+        },
+        "elapsed_seconds": 168.83029720000923,
+        "git_revision": "f736222d5605a223f64bafb8428f58cf3fb6dcf2",
+        "git_revision_unavailable_reason": null,
+        "learner_versions": {
+          "elastic_net": "1.3.0"
+        },
+        "package_version": "0.1.0.dev0",
+        "peak_memory_unavailable_reason": null,
+        "peak_traced_memory_bytes": 2640294,
+        "version_availability": {}
+      },
+      "scope": "fixed regression evidence; no independent scientific replication",
+      "recorder_recovery": "initial workflow completed but final mappingproxy serialization failed; saved exports independently checked with no fits",
+      "assessments": 20,
+      "planned_per_target": 20,
+      "completed_per_target": {
+        "Outcome": 20
+      },
+      "assessment_warning_count": 0,
+      "reference_structure_matched": true
+    },
+    {
+      "status": "passed",
+      "case": "direct_report",
+      "installed_module": "C:\\Users\\imhoh\\GitHub\\open\\.worktrees\\open-phase2\\.superpowers\\sdd\\2026-10-13-research-preview-readiness\\venv\\Lib\\site-packages\\open\\__init__.py",
+      "isolated_mode": true,
+      "distribution_version": "0.1.0.dev0",
+      "new_fits_for_this_audit": 0,
+      "new_refits_for_this_audit": 0,
+      "assigned_depth": {
+        "x": 1,
+        "y": 0
+      },
+      "provenance": {
+        "dependency_versions": {
+          "PyYAML": "6.0.2",
+          "numpy": "1.26.4",
+          "pandas": "2.2.3",
+          "scikit-learn": "1.3.0",
+          "scipy": "1.11.2"
+        },
+        "elapsed_seconds": 5.760839299997315,
+        "git_revision": "f736222d5605a223f64bafb8428f58cf3fb6dcf2",
+        "git_revision_unavailable_reason": null,
+        "learner_versions": {
+          "elastic_net": "1.3.0"
+        },
+        "package_version": "0.1.0.dev0",
+        "peak_memory_unavailable_reason": null,
+        "peak_traced_memory_bytes": 145442,
+        "version_availability": {}
+      },
+      "scope": "fixed regression evidence; no independent scientific replication",
+      "recorder_recovery": "initial workflow completed but final mappingproxy serialization failed; saved exports independently checked with no fits",
+      "predictions": 24,
+      "assessment_folds": 2,
+      "effects_and_three_graphs": true,
+      "each_person_held_out": true
+    }
+  ],
+  "layer_fixture_assessments": 100,
+  "new_fits_for_completion_audit": 0,
+  "scope": "Installed software regression only; not independent scientific confirmation."
+}

@@ -18,9 +18,9 @@ Grouped/repeated-measures or temporal data, binary outcomes, causal mediation/mo
 |Gate|Current status|Required evidence|
 |---|---|---|
 |Scope and claims|Defined for review|API/documentation consistency and explicit experimental boundaries|
-|Software regression|Recorded previous suite: 725 passed|Focused fresh core/report checks; production fixes require fresh full suite|
-|Distribution|Not yet verified|Wheel contents, license/metadata, clean installation, dependency check and outside-source import proof|
-|Installed user workflow|Not yet verified|Recursive fixtures, exports/reloaded graphs, researcher report and no-overwrite behaviour|
+|Software regression|81 fresh focused tests passed; previous full suite725 passed|Focused fresh core/report checks; production fixes require fresh full suite|
+|Distribution|Initial wheel passed on pinned Windows/Python3.11.9 environment; final documentation artifact check pending|Wheel contents, license/metadata, clean installation, dependency check and outside-source import proof|
+|Installed user workflow|Four fixed regression cases passed|Recursive fixtures, exports/reloaded graphs, researcher report and no-overwrite behaviour|
 |Scientific operating characteristics|Incomplete|Fresh end-to-end validation of network selection and layer placement; existing fixed demonstrations cannot supply rates|
 |Interaction claims|Scoped research evidence only|Keep prespecified-pair benchmark scope distinct from arbitrary pair screening|
 |Release publication|Not authorized by this audit|Finish gates, choose release artifact/revision and review actual publication action|
@@ -32,3 +32,5 @@ The immediate work uses existing fixed fixtures and unchanged settings. Independ
 [Current interaction findings and limits](../examples/results/2026-10-13-realistic-interaction-recovery/interpretation.md), [prior prospective interaction guidance](../examples/prospective_interaction_guidance.md), [layer-regression demonstrations](../examples/results/2026-10-08-layer-fixtures/REPORT.md), and [complete-procedure report contract](procedure-evaluation.md).
 
 The first three implementation/export paths are substantial software evidence. They do not establish false-selection rates, recursive layer accuracy, or robustness for all practical populations. Release-audit measurements and remaining work will be retained under `examples/results/2026-10-13-research-preview-readiness/`.
+
+[Installed release audit and saved evidence](../examples/results/2026-10-13-research-preview-readiness/README.md) distinguish source tests, clean installed checks, and the remaining scientific/runtime gates. The default-settings runtime projection is not a completed100-assessment benchmark.

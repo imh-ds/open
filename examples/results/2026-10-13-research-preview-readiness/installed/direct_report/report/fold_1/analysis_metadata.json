@@ -1,0 +1,194 @@
+{
+  "assigned_depth": {
+    "x": 1,
+    "y": 0
+  },
+  "config": {
+    "analysis": {
+      "max_depth": 3,
+      "random_seed": 21,
+      "root": "y"
+    },
+    "dependence": {
+      "absolute": true,
+      "method": "spearman"
+    },
+    "learner": {
+      "library": [
+        "elastic_net"
+      ],
+      "mode": "fixed",
+      "retune_ablation": false
+    },
+    "outcome": {
+      "loss": "mse",
+      "type": "continuous"
+    },
+    "performance_cv": {
+      "folds": 2,
+      "grouped": false,
+      "repeats": 1
+    },
+    "preprocessing": {
+      "missing": "median",
+      "one_hot_categorical": false,
+      "standardize_linear": true
+    },
+    "stability": {
+      "final_resamples": 500,
+      "fraction": 0.8,
+      "method": "subsample",
+      "n_resamples": 1,
+      "scope": "layer_consensus"
+    },
+    "thresholds": {
+      "broad_relative": 0.05,
+      "dependence_pair": 0.7,
+      "group_relative": 0.1,
+      "min_total_gain_relative": 0.02,
+      "stability": 0.7,
+      "unique_relative": 0.05
+    },
+    "tuning_cv": {
+      "folds": 2
+    },
+    "visualization": {
+      "distance_mode": "visual_strength",
+      "edge_opacity": "stability",
+      "edge_width": "unique",
+      "show_screened": true,
+      "show_unstable": true
+    }
+  },
+  "interpretation": "layer_conditional",
+  "max_depth": 3,
+  "method": "layer_consensus",
+  "parents": {
+    "x": [
+      "y"
+    ]
+  },
+  "path_frequency_available": false,
+  "planned_resamples_per_target": 1,
+  "plans": [
+    {
+      "infeasibility_reason": null,
+      "run_index": 0,
+      "sampled_positions": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        9,
+        11
+      ],
+      "seed": 21,
+      "split_plan": {
+        "folds": 2,
+        "index_semantics": "zero-based positional indices in the original input row order",
+        "n_samples": 9,
+        "random_seed": 21,
+        "repeats": 1,
+        "schema": "open.split_plan",
+        "scheme": "repeated_k_fold",
+        "splits": [
+          {
+            "fold": 0,
+            "repeat": 0,
+            "test_indices": [
+              1,
+              2,
+              3,
+              5,
+              7
+            ],
+            "train_indices": [
+              0,
+              4,
+              6,
+              8
+            ]
+          },
+          {
+            "fold": 1,
+            "repeat": 0,
+            "test_indices": [
+              0,
+              4,
+              6,
+              8
+            ],
+            "train_indices": [
+              1,
+              2,
+              3,
+              5,
+              7
+            ]
+          }
+        ],
+        "version": 1
+      }
+    }
+  ],
+  "provenance": {
+    "dependency_versions": {
+      "PyYAML": "6.0.2",
+      "numpy": "1.26.4",
+      "pandas": "2.2.3",
+      "scikit-learn": "1.3.0",
+      "scipy": "1.11.2"
+    },
+    "elapsed_seconds": 5.20780079998076,
+    "git_revision": "f736222d5605a223f64bafb8428f58cf3fb6dcf2",
+    "git_revision_unavailable_reason": null,
+    "learner_versions": {
+      "elastic_net": "1.3.0"
+    },
+    "package_version": "0.1.0.dev0",
+    "peak_memory_unavailable_reason": null,
+    "peak_traced_memory_bytes": 142663,
+    "version_availability": {}
+  },
+  "root": "y",
+  "schema": "open.layer_consensus",
+  "schema_version": 1,
+  "status": "COMPLETE",
+  "stop_reasons": {
+    "x": "NO_UNASSIGNED"
+  },
+  "variable_metadata": [
+    {
+      "construct": null,
+      "display_label": null,
+      "exclude_reason": null,
+      "measurement_overlap": false,
+      "name": "y",
+      "role": "root",
+      "scale_items": null,
+      "theory_group": null,
+      "time_index": null,
+      "type": "continuous"
+    },
+    {
+      "construct": null,
+      "display_label": null,
+      "exclude_reason": null,
+      "measurement_overlap": false,
+      "name": "x",
+      "role": null,
+      "scale_items": null,
+      "theory_group": null,
+      "time_index": null,
+      "type": "continuous"
+    }
+  ],
+  "variable_metadata_sha256": "0f09f5feb40d5831f4fc5b8a92e99339113bbaab7632985a2cf3e40808179b98",
+  "variables": [
+    "y",
+    "x"
+  ]
+}
