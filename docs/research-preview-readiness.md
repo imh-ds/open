@@ -2,6 +2,8 @@
 
 The target is a v0.1 **research preview** of the current method. This document freezes the intended claim scope; it does not announce a release. The current package version remains `0.1.0.dev0`.
 
+Current execution planning: the [revised validation plan](../examples/validation_execution_revision.md) replaces the infeasible two-case job layout with a proposed one-case layout. Before costing the whole study, it proposes four missing scenario/N timing cases, reserving 256 minutes by reallocating unlaunched study jobs within the same 10,000-minute ceiling. The 480-case scientific target and all statistical defaults remain unchanged pending that feasibility decision. This is a documented proposal; its new workflow is not yet implemented or dispatched. The original study stages remain on hold.
+
 ## Intended scope
 
 - Independent cross-sectional participants, one fully observed continuous root outcome and MSE loss.
@@ -45,4 +47,4 @@ The owner requested a [timing-only probe without per-dataset deadlines](../examp
 
 The [completed timing probe](../examples/results/2026-10-14-recursive-preview-validation/timing-completed-38629900589/interpretation.md) succeeded: N80needed27m22s cumulative across two runs and N200needed27m24s uninterrupted. Both recovered exactlyX1->X2->Ywith no nuisance promotions. Independent no-fit replay passed600checkpoints/1076653observation-loss checks, zero warnings and exact preservation of434prior input/checkpoint/attempt files. This supports runtime feasibility and recursive completion on these two chain cases, not general error-rate/recovery qualification. Original15-minute case/two-case40-minute shard assumptions fail for these examples. Revise scenario-specific budget and job layout before another study dispatch; fewer replications may be needed but cannot be inferred for all480cases from two chain timings alone. Both historical failed preflights remain failed.
 
-[Installed release audit and saved evidence](../examples/results/2026-10-13-research-preview-readiness/README.md) distinguish source tests, clean installed checks, and the remaining scientific/runtime gates. The default-settings runtime projection is not a completed 100-assessment benchmark.
+[Installed release audit and saved evidence](../examples/results/2026-10-13-research-preview-readiness/README.md) distinguish source tests, clean installed checks, and the remaining scientific/runtime gates. Early runtime projections are historical; the subsequent two completed chain cases provide measured full-default timings, while noise and correlated-predictor timings remain unmeasured. Neither timing completion nor execution-plan revision closes the scientific release gate.
