@@ -49,6 +49,40 @@ def test_risk_audit_rejects_loss_row_coverage_and_baseline_tampering():
             m.audit_risk(edited, data, plan, 'y', ('a',), ())
 
 
+def test_baseline_cannot_claim_an_engine_or_tuning_fits():
+    import copy
+    m = module()
+    risk, data, plan = baseline()
+    for field, value in (('learner','elastic_net'), ('tuning_model_fit_count',1)):
+        edited = copy.deepcopy(risk)
+        edited[field] = value
+        with pytest.raises(ValueError):
+            m.audit_risk(edited, data, plan, 'y', ('a',), ())
+
+
+def test_pair_contrasts_anchor_to_selected_full_baseline_rows_and_reused_parameters():
+    import copy
+    m = module()
+    params = {'alpha':1.,'l1_ratio':.5}
+    def fold(index, loss):
+        return dict(repeat_index=0,fold_index=index,predictors=['z'],
+            observations=[dict(row_position=index,loss=loss)],fitted_parameters=params)
+    base = dict(aggregate_risk=15.,folds=[fold(0,10.),fold(1,20.)])
+    full = dict(aggregate_risk=2.5,folds=[fold(0,1.),fold(1,4.)])
+    ablation = dict(predictors=['z'],aggregate_risk=3.,folds=[fold(0,3.)])
+    pair = dict(selected_folds=[[0,0]],baseline_risk=10.,full_risk=1.,
+                ablated_risk=3.,total_gain=9.,raw=2.,normalized=2/9,ablation=ablation)
+    m.audit_pair_group_anchors([pair],[],base,full)
+    for field in ('baseline_risk','full_risk','total_gain','raw'):
+        edited = copy.deepcopy(pair); edited[field] += 1
+        with pytest.raises(ValueError):
+            m.audit_pair_group_anchors([edited],[],base,full)
+    edited = copy.deepcopy(pair)
+    edited['ablation']['folds'][0]['fitted_parameters'] = {'alpha':.1,'l1_ratio':.5}
+    with pytest.raises(ValueError, match='parameters'):
+        m.audit_pair_group_anchors([edited],[],base,full)
+
+
 def test_stage_summary_keeps_missing_bad_and_conflicting_cases():
     m = module()
     import recursive_preview_design as d
@@ -84,3 +118,44 @@ def test_streaming_archive_rejects_duplicate_members(tmp_path):
             z.writestr('cases/a/receipt.json', '{"edited":true}')
     with pytest.raises(ValueError, match='duplicate'):
         m.Store(archive, 'a')
+
+
+def test_full_recorded_production_path_audits_with_scripted_mean_predictor(tmp_path, monkeypatch):
+    """Exercise real risk recording/recursion/artifacts; no ML training or scientific fixture."""
+    from open.learners.base import Predictor
+    from layer_helpers import make_config
+    import recursive_preview_runner as runner
+    import recursive_preview_design as design
+    m = module()
+    class Mean(Predictor):
+        engine_name = 'elastic_net'
+        tuning_grid_size = 25
+        def tune(self, *args, **kw): return {'alpha':1., 'l1_ratio':.5}
+        def fit(self, X, y, params=None): self.mean = float(np.mean(y)); return self
+        def predict(self, X): return np.full(len(X), self.mean)
+        def clone(self): return Mean()
+    monkeypatch.setattr(runner.analysis, 'make_predictor', lambda c:Mean())
+    monkeypatch.setattr(runner.package, '__file__', 'C:/test/site-packages/open/__init__.py')
+    native_version = runner.importlib.metadata.version
+    monkeypatch.setattr(runner.importlib.metadata, 'version',
+        lambda n:design.RUNTIME[n] if n in design.RUNTIME else native_version(n))
+    class Future:
+        def __init__(self, value): self.value = value
+        def result(self): return self.value
+    class Pool:
+        def __init__(self, **kw): pass
+        def __enter__(self): return self
+        def __exit__(self, *args): pass
+        def submit(self, fn, *args): return Future(fn(*args))
+    monkeypatch.setattr(runner, 'ProcessPoolExecutor', Pool)
+    spec = {'id':'unit-baseline', 'fixture':'scripted'}
+    data = pd.DataFrame({'y':np.arange(20,dtype=float), 'a':np.arange(20,dtype=float)})
+    config = make_config(n_resamples=2)
+    manifest = {'runtime':design.RUNTIME}
+    directory = tmp_path/spec['id']
+    runner.run_case(spec, directory, manifest, data=data, config=config)
+    store = m.Store(directory)
+    row = m.audit_case(spec, store, manifest, data=data, config=config)
+    assert row['status'] == 'complete' and row['assessments'] == 2
+    assert row['observation_checks'] == 128 and row['structure'] is None
+    assert row['outer_fits'] == 8 and row['tuning_fits'] == 400

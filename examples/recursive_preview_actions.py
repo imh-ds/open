@@ -13,6 +13,8 @@ import os
 import platform
 import shutil
 import time
+from datetime import datetime
+import urllib.request
 import zipfile
 
 import pandas as pd
@@ -112,7 +114,8 @@ def validate_preflight(report, manifest):
         if (report['digest'] != design.digest(signed) or report['status'] != 'PASS'
             or report['manifest'] != design.digest(manifest) or report['equivalence'] is not True
             or set(report['planned_cases']) != {'160','240'}
-            or not report['storage_feasible'] or not report['audit_feasible']):
+            or not report['storage_feasible'] or not report['audit_feasible']
+            or report['archive_crc_checked'] is not True):
             raise ValueError()
         for key,case in report['planned_cases'].items():
             if case['index'] != int(key) or case['seconds'] > 900 or case['status'] != 'complete':
@@ -120,6 +123,44 @@ def validate_preflight(report, manifest):
     except (KeyError,TypeError,ValueError) as exc:
         raise ValueError('preflight incomplete, edited or source/timing mismatch') from exc
     return True
+
+
+def github_api(path):
+    repository = os.environ.get('GITHUB_REPOSITORY', 'imh-ds/open')
+    token = os.environ.get('GH_TOKEN') or os.environ.get('GITHUB_TOKEN')
+    if not token:
+        raise ValueError('GitHub token required to verify original preflight transport')
+    request = urllib.request.Request(f'https://api.github.com/repos/{repository}/{path}',
+        headers={'Authorization':f'Bearer {token}', 'Accept':'application/vnd.github+json'})
+    with urllib.request.urlopen(request, timeout=60) as response:
+        return json.load(response)
+
+
+def verify_preflight_transport(report, api_get=github_api):
+    run_id = str(report['github_run'])
+    if not run_id.isdigit():
+        raise ValueError('invalid original preflight run')
+    run = api_get(f'actions/runs/{run_id}')
+    if (str(run['id']) != run_id or run['status'] != 'completed' or run['conclusion'] != 'success'
+        or run['head_sha'] != report['github_sha'] or run['run_attempt'] != 1):
+        raise ValueError('original preflight run not completed successfully at original source/attempt')
+    jobs = api_get(f'actions/runs/{run_id}/jobs?per_page=100')['jobs']
+    found = [j for j in jobs if j['name'] == 'preflight']
+    if len(found) != 1 or found[0]['conclusion'] != 'success':
+        raise ValueError('preflight job did not preserve original evidence')
+    uploads = [s for s in found[0]['steps'] if 'actions/upload-artifact@' in s['name']]
+    if len(uploads) != 2 or any(s['conclusion'] != 'success' for s in uploads):
+        raise ValueError('preflight uploads did not both complete successfully')
+    def timestamp(text):
+        return datetime.fromisoformat(text.replace('Z','+00:00'))
+    seconds = [(timestamp(s['completed_at'])-timestamp(s['started_at'])).total_seconds() for s in uploads]
+    artifacts = api_get(f'actions/runs/{run_id}/artifacts')['artifacts']
+    by_name = {a['name']:a for a in artifacts if not a['expired']}
+    required = {'recursive-preview-preflight-control','recursive-preview-preflight-raw'}
+    if not required <= set(by_name) or any(by_name[n]['size_in_bytes'] <= 0 for n in required):
+        raise ValueError('preflight upload artifact missing, expired or empty')
+    return dict(run_id=run_id, source=run['head_sha'], upload_seconds=seconds,
+                raw_uploaded_bytes=by_name['recursive-preview-preflight-raw']['size_in_bytes'])
 
 
 def preflight(output):
@@ -169,13 +210,20 @@ def preflight(output):
                 seconds=result['seconds'], audit_seconds=timings[-1],
                 receipt_sha256=audit['receipt_sha256'], assessments=audit['assessments'])
             write_json(output/'preflight.json', receipt)
+        archive_start = time.monotonic()
         archive_cases([output/'cases'/design.specs()[i]['id'] for i in manifest['preflight_indices']],
                       output/'raw/preflight-cases.zip')
+        for path in (output/'raw').glob('*.zip'):
+            with zipfile.ZipFile(path) as archive:
+                if archive.testzip() is not None:
+                    raise ValueError('preflight archive CRC check failed')
         receipt.update(storage_feasible=max(sizes)*320*1.5 < 8_000_000_000,
             audit_feasible=max(timings)*320/4 < 3000,
             projected_largest_signal_stage_bytes=max(sizes)*320*1.5,
             projected_four_process_signal_audit_seconds=max(timings)*320/4,
-            raw_sha256={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in (output/'raw').glob('*.zip')})
+            raw_sha256={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in (output/'raw').glob('*.zip')},
+            archive_crc_checked=True, archive_seconds=time.monotonic()-archive_start,
+            preflight_free_disk_bytes=shutil.disk_usage(output).free)
         if not receipt['storage_feasible'] or not receipt['audit_feasible']:
             raise RuntimeError('evidence size/audit allocation infeasible')
         receipt['status'] = 'PASS'
@@ -207,6 +255,7 @@ def prepare(stage, evidence, preflight_run, noise_run=None):
     validate_preflight(report, manifest)
     if str(report['github_run']) != str(preflight_run):
         raise ValueError('wrong preflight run receipt')
+    write_json(Path(evidence)/'preflight-transport-verification.json', verify_preflight_transport(report))
     if stage == 'signal':
         selection_path = ROOT/'examples/study_manifests/recursive-preview-noise-selection.json'
         selection = load_json(selection_path)
@@ -219,9 +268,15 @@ def prepare(stage, evidence, preflight_run, noise_run=None):
     return list(range(len(design.shards(stage))))
 
 
-def restore_preflight(archive, directory, spec, manifest):
+def restore_preflight(archive, directory, spec, manifest, report):
+    validate_preflight(report, manifest)
+    if hashlib.sha256(Path(archive).read_bytes()).hexdigest() != report['raw_sha256']['preflight-cases.zip']:
+        raise ValueError('preflight archive differs from original receipt fingerprint')
     store = Store(archive, spec['id'])
     try:
+        expected = report['planned_cases'][str(spec['index'])]['receipt_sha256']
+        if hashlib.sha256(store.read('receipt.json')).hexdigest() != expected:
+            raise ValueError('preflight case differs from original receipt fingerprint')
         audit_case(spec, store, manifest)
         for name in store.names:
             path = (directory/name).resolve()
@@ -250,7 +305,8 @@ def shard(stage, index, output, evidence=None):
                 if case_index in manifest['preflight_indices']:
                     if evidence is None:
                         raise ValueError('planned preflight dataset must reuse its existing fits')
-                    restore_preflight(find_one(evidence, 'preflight-cases.zip'), directory, spec, manifest)
+                    control = load_json(find_one(evidence, 'preflight.json'))
+                    restore_preflight(find_one(evidence, 'preflight-cases.zip'), directory, spec, manifest, control)
                 run_case(spec, directory, manifest)
             except Exception as exc:
                 failures.append(dict(index=case_index, failure=type(exc).__name__+': '+str(exc)[:2000]))

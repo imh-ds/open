@@ -33,6 +33,7 @@ env:
   OMP_NUM_THREADS: '1'
   OPENBLAS_NUM_THREADS: '1'
   MKL_NUM_THREADS: '1'
+  GH_TOKEN: ${{ github.token }}
 
 jobs:
   register:
@@ -195,7 +196,14 @@ jobs:
           name: recursive-preview-preflight-raw
           run-id: ${{ inputs.preflight_run }}
           github-token: ${{ github.token }}
-          path: evidence/preflight
+          path: evidence/preflight/raw
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        if: inputs.stage == 'signal' && (matrix.shard == 0 || matrix.shard == 40)
+        with:
+          name: recursive-preview-preflight-control
+          run-id: ${{ inputs.preflight_run }}
+          github-token: ${{ github.token }}
+          path: evidence/preflight/control
       - name: Run two immutable datasets with four assessment processes
         timeout-minutes: 30
         run: |

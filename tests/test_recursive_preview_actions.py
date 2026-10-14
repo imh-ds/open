@@ -64,3 +64,38 @@ def test_preflight_gate_cannot_be_accepted_from_status_alone():
     m = importlib.import_module('recursive_preview_actions')
     with pytest.raises(ValueError, match='preflight'):
         m.validate_preflight({'status':'PASS'}, {})
+
+
+def test_original_preflight_run_must_include_successful_raw_uploads():
+    m = importlib.import_module('recursive_preview_actions')
+    report = {'github_run':'123', 'github_sha':'source'}
+    steps = [dict(name='Run actions/upload-artifact@sha', conclusion='success',
+                  started_at='2026-10-14T00:00:00Z', completed_at='2026-10-14T00:00:02Z') for _ in range(2)]
+    def api(path):
+        if path.endswith('/jobs?per_page=100'):
+            return {'jobs':[dict(name='preflight', conclusion='success', steps=steps)]}
+        if path.endswith('/artifacts'):
+            return {'artifacts':[dict(name=n,expired=False,size_in_bytes=200)
+                for n in ('recursive-preview-preflight-control','recursive-preview-preflight-raw')]}
+        return dict(id=123,status='completed',conclusion='success',head_sha='source',run_attempt=1)
+    assert m.verify_preflight_transport(report, api)['raw_uploaded_bytes'] == 200
+    steps[-1]['conclusion'] = 'failure'
+    with pytest.raises(ValueError, match='upload'):
+        m.verify_preflight_transport(report, api)
+
+
+def test_reuse_requires_original_archive_and_case_fingerprints(tmp_path, monkeypatch):
+    import hashlib
+    m = importlib.import_module('recursive_preview_actions')
+    monkeypatch.setattr(m, 'validate_preflight', lambda *args:True)
+    case = tmp_path/'case'; case.mkdir()
+    (case/'receipt.json').write_text('{}')
+    archive = tmp_path/'raw.zip'; m.archive_cases([case], archive)
+    control = dict(raw_sha256={'preflight-cases.zip':'wrong'},
+                   planned_cases={'160':{'receipt_sha256':'wrong'}})
+    spec = dict(index=160,id='case')
+    with pytest.raises(ValueError, match='archive differs'):
+        m.restore_preflight(archive,tmp_path/'restored',spec,{},control)
+    control['raw_sha256']['preflight-cases.zip'] = hashlib.sha256(archive.read_bytes()).hexdigest()
+    with pytest.raises(ValueError, match='case differs'):
+        m.restore_preflight(archive,tmp_path/'restored',spec,{},control)

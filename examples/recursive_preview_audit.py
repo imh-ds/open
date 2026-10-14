@@ -61,12 +61,51 @@ def same(a, b):
         raise ValueError('saved arithmetic differs from independent replay')
 
 
+def audit_pair_group_anchors(pairs, components, baseline, full):
+    """Anchor every pair/group contrast to the original full/baseline held-out rows."""
+    def losses(risk, selected):
+        return [row['loss'] for fold in risk['folds']
+                if (fold['repeat_index'],fold['fold_index']) in selected
+                for row in fold['observations']]
+    params = {(f['repeat_index'],f['fold_index']):f['fitted_parameters'] for f in full['folds']}
+    def reused(ablation):
+        if ablation['predictors']:
+            for fold in ablation['folds']:
+                if fold['fitted_parameters'] != params[fold['repeat_index'],fold['fold_index']]:
+                    raise ValueError('pair/group did not reuse full-model parameters')
+    def normalized(actual, raw, gain):
+        expected = raw/gain if gain > 0 else None
+        if expected is None:
+            if actual is not None:
+                raise ValueError('undefined pair/group normalization must remain unavailable')
+        else:
+            same(actual, expected)
+    for pair in pairs:
+        selected = {tuple(k) for k in pair['selected_folds']}
+        b = float(np.mean(losses(baseline, selected)))
+        f = float(np.mean(losses(full, selected)))
+        a = pair['ablation']['aggregate_risk']
+        for actual, expected in ((pair['baseline_risk'],b), (pair['full_risk'],f),
+                (pair['ablated_risk'],a), (pair['total_gain'],b-f), (pair['raw'],a-f)):
+            same(actual, expected)
+        normalized(pair['normalized'],a-f,b-f)
+        reused(pair['ablation'])
+    for component in components:
+        if component['ablation'] is not None:
+            raw = component['ablation']['aggregate_risk']-full['aggregate_risk']
+            same(component['raw'],raw)
+            normalized(component['normalized'],raw,baseline['aggregate_risk']-full['aggregate_risk'])
+            reused(component['ablation'])
+
+
 def audit_risk(payload, data, plan, target, candidates, predictors, *, all_folds=True):
     risk = decode(RiskResult, payload)
     split_id = hashlib.sha256(plan.split_plan.to_json(indent=None).encode()).hexdigest()
     if (risk.target, risk.candidate_set, risk.predictors, risk.loss, risk.split_seed,
         risk.split_plan_id) != (target, candidates, predictors, 'mse', plan.seed, split_id):
         raise ValueError('risk data/split/predictor identity mismatch')
+    if risk.learner != ('elastic_net' if predictors else None):
+        raise ValueError('risk engine differs from reference learner/baseline')
     splits = {(s.repeat, s.fold):s for s in plan.split_plan.splits}
     found, losses = set(), []
     for fold in risk.folds:
@@ -100,6 +139,8 @@ def audit_risk(payload, data, plan, target, candidates, predictors, *, all_folds
     expected_fits = len(found) if predictors else 0
     if risk.outer_model_fit_count != expected_fits or risk.tuning_model_fit_count < 0:
         raise ValueError('risk fit count mismatch')
+    if not predictors and risk.tuning_model_fit_count != 0:
+        raise ValueError('baseline cannot have tuning fits')
     same(risk.aggregate_risk, float(np.mean(losses)))
     return len(losses)
 
@@ -134,6 +175,11 @@ def audit_checkpoint(payload, data, assessment, context, config):
         for fold in main[2+p+i]['folds']:
             if main[2+p+i]['predictors'] and fold['fitted_parameters'] != params[fold['repeat_index'],fold['fold_index']]:
                 raise ValueError('LOCO did not reuse full model parameters')
+    for i,risk in enumerate(main):
+        tuned = i == 1 or 2 <= i < 2+p
+        expected_tuning = len(risk['folds'])*25*config.tuning_cv.folds if tuned else 0
+        if risk['tuning_model_fit_count'] != expected_tuning:
+            raise ValueError('saved tuning count differs from frozen grid/folds')
     expected_group = ([] if local.pair_ablations is None else
                       [portable(pair.ablation) for pair in local.pair_ablations.pairs if pair.ablation])
     expected_group += [portable(c.ablation) for c in local.shared_components if c.ablation]
@@ -143,6 +189,8 @@ def audit_checkpoint(payload, data, assessment, context, config):
     for risk in groups:
         observations += audit_risk(risk, data, assessment.sample, assessment.target, names,
                                    tuple(risk['predictors']), all_folds=False)
+    audit_pair_group_anchors([] if local.pair_ablations is None else portable(local.pair_ablations.pairs),
+                             portable(local.shared_components), main[0], main[1])
     if len(recorded) != len(main)+len(groups):
         raise ValueError('foreign risk capture origin')
     for field in ('outer_model_fit_count','tuning_model_fit_count'):
@@ -248,7 +296,11 @@ def summarize(rows, stage, manifest_digest):
     for scenario in ('noise',) if stage == 'noise' else ('chain', 'correlated'):
         for n in (80,200):
             cell = [r for r in cases if (r['spec']['scenario'],r['spec']['n']) == (scenario,n)]
-            cells[f'{scenario}-n{n}'] = design.summarize_cell(cell, signal=stage != 'noise')
+            summary = design.summarize_cell(cell, signal=stage != 'noise')
+            complete = [r for r in cell if r['status'] == 'complete']
+            summary['depth_not_recovered_count'] = sum(
+                not all(r['structure'].get('depth_matches',{}).values()) for r in complete)
+            cells[f'{scenario}-n{n}'] = summary
     return dict(stage=stage, manifest=manifest_digest, planned=len(cases),
                 complete=sum(r['status'] == 'complete' for r in cases),
                 audit_errors=sum(r['status'] == 'audit_failed' for r in cases),
@@ -317,7 +369,7 @@ def aggregate(directory, manifest, stage, output):
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
     labels, values = list(report['cells']), list(report['cells'].values())
-    fig, axes = plt.subplots(1,2, figsize=(10,4))
+    fig, axes = plt.subplots(1,3, figsize=(14,4))
     for ax, metric, title in zip(axes, ('incorrect','recovery'), ('Any wrong finding','Exact network recovered')):
         for i,c in enumerate(values):
             bound = c[metric]
@@ -326,6 +378,17 @@ def aggregate(directory, manifest, stage, output):
                 ax.errorbar(i, rate, yerr=[[rate-bound['lower']],[bound['upper']-rate]], fmt='o', capsize=4)
         ax.set(xticks=range(len(labels)), xticklabels=labels, ylim=(-.03,1.03), title=title, ylabel='Proportion of independent datasets')
         ax.tick_params(axis='x', rotation=35)
+    ax = axes[2]
+    for i,c in enumerate(values):
+        if not c['unknown'] and stage != 'noise':
+            bound = design.interval(c['depth_not_recovered_count'])
+            rate = bound['count']/80
+            ax.errorbar(i,rate,yerr=[[rate-bound['lower']],[bound['upper']-rate]],fmt='o',capsize=4)
+    ax.set(xticks=range(len(labels)),xticklabels=labels,ylim=(-.03,1.03),
+           title='Expected depths not recovered',ylabel='Proportion of independent datasets')
+    if stage == 'noise':
+        ax.text(.5,.5,'No non-root depths expected',ha='center',transform=ax.transAxes)
+    ax.tick_params(axis='x',rotation=35)
     fig.tight_layout()
     fig.savefig(output/'reference-rates.png', dpi=160)
     plt.close(fig)
