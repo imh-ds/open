@@ -15,7 +15,7 @@ The development wheel (`0.1.0.dev0`, initial source f736222) built, includes the
 |Near-copy scales|20/20 complete; both depth1 in one joint relation; no unique member arrows|Redundant predictors retain joint representation|
 |Direct-predictor researcher report|24/24 people held out once; two evaluation folds; effects and three plots exported|Installed report/export workflow works; descriptive and held-out evidence remain distinct|
 
-There were zero recorded assessment warnings in the three 20-assessment layer fixtures. Fixed fixture success is regression evidence, not independent scientific validation or an estimated error rate. The report's held-out risk arithmetic and partition membership are retained in its saved evaluation.
+There were zero recorded assessment warnings in the three fixtures using 20 assessments per target (100 total). Fixed fixture success is regression evidence, not independent scientific validation or an estimated error rate. The report's held-out risk arithmetic and partition membership are retained in its saved evaluation.
 
 The first audit recorder failed to serialize a read-only mapping after all workflow/export assertions completed. The package did not fail. Initial logs are retained; the recorder now uses the existing portable serializer. The [no-fit completion audit](audit_installed_outputs.py) rechecks the complete exports and can be rerun without repeating model fitting. Do not interpret its zero audit fits as zero fits in the original regression executions. Assessment warnings are preserved in the exported ledgers; original wrapper-only plotting warnings were not separately retained by the failed recorder.
 
@@ -25,7 +25,7 @@ The first wheel-build attempt also hit a sandbox-only temporary-file rename deni
 
 The historical 20-assessment checks took 316.3 seconds (chain), 316.9 seconds (missing chain), and 168.8 seconds (near-copy scales), measured while the independent checks ran concurrently. These timings are not a worst-case bound.
 
-A separate default-settings timing probe used the same 80-row chain, default performance CV5 repeated twice/inner CV3, with one effective assessment per target. It completed in 85.46 seconds. Multiplying by the configured100 assessments gives a rough142.4 minutes, assuming unchanged expansion and per-assessment cost. This is not a measured full-budget run, a reliable timing bound, or a scientific result. See [timing/projection and limits](default-timing/timing.json).
+A separate default-settings timing probe used the same 80-row chain, default performance CV5 repeated twice/inner CV3, with one effective assessment per target. It completed in 85.46 seconds. Multiplying by the configured 100 assessments gives a rough142.4 minutes, assuming unchanged expansion and per-assessment cost. This is not a measured full-budget run, a reliable timing bound, or a scientific result. See [timing/projection and limits](default-timing/timing.json).
 
 This runtime difference is why the confirmation configuration and compute budget must be chosen explicitly. Testing a smaller reference profile cannot certify the shipped default profile. A fresh operating-characteristic study is proposed separately; none has been generated or dispatched here.
 
@@ -37,6 +37,6 @@ The public default branch is still at the earlier e1f55f8 revision, whereas the 
 
 Use a clean virtual environment, install the saved wheel plus the exact dependency lock from an available wheelhouse, and run `installed_workflow_check.py CASE --root REPO --out NEW_DIRECTORY` with that environment's `python -I`. Run from outside `src`; never install editable for this check. Cases are chain, chain_missing, shared_predictors and direct_report. To audit existing outputs with zero new fits, run `audit_installed_outputs.py CASE --root REPO --out SAVED_CASE_DIRECTORY` under the same installed environment. Original data/config bytes are saved per case.
 
-[Chain graph](installed/chain/network.png), [joint-scale graph](installed/shared_predictors/network.png), and [researcher report and plots](installed/direct_report/report/REPORT.md). The chain graph was visually inspected: all three nodes, both20/20 links and depth labels are legible. Numerical magnitudes and layer frequencies retain their stated predictive interpretation.
+[Chain graph](installed/chain/network.png), [joint-scale graph](installed/shared_predictors/network.png), and [researcher report and plots](installed/direct_report/report/REPORT.md). The chain graph was visually inspected: all three nodes, both 20/20 links and depth labels are legible. Numerical magnitudes and layer frequencies retain their stated predictive interpretation.
 
 The documentation-updated candidate was rebuilt at b6734e3 and reinstalled non-editably. All40 `open/` members are byte-identical to the originally tested wheel; only dist-info METADATA/RECORD changed. [Final candidate proof](distribution/final-candidate-verification.json) records both hashes. The candidate remains a development build and has not been released.

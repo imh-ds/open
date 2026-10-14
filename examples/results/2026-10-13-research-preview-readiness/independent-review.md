@@ -1,0 +1,5 @@
+# Independent release-readiness review
+
+Reviewed f4a5b25..9086f6d, read-only. No critical or important findings. The reviewer independently executed all four saved-output audits with evidence writes suppressed and no fitting; checked all100 assessment records, structures, original input/config bytes and missing-target exclusions; recomputed all24 held-out observations, correct test membership, training-mean predictions, MSE/RMSE/R2/prediction skill; checked both wheel hashes, all40 members against current source and installed files, license equality, and fresh pip check. Initial recorder failures occur only at final JSON serialization. Chain/joint graphs and root curves were visually checked. Proposed exact binomial boundaries and qualified runtime projection were reviewed.
+
+Minor wording fixes applied: describe20 assessments per target rather than per whole chain fixture; restore numeric spacing/units. Review did not rerun fits/source tests, inspect the remote branch, independently rerun the historical725-test suite, or accept the scientific/release gates. Confirmation profile/budget and publication remain open. No method/default changes.
