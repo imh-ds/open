@@ -1,0 +1,104 @@
+name: Recursive reference timing probe
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/actions-selection-reliability]
+    paths: [.github/workflows/recursive-preview-timing.yml]
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: recursive-reference-validation
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: pwsh
+
+env:
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+
+jobs:
+  register:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - run: Write-Output 'Registration only; no model fits.'
+  timing:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: windows-2022
+    timeout-minutes: 82
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            src/**
+            pyproject.toml
+            README.md
+            LICENSE
+            configs/default.yaml
+            .github/workflows/recursive-preview-validation.yml
+            .github/workflows/recursive-preview-timing.yml
+            examples/recursive_preview_*.py
+            examples/time_recursive_preview.py
+            examples/recursive_timing_protocol.md
+            examples/recursive_preview_validation_protocol.md
+            examples/recursive_preview_continuation_proposal.md
+            examples/study_manifests/recursive-preview-*.json
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/raw/producer-manifest.json
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/raw/preflight.json
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/audit/raw-sha256.json
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/audit/diagnosis.json
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38621370295/raw/producer-manifest.json
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38621370295/audit/diagnosis.json
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38621370295/audit/raw-sha256.json
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: 3.11.9
+      - name: Install pinned runtime and non-editable package
+        timeout-minutes: 3
+        run: |
+          python -m pip install numpy==1.26.4 pandas==2.2.3 scipy==1.11.2 scikit-learn==1.3.0 matplotlib==3.9.2 PyYAML==6.0.2 setuptools==75.1.0 wheel==0.45.1
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -m pip install --no-build-isolation --no-deps .
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -m pip check
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -m pip freeze | Out-File -Encoding utf8 runtime.txt
+          python -I examples/time_recursive_preview.py check
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Download original partial assessments
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: recursive-preview-preflight-raw
+          run-id: '38621370295'
+          github-token: ${{ github.token }}
+          path: producer-evidence
+      - name: Measure complete networks without per-dataset deadline
+        timeout-minutes: 72
+        run: |
+          python -I examples/time_recursive_preview.py run --out .superpowers/recursive-timing --evidence producer-evidence
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Preserve available checkpoints without fits
+        if: always()
+        timeout-minutes: 2
+        run: python -I examples/time_recursive_preview.py pack --out .superpowers/recursive-timing
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        timeout-minutes: 4
+        with:
+          name: recursive-preview-timing
+          path: |
+            .superpowers/recursive-timing/
+            runtime.txt
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
