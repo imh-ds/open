@@ -13,6 +13,7 @@ from open.layer_artifacts import portable
 
 ROOT = Path(__file__).resolve().parents[1]
 NAME = '2026-10-14-recursive-preview-validation'
+PRODUCER = ROOT/f'examples/results/{NAME}/preflight-failure-38615814397'
 RUNTIME = {'numpy':'1.26.4', 'pandas':'2.2.3', 'scipy':'1.11.2',
            'scikit-learn':'1.3.0', 'PyYAML':'6.0.2', 'matplotlib':'3.9.2'}
 
@@ -106,8 +107,11 @@ def sources():
     files = [*sorted((ROOT/'src/open').rglob('*.py')),
              *sorted((ROOT/'examples').glob('recursive_preview_*.py')),
              ROOT/'examples/recursive_preview_validation_protocol.md',
+             ROOT/'examples/recursive_preview_continuation_proposal.md',
              ROOT/'configs/default.yaml', ROOT/'pyproject.toml',
-             ROOT/'.github/workflows/recursive-preview-validation.yml']
+             ROOT/'.github/workflows/recursive-preview-validation.yml',
+             PRODUCER/'raw/producer-manifest.json', PRODUCER/'raw/preflight.json',
+             PRODUCER/'audit/raw-sha256.json', PRODUCER/'audit/diagnosis.json']
     seed_audit = ROOT/'examples/study_manifests/recursive-preview-seed-audit.json'
     if seed_audit.exists():
         files.append(seed_audit)
@@ -115,9 +119,18 @@ def sources():
 
 
 def manifest():
-    return dict(schema='open.recursive_reference.v1', cases=specs(), sources=sources(),
+    original = json.loads((PRODUCER/'raw/producer-manifest.json').read_text(encoding='utf-8-sig'))
+    control = json.loads((PRODUCER/'raw/preflight.json').read_text(encoding='utf-8-sig'))
+    hashes = json.loads((PRODUCER/'audit/raw-sha256.json').read_text(encoding='utf-8-sig'))
+    diagnosis = json.loads((PRODUCER/'audit/diagnosis.json').read_text(encoding='utf-8-sig'))
+    continuation = dict(producer_run_id=str(control['github_run']), producer_source=control['github_sha'],
+        producer_manifest_digest=digest(original), archive_sha256=hashes['preflight-all-attempts.zip'],
+        fixture_receipt_sha256=diagnosis['fixture_audit']['receipt_sha256'],
+        prior_allocated_runner_minutes=9871, additional_job_minutes=45, additional_registration_minutes=1)
+    return dict(schema='open.recursive_reference.v2', cases=specs(), sources=sources(),
                 runtime=RUNTIME, workers=4, case_seconds=900, shard_minutes=40,
-                max_parallel=20, allocated_runner_minutes=9871, approved_ceiling=10000,
+                max_parallel=20, allocated_runner_minutes=9917, approved_ceiling=10000,
+                preflight_job_minutes=45, continuation=continuation,
                 preflight_indices=[160,240], wrong_upper=.10, recovery_lower=.80,
                 default_config=portable(load_config(ROOT/'configs/default.yaml')))
 

@@ -116,7 +116,11 @@ def validate_preflight(report, manifest):
             or report['manifest'] != design.digest(manifest) or report['equivalence'] is not True
             or set(report['planned_cases']) != {'160','240'}
             or not report['storage_feasible'] or not report['audit_feasible']
-            or report['archive_crc_checked'] is not True):
+            or report['archive_crc_checked'] is not True
+            or report['fixture_reused'] is not True or report['fixture_new_fits'] != 0
+            or report['fixture_producer_run'] != manifest['continuation']['producer_run_id']
+            or report['fixture_producer_manifest'] != manifest['continuation']['producer_manifest_digest']
+            or report['raw_sha256']['preflight-fixture.zip'] != manifest['continuation']['archive_sha256']):
             raise ValueError()
         for key,case in report['planned_cases'].items():
             if case['index'] != int(key) or case['seconds'] > 900 or case['status'] != 'complete':
@@ -124,6 +128,57 @@ def validate_preflight(report, manifest):
     except (KeyError,TypeError,ValueError) as exc:
         raise ValueError('preflight incomplete, edited or source/timing mismatch') from exc
     return True
+
+
+def reuse_original_fixture(evidence, manifest, baseline, data, output):
+    """Verify original producer bytes and audit them; this path never fits a model."""
+    proof = manifest['continuation']
+    archive = find_one(evidence,'preflight-all-attempts.zip')
+    if hashlib.sha256(archive.read_bytes()).hexdigest() != proof['archive_sha256']:
+        raise ValueError('original fixture archive fingerprint differs')
+    original = load_json(design.PRODUCER/'raw/producer-manifest.json')
+    control = load_json(design.PRODUCER/'raw/preflight.json')
+    if (design.digest(original) != proof['producer_manifest_digest']
+        or control['manifest'] != proof['producer_manifest_digest']
+        or str(control['github_run']) != proof['producer_run_id']
+        or control['github_sha'] != proof['producer_source']
+        or control['status'] != 'FAILED' or control['planned_cases'] != {}):
+        raise ValueError('original producer identity/computation boundary differs')
+    old_source = {n:h for n,h in original['sources'].items() if n.startswith('src/open/')}
+    new_source = {n:h for n,h in manifest['sources'].items() if n.startswith('src/open/')}
+    if old_source != new_source:
+        raise ValueError('production package source changed since fixture producer')
+    if any(original[k] != manifest[k] for k in ('cases','default_config','runtime','preflight_indices')):
+        raise ValueError('scientific settings/identities changed since fixture producer')
+    if portable(baseline.config) != original['default_config']:
+        raise ValueError('saved sequential fixture does not use the original defaults')
+    store = Store(archive,'fixture-chain')
+    try:
+        if hashlib.sha256(store.read('receipt.json')).hexdigest() != proof['fixture_receipt_sha256']:
+            raise ValueError('original fixture receipt fingerprint differs')
+        old_receipt = store.json('receipt.json')
+        if (old_receipt['github_run'] != proof['producer_run_id']
+            or old_receipt['github_sha'] != proof['producer_source'] or old_receipt['github_attempt'] != '1'):
+            raise ValueError('original fixture run/source/attempt identity differs')
+        saved = store.compressed('network.json.gz')
+        names = ('analysis_metadata.json','layer_evidence.json','assessment_ledger.json')
+        network,_ = reconstruct_payloads(*(saved[n] for n in names))
+        comparison = compare_networks(network,baseline)
+        if not comparison['equivalent']:
+            raise ValueError('reused fixture differs beyond corrected equivalence policy')
+        audit = audit_case(dict(id='fixture-chain',fixture='chain'),store,original,
+                           data=data,config=baseline.config)
+        if audit['assessments'] != 200 or audit['status'] != 'complete':
+            raise ValueError('original fixture is not fully complete')
+    finally:
+        store.close()
+    target = Path(output)/'raw/preflight-fixture.zip'
+    target.parent.mkdir(parents=True,exist_ok=True)
+    with archive.open('rb') as source, target.open('xb') as destination:
+        shutil.copyfileobj(source,destination)
+    return dict(new_fixture_fits=0, audit=audit, comparison=comparison,
+                producer_run_id=proof['producer_run_id'],
+                producer_manifest_digest=proof['producer_manifest_digest'])
 
 
 def github_api(path):
@@ -164,7 +219,7 @@ def verify_preflight_transport(report, api_get=github_api):
                 raw_uploaded_bytes=by_name['recursive-preview-preflight-raw']['size_in_bytes'])
 
 
-def preflight(output):
+def preflight(output, evidence):
     manifest = checked_manifest()
     runtime_check(manifest)
     output = Path(output)
@@ -179,22 +234,12 @@ def preflight(output):
             'analysis_metadata.json','layer_evidence.json','assessment_ledger.json')}
         baseline, _ = reconstruct_payloads(*(payload[n] for n in payload))
         data = pd.read_csv(ROOT/'examples/results/2026-10-08-layer-fixtures/chain/sample.csv')
-        spec = dict(id='fixture-chain', fixture='chain')
-        fixture = output/'cases'/spec['id']
-        run_case(spec, fixture, manifest, data=data, config=baseline.config, seconds=3600)
-        recreated = read_gzip(fixture/'network.json.gz')
-        network, _ = reconstruct_payloads(*(recreated[n] for n in payload))
-        comparison = compare_networks(network,baseline)
-        write_json(output/'equivalence.json', comparison)
-        if not comparison['equivalent']:
-            raise ValueError('parallel fixture differs from saved sequential default analysis')
-        store = Store(fixture)
-        try:
-            receipt['fixture_audit'] = audit_case(spec, store, manifest, data=data, config=baseline.config)
-        finally:
-            store.close()
-        receipt['equivalence'] = True
-        archive_cases([fixture], output/'raw/preflight-fixture.zip')
+        reused = reuse_original_fixture(evidence,manifest,baseline,data,output)
+        write_json(output/'equivalence.json',reused['comparison'])
+        receipt.update(fixture_audit=reused['audit'],equivalence=True,fixture_reused=True,
+            fixture_new_fits=0,fixture_producer_run=reused['producer_run_id'],
+            fixture_producer_manifest=reused['producer_manifest_digest'])
+        write_json(output/'preflight.json',receipt)
         timings, sizes = [], []
         for index in manifest['preflight_indices']:
             spec = design.specs()[index]
@@ -333,7 +378,7 @@ def main():
     if args.command == 'freeze':
         freeze()
     elif args.command == 'preflight':
-        preflight(args.out)
+        preflight(args.out,args.evidence)
     elif args.command == 'prepare':
         print(json.dumps(prepare(args.stage,args.evidence,args.preflight_run,args.noise_run)))
     elif args.command == 'shard':

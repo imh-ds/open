@@ -16,22 +16,28 @@ def test_workflow_manual_only_and_exact_timeout_budget():
     workflow = yaml.safe_load(path.read_text())
     jobs = workflow['jobs']
     assert jobs['register']['timeout-minutes'] == 1
-    assert jobs['preflight']['timeout-minutes'] == 120
+    assert jobs['preflight']['timeout-minutes'] == 45
     assert jobs['shard']['timeout-minutes'] == 40
     assert jobs['shard']['strategy']['max-parallel'] == 20
     assert jobs['prepare']['timeout-minutes'] == 15
     assert jobs['aggregate']['timeout-minutes'] == 60
     assert 'workflow_dispatch' in jobs['preflight']['if']
     assert 'workflow_dispatch' in jobs['prepare']['if']
-    assert 1+120+2*15+2*60+(80+160)*40 == 9871
+    assert 2+120+45+2*15+2*60+(80+160)*40 == 9917
     text = path.read_text()
     assert 'persist-credentials: false' in text
     assert 'recursive_preview_*.py' in text
     import fnmatch
+    import recursive_preview_design as d
     for job in ('preflight','prepare','shard','aggregate'):
         checkout = jobs[job]['steps'][0]['with']
         assert any(fnmatch.fnmatch('examples/study_manifests/recursive-preview-validation.json',p)
                    for p in checkout['sparse-checkout'].splitlines())
+        for source in d.sources():
+            assert any(fnmatch.fnmatch(source,p) for p in checkout['sparse-checkout'].splitlines()), (job,source)
+    download = next(s for s in jobs['preflight']['steps'] if s.get('name') == 'Download original completed fixture evidence')
+    assert download['with']['run-id'] == '38615814397'
+    assert download['with']['name'] == 'recursive-preview-preflight-raw'
     assert 'github.token' in text and 'actions: read' in text
 
 

@@ -1,6 +1,6 @@
 # Proposed no-refit continuation after the preflight checker failure
 
-Status: concrete execution amendment for owner review; not dispatched. The approved scientific design,480identities,100resamples/CV5x2/inner3/defaultelasticnet/.70retention and .10/.80reference criteria remain unchanged. The original failed run is preserved as failed.
+Status: approved by the owner's “Proceed” on2026-10-14; implementation and launch verification in progress. The approved scientific design,480identities,100resamples/CV5x2/inner3/defaultelasticnet/.70retention and .10/.80reference criteria remain unchanged. The original failed run is preserved as failed.
 
 ## Why an execution amendment is needed
 
@@ -20,6 +20,6 @@ The existing protocol says that failed equivalence must stop execution and recei
 
 ## Budget and stop condition
 
-Retain all original9871allocated runner-minutes, even though the first preflight used only about7.5actual job minutes. Add45minutes for continuation plus1registration minute: **9917total allocated runner-minutes**, leaving83within the owner-approved10000ceiling. This requires approval to use46of the previously unallocated129minutes; none is assumed automatically.
+Retain all original9871allocated runner-minutes, even though the first preflight used only about7.5actual job minutes. Add45minutes for continuation plus1registration minute: **9917total allocated runner-minutes**, leaving83within the owner-approved10000ceiling. The owner's approval explicitly allocates46of the previously unallocated129minutes to this continuation.
 
 If the corrected no-fit equivalence check, case15-minute timing, source fingerprints, raw replay or preservation fail, stop again without new fits/retries or scientific qualification. Passing this continuation would permit the already approved noise stage; it would not itself establish scientific accuracy or authorize a release publication.

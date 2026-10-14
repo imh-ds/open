@@ -48,7 +48,7 @@ jobs:
   preflight:
     if: github.event_name == 'workflow_dispatch' && inputs.stage == 'preflight'
     runs-on: windows-2022
-    timeout-minutes: 120
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
@@ -64,6 +64,11 @@ jobs:
             examples/recursive_preview_*.py
             examples/recursive_preview_validation_protocol.md
             examples/study_manifests/recursive-preview-*.json
+            examples/recursive_preview_continuation_proposal.md
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/raw/producer-manifest.json
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/raw/preflight.json
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/audit/raw-sha256.json
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/audit/diagnosis.json
             examples/results/2026-10-08-layer-fixtures/chain/sample.csv
             examples/results/2026-10-14-default-preview-pilot/default-pilot-chain/**
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
@@ -79,10 +84,17 @@ jobs:
           python -m pip check
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           python -m pip freeze | Out-File -Encoding utf8 runtime.txt
+      - name: Download original completed fixture evidence
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: recursive-preview-preflight-raw
+          run-id: '38615814397'
+          github-token: ${{ github.token }}
+          path: producer-evidence
       - name: Verify full-default equivalence and two planned timing cases
-        timeout-minutes: 105
+        timeout-minutes: 35
         run: |
-          python -I examples/recursive_preview_actions.py preflight --out .superpowers/recursive-preflight
+          python -I examples/recursive_preview_actions.py preflight --out .superpowers/recursive-preflight --evidence producer-evidence
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: Preserve interrupted checkpoints without new fits
         if: always()
@@ -130,6 +142,11 @@ jobs:
             examples/recursive_preview_*.py
             examples/recursive_preview_validation_protocol.md
             examples/study_manifests/recursive-preview-*.json
+            examples/recursive_preview_continuation_proposal.md
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/raw/producer-manifest.json
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/raw/preflight.json
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/audit/raw-sha256.json
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/audit/diagnosis.json
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: 3.11.9
@@ -190,6 +207,11 @@ jobs:
             examples/recursive_preview_*.py
             examples/recursive_preview_validation_protocol.md
             examples/study_manifests/recursive-preview-*.json
+            examples/recursive_preview_continuation_proposal.md
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/raw/producer-manifest.json
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/raw/preflight.json
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/audit/raw-sha256.json
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/audit/diagnosis.json
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: 3.11.9
@@ -257,6 +279,11 @@ jobs:
             examples/recursive_preview_*.py
             examples/recursive_preview_validation_protocol.md
             examples/study_manifests/recursive-preview-*.json
+            examples/recursive_preview_continuation_proposal.md
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/raw/producer-manifest.json
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/raw/preflight.json
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/audit/raw-sha256.json
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/audit/diagnosis.json
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: 3.11.9
