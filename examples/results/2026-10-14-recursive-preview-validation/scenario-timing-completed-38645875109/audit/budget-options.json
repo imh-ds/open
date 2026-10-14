@@ -1,0 +1,111 @@
+{
+  "status": "PLANNING_ONLY",
+  "approved": false,
+  "ceiling": 10000,
+  "integer_boundaries_checked_by_independent_binomial_tails": true,
+  "original_480_study_status": "Incomplete; original identities and denominators unchanged",
+  "conditions": [
+    {
+      "condition": "noise-n80",
+      "case_minutes": 7.652866666666667,
+      "observed_job_minutes": 9.466666666666667,
+      "illustrative_job_cap_minutes": 14
+    },
+    {
+      "condition": "noise-n200",
+      "case_minutes": 11.975516666666666,
+      "observed_job_minutes": 13.95,
+      "illustrative_job_cap_minutes": 19
+    },
+    {
+      "condition": "chain-n80",
+      "case_minutes": 27.369266666666665,
+      "observed_job_minutes": null,
+      "illustrative_job_cap_minutes": 40
+    },
+    {
+      "condition": "chain-n200",
+      "case_minutes": 27.40156666666668,
+      "observed_job_minutes": null,
+      "illustrative_job_cap_minutes": 40
+    },
+    {
+      "condition": "correlated-n80",
+      "case_minutes": 17.327350000000003,
+      "observed_job_minutes": 19.75,
+      "illustrative_job_cap_minutes": 25
+    },
+    {
+      "condition": "correlated-n200",
+      "case_minutes": 23.129683333333332,
+      "observed_job_minutes": 25.433333333333334,
+      "illustrative_job_cap_minutes": 30
+    }
+  ],
+  "options": [
+    {
+      "datasets_per_cell": 50,
+      "total_datasets": 300,
+      "prospective_reserved_minutes_reusing_6_pilots": 8889,
+      "prospective_reserved_minutes_fresh_only": 9057,
+      "max_incorrect_per_cell": 0,
+      "min_exact_per_signal_cell": 46,
+      "wrong_upper_at_boundary": 0.07112173646419764,
+      "exact_lower_at_boundary": 0.8076572164040372,
+      "assumed_1pct_wrong_rate_probability_all6_wrong_bounds_pass": 0.049040894071285875
+    },
+    {
+      "datasets_per_cell": 54,
+      "total_datasets": 324,
+      "prospective_reserved_minutes_reusing_6_pilots": 9561,
+      "prospective_reserved_minutes_fresh_only": 9729,
+      "max_incorrect_per_cell": 1,
+      "min_exact_per_signal_cell": 50,
+      "wrong_upper_at_boundary": 0.09891515950785124,
+      "exact_lower_at_boundary": 0.8210665708339272,
+      "assumed_1pct_wrong_rate_probability_all6_wrong_bounds_pass": 0.5249772298804409
+    },
+    {
+      "datasets_per_cell": 55,
+      "total_datasets": 330,
+      "prospective_reserved_minutes_reusing_6_pilots": 9729,
+      "prospective_reserved_minutes_fresh_only": 9897,
+      "max_incorrect_per_cell": 1,
+      "min_exact_per_signal_cell": 50,
+      "wrong_upper_at_boundary": 0.0971910157492534,
+      "exact_lower_at_boundary": 0.8004603842294991,
+      "assumed_1pct_wrong_rate_probability_all6_wrong_bounds_pass": 0.5139576972513821
+    },
+    {
+      "datasets_per_cell": 60,
+      "total_datasets": 360,
+      "prospective_reserved_minutes_reusing_6_pilots": 10569,
+      "prospective_reserved_minutes_fresh_only": 10737,
+      "max_incorrect_per_cell": 1,
+      "min_exact_per_signal_cell": 55,
+      "wrong_upper_at_boundary": 0.08939905005748702,
+      "exact_lower_at_boundary": 0.8161422166234142,
+      "assumed_1pct_wrong_rate_probability_all6_wrong_bounds_pass": 0.4605127231184785
+    },
+    {
+      "datasets_per_cell": 80,
+      "total_datasets": 480,
+      "prospective_reserved_minutes_reusing_6_pilots": 13929,
+      "prospective_reserved_minutes_fresh_only": 14097,
+      "max_incorrect_per_cell": 2,
+      "min_exact_per_signal_cell": 72,
+      "wrong_upper_at_boundary": 0.08740715593059228,
+      "exact_lower_at_boundary": 0.8124348925365683,
+      "assumed_1pct_wrong_rate_probability_all6_wrong_bounds_pass": 0.7512402212357049
+    }
+  ],
+  "caveats": [
+    "One timed dataset per cell is not a worst-case runtime bound.",
+    "Preserve defaults and criteria; smaller n changes integer thresholds and precision.",
+    "Choose costed scope prospectively, not from observed accuracy.",
+    "Timeouts remain unknown and prevent positive qualification; do not retry automatically.",
+    "Assurance probability is hypothetical, not observed method performance.",
+    "Prefer fresh-only qualification after pilot-dependent budget planning; keep the six pilots descriptive.",
+    "Any new identity list/reuse/stage gates need a frozen reviewed protocol before fits."
+  ]
+}

@@ -1,0 +1,7 @@
+index,scenario,n,case_seconds,timing_scope,compute_audit_seconds,job_seconds,assessments,warnings,exact_structure,archive_bytes
+0,noise,80,459.172,uninterrupted,469.3599999999999,568.0,100,0,True,1702861
+80,noise,200,718.531,uninterrupted,748.8439999999998,837.0,100,0,True,7021614
+160,chain,80,1642.156,cumulative across two runs,,,300,0,True,
+240,chain,200,1644.094000000001,uninterrupted,,,300,0,True,
+320,correlated,80,1039.641,uninterrupted,1065.6090000000002,1185.0,300,0,True,5400106
+400,correlated,200,1387.781,uninterrupted,1454.7189999999998,1526.0,300,0,True,17520386

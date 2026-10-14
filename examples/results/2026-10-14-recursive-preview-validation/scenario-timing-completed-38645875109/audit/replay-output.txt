@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "run_id": 38645875109,
+  "source": "f1c1e3851bc19504a3ff6131c2f6bc3524ce5450",
+  "timing_manifest": "748b18c6aff121621412e8a5abd9e6e06d79fcc8c2462019445d537f6fb6e9c6",
+  "audit_model_fits": 0,
+  "new_case_assessments": 800,
+  "reused_chain_assessments": 600,
+  "total_observation_checks": 2510253,
+  "total_outer_fit_records": 98112,
+  "total_tuning_fit_records": 4200000,
+  "warnings": 0,
+  "current_run_job_minutes": 73.0,
+  "current_run_rounded_job_minutes": 75,
+  "current_run_wall_minutes": 29.933333333333334,
+  "planning": {
+    "original_planned_datasets": 480,
+    "timed_independent_datasets": 6,
+    "remaining_datasets": 474,
+    "remaining_job_reservation": 9344,
+    "remaining_compute_projection_minutes": 9073.643750000001,
+    "remaining_setup_audit_upload_headroom_minutes": 270.3562499999989,
+    "mean_overhead_allowance_per_remaining_case": 0.5703718354430357,
+    "illustrative_single_case_caps": [
+      15,
+      20,
+      40,
+      40,
+      30,
+      35
+    ],
+    "illustrative_full_study_reserved_minutes": 14877,
+    "example_50_per_cell_reserved_minutes": 9477,
+    "caveat": "One timing dataset per cell; projections/caps are planning illustrations, not approved allocations or worst-case bounds."
+  },
+  "scientific_gate_accepted": false
+}
