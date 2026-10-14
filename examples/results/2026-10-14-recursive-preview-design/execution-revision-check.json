@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "scope": "No-fit planning arithmetic, original identities, timing projections and local links only",
+  "scientific_fits": 0,
+  "historical_retained_caps": 250,
+  "proposed_timing_reservation": 256,
+  "future_preparation_aggregation": 150,
+  "remaining_study_reservation": 9344,
+  "total_ceiling": 10000,
+  "withdrawn_future_reservations": 9750,
+  "replacement_future_reservations": 9750,
+  "proposed_original_cases": [
+    {
+      "analysis_seed": 1700000000,
+      "generator_seed": 1600000000,
+      "id": "noise-n80-r00",
+      "index": 0,
+      "n": 80,
+      "repetition": 0,
+      "scenario": "noise"
+    },
+    {
+      "analysis_seed": 1700080000,
+      "generator_seed": 1600080000,
+      "id": "noise-n200-r00",
+      "index": 80,
+      "n": 200,
+      "repetition": 0,
+      "scenario": "noise"
+    },
+    {
+      "analysis_seed": 1700320000,
+      "generator_seed": 1600320000,
+      "id": "correlated-n80-r00",
+      "index": 320,
+      "n": 80,
+      "repetition": 0,
+      "scenario": "correlated"
+    },
+    {
+      "analysis_seed": 1700400000,
+      "generator_seed": 1600400000,
+      "id": "correlated-n200-r00",
+      "index": 400,
+      "n": 200,
+      "repetition": 0,
+      "scenario": "correlated"
+    }
+  ],
+  "mean_observed_chain_minutes": 27.385416666666675,
+  "remaining_chain_computation_projection_minutes": 4326.895833333335,
+  "remaining_original_cases": 474,
+  "uniform_40_minute_caps_for_remaining": 18960,
+  "protocol_sha256": "25287cb283757f76a2e601538f1efd313fc56a51d477abf5af8dbf5a431c8947"
+}
