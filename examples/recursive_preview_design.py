@@ -108,6 +108,9 @@ def sources():
              ROOT/'examples/recursive_preview_validation_protocol.md',
              ROOT/'configs/default.yaml', ROOT/'pyproject.toml',
              ROOT/'.github/workflows/recursive-preview-validation.yml']
+    seed_audit = ROOT/'examples/study_manifests/recursive-preview-seed-audit.json'
+    if seed_audit.exists():
+        files.append(seed_audit)
     return {p.relative_to(ROOT).as_posix():text_hash(p) for p in files}
 
 

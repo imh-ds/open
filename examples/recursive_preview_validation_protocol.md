@@ -1,6 +1,6 @@
 # Recursive-network reference validation
 
-Version 1, 2026-10-14. **Design awaiting review; not generated or dispatched.** The owner authorized preparing the next validation and a ceiling of 10,000 GitHub Actions runner-minutes. This document specifies the concrete design for review before new simulation execution. It replaces neither historical protocols nor their conclusions.
+Version 1, 2026-10-14. **Design, implementation and staged launch approved by the owner; execution evidence pending.** The owner approved this concrete protocol and requested launch after choosing a ceiling of 10,000 GitHub Actions runner-minutes. Source/runtime freeze, numerical-equivalence and timed preflight gates apply before the full study. It replaces neither historical protocols nor their conclusions.
 
 ## Question and claim boundary
 
@@ -52,7 +52,7 @@ Use two-sided 95% Clopper-Pearson intervals per cell, without rounding for decis
 1. In each of the two noise cells, the upper bound for datasets with any retained relation must be <= .10.
 2. In each of the four signal cells, the upper bound for datasets with any incorrect retained relation must be <= .10, and the lower bound for exact structure recovery must be >= .80.
 
-With n=80 these mean at most two incorrect-finding datasets per cell (2/80 upper bound .0874071559; 3/80 upper bound .1057019850) and at least 72/80 exact recoveries in each signal cell (72/80 lower bound .8124348925; 71/80 lower bound .7971534081). Save the separate missed-link counts even if a cell qualifies. This is a proposed research-preview guard, not an established acceptable error standard for psychology or a 5% error guarantee. The owner must review this trade-off before execution.
+With n=80 these mean at most two incorrect-finding datasets per cell (2/80 upper bound .0874071559; 3/80 upper bound .1057019850) and at least 72/80 exact recoveries in each signal cell (72/80 lower bound .8124348925; 71/80 lower bound .7971534081). Save the separate missed-link counts even if a cell qualifies. This is the owner-approved research-preview guard, not an established acceptable error standard for psychology or a 5% error guarantee.
 
 Design assurance matters: a .05 upper-bound criterion at n80 would require zero errors in every cell; if the true event rate were .01 in all six independent cells, the chance of passing that part of the overall gate would be only .00803. The proposed .10 bound permits up to two per cell; at assumed true rates .005, .01 and .02, its per-cell pass probabilities are .99229, .95345 and .78442, and all-six probabilities .95461, .75124 and .23296. These are planning calculations, not observed method performance. They show that even this bounded study can be inconclusive despite useful performance. Do not escalate the budget or loosen the guard after observing data.
 

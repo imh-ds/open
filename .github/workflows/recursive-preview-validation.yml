@@ -1,0 +1,264 @@
+name: Recursive reference validation
+
+on:
+  workflow_dispatch:
+    inputs:
+      stage:
+        type: choice
+        options: [preflight, noise, signal]
+        required: true
+      preflight_run:
+        description: Completed, audited preflight run ID; required for noise/signal
+        type: string
+      noise_run:
+        description: Preserved, committed noise-stage run ID; required for signal
+        type: string
+  push:
+    branches: [codex/actions-selection-reliability]
+    paths: [.github/workflows/recursive-preview-validation.yml]
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: recursive-reference-validation
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: pwsh
+
+env:
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+
+jobs:
+  register:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - run: Write-Output 'Registration only; no installation or modelling.'
+
+  preflight:
+    if: github.event_name == 'workflow_dispatch' && inputs.stage == 'preflight'
+    runs-on: windows-2022
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            src/**
+            pyproject.toml
+            README.md
+            LICENSE
+            configs/default.yaml
+            .github/workflows/recursive-preview-validation.yml
+            examples/recursive_preview_*.py
+            examples/recursive_preview_validation_protocol.md
+            examples/study_manifests/recursive-preview-*.json
+            examples/results/2026-10-08-layer-fixtures/chain/sample.csv
+            examples/results/2026-10-14-default-preview-pilot/default-pilot-chain/**
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: 3.11.9
+      - name: Install exact runtime and non-editable package
+        timeout-minutes: 3
+        run: |
+          python -m pip install numpy==1.26.4 pandas==2.2.3 scipy==1.11.2 scikit-learn==1.3.0 matplotlib==3.9.2 PyYAML==6.0.2 setuptools==75.1.0 wheel==0.45.1
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -m pip install --no-build-isolation --no-deps .
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -m pip check
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -m pip freeze | Out-File -Encoding utf8 runtime.txt
+      - name: Verify full-default equivalence and two planned timing cases
+        timeout-minutes: 105
+        run: |
+          python -I examples/recursive_preview_actions.py preflight --out .superpowers/recursive-preflight
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Preserve interrupted checkpoints without new fits
+        if: always()
+        timeout-minutes: 2
+        run: python -I examples/recursive_preview_actions.py pack --out .superpowers/recursive-preflight
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        timeout-minutes: 4
+        with:
+          name: recursive-preview-preflight-control
+          path: |
+            .superpowers/recursive-preflight/preflight.json
+            runtime.txt
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        timeout-minutes: 4
+        with:
+          name: recursive-preview-preflight-raw
+          path: .superpowers/recursive-preflight/raw/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+
+  prepare:
+    if: github.event_name == 'workflow_dispatch' && inputs.stage != 'preflight'
+    runs-on: windows-2022
+    timeout-minutes: 15
+    outputs:
+      shards: ${{ steps.matrix.outputs.shards }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            src/**
+            pyproject.toml
+            README.md
+            LICENSE
+            configs/default.yaml
+            .github/workflows/recursive-preview-validation.yml
+            examples/recursive_preview_*.py
+            examples/recursive_preview_validation_protocol.md
+            examples/study_manifests/recursive-preview-*.json
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: 3.11.9
+      - run: |
+          python -m pip install numpy==1.26.4 pandas==2.2.3 scipy==1.11.2 scikit-learn==1.3.0 matplotlib==3.9.2 PyYAML==6.0.2 setuptools==75.1.0 wheel==0.45.1
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -m pip install --no-build-isolation --no-deps .
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: recursive-preview-preflight-control
+          run-id: ${{ inputs.preflight_run }}
+          github-token: ${{ github.token }}
+          path: evidence/preflight
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        if: inputs.stage == 'signal'
+        with:
+          name: recursive-preview-noise-audit
+          run-id: ${{ inputs.noise_run }}
+          github-token: ${{ github.token }}
+          path: evidence/noise
+      - id: matrix
+        run: |
+          $shards = python -I examples/recursive_preview_actions.py prepare --stage '${{ inputs.stage }}' --evidence evidence --preflight-run '${{ inputs.preflight_run }}' --noise-run '${{ inputs.noise_run }}'
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          "shards=$shards" >> $env:GITHUB_OUTPUT
+
+  shard:
+    needs: prepare
+    runs-on: windows-2022
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        shard: ${{ fromJSON(needs.prepare.outputs.shards) }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            src/**
+            pyproject.toml
+            README.md
+            LICENSE
+            configs/default.yaml
+            .github/workflows/recursive-preview-validation.yml
+            examples/recursive_preview_*.py
+            examples/recursive_preview_validation_protocol.md
+            examples/study_manifests/recursive-preview-*.json
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: 3.11.9
+      - name: Install pinned package/runtime
+        timeout-minutes: 3
+        run: |
+          python -m pip install numpy==1.26.4 pandas==2.2.3 scipy==1.11.2 scikit-learn==1.3.0 matplotlib==3.9.2 PyYAML==6.0.2 setuptools==75.1.0 wheel==0.45.1
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -m pip install --no-build-isolation --no-deps .
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -m pip freeze | Out-File -Encoding utf8 runtime.txt
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        if: inputs.stage == 'signal' && (matrix.shard == 0 || matrix.shard == 40)
+        with:
+          name: recursive-preview-preflight-raw
+          run-id: ${{ inputs.preflight_run }}
+          github-token: ${{ github.token }}
+          path: evidence/preflight
+      - name: Run two immutable datasets with four assessment processes
+        timeout-minutes: 30
+        run: |
+          python -I examples/recursive_preview_actions.py shard --stage '${{ inputs.stage }}' --index '${{ matrix.shard }}' --out '.superpowers/recursive-shard' --evidence evidence
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Preserve interrupted work without new fits
+        if: always()
+        timeout-minutes: 2
+        run: python -I examples/recursive_preview_actions.py pack --stage '${{ inputs.stage }}' --index '${{ matrix.shard }}' --out .superpowers/recursive-shard
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        timeout-minutes: 5
+        with:
+          name: recursive-preview-${{ inputs.stage }}-${{ matrix.shard }}
+          path: |
+            .superpowers/recursive-shard/raw/
+            .superpowers/recursive-shard/shard.json
+            runtime.txt
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+
+  aggregate:
+    needs: [prepare, shard]
+    if: always() && github.event_name == 'workflow_dispatch' && inputs.stage != 'preflight' && needs.prepare.result == 'success'
+    runs-on: windows-2022
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            src/**
+            pyproject.toml
+            README.md
+            LICENSE
+            configs/default.yaml
+            .github/workflows/recursive-preview-validation.yml
+            examples/recursive_preview_*.py
+            examples/recursive_preview_validation_protocol.md
+            examples/study_manifests/recursive-preview-*.json
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: 3.11.9
+      - run: |
+          python -m pip install numpy==1.26.4 pandas==2.2.3 scipy==1.11.2 scikit-learn==1.3.0 matplotlib==3.9.2 PyYAML==6.0.2 setuptools==75.1.0 wheel==0.45.1
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -m pip install --no-build-isolation --no-deps .
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          pattern: recursive-preview-${{ inputs.stage }}-*
+          path: evidence
+      - name: Independently replay all available evidence without fitting
+        run: |
+          python -I examples/recursive_preview_actions.py aggregate --stage '${{ inputs.stage }}' --evidence evidence --out .superpowers/recursive-audit
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: recursive-preview-${{ inputs.stage }}-audit
+          path: .superpowers/recursive-audit/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
