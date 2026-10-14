@@ -1,0 +1,616 @@
+timing	Set up job	﻿2026-10-14T20:11:13.3448534Z Current runner version: '2.337.0'
+timing	Set up job	2026-10-14T20:11:13.3492566Z ##[group]Runner Image Provisioner
+timing	Set up job	2026-10-14T20:11:13.3493412Z Hosted Compute Agent
+timing	Set up job	2026-10-14T20:11:13.3493883Z Version: 20261002.596
+timing	Set up job	2026-10-14T20:11:13.3494420Z Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+timing	Set up job	2026-10-14T20:11:13.3495030Z Build Date: 2026-10-02T22:28:27Z
+timing	Set up job	2026-10-14T20:11:13.3495583Z Worker ID: {ab6cbb1b-f1b9-4847-8ec0-49cc150d5faa}
+timing	Set up job	2026-10-14T20:11:13.3496201Z Region: westus3
+timing	Set up job	2026-10-14T20:11:13.3496641Z Cloud: Azure
+timing	Set up job	2026-10-14T20:11:13.3497075Z ##[endgroup]
+timing	Set up job	2026-10-14T20:11:13.3498344Z ##[group]Operating System
+timing	Set up job	2026-10-14T20:11:13.3498885Z Microsoft Windows Server 2022
+timing	Set up job	2026-10-14T20:11:13.3499431Z 10.0.20348
+timing	Set up job	2026-10-14T20:11:13.3499885Z Datacenter
+timing	Set up job	2026-10-14T20:11:13.3500299Z ##[endgroup]
+timing	Set up job	2026-10-14T20:11:13.3500762Z ##[group]Runner Image
+timing	Set up job	2026-10-14T20:11:13.3501255Z Image: windows-2022
+timing	Set up job	2026-10-14T20:11:13.3501734Z Version: 20261004.326.1
+timing	Set up job	2026-10-14T20:11:13.3502652Z Included Software: https://github.com/actions/runner-images/blob/win22/20261004.326/images/windows/Windows2022-Readme.md
+timing	Set up job	2026-10-14T20:11:13.3504395Z Image Release: https://github.com/actions/runner-images/releases/tag/win22%2F20261004.326
+timing	Set up job	2026-10-14T20:11:13.3505190Z ##[endgroup]
+timing	Set up job	2026-10-14T20:11:13.3506198Z ##[group]GITHUB_TOKEN Permissions
+timing	Set up job	2026-10-14T20:11:13.3508292Z Actions: read
+timing	Set up job	2026-10-14T20:11:13.3508821Z Contents: read
+timing	Set up job	2026-10-14T20:11:13.3509260Z Metadata: read
+timing	Set up job	2026-10-14T20:11:13.3509690Z ##[endgroup]
+timing	Set up job	2026-10-14T20:11:13.3511710Z Secret source: Actions
+timing	Set up job	2026-10-14T20:11:13.3512451Z Cache mode: write
+timing	Set up job	2026-10-14T20:11:13.3513247Z Prepare workflow directory
+timing	Set up job	2026-10-14T20:11:13.3925254Z Prepare all required actions
+timing	Set up job	2026-10-14T20:11:13.3997283Z Getting action download info
+timing	Set up job	2026-10-14T20:11:13.7802416Z Download action repository 'actions/checkout@11d5960a326750d5838078e36cf38b85af677262' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+timing	Set up job	2026-10-14T20:11:13.8895453Z Download action repository 'actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+timing	Set up job	2026-10-14T20:11:14.0185995Z Download action repository 'actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093' (SHA:d3f86a106a0bac45b974a628896c90dbdf5c8093)
+timing	Set up job	2026-10-14T20:11:14.7466931Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+timing	Set up job	2026-10-14T20:11:15.0844970Z Complete job name: timing
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	﻿2026-10-14T20:11:15.2895040Z ##[group]Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:15.2897030Z with:
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:15.2897761Z   persist-credentials: false
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:15.2898646Z   sparse-checkout-cone-mode: false
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:15.2911410Z   sparse-checkout: src/**
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	pyproject.toml
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	README.md
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	LICENSE
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	configs/default.yaml
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	.github/workflows/recursive-preview-validation.yml
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	.github/workflows/recursive-preview-timing.yml
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	examples/recursive_preview_*.py
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	examples/time_recursive_preview.py
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	examples/recursive_timing_protocol.md
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	examples/recursive_preview_validation_protocol.md
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	examples/recursive_preview_continuation_proposal.md
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	examples/study_manifests/recursive-preview-*.json
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/raw/producer-manifest.json
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/raw/preflight.json
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/audit/raw-sha256.json
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/audit/diagnosis.json
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38621370295/raw/producer-manifest.json
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38621370295/audit/diagnosis.json
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38621370295/audit/raw-sha256.json
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:15.2925211Z   repository: imh-ds/open
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:15.2931677Z   token: ***
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:15.2934236Z   ssh-strict: true
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:15.2934945Z   ssh-user: git
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:15.2935629Z   clean: true
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:15.2936302Z   fetch-depth: 1
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:15.2936996Z   fetch-tags: false
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:15.2937732Z   show-progress: true
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:15.2938478Z   lfs: false
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:15.2939153Z   submodules: false
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:15.2939879Z   set-safe-directory: true
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:15.2940701Z   allow-unsafe-pr-checkout: false
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:15.2942774Z env:
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:15.2943756Z   OMP_NUM_THREADS: 1
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:15.2944527Z   OPENBLAS_NUM_THREADS: 1
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:15.2945301Z   MKL_NUM_THREADS: 1
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:15.2946018Z ##[endgroup]
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:15.4557928Z Syncing repository: imh-ds/open
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:15.4563176Z ##[group]Getting Git version info
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:15.4565620Z Working directory is 'D:\a\open\open'
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:15.5461126Z [command]"C:\Program Files\Git\bin\git.exe" version
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:15.9548071Z git version 2.56.0.windows.1
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:15.9587821Z ##[endgroup]
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:15.9607719Z Temporarily overriding HOME='D:\a\_temp\9f671683-4cc2-4cf4-958c-ba4cf1867cc4' before making global git config changes
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:15.9609771Z Adding repository directory to the temporary git global config as a safe directory
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:15.9618091Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\open\open
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:16.0317927Z Deleting the contents of 'D:\a\open\open'
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:16.0323498Z ##[group]Initializing the repository
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:16.0332930Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\open\open
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:16.1421151Z Initialized empty Git repository in D:/a/open/open/.git/
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:16.1462171Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/imh-ds/open
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:16.2155783Z ##[endgroup]
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:16.2156410Z ##[group]Disabling automatic garbage collection
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:16.2166365Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:16.2466166Z ##[endgroup]
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:16.2466729Z ##[group]Setting up auth
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:16.2479381Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:16.2785796Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:17.8647681Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:17.8960713Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:18.3624084Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:18.3938546Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:18.8616660Z [command]"C:\Program Files\Git\bin\git.exe" config --local http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:18.8920249Z ##[endgroup]
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:18.8921148Z ##[group]Fetching the repository
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:18.8934223Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --filter=blob:none --depth=1 origin +e4798c8febfb7a92b81f574c8c93ce61cf7b9183:refs/remotes/origin/codex/actions-selection-reliability
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:20.1743893Z From https://github.com/imh-ds/open
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:20.1744843Z  * [new ref]         e4798c8febfb7a92b81f574c8c93ce61cf7b9183 -> origin/codex/actions-selection-reliability
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:20.1784149Z ##[endgroup]
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:20.1784593Z ##[group]Determining the checkout info
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:20.1786996Z ##[endgroup]
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:20.1787365Z ##[group]Setting up sparse checkout
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:20.1801428Z [command]"C:\Program Files\Git\bin\git.exe" config core.sparseCheckout true
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:20.2136765Z [command]"C:\Program Files\Git\bin\git.exe" rev-parse --git-path info/sparse-checkout
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:20.2490098Z .git/info/sparse-checkout
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:20.2532312Z ##[endgroup]
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:20.2533353Z ##[group]Checking out the ref
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:20.2542437Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force -B codex/actions-selection-reliability refs/remotes/origin/codex/actions-selection-reliability
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5008133Z Updating files:   1% (1/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5013667Z Updating files:   2% (2/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5015981Z Updating files:   3% (3/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5019478Z Updating files:   5% (4/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5024374Z Updating files:   6% (5/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5028789Z Updating files:   7% (6/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5033706Z Updating files:   8% (7/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5036000Z Updating files:  10% (8/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5042790Z Updating files:  11% (9/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5044921Z Updating files:  12% (10/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5047920Z Updating files:  13% (11/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5051260Z Updating files:  15% (12/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5053585Z Updating files:  16% (13/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5057192Z Updating files:  17% (14/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5059934Z Updating files:  18% (15/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5062897Z Updating files:  20% (16/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5065752Z Updating files:  21% (17/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5073260Z Updating files:  22% (18/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5075887Z Updating files:  24% (19/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5078723Z Updating files:  25% (20/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5081576Z Updating files:  26% (21/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5084505Z Updating files:  27% (22/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5088008Z Updating files:  29% (23/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5091040Z Updating files:  30% (24/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5096212Z Updating files:  31% (25/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5099662Z Updating files:  32% (26/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5101837Z Updating files:  34% (27/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5104828Z Updating files:  35% (28/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5109775Z Updating files:  36% (29/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5114271Z Updating files:  37% (30/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5116768Z Updating files:  39% (31/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5123140Z Updating files:  40% (32/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5125833Z Updating files:  41% (33/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5132685Z Updating files:  43% (34/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5139425Z Updating files:  44% (35/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5142641Z Updating files:  45% (36/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5143449Z Updating files:  46% (37/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5148163Z Updating files:  48% (38/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5150951Z Updating files:  49% (39/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5153985Z Updating files:  50% (40/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5156341Z Updating files:  51% (41/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5158742Z Updating files:  53% (42/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5161268Z Updating files:  54% (43/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5163825Z Updating files:  55% (44/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5170240Z Updating files:  56% (45/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5172454Z Updating files:  58% (46/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5176229Z Updating files:  59% (47/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5179161Z Updating files:  60% (48/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5181764Z Updating files:  62% (49/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5184914Z Updating files:  63% (50/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5187876Z Updating files:  64% (51/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5191464Z Updating files:  65% (52/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5193895Z Updating files:  67% (53/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5196712Z Updating files:  68% (54/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5199344Z Updating files:  69% (55/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5202865Z Updating files:  70% (56/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5205240Z Updating files:  72% (57/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5207357Z Updating files:  73% (58/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5209197Z Updating files:  74% (59/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5211837Z Updating files:  75% (60/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5214992Z Updating files:  77% (61/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5217457Z Updating files:  78% (62/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5219930Z Updating files:  79% (63/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5221770Z Updating files:  81% (64/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5224517Z Updating files:  82% (65/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5226688Z Updating files:  83% (66/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5230227Z Updating files:  84% (67/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5232303Z Updating files:  86% (68/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5235099Z Updating files:  87% (69/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5236846Z Updating files:  88% (70/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5239594Z Updating files:  89% (71/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5241581Z Updating files:  91% (72/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5244828Z Updating files:  92% (73/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5247142Z Updating files:  93% (74/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5250082Z Updating files:  94% (75/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5252598Z Updating files:  96% (76/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5257623Z Updating files:  97% (77/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5261503Z Updating files:  98% (78/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5261893Z Updating files: 100% (79/79)
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5264474Z Updating files: 100% (79/79), done.
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5394024Z Switched to a new branch 'codex/actions-selection-reliability'
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5412804Z branch 'codex/actions-selection-reliability' set up to track 'origin/codex/actions-selection-reliability'.
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5450556Z ##[endgroup]
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.5861509Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.6149603Z e4798c8febfb7a92b81f574c8c93ce61cf7b9183
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.6187781Z ##[group]Removing auth
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.6196816Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:21.6506595Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:22.1569748Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:22.1839731Z http.https://github.com/.extraheader
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:22.1879139Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all http.https://github.com/.extraheader
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:22.2216129Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:22.6722415Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:22.7077158Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+timing	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:11:23.1546512Z ##[endgroup]
+timing	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	﻿2026-10-14T20:11:23.1914695Z ##[group]Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+timing	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T20:11:23.1915725Z with:
+timing	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T20:11:23.1915924Z   python-version: 3.11.9
+timing	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T20:11:23.1916145Z   check-latest: false
+timing	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T20:11:23.1918453Z   token: ***
+timing	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T20:11:23.1918639Z   update-environment: true
+timing	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T20:11:23.1918860Z   allow-prereleases: false
+timing	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T20:11:23.1919068Z   freethreaded: false
+timing	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T20:11:23.1919255Z env:
+timing	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T20:11:23.1919411Z   OMP_NUM_THREADS: 1
+timing	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T20:11:23.1919599Z   OPENBLAS_NUM_THREADS: 1
+timing	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T20:11:23.1919799Z   MKL_NUM_THREADS: 1
+timing	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T20:11:23.1919969Z ##[endgroup]
+timing	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T20:11:23.3455805Z ##[group]Installed versions
+timing	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T20:11:23.3509019Z (node:6384) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+timing	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T20:11:23.3509922Z (Use `node --trace-deprecation ...` to show where the warning was created)
+timing	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T20:11:23.3510535Z Successfully set up CPython (3.11.9)
+timing	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T20:11:23.3511647Z ##[endgroup]
+timing	Install pinned runtime and non-editable package	﻿2026-10-14T20:11:23.3773913Z ##[group]Run python -m pip install numpy==1.26.4 pandas==2.2.3 scipy==1.11.2 scikit-learn==1.3.0 matplotlib==3.9.2 PyYAML==6.0.2 setuptools==75.1.0 wheel==0.45.1
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:23.3774989Z ^[[36;1mpython -m pip install numpy==1.26.4 pandas==2.2.3 scipy==1.11.2 scikit-learn==1.3.0 matplotlib==3.9.2 PyYAML==6.0.2 setuptools==75.1.0 wheel==0.45.1^[[0m
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:23.3775599Z ^[[36;1mif ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }^[[0m
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:23.3775969Z ^[[36;1mpython -m pip install --no-build-isolation --no-deps .^[[0m
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:23.3776331Z ^[[36;1mif ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }^[[0m
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:23.3776636Z ^[[36;1mpython -m pip check^[[0m
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:23.3776898Z ^[[36;1mif ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }^[[0m
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:23.3777245Z ^[[36;1mpython -m pip freeze | Out-File -Encoding utf8 runtime.txt^[[0m
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:23.3777618Z ^[[36;1mpython -I examples/time_recursive_preview.py check^[[0m
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:23.3777954Z ^[[36;1mif ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }^[[0m
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:23.3944976Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:23.3945334Z env:
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:23.3945528Z   OMP_NUM_THREADS: 1
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:23.3945732Z   OPENBLAS_NUM_THREADS: 1
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:23.3946422Z   MKL_NUM_THREADS: 1
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:23.3946707Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.11.9\x64
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:23.3947135Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.11.9\x64/lib/pkgconfig
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:23.3947544Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:23.3947943Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:23.3948303Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:23.3948603Z ##[endgroup]
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:28.8191627Z Collecting numpy==1.26.4
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:29.0018262Z   Downloading numpy-1.26.4-cp311-cp311-win_amd64.whl.metadata (61 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:29.2383304Z Collecting pandas==2.2.3
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:29.2558811Z   Downloading pandas-2.2.3-cp311-cp311-win_amd64.whl.metadata (19 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:29.4274121Z Collecting scipy==1.11.2
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:29.4423399Z   Downloading scipy-1.11.2-cp311-cp311-win_amd64.whl.metadata (59 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:29.6120123Z Collecting scikit-learn==1.3.0
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:29.6253681Z   Downloading scikit_learn-1.3.0-cp311-cp311-win_amd64.whl.metadata (11 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:29.8222716Z Collecting matplotlib==3.9.2
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:29.8350672Z   Downloading matplotlib-3.9.2-cp311-cp311-win_amd64.whl.metadata (11 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:29.9152863Z Collecting PyYAML==6.0.2
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:29.9285670Z   Downloading PyYAML-6.0.2-cp311-cp311-win_amd64.whl.metadata (2.1 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:30.0346512Z Collecting setuptools==75.1.0
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:30.0478684Z   Downloading setuptools-75.1.0-py3-none-any.whl.metadata (6.9 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:30.1116778Z Collecting wheel==0.45.1
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:30.1257329Z   Downloading wheel-0.45.1-py3-none-any.whl.metadata (2.3 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:30.1699771Z Collecting python-dateutil>=2.8.2 (from pandas==2.2.3)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:30.1823609Z   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:30.2497066Z Collecting pytz>=2020.1 (from pandas==2.2.3)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:30.2623649Z   Downloading pytz-2026.5-py2.py3-none-any.whl.metadata (22 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:30.3082309Z Collecting tzdata>=2022.7 (from pandas==2.2.3)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:30.3205030Z   Downloading tzdata-2026.5-py2.py3-none-any.whl.metadata (1.4 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:30.3710754Z Collecting joblib>=1.1.1 (from scikit-learn==1.3.0)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:30.3838298Z   Downloading joblib-1.6.0-py3-none-any.whl.metadata (6.5 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:30.4369266Z Collecting threadpoolctl>=2.0.0 (from scikit-learn==1.3.0)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:30.4493985Z   Downloading threadpoolctl-3.7.0-py3-none-any.whl.metadata (24 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:30.5580741Z Collecting contourpy>=1.0.1 (from matplotlib==3.9.2)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:30.5704433Z   Downloading contourpy-1.3.3-cp311-cp311-win_amd64.whl.metadata (5.5 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:30.6321592Z Collecting cycler>=0.10 (from matplotlib==3.9.2)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:30.6481682Z   Downloading cycler-0.12.1-py3-none-any.whl.metadata (3.8 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:30.8472047Z Collecting fonttools>=4.22.0 (from matplotlib==3.9.2)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:30.8599710Z   Downloading fonttools-4.67.0-cp311-cp311-win_amd64.whl.metadata (139 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:30.9842894Z Collecting kiwisolver>=1.3.1 (from matplotlib==3.9.2)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:30.9965478Z   Downloading kiwisolver-1.5.1-cp311-cp311-win_amd64.whl.metadata (5.2 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:31.0444672Z Collecting packaging>=20.0 (from matplotlib==3.9.2)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:31.0578215Z   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:31.2442708Z Collecting pillow>=8 (from matplotlib==3.9.2)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:31.2568155Z   Downloading pillow-12.3.0-cp311-cp311-win_amd64.whl.metadata (9.3 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:31.3124585Z Collecting pyparsing>=2.3.1 (from matplotlib==3.9.2)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:31.3251008Z   Downloading pyparsing-3.3.3-py3-none-any.whl.metadata (5.9 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:31.3685688Z Collecting cloudpickle>=3.0 (from joblib>=1.1.1->scikit-learn==1.3.0)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:31.3809998Z   Downloading cloudpickle-3.1.2-py3-none-any.whl.metadata (7.1 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:31.4225487Z Collecting six>=1.5 (from python-dateutil>=2.8.2->pandas==2.2.3)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:31.4344681Z   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:31.4712175Z Downloading numpy-1.26.4-cp311-cp311-win_amd64.whl (15.8 MB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:31.6475342Z    ---------------------------------------- 15.8/15.8 MB 99.0 MB/s  0:00:00
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:31.6607408Z Downloading pandas-2.2.3-cp311-cp311-win_amd64.whl (11.6 MB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:31.7762150Z    ---------------------------------------- 11.6/11.6 MB 104.2 MB/s  0:00:00
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:31.7908658Z Downloading scipy-1.11.2-cp311-cp311-win_amd64.whl (44.0 MB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:34.0473952Z    ---------------------------------------- 44.0/44.0 MB 19.4 MB/s  0:00:02
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:34.0602183Z Downloading scikit_learn-1.3.0-cp311-cp311-win_amd64.whl (9.2 MB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:34.1457646Z    ---------------------------------------- 9.2/9.2 MB 113.1 MB/s  0:00:00
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:34.1582870Z Downloading matplotlib-3.9.2-cp311-cp311-win_amd64.whl (7.8 MB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:34.2714767Z    ---------------------------------------- 7.8/7.8 MB 68.8 MB/s  0:00:00
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:34.2839755Z Downloading PyYAML-6.0.2-cp311-cp311-win_amd64.whl (161 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:34.3164606Z Downloading setuptools-75.1.0-py3-none-any.whl (1.2 MB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:34.3551950Z    ---------------------------------------- 1.2/1.2 MB 31.8 MB/s  0:00:00
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:34.3708892Z Downloading wheel-0.45.1-py3-none-any.whl (72 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:34.4056735Z Downloading contourpy-1.3.3-cp311-cp311-win_amd64.whl (225 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:34.4471750Z Downloading cycler-0.12.1-py3-none-any.whl (8.3 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:34.4893627Z Downloading fonttools-4.67.0-cp311-cp311-win_amd64.whl (1.6 MB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:34.5414938Z    ---------------------------------------- 1.6/1.6 MB 29.5 MB/s  0:00:00
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:34.5535663Z Downloading joblib-1.6.0-py3-none-any.whl (306 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:34.6106423Z Downloading cloudpickle-3.1.2-py3-none-any.whl (22 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:34.6592877Z Downloading kiwisolver-1.5.1-cp311-cp311-win_amd64.whl (70 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:34.6924660Z Downloading packaging-26.3-py3-none-any.whl (129 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:34.7482736Z Downloading pillow-12.3.0-cp311-cp311-win_amd64.whl (7.2 MB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:34.8273076Z    ---------------------------------------- 7.2/7.2 MB 89.4 MB/s  0:00:00
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:34.8394663Z Downloading pyparsing-3.3.3-py3-none-any.whl (126 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:34.8720512Z Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:34.9161276Z Downloading pytz-2026.5-py2.py3-none-any.whl (506 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:34.9845877Z Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:35.0145032Z Downloading threadpoolctl-3.7.0-py3-none-any.whl (26 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:35.0420116Z Downloading tzdata-2026.5-py2.py3-none-any.whl (347 kB)
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:35.6599327Z Installing collected packages: pytz, wheel, tzdata, threadpoolctl, six, setuptools, PyYAML, pyparsing, pillow, packaging, numpy, kiwisolver, fonttools, cycler, cloudpickle, scipy, python-dateutil, joblib, contourpy, scikit-learn, pandas, matplotlib
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:37.4939922Z   Attempting uninstall: setuptools
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:37.4959962Z     Found existing installation: setuptools 65.5.0
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:37.8764018Z     Uninstalling setuptools-65.5.0:
+timing	Install pinned runtime and non-editable package	2026-10-14T20:11:37.9596418Z       Successfully uninstalled setuptools-65.5.0
+timing	Install pinned runtime and non-editable package	2026-10-14T20:12:10.6540832Z 
+timing	Install pinned runtime and non-editable package	2026-10-14T20:12:10.6558467Z Successfully installed PyYAML-6.0.2 cloudpickle-3.1.2 contourpy-1.3.3 cycler-0.12.1 fonttools-4.67.0 joblib-1.6.0 kiwisolver-1.5.1 matplotlib-3.9.2 numpy-1.26.4 packaging-26.3 pandas-2.2.3 pillow-12.3.0 pyparsing-3.3.3 python-dateutil-2.9.0.post0 pytz-2026.5 scikit-learn-1.3.0 scipy-1.11.2 setuptools-75.1.0 six-1.17.0 threadpoolctl-3.7.0 tzdata-2026.5 wheel-0.45.1
+timing	Install pinned runtime and non-editable package	2026-10-14T20:12:11.8027244Z Processing .\.
+timing	Install pinned runtime and non-editable package	2026-10-14T20:12:11.8051116Z   Preparing metadata (pyproject.toml): started
+timing	Install pinned runtime and non-editable package	2026-10-14T20:12:12.1933661Z   Preparing metadata (pyproject.toml): finished with status 'done'
+timing	Install pinned runtime and non-editable package	2026-10-14T20:12:12.1969396Z Building wheels for collected packages: open-predictive-expansion
+timing	Install pinned runtime and non-editable package	2026-10-14T20:12:12.1990912Z   Building wheel for open-predictive-expansion (pyproject.toml): started
+timing	Install pinned runtime and non-editable package	2026-10-14T20:12:12.5804899Z   Building wheel for open-predictive-expansion (pyproject.toml): finished with status 'done'
+timing	Install pinned runtime and non-editable package	2026-10-14T20:12:12.5838480Z   Created wheel for open-predictive-expansion: filename=open_predictive_expansion-0.1.0.dev0-py3-none-any.whl size=132212 sha256=929d1bef6ea27d9ed16a3eaec59e4314a6cf2383d6bfb37f4dc483ae3280e6b6
+timing	Install pinned runtime and non-editable package	2026-10-14T20:12:12.5840299Z   Stored in directory: C:\Users\runneradmin\AppData\Local\Temp\pip-ephem-wheel-cache-5h9d60o6\wheels\d7\fa\42\cef5441cca6128ac0c8fb2737846ca7a177f22761b1392d73c
+timing	Install pinned runtime and non-editable package	2026-10-14T20:12:12.5874732Z Successfully built open-predictive-expansion
+timing	Install pinned runtime and non-editable package	2026-10-14T20:12:12.6023444Z Installing collected packages: open-predictive-expansion
+timing	Install pinned runtime and non-editable package	2026-10-14T20:12:12.8957440Z Successfully installed open-predictive-expansion-0.1.0.dev0
+timing	Install pinned runtime and non-editable package	2026-10-14T20:12:13.2659639Z No broken requirements found.
+timing	Install pinned runtime and non-editable package	2026-10-14T20:12:15.2058202Z PASS ef50e38e511ea45af15a5107da712f7e63aaf52dbbad9a359b6ba9b9055dbed6 61 frozen sources
+timing	Download original partial assessments	﻿2026-10-14T20:12:15.3860854Z ##[group]Run actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+timing	Download original partial assessments	2026-10-14T20:12:15.3861364Z with:
+timing	Download original partial assessments	2026-10-14T20:12:15.3861599Z   name: recursive-preview-preflight-raw
+timing	Download original partial assessments	2026-10-14T20:12:15.3861876Z   run-id: 38621370295
+timing	Download original partial assessments	2026-10-14T20:12:15.3864291Z   github-token: ***
+timing	Download original partial assessments	2026-10-14T20:12:15.3864513Z   path: producer-evidence
+timing	Download original partial assessments	2026-10-14T20:12:15.3864741Z   merge-multiple: false
+timing	Download original partial assessments	2026-10-14T20:12:15.3864964Z   repository: imh-ds/open
+timing	Download original partial assessments	2026-10-14T20:12:15.3865176Z env:
+timing	Download original partial assessments	2026-10-14T20:12:15.3865359Z   OMP_NUM_THREADS: 1
+timing	Download original partial assessments	2026-10-14T20:12:15.3865567Z   OPENBLAS_NUM_THREADS: 1
+timing	Download original partial assessments	2026-10-14T20:12:15.3865801Z   MKL_NUM_THREADS: 1
+timing	Download original partial assessments	2026-10-14T20:12:15.3866072Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.11.9\x64
+timing	Download original partial assessments	2026-10-14T20:12:15.3866496Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.11.9\x64/lib/pkgconfig
+timing	Download original partial assessments	2026-10-14T20:12:15.3941009Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+timing	Download original partial assessments	2026-10-14T20:12:15.3941580Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+timing	Download original partial assessments	2026-10-14T20:12:15.3942377Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+timing	Download original partial assessments	2026-10-14T20:12:15.3942696Z ##[endgroup]
+timing	Download original partial assessments	2026-10-14T20:12:15.5710921Z Downloading single artifact
+timing	Download original partial assessments	2026-10-14T20:12:15.5793099Z (node:2368) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+timing	Download original partial assessments	2026-10-14T20:12:15.5794270Z (Use `node --trace-deprecation ...` to show where the warning was created)
+timing	Download original partial assessments	2026-10-14T20:12:15.6158707Z (node:2368) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+timing	Download original partial assessments	2026-10-14T20:12:15.9374214Z Preparing to download the following artifacts:
+timing	Download original partial assessments	2026-10-14T20:12:15.9375545Z - recursive-preview-preflight-raw (ID: 11924085090, Size: 8472241, Expected Digest: sha256:fd42398714e1150c808404659d3575d8f944b362d2c8fe0d4782da96d72e7c46)
+timing	Download original partial assessments	2026-10-14T20:12:15.9414349Z Downloading artifact '11924085090' from 'imh-ds/open'
+timing	Download original partial assessments	2026-10-14T20:12:16.2120937Z Redirecting to blob download url: https://productionresultssa14.blob.core.windows.net/actions-results/63d42c20-753d-48da-93b2-d2e8d6354a89/workflow-job-run-4864d3cd-6444-5b96-9995-dc89638a9b72/artifacts/bccae9d59f308fc0392cbcef8e600ce2169cb2a26e1a30251286b15bbec329b5.zip
+timing	Download original partial assessments	2026-10-14T20:12:16.2122713Z Starting download of artifact to: D:\a\open\open\producer-evidence
+timing	Download original partial assessments	2026-10-14T20:12:16.5227709Z (node:2368) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+timing	Download original partial assessments	2026-10-14T20:12:17.4668249Z SHA256 digest of downloaded artifact is fd42398714e1150c808404659d3575d8f944b362d2c8fe0d4782da96d72e7c46
+timing	Download original partial assessments	2026-10-14T20:12:17.4668822Z Artifact download completed successfully.
+timing	Download original partial assessments	2026-10-14T20:12:17.4669129Z Total of 1 artifact(s) downloaded
+timing	Download original partial assessments	2026-10-14T20:12:17.4675666Z Download artifact has finished successfully
+timing	Measure complete networks without per-dataset deadline	﻿2026-10-14T20:12:17.4964513Z ##[group]Run python -I examples/time_recursive_preview.py run --out .superpowers/recursive-timing --evidence producer-evidence
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:17.4965495Z ^[[36;1mpython -I examples/time_recursive_preview.py run --out .superpowers/recursive-timing --evidence producer-evidence^[[0m
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:17.4966071Z ^[[36;1mif ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }^[[0m
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:17.5006627Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:17.5006986Z env:
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:17.5007182Z   OMP_NUM_THREADS: 1
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:17.5007395Z   OPENBLAS_NUM_THREADS: 1
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:17.5007616Z   MKL_NUM_THREADS: 1
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:17.5007903Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.11.9\x64
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:17.5008331Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.11.9\x64/lib/pkgconfig
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:17.5008764Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:17.5009149Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:17.5009604Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:17.5009910Z ##[endgroup]
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:38.8566384Z Y depth 0: 4/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:39.6560268Z Y depth 0: 8/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:40.5558805Z Y depth 0: 12/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:41.4601558Z Y depth 0: 16/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:42.2871099Z Y depth 0: 20/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:43.1550825Z Y depth 0: 24/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:44.0329138Z Y depth 0: 28/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:44.9122258Z Y depth 0: 32/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:45.7747388Z Y depth 0: 36/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:46.7909608Z Y depth 0: 40/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:47.6317389Z Y depth 0: 44/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:48.5340066Z Y depth 0: 48/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:49.4208644Z Y depth 0: 52/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:50.3489410Z Y depth 0: 56/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:51.2635277Z Y depth 0: 60/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:52.1609612Z Y depth 0: 64/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:53.0647325Z Y depth 0: 68/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:54.0074897Z Y depth 0: 72/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:54.9019973Z Y depth 0: 76/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:55.8151442Z Y depth 0: 80/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:56.6545665Z Y depth 0: 84/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:57.5137662Z Y depth 0: 88/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:58.4074540Z Y depth 0: 92/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:12:59.3364796Z Y depth 0: 96/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:13:00.2429488Z Y depth 0: 100/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:13:10.0787076Z X2 depth 1: 4/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:13:10.7295329Z X2 depth 1: 8/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:13:11.3822858Z X2 depth 1: 12/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:13:12.0385975Z X2 depth 1: 16/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:13:12.6898843Z X2 depth 1: 20/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:13:13.3514240Z X2 depth 1: 24/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:13:14.0036931Z X2 depth 1: 28/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:13:14.6546811Z X2 depth 1: 32/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:13:15.3069385Z X2 depth 1: 36/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:13:15.9592466Z X2 depth 1: 40/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:13:16.6142245Z X2 depth 1: 44/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:13:36.8612235Z X2 depth 1: 48/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:13:56.9959525Z X2 depth 1: 52/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:14:17.1801750Z X2 depth 1: 56/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:14:37.5673351Z X2 depth 1: 60/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:14:57.8486105Z X2 depth 1: 64/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:15:18.1407995Z X2 depth 1: 68/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:15:38.3031429Z X2 depth 1: 72/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:15:58.4779402Z X2 depth 1: 76/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:16:19.0324807Z X2 depth 1: 80/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:16:39.2542459Z X2 depth 1: 84/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:16:59.3582009Z X2 depth 1: 88/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:17:19.5886356Z X2 depth 1: 92/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:17:40.0117453Z X2 depth 1: 96/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:18:00.2989027Z X2 depth 1: 100/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:18:22.8902688Z X1 depth 2: 4/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:18:38.0266152Z X1 depth 2: 8/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:18:53.2206954Z X1 depth 2: 12/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:19:08.4201509Z X1 depth 2: 16/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:19:23.6035426Z X1 depth 2: 20/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:19:38.7656545Z X1 depth 2: 24/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:19:53.8032498Z X1 depth 2: 28/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:20:08.8645408Z X1 depth 2: 32/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:20:23.9445493Z X1 depth 2: 36/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:20:39.0844684Z X1 depth 2: 40/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:20:54.2554055Z X1 depth 2: 44/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:21:09.4843675Z X1 depth 2: 48/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:21:24.6183300Z X1 depth 2: 52/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:21:39.8013978Z X1 depth 2: 56/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:21:54.8228978Z X1 depth 2: 60/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:22:09.8495536Z X1 depth 2: 64/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:22:24.9027799Z X1 depth 2: 68/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:22:39.9350531Z X1 depth 2: 72/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:22:54.9989638Z X1 depth 2: 76/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:23:09.9732988Z X1 depth 2: 80/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:23:25.1724032Z X1 depth 2: 84/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:23:40.3781516Z X1 depth 2: 88/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:23:55.4410727Z X1 depth 2: 92/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:24:10.5699151Z X1 depth 2: 96/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:24:25.6705286Z X1 depth 2: 100/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:26:00.9761888Z Y depth 0: 4/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:26:26.9955716Z Y depth 0: 8/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:26:53.0668124Z Y depth 0: 12/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:27:19.3153600Z Y depth 0: 16/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:27:45.6914899Z Y depth 0: 20/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:28:11.8146611Z Y depth 0: 24/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:28:38.0353256Z Y depth 0: 28/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:29:04.1247924Z Y depth 0: 32/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:29:30.2594947Z Y depth 0: 36/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:29:56.7742858Z Y depth 0: 40/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:30:23.0389262Z Y depth 0: 44/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:30:49.1616052Z Y depth 0: 48/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:31:15.4086574Z Y depth 0: 52/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:31:41.4870405Z Y depth 0: 56/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:32:07.5970186Z Y depth 0: 60/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:32:33.8213721Z Y depth 0: 64/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:33:00.2520025Z Y depth 0: 68/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:33:26.4030935Z Y depth 0: 72/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:33:52.6794437Z Y depth 0: 76/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:34:18.7258824Z Y depth 0: 80/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:34:44.7740816Z Y depth 0: 84/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:35:11.0238204Z Y depth 0: 88/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:35:37.2978729Z Y depth 0: 92/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:36:03.3630814Z Y depth 0: 96/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:36:29.5583184Z Y depth 0: 100/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:37:02.8526144Z X2 depth 1: 4/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:37:23.8161747Z X2 depth 1: 8/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:37:44.7040942Z X2 depth 1: 12/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:38:05.5408029Z X2 depth 1: 16/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:38:26.3560478Z X2 depth 1: 20/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:38:47.3029049Z X2 depth 1: 24/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:39:08.3035612Z X2 depth 1: 28/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:39:29.1891495Z X2 depth 1: 32/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:39:49.9830294Z X2 depth 1: 36/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:40:10.9839693Z X2 depth 1: 40/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:40:31.9126205Z X2 depth 1: 44/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:40:52.7875486Z X2 depth 1: 48/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:41:13.5809085Z X2 depth 1: 52/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:41:34.5705330Z X2 depth 1: 56/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:41:55.5670525Z X2 depth 1: 60/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:42:16.5635128Z X2 depth 1: 64/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:42:37.6919022Z X2 depth 1: 68/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:42:58.5984369Z X2 depth 1: 72/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:43:19.6503981Z X2 depth 1: 76/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:43:40.7236117Z X2 depth 1: 80/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:44:01.7704828Z X2 depth 1: 84/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:44:22.7337520Z X2 depth 1: 88/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:44:43.6987976Z X2 depth 1: 92/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:45:04.7671932Z X2 depth 1: 96/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:45:25.9237459Z X2 depth 1: 100/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:45:52.6211860Z X1 depth 2: 4/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:46:08.2750994Z X1 depth 2: 8/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:46:23.8020628Z X1 depth 2: 12/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:46:39.5687559Z X1 depth 2: 16/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:46:55.1377738Z X1 depth 2: 20/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:47:10.5883747Z X1 depth 2: 24/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:47:26.2131969Z X1 depth 2: 28/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:47:41.8117122Z X1 depth 2: 32/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:47:57.3645994Z X1 depth 2: 36/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:48:13.0542934Z X1 depth 2: 40/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:48:28.5406244Z X1 depth 2: 44/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:48:44.1053371Z X1 depth 2: 48/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:49:00.0692637Z X1 depth 2: 52/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:49:16.0412390Z X1 depth 2: 56/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:49:31.7202200Z X1 depth 2: 60/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:49:47.2385196Z X1 depth 2: 64/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:50:02.8783149Z X1 depth 2: 68/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:50:18.4036130Z X1 depth 2: 72/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:50:34.0495595Z X1 depth 2: 76/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:50:49.8490784Z X1 depth 2: 80/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:51:05.4810201Z X1 depth 2: 84/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:51:20.9536873Z X1 depth 2: 88/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:51:36.5511568Z X1 depth 2: 92/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:51:52.2119750Z X1 depth 2: 96/100
+timing	Measure complete networks without per-dataset deadline	2026-10-14T20:52:07.9146050Z X1 depth 2: 100/100
+timing	Preserve available checkpoints without fits	﻿2026-10-14T20:54:12.2831733Z ##[group]Run python -I examples/time_recursive_preview.py pack --out .superpowers/recursive-timing
+timing	Preserve available checkpoints without fits	2026-10-14T20:54:12.2832546Z ^[[36;1mpython -I examples/time_recursive_preview.py pack --out .superpowers/recursive-timing^[[0m
+timing	Preserve available checkpoints without fits	2026-10-14T20:54:12.2871631Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+timing	Preserve available checkpoints without fits	2026-10-14T20:54:12.2872079Z env:
+timing	Preserve available checkpoints without fits	2026-10-14T20:54:12.2872338Z   OMP_NUM_THREADS: 1
+timing	Preserve available checkpoints without fits	2026-10-14T20:54:12.2872592Z   OPENBLAS_NUM_THREADS: 1
+timing	Preserve available checkpoints without fits	2026-10-14T20:54:12.2872852Z   MKL_NUM_THREADS: 1
+timing	Preserve available checkpoints without fits	2026-10-14T20:54:12.2873172Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.11.9\x64
+timing	Preserve available checkpoints without fits	2026-10-14T20:54:12.2873650Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.11.9\x64/lib/pkgconfig
+timing	Preserve available checkpoints without fits	2026-10-14T20:54:12.2874128Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+timing	Preserve available checkpoints without fits	2026-10-14T20:54:12.2874550Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+timing	Preserve available checkpoints without fits	2026-10-14T20:54:12.2874955Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+timing	Preserve available checkpoints without fits	2026-10-14T20:54:12.2875387Z ##[endgroup]
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	﻿2026-10-14T20:54:13.6816258Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:13.6816759Z with:
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:13.6817019Z   name: recursive-preview-timing
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:13.6817349Z   path: .superpowers/recursive-timing/
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	runtime.txt
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:13.6817694Z   include-hidden-files: true
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:13.6817967Z   if-no-files-found: error
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:13.6818229Z   retention-days: 30
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:13.6818471Z   compression-level: 6
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:13.6818712Z   overwrite: false
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:13.6818942Z env:
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:13.6819174Z   OMP_NUM_THREADS: 1
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:13.6819929Z   OPENBLAS_NUM_THREADS: 1
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:13.6820196Z   MKL_NUM_THREADS: 1
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:13.6820515Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.11.9\x64
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:13.6820990Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.11.9\x64/lib/pkgconfig
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:13.6821456Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:13.6821967Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:13.6822388Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:13.6822733Z ##[endgroup]
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:13.8662003Z (node:6052) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:13.8662947Z (Use `node --trace-deprecation ...` to show where the warning was created)
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:14.2910448Z Multiple search paths detected. Calculating the least common ancestor of all paths
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:14.2913959Z The least common ancestor is D:\a\open\open. This will be the root directory of the artifact
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:14.2915660Z With the provided path, there will be 1812 files uploaded
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:14.2921696Z Artifact name is valid!
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:14.2923142Z Root directory input is valid!
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:14.6667303Z Beginning upload of artifact content to blob storage
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:15.1623957Z (node:6052) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:16.2295255Z Uploaded bytes 8388608
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:16.7239908Z Uploaded bytes 16777216
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:17.0433246Z Uploaded bytes 25165824
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:17.1820534Z Uploaded bytes 33554432
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:17.3242700Z Uploaded bytes 41943040
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:17.4346565Z Uploaded bytes 50331648
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:17.5509936Z Uploaded bytes 54448066
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:17.6211908Z Finished uploading artifact content to blob storage!
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:17.6219461Z SHA256 digest of uploaded artifact zip is 4bb29fd0cc5f24f3fc4a25959718d00de2411360608fd4c4f6821cbac24eed58
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:17.6222402Z Finalizing artifact upload
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:17.8650382Z Artifact recursive-preview-timing.zip successfully finalized. Artifact ID 11928266217
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:17.8651634Z Artifact recursive-preview-timing has been successfully uploaded! Final size is 54448066 bytes. Artifact ID is 11928266217
+timing	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T20:54:17.8665665Z Artifact download URL: https://github.com/imh-ds/open/actions/runs/38629900589/artifacts/11928266217
+timing	Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	﻿2026-10-14T20:54:17.9041711Z Post job cleanup.
+timing	Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T20:54:18.0420312Z (node:6372) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+timing	Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T20:54:18.0421241Z (Use `node --trace-deprecation ...` to show where the warning was created)
+timing	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	﻿2026-10-14T20:54:18.0676162Z Post job cleanup.
+timing	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:54:18.2611454Z [command]"C:\Program Files\Git\bin\git.exe" version
+timing	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:54:18.2891049Z git version 2.56.0.windows.1
+timing	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:54:18.2951462Z Temporarily overriding HOME='D:\a\_temp\3dfcb691-4b62-48fa-b2a9-4b5a137d4417' before making global git config changes
+timing	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:54:18.2952580Z Adding repository directory to the temporary git global config as a safe directory
+timing	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:54:18.2963480Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\open\open
+timing	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:54:18.3344264Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+timing	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:54:18.3745770Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+timing	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:54:18.9067956Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+timing	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:54:18.9521896Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+timing	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:54:19.4733187Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+timing	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T20:54:19.5057980Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+timing	Complete job	﻿2026-10-14T20:54:20.0470163Z Cleaning up orphan processes
+timing	Complete job	2026-10-14T20:54:20.0508648Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093, actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

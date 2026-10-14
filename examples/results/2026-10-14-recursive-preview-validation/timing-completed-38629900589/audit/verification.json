@@ -1,0 +1,125 @@
+{
+  "run_id": 38629900589,
+  "source": "e4798c8febfb7a92b81f574c8c93ce61cf7b9183",
+  "timing_manifest": "ef50e38e511ea45af15a5107da712f7e63aaf52dbbad9a359b6ba9b9055dbed6",
+  "audit_status": "PASS",
+  "audit_model_fits": 0,
+  "cases": {
+    "160": {
+      "spec": {
+        "analysis_seed": 1700160000,
+        "generator_seed": 1600160000,
+        "id": "chain-n80-r00",
+        "index": 160,
+        "n": 80,
+        "repetition": 0,
+        "scenario": "chain"
+      },
+      "status": "complete",
+      "seconds": 1642.156,
+      "receipt_sha256": "ef1409d7548691b24bce6a05e8496d50c76877414a7edc83a5f8703b46aa3203",
+      "fit_cost_unknown": false,
+      "structure": {
+        "exact": true,
+        "incorrect": false,
+        "missing": [],
+        "extra": [],
+        "groups": [],
+        "depth_matches": {
+          "X2": true,
+          "X1": true
+        },
+        "nuisance_promoted": [],
+        "unexpected_nodes": []
+      },
+      "started_assessments": 300,
+      "finished_assessments": 300,
+      "warnings": 0,
+      "assessments": 300,
+      "observation_checks": 308621,
+      "outer_fits": 21111,
+      "tuning_fits": 900000,
+      "worker_os_peak_bytes": 131493888,
+      "assigned_depth": {
+        "X1": 2,
+        "X2": 1,
+        "Y": 0
+      },
+      "edges": [
+        [
+          "X2",
+          "Y"
+        ],
+        [
+          "X1",
+          "X2"
+        ]
+      ],
+      "groups": []
+    },
+    "240": {
+      "spec": {
+        "analysis_seed": 1700240000,
+        "generator_seed": 1600240000,
+        "id": "chain-n200-r00",
+        "index": 240,
+        "n": 200,
+        "repetition": 0,
+        "scenario": "chain"
+      },
+      "status": "complete",
+      "seconds": 1644.094000000001,
+      "receipt_sha256": "39dfbe5c8673a304bcb95fa6586c92062a832eb9586fc7bc0f5f34335500903a",
+      "fit_cost_unknown": false,
+      "structure": {
+        "exact": true,
+        "incorrect": false,
+        "missing": [],
+        "extra": [],
+        "groups": [],
+        "depth_matches": {
+          "X2": true,
+          "X1": true
+        },
+        "nuisance_promoted": [],
+        "unexpected_nodes": []
+      },
+      "started_assessments": 300,
+      "finished_assessments": 300,
+      "warnings": 0,
+      "assessments": 300,
+      "observation_checks": 768032,
+      "outer_fits": 21001,
+      "tuning_fits": 900000,
+      "worker_os_peak_bytes": 134074368,
+      "assigned_depth": {
+        "X1": 2,
+        "X2": 1,
+        "Y": 0
+      },
+      "edges": [
+        [
+          "X2",
+          "Y"
+        ],
+        [
+          "X1",
+          "X2"
+        ]
+      ],
+      "groups": []
+    }
+  },
+  "assessments": 600,
+  "observation_checks": 1076653,
+  "reused_assessments": 144,
+  "new_assessments": 456,
+  "reused_original_files_preserved": 434,
+  "outer_fits": 42112,
+  "tuning_fits": 1800000,
+  "warnings": 0,
+  "both_expected_chains_recovered": true,
+  "original_failed_preflights_reclassified": false,
+  "scientific_qualification": false,
+  "scope": "Two chain datasets: timing and observed structural correctness, not estimated error rates."
+}
