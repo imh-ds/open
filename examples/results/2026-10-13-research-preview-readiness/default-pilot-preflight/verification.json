@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "cases": 3,
+  "model_fits": 0,
+  "workflow_executed": false,
+  "proposed_maximum_runner_minutes": 560,
+  "checks": [
+    "all configured resamples=100",
+    "performance CV=5x2",
+    "tuning CV=3",
+    "unique threshold=.05",
+    "manual dispatch only",
+    "180x3+20=560",
+    "production/default files unchanged"
+  ]
+}

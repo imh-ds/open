@@ -1,0 +1,69 @@
+{
+  "case": "shared_predictors",
+  "status": "PREFLIGHT",
+  "sample_sha256": "9217a24b664c7b98efff51cb69f141642e239afafcdb3e99cb9a7400980c8276",
+  "default_config_sha256": "c60c5508d92cd5823b7b6d5fc065e1c77e7b4ed81ee09b2a99d3a8e9c5eaa29b",
+  "override": "outcome column name only; no numerical settings changed",
+  "configuration": {
+    "analysis": {
+      "root": "Outcome",
+      "random_seed": 20261004,
+      "max_depth": 3
+    },
+    "outcome": {
+      "type": "continuous",
+      "loss": "mse"
+    },
+    "learner": {
+      "mode": "fixed",
+      "library": [
+        "elastic_net"
+      ],
+      "retune_ablation": false
+    },
+    "preprocessing": {
+      "missing": "median",
+      "standardize_linear": true,
+      "one_hot_categorical": false
+    },
+    "dependence": {
+      "method": "spearman",
+      "absolute": true
+    },
+    "thresholds": {
+      "min_total_gain_relative": 0.02,
+      "broad_relative": 0.05,
+      "unique_relative": 0.05,
+      "group_relative": 0.1,
+      "dependence_pair": 0.7,
+      "stability": 0.7
+    },
+    "performance_cv": {
+      "folds": 5,
+      "repeats": 2,
+      "grouped": false
+    },
+    "tuning_cv": {
+      "folds": 3
+    },
+    "stability": {
+      "method": "subsample",
+      "fraction": 0.8,
+      "n_resamples": 100,
+      "final_resamples": 500,
+      "scope": "layer_consensus"
+    },
+    "visualization": {
+      "show_screened": true,
+      "show_unstable": true,
+      "distance_mode": "visual_strength",
+      "edge_width": "unique",
+      "edge_opacity": "stability"
+    }
+  },
+  "installed_module": "C:\\Users\\imhoh\\GitHub\\open\\.worktrees\\open-phase2\\.superpowers\\sdd\\2026-10-13-research-preview-readiness\\venv\\Lib\\site-packages\\open\\__init__.py",
+  "github_revision": null,
+  "github_run_id": null,
+  "github_run_attempt": null,
+  "scope": "fixed-fixture runtime/regression pilot, not independent simulation"
+}

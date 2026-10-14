@@ -17,14 +17,14 @@ Check incorrect links, redundant-group classification and layer placement for th
 - Proposed immutable task ordering: noise IDs 0â€“79, direct 80â€“159, redundant 160â€“239, chain 240â€“319. Generator seed 940000000+ID; analysis/split/subsampling seed 950000000+ID. Audit these proposed namespaces against all historical manifests before freezing; a collision is a design error requiring an explicit revision, never silent replacement.
 - Fixed elastic net, max depth3, independent rows, no missingness, MSE, fold-local median imputation/linear standardization,80% sampling without replacement,70% retention. No engine/threshold tuning from these results. One scientific execution per identity; preserve attempts/errors/costs and outputs.
 
-## Configuration choice still requiring an owner decision
+## Configuration selected by the owner
 
 |Profile|Resamples per target|Performance CV|Tuning CV|Unique relevance threshold|Claim boundary|
 |---|---:|---|---:|---:|---|
 |Shipped defaults|100|5-fold repeated twice|3-fold|.05|Checks the shipped default profile at these narrow scenarios/N|
 |Existing demonstration profile|20|2-fold once|2-fold|.15|Checks only this explicitly non-default profile; defaults remain unconfirmed|
 
-All other thresholds remain their existing configuration values: total relative gain.02, broad.05, joint.10, dependence.70, retention.70. The demonstration profile is copied from historical fixture configs, not selected to improve the new results. The owner's preference question is pending; no profile is silently chosen and no default is modified.
+The owner selected **shipped defaults with a strict compute budget** on October 13, 2026. The demonstration row is retained as the rejected alternative, not an active option. All other thresholds remain their existing configuration values: total relative gain .02, broad .05, joint .10, dependence .70, retention .70. No default is modified. This configuration choice does not itself approve the proposed new simulation design or its dispatch cost.
 
 ## Metrics and proposed acceptance
 
@@ -36,6 +36,8 @@ A failed gate remains a failed result. It does not authorize retuning thresholds
 
 ## Cost and staged execution proposal
 
+**Superseded execution draft:** the following 3300-minute allocation cannot support the selected defaults. Retain it as decision history; do not dispatch it. A separate bounded full-default fixed-fixture pilot is prepared in [default_preview_pilot.md](default_preview_pilot.md). The 320-case scientific design remains ungenerated and requires a feasible replacement allocation before approval.
+
 The proposed maximum total Actions timeout ceiling is 3300 runner-minutes across both stages, ordinary runners, no paid capacity or automatic model retries. Stage A: 80 noise datasets, 40 two-case shards. Stage B: 240 signal datasets, 120 two-case shards, only after complete audited StageA passes its bound. Each worker 20 min (3setup/15computation/2preservation); each stage 10 min preparation and 30 min aggregation;160*20+2*(10+30)=3280min, with 20 min unallocated headroom. Transport retries preserve original bytes; they do not permit new fits.
 
 A native preflight of the first two planned chain identities must show the two-case shard fits its 15-minute computation allocation before implementation/dispatch is accepted. Preserve those costs separately; Actions recomputation of the same IDs is not extra scientific replication. Measure raw/disk/aggregation cost and freeze exact package/runtime/source/manifest identities before dispatch. Matrix concurrency may use available account capacity without increasing the total ceiling. Every missing job stays in the planned denominator.
@@ -43,3 +45,9 @@ A native preflight of the first two planned chain identities must show the two-c
 The **shipped-default option has a serious timing feasibility concern**: the one-assessment installed probe took 85.46 sec, and its rough 100-assessment projection is 142.4 min for a single chain case. That projection greatly exceeds the proposed two-case 15-minute computation allocation. It is not a measured full-budget run, but it is sufficient to withhold launch under this proposal. Do not silently reduce resamples/folds or increase timeouts. If the owner chooses defaults, first reconcile performance/budget and approve a feasible revised protocol. The lighter profile's measured existing fixture time (approximately5.3min per chain case under concurrent native checks) is closer to the allocation but still requires the exact native preflight.
 
 No expensive run is launched by choosing a preference alone: freeze the concrete profile, feasible measured budget and source guards, then obtain approval of that reviewable dispatch. A research-preview software release must keep its exploratory boundaries if scientific acceptance remains open.
+
+## Timing investigation after the defaults decision
+
+Replaying the same two saved B=1 local assessments without Python allocation tracing took 17.795 seconds versus 85.460 seconds for the traced wrapper. Complete serialized local results, including risks and fit counts, matched exactly. Root: 50 outer fits and 2250 tuning fits; second target: 20 outer fits and 1500 tuning fits. This diagnostic isolates substantial telemetry overhead on this fixture; it does not change the package or establish a full-budget runtime. The proposed pilot retains the actual shipped tracing behavior.
+
+Even an optimistic linear projection without tracing is about 29.7 minutes per chain case, rather than 142.4 minutes with tracing. Neither is a measured B=100 result or worst-case bound. Applying even the faster chain estimate to all 320 identities would imply about 9491 compute minutes, before setup/aggregation; scenario costs differ, so this is a scale illustration, not a study estimate. More parallel shards shorten elapsed waiting but do not remove that work. Preserve the defaults; first measure the actual full-budget workflow, then determine whether a verified implementation optimization or a narrower explicitly exploratory study fits the strict ceiling.

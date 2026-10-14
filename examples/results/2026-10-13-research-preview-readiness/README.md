@@ -23,6 +23,10 @@ The first wheel-build attempt also hit a sandbox-only temporary-file rename deni
 
 ## Runtime and remaining choices
 
+The owner subsequently selected shipped defaults with a strict compute budget. The earlier demonstration profile is not the validation target. A [manual-only full-default pilot](../../default_preview_pilot.md) is prepared, with a proposed 560 runner-minute ceiling and no dispatch yet.
+
+A [diagnostic replay](assessment_timing_check.py) of the same two B=1 local assessments without allocation tracing took [17.795 seconds](default-timing/no-tracing-diagnostic.json). Both complete local payloads matched the saved traced run exactly. This identifies substantial memory-telemetry overhead; production behavior is unchanged and the proposed pilot retains it. This is not a full 100-resample timing or a scientific confirmation result.
+
 The historical 20-assessment checks took 316.3 seconds (chain), 316.9 seconds (missing chain), and 168.8 seconds (near-copy scales), measured while the independent checks ran concurrently. These timings are not a worst-case bound.
 
 A separate default-settings timing probe used the same 80-row chain, default performance CV5 repeated twice/inner CV3, with one effective assessment per target. It completed in 85.46 seconds. Multiplying by the configured 100 assessments gives a rough142.4 minutes, assuming unchanged expansion and per-assessment cost. This is not a measured full-budget run, a reliable timing bound, or a scientific result. See [timing/projection and limits](default-timing/timing.json).
