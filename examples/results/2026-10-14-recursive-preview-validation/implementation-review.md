@@ -1,0 +1,13 @@
+# Implementation and preflight launch review
+
+2026-10-14. The owner approved the concrete [reference protocol](../../recursive_preview_validation_protocol.md), including staged launch within10,000 runner-minutes. No scientific result is claimed here.
+
+The study-only implementation preserves the shipped elastic-net settings and production selection/recursion. Independent datasets, individual resamples, relation kinds and complete-procedure depth recovery remain distinct. No production source, default configuration or historical frozen study source was changed.
+
+An independent read-only reviewer inspected18e9045..20e4467 and the corrective diff through71e78a8. Three substantive audit/gate findings were fixed before freezing: verifying original successful upload transport; binding reused preflight archives and case receipts to original fingerprints; and anchoring every pair/group contrast to recorded full/baseline observations and reused parameters. Regression tests cover each correction. The reviewer verified21focused no-fit tests and found no remaining substantive blocker to launching the timed preflight. The author's separate scripted-predictor integration check exercises the complete production recording, artifact reconstruction and audit path without training an ML estimator.
+
+The reviewer also requested preserving preparation's measured transport evidence; the workflow now uploads it separately. These checks do not establish native parallel numerical equivalence, timing, memory, upload capacity or scientific performance. Those remain the purpose of the approved Actions preflight and later stages.
+
+The frozen manifest and historical-seed inventory are under `examples/study_manifests/recursive-preview-validation.json` and `recursive-preview-seed-audit.json`. Frozen code checks include exact installed-package source equivalence, Python3.11.9/dependency versions, all480 dataset identities and49 normalized source/config/protocol/seed-inventory files. Source/manifest checks run again in each computing job. No fitting occurs on push; the push job only registers the workflow.
+
+Preflight replays the saved sequential full-default chain, then computes planned chain cases160/240 once. It must pass exact layer/local/sample/split equivalence, per-case15-minute timing, independent risk audit and storage/audit feasibility checks. Stage A additionally requires the original preflight job and both artifact uploads to have succeeded. Stage B requires an independently audited, preserved and committed original noise result, and reuses the exact two preflight cases without new fits. The allocated hard job caps sum to9,871runner-minutes. Failure does not authorize retries, changed thresholds or an increased ceiling.
