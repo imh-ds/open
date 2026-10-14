@@ -33,4 +33,6 @@ The immediate work uses existing fixed fixtures and unchanged settings. Independ
 
 The first three implementation/export paths are substantial software evidence. They do not establish false-selection rates, recursive layer accuracy, or robustness for all practical populations. Release-audit measurements and remaining work will be retained under `examples/results/2026-10-13-research-preview-readiness/`.
 
+The [shipped-default recursive fixture pilot](../examples/results/2026-10-14-default-preview-pilot/interpretation.md) completed all three fixed cases and matched their expected chain, missing-outcome and redundant-predictor structures. It confirms full-default execution and artifact reload on those fixtures; it does not estimate scientific error rates or close the broader validation gate.
+
 [Installed release audit and saved evidence](../examples/results/2026-10-13-research-preview-readiness/README.md) distinguish source tests, clean installed checks, and the remaining scientific/runtime gates. The default-settings runtime projection is not a completed 100-assessment benchmark.

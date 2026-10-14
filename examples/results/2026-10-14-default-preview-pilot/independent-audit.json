@@ -1,0 +1,118 @@
+{
+  "status": "PASS",
+  "run_id": "38525190948",
+  "source_revision": "284b474e0c26b8fb348e6c5ae3306ff53184490b",
+  "cases": [
+    {
+      "case": "chain",
+      "status": "COMPLETE",
+      "seconds": 8681.5107826,
+      "planned_and_completed_assessments": 200,
+      "warnings": 0,
+      "depths": {
+        "Anxiety": 0,
+        "Depression": 1,
+        "Stress": 2
+      },
+      "edges": [
+        "Depression -> Anxiety",
+        "Stress -> Depression"
+      ],
+      "shared_groups": [],
+      "observed_and_missing_target_rows_per_resample": {
+        "Anxiety": [
+          {
+            "observed": 64,
+            "missing": 0,
+            "resamples": 100
+          }
+        ],
+        "Depression": [
+          {
+            "observed": 64,
+            "missing": 0,
+            "resamples": 100
+          }
+        ]
+      },
+      "strict_bundle_reload": true,
+      "source_sample_and_config_hashes_match": true
+    },
+    {
+      "case": "chain_missing",
+      "status": "COMPLETE",
+      "seconds": 8970.3086127,
+      "planned_and_completed_assessments": 200,
+      "warnings": 0,
+      "depths": {
+        "Anxiety": 0,
+        "Depression": 1,
+        "Stress": 2
+      },
+      "edges": [
+        "Depression -> Anxiety",
+        "Stress -> Depression"
+      ],
+      "shared_groups": [],
+      "observed_and_missing_target_rows_per_resample": {
+        "Anxiety": [
+          {
+            "observed": 64,
+            "missing": 0,
+            "resamples": 100
+          }
+        ],
+        "Depression": [
+          {
+            "observed": 63,
+            "missing": 1,
+            "resamples": 85
+          },
+          {
+            "observed": 64,
+            "missing": 0,
+            "resamples": 15
+          }
+        ]
+      },
+      "strict_bundle_reload": true,
+      "source_sample_and_config_hashes_match": true
+    },
+    {
+      "case": "shared_predictors",
+      "status": "COMPLETE",
+      "seconds": 5342.659676599999,
+      "planned_and_completed_assessments": 100,
+      "warnings": 0,
+      "depths": {
+        "Outcome": 0,
+        "Scale_A": 1,
+        "Scale_B": 1
+      },
+      "edges": [],
+      "shared_groups": [
+        [
+          "Scale_A",
+          "Scale_B"
+        ]
+      ],
+      "observed_and_missing_target_rows_per_resample": {
+        "Outcome": [
+          {
+            "observed": 64,
+            "missing": 0,
+            "resamples": 100
+          }
+        ]
+      },
+      "strict_bundle_reload": true,
+      "source_sample_and_config_hashes_match": true
+    }
+  ],
+  "total_assessments": 500,
+  "total_recorded_warnings": 0,
+  "model_fits_during_audit": 0,
+  "scope": "fixed historical-fixture regression and runtime check; not an independent false-selection-rate study",
+  "preserved_artifacts": 29,
+  "preserved_artifact_bytes": 22708089
+}

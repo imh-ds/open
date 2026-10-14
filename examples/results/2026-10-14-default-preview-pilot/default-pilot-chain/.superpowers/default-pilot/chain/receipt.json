@@ -1,0 +1,97 @@
+{
+  "case": "chain",
+  "status": "COMPLETE",
+  "sample_sha256": "97252aea5684a060bf7eb4542b7f4147017ba2d3d560694472eb677ce6b01fef",
+  "default_config_sha256": "c60c5508d92cd5823b7b6d5fc065e1c77e7b4ed81ee09b2a99d3a8e9c5eaa29b",
+  "override": "outcome column name only; no numerical settings changed",
+  "configuration": {
+    "analysis": {
+      "root": "Anxiety",
+      "random_seed": 20261004,
+      "max_depth": 3
+    },
+    "outcome": {
+      "type": "continuous",
+      "loss": "mse"
+    },
+    "learner": {
+      "mode": "fixed",
+      "library": [
+        "elastic_net"
+      ],
+      "retune_ablation": false
+    },
+    "preprocessing": {
+      "missing": "median",
+      "standardize_linear": true,
+      "one_hot_categorical": false
+    },
+    "dependence": {
+      "method": "spearman",
+      "absolute": true
+    },
+    "thresholds": {
+      "min_total_gain_relative": 0.02,
+      "broad_relative": 0.05,
+      "unique_relative": 0.05,
+      "group_relative": 0.1,
+      "dependence_pair": 0.7,
+      "stability": 0.7
+    },
+    "performance_cv": {
+      "folds": 5,
+      "repeats": 2,
+      "grouped": false
+    },
+    "tuning_cv": {
+      "folds": 3
+    },
+    "stability": {
+      "method": "subsample",
+      "fraction": 0.8,
+      "n_resamples": 100,
+      "final_resamples": 500,
+      "scope": "layer_consensus"
+    },
+    "visualization": {
+      "show_screened": true,
+      "show_unstable": true,
+      "distance_mode": "visual_strength",
+      "edge_width": "unique",
+      "edge_opacity": "stability"
+    }
+  },
+  "installed_module": "C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64\\Lib\\site-packages\\open\\__init__.py",
+  "github_revision": "284b474e0c26b8fb348e6c5ae3306ff53184490b",
+  "github_run_id": "38525190948",
+  "github_run_attempt": "1",
+  "scope": "fixed-fixture runtime/regression pilot, not independent simulation",
+  "seconds": 8681.5107826,
+  "assigned_depth": {
+    "Anxiety": 0,
+    "Depression": 1,
+    "Stress": 2
+  },
+  "provenance": {
+    "git_revision": null,
+    "git_revision_unavailable_reason": "Git revision command exited with status 128",
+    "elapsed_seconds": 8649.5899843,
+    "peak_traced_memory_bytes": 13390154,
+    "peak_memory_unavailable_reason": null,
+    "package_version": "0.1.0.dev0",
+    "dependency_versions": {
+      "PyYAML": "6.0.2",
+      "numpy": "1.26.4",
+      "pandas": "2.2.3",
+      "scikit-learn": "1.3.0",
+      "scipy": "1.11.2"
+    },
+    "learner_versions": {
+      "elastic_net": "1.3.0"
+    },
+    "version_availability": {}
+  },
+  "planned_resamples_per_target": 100,
+  "assessment_count": 200,
+  "completed_assessment_count": 200
+}
