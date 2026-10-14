@@ -13,3 +13,5 @@ Continuation [run38621370295](https://github.com/imh-ds/open/actions/runs/386213
 The run is not yet accepted: both planned cases, arithmetic/timing/storage audits and both successful uploads must be checked after completion. Later noise/signal stages remain unlaunched. These launch receipts record execution provenance, not a scientific result or release qualification.
 
 Startup verified: pinned installation and original raw artifact download both succeeded; the equivalence/timing compute step started. `startup-verification.json` and the run/jobs API snapshots retain this observation. Computation and uploads were still pending at this snapshot.
+
+Completion follow-up: the run failed the first new case's15-minute timing allowance after144completed assessments. Old-fixture equivalence/reuse passed with zero refits; both uploads succeeded. The [saved timeout diagnosis](../preflight-failure-38621370295/interpretation.md) retains the completed-run evidence and independent partial-checkpoint audit. The startup snapshots above remain historical observations; they do not imply a passing completed preflight. No later stage was launched.
