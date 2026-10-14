@@ -324,6 +324,9 @@ def audit_task(args):
         return audit_case(spec, store, manifest)
     except Exception as exc:
         return dict(spec=spec, status='audit_failed', structure=None,
+                    fit_cost_unknown=True,
+                    started_assessments=sum(n.endswith('.started.json') for n in store.names),
+                    finished_assessments=sum(n.endswith('.finished.json') for n in store.names),
                     failure=type(exc).__name__+': '+str(exc)[:2000])
     finally:
         store.close()

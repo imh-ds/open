@@ -34,6 +34,8 @@ env:
   OPENBLAS_NUM_THREADS: '1'
   MKL_NUM_THREADS: '1'
   GH_TOKEN: ${{ github.token }}
+  PREFLIGHT_RUN: ${{ inputs.preflight_run }}
+  NOISE_RUN: ${{ inputs.noise_run }}
 
 jobs:
   register:
@@ -151,9 +153,18 @@ jobs:
           path: evidence/noise
       - id: matrix
         run: |
-          $shards = python -I examples/recursive_preview_actions.py prepare --stage '${{ inputs.stage }}' --evidence evidence --preflight-run '${{ inputs.preflight_run }}' --noise-run '${{ inputs.noise_run }}'
+          $taskArgs = @('prepare', '--stage', '${{ inputs.stage }}', '--evidence', 'evidence', '--preflight-run', $env:PREFLIGHT_RUN)
+          if ('${{ inputs.stage }}' -eq 'signal') { $taskArgs += @('--noise-run', $env:NOISE_RUN) }
+          $shards = python -I examples/recursive_preview_actions.py @taskArgs
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           "shards=$shards" >> $env:GITHUB_OUTPUT
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: recursive-preview-${{ inputs.stage }}-prepare
+          path: evidence/preflight-transport-verification.json
+          if-no-files-found: warn
+          retention-days: 30
 
   shard:
     needs: prepare
