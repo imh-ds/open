@@ -1,0 +1,3 @@
+# Independent repair review
+
+Reviewed development commit 2a6b5f4b76815014741d67f02750cad9333d9d0f. No critical or important findings. Reviewer independently ran all 13 focused regression tests successfully and checked the frozen-source boundary, absolute-only numerical check, no-fit/refit guard and exception restoration, and fixed-origin workflow/budget. Review did not execute the full study, remote workflow, or full test suite; these have separate evidence. Optional mixed-boolean numeric-format hardening was deferred because the original checker already accepted numerically equivalent boolean leaves, and raw file digests remain strict.

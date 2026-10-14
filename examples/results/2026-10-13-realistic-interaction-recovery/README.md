@@ -1,0 +1,11 @@
+# Development aggregate recovery investigation
+
+Original run: https://github.com/imh-ds/open/actions/runs/38482368226 (attempt 1; source `2005c0aea61f963386569bdc83d26be0d60efc04`). All 135 model shards succeeded. The original aggregate failed with 10,320 accepted and 480 rejected of 10,800 planned datasets; its original audit and report remain unchanged here.
+
+The frozen diagnostic-teacher checker required exact equality between saved and recalculated floating-point values. The rejected shard-039 probe differed by at most 1.7763568394002505e-15. Replaying that complete 80-case shard with an absolute-only tolerance of 1e-12 accepted all cases with zero new fits or verification refits. This is an audit roundoff repair, not a change to data, models, scores, cutoffs, or decisions. Larger discrepancies, malformed values, and all original digest/CV/model/identity failures remain errors.
+
+The separate recovery adapter preserves the frozen original implementation and invokes its aggregate. Regression tests cover roundoff acceptance, meaningful numerical tampering rejection, strict schema/shape/finiteness checks, blocked fitting/refitting, and restoration of the temporary audit hook. Independent review found no critical or important issues. One optional schema nicety (mixed boolean leaves numerically equivalent to 0/1) also existed under the original equality check; no acceptance regression was introduced.
+
+Original aggregate job duration: 13m01s. The single manual recovery job is capped at 45 minutes, making the cumulative aggregation ceiling 58m01s, within the approved 60-minute stage budget. It downloads the original combined artifact and runs only the audit/aggregate: no model-shard retry, no new case identities, no threshold learning, and no changed scientific settings.
+
+All 135 original raw ZIPs and receipts (2,540,775,504 compressed bytes; 97,335 files) are preserved in local incremental Git commits under the sibling `2026-10-13-realistic-interaction-development-raw` directory. Their index includes original SHA-256/size inventories. Large raw publication to GitHub is pending; the GitHub artifact is not the sole local copy. Recovery results will be added after the audit-only job completes. Until then, the original study remains incomplete for interpretation.

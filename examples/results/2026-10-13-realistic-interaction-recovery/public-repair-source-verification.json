@@ -1,0 +1,373 @@
+{
+  "source": "b5405cd5f71dca2d8f47180e2b0311860b46ff47",
+  "original_source": "2005c0aea61f963386569bdc83d26be0d60efc04",
+  "frozen_manifest": "12e6b9e023f15d3e8d19656e7e4b7403884ba6a4c7ddc05d4d8629dae3d9c560",
+  "threshold_fingerprint": "8f3c5e0096c55e625457bf5ac5d2bf60232a06dbdd136d0246df7edfbd7383f5",
+  "verified_blobs": [
+    {
+      "path": ".github/actions/pair-confidence-setup/action.yml",
+      "git_blob": "a5e727979ef9cadab46e8a8535b82dd567889f43",
+      "normalized_sha256": "966fc65319680088ab452e3be6ca760c3a33adc40a4ae55efc9333ca2dd7ee75"
+    },
+    {
+      "path": ".github/actions/prospective-interaction-setup/action.yml",
+      "git_blob": "2f78b85fc57af2e71a7769cffaad41c15617cb8f",
+      "normalized_sha256": "ab27ddcf8df47d78066e843144b030f599817826e17b81b273c80ad5d6433d4f"
+    },
+    {
+      "path": ".github/actions/realistic-interaction-setup/action.yml",
+      "git_blob": "f3b69d7a636138fd3272767c80d972bef5a2f5da",
+      "normalized_sha256": "d484c3dd9c1543a576ec93d2a32e366ff183bb5caae0d473f468d2b0f7c843b0"
+    },
+    {
+      "path": ".github/workflows/pair-confidence.yml",
+      "git_blob": "937632299f327b2706ddbd34f9108d61e80eae9e",
+      "normalized_sha256": "f9415a24e1643caaeae0adf2618cf57629ba2ab6c5983f9988e3b0ffe3029c36"
+    },
+    {
+      "path": ".github/workflows/prospective-interaction.yml",
+      "git_blob": "bb47e274cc09b032f320e0a053a64b92ea84baef",
+      "normalized_sha256": "975d3d70d50ee033e753047b68dd09a027344e6d0bdbf4a7bc26fb74ba192621"
+    },
+    {
+      "path": ".github/workflows/realistic-interaction.yml",
+      "git_blob": "e7815d587d8fb13a800efc29297d373bd4b341e4",
+      "normalized_sha256": "2d15e2092597cee512ce6b116e1ff076c5c19b4c82ebcfabf993ea17bce5f82b"
+    },
+    {
+      "path": "examples/confidence_diagnostic.py",
+      "git_blob": "7b08713a6f2de5b522a64c407a78d19835b35d25",
+      "normalized_sha256": "6fef93d3f5b70337dfe7d8509a98a51d23351f78dd770f4443f323e6ad0f6bed"
+    },
+    {
+      "path": "examples/pair_confidence_models.py",
+      "git_blob": "b4203ad7bf9faf8a249fa09ab2b0157b381fff37",
+      "normalized_sha256": "d2315818769293a24d3f48c862755eff400e2f07ddd72d4ab06a852910386517"
+    },
+    {
+      "path": "examples/pair_confidence_protocol.md",
+      "git_blob": "d292162f3461f11de3e18885afe6f8381454d7fa",
+      "normalized_sha256": "6abafe66e79b5355a92f86071cbd31c6dfcad85c07973395b1da27be932e3aa1"
+    },
+    {
+      "path": "examples/pair_confidence_rules.py",
+      "git_blob": "077a7471456d0d29df29a66d0e8798708e15ef02",
+      "normalized_sha256": "50ca5ab8c6407f27e77b8f73d6e89b567ac6cfec47eec6cf9f0fb5a46eed97d4"
+    },
+    {
+      "path": "examples/pair_confidence_study.py",
+      "git_blob": "679503f466b1b3b20213860d983234daa197e840",
+      "normalized_sha256": "45a5176e1f61048a890414c2aa176ce46c03627c038bd437cbbc44303aadad96"
+    },
+    {
+      "path": "examples/pair_correlation_study.py",
+      "git_blob": "52edd6d1b61c3a898ad08c17ac98c85989974ea9",
+      "normalized_sha256": "6c8fded53fcb0eca766cfa6188866d75d1331b676d337b946594c2b9cee9f67f"
+    },
+    {
+      "path": "examples/pair_screen_study.py",
+      "git_blob": "7dbd9f51c6f7d4ca6cf040bd5abfa91a96bb4167",
+      "normalized_sha256": "42185941f614adc61b84b9bb396fc3d6b0987444df77ecceb0ec0f841c6b3cb7"
+    },
+    {
+      "path": "examples/prospective_interaction_archive.py",
+      "git_blob": "ffb1854911469a9938a7acc6fdbe48efffba7af7",
+      "normalized_sha256": "3558c2f67cd37a2f074628a66930a6add26493cfec9b1d5c7c9684f7d47c9d58"
+    },
+    {
+      "path": "examples/prospective_interaction_assurance.json",
+      "git_blob": "5eda9c572af77e730d0bba7b5ed72247f37ea889",
+      "normalized_sha256": "7836aa1acfd33188e89dbdbcc68b9a2b6d8cdfc282af5fa5dbddbfa252cc202f"
+    },
+    {
+      "path": "examples/prospective_interaction_assurance.py",
+      "git_blob": "378e8268a1e72a6c313c4bd0ff2fcbbb6690dc5e",
+      "normalized_sha256": "bef797c6dcb5dae0bc7e80ab5fd88a765ba2e6286b0f6310e5c62d734948b1c9"
+    },
+    {
+      "path": "examples/prospective_interaction_design.py",
+      "git_blob": "7bb8c236069fda4fb5fc4b6412203375e513408e",
+      "normalized_sha256": "3d578995c0e54aa76310dcd6ec020ed03bb935ea59d920a4f9f46581a9df95a0"
+    },
+    {
+      "path": "examples/prospective_interaction_protocol.md",
+      "git_blob": "4e57d3ad7154b54ea265a0b183c1149fcfae424d",
+      "normalized_sha256": "4dca140ef5d55d368e7b58819df63c704f31c966fc65c4f356c6734bcbbf1e66"
+    },
+    {
+      "path": "examples/prospective_interaction_realistic_protocol.md",
+      "git_blob": "d93ebe735780565a08842e70af831dba2f69b103",
+      "normalized_sha256": "1b508cc45791d535012971bb337a88a86bdd00cc94f61fb183a26e5b13ccacb1"
+    },
+    {
+      "path": "examples/prospective_interaction_report.py",
+      "git_blob": "cceeb2371fe6afac9e2d7f427aada78de1946c74",
+      "normalized_sha256": "12d0477b9e003b6c315efa40916f8e41c9bbff72026b50c002f7dfb91ea964b6"
+    },
+    {
+      "path": "examples/prospective_interaction_rules.py",
+      "git_blob": "f13a7731f768082c2546f3706ffd8ad422664a90",
+      "normalized_sha256": "564df6f8d277ee17877e3ffbe90bc1a028fe45e2cf8d74316288cf2d1fa4b992"
+    },
+    {
+      "path": "examples/prospective_interaction_study.py",
+      "git_blob": "09d1d5792a2e5fc2999d4120eae3a6ea5bfaa346",
+      "normalized_sha256": "877e4ffa984fa05360b593d8fb752361548adcb0a83c8126a1841020253f3c99"
+    },
+    {
+      "path": "examples/realistic_interaction_design.py",
+      "git_blob": "24c27fa90957455bc41faddb54e45bdc225680b6",
+      "normalized_sha256": "a3314115c0b41d6eb9d1f531d711f1357b4a37a0cf490c040803cdb099a6e395"
+    },
+    {
+      "path": "examples/realistic_interaction_report.py",
+      "git_blob": "3447a8d91e66d6f111dcf0d539e5b5a46c6fa9e8",
+      "normalized_sha256": "8f9489165f7a6ae807a7ce5d9ce827832b157da04390558fe141a6e6f1e8fdc7"
+    },
+    {
+      "path": "examples/realistic_interaction_study.py",
+      "git_blob": "5240c86cbbbd78527234a33e938e8f3e2c7a2b88",
+      "normalized_sha256": "783e85c0d36f87c261d4c9bcd7dc03bd6329d9e638c485c78c3b3c5b481c3779"
+    },
+    {
+      "path": "examples/realistic_interaction_truth.py",
+      "git_blob": "05a317b4af0026b5e81d8c04e8687936e89b8108",
+      "normalized_sha256": "26e56d8901b78299aad806b6dd338e6b63602e030e35106c072d090c369442ba"
+    },
+    {
+      "path": "examples/realistic_interaction_verify.py",
+      "git_blob": "48a8ebd0f8bf78a6748b0b1ee983bf9ff5b92aa8",
+      "normalized_sha256": "6707fbb01b7497c6db2fa14ad31d14869c4337ac39fa4c8a5371df2102e993e5"
+    },
+    {
+      "path": "examples/spline_stability_smoke.py",
+      "git_blob": "d71146bfa15b0b2348dfcd88202fdc2af430cdc5",
+      "normalized_sha256": "b7b057a8243a6f638358d29cdecc107d8618d2a3f1a1a242e7a6b05cbabc32c6"
+    },
+    {
+      "path": "src/open/__init__.py",
+      "git_blob": "3a61b03396f3b8768ab6df3b8e20ab19c951929d",
+      "normalized_sha256": "c5a4a22fb1e642599b509753a57139d3223b954f26b4ef4439d82ecde72aad07"
+    },
+    {
+      "path": "src/open/aggregation.py",
+      "git_blob": "7525a249bb21d40edeb2ae8f7c0ff66b39e4e405",
+      "normalized_sha256": "caacf41c36d795ffe9f312c67a5b933e5935a492124854adfb24bd8130e8e492"
+    },
+    {
+      "path": "src/open/analysis.py",
+      "git_blob": "3231b3deeace6c1876eac6be69062d4ce01da522",
+      "normalized_sha256": "502a595b0113c501bb005ecd0528e622faa2114f87884f471e830b316219089a"
+    },
+    {
+      "path": "src/open/classify.py",
+      "git_blob": "6ba24887c706ed37d6162331bca132f5a3971aca",
+      "normalized_sha256": "89beb02eceb94625bf78be942e65ac55d0410547a50870c8bf9ace94b82b76f6"
+    },
+    {
+      "path": "src/open/config.py",
+      "git_blob": "32390ebaab3179fb29ab21d8ffde9902500dcf75",
+      "normalized_sha256": "8035f8da5fefe953ad723ecfbf4a4ba4fefe70c11a9e438fe9020c382d102330"
+    },
+    {
+      "path": "src/open/consensus.py",
+      "git_blob": "3637990ceae3c898175a5ec2c0f69e7a590a781c",
+      "normalized_sha256": "5b199c5d78df4e73f7dd70cc48937853e7dd31de56390188d1d5b4fb389c60fb"
+    },
+    {
+      "path": "src/open/dependence/spearman.py",
+      "git_blob": "a2188d88d4b78919edcae051c79662a756aa8b87",
+      "normalized_sha256": "d57922a5aca7ac7c3929a6b85c9049033ca5819a2cb803d0bb626dc9ba51c83e"
+    },
+    {
+      "path": "src/open/diagnostics.py",
+      "git_blob": "88ba140aab91a7b21248b16299f3671061c94fcc",
+      "normalized_sha256": "7eb8b2ad497fc8e79e9b9b50bd79f70811b2b8e0d8fb0c24b5db87a84698d359"
+    },
+    {
+      "path": "src/open/effects.py",
+      "git_blob": "e44b02f9f402db8491fdb2900da43dd6d31002a9",
+      "normalized_sha256": "9ed3de66da94d0699e69165c90fdea40555eb64205b4a666ce0db60ac2e2d781"
+    },
+    {
+      "path": "src/open/evaluation.py",
+      "git_blob": "ef3d03c68879044915f492696e07a8b0e021eb09",
+      "normalized_sha256": "4c22a3eb13ba68377c91d534cc2217c26c6caeb1dbafc31c8415f71a4203f9e3"
+    },
+    {
+      "path": "src/open/exploration.py",
+      "git_blob": "a740e832869146c646c3867c37923b7362d765d8",
+      "normalized_sha256": "f02bba4f32f0223595d230ef14bebd0ece593a80d5b61230bfe8ff1208fe0a28"
+    },
+    {
+      "path": "src/open/exploratory_visualization.py",
+      "git_blob": "258a41aa364db0dabef6a045c8707fd4811c132b",
+      "normalized_sha256": "ee1b3c1e179f977f3cd1b760dd0d2597d64c7a8610001eb1e5e3698127bd5cc5"
+    },
+    {
+      "path": "src/open/graph.py",
+      "git_blob": "d4f8afbb8ff265a95a1f5fb486d0c367542d17ae",
+      "normalized_sha256": "e6281bc5de47ce4e1458a1d77e864b7e74cabf896ca1a6c898fa45c95686cc90"
+    },
+    {
+      "path": "src/open/grouping.py",
+      "git_blob": "69460a2fb923f014928d6289457c5bd18fb72fb7",
+      "normalized_sha256": "2d5fcca16114f17457947e509623aea345b5256c796ae6acb3b6aaa96bfd588b"
+    },
+    {
+      "path": "src/open/interaction_visualization.py",
+      "git_blob": "48555718fb2951856543374b1848ccb3f034ba92",
+      "normalized_sha256": "aef21f2d3082a8d5b77143d1d456af6cd8c2bcab7ccdf8442e30515b0a7f7bc8"
+    },
+    {
+      "path": "src/open/interactions.py",
+      "git_blob": "04d6858038a007d183c9ba4c4d09768f9a639626",
+      "normalized_sha256": "623a387400d1e3f6930f71026e33982e52e2a9c3d4e8edf95024d02706d97ae5"
+    },
+    {
+      "path": "src/open/io.py",
+      "git_blob": "9a7467ac63b1b2a1768906c57eff69fc4a665e74",
+      "normalized_sha256": "4d21399d169cb468248679b6d3c29c804240404be888c5d9665ce1464a6320dc"
+    },
+    {
+      "path": "src/open/layer_artifacts.py",
+      "git_blob": "10fadbed48e082ad6c3ee2dd0360a428dd6cf867",
+      "normalized_sha256": "971d2e53edea6b8b335c63320be4deea5e92d7e385a838e187eebf40503b5885"
+    },
+    {
+      "path": "src/open/layer_consensus.py",
+      "git_blob": "cf2274c744ea0a28d51be8240fa79156142496ae",
+      "normalized_sha256": "7db99886ab5baa6889d148a9c58d47bc567eeb92e8d522e252126529db5568cf"
+    },
+    {
+      "path": "src/open/layer_io.py",
+      "git_blob": "9330eedad8f3d456af97c1881a0438da9581bc30",
+      "normalized_sha256": "631f63ed1d6b8a0d5c9878d43a0c92aea20d31b0fecd525cc01ff85844281359"
+    },
+    {
+      "path": "src/open/layer_sensitivity.py",
+      "git_blob": "046440445380d72caaa61a51ded6735ddff52916",
+      "normalized_sha256": "ff6d3a68704416ed00c316c2f21de00d4f40150da1cd8094f9b2eb6c08976a5f"
+    },
+    {
+      "path": "src/open/layer_stability.py",
+      "git_blob": "f31ce3f433a1d96b2874cdd04f00e33a6db0d521",
+      "normalized_sha256": "d9fc389dcec490ff0a44da5603d218f9b0426e318bc551f2e2b0214bdc378207"
+    },
+    {
+      "path": "src/open/layer_types.py",
+      "git_blob": "18008c38ab00115c1da4d6cebe2e9e3550237a3d",
+      "normalized_sha256": "67c7d2dac27ec4fe25af67d5c8fccbde7dfbdbd20e99cbbfcfb756441b8e06cf"
+    },
+    {
+      "path": "src/open/layer_visualization.py",
+      "git_blob": "58dfb5872d97a699cdfb397dc1f6a14abb0982e7",
+      "normalized_sha256": "6fe2fdca8f6aced947a62621808078ed08be58dde8810950c8b5c5b2d28fa5fd"
+    },
+    {
+      "path": "src/open/learners/__init__.py",
+      "git_blob": "8e5b3f9395821c2678a0d49432bc3e588da732fb",
+      "normalized_sha256": "7ead0b9a67d455b46002936cc2de788b0a753a8df7eefa97ab7b2812f8178e09"
+    },
+    {
+      "path": "src/open/learners/base.py",
+      "git_blob": "2406dc7d9726aa2e63e20c3d43ae8e12c18584b8",
+      "normalized_sha256": "13bee646851ad61efc4ce16e70b61f94dd22861c12d7d4e9c3c4ea4616037329"
+    },
+    {
+      "path": "src/open/learners/elastic_net.py",
+      "git_blob": "3774316bbe045763e5dd00688ac6f21795bbbcb0",
+      "normalized_sha256": "42575dd04ec4bda6e8eca5ff98a347bf2fd87f4a65a5174e4f97d1a3301dace8"
+    },
+    {
+      "path": "src/open/learners/trees.py",
+      "git_blob": "677bc077a4760ab88831ec3028338216a8e9dd95",
+      "normalized_sha256": "35352cabf0b870bec666833ab3110f9ecc0e521fab176ce35715edfd98a7647a"
+    },
+    {
+      "path": "src/open/local_target.py",
+      "git_blob": "82df6be97049b73160d8f6948c41c4cd94a9c555",
+      "normalized_sha256": "a19b2e4f2bb02e1d2aa9a587d014a1ef4cda7365611a07a918ba9e6f9187447b"
+    },
+    {
+      "path": "src/open/metadata.py",
+      "git_blob": "99cb21f1953174c20f97634a340e87ee68b2d5da",
+      "normalized_sha256": "d0fbc4e5a49d8d7fd1a1ab98002f6082eba52985f918d13210bca53447849e7d"
+    },
+    {
+      "path": "src/open/pair_validation.py",
+      "git_blob": "4217794b4f8ac7f2e7355876cfec3059de8b6eab",
+      "normalized_sha256": "5ebe8c40a63a4de1d568a35549bd406803807c7347737964438e28e022291cfd"
+    },
+    {
+      "path": "src/open/preprocessing.py",
+      "git_blob": "168e1ad0f488a6a2f68d0b15100fa99eab315b0a",
+      "normalized_sha256": "5cc7ffefc457b1dd81a4680b1921d12bafdf89aa2e9af986060f60a954f87e68"
+    },
+    {
+      "path": "src/open/recurse.py",
+      "git_blob": "2eb74b251009596ae9fa45e94ea8906f5e6a3662",
+      "normalized_sha256": "4f0830437194bb5650fa790e40eedf07d5eb75fe9bafe8faf0c530814aac248c"
+    },
+    {
+      "path": "src/open/relevance.py",
+      "git_blob": "88368b7dafbfed71c540774405d46c7329efc79d",
+      "normalized_sha256": "179799d68636d025304c139b6a9803f695937537a63b27c9a80c8e4deff603a1"
+    },
+    {
+      "path": "src/open/reporting.py",
+      "git_blob": "b79f2e0cab2f5afa8a3b5d385554266cffbfd2cc",
+      "normalized_sha256": "94b8a972e23c7a502685c885b11407ec3e98e3d1b7da1d81ff036560f5c76f05"
+    },
+    {
+      "path": "src/open/risk.py",
+      "git_blob": "91bb9eab4cf930bd1270381d614a8391f9bf1feb",
+      "normalized_sha256": "04efafb485a9cfe2e86a41093c1c4eadca6198372797dc59dc9aac3dd501d4f2"
+    },
+    {
+      "path": "src/open/splits.py",
+      "git_blob": "07a5d875091e6690d125c5c630fe9199f4a1acbf",
+      "normalized_sha256": "868e71436eeaae91973917dc83412cc760eb72fca7b25283679b2a438c7664ba"
+    },
+    {
+      "path": "src/open/stability.py",
+      "git_blob": "da5792746e54f0465acbb9a7304186629ae44554",
+      "normalized_sha256": "f9ee4dbda96bd9447d497a24eac786a2089dd4da7f2ee6489e8f1b5c007cb4b5"
+    },
+    {
+      "path": "src/open/stability_types.py",
+      "git_blob": "2693046c3b1c6271058e2158bc91a8b702dde1ff",
+      "normalized_sha256": "5de840aac8ad4ffc7afa1e4f9dd4429b4bf164bc8ad532ba498863ac27c8f0ce"
+    },
+    {
+      "path": "src/open/visualization.py",
+      "git_blob": "372ac9674ac1bc4c178c1040fbbf58798de77911",
+      "normalized_sha256": "9f2e9a3ed954611388861c7702e721689e89714841362c0225829397071c5a92"
+    },
+    {
+      "path": "examples/study_manifests/prospective-interaction-realistic.json",
+      "git_blob": "605e0e8f0c3f6b77bd03294c3c1ad60d1c89510c",
+      "normalized_sha256": "4c3b225fff0676083134d7c5cdb23a5f5542a432c78881f06f7b689d8ecbda3f"
+    },
+    {
+      "path": "examples/study_manifests/prospective-interaction-realistic-thresholds.json",
+      "git_blob": "c61b24162815835b30aecf0610fce7219ab66f6e",
+      "normalized_sha256": "5ff116ec22d669228a3d07a65f3f404732e73b984abdf2b213992866372a9366"
+    },
+    {
+      "path": "examples/study_manifests/prospective-interaction-realistic-calibration-audit.json",
+      "git_blob": "82b797330f8b278b2e5f63a04261fdf473acd818",
+      "normalized_sha256": "cbb9cd1487fde2595f153284b5d8cc19b59cb91a3d68e9060baa28de7b288885"
+    },
+    {
+      "path": "examples/realistic_interaction_recovery.py",
+      "git_blob": "95f2a9950209f60aa6d79cdc921c0b2ddc0c4cae",
+      "normalized_sha256": "c2ae814ef4b4811fc51b8a75819d8d808658aeb606b024a0006f22d31968b89d"
+    },
+    {
+      "path": ".github/workflows/realistic-interaction-recovery.yml",
+      "git_blob": "0df3e5d4b0cbaf372bdfa93f849f057e304c81a7",
+      "normalized_sha256": "c3da2cbedc12b00676719fc1ac2139c62ccefbd60feed191ff608e6a64a9369c"
+    }
+  ]
+}
