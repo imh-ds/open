@@ -24,6 +24,7 @@ from open.layer_artifacts import portable, reconstruct_payloads
 import recursive_preview_design as design
 from recursive_preview_runner import run_case, write_json, read_gzip, file_hashes
 from recursive_preview_audit import Store, audit_case, aggregate, validate_noise_gate
+from recursive_preview_equivalence import compare_networks
 
 ROOT = design.ROOT
 MANIFEST = ROOT/'examples/study_manifests/recursive-preview-validation.json'
@@ -183,8 +184,9 @@ def preflight(output):
         run_case(spec, fixture, manifest, data=data, config=baseline.config, seconds=3600)
         recreated = read_gzip(fixture/'network.json.gz')
         network, _ = reconstruct_payloads(*(recreated[n] for n in payload))
-        if (design.digest(network.layers) != design.digest(baseline.layers)
-            or network.plans != baseline.plans or network.assigned_depth != baseline.assigned_depth):
+        comparison = compare_networks(network,baseline)
+        write_json(output/'equivalence.json', comparison)
+        if not comparison['equivalent']:
             raise ValueError('parallel fixture differs from saved sequential default analysis')
         store = Store(fixture)
         try:
