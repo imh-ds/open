@@ -1,0 +1,28 @@
+........................................................................ [  9%]
+........................................................................ [ 19%]
+........................................................................ [ 29%]
+........................................................................ [ 39%]
+........................................................................ [ 49%]
+........................................................................ [ 59%]
+........................................................................ [ 69%]
+........................................................................ [ 79%]
+........................................................................ [ 89%]
+........................................................................ [ 99%]
+.....                                                                    [100%]
+============================== warnings summary ===============================
+tests/test_layer_visualization.py::test_unique_fixed_depth_count_width_and_evidence
+tests/test_layer_visualization.py::test_one_joint_connector_and_no_unique_member_arrows
+  C:\Users\imhoh\GitHub\open\.worktrees\open-phase2\src\open\layer_visualization.py:77: UserWarning: Glyph 30561 (\N{CJK UNIFIED IDEOGRAPH-7761}) missing from font(s) DejaVu Sans.
+    bounds = text.get_window_extent(fig.canvas.get_renderer())
+
+tests/test_layer_visualization.py::test_unique_fixed_depth_count_width_and_evidence
+tests/test_layer_visualization.py::test_one_joint_connector_and_no_unique_member_arrows
+  C:\Users\imhoh\GitHub\open\.worktrees\open-phase2\src\open\layer_visualization.py:77: UserWarning: Glyph 30496 (\N{CJK UNIFIED IDEOGRAPH-7720}) missing from font(s) DejaVu Sans.
+    bounds = text.get_window_extent(fig.canvas.get_renderer())
+
+tests/test_missing_targets.py: 25 warnings
+  C:\Users\imhoh\AppData\Local\Programs\Python\Python311\Lib\site-packages\sklearn\linear_model\_coordinate_descent.py:628: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 0.000e+00, tolerance: 0.000e+00
+    model = cd_fast.enet_coordinate_descent(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+725 passed, 29 warnings in 1234.02s (0:20:34)
