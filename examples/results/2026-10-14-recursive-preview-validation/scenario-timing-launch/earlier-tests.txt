@@ -1,0 +1,41 @@
+.....F.........................................                          [100%]
+================================== FAILURES ===================================
+____________________ test_missing_cases_keep_all_four_rows ____________________
+
+tmp_path = WindowsPath('C:/Users/imhoh/GitHub/open/.worktrees/open-phase2/.superpowers/scenario-timing-verification/test_missing_cases_keep_all_fo0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000023CDFFA60D0>
+
+    def test_missing_cases_keep_all_four_rows(tmp_path, monkeypatch):
+        import time_scenario_validation as t
+        monkeypatch.setattr(t, 'checked_manifest', lambda: t.manifest())
+        monkeypatch.setattr(t, 'audit_saved_chains', lambda m: {})
+>       result = t.aggregate_timing(tmp_path/'inputs', tmp_path/'aggregate')
+
+tests\test_scenario_validation_timing.py:83:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+examples\time_scenario_validation.py:169: in aggregate_timing
+    report = dict(status='STARTED', timing_manifest=design.digest(value), timing_only=True,
+examples\recursive_preview_runner.py:40: in write_json
+    temporary.replace(path)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/imhoh/GitHub/open/.worktrees/open-phase2/.superpowers/scenario-timing-verification/test_missing_cases_keep_all_fo0/aggregate/aggregate.json.tmp')
+target = WindowsPath('C:/Users/imhoh/GitHub/open/.worktrees/open-phase2/.superpowers/scenario-timing-verification/test_missing_cases_keep_all_fo0/aggregate/aggregate.json')
+
+    def replace(self, target):
+        """
+        Rename this path to the target path, overwriting if that path exists.
+
+        The target path may be absolute or relative. Relative paths are
+        interpreted relative to the current working directory, *not* the
+        directory of the Path object.
+
+        Returns the new Path instance pointing to the target path.
+        """
+>       os.replace(self, target)
+E       PermissionError: [WinError 5] Access is denied: 'C:\\Users\\imhoh\\GitHub\\open\\.worktrees\\open-phase2\\.superpowers\\scenario-timing-verification\\test_missing_cases_keep_all_fo0\\aggregate\\aggregate.json.tmp' -> 'C:\\Users\\imhoh\\GitHub\\open\\.worktrees\\open-phase2\\.superpowers\\scenario-timing-verification\\test_missing_cases_keep_all_fo0\\aggregate\\aggregate.json'
+
+..\..\..\..\AppData\Local\Programs\Python\Python311\Lib\pathlib.py:1188: PermissionError
+=========================== short test summary info ===========================
+FAILED tests/test_scenario_validation_timing.py::test_missing_cases_keep_all_four_rows
+1 failed, 46 passed in 179.29s (0:02:59)

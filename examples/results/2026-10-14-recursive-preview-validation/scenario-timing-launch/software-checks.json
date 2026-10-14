@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "focused_tests": 50,
+  "test_seconds": 114.77,
+  "new_regressions": 14,
+  "original_frozen_sources": 55,
+  "new_frozen_sources": 62,
+  "timing_manifest": "748b18c6aff121621412e8a5abd9e6e06d79fcc8c2462019445d537f6fb6e9c6",
+  "installed_runtime_source_check": "PASS",
+  "independent_read_only_review": "No remaining substantive launch blockers after one fix pass",
+  "original_scientific_sources_modified": false,
+  "earlier_run": {
+    "passed": 46,
+    "failed": 1,
+    "reason": "Transient Windows atomic-rename PermissionError; isolated rerun and final whole focused rerun passed; no writer changes"
+  },
+  "diagnostic_incident": "diagnostic-incident.json",
+  "scientific_gate_accepted": false
+}

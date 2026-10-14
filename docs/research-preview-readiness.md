@@ -2,7 +2,7 @@
 
 The target is a v0.1 **research preview** of the current method. This document freezes the intended claim scope; it does not announce a release. The current package version remains `0.1.0.dev0`.
 
-Current execution planning: the [revised validation plan](../examples/validation_execution_revision.md) replaces the infeasible two-case job layout with a proposed one-case layout. Before costing the whole study, it proposes four missing scenario/N timing cases, reserving 256 minutes by reallocating unlaunched study jobs within the same 10,000-minute ceiling. The 480-case scientific target and all statistical defaults remain unchanged pending that feasibility decision. This is a documented proposal; its new workflow is not yet implemented or dispatched. The original study stages remain on hold.
+Current execution planning: the [revised validation plan](../examples/validation_execution_revision.md) replaces the infeasible two-case job layout with a one-case layout. The owner approved implementing and launching the four missing scenario/N timing cases, reserving 256 minutes by reallocating unlaunched study jobs within the same 10,000-minute ceiling. The new workflow passed 50 focused regressions, pinned installed-runtime/source checks and independent review after fixes. [Launch evidence and status](../examples/results/2026-10-14-recursive-preview-validation/scenario-timing-launch/README.md) track its once-only dispatch and subsequent timing results. The 480-case scientific target and all statistical defaults remain unchanged pending the feasibility decision. The original study stages remain on hold.
 
 ## Intended scope
 
