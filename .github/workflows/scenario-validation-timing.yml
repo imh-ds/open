@@ -1,0 +1,171 @@
+name: Recursive scenario timing
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/actions-selection-reliability]
+    paths: [.github/workflows/scenario-validation-timing.yml]
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: recursive-reference-validation
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: pwsh
+
+env:
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+
+jobs:
+  register:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - run: Write-Output 'Registration only; no model fits.'
+
+  timing:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: windows-2022
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        index: [0, 80, 320, 400]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            src/**
+            pyproject.toml
+            README.md
+            LICENSE
+            configs/default.yaml
+            .github/workflows/recursive-preview-validation.yml
+            .github/workflows/scenario-validation-timing.yml
+            examples/recursive_preview_*.py
+            examples/time_scenario_validation.py
+            examples/validation_execution_revision.md
+            examples/recursive_preview_validation_protocol.md
+            examples/recursive_preview_continuation_proposal.md
+            examples/study_manifests/recursive-preview-*.json
+            examples/study_manifests/scenario-validation-timing.json
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/raw/producer-manifest.json
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/raw/preflight.json
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/audit/raw-sha256.json
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/audit/diagnosis.json
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38621370295/raw/producer-manifest.json
+            examples/results/2026-10-14-recursive-preview-validation/timing-completed-38629900589/audit/verification.json
+            examples/results/2026-10-14-recursive-preview-validation/timing-completed-38629900589/audit/raw-sha256.json
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: 3.11.9
+      - name: Install pinned runtime and verify frozen installed sources
+        timeout-minutes: 3
+        run: |
+          python -m pip install numpy==1.26.4 pandas==2.2.3 scipy==1.11.2 scikit-learn==1.3.0 matplotlib==3.9.2 PyYAML==6.0.2 setuptools==75.1.0 wheel==0.45.1
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -m pip install --no-build-isolation --no-deps .
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -m pip check
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -m pip freeze | Out-File -Encoding utf8 runtime.txt
+          python -I examples/time_scenario_validation.py check
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Time one original dataset and audit saved calculations
+        timeout-minutes: 50
+        run: |
+          python -I examples/time_scenario_validation.py run --index ${{ matrix.index }} --out .superpowers/scenario-timing
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Preserve available checkpoints without fitting
+        if: always()
+        timeout-minutes: 2
+        run: python -I examples/time_scenario_validation.py pack --out .superpowers/scenario-timing
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        timeout-minutes: 4
+        with:
+          name: scenario-timing-${{ matrix.index }}
+          path: |
+            .superpowers/scenario-timing/control.json
+            .superpowers/scenario-timing/manifest.json
+            .superpowers/scenario-timing/raw/
+            runtime.txt
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+
+  aggregate:
+    if: always() && github.event_name == 'workflow_dispatch'
+    needs: timing
+    runs-on: windows-2022
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            src/**
+            pyproject.toml
+            README.md
+            LICENSE
+            configs/default.yaml
+            .github/workflows/recursive-preview-validation.yml
+            .github/workflows/scenario-validation-timing.yml
+            examples/recursive_preview_*.py
+            examples/time_scenario_validation.py
+            examples/validation_execution_revision.md
+            examples/recursive_preview_validation_protocol.md
+            examples/recursive_preview_continuation_proposal.md
+            examples/study_manifests/recursive-preview-*.json
+            examples/study_manifests/scenario-validation-timing.json
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/raw/producer-manifest.json
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/raw/preflight.json
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/audit/raw-sha256.json
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/audit/diagnosis.json
+            examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38621370295/raw/producer-manifest.json
+            examples/results/2026-10-14-recursive-preview-validation/timing-completed-38629900589/audit/verification.json
+            examples/results/2026-10-14-recursive-preview-validation/timing-completed-38629900589/audit/raw-sha256.json
+            examples/results/2026-10-14-recursive-preview-validation/timing-completed-38629900589/raw/timing-cases.zip
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: 3.11.9
+      - name: Install pinned audit runtime
+        timeout-minutes: 3
+        run: |
+          python -m pip install numpy==1.26.4 pandas==2.2.3 scipy==1.11.2 scikit-learn==1.3.0 matplotlib==3.9.2 PyYAML==6.0.2 setuptools==75.1.0 wheel==0.45.1
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -m pip install --no-build-isolation --no-deps .
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -I examples/time_scenario_validation.py check
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        continue-on-error: true
+        with:
+          pattern: scenario-timing-*
+          path: inputs
+      - name: Independently audit all four identities and reuse saved chains
+        timeout-minutes: 7
+        run: |
+          python -I examples/time_scenario_validation.py aggregate --inputs inputs --out .superpowers/scenario-timing-aggregate
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        timeout-minutes: 3
+        with:
+          name: scenario-timing-aggregate
+          path: .superpowers/scenario-timing-aggregate/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
