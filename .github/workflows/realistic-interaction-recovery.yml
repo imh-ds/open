@@ -1,0 +1,63 @@
+name: Realistic interaction no-fit aggregate recovery
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/actions-selection-reliability]
+    paths: [.github/workflows/realistic-interaction-recovery.yml]
+
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: realistic-interaction-numeric-recovery
+  cancel-in-progress: false
+defaults:
+  run:
+    shell: pwsh
+env:
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+
+jobs:
+  recover:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: windows-2022
+    # Original aggregate used13m01s. This manual audit-only job is bounded
+    # by45min, keeping cumulative aggregation within the approved60min cap.
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/**
+            src/**
+            examples/*.py
+            examples/*protocol.md
+            examples/study_manifests/*.json
+            examples/prospective_interaction_assurance.json
+      - uses: ./.github/actions/realistic-interaction-setup
+        timeout-minutes: 4
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        timeout-minutes: 6
+        with:
+          github-token: ${{ github.token }}
+          run-id: 38482368226
+          name: realistic-interaction-development-combined-evidence
+          path: .superpowers/realistic-recovery-download/
+      - timeout-minutes: 30
+        run: |
+          python examples/realistic_interaction_recovery.py --input .superpowers/realistic-recovery-download/.superpowers/realistic-interaction-downloads --output .superpowers/realistic-recovery
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        timeout-minutes: 3
+        with:
+          name: realistic-interaction-no-fit-recovery
+          path: .superpowers/realistic-recovery/
+          include-hidden-files: true
+          retention-days: 30
+          if-no-files-found: error
