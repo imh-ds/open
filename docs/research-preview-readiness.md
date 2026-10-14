@@ -19,7 +19,7 @@ Grouped/repeated-measures or temporal data, binary outcomes, causal mediation/mo
 |---|---|---|
 |Scope and claims|Defined for review|API/documentation consistency and explicit experimental boundaries|
 |Software regression|81 fresh focused tests passed; previous full suite725 passed|Focused fresh core/report checks; production fixes require fresh full suite|
-|Distribution|Initial wheel passed on pinned Windows/Python3.11.9 environment; final documentation artifact check pending|Wheel contents, license/metadata, clean installation, dependency check and outside-source import proof|
+|Distribution|Initial and documentation-updated wheels passed on pinned Windows/Python3.11.9 environment|Wheel contents, license/metadata, clean installation, dependency check and outside-source import proof|
 |Installed user workflow|Four fixed regression cases passed|Recursive fixtures, exports/reloaded graphs, researcher report and no-overwrite behaviour|
 |Scientific operating characteristics|Incomplete|Fresh end-to-end validation of network selection and layer placement; existing fixed demonstrations cannot supply rates|
 |Interaction claims|Scoped research evidence only|Keep prespecified-pair benchmark scope distinct from arbitrary pair screening|
