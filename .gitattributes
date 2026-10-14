@@ -3,5 +3,6 @@
 
 # Keep saved synthetic input hashes stable across Windows and Unix checkouts.
 examples/results/**/sample.csv text eol=lf
+examples/results/2026-10-14-default-preview-pilot/** -text -diff
 examples/selection_actions.py text eol=lf
 .github/workflows/*.yml text eol=lf
