@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "scientific_model_fits": 0,
+  "study_manifest": "a2f08253799cacc1e8879d7c4b3b23c85d21d70031d52f5b4895174ad74dd37d",
+  "sources": 61,
+  "fresh_datasets": 330,
+  "cases_per_cell": 55,
+  "reserved_distinct_seeds": 33330,
+  "original_ids_preserved": true,
+  "excluded_timing_indices": [
+    0,
+    80,
+    160,
+    240,
+    320,
+    400
+  ],
+  "source_of_known_fit_inventory": "examples/results/2026-10-14-recursive-preview-validation/scenario-timing-completed-38645875109/audit/verification.json",
+  "historical_seed_audit": "Original frozen namespace audit applies; overlap with original unlaunched identities is intentional.",
+  "budget": {
+    "historical": 506,
+    "registration": 1,
+    "stage_controls": 150,
+    "noise_jobs": 1815,
+    "signal_jobs": 7425,
+    "total": 9897,
+    "unallocated": 103
+  },
+  "independent_binomial_boundary_checks": {
+    "max_incorrect": 1,
+    "min_exact": 50,
+    "cdf_at_wrong1": 0.02164090824654548,
+    "sf_at_exact50": 0.024539000702158323
+  },
+  "participant_sample_sizes": [
+    80,
+    200
+  ],
+  "noise_cases": 110,
+  "signal_cases": 220,
+  "pilots_are_descriptive": true
+}
