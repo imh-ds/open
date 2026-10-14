@@ -1,6 +1,8 @@
 # open
 Outcome-centered Predictive Expansion Network
 
+See the [research-preview release scope and open gates](docs/research-preview-readiness.md).
+
 ## Development usage
 
 OPEN is a development package. The current configuration contract covers one
