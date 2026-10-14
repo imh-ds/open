@@ -1,5 +1,7 @@
 # Proposed bounded recursive-network confirmation
 
+2026-10-14 follow-up: the completed default fixture pilot supplies measured execution costs. The owner has now authorized preparing broader validation within 10,000 runner-minutes. The [new reference-validation design](recursive_preview_validation_protocol.md) proposes explicit N80/N200 conditions and a costed checkpointed execution plan for review. This older 320-case proposal remains historical and is not an active dispatch protocol.
+
 Status: proposal only. No data generation, new scientific fitting, or Actions dispatch is authorized by this artifact. The owner approved the release-readiness audit; the new simulation profile and budget are awaiting review. Passing installed fixed fixtures does not close this scientific gate.
 
 ## Purpose
