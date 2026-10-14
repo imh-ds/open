@@ -1,0 +1,234 @@
+{
+  "run_id": 38621370295,
+  "source": "84c933c6bfb6fb82680bb262d0d82c8d71809b42",
+  "manifest": "9908b4ce9a0a6065068317425233ae5ff56857c4c96f68f608520a0b76b43fc2",
+  "status": "FAILED",
+  "failure": "TimeoutError: case soft deadline; no new assessment batches",
+  "case_index": 160,
+  "n": 80,
+  "case_seconds": 903.7810000000001,
+  "case_limit_seconds": 900,
+  "fixture_reused": true,
+  "fixture_new_fits": 0,
+  "fixture_equivalence": true,
+  "fixture_completed_assessments": 200,
+  "fixture_archive_original_hash_verified": true,
+  "partial_case": {
+    "spec": {
+      "analysis_seed": 1700160000,
+      "generator_seed": 1600160000,
+      "id": "chain-n80-r00",
+      "index": 160,
+      "n": 80,
+      "repetition": 0,
+      "scenario": "chain"
+    },
+    "status": "incomplete",
+    "seconds": 903.7810000000001,
+    "receipt_sha256": "5c3b0612283c0addb449d3c16615c2e61ea5049ebe6d45806641e522cf14210a",
+    "fit_cost_unknown": true,
+    "structure": null,
+    "started_assessments": 144,
+    "finished_assessments": 144,
+    "unknown_attempts": 0
+  },
+  "layers": {
+    "Y": {
+      "depth": 0,
+      "completed": 100,
+      "planned": 100,
+      "candidate_count": 4,
+      "median_assessment_seconds": 25.351499999999987,
+      "approximate_100_assessment_seconds_at_four_workers": 633.7874999999997,
+      "outer_fits": 9111,
+      "tuning_fits": 375000
+    },
+    "X2": {
+      "depth": 1,
+      "completed": 44,
+      "planned": 100,
+      "candidate_count": 3,
+      "median_assessment_seconds": 20.23400000000015,
+      "approximate_100_assessment_seconds_at_four_workers": 505.8500000000038,
+      "outer_fits": 3080,
+      "tuning_fits": 132000
+    }
+  },
+  "completed_assessment_audit": {
+    "assessments": 144,
+    "observation_checks": 174477,
+    "outer_fits": 12191,
+    "tuning_fits": 507000,
+    "warnings": 0,
+    "unknown_started_attempts": 0
+  },
+  "root_relations": [
+    {
+      "source": "X2",
+      "target": "Y",
+      "relation": "PROXIMAL_UNIQUE",
+      "members": [],
+      "screened_by": [],
+      "frequency": {
+        "selected": 100,
+        "planned": 100,
+        "completed": 100
+      },
+      "strength": {
+        "raw_count": 100,
+        "raw_median": 0.41602347496982106,
+        "baseline_relative_count": 100,
+        "baseline_relative_median": 0.3400258524916782,
+        "gain_relative_count": 100,
+        "gain_relative_median": 0.47615660018787953,
+        "scope": "all scored completed local fits"
+      },
+      "qualifies": true
+    },
+    {
+      "source": "Z1",
+      "target": "Y",
+      "relation": "PROXIMAL_UNIQUE",
+      "members": [],
+      "screened_by": [],
+      "frequency": {
+        "selected": 1,
+        "planned": 100,
+        "completed": 100
+      },
+      "strength": {
+        "raw_count": 100,
+        "raw_median": 0.002510724534909331,
+        "baseline_relative_count": 100,
+        "baseline_relative_median": 0.002026819333830102,
+        "gain_relative_count": 100,
+        "gain_relative_median": 0.002877422990847473,
+        "scope": "all scored completed local fits"
+      },
+      "qualifies": false
+    },
+    {
+      "source": "X1",
+      "target": "Y",
+      "relation": "SCREENED_BY_PARTNER",
+      "members": [],
+      "screened_by": [
+        "X2"
+      ],
+      "frequency": {
+        "selected": 44,
+        "planned": 100,
+        "completed": 100
+      },
+      "strength": {
+        "raw_count": 100,
+        "raw_median": -0.004914286894841052,
+        "baseline_relative_count": 100,
+        "baseline_relative_median": -0.0038432392724876436,
+        "gain_relative_count": 100,
+        "gain_relative_median": -0.005240034521961496,
+        "scope": "all scored completed local fits"
+      },
+      "qualifies": false
+    },
+    {
+      "source": "X1",
+      "target": "Y",
+      "relation": "SCREENED_BY_SET",
+      "members": [],
+      "screened_by": [
+        "X2"
+      ],
+      "frequency": {
+        "selected": 1,
+        "planned": 100,
+        "completed": 100
+      },
+      "strength": {
+        "raw_count": 100,
+        "raw_median": -0.004914286894841052,
+        "baseline_relative_count": 100,
+        "baseline_relative_median": -0.0038432392724876436,
+        "gain_relative_count": 100,
+        "gain_relative_median": -0.005240034521961496,
+        "scope": "all scored completed local fits"
+      },
+      "qualifies": false
+    },
+    {
+      "source": "X1",
+      "target": "Y",
+      "relation": "SCREENED_GENERAL",
+      "members": [],
+      "screened_by": [],
+      "frequency": {
+        "selected": 55,
+        "planned": 100,
+        "completed": 100
+      },
+      "strength": {
+        "raw_count": 100,
+        "raw_median": -0.004914286894841052,
+        "baseline_relative_count": 100,
+        "baseline_relative_median": -0.0038432392724876436,
+        "gain_relative_count": 100,
+        "gain_relative_median": -0.005240034521961496,
+        "scope": "all scored completed local fits"
+      },
+      "qualifies": false
+    },
+    {
+      "source": "Z1",
+      "target": "Y",
+      "relation": "SCREENED_GENERAL",
+      "members": [],
+      "screened_by": [],
+      "frequency": {
+        "selected": 2,
+        "planned": 100,
+        "completed": 100
+      },
+      "strength": {
+        "raw_count": 100,
+        "raw_median": 0.002510724534909331,
+        "baseline_relative_count": 100,
+        "baseline_relative_median": 0.002026819333830102,
+        "gain_relative_count": 100,
+        "gain_relative_median": 0.002877422990847473,
+        "scope": "all scored completed local fits"
+      },
+      "qualifies": false
+    },
+    {
+      "source": "Z2",
+      "target": "Y",
+      "relation": "SCREENED_GENERAL",
+      "members": [],
+      "screened_by": [],
+      "frequency": {
+        "selected": 2,
+        "planned": 100,
+        "completed": 100
+      },
+      "strength": {
+        "raw_count": 100,
+        "raw_median": -0.00621947877577439,
+        "baseline_relative_count": 100,
+        "baseline_relative_median": -0.004895030389804833,
+        "gain_relative_count": 100,
+        "gain_relative_median": -0.006526259238005089,
+        "scope": "all scored completed local fits"
+      },
+      "qualifies": false
+    }
+  ],
+  "root_promoted": [
+    "X2"
+  ],
+  "completed_networks": 0,
+  "case_240_started": false,
+  "both_uploads_success": true,
+  "audit_model_fits": 0,
+  "timing_scope": "Partial-case per-assessment medians; projected full layer times assume unchanged throughput, not measured completion.",
+  "scientific_gate_accepted": false
+}
