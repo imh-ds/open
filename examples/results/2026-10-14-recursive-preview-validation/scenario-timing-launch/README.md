@@ -13,3 +13,5 @@ Source/runtime, software checks, original raw evidence hashes and remote Git blo
 ## Launched once
 
 [Actions run38645875109](https://github.com/imh-ds/open/actions/runs/38645875109), workflow_dispatch attempt1, sourcef1c1e3851bc19504a3ff6131c2f6bc3524ce5450. Registration38645814299succeeded. All63remote source/manifest Git blobs match;50focused tests passed114.77sec and pinned installed-source check passed. The four timing jobs started concurrently. Startup/source/API receipts are retained here; completion and upload have not yet been accepted. No full-study stage launched.
+
+Startup verified: all4/4jobs passed the pinned runtime/installed-source checks and entered computation. See startup-verification.json and startup-jobs.json. These are startup receipts; final networks, timings, integrity audit and uploads remain pending.
