@@ -1,0 +1,55 @@
+{
+  "original_run": 38615814397,
+  "original_conclusion": "failure",
+  "original_strict_comparison_failed": true,
+  "fixture_audit": {
+    "spec": {
+      "id": "fixture-chain",
+      "fixture": "chain"
+    },
+    "status": "complete",
+    "seconds": 363.46899999999994,
+    "receipt_sha256": "cf8d1ba67d9ef81b6acbb39f7b7086158d9834caf7db318d85c6c8395d5df6f7",
+    "fit_cost_unknown": false,
+    "structure": null,
+    "started_assessments": 200,
+    "finished_assessments": 200,
+    "warnings": 0,
+    "assessments": 200,
+    "observation_checks": 140761,
+    "outer_fits": 7000,
+    "tuning_fits": 375000,
+    "worker_os_peak_bytes": 131252224,
+    "assigned_depth": {
+      "Anxiety": 0,
+      "Depression": 1,
+      "Stress": 2
+    },
+    "edges": [
+      [
+        "Depression",
+        "Anxiety"
+      ],
+      [
+        "Stress",
+        "Depression"
+      ]
+    ],
+    "groups": [],
+    "audit_seconds": 29.89100000000144
+  },
+  "comparison": {
+    "equivalent": true,
+    "relative_tolerance": 1e-12,
+    "absolute_tolerance": 1e-14,
+    "changed_float_fields": 573,
+    "max_absolute_difference": 2.220446049250313e-16,
+    "mismatches": []
+  },
+  "completed_fixture_assessments": 200,
+  "new_study_datasets_fitted": 0,
+  "audit_model_fits": 0,
+  "original_protocol_reclassified": false,
+  "scientific_qualification": "Not assessed; no independent study datasets fitted.",
+  "scope": "All discrete saved decisions, sample/split/config identities and available fitted-parameter fields exact. Derived float fields compared at rtol1e-12/atol1e-14. Original fixture lacks full/broad prediction objects; new captured observations are independently replayed without claiming unavailable original predictions."
+}

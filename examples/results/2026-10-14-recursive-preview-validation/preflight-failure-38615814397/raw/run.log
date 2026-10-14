@@ -1,0 +1,445 @@
+preflight	Set up job	﻿2026-10-14T18:31:03.2639980Z Current runner version: '2.337.0'
+preflight	Set up job	2026-10-14T18:31:03.2679379Z ##[group]Runner Image Provisioner
+preflight	Set up job	2026-10-14T18:31:03.2679879Z Hosted Compute Agent
+preflight	Set up job	2026-10-14T18:31:03.2680178Z Version: 20261012.601
+preflight	Set up job	2026-10-14T18:31:03.2680494Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+preflight	Set up job	2026-10-14T18:31:03.2680876Z Build Date: 2026-10-12T17:48:21Z
+preflight	Set up job	2026-10-14T18:31:03.2681223Z Worker ID: {7edab53d-2df6-45fa-8854-e64ad8d4aed1}
+preflight	Set up job	2026-10-14T18:31:03.2681594Z Region: centralus
+preflight	Set up job	2026-10-14T18:31:03.2681875Z Cloud: Azure
+preflight	Set up job	2026-10-14T18:31:03.2682166Z ##[endgroup]
+preflight	Set up job	2026-10-14T18:31:03.2682885Z ##[group]Operating System
+preflight	Set up job	2026-10-14T18:31:03.2683204Z Microsoft Windows Server 2022
+preflight	Set up job	2026-10-14T18:31:03.2683520Z 10.0.20348
+preflight	Set up job	2026-10-14T18:31:03.2683783Z Datacenter
+preflight	Set up job	2026-10-14T18:31:03.2684044Z ##[endgroup]
+preflight	Set up job	2026-10-14T18:31:03.2684331Z ##[group]Runner Image
+preflight	Set up job	2026-10-14T18:31:03.2684633Z Image: windows-2022
+preflight	Set up job	2026-10-14T18:31:03.2684922Z Version: 20261012.333.1
+preflight	Set up job	2026-10-14T18:31:03.2685477Z Included Software: https://github.com/actions/runner-images/blob/win22/20261012.333/images/windows/Windows2022-Readme.md
+preflight	Set up job	2026-10-14T18:31:03.2686586Z Image Release: https://github.com/actions/runner-images/releases/tag/win22%2F20261012.333
+preflight	Set up job	2026-10-14T18:31:03.2687085Z ##[endgroup]
+preflight	Set up job	2026-10-14T18:31:03.2687731Z ##[group]GITHUB_TOKEN Permissions
+preflight	Set up job	2026-10-14T18:31:03.2688769Z Actions: read
+preflight	Set up job	2026-10-14T18:31:03.2689078Z Contents: read
+preflight	Set up job	2026-10-14T18:31:03.2689362Z Metadata: read
+preflight	Set up job	2026-10-14T18:31:03.2689629Z ##[endgroup]
+preflight	Set up job	2026-10-14T18:31:03.2690880Z Secret source: Actions
+preflight	Set up job	2026-10-14T18:31:03.2691320Z Cache mode: write
+preflight	Set up job	2026-10-14T18:31:03.2691729Z Prepare workflow directory
+preflight	Set up job	2026-10-14T18:31:03.3007815Z Prepare all required actions
+preflight	Set up job	2026-10-14T18:31:03.3038436Z Getting action download info
+preflight	Set up job	2026-10-14T18:31:03.5526862Z Download action repository 'actions/checkout@11d5960a326750d5838078e36cf38b85af677262' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+preflight	Set up job	2026-10-14T18:31:03.6293898Z Download action repository 'actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+preflight	Set up job	2026-10-14T18:31:03.8251083Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+preflight	Set up job	2026-10-14T18:31:04.0415008Z Complete job name: preflight
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	﻿2026-10-14T18:31:04.1630633Z ##[group]Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.1631524Z with:
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.1631800Z   persist-credentials: false
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.1632126Z   sparse-checkout-cone-mode: false
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.1633739Z   sparse-checkout: src/**
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	pyproject.toml
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	README.md
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	LICENSE
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	configs/default.yaml
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	.github/workflows/recursive-preview-validation.yml
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	examples/recursive_preview_*.py
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	examples/recursive_preview_validation_protocol.md
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	examples/study_manifests/recursive-preview-*.json
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	examples/results/2026-10-08-layer-fixtures/chain/sample.csv
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	examples/results/2026-10-14-default-preview-pilot/default-pilot-chain/**
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.1635375Z   repository: imh-ds/open
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.1637585Z   token: ***
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.1637852Z   ssh-strict: true
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.1638123Z   ssh-user: git
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.1638385Z   clean: true
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.1638648Z   fetch-depth: 1
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.1638918Z   fetch-tags: false
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.1639195Z   show-progress: true
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.1639510Z   lfs: false
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.1639795Z   submodules: false
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.1640077Z   set-safe-directory: true
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.1640396Z   allow-unsafe-pr-checkout: false
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.1640799Z env:
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.1641054Z   OMP_NUM_THREADS: 1
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.1641340Z   OPENBLAS_NUM_THREADS: 1
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.1641636Z   MKL_NUM_THREADS: 1
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.1643761Z   GH_TOKEN: ***
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.1643988Z   PREFLIGHT_RUN: 
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.1644212Z   NOISE_RUN: 
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.1644432Z ##[endgroup]
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.2627866Z Syncing repository: imh-ds/open
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.2631137Z ##[group]Getting Git version info
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.2631513Z Working directory is 'D:\a\open\open'
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.3238288Z [command]"C:\Program Files\Git\bin\git.exe" version
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.6782209Z git version 2.56.0.windows.2
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.6809780Z ##[endgroup]
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.6822294Z Temporarily overriding HOME='D:\a\_temp\9d566990-6a59-4f1f-87bd-cd6d6eb3c9da' before making global git config changes
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.6823133Z Adding repository directory to the temporary git global config as a safe directory
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.6829797Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\open\open
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.7285857Z Deleting the contents of 'D:\a\open\open'
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.7289306Z ##[group]Initializing the repository
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.7295510Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\open\open
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.8085303Z Initialized empty Git repository in D:/a/open/open/.git/
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.8113833Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/imh-ds/open
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.8617278Z ##[endgroup]
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.8618294Z ##[group]Disabling automatic garbage collection
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.8619139Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.8850113Z ##[endgroup]
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.8850839Z ##[group]Setting up auth
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.8858866Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:04.9067909Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:06.3190999Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:06.3405415Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:06.7093354Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:06.7316344Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:07.1042901Z [command]"C:\Program Files\Git\bin\git.exe" config --local http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:07.1257918Z ##[endgroup]
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:07.1258354Z ##[group]Fetching the repository
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:07.1267806Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --filter=blob:none --depth=1 origin +ddc6df755305fef39898ae752262276784042cde:refs/remotes/origin/codex/actions-selection-reliability
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:08.1022242Z From https://github.com/imh-ds/open
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:08.1044978Z  * [new ref]         ddc6df755305fef39898ae752262276784042cde -> origin/codex/actions-selection-reliability
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:08.1046199Z ##[endgroup]
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:08.1046406Z ##[group]Determining the checkout info
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:08.1047553Z ##[endgroup]
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:08.1047864Z ##[group]Setting up sparse checkout
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:08.1056874Z [command]"C:\Program Files\Git\bin\git.exe" config core.sparseCheckout true
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:08.1292312Z [command]"C:\Program Files\Git\bin\git.exe" rev-parse --git-path info/sparse-checkout
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:08.1534921Z .git/info/sparse-checkout
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:08.1557773Z ##[endgroup]
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:08.1558009Z ##[group]Checking out the ref
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:08.1564440Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force -B codex/actions-selection-reliability refs/remotes/origin/codex/actions-selection-reliability
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:09.1143415Z Switched to a new branch 'codex/actions-selection-reliability'
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:09.1164663Z branch 'codex/actions-selection-reliability' set up to track 'origin/codex/actions-selection-reliability'.
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:09.1191967Z ##[endgroup]
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:09.1546070Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:09.1740402Z ddc6df755305fef39898ae752262276784042cde
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:09.1766092Z ##[group]Removing auth
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:09.1772079Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:09.1976960Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:09.5829526Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:09.6018816Z http.https://github.com/.extraheader
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:09.6050027Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all http.https://github.com/.extraheader
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:09.6266078Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:10.0058209Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:10.0274127Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+preflight	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:31:10.3959839Z ##[endgroup]
+preflight	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	﻿2026-10-14T18:31:10.4297426Z ##[group]Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+preflight	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T18:31:10.4297682Z with:
+preflight	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T18:31:10.4297792Z   python-version: 3.11.9
+preflight	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T18:31:10.4297943Z   check-latest: false
+preflight	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T18:31:10.4299182Z   token: ***
+preflight	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T18:31:10.4299292Z   update-environment: true
+preflight	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T18:31:10.4299414Z   allow-prereleases: false
+preflight	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T18:31:10.4299527Z   freethreaded: false
+preflight	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T18:31:10.4299628Z env:
+preflight	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T18:31:10.4299724Z   OMP_NUM_THREADS: 1
+preflight	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T18:31:10.4299837Z   OPENBLAS_NUM_THREADS: 1
+preflight	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T18:31:10.4299952Z   MKL_NUM_THREADS: 1
+preflight	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T18:31:10.4301221Z   GH_TOKEN: ***
+preflight	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T18:31:10.4301333Z   PREFLIGHT_RUN: 
+preflight	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T18:31:10.4301439Z   NOISE_RUN: 
+preflight	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T18:31:10.4301548Z ##[endgroup]
+preflight	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T18:31:10.5287461Z ##[group]Installed versions
+preflight	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T18:31:10.5318629Z (node:5556) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+preflight	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T18:31:10.5319091Z (Use `node --trace-deprecation ...` to show where the warning was created)
+preflight	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T18:31:10.5319502Z Successfully set up CPython (3.11.9)
+preflight	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-14T18:31:10.5320223Z ##[endgroup]
+preflight	Install exact runtime and non-editable package	﻿2026-10-14T18:31:10.5522730Z ##[group]Run python -m pip install numpy==1.26.4 pandas==2.2.3 scipy==1.11.2 scikit-learn==1.3.0 matplotlib==3.9.2 PyYAML==6.0.2 setuptools==75.1.0 wheel==0.45.1
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:10.5523343Z ^[[36;1mpython -m pip install numpy==1.26.4 pandas==2.2.3 scipy==1.11.2 scikit-learn==1.3.0 matplotlib==3.9.2 PyYAML==6.0.2 setuptools==75.1.0 wheel==0.45.1^[[0m
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:10.5523682Z ^[[36;1mif ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }^[[0m
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:10.5523890Z ^[[36;1mpython -m pip install --no-build-isolation --no-deps .^[[0m
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:10.5524089Z ^[[36;1mif ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }^[[0m
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:10.5524250Z ^[[36;1mpython -m pip check^[[0m
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:10.5524408Z ^[[36;1mif ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }^[[0m
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:10.5524606Z ^[[36;1mpython -m pip freeze | Out-File -Encoding utf8 runtime.txt^[[0m
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:10.6034606Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:10.6035031Z env:
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:10.6035200Z   OMP_NUM_THREADS: 1
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:10.6035314Z   OPENBLAS_NUM_THREADS: 1
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:10.6035505Z   MKL_NUM_THREADS: 1
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:10.6036955Z   GH_TOKEN: ***
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:10.6037068Z   PREFLIGHT_RUN: 
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:10.6037172Z   NOISE_RUN: 
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:10.6037318Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.11.9\x64
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:10.6037560Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.11.9\x64/lib/pkgconfig
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:10.6037790Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:10.6037996Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:10.6038200Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:10.6038367Z ##[endgroup]
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:30.0162509Z Collecting numpy==1.26.4
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:30.1620026Z   Downloading numpy-1.26.4-cp311-cp311-win_amd64.whl.metadata (61 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:30.3334983Z Collecting pandas==2.2.3
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:30.3516844Z   Downloading pandas-2.2.3-cp311-cp311-win_amd64.whl.metadata (19 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:30.4954828Z Collecting scipy==1.11.2
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:30.5163641Z   Downloading scipy-1.11.2-cp311-cp311-win_amd64.whl.metadata (59 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:30.6672622Z Collecting scikit-learn==1.3.0
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:30.6860547Z   Downloading scikit_learn-1.3.0-cp311-cp311-win_amd64.whl.metadata (11 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:30.8246405Z Collecting matplotlib==3.9.2
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:30.8425488Z   Downloading matplotlib-3.9.2-cp311-cp311-win_amd64.whl.metadata (11 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:30.9097844Z Collecting PyYAML==6.0.2
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:30.9290731Z   Downloading PyYAML-6.0.2-cp311-cp311-win_amd64.whl.metadata (2.1 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:31.0176394Z Collecting setuptools==75.1.0
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:31.0352557Z   Downloading setuptools-75.1.0-py3-none-any.whl.metadata (6.9 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:31.0956435Z Collecting wheel==0.45.1
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:31.1125041Z   Downloading wheel-0.45.1-py3-none-any.whl.metadata (2.3 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:31.1617542Z Collecting python-dateutil>=2.8.2 (from pandas==2.2.3)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:31.1783758Z   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:31.2478230Z Collecting pytz>=2020.1 (from pandas==2.2.3)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:31.2647344Z   Downloading pytz-2026.5-py2.py3-none-any.whl.metadata (22 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:31.3156891Z Collecting tzdata>=2022.7 (from pandas==2.2.3)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:31.3321217Z   Downloading tzdata-2026.5-py2.py3-none-any.whl.metadata (1.4 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:31.3994017Z Collecting joblib>=1.1.1 (from scikit-learn==1.3.0)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:31.4166965Z   Downloading joblib-1.6.0-py3-none-any.whl.metadata (6.5 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:31.4641494Z Collecting threadpoolctl>=2.0.0 (from scikit-learn==1.3.0)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:31.4818396Z   Downloading threadpoolctl-3.7.0-py3-none-any.whl.metadata (24 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:31.5725308Z Collecting contourpy>=1.0.1 (from matplotlib==3.9.2)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:31.5895467Z   Downloading contourpy-1.3.3-cp311-cp311-win_amd64.whl.metadata (5.5 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:31.6386935Z Collecting cycler>=0.10 (from matplotlib==3.9.2)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:31.6558603Z   Downloading cycler-0.12.1-py3-none-any.whl.metadata (3.8 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:31.8189447Z Collecting fonttools>=4.22.0 (from matplotlib==3.9.2)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:31.8370747Z   Downloading fonttools-4.67.0-cp311-cp311-win_amd64.whl.metadata (139 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:31.9445461Z Collecting kiwisolver>=1.3.1 (from matplotlib==3.9.2)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:31.9616674Z   Downloading kiwisolver-1.5.1-cp311-cp311-win_amd64.whl.metadata (5.2 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:32.0122243Z Collecting packaging>=20.0 (from matplotlib==3.9.2)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:32.0286965Z   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:32.1857306Z Collecting pillow>=8 (from matplotlib==3.9.2)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:32.2104188Z   Downloading pillow-12.3.0-cp311-cp311-win_amd64.whl.metadata (9.3 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:32.2654866Z Collecting pyparsing>=2.3.1 (from matplotlib==3.9.2)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:32.2821155Z   Downloading pyparsing-3.3.3-py3-none-any.whl.metadata (5.9 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:32.3342787Z Collecting cloudpickle>=3.0 (from joblib>=1.1.1->scikit-learn==1.3.0)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:32.3509069Z   Downloading cloudpickle-3.1.2-py3-none-any.whl.metadata (7.1 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:32.4039508Z Collecting six>=1.5 (from python-dateutil>=2.8.2->pandas==2.2.3)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:32.4208777Z   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:32.4630647Z Downloading numpy-1.26.4-cp311-cp311-win_amd64.whl (15.8 MB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:32.6851563Z    ---------------------------------------- 15.8/15.8 MB 71.0 MB/s  0:00:00
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:32.7036783Z Downloading pandas-2.2.3-cp311-cp311-win_amd64.whl (11.6 MB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:32.8131226Z    ---------------------------------------- 11.6/11.6 MB 120.8 MB/s  0:00:00
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:33.6021995Z Downloading scipy-1.11.2-cp311-cp311-win_amd64.whl (44.0 MB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:34.3143302Z    ---------------------------------------- 44.0/44.0 MB 62.2 MB/s  0:00:00
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:34.3316057Z Downloading scikit_learn-1.3.0-cp311-cp311-win_amd64.whl (9.2 MB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:34.4533108Z    ---------------------------------------- 9.2/9.2 MB 81.9 MB/s  0:00:00
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:34.4713174Z Downloading matplotlib-3.9.2-cp311-cp311-win_amd64.whl (7.8 MB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:34.5536095Z    ---------------------------------------- 7.8/7.8 MB 97.0 MB/s  0:00:00
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:34.5708897Z Downloading PyYAML-6.0.2-cp311-cp311-win_amd64.whl (161 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:34.6068028Z Downloading setuptools-75.1.0-py3-none-any.whl (1.2 MB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:34.6402734Z    ---------------------------------------- 1.2/1.2 MB 31.8 MB/s  0:00:00
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:34.6570023Z Downloading wheel-0.45.1-py3-none-any.whl (72 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:34.6947461Z Downloading contourpy-1.3.3-cp311-cp311-win_amd64.whl (225 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:34.7339297Z Downloading cycler-0.12.1-py3-none-any.whl (8.3 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:34.7739854Z Downloading fonttools-4.67.0-cp311-cp311-win_amd64.whl (1.6 MB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:34.8098345Z    ---------------------------------------- 1.6/1.6 MB 44.7 MB/s  0:00:00
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:34.8269653Z Downloading joblib-1.6.0-py3-none-any.whl (306 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:34.9527772Z Downloading cloudpickle-3.1.2-py3-none-any.whl (22 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:34.9868204Z Downloading kiwisolver-1.5.1-cp311-cp311-win_amd64.whl (70 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:35.0279045Z Downloading packaging-26.3-py3-none-any.whl (129 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:35.0652353Z Downloading pillow-12.3.0-cp311-cp311-win_amd64.whl (7.2 MB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:35.1428660Z    ---------------------------------------- 7.2/7.2 MB 89.4 MB/s  0:00:00
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:35.1597534Z Downloading pyparsing-3.3.3-py3-none-any.whl (126 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:35.2049654Z Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:35.2466965Z Downloading pytz-2026.5-py2.py3-none-any.whl (506 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:35.2849058Z Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:35.3269447Z Downloading threadpoolctl-3.7.0-py3-none-any.whl (26 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:35.3639097Z Downloading tzdata-2026.5-py2.py3-none-any.whl (347 kB)
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:36.3371785Z Installing collected packages: pytz, wheel, tzdata, threadpoolctl, six, setuptools, PyYAML, pyparsing, pillow, packaging, numpy, kiwisolver, fonttools, cycler, cloudpickle, scipy, python-dateutil, joblib, contourpy, scikit-learn, pandas, matplotlib
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:37.5399584Z   Attempting uninstall: setuptools
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:37.5413497Z     Found existing installation: setuptools 65.5.0
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:39.1929998Z     Uninstalling setuptools-65.5.0:
+preflight	Install exact runtime and non-editable package	2026-10-14T18:31:39.4414335Z       Successfully uninstalled setuptools-65.5.0
+preflight	Install exact runtime and non-editable package	2026-10-14T18:32:05.0070596Z 
+preflight	Install exact runtime and non-editable package	2026-10-14T18:32:05.0082602Z Successfully installed PyYAML-6.0.2 cloudpickle-3.1.2 contourpy-1.3.3 cycler-0.12.1 fonttools-4.67.0 joblib-1.6.0 kiwisolver-1.5.1 matplotlib-3.9.2 numpy-1.26.4 packaging-26.3 pandas-2.2.3 pillow-12.3.0 pyparsing-3.3.3 python-dateutil-2.9.0.post0 pytz-2026.5 scikit-learn-1.3.0 scipy-1.11.2 setuptools-75.1.0 six-1.17.0 threadpoolctl-3.7.0 tzdata-2026.5 wheel-0.45.1
+preflight	Install exact runtime and non-editable package	2026-10-14T18:32:05.9698387Z Processing .\.
+preflight	Install exact runtime and non-editable package	2026-10-14T18:32:05.9714239Z   Preparing metadata (pyproject.toml): started
+preflight	Install exact runtime and non-editable package	2026-10-14T18:32:06.4292054Z   Preparing metadata (pyproject.toml): finished with status 'done'
+preflight	Install exact runtime and non-editable package	2026-10-14T18:32:06.4319572Z Building wheels for collected packages: open-predictive-expansion
+preflight	Install exact runtime and non-editable package	2026-10-14T18:32:06.4333790Z   Building wheel for open-predictive-expansion (pyproject.toml): started
+preflight	Install exact runtime and non-editable package	2026-10-14T18:32:06.6771326Z   Building wheel for open-predictive-expansion (pyproject.toml): finished with status 'done'
+preflight	Install exact runtime and non-editable package	2026-10-14T18:32:06.6805802Z   Created wheel for open-predictive-expansion: filename=open_predictive_expansion-0.1.0.dev0-py3-none-any.whl size=132212 sha256=2bec29b62b8ebfbc090d9974de427f1e068c193707acacfe8e564ec884c0a37f
+preflight	Install exact runtime and non-editable package	2026-10-14T18:32:06.6807405Z   Stored in directory: C:\Users\runneradmin\AppData\Local\Temp\pip-ephem-wheel-cache-glrgmp6c\wheels\d7\fa\42\cef5441cca6128ac0c8fb2737846ca7a177f22761b1392d73c
+preflight	Install exact runtime and non-editable package	2026-10-14T18:32:06.6833777Z Successfully built open-predictive-expansion
+preflight	Install exact runtime and non-editable package	2026-10-14T18:32:06.6935776Z Installing collected packages: open-predictive-expansion
+preflight	Install exact runtime and non-editable package	2026-10-14T18:32:06.8412172Z Successfully installed open-predictive-expansion-0.1.0.dev0
+preflight	Install exact runtime and non-editable package	2026-10-14T18:32:07.0634548Z No broken requirements found.
+preflight	Verify full-default equivalence and two planned timing cases	﻿2026-10-14T18:32:07.3980309Z ##[group]Run python -I examples/recursive_preview_actions.py preflight --out .superpowers/recursive-preflight
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:32:07.3980818Z ^[[36;1mpython -I examples/recursive_preview_actions.py preflight --out .superpowers/recursive-preflight^[[0m
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:32:07.3981125Z ^[[36;1mif ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }^[[0m
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:32:07.4006257Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:32:07.4006475Z env:
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:32:07.4006591Z   OMP_NUM_THREADS: 1
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:32:07.4006718Z   OPENBLAS_NUM_THREADS: 1
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:32:07.4006846Z   MKL_NUM_THREADS: 1
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:32:07.4008237Z   GH_TOKEN: ***
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:32:07.4008363Z   PREFLIGHT_RUN: 
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:32:07.4008475Z   NOISE_RUN: 
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:32:07.4008631Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.11.9\x64
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:32:07.4008882Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.11.9\x64/lib/pkgconfig
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:32:07.4009133Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:32:07.4009388Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:32:07.4009605Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:32:07.4009782Z ##[endgroup]
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:32:24.0430094Z Anxiety depth 0: 4/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:32:31.4975440Z Anxiety depth 0: 8/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:32:39.5191387Z Anxiety depth 0: 12/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:32:46.7396278Z Anxiety depth 0: 16/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:32:53.7411897Z Anxiety depth 0: 20/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:33:03.2537364Z Anxiety depth 0: 24/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:33:10.4724527Z Anxiety depth 0: 28/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:33:18.0805767Z Anxiety depth 0: 32/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:33:25.7219329Z Anxiety depth 0: 36/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:33:33.0859126Z Anxiety depth 0: 40/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:33:40.5473265Z Anxiety depth 0: 44/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:33:49.5834584Z Anxiety depth 0: 48/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:33:57.0130979Z Anxiety depth 0: 52/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:34:05.6245576Z Anxiety depth 0: 56/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:34:13.0612408Z Anxiety depth 0: 60/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:34:20.9087881Z Anxiety depth 0: 64/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:34:30.2772309Z Anxiety depth 0: 68/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:34:38.4871648Z Anxiety depth 0: 72/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:34:46.4163225Z Anxiety depth 0: 76/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:34:54.4048146Z Anxiety depth 0: 80/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:35:04.4875911Z Anxiety depth 0: 84/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:35:12.5850420Z Anxiety depth 0: 88/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:35:20.3264118Z Anxiety depth 0: 92/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:35:28.2121445Z Anxiety depth 0: 96/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:35:37.2981803Z Anxiety depth 0: 100/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:35:50.8791335Z Depression depth 1: 4/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:35:56.1907707Z Depression depth 1: 8/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:36:01.5886149Z Depression depth 1: 12/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:36:08.1407119Z Depression depth 1: 16/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:36:13.0697195Z Depression depth 1: 20/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:36:18.0826281Z Depression depth 1: 24/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:36:23.0731149Z Depression depth 1: 28/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:36:28.1699390Z Depression depth 1: 32/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:36:33.0236498Z Depression depth 1: 36/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:36:37.8640657Z Depression depth 1: 40/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:36:42.6269335Z Depression depth 1: 44/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:36:47.6931686Z Depression depth 1: 48/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:36:53.6965072Z Depression depth 1: 52/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:36:58.5431783Z Depression depth 1: 56/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:37:04.4813168Z Depression depth 1: 60/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:37:09.6982666Z Depression depth 1: 64/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:37:14.4973170Z Depression depth 1: 68/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:37:19.3018132Z Depression depth 1: 72/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:37:25.2524757Z Depression depth 1: 76/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:37:30.6713755Z Depression depth 1: 80/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:37:37.0849313Z Depression depth 1: 84/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:37:42.8357615Z Depression depth 1: 88/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:37:48.8609677Z Depression depth 1: 92/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:37:53.9274440Z Depression depth 1: 96/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:37:59.7543515Z Depression depth 1: 100/100
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:38:24.2932841Z Traceback (most recent call last):
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:38:24.2941161Z   File "D:\a\open\open\examples\recursive_preview_actions.py", line 352, in <module>
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:38:24.2941626Z     main()
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:38:24.2941976Z   File "D:\a\open\open\examples\recursive_preview_actions.py", line 334, in main
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:38:24.2942358Z     preflight(args.out)
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:38:24.2942765Z   File "D:\a\open\open\examples\recursive_preview_actions.py", line 188, in preflight
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:38:24.2969185Z ##[error]    raise ValueError('parallel fixture differs from saved sequential default analysis')
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:38:24.2976026Z ValueError: parallel fixture differs from saved sequential default analysis
+preflight	Verify full-default equivalence and two planned timing cases	2026-10-14T18:38:24.4692642Z ##[error]Process completed with exit code 1.
+preflight	Preserve interrupted checkpoints without new fits	﻿2026-10-14T18:38:24.4799008Z ##[group]Run python -I examples/recursive_preview_actions.py pack --out .superpowers/recursive-preflight
+preflight	Preserve interrupted checkpoints without new fits	2026-10-14T18:38:24.4799524Z ^[[36;1mpython -I examples/recursive_preview_actions.py pack --out .superpowers/recursive-preflight^[[0m
+preflight	Preserve interrupted checkpoints without new fits	2026-10-14T18:38:24.4824318Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+preflight	Preserve interrupted checkpoints without new fits	2026-10-14T18:38:24.4824568Z env:
+preflight	Preserve interrupted checkpoints without new fits	2026-10-14T18:38:24.4824681Z   OMP_NUM_THREADS: 1
+preflight	Preserve interrupted checkpoints without new fits	2026-10-14T18:38:24.4824802Z   OPENBLAS_NUM_THREADS: 1
+preflight	Preserve interrupted checkpoints without new fits	2026-10-14T18:38:24.4824947Z   MKL_NUM_THREADS: 1
+preflight	Preserve interrupted checkpoints without new fits	2026-10-14T18:38:24.4826659Z   GH_TOKEN: ***
+preflight	Preserve interrupted checkpoints without new fits	2026-10-14T18:38:24.4826805Z   PREFLIGHT_RUN: 
+preflight	Preserve interrupted checkpoints without new fits	2026-10-14T18:38:24.4826951Z   NOISE_RUN: 
+preflight	Preserve interrupted checkpoints without new fits	2026-10-14T18:38:24.4827135Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.11.9\x64
+preflight	Preserve interrupted checkpoints without new fits	2026-10-14T18:38:24.4827412Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.11.9\x64/lib/pkgconfig
+preflight	Preserve interrupted checkpoints without new fits	2026-10-14T18:38:24.4827695Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+preflight	Preserve interrupted checkpoints without new fits	2026-10-14T18:38:24.4827962Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+preflight	Preserve interrupted checkpoints without new fits	2026-10-14T18:38:24.4828278Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+preflight	Preserve interrupted checkpoints without new fits	2026-10-14T18:38:24.4828497Z ##[endgroup]
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	﻿2026-10-14T18:38:25.3967038Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:25.3967508Z with:
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:25.3967745Z   name: recursive-preview-preflight-control
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:25.3968145Z   path: .superpowers/recursive-preflight/preflight.json
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	runtime.txt
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:25.3968532Z   include-hidden-files: true
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:25.3968800Z   if-no-files-found: error
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:25.3969036Z   retention-days: 30
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:25.3969458Z   compression-level: 6
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:25.3969687Z   overwrite: false
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:25.3969888Z env:
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:25.3970065Z   OMP_NUM_THREADS: 1
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:25.3970288Z   OPENBLAS_NUM_THREADS: 1
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:25.3970505Z   MKL_NUM_THREADS: 1
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:25.3972829Z   GH_TOKEN: ***
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:25.3973052Z   PREFLIGHT_RUN: 
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:25.3973257Z   NOISE_RUN: 
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:25.3973543Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.11.9\x64
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:25.3973981Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.11.9\x64/lib/pkgconfig
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:25.3974485Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:25.3974870Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:25.3975272Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:25.3975611Z ##[endgroup]
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:25.5399083Z (node:2744) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:25.5399603Z (Use `node --trace-deprecation ...` to show where the warning was created)
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:25.5439741Z Multiple search paths detected. Calculating the least common ancestor of all paths
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:25.5441475Z The least common ancestor is D:\a\open\open. This will be the root directory of the artifact
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:25.5441955Z With the provided path, there will be 2 files uploaded
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:25.5445472Z Artifact name is valid!
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:25.5446678Z Root directory input is valid!
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:25.8704398Z Beginning upload of artifact content to blob storage
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:25.8865151Z (node:2744) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.0516402Z Uploaded bytes 813
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.1034082Z Finished uploading artifact content to blob storage!
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.1034819Z SHA256 digest of uploaded artifact zip is 2a755c90231df1fe1d968258e27d521c23d7838a93f476ab86d7e4c6d1b3a459
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.1036514Z Finalizing artifact upload
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.4134697Z Artifact recursive-preview-preflight-control.zip successfully finalized. Artifact ID 11920307258
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.4135569Z Artifact recursive-preview-preflight-control has been successfully uploaded! Final size is 813 bytes. Artifact ID is 11920307258
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.4142347Z Artifact download URL: https://github.com/imh-ds/open/actions/runs/38615814397/artifacts/11920307258
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	﻿2026-10-14T18:38:26.4355776Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.4356175Z with:
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.4356370Z   name: recursive-preview-preflight-raw
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.4356658Z   path: .superpowers/recursive-preflight/raw/
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.4356931Z   include-hidden-files: true
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.4357171Z   if-no-files-found: error
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.4357372Z   retention-days: 30
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.4357562Z   compression-level: 6
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.4357742Z   overwrite: false
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.4357907Z env:
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.4358064Z   OMP_NUM_THREADS: 1
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.4358259Z   OPENBLAS_NUM_THREADS: 1
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.4358454Z   MKL_NUM_THREADS: 1
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.4360843Z   GH_TOKEN: ***
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.4361041Z   PREFLIGHT_RUN: 
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.4361220Z   NOISE_RUN: 
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.4361467Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.11.9\x64
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.4361887Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.11.9\x64/lib/pkgconfig
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.4362331Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.4362702Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.4363080Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.4363562Z ##[endgroup]
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.5656956Z (node:4668) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.5657812Z (Use `node --trace-deprecation ...` to show where the warning was created)
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.5702159Z With the provided path, there will be 1 file uploaded
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.5705893Z Artifact name is valid!
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.5707280Z Root directory input is valid!
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.8654501Z Beginning upload of artifact content to blob storage
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:26.9942954Z (node:4668) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:27.5521084Z Uploaded bytes 3883928
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:27.5969948Z Finished uploading artifact content to blob storage!
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:27.5971005Z SHA256 digest of uploaded artifact zip is d26bdc2c7b91adc2785297b66d716bbfe13a9839ded2fe94b823d742d746d4d4
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:27.5972493Z Finalizing artifact upload
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:27.8427304Z Artifact recursive-preview-preflight-raw.zip successfully finalized. Artifact ID 11919332709
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:27.8428441Z Artifact recursive-preview-preflight-raw has been successfully uploaded! Final size is 3883928 bytes. Artifact ID is 11919332709
+preflight	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-14T18:38:27.8433797Z Artifact download URL: https://github.com/imh-ds/open/actions/runs/38615814397/artifacts/11919332709
+preflight	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	﻿2026-10-14T18:38:27.8674060Z Post job cleanup.
+preflight	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:38:27.9698764Z [command]"C:\Program Files\Git\bin\git.exe" version
+preflight	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:38:27.9890158Z git version 2.56.0.windows.2
+preflight	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:38:27.9926138Z Temporarily overriding HOME='D:\a\_temp\7a8f3e20-06df-4b8e-8a06-da3736bc7454' before making global git config changes
+preflight	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:38:27.9926787Z Adding repository directory to the temporary git global config as a safe directory
+preflight	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:38:27.9933498Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\open\open
+preflight	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:38:28.0131193Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+preflight	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:38:28.0325115Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+preflight	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:38:28.4101809Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+preflight	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:38:28.4307350Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+preflight	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:38:28.8802234Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+preflight	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-14T18:38:28.9032840Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+preflight	Complete job	﻿2026-10-14T18:38:29.3033304Z Cleaning up orphan processes
+preflight	Complete job	2026-10-14T18:38:29.3913547Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
