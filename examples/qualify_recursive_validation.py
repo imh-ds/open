@@ -38,8 +38,8 @@ def stage_specs(stage):
 
 
 def job_cap(spec):
-    return {('noise',80):14,('noise',200):19,('chain',80):40,('chain',200):40,
-        ('correlated',80):25,('correlated',200):30}[spec['scenario'],spec['n']]
+    return {('noise',80):15,('noise',200):20,('chain',80):37,('chain',200):38,
+        ('correlated',80):26,('correlated',200):32}[spec['scenario'],spec['n']]
 
 
 def case_matrix(stage):

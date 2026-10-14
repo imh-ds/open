@@ -38,12 +38,14 @@ One dataset per job, four assessment processes, one numerical thread each, at mo
 
 |Condition|Cases|Job cap per dataset|Computation step cap|Soft case allowance|
 |---|---:|---:|---:|---:|
-|Noise N80|55|14 min|9 min|8.5 min|
-|Noise N200|55|19 min|14 min|13.5 min|
-|Chain N80|55|40 min|35 min|34.5 min|
-|Chain N200|55|40 min|35 min|34.5 min|
-|Correlated N80|55|25 min|20 min|19.5 min|
-|Correlated N200|55|30 min|25 min|24.5 min|
+|Noise N80|55|15 min|10 min|9.5 min|
+|Noise N200|55|20 min|15 min|14.5 min|
+|Chain N80|55|37 min|32 min|31.5 min|
+|Chain N200|55|38 min|33 min|32.5 min|
+|Correlated N80|55|26 min|21 min|20.5 min|
+|Correlated N200|55|32 min|27 min|26.5 min|
+
+Before dispatch, redistribute the original proposed caps14/19/40/40/25/30 to15/20/37/38/26/32. Both sets sum168minutes per six-case block, preserving9240case-job minutes and the9897total. The final soft computation limits give each condition at least14%headroom over its observed case time; the earlier proposal gave the largest correlated case only about6%. This is a cost-only execution adjustment before any qualification fits, not a change to model settings, identities or statistical criteria. One timing per condition still cannot guarantee these limits.
 
 Each job reserves up to2minutes for install/source verification,1for packing,1for upload and1for checkout/setup/headroom outside its computation step. The half-minute soft-stop margin stops new batches before the step deadline but cannot guarantee an in-flight batch finishes. Hard-killed work retains unknown costs and blocks qualification. Attempt checkpoint preservation on failure; atomically publish a ZIP only after CRC/full byte-inventory validation. Never accept an existing partial ZIP as complete. Upload preserved controls/raw bytes even on a failed case where Actions permits. These measured-condition caps are not worst-case runtime guarantees; if insufficient, stop and report, do not retry or reduce CV/resamples.
 
@@ -55,9 +57,9 @@ Each stage reserves15minutes for preparation and60minutes for four-process no-fi
 |Completed four-condition timing reservation retained|256|
 |New workflow registration|1|
 |Stage A preparation/aggregation|15+60=75|
-|Stage A noise jobs|55x(14+19)=1815|
+|Stage A noise jobs|55x(15+20)=1925|
 |Stage B preparation/aggregation|15+60=75|
-|Stage B signal jobs|55x(40+40+25+30)=7425|
+|Stage B signal jobs|55x(37+38+26+32)=7315|
 |Total allocated ceiling|**9897**|
 |Unallocated within the original10000ceiling|**103**|
 

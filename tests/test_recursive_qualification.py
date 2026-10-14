@@ -82,6 +82,16 @@ def test_budget_and_timed_settings_are_unchanged():
     assert len(q.case_matrix('noise'))==110 and len(q.case_matrix('signal'))==220
 
 
+def test_every_condition_has_compute_headroom_without_raising_total_budget():
+    import qualify_recursive_validation as q
+    measured={('noise',80):459.172,('noise',200):718.531,
+        ('chain',80):1642.156,('chain',200):1644.094,
+        ('correlated',80):1039.641,('correlated',200):1387.781}
+    for spec in q.specs():
+        assert (q.job_cap(spec)-5.5)*60>=1.14*measured[spec['scenario'],spec['n']]
+    assert sum(q.job_cap(s) for s in q.specs())==9240
+
+
 def test_signal_cannot_prepare_without_committed_exact_noise_gate(tmp_path,monkeypatch):
     import qualify_recursive_validation as q
     monkeypatch.setattr(q,'checked_manifest',lambda:q.manifest())
@@ -105,7 +115,7 @@ def test_interrupted_case_keeps_control_and_atomic_archive(tmp_path,monkeypatch)
     import qualify_recursive_validation as q
     monkeypatch.setattr(q,'checked_manifest',lambda:q.manifest())
     def interrupted(spec,directory,manifest,*,seconds):
-        assert spec['index']==1 and seconds==510
+        assert spec['index']==1 and seconds==570
         q.write_json(directory/'receipt.json',dict(status='STARTED',fit_cost_unknown=True))
         raise TimeoutError('no new batches')
     monkeypatch.setattr(q,'run_case',interrupted)
