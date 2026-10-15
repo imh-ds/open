@@ -75,3 +75,9 @@ def test_workflow_budget_and_two_case_transport():
     step=next(s for s in w['jobs']['case']['steps'] if s.get('name')=='Recorded production recursion; no automatic fit retry')
     assert step['timeout-minutes']==135
     assert w['jobs']['case']['steps'][-1]['with']['name']=='tree-continued-${{ matrix.id }}'
+
+def test_report_hash_is_portable_across_windows_line_endings(tmp_path):
+    import continue_tree_preflight as c
+    a=tmp_path/'lf.json';b=tmp_path/'crlf.json'
+    a.write_bytes(b'{"complete":4}\n');b.write_bytes(b'{"complete":4}\r\n')
+    assert c.report_hash(a)==c.report_hash(b)

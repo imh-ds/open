@@ -26,6 +26,7 @@ PARENT_SHA='ffe85ca57112530871a8ab9e9db7ec5ca8fdf9b2'
 REPORT=ROOT/'examples/results/2026-10-15-multiengine-preflight-setup/completed-preflight-audit.json'
 
 def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+def report_hash(path):return m.text_hash(path)
 def report():return load_json(REPORT)
 def pending():return [s for s in m.specs() if s['engine']=='random_forest']
 def producer_row(spec):return next(r for r in report()['cases'] if r['spec']==spec)
@@ -36,7 +37,7 @@ def manifest():
         WORKFLOW,'examples/continue_tree_preflight.py','examples/tree_preflight_continuation_protocol.md'}
     return dict(schema='open.tree_preflight_continuation.v1',sources={p:m.text_hash(ROOT/p) for p in sorted(paths)},
         runtime=load_json(m.MANIFEST)['runtime'],cases=pending(),producer_run=PARENT_RUN,producer_sha=PARENT_SHA,
-        producer_audit_sha256=sha(REPORT),case_minutes=150,compute_minutes=135,soft_seconds=132*60,
+        producer_audit_text_sha256=report_hash(REPORT),case_minutes=150,compute_minutes=135,soft_seconds=132*60,
         prepare_minutes=15,audit_minutes=30,registration_minutes=1,reserved_minutes=346,
         previous_reserved_minutes=586,prior_ceiling=600,workers=4,max_parallel=2,
         scientific_qualification=False)
