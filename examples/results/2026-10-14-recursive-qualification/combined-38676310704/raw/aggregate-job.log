@@ -1,0 +1,1194 @@
+﻿2026-10-15T03:41:31.5767140Z Current runner version: '2.337.0'
+2026-10-15T03:41:31.5782116Z ##[group]Runner Image Provisioner
+2026-10-15T03:41:31.5782540Z Hosted Compute Agent
+2026-10-15T03:41:31.5782883Z Version: 20261012.601
+2026-10-15T03:41:31.5783230Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+2026-10-15T03:41:31.5783619Z Build Date: 2026-10-12T17:48:21Z
+2026-10-15T03:41:31.5783991Z Worker ID: {f9cccc30-6d42-482a-9355-caf95e30e5aa}
+2026-10-15T03:41:31.5784389Z Region: centralus
+2026-10-15T03:41:31.5784698Z Cloud: Azure
+2026-10-15T03:41:31.5784958Z ##[endgroup]
+2026-10-15T03:41:31.5785637Z ##[group]Operating System
+2026-10-15T03:41:31.5785964Z Microsoft Windows Server 2022
+2026-10-15T03:41:31.5786268Z 10.0.20348
+2026-10-15T03:41:31.5786528Z Datacenter
+2026-10-15T03:41:31.5786794Z ##[endgroup]
+2026-10-15T03:41:31.5787057Z ##[group]Runner Image
+2026-10-15T03:41:31.5787350Z Image: windows-2022
+2026-10-15T03:41:31.5787629Z Version: 20261012.333.1
+2026-10-15T03:41:31.5788431Z Included Software: https://github.com/actions/runner-images/blob/win22/20261012.333/images/windows/Windows2022-Readme.md
+2026-10-15T03:41:31.5789201Z Image Release: https://github.com/actions/runner-images/releases/tag/win22%2F20261012.333
+2026-10-15T03:41:31.5789684Z ##[endgroup]
+2026-10-15T03:41:31.5790283Z ##[group]GITHUB_TOKEN Permissions
+2026-10-15T03:41:31.5791317Z Actions: read
+2026-10-15T03:41:31.5791613Z Contents: read
+2026-10-15T03:41:31.5791887Z Metadata: read
+2026-10-15T03:41:31.5792155Z ##[endgroup]
+2026-10-15T03:41:31.5793289Z Secret source: Actions
+2026-10-15T03:41:31.5793751Z Cache mode: write
+2026-10-15T03:41:31.5794101Z Prepare workflow directory
+2026-10-15T03:41:31.6101337Z Prepare all required actions
+2026-10-15T03:41:31.6131798Z Getting action download info
+2026-10-15T03:41:31.8592389Z Download action repository 'actions/checkout@11d5960a326750d5838078e36cf38b85af677262' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-15T03:41:31.9455241Z Download action repository 'actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-10-15T03:41:32.0288256Z Download action repository 'actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093' (SHA:d3f86a106a0bac45b974a628896c90dbdf5c8093)
+2026-10-15T03:41:32.4228795Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-15T03:41:32.6221311Z Complete job name: aggregate
+2026-10-15T03:41:32.7422464Z ##[group]Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+2026-10-15T03:41:32.7423210Z with:
+2026-10-15T03:41:32.7423446Z   persist-credentials: false
+2026-10-15T03:41:32.7423740Z   sparse-checkout-cone-mode: false
+2026-10-15T03:41:32.7430300Z   sparse-checkout: src/**
+pyproject.toml
+README.md
+LICENSE
+configs/default.yaml
+.github/workflows/recursive-preview-validation.yml
+examples/recursive_preview_*.py
+examples/recursive_preview_validation_protocol.md
+examples/recursive_preview_continuation_proposal.md
+examples/study_manifests/recursive-preview-*.json
+examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/raw/producer-manifest.json
+examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/raw/preflight.json
+examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/audit/raw-sha256.json
+examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/audit/diagnosis.json
+examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38621370295/raw/producer-manifest.json
+examples/results/2026-10-14-recursive-preview-validation/timing-completed-38629900589/audit/verification.json
+examples/results/2026-10-14-recursive-preview-validation/timing-completed-38629900589/audit/raw-sha256.json
+examples/time_scenario_validation.py
+examples/qualify_recursive_validation.py
+examples/qualification_validation_protocol.md
+.github/workflows/recursive-qualification.yml
+examples/study_manifests/recursive-qualification*.json
+examples/results/2026-10-14-recursive-preview-validation/scenario-timing-completed-38645875109/audit/verification.json
+examples/results/2026-10-14-recursive-qualification/noise-gate/audit.json
+examples/continue_qualification.py
+examples/qualification_continuation_protocol.md
+.github/workflows/qualification-continuation.yml
+examples/study_manifests/qualification-continuation.json
+examples/results/2026-10-14-recursive-qualification/continuation-plan/*.json
+
+2026-10-15T03:41:32.7438027Z   repository: imh-ds/open
+2026-10-15T03:41:32.7440294Z   token: ***
+2026-10-15T03:41:32.7440518Z   ssh-strict: true
+2026-10-15T03:41:32.7440741Z   ssh-user: git
+2026-10-15T03:41:32.7440957Z   clean: true
+2026-10-15T03:41:32.7441172Z   fetch-depth: 1
+2026-10-15T03:41:32.7441397Z   fetch-tags: false
+2026-10-15T03:41:32.7441632Z   show-progress: true
+2026-10-15T03:41:32.7441862Z   lfs: false
+2026-10-15T03:41:32.7442078Z   submodules: false
+2026-10-15T03:41:32.7442309Z   set-safe-directory: true
+2026-10-15T03:41:32.7442585Z   allow-unsafe-pr-checkout: false
+2026-10-15T03:41:32.7442981Z env:
+2026-10-15T03:41:32.7443192Z   OMP_NUM_THREADS: 1
+2026-10-15T03:41:32.7443428Z   OPENBLAS_NUM_THREADS: 1
+2026-10-15T03:41:32.7443674Z   MKL_NUM_THREADS: 1
+2026-10-15T03:41:32.7445888Z   GH_TOKEN: ***
+2026-10-15T03:41:32.7446109Z ##[endgroup]
+2026-10-15T03:41:32.8386272Z Syncing repository: imh-ds/open
+2026-10-15T03:41:32.8387262Z ##[group]Getting Git version info
+2026-10-15T03:41:32.8387621Z Working directory is 'D:\a\open\open'
+2026-10-15T03:41:32.8945290Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-15T03:41:33.2559454Z git version 2.56.0.windows.2
+2026-10-15T03:41:33.2587629Z ##[endgroup]
+2026-10-15T03:41:33.2599575Z Temporarily overriding HOME='D:\a\_temp\f231cb6f-ec25-4a20-acbf-c320cf220b66' before making global git config changes
+2026-10-15T03:41:33.2601296Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-15T03:41:33.2606536Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\open\open
+2026-10-15T03:41:33.3068566Z Deleting the contents of 'D:\a\open\open'
+2026-10-15T03:41:33.3071706Z ##[group]Initializing the repository
+2026-10-15T03:41:33.3076614Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\open\open
+2026-10-15T03:41:33.3816698Z Initialized empty Git repository in D:/a/open/open/.git/
+2026-10-15T03:41:33.3840497Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/imh-ds/open
+2026-10-15T03:41:33.4283835Z ##[endgroup]
+2026-10-15T03:41:33.4284751Z ##[group]Disabling automatic garbage collection
+2026-10-15T03:41:33.4288931Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+2026-10-15T03:41:33.4475578Z ##[endgroup]
+2026-10-15T03:41:33.4476663Z ##[group]Setting up auth
+2026-10-15T03:41:33.4482118Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-15T03:41:33.4720136Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-15T03:41:34.7522627Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-15T03:41:34.7713039Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-15T03:41:35.1288628Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-15T03:41:35.1520475Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-15T03:41:35.5668426Z [command]"C:\Program Files\Git\bin\git.exe" config --local http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+2026-10-15T03:41:35.5864943Z ##[endgroup]
+2026-10-15T03:41:35.5865772Z ##[group]Fetching the repository
+2026-10-15T03:41:35.5873378Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --filter=blob:none --depth=1 origin +bab7b69b367ba577b7305ea633d1fe12b412bd78:refs/remotes/origin/codex/qualification-continuation
+2026-10-15T03:41:36.5644233Z From https://github.com/imh-ds/open
+2026-10-15T03:41:36.5644763Z  * [new ref]         bab7b69b367ba577b7305ea633d1fe12b412bd78 -> origin/codex/qualification-continuation
+2026-10-15T03:41:36.5665397Z ##[endgroup]
+2026-10-15T03:41:36.5665620Z ##[group]Determining the checkout info
+2026-10-15T03:41:36.5667607Z ##[endgroup]
+2026-10-15T03:41:36.5667889Z ##[group]Setting up sparse checkout
+2026-10-15T03:41:36.5676338Z [command]"C:\Program Files\Git\bin\git.exe" config core.sparseCheckout true
+2026-10-15T03:41:36.5876070Z [command]"C:\Program Files\Git\bin\git.exe" rev-parse --git-path info/sparse-checkout
+2026-10-15T03:41:36.6090239Z .git/info/sparse-checkout
+2026-10-15T03:41:36.6108345Z ##[endgroup]
+2026-10-15T03:41:36.6108569Z ##[group]Checking out the ref
+2026-10-15T03:41:36.6113676Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force -B codex/qualification-continuation refs/remotes/origin/codex/qualification-continuation
+2026-10-15T03:41:37.5395966Z Switched to a new branch 'codex/qualification-continuation'
+2026-10-15T03:41:37.5408893Z branch 'codex/qualification-continuation' set up to track 'origin/codex/qualification-continuation'.
+2026-10-15T03:41:37.5430690Z ##[endgroup]
+2026-10-15T03:41:37.5705886Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+2026-10-15T03:41:37.5883378Z bab7b69b367ba577b7305ea633d1fe12b412bd78
+2026-10-15T03:41:37.5903200Z ##[group]Removing auth
+2026-10-15T03:41:37.5908133Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-15T03:41:37.6099916Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-15T03:41:37.9721652Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-15T03:41:37.9890612Z http.https://github.com/.extraheader
+2026-10-15T03:41:37.9909272Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all http.https://github.com/.extraheader
+2026-10-15T03:41:38.0094980Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-15T03:41:38.3785727Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-15T03:41:38.3981333Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-15T03:41:38.7853352Z ##[endgroup]
+2026-10-15T03:41:38.8105175Z ##[group]Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+2026-10-15T03:41:38.8105412Z with:
+2026-10-15T03:41:38.8105524Z   python-version: 3.11.9
+2026-10-15T03:41:38.8105651Z   check-latest: false
+2026-10-15T03:41:38.8107042Z   token: ***
+2026-10-15T03:41:38.8107151Z   update-environment: true
+2026-10-15T03:41:38.8107283Z   allow-prereleases: false
+2026-10-15T03:41:38.8107398Z   freethreaded: false
+2026-10-15T03:41:38.8107509Z env:
+2026-10-15T03:41:38.8107604Z   OMP_NUM_THREADS: 1
+2026-10-15T03:41:38.8107713Z   OPENBLAS_NUM_THREADS: 1
+2026-10-15T03:41:38.8107827Z   MKL_NUM_THREADS: 1
+2026-10-15T03:41:38.8109320Z   GH_TOKEN: ***
+2026-10-15T03:41:38.8109421Z ##[endgroup]
+2026-10-15T03:41:38.9083707Z ##[group]Installed versions
+2026-10-15T03:41:38.9115077Z (node:7284) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-15T03:41:38.9115502Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-15T03:41:38.9115985Z Successfully set up CPython (3.11.9)
+2026-10-15T03:41:38.9116501Z ##[endgroup]
+2026-10-15T03:41:38.9307314Z ##[group]Run python -m pip install numpy==1.26.4 pandas==2.2.3 scipy==1.11.2 scikit-learn==1.3.0 matplotlib==3.9.2 PyYAML==6.0.2 setuptools==75.1.0 wheel==0.45.1
+2026-10-15T03:41:38.9307924Z [36;1mpython -m pip install numpy==1.26.4 pandas==2.2.3 scipy==1.11.2 scikit-learn==1.3.0 matplotlib==3.9.2 PyYAML==6.0.2 setuptools==75.1.0 wheel==0.45.1[0m
+2026-10-15T03:41:38.9308281Z [36;1mif ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }[0m
+2026-10-15T03:41:38.9308499Z [36;1mpython -m pip install --no-build-isolation --no-deps .[0m
+2026-10-15T03:41:38.9308706Z [36;1mif ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }[0m
+2026-10-15T03:41:38.9308891Z [36;1mpython -m pip check[0m
+2026-10-15T03:41:38.9309049Z [36;1mif ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }[0m
+2026-10-15T03:41:38.9309389Z [36;1mpython -I examples/continue_qualification.py check[0m
+2026-10-15T03:41:38.9309581Z [36;1mif ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }[0m
+2026-10-15T03:41:38.9309802Z [36;1mpython -m pip freeze | Out-File -Encoding utf8 runtime.txt[0m
+2026-10-15T03:41:38.9452074Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-15T03:41:38.9452267Z env:
+2026-10-15T03:41:38.9452371Z   OMP_NUM_THREADS: 1
+2026-10-15T03:41:38.9452535Z   OPENBLAS_NUM_THREADS: 1
+2026-10-15T03:41:38.9452670Z   MKL_NUM_THREADS: 1
+2026-10-15T03:41:38.9454180Z   GH_TOKEN: ***
+2026-10-15T03:41:38.9454329Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T03:41:38.9454574Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.11.9\x64/lib/pkgconfig
+2026-10-15T03:41:38.9454809Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T03:41:38.9455026Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T03:41:38.9455233Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T03:41:38.9455399Z ##[endgroup]
+2026-10-15T03:41:43.1855222Z Collecting numpy==1.26.4
+2026-10-15T03:41:43.3231963Z   Downloading numpy-1.26.4-cp311-cp311-win_amd64.whl.metadata (61 kB)
+2026-10-15T03:41:43.4596254Z Collecting pandas==2.2.3
+2026-10-15T03:41:43.4804903Z   Downloading pandas-2.2.3-cp311-cp311-win_amd64.whl.metadata (19 kB)
+2026-10-15T03:41:43.5907994Z Collecting scipy==1.11.2
+2026-10-15T03:41:43.6098393Z   Downloading scipy-1.11.2-cp311-cp311-win_amd64.whl.metadata (59 kB)
+2026-10-15T03:41:43.7161818Z Collecting scikit-learn==1.3.0
+2026-10-15T03:41:43.7333168Z   Downloading scikit_learn-1.3.0-cp311-cp311-win_amd64.whl.metadata (11 kB)
+2026-10-15T03:41:43.9051737Z Collecting matplotlib==3.9.2
+2026-10-15T03:41:43.9220908Z   Downloading matplotlib-3.9.2-cp311-cp311-win_amd64.whl.metadata (11 kB)
+2026-10-15T03:41:43.9832170Z Collecting PyYAML==6.0.2
+2026-10-15T03:41:43.9999324Z   Downloading PyYAML-6.0.2-cp311-cp311-win_amd64.whl.metadata (2.1 kB)
+2026-10-15T03:41:44.0750933Z Collecting setuptools==75.1.0
+2026-10-15T03:41:44.0919643Z   Downloading setuptools-75.1.0-py3-none-any.whl.metadata (6.9 kB)
+2026-10-15T03:41:44.1457369Z Collecting wheel==0.45.1
+2026-10-15T03:41:44.1635683Z   Downloading wheel-0.45.1-py3-none-any.whl.metadata (2.3 kB)
+2026-10-15T03:41:44.2133335Z Collecting python-dateutil>=2.8.2 (from pandas==2.2.3)
+2026-10-15T03:41:44.2291807Z   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+2026-10-15T03:41:44.2892381Z Collecting pytz>=2020.1 (from pandas==2.2.3)
+2026-10-15T03:41:44.3055837Z   Downloading pytz-2026.5-py2.py3-none-any.whl.metadata (22 kB)
+2026-10-15T03:41:44.3560650Z Collecting tzdata>=2022.7 (from pandas==2.2.3)
+2026-10-15T03:41:44.3717086Z   Downloading tzdata-2026.5-py2.py3-none-any.whl.metadata (1.4 kB)
+2026-10-15T03:41:44.4299896Z Collecting joblib>=1.1.1 (from scikit-learn==1.3.0)
+2026-10-15T03:41:44.4455535Z   Downloading joblib-1.6.0-py3-none-any.whl.metadata (6.5 kB)
+2026-10-15T03:41:44.4942064Z Collecting threadpoolctl>=2.0.0 (from scikit-learn==1.3.0)
+2026-10-15T03:41:44.5117673Z   Downloading threadpoolctl-3.7.0-py3-none-any.whl.metadata (24 kB)
+2026-10-15T03:41:44.5887368Z Collecting contourpy>=1.0.1 (from matplotlib==3.9.2)
+2026-10-15T03:41:44.6073120Z   Downloading contourpy-1.3.3-cp311-cp311-win_amd64.whl.metadata (5.5 kB)
+2026-10-15T03:41:44.6642841Z Collecting cycler>=0.10 (from matplotlib==3.9.2)
+2026-10-15T03:41:44.6816479Z   Downloading cycler-0.12.1-py3-none-any.whl.metadata (3.8 kB)
+2026-10-15T03:41:44.8171004Z Collecting fonttools>=4.22.0 (from matplotlib==3.9.2)
+2026-10-15T03:41:44.8344935Z   Downloading fonttools-4.67.0-cp311-cp311-win_amd64.whl.metadata (139 kB)
+2026-10-15T03:41:44.9487679Z Collecting kiwisolver>=1.3.1 (from matplotlib==3.9.2)
+2026-10-15T03:41:44.9659542Z   Downloading kiwisolver-1.5.1-cp311-cp311-win_amd64.whl.metadata (5.2 kB)
+2026-10-15T03:41:45.0169732Z Collecting packaging>=20.0 (from matplotlib==3.9.2)
+2026-10-15T03:41:45.0364670Z   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+2026-10-15T03:41:45.1659539Z Collecting pillow>=8 (from matplotlib==3.9.2)
+2026-10-15T03:41:45.1836019Z   Downloading pillow-12.3.0-cp311-cp311-win_amd64.whl.metadata (9.3 kB)
+2026-10-15T03:41:45.2365853Z Collecting pyparsing>=2.3.1 (from matplotlib==3.9.2)
+2026-10-15T03:41:45.2520382Z   Downloading pyparsing-3.3.3-py3-none-any.whl.metadata (5.9 kB)
+2026-10-15T03:41:45.3060735Z Collecting cloudpickle>=3.0 (from joblib>=1.1.1->scikit-learn==1.3.0)
+2026-10-15T03:41:45.3217068Z   Downloading cloudpickle-3.1.2-py3-none-any.whl.metadata (7.1 kB)
+2026-10-15T03:41:45.3716677Z Collecting six>=1.5 (from python-dateutil>=2.8.2->pandas==2.2.3)
+2026-10-15T03:41:45.3875517Z   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+2026-10-15T03:41:45.4205796Z Downloading numpy-1.26.4-cp311-cp311-win_amd64.whl (15.8 MB)
+2026-10-15T03:41:45.6573181Z    ---------------------------------------- 15.8/15.8 MB 71.0 MB/s  0:00:00
+2026-10-15T03:41:45.6746157Z Downloading pandas-2.2.3-cp311-cp311-win_amd64.whl (11.6 MB)
+2026-10-15T03:41:45.8168288Z    ---------------------------------------- 11.6/11.6 MB 81.1 MB/s  0:00:00
+2026-10-15T03:41:45.8361851Z Downloading scipy-1.11.2-cp311-cp311-win_amd64.whl (44.0 MB)
+2026-10-15T03:41:46.6115491Z    ---------------------------------------- 44.0/44.0 MB 57.1 MB/s  0:00:00
+2026-10-15T03:41:46.6288860Z Downloading scikit_learn-1.3.0-cp311-cp311-win_amd64.whl (9.2 MB)
+2026-10-15T03:41:46.7712061Z    ---------------------------------------- 9.2/9.2 MB 63.8 MB/s  0:00:00
+2026-10-15T03:41:46.8010042Z Downloading matplotlib-3.9.2-cp311-cp311-win_amd64.whl (7.8 MB)
+2026-10-15T03:41:46.9216918Z    ---------------------------------------- 7.8/7.8 MB 60.5 MB/s  0:00:00
+2026-10-15T03:41:46.9416361Z Downloading PyYAML-6.0.2-cp311-cp311-win_amd64.whl (161 kB)
+2026-10-15T03:41:46.9772648Z Downloading setuptools-75.1.0-py3-none-any.whl (1.2 MB)
+2026-10-15T03:41:47.0146617Z    ---------------------------------------- 1.2/1.2 MB 31.8 MB/s  0:00:00
+2026-10-15T03:41:47.0309683Z Downloading wheel-0.45.1-py3-none-any.whl (72 kB)
+2026-10-15T03:41:47.0650688Z Downloading contourpy-1.3.3-cp311-cp311-win_amd64.whl (225 kB)
+2026-10-15T03:41:47.1009184Z Downloading cycler-0.12.1-py3-none-any.whl (8.3 kB)
+2026-10-15T03:41:47.1353995Z Downloading fonttools-4.67.0-cp311-cp311-win_amd64.whl (1.6 MB)
+2026-10-15T03:41:47.1699456Z    ---------------------------------------- 1.6/1.6 MB 43.3 MB/s  0:00:00
+2026-10-15T03:41:47.1853388Z Downloading joblib-1.6.0-py3-none-any.whl (306 kB)
+2026-10-15T03:41:47.2169548Z Downloading cloudpickle-3.1.2-py3-none-any.whl (22 kB)
+2026-10-15T03:41:47.2504494Z Downloading kiwisolver-1.5.1-cp311-cp311-win_amd64.whl (70 kB)
+2026-10-15T03:41:47.2838910Z Downloading packaging-26.3-py3-none-any.whl (129 kB)
+2026-10-15T03:41:47.3172245Z Downloading pillow-12.3.0-cp311-cp311-win_amd64.whl (7.2 MB)
+2026-10-15T03:41:47.4165763Z    ---------------------------------------- 7.2/7.2 MB 63.4 MB/s  0:00:00
+2026-10-15T03:41:47.4329271Z Downloading pyparsing-3.3.3-py3-none-any.whl (126 kB)
+2026-10-15T03:41:47.4710144Z Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+2026-10-15T03:41:47.5075503Z Downloading pytz-2026.5-py2.py3-none-any.whl (506 kB)
+2026-10-15T03:41:47.5435441Z Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+2026-10-15T03:41:47.5791831Z Downloading threadpoolctl-3.7.0-py3-none-any.whl (26 kB)
+2026-10-15T03:41:47.6156039Z Downloading tzdata-2026.5-py2.py3-none-any.whl (347 kB)
+2026-10-15T03:41:47.9765244Z Installing collected packages: pytz, wheel, tzdata, threadpoolctl, six, setuptools, PyYAML, pyparsing, pillow, packaging, numpy, kiwisolver, fonttools, cycler, cloudpickle, scipy, python-dateutil, joblib, contourpy, scikit-learn, pandas, matplotlib
+2026-10-15T03:41:48.9788561Z   Attempting uninstall: setuptools
+2026-10-15T03:41:48.9800888Z     Found existing installation: setuptools 65.5.0
+2026-10-15T03:41:49.2796237Z     Uninstalling setuptools-65.5.0:
+2026-10-15T03:41:49.3384845Z       Successfully uninstalled setuptools-65.5.0
+2026-10-15T03:42:12.2991656Z 
+2026-10-15T03:42:12.3002748Z Successfully installed PyYAML-6.0.2 cloudpickle-3.1.2 contourpy-1.3.3 cycler-0.12.1 fonttools-4.67.0 joblib-1.6.0 kiwisolver-1.5.1 matplotlib-3.9.2 numpy-1.26.4 packaging-26.3 pandas-2.2.3 pillow-12.3.0 pyparsing-3.3.3 python-dateutil-2.9.0.post0 pytz-2026.5 scikit-learn-1.3.0 scipy-1.11.2 setuptools-75.1.0 six-1.17.0 threadpoolctl-3.7.0 tzdata-2026.5 wheel-0.45.1
+2026-10-15T03:42:13.4959683Z Processing .\.
+2026-10-15T03:42:13.4974021Z   Preparing metadata (pyproject.toml): started
+2026-10-15T03:42:13.7276364Z   Preparing metadata (pyproject.toml): finished with status 'done'
+2026-10-15T03:42:13.7300976Z Building wheels for collected packages: open-predictive-expansion
+2026-10-15T03:42:13.7313875Z   Building wheel for open-predictive-expansion (pyproject.toml): started
+2026-10-15T03:42:13.9485047Z   Building wheel for open-predictive-expansion (pyproject.toml): finished with status 'done'
+2026-10-15T03:42:13.9517672Z   Created wheel for open-predictive-expansion: filename=open_predictive_expansion-0.1.0.dev0-py3-none-any.whl size=132212 sha256=ca59cb27c316c3e382f5524edce7f8211217fb19242c5bd0f39be00dc7608e0c
+2026-10-15T03:42:13.9519044Z   Stored in directory: C:\Users\runneradmin\AppData\Local\Temp\pip-ephem-wheel-cache-rbhl13c2\wheels\d7\fa\42\cef5441cca6128ac0c8fb2737846ca7a177f22761b1392d73c
+2026-10-15T03:42:13.9541758Z Successfully built open-predictive-expansion
+2026-10-15T03:42:13.9631766Z Installing collected packages: open-predictive-expansion
+2026-10-15T03:42:14.0900197Z Successfully installed open-predictive-expansion-0.1.0.dev0
+2026-10-15T03:42:14.2864187Z No broken requirements found.
+2026-10-15T03:42:15.5393692Z PASS 6f071a099f413f213ee03c18ffea2035c9d30b6925291a2df5e8b17278492bbe
+2026-10-15T03:42:15.8735633Z ##[group]Run actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+2026-10-15T03:42:15.8735879Z with:
+2026-10-15T03:42:15.8735994Z   pattern: qualification-continuation-*
+2026-10-15T03:42:15.8736132Z   path: inputs
+2026-10-15T03:42:15.8736237Z   merge-multiple: false
+2026-10-15T03:42:15.8736355Z   repository: imh-ds/open
+2026-10-15T03:42:15.8736472Z   run-id: 38676310704
+2026-10-15T03:42:15.8736571Z env:
+2026-10-15T03:42:15.8736664Z   OMP_NUM_THREADS: 1
+2026-10-15T03:42:15.8736770Z   OPENBLAS_NUM_THREADS: 1
+2026-10-15T03:42:15.8736882Z   MKL_NUM_THREADS: 1
+2026-10-15T03:42:15.8738335Z   GH_TOKEN: ***
+2026-10-15T03:42:15.8738484Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T03:42:15.8738726Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.11.9\x64/lib/pkgconfig
+2026-10-15T03:42:15.8738967Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T03:42:15.8739201Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T03:42:15.8739547Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T03:42:15.8739711Z ##[endgroup]
+2026-10-15T03:42:15.9941498Z (node:7688) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-15T03:42:15.9942091Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-15T03:42:16.1471522Z Found 39 artifact(s)
+2026-10-15T03:42:16.1489968Z Filtering artifacts by pattern 'qualification-continuation-*'
+2026-10-15T03:42:16.1490460Z Preparing to download the following artifacts:
+2026-10-15T03:42:16.1491012Z - qualification-continuation-25 (ID: 11946845359, Size: 5758915, Expected Digest: sha256:04d51d2f9f8cf04d3369b0db08e5149079708907ff7fbb46ab5003784c6b27ee)
+2026-10-15T03:42:16.1491858Z - qualification-continuation-47 (ID: 11946558561, Size: 2206954, Expected Digest: sha256:f4d903147d6625ca887c0722106449ffa4098ed502fa7697144667bad0a2721d)
+2026-10-15T03:42:16.1492709Z - qualification-continuation-22 (ID: 11946503054, Size: 1220540, Expected Digest: sha256:a20d79e43fc6fb375f4955382a26ca06f36de377b0315766ebb2b482b76c9c5d)
+2026-10-15T03:42:16.1493555Z - qualification-continuation-37 (ID: 11946458481, Size: 1506149, Expected Digest: sha256:f3fa14a7ee294e4bb4d0c5b57b551deba33f9ad4a31b33caf79d7c39f120a8a1)
+2026-10-15T03:42:16.1494496Z - qualification-continuation-authorization (ID: 11946447552, Size: 6269, Expected Digest: sha256:b0b8a7a7a92eb7f7e12307003181137a45df870ffd7f751d33219e3f95aaf5ea)
+2026-10-15T03:42:16.1495421Z - qualification-continuation-39 (ID: 11946443440, Size: 1751598, Expected Digest: sha256:70d812a1527ef41991a01b83162a13e6bc7e64ec619fdc7bb1079cf887f8a4d4)
+2026-10-15T03:42:16.1496287Z - qualification-continuation-29 (ID: 11946443012, Size: 1366878, Expected Digest: sha256:ee50d6e077cb94484d3b0b9b749718c0f6ea8f1a4110c1c5067fc01456378f25)
+2026-10-15T03:42:16.1497173Z - qualification-continuation-13 (ID: 11946423178, Size: 1458975, Expected Digest: sha256:807939189dc645618a3368f6bb5a2fba507bd590fc115de36eb1db1905759124)
+2026-10-15T03:42:16.1498064Z - qualification-continuation-4 (ID: 11946408119, Size: 1135458, Expected Digest: sha256:3831d492edb05e97f1c2134fcefc0ea3aa9e108fef0d48b59f43481f410db9a7)
+2026-10-15T03:42:16.1499009Z - qualification-continuation-24 (ID: 11946378147, Size: 1373681, Expected Digest: sha256:47fc7cf3ab406864c4bdee812c1a0b8020d380b3d7963e8cd3c8e216257cc1c4)
+2026-10-15T03:42:16.1499899Z - qualification-continuation-34 (ID: 11946358547, Size: 1701323, Expected Digest: sha256:002fd8c0fdcfb3dd6f3fbe679eae536d3654e6b82a7fe9f5daac444f2f7919ee)
+2026-10-15T03:42:16.1500738Z - qualification-continuation-5 (ID: 11946343072, Size: 1166842, Expected Digest: sha256:00c0bd9f8b2bb71c9447497dd920cd9b0eb1bed83a47c9c7fbd1b10f6c1ec9eb)
+2026-10-15T03:42:16.1501579Z - qualification-continuation-44 (ID: 11946323634, Size: 1725900, Expected Digest: sha256:ce308faef837ed3daeee446cd51b4d08e323c95efdedb2228111f4338179819b)
+2026-10-15T03:42:16.1507201Z - qualification-continuation-48 (ID: 11946313763, Size: 1665915, Expected Digest: sha256:64fa3fe5445a9f5d92ce5a38a267be6ff6e153ebd2deb1432679ab88c4a73478)
+2026-10-15T03:42:16.1507884Z - qualification-continuation-6 (ID: 11946313132, Size: 1184715, Expected Digest: sha256:8a4f0d13f0156683501a71899924fdb4c3f7d0af8e2ac2e5615d761f43347b0f)
+2026-10-15T03:42:16.1508653Z - qualification-continuation-55 (ID: 11946258848, Size: 1618529, Expected Digest: sha256:1a43c206fd99a71bdb0039deb01eed87d602bc31a59d0698aa85f1e544283036)
+2026-10-15T03:42:16.1509266Z - qualification-continuation-15 (ID: 11946158324, Size: 3193252, Expected Digest: sha256:794ccd364712e8f8f7045986054c925acf683525db11050b727bccb3f470c8a1)
+2026-10-15T03:42:16.1509786Z - qualification-continuation-23 (ID: 11946132910, Size: 2665982, Expected Digest: sha256:c34cdb043e863e5220e701dc6728a2d2cdbb411e77f9a6b5e7994c8333b8e87f)
+2026-10-15T03:42:16.1510468Z - qualification-continuation-26 (ID: 11946123094, Size: 1521836, Expected Digest: sha256:18d5d13a1c77d4aa7d6704ba2023d8518540e6d1fc875053e0e31a379567df88)
+2026-10-15T03:42:16.1511170Z - qualification-continuation-46 (ID: 11946083824, Size: 1241122, Expected Digest: sha256:8ccc16488bf36c451750319530fe709668d67ba3a539b7f302d18e5911c37e13)
+2026-10-15T03:42:16.1512022Z - qualification-continuation-19 (ID: 11946073153, Size: 1671421, Expected Digest: sha256:48fb9d66050b08f26680e238c29cb3fc32ab662ec87505fd91f5999ec515ea40)
+2026-10-15T03:42:16.1512834Z - qualification-continuation-45 (ID: 11946043714, Size: 1509061, Expected Digest: sha256:305726caf606b02422d010a75ef9948fe51a4d36dfa807fe96a593c1425d70d9)
+2026-10-15T03:42:16.1513662Z - qualification-continuation-27 (ID: 11946043241, Size: 1168837, Expected Digest: sha256:d6baef864fd64edc2940171955a48533d60145179e2b6e015eba6a6f1857ba2d)
+2026-10-15T03:42:16.1514467Z - qualification-continuation-12 (ID: 11946038198, Size: 1360283, Expected Digest: sha256:4c27b2a8ff3c3d2c4e582d7b41bfd3e7bf5f1cc8d219324062784a2e038ef355)
+2026-10-15T03:42:16.1515248Z - qualification-continuation-50 (ID: 11946018819, Size: 1869601, Expected Digest: sha256:aa5f73c692481b16883bb4f41c471be34c28b4f323ffd2dcf3961509c37c9805)
+2026-10-15T03:42:16.1516093Z - qualification-continuation-32 (ID: 11945938755, Size: 2131375, Expected Digest: sha256:a81d8d348a3a2abba8f16fb0eeab08d5ff7fcd9d174bfb448bfc327385afb470)
+2026-10-15T03:42:16.1516970Z - qualification-continuation-10 (ID: 11945938661, Size: 1261398, Expected Digest: sha256:38a0eb184e21e481d09318dfbb9ba2636a332340913d986b03f4144bccd73fa6)
+2026-10-15T03:42:16.1517798Z - qualification-continuation-14 (ID: 11945903949, Size: 2824272, Expected Digest: sha256:37679871e90d521a898110225b5f9d5fe5fb459a6c8e3d9c72fb03517b9907d8)
+2026-10-15T03:42:16.1518666Z - qualification-continuation-8 (ID: 11945894057, Size: 2334090, Expected Digest: sha256:0d22c6f8e187c8050e7c94ce916cacdfb9c8719de22b39001919c4179bc74a07)
+2026-10-15T03:42:16.1519487Z - qualification-continuation-51 (ID: 11945879613, Size: 1767933, Expected Digest: sha256:b1a317bd4f344a2cdd85fd25b23feefe93d87609e364bb25f70eed5834817925)
+2026-10-15T03:42:16.1520275Z - qualification-continuation-41 (ID: 11945804339, Size: 1111156, Expected Digest: sha256:94f3f1963255cd5ef1eece940945d0a734012a5c539b3b477592c4888107b0bf)
+2026-10-15T03:42:16.1521121Z - qualification-continuation-40 (ID: 11945774078, Size: 1409614, Expected Digest: sha256:3f3659356fde8730436623918901dc9e9a8ecfc3e301a22538d99d08360e235f)
+2026-10-15T03:42:16.1521997Z - qualification-continuation-9 (ID: 11945763930, Size: 1328245, Expected Digest: sha256:3daa686d0fdf88f3ca9016daa2c68db8f3c4bea0bf4b19f7b015e5a04baf8fbc)
+2026-10-15T03:42:16.1522519Z - qualification-continuation-16 (ID: 11945694085, Size: 1425540, Expected Digest: sha256:333060e23e9b28a92c14b8ecee2e052a1a06a9f654bf4b6eb013e86191689890)
+2026-10-15T03:42:16.1523186Z - qualification-continuation-33 (ID: 11945664473, Size: 1163564, Expected Digest: sha256:ec8778153af3df0f1de6b29c3aedfe66f87f80e7b514b115c95f15614fd35a56)
+2026-10-15T03:42:16.1532078Z - qualification-continuation-42 (ID: 11945664403, Size: 1280471, Expected Digest: sha256:402573bedf0646a3c831e31ddfae3d34ae01b03eb47dc83f9bc69103c130017b)
+2026-10-15T03:42:16.1532804Z - qualification-continuation-30 (ID: 11945539298, Size: 2319185, Expected Digest: sha256:320315769884a30e99e778be08ad9b650c6718eb12fb8aba7d76a8e4caf75de5)
+2026-10-15T03:42:16.1533321Z - qualification-continuation-20 (ID: 11945519181, Size: 1529870, Expected Digest: sha256:6a909b34e1ce4585410630fde5a46ffd71994f3174cc5a5981b647fbffd98495)
+2026-10-15T03:42:16.1533841Z - qualification-continuation-53 (ID: 11945514517, Size: 1177627, Expected Digest: sha256:9aa8afa77fcad7d1029a61c91c838ee0c2cc3677fa57d2656deb8534cd256c86)
+2026-10-15T03:42:16.3187364Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-ff1850b8-1a24-5e69-a417-820e7294a415/artifacts/90a820ec168c934bd17184c232d4c665c543ca06fa546ec623b848abf6cdd5aa.zip
+2026-10-15T03:42:16.3188223Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-47
+2026-10-15T03:42:16.3896937Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-4a70e190-901f-501d-9494-e53669069490/artifacts/7898690bb313957df826f73bf3d9c0157dfae1f9b711472a6aecf405b33f0e81.zip
+2026-10-15T03:42:16.3897638Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-33
+2026-10-15T03:42:16.3917972Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-918fd7be-d36a-5761-b5d5-1d2c35e09d45/artifacts/aa8a9b450c311114fdf16318e6076a7e8a9f7696c61b5c097dde7ae26f0fe521.zip
+2026-10-15T03:42:16.3918665Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-26
+2026-10-15T03:42:16.3925131Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-4c293009-ce23-5a8a-a3ac-7b58d104b209/artifacts/878f653305496fc4a81a07d23a7c05d1be31c2fcd18eee844c9e61c17a097596.zip
+2026-10-15T03:42:16.3926326Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-32
+2026-10-15T03:42:16.3980687Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-23ec5e4b-746d-561d-a6e3-7c5c2e292a4b/artifacts/3a5379e2aab457ec8081561644596f15d698d87ab05921edd7329f1fbc9265ba.zip
+2026-10-15T03:42:16.3981377Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-12
+2026-10-15T03:42:16.3986681Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-92d24fc5-35fa-500e-855b-fff8873e8862/artifacts/f9cc7f8797d70016c97f79d9513fe4dfdf7aeb79da71d6dfc78e4c247bc43fd3.zip
+2026-10-15T03:42:16.3987401Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-6
+2026-10-15T03:42:16.4000253Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-45781db0-af4b-5845-b686-32faf6005cba/artifacts/e646186b8f580c8468aa04692668753acb34675725523f584b7605b4fb044af9.zip
+2026-10-15T03:42:16.4000950Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-45
+2026-10-15T03:42:16.4006705Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-2e7d1ba5-200e-5820-9f78-dd8b0a418a70/artifacts/a5c07f624adcfad28124fefbbf9949caec0a29de6c754d3002bdc04f7297e944.zip
+2026-10-15T03:42:16.4007430Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-46
+2026-10-15T03:42:16.4058971Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-98e2b157-24bd-57ed-8425-26efcfa9f5c4/artifacts/466ed7539948bea6db2de8ec983d6bdd8549828e334020097b4ff9149090ffa2.zip
+2026-10-15T03:42:16.4060154Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-42
+2026-10-15T03:42:16.4066467Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-a60f73b5-281d-5b89-9219-e732b022bb9a/artifacts/639b78ed8dc16f8ea44f3f0b4d767e540b24159babf360136102b54760207258.zip
+2026-10-15T03:42:16.4067873Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-19
+2026-10-15T03:42:16.4100375Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-d4bac3b1-704f-5ad4-9a9f-bffdd51fe07e/artifacts/c07c37614992a758591fcfed15282d5d019615859cb3e0436c1aefcf70c9243e.zip
+2026-10-15T03:42:16.4102580Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-51
+2026-10-15T03:42:16.4131389Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-3e8630a3-079a-5d90-817e-2957bc1059e5/artifacts/fc600621a33ee3bf7d949c56d11d456d136d68c22637f36a508b572724fd6e6d.zip
+2026-10-15T03:42:16.4132109Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-4
+2026-10-15T03:42:16.4159371Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-479d66b5-bed3-59f2-aec7-2f90543294ba/artifacts/ed7edcd01859f321f446ac40c6e9b3e11579d4b3dd743358700bfa7f0b18e233.zip
+2026-10-15T03:42:16.4160115Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-16
+2026-10-15T03:42:16.4175931Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-db78a969-3500-524c-a32a-e82d93cadfc8/artifacts/77fcf9a77c2ef7720394ee571f7d49cc6e49c7c2110350b2b5d0dba007011552.zip
+2026-10-15T03:42:16.4176669Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-55
+2026-10-15T03:42:16.4184146Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-960be32b-eb36-5947-b8a8-20285e8ebc4d/artifacts/cfc3622edc1ebf5ec4c7f919f494901c48492a796b0b9efbc1e91541a0311f74.zip
+2026-10-15T03:42:16.4184878Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-39
+2026-10-15T03:42:16.4200581Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-0a312aae-9a8a-5011-a03f-2cb8ff3a8805/artifacts/dcb0d5d473a4b9f6f122afbd0ba225a1f95065040b8782118eaa2ce18c8a1c1d.zip
+2026-10-15T03:42:16.4201326Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-48
+2026-10-15T03:42:16.4221220Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-c78449dd-659b-5948-99d4-e14c6896ab4d/artifacts/6d3075a2febb953723550a4fc85630640c2c8e794562d51515e5d73fc087ddad.zip
+2026-10-15T03:42:16.4221955Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-50
+2026-10-15T03:42:16.4236527Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-3a4ed4c4-0af6-54a3-96dd-efe3c465594c/artifacts/218e4fbcf50584629fa940f7ea21edf032eed57f2c2eb478e3235b9aef9dd19a.zip
+2026-10-15T03:42:16.4237365Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-13
+2026-10-15T03:42:16.4244054Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-d26b48de-7f96-5332-b313-b97875a05155/artifacts/f3e743bb7df005cd7255442763cf08253c8dbbe145d3e22c22820e578263c8f9.zip
+2026-10-15T03:42:16.4244905Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-53
+2026-10-15T03:42:16.4251619Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-7ed4b1d1-a287-5c00-bfe0-8d7a93c12906/artifacts/f05be01f0af2d2949358767c83b1170e234304e33d4269c2c07272d9ee94e031.zip
+2026-10-15T03:42:16.4252373Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-14
+2026-10-15T03:42:16.4261526Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-270ae289-772a-5432-8032-d9001abfbed3/artifacts/a802b6c4374f08fe27038036a15efadea2ebcc0e7ae353b154f688f240664800.zip
+2026-10-15T03:42:16.4262515Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-5
+2026-10-15T03:42:16.4268939Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-1a997e8c-52a2-5171-9955-94c43daa656e/artifacts/daed89fff0603ede879100b80ebe1398a8d59fc7ea8802dc9801b008b0912f26.zip
+2026-10-15T03:42:16.4270215Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-22
+2026-10-15T03:42:16.4275069Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-402913e8-477e-5cb0-b853-f57fd3138b18/artifacts/e2b8dda165b9bb08df4dc9b586084a13997d40488a77279be0629f2c1693d7c4.zip
+2026-10-15T03:42:16.4275832Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-27
+2026-10-15T03:42:16.4285285Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-49f5cf1a-848a-5c79-b8be-b0d7f0f05c31/artifacts/c4ca1678d07e085efa46b00a271890ab7ad4293de1ae92298f8722eed606a603.zip
+2026-10-15T03:42:16.4286102Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-44
+2026-10-15T03:42:16.4291075Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-c4ad6115-1cab-508b-8bca-d22ce78c70ad/artifacts/c8a46e1a4c192adfb7f5a911e710395447a9aaaf6485f9cbe9a6ec22fc04e9db.zip
+2026-10-15T03:42:16.4291850Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-23
+2026-10-15T03:42:16.4298973Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-69c132de-7539-5b46-a36b-ac9f3dad63de/artifacts/0d4ccd618921f4377f7b83251fe0160aee7e6d078fc23fff507ba28fa814bf97.zip
+2026-10-15T03:42:16.4299742Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-10
+2026-10-15T03:42:16.4306617Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-ba050288-4c53-5e6f-9799-2f0479bb39ae/artifacts/54f3678d23af8d02aa90b197a6b1d09638825c9268ccbd596bf38dc9c5aaf164.zip
+2026-10-15T03:42:16.4307422Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-20
+2026-10-15T03:42:16.4327436Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-11d1387b-bc54-52dc-8613-94ba60366c0a/artifacts/f69cd2bebc3dd42c879b7392b6502eff1b77624becc512c61037ac865ccf44ee.zip
+2026-10-15T03:42:16.4329461Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-30
+2026-10-15T03:42:16.4351464Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-87297bc5-2ac4-5218-aedb-fe68ac55a9ae/artifacts/178723f805a6dbfe12557e3acb60d8851d77dd6473e12311f7cd628b6148ad1a.zip
+2026-10-15T03:42:16.4352265Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-41
+2026-10-15T03:42:16.4410801Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-810ca3df-a172-5747-a500-337b967c5fd7/artifacts/6bf7b3dbe5aa1a7f6bc1d72b9acf5110570e98d6f06d433e3eca2d7c7813c8ee.zip
+2026-10-15T03:42:16.4412142Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-29
+2026-10-15T03:42:16.4429179Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-16d79053-f009-5a29-abc0-629c0e7673ed/artifacts/11802108599d44ebe419748ab3567f86b7898076e70c56db758438e40716c19a.zip
+2026-10-15T03:42:16.4430093Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-9
+2026-10-15T03:42:16.4438883Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-f6e0aa7d-378c-5b14-b6ae-0cf1240c59a1/artifacts/71da8fe4c904b8c1755d93503aabf502ccb55c54b052e3b24283f1c1b1d34ddf.zip
+2026-10-15T03:42:16.4439723Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-37
+2026-10-15T03:42:16.4456486Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-21e25857-f217-5370-9ae5-3a38a6a2fb5d/artifacts/265b7be72531e7c3fa2b8b6c5c8e2ed9244279fd4e5f607a5ea72699226724ab.zip
+2026-10-15T03:42:16.4457941Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-15
+2026-10-15T03:42:16.4470591Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-1a2d7898-1336-5410-aacd-fad807b9a58d/artifacts/c4a22bebeefa154627ed6c29a947573d61dd992705ca4c99d013d4b9f4068fa5.zip
+2026-10-15T03:42:16.4471453Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-authorization
+2026-10-15T03:42:16.4485398Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-a8fbe110-baf6-5fce-b931-9e0edd233f0a/artifacts/9e963e05e104b33d966824bc664b13fab17a5fbb4b6821dde51b58e1311e9a13.zip
+2026-10-15T03:42:16.4486761Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-8
+2026-10-15T03:42:16.4492281Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-c0577ca0-64d2-5bb8-b569-3605c02abce4/artifacts/07553dd480afe0c84d254042cbd71ee4a1c0dd498ba52ee087c299599b81b5a5.zip
+2026-10-15T03:42:16.4493128Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-25
+2026-10-15T03:42:16.4582305Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-261ba9be-0999-56e5-b038-3abf1cc23567/artifacts/39c9667c1342adfce64f70dfc451ad8d636131545cbfeb8f8db0f3b00c3da97e.zip
+2026-10-15T03:42:16.4583714Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-40
+2026-10-15T03:42:16.4606850Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-ca3932a5-eca4-5424-abce-9ec57446aafc/artifacts/3e798645dcf3957c74e6d94354927439b9e78a20e96b62b69b155d4122aef0f5.zip
+2026-10-15T03:42:16.4607731Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-34
+2026-10-15T03:42:16.4661482Z Redirecting to blob download url: https://productionresultssa16.blob.core.windows.net/actions-results/678c0473-b917-46b7-8db8-779fef683988/workflow-job-run-bd67a805-10fe-53b7-9bfd-23b931f19600/artifacts/11a8eebd82edd9b3f17547a504e5a49d89afefd57beb4dae5d332e2ded6a8a1a.zip
+2026-10-15T03:42:16.4672184Z Starting download of artifact to: D:\a\open\open\inputs\qualification-continuation-24
+2026-10-15T03:42:16.4876369Z (node:7688) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-10-15T03:42:16.6328948Z SHA256 digest of downloaded artifact is b0b8a7a7a92eb7f7e12307003181137a45df870ffd7f751d33219e3f95aaf5ea
+2026-10-15T03:42:16.6329713Z Artifact download completed successfully.
+2026-10-15T03:42:16.7224142Z SHA256 digest of downloaded artifact is f4d903147d6625ca887c0722106449ffa4098ed502fa7697144667bad0a2721d
+2026-10-15T03:42:16.7224758Z Artifact download completed successfully.
+2026-10-15T03:42:16.8099431Z SHA256 digest of downloaded artifact is 94f3f1963255cd5ef1eece940945d0a734012a5c539b3b477592c4888107b0bf
+2026-10-15T03:42:16.8100663Z Artifact download completed successfully.
+2026-10-15T03:42:16.8291051Z SHA256 digest of downloaded artifact is 8a4f0d13f0156683501a71899924fdb4c3f7d0af8e2ac2e5615d761f43347b0f
+2026-10-15T03:42:16.8291792Z Artifact download completed successfully.
+2026-10-15T03:42:16.8730871Z SHA256 digest of downloaded artifact is a20d79e43fc6fb375f4955382a26ca06f36de377b0315766ebb2b482b76c9c5d
+2026-10-15T03:42:16.8732067Z Artifact download completed successfully.
+2026-10-15T03:42:16.8797446Z SHA256 digest of downloaded artifact is ec8778153af3df0f1de6b29c3aedfe66f87f80e7b514b115c95f15614fd35a56
+2026-10-15T03:42:16.8798253Z Artifact download completed successfully.
+2026-10-15T03:42:16.8881541Z SHA256 digest of downloaded artifact is 305726caf606b02422d010a75ef9948fe51a4d36dfa807fe96a593c1425d70d9
+2026-10-15T03:42:16.8882207Z Artifact download completed successfully.
+2026-10-15T03:42:16.8963640Z SHA256 digest of downloaded artifact is 70d812a1527ef41991a01b83162a13e6bc7e64ec619fdc7bb1079cf887f8a4d4
+2026-10-15T03:42:16.8964310Z Artifact download completed successfully.
+2026-10-15T03:42:16.8989082Z SHA256 digest of downloaded artifact is 333060e23e9b28a92c14b8ecee2e052a1a06a9f654bf4b6eb013e86191689890
+2026-10-15T03:42:16.8989754Z Artifact download completed successfully.
+2026-10-15T03:42:16.9178846Z SHA256 digest of downloaded artifact is 00c0bd9f8b2bb71c9447497dd920cd9b0eb1bed83a47c9c7fbd1b10f6c1ec9eb
+2026-10-15T03:42:16.9191749Z Artifact download completed successfully.
+2026-10-15T03:42:16.9208457Z SHA256 digest of downloaded artifact is f3fa14a7ee294e4bb4d0c5b57b551deba33f9ad4a31b33caf79d7c39f120a8a1
+2026-10-15T03:42:16.9209155Z Artifact download completed successfully.
+2026-10-15T03:42:16.9361009Z SHA256 digest of downloaded artifact is 3831d492edb05e97f1c2134fcefc0ea3aa9e108fef0d48b59f43481f410db9a7
+2026-10-15T03:42:16.9361548Z Artifact download completed successfully.
+2026-10-15T03:42:16.9406783Z SHA256 digest of downloaded artifact is b1a317bd4f344a2cdd85fd25b23feefe93d87609e364bb25f70eed5834817925
+2026-10-15T03:42:16.9407446Z Artifact download completed successfully.
+2026-10-15T03:42:16.9408082Z SHA256 digest of downloaded artifact is 38a0eb184e21e481d09318dfbb9ba2636a332340913d986b03f4144bccd73fa6
+2026-10-15T03:42:16.9408736Z Artifact download completed successfully.
+2026-10-15T03:42:16.9421420Z SHA256 digest of downloaded artifact is 3daa686d0fdf88f3ca9016daa2c68db8f3c4bea0bf4b19f7b015e5a04baf8fbc
+2026-10-15T03:42:16.9421882Z Artifact download completed successfully.
+2026-10-15T03:42:16.9447432Z SHA256 digest of downloaded artifact is 48fb9d66050b08f26680e238c29cb3fc32ab662ec87505fd91f5999ec515ea40
+2026-10-15T03:42:16.9448607Z Artifact download completed successfully.
+2026-10-15T03:42:16.9456128Z SHA256 digest of downloaded artifact is 9aa8afa77fcad7d1029a61c91c838ee0c2cc3677fa57d2656deb8534cd256c86
+2026-10-15T03:42:16.9456792Z Artifact download completed successfully.
+2026-10-15T03:42:16.9476336Z SHA256 digest of downloaded artifact is ce308faef837ed3daeee446cd51b4d08e323c95efdedb2228111f4338179819b
+2026-10-15T03:42:16.9476925Z Artifact download completed successfully.
+2026-10-15T03:42:16.9534842Z SHA256 digest of downloaded artifact is aa5f73c692481b16883bb4f41c471be34c28b4f323ffd2dcf3961509c37c9805
+2026-10-15T03:42:16.9535673Z Artifact download completed successfully.
+2026-10-15T03:42:16.9602687Z SHA256 digest of downloaded artifact is 002fd8c0fdcfb3dd6f3fbe679eae536d3654e6b82a7fe9f5daac444f2f7919ee
+2026-10-15T03:42:16.9603385Z Artifact download completed successfully.
+2026-10-15T03:42:16.9659562Z SHA256 digest of downloaded artifact is d6baef864fd64edc2940171955a48533d60145179e2b6e015eba6a6f1857ba2d
+2026-10-15T03:42:16.9660378Z Artifact download completed successfully.
+2026-10-15T03:42:16.9717794Z SHA256 digest of downloaded artifact is 3f3659356fde8730436623918901dc9e9a8ecfc3e301a22538d99d08360e235f
+2026-10-15T03:42:16.9718911Z Artifact download completed successfully.
+2026-10-15T03:42:16.9725134Z SHA256 digest of downloaded artifact is 18d5d13a1c77d4aa7d6704ba2023d8518540e6d1fc875053e0e31a379567df88
+2026-10-15T03:42:16.9725764Z Artifact download completed successfully.
+2026-10-15T03:42:16.9748763Z SHA256 digest of downloaded artifact is 64fa3fe5445a9f5d92ce5a38a267be6ff6e153ebd2deb1432679ab88c4a73478
+2026-10-15T03:42:16.9749241Z Artifact download completed successfully.
+2026-10-15T03:42:16.9824126Z SHA256 digest of downloaded artifact is 320315769884a30e99e778be08ad9b650c6718eb12fb8aba7d76a8e4caf75de5
+2026-10-15T03:42:16.9824711Z Artifact download completed successfully.
+2026-10-15T03:42:16.9955915Z SHA256 digest of downloaded artifact is a81d8d348a3a2abba8f16fb0eeab08d5ff7fcd9d174bfb448bfc327385afb470
+2026-10-15T03:42:16.9956600Z Artifact download completed successfully.
+2026-10-15T03:42:16.9970880Z SHA256 digest of downloaded artifact is c34cdb043e863e5220e701dc6728a2d2cdbb411e77f9a6b5e7994c8333b8e87f
+2026-10-15T03:42:16.9971296Z Artifact download completed successfully.
+2026-10-15T03:42:17.0039854Z SHA256 digest of downloaded artifact is 37679871e90d521a898110225b5f9d5fe5fb459a6c8e3d9c72fb03517b9907d8
+2026-10-15T03:42:17.0040267Z Artifact download completed successfully.
+2026-10-15T03:42:17.0161944Z SHA256 digest of downloaded artifact is 1a43c206fd99a71bdb0039deb01eed87d602bc31a59d0698aa85f1e544283036
+2026-10-15T03:42:17.0162432Z Artifact download completed successfully.
+2026-10-15T03:42:17.0372152Z SHA256 digest of downloaded artifact is 794ccd364712e8f8f7045986054c925acf683525db11050b727bccb3f470c8a1
+2026-10-15T03:42:17.0372626Z Artifact download completed successfully.
+2026-10-15T03:42:17.0812218Z SHA256 digest of downloaded artifact is 4c27b2a8ff3c3d2c4e582d7b41bfd3e7bf5f1cc8d219324062784a2e038ef355
+2026-10-15T03:42:17.0812794Z Artifact download completed successfully.
+2026-10-15T03:42:17.2562417Z SHA256 digest of downloaded artifact is 807939189dc645618a3368f6bb5a2fba507bd590fc115de36eb1db1905759124
+2026-10-15T03:42:17.2563108Z Artifact download completed successfully.
+2026-10-15T03:42:17.3296407Z SHA256 digest of downloaded artifact is 47fc7cf3ab406864c4bdee812c1a0b8020d380b3d7963e8cd3c8e216257cc1c4
+2026-10-15T03:42:17.3296848Z Artifact download completed successfully.
+2026-10-15T03:42:17.4572106Z SHA256 digest of downloaded artifact is 6a909b34e1ce4585410630fde5a46ffd71994f3174cc5a5981b647fbffd98495
+2026-10-15T03:42:17.4573051Z Artifact download completed successfully.
+2026-10-15T03:42:17.4749975Z SHA256 digest of downloaded artifact is 402573bedf0646a3c831e31ddfae3d34ae01b03eb47dc83f9bc69103c130017b
+2026-10-15T03:42:17.4750404Z Artifact download completed successfully.
+2026-10-15T03:42:17.5036524Z SHA256 digest of downloaded artifact is ee50d6e077cb94484d3b0b9b749718c0f6ea8f1a4110c1c5067fc01456378f25
+2026-10-15T03:42:17.5036960Z Artifact download completed successfully.
+2026-10-15T03:42:17.6243178Z SHA256 digest of downloaded artifact is 8ccc16488bf36c451750319530fe709668d67ba3a539b7f302d18e5911c37e13
+2026-10-15T03:42:17.6243615Z Artifact download completed successfully.
+2026-10-15T03:42:17.7113568Z SHA256 digest of downloaded artifact is 0d22c6f8e187c8050e7c94ce916cacdfb9c8719de22b39001919c4179bc74a07
+2026-10-15T03:42:17.7113998Z Artifact download completed successfully.
+2026-10-15T03:42:17.8844866Z SHA256 digest of downloaded artifact is 04d51d2f9f8cf04d3369b0db08e5149079708907ff7fbb46ab5003784c6b27ee
+2026-10-15T03:42:17.8845276Z Artifact download completed successfully.
+2026-10-15T03:42:17.8845956Z Total of 39 artifact(s) downloaded
+2026-10-15T03:42:17.8851837Z Download artifact has finished successfully
+2026-10-15T03:42:17.9119441Z ##[group]Run actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+2026-10-15T03:42:17.9119996Z with:
+2026-10-15T03:42:17.9122034Z   github-token: ***
+2026-10-15T03:42:17.9122283Z   run-id: 38655036215
+2026-10-15T03:42:17.9122521Z   pattern: qualification-noise-*
+2026-10-15T03:42:17.9122920Z   path: producer-inputs
+2026-10-15T03:42:17.9123242Z   merge-multiple: false
+2026-10-15T03:42:17.9123628Z   repository: imh-ds/open
+2026-10-15T03:42:17.9123871Z env:
+2026-10-15T03:42:17.9124071Z   OMP_NUM_THREADS: 1
+2026-10-15T03:42:17.9124293Z   OPENBLAS_NUM_THREADS: 1
+2026-10-15T03:42:17.9124518Z   MKL_NUM_THREADS: 1
+2026-10-15T03:42:17.9126008Z   GH_TOKEN: ***
+2026-10-15T03:42:17.9126282Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T03:42:17.9126810Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.11.9\x64/lib/pkgconfig
+2026-10-15T03:42:17.9127183Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T03:42:17.9127615Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T03:42:17.9128036Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T03:42:17.9128323Z ##[endgroup]
+2026-10-15T03:42:18.0244813Z Fetching artifact list for workflow run 38655036215 in repository imh-ds/open
+2026-10-15T03:42:18.0288410Z (node:7360) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-15T03:42:18.0289401Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-15T03:42:18.0557768Z (node:7360) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-15T03:42:18.2791527Z Found 100 artifact(s)
+2026-10-15T03:42:18.2792123Z Filtering artifacts by pattern 'qualification-noise-*'
+2026-10-15T03:42:18.2805591Z Preparing to download the following artifacts:
+2026-10-15T03:42:18.2806526Z - qualification-noise-audit (ID: 11939772055, Size: 56978, Expected Digest: sha256:07c8daa9f037ab2843c9005e61b97d79ef535e34c406ae3767e4e3c2e4ad6619)
+2026-10-15T03:42:18.2807746Z - qualification-noise-134 (ID: 11939540304, Size: 7678671, Expected Digest: sha256:eba11cbd49cb96cdc4013eeac298a64ede5af3e1386739ea83e74d6507e38525)
+2026-10-15T03:42:18.2808581Z - qualification-noise-126 (ID: 11939420104, Size: 7348061, Expected Digest: sha256:e6f9f9f276fdc0e04ec27ca666b1703439673973c8e57cbe76d5ef974bef3c51)
+2026-10-15T03:42:18.2809219Z - qualification-noise-125 (ID: 11939250071, Size: 7075612, Expected Digest: sha256:c4f6a3d9e950a0c1f8f75a09c2e24a2810e4437e2f4e0206bac603387308811c)
+2026-10-15T03:42:18.2810147Z - qualification-noise-115 (ID: 11939165178, Size: 6959440, Expected Digest: sha256:666ccfbbf3268f020a95f026fdbbd8f2e895001656e07efc863c2bc9c8dc9434)
+2026-10-15T03:42:18.2811137Z - qualification-noise-123 (ID: 11939150339, Size: 8060897, Expected Digest: sha256:1b96cef9d106e24ca1dd63d9cdf9cddb39ab309f6eeddba08f395e8dfc901943)
+2026-10-15T03:42:18.2812104Z - qualification-noise-132 (ID: 11939146614, Size: 7166500, Expected Digest: sha256:2e9892efd895e57cf9bb842ffe8169c972c713d0642aba7e2ed11c1037d3d46b)
+2026-10-15T03:42:18.2813059Z - qualification-noise-117 (ID: 11939035506, Size: 6989772, Expected Digest: sha256:e0f72801e02b2f98855fcb833d659490c92eb09268e7a472d56a3d8286a4bbbe)
+2026-10-15T03:42:18.2813911Z - qualification-noise-131 (ID: 11938888658, Size: 6991747, Expected Digest: sha256:4f8a4a33b72670e7f294ab8218299aa38d5dbc76e44b456c733f6d53dee2dc73)
+2026-10-15T03:42:18.2814541Z - qualification-noise-124 (ID: 11938877348, Size: 6987603, Expected Digest: sha256:d97d5a281cfdc6b882d6884c5bc573109ed04fa5d765fd1e62b230a540b55a73)
+2026-10-15T03:42:18.2815179Z - qualification-noise-128 (ID: 11938867595, Size: 6884265, Expected Digest: sha256:6de48ca33d18ebade847b4d558a6361d26db7afa6d562a42ea7b7daefe460b80)
+2026-10-15T03:42:18.2819353Z - qualification-noise-103 (ID: 11938835801, Size: 7440215, Expected Digest: sha256:4d9f395273816e5829b4d97f7aa72046c867673f8bc13e2aeb7d60c05df3afc7)
+2026-10-15T03:42:18.2820437Z - qualification-noise-135 (ID: 11938832473, Size: 6862282, Expected Digest: sha256:c5a6fab483ed9afde4305adc6224fe2b4c0768aba387fdfdd2b8e5e2a55e977d)
+2026-10-15T03:42:18.2821117Z - qualification-noise-114 (ID: 11938791974, Size: 7075846, Expected Digest: sha256:bf0108a7ae30805cb948c33cd4b15e97d33d72ba9acd59b51d8183233ef1b45a)
+2026-10-15T03:42:18.2821866Z - qualification-noise-113 (ID: 11938777469, Size: 7219510, Expected Digest: sha256:8d12f57a834130d9cc4750240688e4b1bc75aa542d2229fc7ce59286aad1546c)
+2026-10-15T03:42:18.2822620Z - qualification-noise-96 (ID: 11938770305, Size: 7629919, Expected Digest: sha256:275a63ccc06c625d938ae8cd995663eb2216df3cc572920a3c0c63bf1ab0353f)
+2026-10-15T03:42:18.2823833Z - qualification-noise-111 (ID: 11938741694, Size: 6878561, Expected Digest: sha256:afe92a31347f85a3e42c7fc659fe0c3e112ea720b9c7dc6cba15d857fa4593fd)
+2026-10-15T03:42:18.2824603Z - qualification-noise-102 (ID: 11938720453, Size: 7272545, Expected Digest: sha256:dfb08bd789a6b74a95f53319119dc73beeff1e1572b49737361c241e33c792df)
+2026-10-15T03:42:18.2835081Z - qualification-noise-98 (ID: 11938695611, Size: 7023956, Expected Digest: sha256:9661d73f67617745a2fe9922d35c38d0a45c59b78a101c0939820202f60379c5)
+2026-10-15T03:42:18.2836264Z - qualification-noise-112 (ID: 11938631796, Size: 8043560, Expected Digest: sha256:e7d5b8ec8647d8dfc4a1a7e4b677c6ff3c5b14e726019549903d21face82a28e)
+2026-10-15T03:42:18.2837413Z - qualification-noise-133 (ID: 11938614068, Size: 6924734, Expected Digest: sha256:bc9b025af98b3caa09622cf23fcce3ac71a9752b81f597d4a015e38529477a30)
+2026-10-15T03:42:18.2838549Z - qualification-noise-130 (ID: 11938594681, Size: 7029963, Expected Digest: sha256:e0090bd6e9e09dbd70eff2b77ad5b5525f23b721e8a51b901c94b3572cf48764)
+2026-10-15T03:42:18.2839583Z - qualification-noise-94 (ID: 11938550743, Size: 7051692, Expected Digest: sha256:866f3000bb6895412e987200ea2d274caf150d73f390f52b3d5fbca247d28dda)
+2026-10-15T03:42:18.2840625Z - qualification-noise-95 (ID: 11938481776, Size: 6746460, Expected Digest: sha256:944002dcb6aca4c6e1783b45df5f90723bdf66925c46961295c4ad971160a5fb)
+2026-10-15T03:42:18.2841673Z - qualification-noise-99 (ID: 11938452105, Size: 8330318, Expected Digest: sha256:88ce83e5be968bb993dd5e02d6f540512e2f83e7efaf1ab1322ec9a018376b80)
+2026-10-15T03:42:18.2842748Z - qualification-noise-121 (ID: 11938439087, Size: 7358982, Expected Digest: sha256:0a3ea34eb92055d5ac5c2dd4119b511702880a9195a211c516e81daf10863cab)
+2026-10-15T03:42:18.2843623Z - qualification-noise-109 (ID: 11938438223, Size: 7321564, Expected Digest: sha256:7fb0be121b7cf926c03cecc9affafeca496cc4ea4a715c9a9acbfd725b5fd95b)
+2026-10-15T03:42:18.2844445Z - qualification-noise-104 (ID: 11938427777, Size: 7522200, Expected Digest: sha256:56deb77fe21ef56c38035744dd5423007ac5dfcdfc44739b306433d5ceba1020)
+2026-10-15T03:42:18.2845247Z - qualification-noise-110 (ID: 11938423441, Size: 7348634, Expected Digest: sha256:9b5188976731a87fc515ba0be652fa53a302d1dbeff8e65dda28e71d1bc6a540)
+2026-10-15T03:42:18.2845871Z - qualification-noise-116 (ID: 11938419224, Size: 7043643, Expected Digest: sha256:1bf1f8e2fc9e903602e8af2ec87c0ead28412c4010d0ac1617adb9fc91ad27f4)
+2026-10-15T03:42:18.2846506Z - qualification-noise-120 (ID: 11938409408, Size: 7017575, Expected Digest: sha256:f64fdfea4168e449a074fc141bc30fc17abf9ddf43b2d538597aec1e1e217714)
+2026-10-15T03:42:18.2847131Z - qualification-noise-84 (ID: 11938405732, Size: 7128544, Expected Digest: sha256:75719f1769783883c50e4d1856bbbc4342bf436be1b5d1b712e71840117ac8c1)
+2026-10-15T03:42:18.2847932Z - qualification-noise-86 (ID: 11938400234, Size: 7490513, Expected Digest: sha256:d9f0107c6daf6ef4804c5503c325a6d78bddc4056d71658f41666801577804ae)
+2026-10-15T03:42:18.2848663Z - qualification-noise-47 (ID: 11938275315, Size: 1886250, Expected Digest: sha256:e240c6ba9df1ac5191d2c4cec9d326b13e161b3d6e7ddeb91e4bf0ee84290a77)
+2026-10-15T03:42:18.2850251Z - qualification-noise-127 (ID: 11938244113, Size: 6908281, Expected Digest: sha256:934aac68916dcd4937a3f9aa519974395b88db35d7f6a5da58720deb39a0069e)
+2026-10-15T03:42:18.2851294Z - qualification-noise-89 (ID: 11938226982, Size: 7164077, Expected Digest: sha256:60e620d3e80fc50657aa8372e1d79d6553822de9012497597ea177aefbb4e394)
+2026-10-15T03:42:18.2852366Z - qualification-noise-93 (ID: 11938217489, Size: 6916516, Expected Digest: sha256:75bf08d81d66caedcd0cf0974c036c6905ac04eb45b313d770c25e7d36c20c6e)
+2026-10-15T03:42:18.2853374Z - qualification-noise-97 (ID: 11938191905, Size: 7538507, Expected Digest: sha256:be38899931de9fca8c605fd1a0eefa8188694dcfeb0d7945a276347744bdda6e)
+2026-10-15T03:42:18.2854448Z - qualification-noise-106 (ID: 11938152211, Size: 7522446, Expected Digest: sha256:a6a172c866afb33a9976407ee1c3f0f934a1d4a96ab45bfa3cc9f6c437d81b95)
+2026-10-15T03:42:18.2855498Z - qualification-noise-44 (ID: 11938125049, Size: 1474900, Expected Digest: sha256:0247656e6ae43d1f2724104c6012bc9e18aff8611990397f4c4343a72bf66f82)
+2026-10-15T03:42:18.2856497Z - qualification-noise-107 (ID: 11938109035, Size: 7876679, Expected Digest: sha256:4700739a1e762d56b300ebc42183d129f01d1bdaff520d64500dd90f696d478d)
+2026-10-15T03:42:18.2857567Z - qualification-noise-81 (ID: 11938071315, Size: 7517008, Expected Digest: sha256:701bfbce537ff082a9397198ea69f863e666956bf12e7be73c2d8dbf2dd10648)
+2026-10-15T03:42:18.2858628Z - qualification-noise-105 (ID: 11938068339, Size: 6795353, Expected Digest: sha256:02059ccfcf894bf7d9f7cef0e0d471e553d5a06486a4a5d0305f01dc726218d5)
+2026-10-15T03:42:18.2859626Z - qualification-noise-90 (ID: 11938026710, Size: 7095100, Expected Digest: sha256:0073c05d22b8347c6a9aab05ac98c59d9109fd236bd06ca767cb516fa5aea933)
+2026-10-15T03:42:18.2860671Z - qualification-noise-129 (ID: 11937983746, Size: 7272548, Expected Digest: sha256:00a1f8815fdf663f2d039ee8f8846899991ed937d5bedf8aeafc696a90ceb750)
+2026-10-15T03:42:18.2861708Z - qualification-noise-122 (ID: 11937982949, Size: 6921567, Expected Digest: sha256:801477ef5eb5dd9b33e7c073eb6cf22ba9dff11044ed922162458d821a9638cc)
+2026-10-15T03:42:18.2862698Z - qualification-noise-82 (ID: 11937951659, Size: 7373467, Expected Digest: sha256:f91c553751cb40d11ea78d195253a1575e6bee44a24c729a177155fe18fb3617)
+2026-10-15T03:42:18.2863703Z - qualification-noise-119 (ID: 11937934259, Size: 6664563, Expected Digest: sha256:a45483d8bd151d912d69269f5a07b169536bba23408ace2bbc9955e473371ce1)
+2026-10-15T03:42:18.2864716Z - qualification-noise-92 (ID: 11937907804, Size: 6982125, Expected Digest: sha256:ca8c510ceb462075d5af869a573cc76900d792d253be8da7840912304ee70783)
+2026-10-15T03:42:18.2865755Z - qualification-noise-100 (ID: 11937902872, Size: 6886755, Expected Digest: sha256:acf3fcbeb01e0f622b2cac441ea6043a1a8e96d021627e026df8f2cdc7f9f066)
+2026-10-15T03:42:18.2866759Z - qualification-noise-53 (ID: 11937781247, Size: 985190, Expected Digest: sha256:0851840add8622312a1955a18334cb369e4e32ea54a4fbe8e47d5e843c392182)
+2026-10-15T03:42:18.2867792Z - qualification-noise-118 (ID: 11937773865, Size: 7450389, Expected Digest: sha256:8d9d7c9f7d1466ad10e88a7feb2496c2af67930367c2162a8226aa4349b9b7a6)
+2026-10-15T03:42:18.2868886Z - qualification-noise-83 (ID: 11937737040, Size: 7187278, Expected Digest: sha256:da26b6f8ac9a52265436501ced421f6760abc852216186e1638aa54812467679)
+2026-10-15T03:42:18.2869884Z - qualification-noise-108 (ID: 11937727781, Size: 6986424, Expected Digest: sha256:a77c7c5a172ae08728fd96a59fe567a3531f12db9a635e85ce08ddbfc8eeddc2)
+2026-10-15T03:42:18.2870940Z - qualification-noise-51 (ID: 11937721123, Size: 1442500, Expected Digest: sha256:bb596fd3981fe905c3f4ef65835fc7ecccdb39b51d5acf3c51e881064a2e0ccd)
+2026-10-15T03:42:18.2871912Z - qualification-noise-45 (ID: 11937720537, Size: 1285843, Expected Digest: sha256:a3a4871e01177c3cb2afd7f8f1e5326c7098d345ab51ed7b9b7616ef5fff65f4)
+2026-10-15T03:42:18.2872888Z - qualification-noise-88 (ID: 11937682485, Size: 7021416, Expected Digest: sha256:0d830004c9f1c21cd5a4f7e1ba52b572e498972f212f5f88a6f899bb2d240438)
+2026-10-15T03:42:18.2873980Z - qualification-noise-101 (ID: 11937647949, Size: 7265175, Expected Digest: sha256:5802eaae828c116cce1467516f70e890bebfeb25d9e1e98f38fdf27f522cbe61)
+2026-10-15T03:42:18.2875528Z - qualification-noise-37 (ID: 11937636593, Size: 1279428, Expected Digest: sha256:ac50ec8ba00d04e6dc0876fabfad97b3c227274ae62d93f6fb5dbb3ad0e66ac8)
+2026-10-15T03:42:18.2876606Z - qualification-noise-85 (ID: 11937624173, Size: 6619774, Expected Digest: sha256:0f11166a45b765a222dbb5aa0690495c720431f0d051f9c60c97bc7b076d6583)
+2026-10-15T03:42:18.2877261Z - qualification-noise-39 (ID: 11937606961, Size: 1454021, Expected Digest: sha256:6b1a51e1c1804b2a9fb5b6639fe8d71b8c19429e5a058a51d42cb49a0d2d4037)
+2026-10-15T03:42:18.2878174Z - qualification-noise-31 (ID: 11937576093, Size: 1145323, Expected Digest: sha256:50f73246955c986dc21336e5a33f026ac2f5a150fd563c94c5742136f1a6841c)
+2026-10-15T03:42:18.2879309Z - qualification-noise-87 (ID: 11937564665, Size: 6679923, Expected Digest: sha256:877a10c17fef292abe3b2dcd85c53128f50b9dcad46492b5238b198b03240ce1)
+2026-10-15T03:42:18.2880454Z - qualification-noise-2 (ID: 11937560222, Size: 2144172, Expected Digest: sha256:e89eba6fd339fa738b14dd8a1e295d9780bd51cf9f913e7fadbe34af9c3e40bb)
+2026-10-15T03:42:18.2881600Z - qualification-noise-27 (ID: 11937476783, Size: 984032, Expected Digest: sha256:4e6a994a5e324b9e8b53e7b6b2b4e40b18be21f63a995edb3e3f80d184af39e0)
+2026-10-15T03:42:18.2882751Z - qualification-noise-9 (ID: 11937426048, Size: 1125570, Expected Digest: sha256:24d461a271a1ae5f8e11eaf28029053509e619149a10d95def4a91337f39c51a)
+2026-10-15T03:42:18.2883889Z - qualification-noise-32 (ID: 11937392069, Size: 2064815, Expected Digest: sha256:dc99c860f9792807dcc2aa0b18d1f01edbe8dad64e30a6f0c7948db9bd9521be)
+2026-10-15T03:42:18.2885035Z - qualification-noise-15 (ID: 11937375799, Size: 2592983, Expected Digest: sha256:74d0c5ed9c4aec53a0ac02fa0ebe0f5889897e47041f4cede245a2b747a3325a)
+2026-10-15T03:42:18.2886157Z - qualification-noise-12 (ID: 11937345867, Size: 1143226, Expected Digest: sha256:8631a35f30a893eb95363316bb67a5a28dc98f8b160f1a12def79114aa5a1de6)
+2026-10-15T03:42:18.2886958Z - qualification-noise-20 (ID: 11937331211, Size: 1296431, Expected Digest: sha256:7e03127ab4d236a90224c688a14f4f4d7142bbb3b471b59b3b3db40f9b2a2700)
+2026-10-15T03:42:18.2887886Z - qualification-noise-13 (ID: 11937325848, Size: 1202895, Expected Digest: sha256:43da5c93586ddd78ee92f842a17e76cd09c1080ed953ed1555700f87675a7f1a)
+2026-10-15T03:42:18.2889005Z - qualification-noise-14 (ID: 11937310920, Size: 2412789, Expected Digest: sha256:133b4a518b65fe3e576ce3327f5a98965594bb397ec9329635cecce8c1fd9b85)
+2026-10-15T03:42:18.2890146Z - qualification-noise-46 (ID: 11937303465, Size: 1038437, Expected Digest: sha256:0961777517e9869ea0391ea144b12663550319a2b23c7cb7799fdda027b88148)
+2026-10-15T03:42:18.2891238Z - qualification-noise-21 (ID: 11937261824, Size: 1870586, Expected Digest: sha256:bc850d9a6218fa7fab34c20f43ff14f22a73bd2164943a550b019ecdcbe0eac9)
+2026-10-15T03:42:18.2892345Z - qualification-noise-48 (ID: 11937253570, Size: 1402236, Expected Digest: sha256:81e265485ffdc2ecb673c96b8ffbe0f4b06e0701db905a442eddb30ef4e233c4)
+2026-10-15T03:42:18.2893459Z - qualification-noise-54 (ID: 11937229716, Size: 1199259, Expected Digest: sha256:67efb7be9ae47dbd2849a32207de7e7ddba4c90ba8fd9e313550e1d0b44b2eb7)
+2026-10-15T03:42:18.2894482Z - qualification-noise-55 (ID: 11937209152, Size: 1381947, Expected Digest: sha256:0d7284c60b502de7447719db5e68f26f2fd3b6ddcedf1bf66d6338ff303228dd)
+2026-10-15T03:42:18.2895418Z - qualification-noise-25 (ID: 11937198032, Size: 3568889, Expected Digest: sha256:f92ead939f477ee4df888bfa0490ae2bbc17de728a732ed5ff4bebdfd8632340)
+2026-10-15T03:42:18.2896047Z - qualification-noise-10 (ID: 11937196530, Size: 1002920, Expected Digest: sha256:b67492ec67fc0978a8cf7de7e57138620d770e492909071b079e4e66641953cf)
+2026-10-15T03:42:18.2896683Z - qualification-noise-11 (ID: 11937165547, Size: 1982772, Expected Digest: sha256:cdb4fa26a73b396283fdf25d9a570da4f6835917e54fb8dbe62aa0c280ffd618)
+2026-10-15T03:42:18.2897492Z - qualification-noise-91 (ID: 11937164704, Size: 6967130, Expected Digest: sha256:244e0a389c31ef170b716103b1d3898a5067e0c3b63998b45a11070d8a3bfb0c)
+2026-10-15T03:42:18.2898717Z - qualification-noise-34 (ID: 11937113745, Size: 1431839, Expected Digest: sha256:97ec8d928b893e80e77878b6886e634119c676df3df8fb37ed4baf61c1e39fb4)
+2026-10-15T03:42:18.2899902Z - qualification-noise-33 (ID: 11937107794, Size: 967930, Expected Digest: sha256:522f7ec9db91101c741f5c4d180ea375b23c599ea931e992dd6f80e12925719c)
+2026-10-15T03:42:18.2901017Z - qualification-noise-3 (ID: 11937100996, Size: 2188861, Expected Digest: sha256:6a2ccaee44f33247ea9b7845367a70c14a54977fb972adbe26c4a7144434267f)
+2026-10-15T03:42:18.2902170Z - qualification-noise-18 (ID: 11937065659, Size: 1438005, Expected Digest: sha256:01cc0d3f32cb0b94e185194679e59185cc7dda4ba3fedb09facb50b60815808a)
+2026-10-15T03:42:18.2903311Z - qualification-noise-8 (ID: 11937016925, Size: 1913628, Expected Digest: sha256:983509a4dd5d6498bd8845bee2da1bb9d8ac6f5460f5f9f718cf2e84ca24fdeb)
+2026-10-15T03:42:18.2904333Z - qualification-noise-4 (ID: 11937012071, Size: 939801, Expected Digest: sha256:d29d739237ba0c1a571df6be3d44264a47801f79e05d69752833e5d74b8f3463)
+2026-10-15T03:42:18.2905385Z - qualification-noise-35 (ID: 11937003544, Size: 1037228, Expected Digest: sha256:d1a6647ffaca06ef9e0e59792c76137efdba4cbb41cca55814192893739685ee)
+2026-10-15T03:42:18.2906494Z - qualification-noise-23 (ID: 11936982891, Size: 2652230, Expected Digest: sha256:2a562e52f1c8f107793db5b7fca372ba9c1d5db44b9408394dc1087cd790d600)
+2026-10-15T03:42:18.2907545Z - qualification-noise-5 (ID: 11936952045, Size: 981320, Expected Digest: sha256:c2da59d522c8b9175b9310b1f4cf76209deec994515de857ffdfaf235f08b153)
+2026-10-15T03:42:18.2908600Z - qualification-noise-42 (ID: 11936929810, Size: 1152733, Expected Digest: sha256:7e493806bb191dcd559e405b2656e12b192f2734fb48bc69e6dba0381ff9b1cd)
+2026-10-15T03:42:18.2909650Z - qualification-noise-52 (ID: 11936894738, Size: 2032287, Expected Digest: sha256:7810644ac619c0a77cd54db2b29d14b360562256fa2fc639d2a2f159157e69fa)
+2026-10-15T03:42:18.2910696Z - qualification-noise-6 (ID: 11936837236, Size: 1000511, Expected Digest: sha256:c48799ed100650e8dfc972c2966ae3f4f7905785c09dcdf659f9a66c1ed1caa7)
+2026-10-15T03:42:18.2911621Z - qualification-noise-30 (ID: 11936824100, Size: 1989356, Expected Digest: sha256:5e879944b7cc94b463661d8b4314aedfe0e33f29e35081eec3f2735e981e51fd)
+2026-10-15T03:42:18.2912277Z - qualification-noise-authorization (ID: 11936815567, Size: 1149, Expected Digest: sha256:394c83f6dcad95e7b5433647a10c6c6a823873593ba496f66cf174c2b2a259bb)
+2026-10-15T03:42:18.2912945Z - qualification-noise-36 (ID: 11936778956, Size: 2884986, Expected Digest: sha256:4e5e0eda4fcadcb48b79d871a34fb6640721b5ef3d50c4b6ee345b3a704c56ea)
+2026-10-15T03:42:18.2913579Z - qualification-noise-24 (ID: 11936738804, Size: 1115214, Expected Digest: sha256:94cd5b15a999c30d0b7765f473ef66b1e5d11997d555b1733f2ed88e7998dbd5)
+2026-10-15T03:42:18.2914208Z - qualification-noise-29 (ID: 11936709059, Size: 1168482, Expected Digest: sha256:42cbc1255f8f88e1bb3af86f0676627aa2ace4fb017e93da64ca2077bc98d10a)
+2026-10-15T03:42:18.2914833Z - qualification-noise-19 (ID: 11936702568, Size: 1493131, Expected Digest: sha256:748b5404d14c623cd9d91659dc6ee32c3c7b2c76e4f93da095b2376b03c9f91d)
+2026-10-15T03:42:18.2915457Z - qualification-noise-40 (ID: 11936694503, Size: 1298034, Expected Digest: sha256:de91d6e1d1540893b44d485da9840a909c512433fc18fb59e387c717b8993509)
+2026-10-15T03:42:18.2933634Z Downloading artifact '11939772055' from 'imh-ds/open'
+2026-10-15T03:42:18.2937206Z Downloading artifact '11939540304' from 'imh-ds/open'
+2026-10-15T03:42:18.2979122Z Downloading artifact '11939420104' from 'imh-ds/open'
+2026-10-15T03:42:18.2999054Z Downloading artifact '11939250071' from 'imh-ds/open'
+2026-10-15T03:42:18.3019360Z Downloading artifact '11939165178' from 'imh-ds/open'
+2026-10-15T03:42:18.3054109Z Downloading artifact '11939035506' from 'imh-ds/open'
+2026-10-15T03:42:18.3077745Z Downloading artifact '11939150339' from 'imh-ds/open'
+2026-10-15T03:42:18.3093109Z Downloading artifact '11938888658' from 'imh-ds/open'
+2026-10-15T03:42:18.3127441Z Downloading artifact '11939146614' from 'imh-ds/open'
+2026-10-15T03:42:18.3143923Z Downloading artifact '11938867595' from 'imh-ds/open'
+2026-10-15T03:42:18.3158937Z Downloading artifact '11938877348' from 'imh-ds/open'
+2026-10-15T03:42:18.3173969Z Downloading artifact '11938832473' from 'imh-ds/open'
+2026-10-15T03:42:18.3193413Z Downloading artifact '11938835801' from 'imh-ds/open'
+2026-10-15T03:42:18.3216473Z Downloading artifact '11938777469' from 'imh-ds/open'
+2026-10-15T03:42:18.3236015Z Downloading artifact '11938791974' from 'imh-ds/open'
+2026-10-15T03:42:18.3319363Z Downloading artifact '11938770305' from 'imh-ds/open'
+2026-10-15T03:42:18.3341596Z Downloading artifact '11938741694' from 'imh-ds/open'
+2026-10-15T03:42:18.3356333Z Downloading artifact '11938720453' from 'imh-ds/open'
+2026-10-15T03:42:18.3373399Z Downloading artifact '11938695611' from 'imh-ds/open'
+2026-10-15T03:42:18.3391484Z Downloading artifact '11938631796' from 'imh-ds/open'
+2026-10-15T03:42:18.3412740Z Downloading artifact '11938614068' from 'imh-ds/open'
+2026-10-15T03:42:18.3463637Z Downloading artifact '11938594681' from 'imh-ds/open'
+2026-10-15T03:42:18.3478963Z Downloading artifact '11938550743' from 'imh-ds/open'
+2026-10-15T03:42:18.3493165Z Downloading artifact '11938481776' from 'imh-ds/open'
+2026-10-15T03:42:18.3507612Z Downloading artifact '11938452105' from 'imh-ds/open'
+2026-10-15T03:42:18.3520960Z Downloading artifact '11938439087' from 'imh-ds/open'
+2026-10-15T03:42:18.3534025Z Downloading artifact '11938438223' from 'imh-ds/open'
+2026-10-15T03:42:18.3547337Z Downloading artifact '11938427777' from 'imh-ds/open'
+2026-10-15T03:42:18.3703900Z Downloading artifact '11938423441' from 'imh-ds/open'
+2026-10-15T03:42:18.3705319Z Downloading artifact '11938419224' from 'imh-ds/open'
+2026-10-15T03:42:18.3706775Z Downloading artifact '11938405732' from 'imh-ds/open'
+2026-10-15T03:42:18.3707717Z Downloading artifact '11938409408' from 'imh-ds/open'
+2026-10-15T03:42:18.3834431Z Downloading artifact '11938275315' from 'imh-ds/open'
+2026-10-15T03:42:18.3835059Z Downloading artifact '11938400234' from 'imh-ds/open'
+2026-10-15T03:42:18.3835575Z Downloading artifact '11938226982' from 'imh-ds/open'
+2026-10-15T03:42:18.3848988Z Downloading artifact '11938217489' from 'imh-ds/open'
+2026-10-15T03:42:18.3914737Z Downloading artifact '11938244113' from 'imh-ds/open'
+2026-10-15T03:42:18.3915314Z Downloading artifact '11938191905' from 'imh-ds/open'
+2026-10-15T03:42:18.3915832Z Downloading artifact '11938152211' from 'imh-ds/open'
+2026-10-15T03:42:18.3931381Z Downloading artifact '11938125049' from 'imh-ds/open'
+2026-10-15T03:42:18.3956865Z Downloading artifact '11938109035' from 'imh-ds/open'
+2026-10-15T03:42:18.3973112Z Downloading artifact '11938071315' from 'imh-ds/open'
+2026-10-15T03:42:18.3987810Z Downloading artifact '11938068339' from 'imh-ds/open'
+2026-10-15T03:42:18.4003060Z Downloading artifact '11937983746' from 'imh-ds/open'
+2026-10-15T03:42:18.4017873Z Downloading artifact '11938026710' from 'imh-ds/open'
+2026-10-15T03:42:18.4032741Z Downloading artifact '11937982949' from 'imh-ds/open'
+2026-10-15T03:42:18.4048328Z Downloading artifact '11937951659' from 'imh-ds/open'
+2026-10-15T03:42:18.4063326Z Downloading artifact '11937934259' from 'imh-ds/open'
+2026-10-15T03:42:18.4078016Z Downloading artifact '11937907804' from 'imh-ds/open'
+2026-10-15T03:42:18.4158922Z Downloading artifact '11937902872' from 'imh-ds/open'
+2026-10-15T03:42:18.4175049Z Downloading artifact '11937781247' from 'imh-ds/open'
+2026-10-15T03:42:18.4190440Z Downloading artifact '11937773865' from 'imh-ds/open'
+2026-10-15T03:42:18.4205348Z Downloading artifact '11937737040' from 'imh-ds/open'
+2026-10-15T03:42:18.4219975Z Downloading artifact '11937727781' from 'imh-ds/open'
+2026-10-15T03:42:18.4234582Z Downloading artifact '11937720537' from 'imh-ds/open'
+2026-10-15T03:42:18.4249577Z Downloading artifact '11937721123' from 'imh-ds/open'
+2026-10-15T03:42:18.4263739Z Downloading artifact '11937682485' from 'imh-ds/open'
+2026-10-15T03:42:18.4278031Z Downloading artifact '11937647949' from 'imh-ds/open'
+2026-10-15T03:42:18.4293043Z Downloading artifact '11937636593' from 'imh-ds/open'
+2026-10-15T03:42:18.4307418Z Downloading artifact '11937624173' from 'imh-ds/open'
+2026-10-15T03:42:18.4321824Z Downloading artifact '11937606961' from 'imh-ds/open'
+2026-10-15T03:42:18.4419407Z Downloading artifact '11937576093' from 'imh-ds/open'
+2026-10-15T03:42:18.4436100Z Downloading artifact '11937564665' from 'imh-ds/open'
+2026-10-15T03:42:18.4451131Z Downloading artifact '11937560222' from 'imh-ds/open'
+2026-10-15T03:42:18.4463348Z Downloading artifact '11937476783' from 'imh-ds/open'
+2026-10-15T03:42:18.4475788Z Downloading artifact '11937375799' from 'imh-ds/open'
+2026-10-15T03:42:18.4487606Z Downloading artifact '11937426048' from 'imh-ds/open'
+2026-10-15T03:42:18.4499508Z Downloading artifact '11937392069' from 'imh-ds/open'
+2026-10-15T03:42:18.4512148Z Downloading artifact '11937345867' from 'imh-ds/open'
+2026-10-15T03:42:18.4524324Z Downloading artifact '11937310920' from 'imh-ds/open'
+2026-10-15T03:42:18.4536073Z Downloading artifact '11937331211' from 'imh-ds/open'
+2026-10-15T03:42:18.4547827Z Downloading artifact '11937325848' from 'imh-ds/open'
+2026-10-15T03:42:18.4559674Z Downloading artifact '11937303465' from 'imh-ds/open'
+2026-10-15T03:42:18.4571284Z Downloading artifact '11937229716' from 'imh-ds/open'
+2026-10-15T03:42:18.4582935Z Downloading artifact '11937261824' from 'imh-ds/open'
+2026-10-15T03:42:18.4595124Z Downloading artifact '11937253570' from 'imh-ds/open'
+2026-10-15T03:42:18.4609646Z Downloading artifact '11937209152' from 'imh-ds/open'
+2026-10-15T03:42:18.4624069Z Downloading artifact '11937165547' from 'imh-ds/open'
+2026-10-15T03:42:18.4639164Z Downloading artifact '11937198032' from 'imh-ds/open'
+2026-10-15T03:42:18.4655142Z Downloading artifact '11937196530' from 'imh-ds/open'
+2026-10-15T03:42:18.4671012Z Downloading artifact '11937164704' from 'imh-ds/open'
+2026-10-15T03:42:18.4685580Z Downloading artifact '11937100996' from 'imh-ds/open'
+2026-10-15T03:42:18.4700275Z Downloading artifact '11937113745' from 'imh-ds/open'
+2026-10-15T03:42:18.4715590Z Downloading artifact '11937107794' from 'imh-ds/open'
+2026-10-15T03:42:18.4730703Z Downloading artifact '11937065659' from 'imh-ds/open'
+2026-10-15T03:42:18.4747204Z Downloading artifact '11937003544' from 'imh-ds/open'
+2026-10-15T03:42:18.4762483Z Downloading artifact '11937016925' from 'imh-ds/open'
+2026-10-15T03:42:18.4776901Z Downloading artifact '11937012071' from 'imh-ds/open'
+2026-10-15T03:42:18.4791840Z Downloading artifact '11936982891' from 'imh-ds/open'
+2026-10-15T03:42:18.4806483Z Downloading artifact '11936894738' from 'imh-ds/open'
+2026-10-15T03:42:18.4821596Z Downloading artifact '11936952045' from 'imh-ds/open'
+2026-10-15T03:42:18.4835717Z Downloading artifact '11936929810' from 'imh-ds/open'
+2026-10-15T03:42:18.4850819Z Downloading artifact '11936824100' from 'imh-ds/open'
+2026-10-15T03:42:18.4865196Z Downloading artifact '11936778956' from 'imh-ds/open'
+2026-10-15T03:42:18.5023294Z Downloading artifact '11936837236' from 'imh-ds/open'
+2026-10-15T03:42:18.5040594Z Downloading artifact '11936815567' from 'imh-ds/open'
+2026-10-15T03:42:18.5055410Z Downloading artifact '11936738804' from 'imh-ds/open'
+2026-10-15T03:42:18.5067855Z Downloading artifact '11936694503' from 'imh-ds/open'
+2026-10-15T03:42:18.5091001Z Downloading artifact '11936709059' from 'imh-ds/open'
+2026-10-15T03:42:18.5095249Z Downloading artifact '11936702568' from 'imh-ds/open'
+2026-10-15T03:42:18.5151352Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-ae4bf077-ff60-5f28-8770-ffbf59f80c6d/artifacts/874b2ad5e0131bbf2a75fd3b715b9051b801292c1137998e0521ec21d20b0a3f.zip
+2026-10-15T03:42:18.5152498Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-audit
+2026-10-15T03:42:18.7203644Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-a639cacd-eb9c-5d22-a4ac-9042eb93659f/artifacts/fd703387adc725e7eeb88a9d60b1466fb86339199a0f2062b7b5aab5c570f6e3.zip
+2026-10-15T03:42:18.7204821Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-109
+2026-10-15T03:42:18.7245696Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-7faf3af7-3a92-5644-ad7f-7192b15daf7f/artifacts/3476f439ce99f802faed073b627262188452e82286da2693b52c454dfd0fb0ee.zip
+2026-10-15T03:42:18.7246571Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-111
+2026-10-15T03:42:18.7299256Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-6d9da259-2f16-5298-a7b8-b8bde56118ba/artifacts/2426f45e698bb56de624581ee5b28f23bfc182454226a16d3df2a42468b12872.zip
+2026-10-15T03:42:18.7300109Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-131
+2026-10-15T03:42:18.7342990Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-f81a0875-db1b-5e18-9eed-117852d1c15c/artifacts/370f02e6fbcb1ee326ef5b032064f08df20388b238720405952950b66df1930a.zip
+2026-10-15T03:42:18.7343842Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-4
+2026-10-15T03:42:18.7355568Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-18f1f9fa-7b0a-5ab9-9dbe-b8967c6a9a21/artifacts/e4c51037b7cbbe489a086a98b970866c3f7d293a0fe73742447b26b5bf043586.zip
+2026-10-15T03:42:18.7356903Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-87
+2026-10-15T03:42:18.7364776Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-8b8e7bbd-138f-52de-8ddb-a07dd419a44f/artifacts/f8881a7330bbf04d8395b8ac56c47541e5e09578275b40bee89a53952d8d5583.zip
+2026-10-15T03:42:18.7365639Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-88
+2026-10-15T03:42:18.7375249Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-74b9d609-ca69-5fdf-9460-0c982d74049d/artifacts/19c7bac06ac5d94f099766b55cedd0ab8edbcdae199e7b90b7904802dfddc135.zip
+2026-10-15T03:42:18.7376683Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-47
+2026-10-15T03:42:18.7387256Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-55e268c2-f758-59a6-991b-54c6213e95ff/artifacts/93ca5db9b58374878cb530d0af7e0b14d26c36104e258dacf980cbab08148230.zip
+2026-10-15T03:42:18.7388118Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-34
+2026-10-15T03:42:18.7397656Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-d1027994-aa04-55ac-bc3a-178516e60f11/artifacts/e577644f9383cb76af40f5530f208a3082df522da26456a8c623bbe64ad6fef5.zip
+2026-10-15T03:42:18.7399085Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-123
+2026-10-15T03:42:18.7406436Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-9d491945-7525-5389-ae46-346fd45dbe47/artifacts/1518e78dc9668dc500f229c3cb85639606d87196e99b9e6f4fea459cbd019e99.zip
+2026-10-15T03:42:18.7407299Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-132
+2026-10-15T03:42:18.7416197Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-e173c1b6-a211-5068-a9ec-88d0f51f24d3/artifacts/f295a704a50c1dfd56f793c51246e3dfab2d34cc7f7872df50836083dfbe6f26.zip
+2026-10-15T03:42:18.7417054Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-5
+2026-10-15T03:42:18.7426511Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-267e7b07-6a32-5b73-b644-18178bca1b62/artifacts/7dce5f1b7056334a4545e8637e7fbb1e7c59222180e0adaa6b00aa5299f8a053.zip
+2026-10-15T03:42:18.7427370Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-20
+2026-10-15T03:42:18.7435288Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-0f8a8363-3d5a-5330-8aeb-e47565a3e949/artifacts/00dfa1ece7f4fa045b8fe872d79545470b6a80121be7a4ef4c060dd00f7e203b.zip
+2026-10-15T03:42:18.7436151Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-83
+2026-10-15T03:42:18.7442887Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-3a2ab89a-3342-5810-836b-edd5b2ff2884/artifacts/4d7149fafe18d1d5336cea039d9f4fe52093ad02811a016cef84fbf0d9e52b15.zip
+2026-10-15T03:42:18.7443729Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-121
+2026-10-15T03:42:18.7451253Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-b890c848-01ae-5f63-b9c6-be7610387c7b/artifacts/90ee1bb840756d6c5093842c01d29faf8309e97fd68eb959cd447354e39752f9.zip
+2026-10-15T03:42:18.7452087Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-10
+2026-10-15T03:42:18.7481501Z (node:7360) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-10-15T03:42:18.7495330Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-7f3346e9-b3ba-55a9-b51d-f88d2fec9438/artifacts/16aec19e28c6e59e580be9636c514b9262c135ad4cb913fe642bd75b5149913f.zip
+2026-10-15T03:42:18.7496180Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-135
+2026-10-15T03:42:18.7504546Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-a8e82610-8cb9-56fc-bded-41fb93d4c899/artifacts/9b4578fdd441fbd82cf8d3f6272e7697b643211724d77950be9a515224410d6b.zip
+2026-10-15T03:42:18.7505397Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-117
+2026-10-15T03:42:18.7512158Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-0d05a877-225e-5834-9706-09b386ba7686/artifacts/57db267aac1ad55e19f6ea872f68ae33ede0c86b5ed244d1c6105318fbd451fe.zip
+2026-10-15T03:42:18.7512991Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-119
+2026-10-15T03:42:18.7528560Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-fbcbbc4a-0bee-57c9-a3df-4783a9abdad1/artifacts/6ad4950dbab6c9b681a583402f962da2b5a7db9a3b781f6c5687892d8f91a01a.zip
+2026-10-15T03:42:18.7531118Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-82
+2026-10-15T03:42:18.7541596Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-4211acf2-8eee-51d9-bb89-5d89e8efb178/artifacts/36313dab0c88959d735ea0ad6a1870f1c4c4048ef931c6c56595fa4e7fb78ac6.zip
+2026-10-15T03:42:18.7542672Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-129
+2026-10-15T03:42:18.7558475Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-aab310e8-ec85-52cd-ac69-2e8ac26edd5b/artifacts/61d1cdfbfa2288a86b5773e4a295dfbe380c7202d32816b4e3a4290b73c1509f.zip
+2026-10-15T03:42:18.7559327Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-13
+2026-10-15T03:42:18.7568666Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-8643f44d-f5b4-5767-a84c-4d83af5f4ef1/artifacts/e43cee5e8bbc7be709e15212651ea61e134532dd8793c17375500ac4684619bb.zip
+2026-10-15T03:42:18.7569515Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-101
+2026-10-15T03:42:18.7576622Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-77602314-dc39-554b-8e66-e3f6003fa30b/artifacts/6765dd442de44506e533fc30cf460c6c1a28c8db0f1e6b5d123de832d5007092.zip
+2026-10-15T03:42:18.7577578Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-94
+2026-10-15T03:42:18.7586695Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-af45418f-5b1f-5372-be3c-e3f1c978ecd1/artifacts/630cd33c38ce1ba680b8af278b77e69cca6c2ba9ec07c6f25f161f9217ed3271.zip
+2026-10-15T03:42:18.7587538Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-85
+2026-10-15T03:42:18.7595201Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-ed63f12a-f90b-5683-9255-d4c50bc047f6/artifacts/6987a07fb12e2e54705f1e61ae2ae144a7e2d8f58e01342650a07fb28e19078d.zip
+2026-10-15T03:42:18.7596631Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-127
+2026-10-15T03:42:18.7606124Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-8cdd1abe-8076-501b-a284-bb6587e7d0cb/artifacts/eef63a078351ec74489c74c0247e54e85e5f3d60388401f4cca1b57a0fc565f2.zip
+2026-10-15T03:42:18.7607531Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-54
+2026-10-15T03:42:18.7614701Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-8f677907-8f36-5195-b24d-38ec02a3ec25/artifacts/473cb2d46b36335016643abd8629287d6fdd2a19194f0e4df33a93ac41570f3d.zip
+2026-10-15T03:42:18.7615558Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-113
+2026-10-15T03:42:18.7623877Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-d6212423-80f6-5771-b0b1-6a1ae9accf35/artifacts/057da6752aab49da86f3e506704dff6cbdabb0251fd829ffa02696df3ec39970.zip
+2026-10-15T03:42:18.7625286Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-95
+2026-10-15T03:42:18.7632588Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-c0c0c2e1-f708-5487-b0e6-a2f0efac3d45/artifacts/c68b11f5020ed5e434b1f86b845d3d7d04416ee19ee8cd25fdbccf88601029db.zip
+2026-10-15T03:42:18.7633461Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-112
+2026-10-15T03:42:18.7643305Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-00260f54-ae07-5833-aa11-d3784d9a75ad/artifacts/83a7f563b11ac63075ca2da94206d1121eaea1765904ea0b6b2132134e1868b3.zip
+2026-10-15T03:42:18.7644142Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-124
+2026-10-15T03:42:18.7651260Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-0bd527a6-49ff-502b-bcd9-bcab6bbd5933/artifacts/6ddd9a77294da1e2149e68751896e0c4f283ba0fcf7544cd3a8e9463aeee6299.zip
+2026-10-15T03:42:18.7652100Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-37
+2026-10-15T03:42:18.7663444Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-37baa758-9596-5160-86d2-a08bb543ec88/artifacts/8a1e6025cf1932e825721c47d6d70146ce082b44f1946203eb7c3458b41b00b8.zip
+2026-10-15T03:42:18.7664855Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-96
+2026-10-15T03:42:18.7674011Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-08ca2a31-f207-5d02-ae8a-392572e3ac0d/artifacts/e4e96e353c13e076ef3684871f8c76bd8f2eb5c737f156d4540e0b1e64292dff.zip
+2026-10-15T03:42:18.7674851Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-100
+2026-10-15T03:42:18.7682137Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-e25ca0d1-61f0-5b2b-960c-0cdc1c9890ef/artifacts/c36a65813bef0c82e510852f6fea5122383ccd46e4beea9590a05d67089a6042.zip
+2026-10-15T03:42:18.7682977Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-9
+2026-10-15T03:42:18.7689666Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-14614f8c-1e04-51fa-9e72-76c5a4672de9/artifacts/313c07da9ae519a30d63e57f682b5470c5bf591fbbe253d83b1dfd24e1763e8d.zip
+2026-10-15T03:42:18.7690506Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-125
+2026-10-15T03:42:18.7697271Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-b33d38ea-4b8a-5287-aa19-0e9b6b484657/artifacts/e35668a36fd194b7d57914a359c3289c549540f726c29feb31b34374d8320202.zip
+2026-10-15T03:42:18.7698272Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-102
+2026-10-15T03:42:18.7707220Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-d0c1778a-d92f-582c-8156-808d2761e1c5/artifacts/74b64aa45779cadf5ba254ab6ac59defb7b9834f59ba660543a8e77db9b02192.zip
+2026-10-15T03:42:18.7708064Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-134
+2026-10-15T03:42:18.7718756Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-ac3340c0-5529-5fa8-aabb-fc544a7cfdb1/artifacts/9a32664b3dc56a464f2be4cdf75a31ff4b7ea57c4946bd6e63eccae857ff4794.zip
+2026-10-15T03:42:18.7719609Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-15
+2026-10-15T03:42:18.7727027Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-4166241e-9875-53ea-9381-1c29a4c248c7/artifacts/2543137a24104acd5a9fd19162390926d9459fe4a749c2d57041d1f0abb574d9.zip
+2026-10-15T03:42:18.7728039Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-53
+2026-10-15T03:42:18.7736119Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-0b1c277d-b9b8-558e-92cf-a7da0a69b47f/artifacts/3997d40aeebea3b61d79ba1cd8103ae6ef722b6e57e3d00b1afd9201ba50934e.zip
+2026-10-15T03:42:18.7737634Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-105
+2026-10-15T03:42:18.7748708Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-7a4683d4-875b-5f73-baa2-169865bb34ca/artifacts/c13dadea9681ac8d75c1b788ab0a6646f4ae4ac701a325220926cf172aaf3ce2.zip
+2026-10-15T03:42:18.7749569Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-86
+2026-10-15T03:42:18.7762518Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-bec057a0-ca9a-5ba1-86f2-2fdfc621ee90/artifacts/380dcff3907ee9606df022593fc50952d16030ae2010ab70bac91e3c174fbdaa.zip
+2026-10-15T03:42:18.7763367Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-40
+2026-10-15T03:42:18.7772276Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-2c266e40-6413-5266-b117-09c9fa493a9c/artifacts/cfb2850eb8f3bbabbed34a1feccb10d31a4ff6895b825304e108598e574af4ff.zip
+2026-10-15T03:42:18.7773334Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-106
+2026-10-15T03:42:18.7784401Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-7a960863-a7b1-542c-a927-f0a742c35706/artifacts/04ab81356bea386ceac0324b4cd426be63409a781c8886a14a005c9de7a1582b.zip
+2026-10-15T03:42:18.7785248Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-122
+2026-10-15T03:42:18.7804367Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-1e51469d-4ad6-5cf1-8b9f-d15261cbd48f/artifacts/85106d7ca38185f303a6b36514414210546df30f1cc1166b4263e987cf310fcb.zip
+2026-10-15T03:42:18.7805239Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-51
+2026-10-15T03:42:18.7814897Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-ec0b2d5c-65b7-5adb-a8e0-f8488658cd0f/artifacts/841b1bedcb528b882a8d7c9e0f446d357580a9f0a40d28ca1a46020fda2fa9ac.zip
+2026-10-15T03:42:18.7815783Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-52
+2026-10-15T03:42:18.7826748Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-a0614b9f-d011-5dea-ae1b-fe469267e491/artifacts/80240583a1a5f6f737762cc001913957c5468513750519aaca9b613e0b716c69.zip
+2026-10-15T03:42:18.7827754Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-128
+2026-10-15T03:42:18.7834395Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-f21aa7a3-ea90-5efb-94e4-524a11291424/artifacts/cefb0f286ea6147aa2932f33347b349e67f76fd19e4d4a9c1d782de55ec8da2f.zip
+2026-10-15T03:42:18.7835229Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-2
+2026-10-15T03:42:18.7848656Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-81af7fbe-e61c-55ce-af31-131982008871/artifacts/62f37bba6c32fafcfd4d9d4857af0700e351d3f8e6b034f3dd11f8fc5917ee53.zip
+2026-10-15T03:42:18.7849644Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-42
+2026-10-15T03:42:18.7853005Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-589b5a53-9861-5e8a-bf7b-72a563ac3bb9/artifacts/b7d74bcb0b2b6208d0b60a34722ae5ee7efb54264dee622eb38b382eef3a0fc7.zip
+2026-10-15T03:42:18.7853827Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-23
+2026-10-15T03:42:18.7864583Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-fedc2237-afdf-5a81-9048-167f90c5d129/artifacts/e9bdfd1b9249b06461aeb3dd26b4b88d2c7a574a48cf46bf861631add53ac219.zip
+2026-10-15T03:42:18.7865428Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-89
+2026-10-15T03:42:18.7888094Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-1065a1ec-d594-542f-a6fa-5a69e9942d9b/artifacts/baeb415b61794231a930528d2bf2f2df9d45a8680b13b2b6d3b9e0b63a46a663.zip
+2026-10-15T03:42:18.7888944Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-21
+2026-10-15T03:42:18.7898529Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-9a035446-a07a-50e1-a314-1e402c9ddba9/artifacts/9a72f8179128dd2518146d38e6f141cd7a29713f3e7caa04563658ce6c512b2a.zip
+2026-10-15T03:42:18.7899624Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-99
+2026-10-15T03:42:18.7918571Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-0aee0cde-b09e-518f-8a3b-fd97321fb623/artifacts/6c851d0b4906a5f8d61abd590f596a241357d3c10eb489b409c9dd8f3b9e90bb.zip
+2026-10-15T03:42:18.7919510Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-48
+2026-10-15T03:42:18.7927851Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-977463cf-4496-533c-85a5-062e015d6612/artifacts/e487c59a35fd21b16248a4088d5b306244157ab0cf60c468bf7dc0cdb07d48ff.zip
+2026-10-15T03:42:18.7929052Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-133
+2026-10-15T03:42:18.7939877Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-5b809533-1d73-516c-8fdb-ef3a14e00f0a/artifacts/d0af6b55adcaa97198bbe65191b31582ba964b5a76a112ddfd3d194b1094577a.zip
+2026-10-15T03:42:18.7940887Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-30
+2026-10-15T03:42:18.7954962Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-42250fe5-5df5-5b28-8044-24b984259b13/artifacts/fe0149f77a26c35b6522faf3a2344dec9421efe4887dba9b290d9eaada498bcb.zip
+2026-10-15T03:42:18.7956507Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-126
+2026-10-15T03:42:18.7964066Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-9cd8b3ec-c515-5e05-8253-fb38d6220f96/artifacts/92e1f5770edc1d8766bd97dbf892217c9a3f99e9bbd19d282a691c33535f2b12.zip
+2026-10-15T03:42:18.7965599Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-11
+2026-10-15T03:42:18.7977760Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-9eac5a06-e41e-5afe-aafb-b9f877e526ce/artifacts/c6c25324bdef0a1ae39fff2ec9152415ee2f693d6b23c325cd08edb3074c8115.zip
+2026-10-15T03:42:18.7979300Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-81
+2026-10-15T03:42:18.7987051Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-7eadb0d0-4876-544d-97d5-49fd4bba9955/artifacts/ba470cabff891df0bb551cd5065e812824a9b5e16c2f04139f22306cf665017b.zip
+2026-10-15T03:42:18.7988428Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-130
+2026-10-15T03:42:18.7997844Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-b619f78f-d903-5f99-9643-82ef687ff1b1/artifacts/a1e1c5a6c7450c8ba584e44487a67751b42beccc7e607dff2164bb523381d8a8.zip
+2026-10-15T03:42:18.7999238Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-110
+2026-10-15T03:42:18.8008026Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-c540928d-6493-5b58-96da-ae6f36a768b2/artifacts/f97bd9322f7bdc80861a451f966534f5a59e4ec27fe02acec4618393d85ba415.zip
+2026-10-15T03:42:18.8008878Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-18
+2026-10-15T03:42:18.8016192Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-60d3ebe1-f527-5f78-a4ca-9833ff344d5c/artifacts/543ee1ebbc7bb6490b9a9f1f07e4e3d5b8c0d385778b712f22ff961f11184902.zip
+2026-10-15T03:42:18.8017289Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-93
+2026-10-15T03:42:18.8024710Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-e7802913-ea2f-5ca7-9a03-00735deaca35/artifacts/3a18e57865f88912ade2e87e712780c382932bd6b95106f79c5ed30abbbb4ab3.zip
+2026-10-15T03:42:18.8025796Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-45
+2026-10-15T03:42:18.8032554Z SHA256 digest of downloaded artifact is 07c8daa9f037ab2843c9005e61b97d79ef535e34c406ae3767e4e3c2e4ad6619
+2026-10-15T03:42:18.8032956Z Artifact download completed successfully.
+2026-10-15T03:42:18.8046500Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-0bc03df6-5cbe-5d01-98e3-a87ea5e3bcc5/artifacts/7568374f352652298afe676fb30b2c787a3c0ca3da4fcc9d3fee2b9b67a5839a.zip
+2026-10-15T03:42:18.8047342Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-12
+2026-10-15T03:42:18.8057906Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-136e19ac-da59-529f-92ce-17261d57473b/artifacts/832a7a8139459a1cf23a94688b890593a047404dbc0983dd4618b8d4318a5ed9.zip
+2026-10-15T03:42:18.8059307Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-108
+2026-10-15T03:42:18.8069380Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-28ce613d-4ff1-5848-927c-383b4215a440/artifacts/39fec07239f007de30319b81327d768e1de43d4e9b1cb672f0461de77088fbc9.zip
+2026-10-15T03:42:18.8070332Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-3
+2026-10-15T03:42:18.8078813Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-2307210c-5119-520c-8914-8d4e9f3d24c7/artifacts/b4bc3b8c8cd103ad14c2669b7ab02f6ea745b596c80d5df6861b081f82127d8e.zip
+2026-10-15T03:42:18.8080255Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-33
+2026-10-15T03:42:18.8091493Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-78e4d8a9-1e1d-5b74-b257-11714f9c4e82/artifacts/368201132956b97f06458143386ddc7edeea315e9dc4929f8f4c3314d05e7f78.zip
+2026-10-15T03:42:18.8092349Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-31
+2026-10-15T03:42:18.8100678Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-6b7e1231-a141-5f8b-8c29-8c2a9d30b6d1/artifacts/519fecc6db90ba55aecec5d554562011fa611734f1204361fd9bb8a621deac33.zip
+2026-10-15T03:42:18.8101508Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-8
+2026-10-15T03:42:18.8110340Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-752bc221-93c4-580c-b197-ecba3b654c2e/artifacts/9a0a79391189b7f8fbcfded1e06bbb507e69573d053796a254cbe0d5cc531809.zip
+2026-10-15T03:42:18.8111378Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-6
+2026-10-15T03:42:18.8124198Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-55d56bac-e7e1-5ed2-bda8-44647f4172f7/artifacts/4ab253f630d2d3b09cb6f96f38d2feb588a8de6ca025277c4c40e90ca35405e8.zip
+2026-10-15T03:42:18.8125030Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-84
+2026-10-15T03:42:18.8132273Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-09087b6b-022a-5b82-97ab-2827ac939ce1/artifacts/b96724c21d4d80de28cb30cc0f743591804be4cc005309bdeb9439ca586ab5a6.zip
+2026-10-15T03:42:18.8133662Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-24
+2026-10-15T03:42:18.8156794Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-ae6de205-b3b1-55fe-8999-47f8714e1fbb/artifacts/37a64ddaafd819ece76a618b09d3e2e777df248d85029aa1abaa15f94147f2e4.zip
+2026-10-15T03:42:18.8157623Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-92
+2026-10-15T03:42:18.8182611Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-a89fb9d9-a04a-5ada-b620-ff36e78ea75c/artifacts/8d8a3832d09e8bf065534d4d779ad1d3b4db58d024e35b47002f4a448d10cae3.zip
+2026-10-15T03:42:18.8183432Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-14
+2026-10-15T03:42:18.8193782Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-129c7c3f-20ac-56d9-9bb4-51e3b30ef881/artifacts/2a5567ed1910693ef35cbdfd439a0f70843f5be881f23c07bddf2648d8e97634.zip
+2026-10-15T03:42:18.8195033Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-19
+2026-10-15T03:42:18.8211954Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-19745818-6775-59a3-866f-d8667d2dfaff/artifacts/8c87513e9b2708cd72f95cbec5121f12db4e123aa3e5d6242d1c2146c2bfb71f.zip
+2026-10-15T03:42:18.8212868Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-46
+2026-10-15T03:42:18.8219706Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-65c57b2b-bba2-5a3f-a990-a55e525f45de/artifacts/f8b16b6958db9a82809579a955ecdb9649bf5a9efb230bdc2e081deebe4b6c9f.zip
+2026-10-15T03:42:18.8220628Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-29
+2026-10-15T03:42:18.8254969Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-d40121e6-70e6-521c-9953-66aa0de15d0f/artifacts/5127cc72dd7699d352933372b1c4df49ecce966660b5c44cda4f48a38f5c7f65.zip
+2026-10-15T03:42:18.8255803Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-120
+2026-10-15T03:42:18.8299634Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-8f56abd5-c6e2-5781-8e41-f4850dccb6fc/artifacts/0496377f346ddd83c5184312361538a29a0d449ecaf278365ea375b071b01bf9.zip
+2026-10-15T03:42:18.8300454Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-97
+2026-10-15T03:42:18.8307363Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-5d801f61-4f3a-53a2-8d31-135bc22108f9/artifacts/48a73751c4ef035089e72ab1fe77e7960a04af31882855ac46cda569e4a3dc6f.zip
+2026-10-15T03:42:18.8308165Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-91
+2026-10-15T03:42:18.8314730Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-4cbf9a98-c844-56c8-9394-5e9fd0362388/artifacts/ce41bb70fcef320d85a7e10c9e6854fe27e9f8cb6289252f727ef60aeaa7ab17.zip
+2026-10-15T03:42:18.8315543Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-104
+2026-10-15T03:42:18.8323806Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-68b26e89-925a-557c-ac8c-f085612dc566/artifacts/11551c304152c5830cc632baf5bcc1735cb248693390e1654c2e48d369236fad.zip
+2026-10-15T03:42:18.8325197Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-103
+2026-10-15T03:42:18.8341299Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-7ca6869d-5947-5bc2-a970-159aa4b0e9d0/artifacts/fb1b49ca7b834b6d37b7f6ef87a816da53e9064fbdc805cd12f7b72bd72f19c6.zip
+2026-10-15T03:42:18.8342124Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-55
+2026-10-15T03:42:18.8348378Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-b81e922e-c711-5d98-8e2f-8a7829b4146d/artifacts/99d4cabd2f26110c2fca44b3f6641e3283266c401c6fb8dab2e48a9099c55846.zip
+2026-10-15T03:42:18.8349200Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-107
+2026-10-15T03:42:18.8386607Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-e557072e-e2c9-5ac2-a7d4-b4efa82c5bdf/artifacts/d056f2717640e04f4e5d13b0df02f142ec76a84179f9e0c639d53d1fdfdae592.zip
+2026-10-15T03:42:18.8387436Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-98
+2026-10-15T03:42:18.8412403Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-114c20f4-90ea-57e2-a5e0-ac109295a62b/artifacts/bdc00fbe6d86fcca6262d2ecb283d37213a2f5e2527820b6d7efebb2f8825ce2.zip
+2026-10-15T03:42:18.8413895Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-27
+2026-10-15T03:42:18.8437512Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-bbb9ad3d-eef5-5d20-9e14-c299aff772f0/artifacts/4cc3ebb0808df544d6eadc574a646a9c8d0bb47740884b60a44ccd67f29a27f2.zip
+2026-10-15T03:42:18.8438426Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-116
+2026-10-15T03:42:18.8457400Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-97692d9d-dc86-51cf-af8d-3f88100a7566/artifacts/0f3b268fa9d75fcd0ae6d3e804bb8a5deb215cd7de42584aa9d70b21377a99f0.zip
+2026-10-15T03:42:18.8458218Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-114
+2026-10-15T03:42:18.8467793Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-8c2ca157-30ff-5d03-a0ab-b18eb811075d/artifacts/1119b76c87ffbdf9c6cfb7fc87302f6f63d38d1a1742ac0d40ec4a4e202ea53c.zip
+2026-10-15T03:42:18.8469043Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-32
+2026-10-15T03:42:18.8514470Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-0d0bfd7c-876c-5083-9438-cbcc009a0883/artifacts/a99e3d3dae050bb6e596989682a210296479f17305b3f30018d16cb844130328.zip
+2026-10-15T03:42:18.8515299Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-39
+2026-10-15T03:42:18.8593150Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-b3c73d10-82e6-5b02-9eee-be3cb1e269f9/artifacts/394a548088b3c1fe64d4f2982a04fe8b66cfe265232f1c0b9a0b15b27217680e.zip
+2026-10-15T03:42:18.8594012Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-44
+2026-10-15T03:42:18.8600875Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-31bbc412-767a-542d-ae0e-3290208b140f/artifacts/f4b4ffcfe999352101c5c590f6435ac46728fb88cd7d766d9b7b058720a30171.zip
+2026-10-15T03:42:18.8601695Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-115
+2026-10-15T03:42:18.8850234Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-4cd11f6f-8a38-5ef9-a012-766455269edf/artifacts/79dd7f4d877c7d32c52f432a047aa80dfbfc6eca0789ef5fe6bb9eddefaf1e0a.zip
+2026-10-15T03:42:18.8952396Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-authorization
+2026-10-15T03:42:18.8953274Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-58f11916-e32f-5c22-ad77-4b527246cd77/artifacts/8ae8dc43510d578c6901fbe4bd1768098e1b66344c5006eafe2f73bcb08d11b0.zip
+2026-10-15T03:42:18.8954102Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-36
+2026-10-15T03:42:18.9090889Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-2d16b8ff-a961-5e20-bd80-6576d3e0c916/artifacts/67e416510dae3714b52b8e2968acdfc2b11795c75d9c01066aa797be17980496.zip
+2026-10-15T03:42:18.9091708Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-35
+2026-10-15T03:42:18.9165054Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-65bcac21-9066-5cf3-ada8-925bb48f1918/artifacts/12ccebf9773974d5ee6ab5443e89e6660f8667490aa2882086b6cbceab923f35.zip
+2026-10-15T03:42:18.9165904Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-118
+2026-10-15T03:42:18.9252078Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-1b13580f-9c32-55d3-a2f3-4269235debc3/artifacts/cfdd2f732da8c230f50f11c60027433df6991ad636826b6fc17806c92c71295b.zip
+2026-10-15T03:42:18.9253412Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-25
+2026-10-15T03:42:18.9463273Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/fc1d3a81-71ab-4071-8127-15061f47a01a/workflow-job-run-dc315950-8c95-5c6a-9d2e-b7c7a1fdf184/artifacts/9b6c688099988b4d5a82aa86f6dbbbb7c5b21a8284922fc8039cfdb4f3608390.zip
+2026-10-15T03:42:18.9464105Z Starting download of artifact to: D:\a\open\open\producer-inputs\qualification-noise-90
+2026-10-15T03:42:19.1529093Z SHA256 digest of downloaded artifact is 394c83f6dcad95e7b5433647a10c6c6a823873593ba496f66cf174c2b2a259bb
+2026-10-15T03:42:19.1529785Z Artifact download completed successfully.
+2026-10-15T03:42:19.3226815Z SHA256 digest of downloaded artifact is d29d739237ba0c1a571df6be3d44264a47801f79e05d69752833e5d74b8f3463
+2026-10-15T03:42:19.3227481Z Artifact download completed successfully.
+2026-10-15T03:42:19.3246329Z SHA256 digest of downloaded artifact is c2da59d522c8b9175b9310b1f4cf76209deec994515de857ffdfaf235f08b153
+2026-10-15T03:42:19.3246940Z Artifact download completed successfully.
+2026-10-15T03:42:19.3348610Z SHA256 digest of downloaded artifact is 7e493806bb191dcd559e405b2656e12b192f2734fb48bc69e6dba0381ff9b1cd
+2026-10-15T03:42:19.3349196Z Artifact download completed successfully.
+2026-10-15T03:42:19.3421946Z SHA256 digest of downloaded artifact is 43da5c93586ddd78ee92f842a17e76cd09c1080ed953ed1555700f87675a7f1a
+2026-10-15T03:42:19.3422610Z Artifact download completed successfully.
+2026-10-15T03:42:19.3436555Z SHA256 digest of downloaded artifact is 67efb7be9ae47dbd2849a32207de7e7ddba4c90ba8fd9e313550e1d0b44b2eb7
+2026-10-15T03:42:19.3437016Z Artifact download completed successfully.
+2026-10-15T03:42:19.3605423Z SHA256 digest of downloaded artifact is d1a6647ffaca06ef9e0e59792c76137efdba4cbb41cca55814192893739685ee
+2026-10-15T03:42:19.3605895Z Artifact download completed successfully.
+2026-10-15T03:42:19.4123352Z SHA256 digest of downloaded artifact is 4e6a994a5e324b9e8b53e7b6b2b4e40b18be21f63a995edb3e3f80d184af39e0
+2026-10-15T03:42:19.4124222Z Artifact download completed successfully.
+2026-10-15T03:42:19.4124808Z SHA256 digest of downloaded artifact is e240c6ba9df1ac5191d2c4cec9d326b13e161b3d6e7ddeb91e4bf0ee84290a77
+2026-10-15T03:42:19.4125399Z Artifact download completed successfully.
+2026-10-15T03:42:19.4223675Z SHA256 digest of downloaded artifact is a3a4871e01177c3cb2afd7f8f1e5326c7098d345ab51ed7b9b7616ef5fff65f4
+2026-10-15T03:42:19.4224123Z Artifact download completed successfully.
+2026-10-15T03:42:19.4400148Z SHA256 digest of downloaded artifact is 2a562e52f1c8f107793db5b7fca372ba9c1d5db44b9408394dc1087cd790d600
+2026-10-15T03:42:19.4400763Z Artifact download completed successfully.
+2026-10-15T03:42:19.4592610Z SHA256 digest of downloaded artifact is bc850d9a6218fa7fab34c20f43ff14f22a73bd2164943a550b019ecdcbe0eac9
+2026-10-15T03:42:19.4593248Z Artifact download completed successfully.
+2026-10-15T03:42:19.6187504Z SHA256 digest of downloaded artifact is a77c7c5a172ae08728fd96a59fe567a3531f12db9a635e85ce08ddbfc8eeddc2
+2026-10-15T03:42:19.6188208Z Artifact download completed successfully.
+2026-10-15T03:42:19.6389874Z SHA256 digest of downloaded artifact is 00a1f8815fdf663f2d039ee8f8846899991ed937d5bedf8aeafc696a90ceb750
+2026-10-15T03:42:19.6390439Z Artifact download completed successfully.
+2026-10-15T03:42:19.7889820Z SHA256 digest of downloaded artifact is ca8c510ceb462075d5af869a573cc76900d792d253be8da7840912304ee70783
+2026-10-15T03:42:19.7890697Z Artifact download completed successfully.
+2026-10-15T03:42:19.8001260Z SHA256 digest of downloaded artifact is b67492ec67fc0978a8cf7de7e57138620d770e492909071b079e4e66641953cf
+2026-10-15T03:42:19.8002161Z Artifact download completed successfully.
+2026-10-15T03:42:19.8440149Z SHA256 digest of downloaded artifact is 5e879944b7cc94b463661d8b4314aedfe0e33f29e35081eec3f2735e981e51fd
+2026-10-15T03:42:19.8442824Z Artifact download completed successfully.
+2026-10-15T03:42:19.8615056Z SHA256 digest of downloaded artifact is 8d9d7c9f7d1466ad10e88a7feb2496c2af67930367c2162a8226aa4349b9b7a6
+2026-10-15T03:42:19.8615491Z Artifact download completed successfully.
+2026-10-15T03:42:19.8987180Z SHA256 digest of downloaded artifact is 7e03127ab4d236a90224c688a14f4f4d7142bbb3b471b59b3b3db40f9b2a2700
+2026-10-15T03:42:19.8987877Z Artifact download completed successfully.
+2026-10-15T03:42:19.9620253Z SHA256 digest of downloaded artifact is 748b5404d14c623cd9d91659dc6ee32c3c7b2c76e4f93da095b2376b03c9f91d
+2026-10-15T03:42:19.9620763Z Artifact download completed successfully.
+2026-10-15T03:42:20.1321930Z SHA256 digest of downloaded artifact is 50f73246955c986dc21336e5a33f026ac2f5a150fd563c94c5742136f1a6841c
+2026-10-15T03:42:20.1322632Z Artifact download completed successfully.
+2026-10-15T03:42:20.1850942Z SHA256 digest of downloaded artifact is bf0108a7ae30805cb948c33cd4b15e97d33d72ba9acd59b51d8183233ef1b45a
+2026-10-15T03:42:20.1851676Z Artifact download completed successfully.
+2026-10-15T03:42:20.1871067Z SHA256 digest of downloaded artifact is 0d830004c9f1c21cd5a4f7e1ba52b572e498972f212f5f88a6f899bb2d240438
+2026-10-15T03:42:20.2479780Z Artifact download completed successfully.
+2026-10-15T03:42:20.2480564Z SHA256 digest of downloaded artifact is 24d461a271a1ae5f8e11eaf28029053509e619149a10d95def4a91337f39c51a
+2026-10-15T03:42:20.2481226Z Artifact download completed successfully.
+2026-10-15T03:42:20.2905061Z SHA256 digest of downloaded artifact is 74d0c5ed9c4aec53a0ac02fa0ebe0f5889897e47041f4cede245a2b747a3325a
+2026-10-15T03:42:20.2905778Z Artifact download completed successfully.
+2026-10-15T03:42:20.5338437Z SHA256 digest of downloaded artifact is 0d7284c60b502de7447719db5e68f26f2fd3b6ddcedf1bf66d6338ff303228dd
+2026-10-15T03:42:20.5338928Z Artifact download completed successfully.
+2026-10-15T03:42:20.5366961Z SHA256 digest of downloaded artifact is 866f3000bb6895412e987200ea2d274caf150d73f390f52b3d5fbca247d28dda
+2026-10-15T03:42:20.5367657Z Artifact download completed successfully.
+2026-10-15T03:42:20.6458779Z SHA256 digest of downloaded artifact is 0247656e6ae43d1f2724104c6012bc9e18aff8611990397f4c4343a72bf66f82
+2026-10-15T03:42:20.6459229Z Artifact download completed successfully.
+2026-10-15T03:42:20.6581071Z SHA256 digest of downloaded artifact is bb596fd3981fe905c3f4ef65835fc7ecccdb39b51d5acf3c51e881064a2e0ccd
+2026-10-15T03:42:20.6581733Z Artifact download completed successfully.
+2026-10-15T03:42:20.8030276Z SHA256 digest of downloaded artifact is 983509a4dd5d6498bd8845bee2da1bb9d8ac6f5460f5f9f718cf2e84ca24fdeb
+2026-10-15T03:42:20.8030995Z Artifact download completed successfully.
+2026-10-15T03:42:20.8033618Z SHA256 digest of downloaded artifact is 522f7ec9db91101c741f5c4d180ea375b23c599ea931e992dd6f80e12925719c
+2026-10-15T03:42:20.8034809Z Artifact download completed successfully.
+2026-10-15T03:42:20.9805212Z SHA256 digest of downloaded artifact is 42cbc1255f8f88e1bb3af86f0676627aa2ace4fb017e93da64ca2077bc98d10a
+2026-10-15T03:42:20.9805845Z Artifact download completed successfully.
+2026-10-15T03:42:20.9824126Z SHA256 digest of downloaded artifact is c48799ed100650e8dfc972c2966ae3f4f7905785c09dcdf659f9a66c1ed1caa7
+2026-10-15T03:42:20.9824801Z Artifact download completed successfully.
+2026-10-15T03:42:21.0336520Z SHA256 digest of downloaded artifact is de91d6e1d1540893b44d485da9840a909c512433fc18fb59e387c717b8993509
+2026-10-15T03:42:21.0336979Z Artifact download completed successfully.
+2026-10-15T03:42:21.1278910Z SHA256 digest of downloaded artifact is acf3fcbeb01e0f622b2cac441ea6043a1a8e96d021627e026df8f2cdc7f9f066
+2026-10-15T03:42:21.1279374Z Artifact download completed successfully.
+2026-10-15T03:42:21.1933424Z SHA256 digest of downloaded artifact is 97ec8d928b893e80e77878b6886e634119c676df3df8fb37ed4baf61c1e39fb4
+2026-10-15T03:42:21.1934600Z Artifact download completed successfully.
+2026-10-15T03:42:21.2445693Z SHA256 digest of downloaded artifact is 0073c05d22b8347c6a9aab05ac98c59d9109fd236bd06ca767cb516fa5aea933
+2026-10-15T03:42:21.2446696Z Artifact download completed successfully.
+2026-10-15T03:42:21.2988921Z SHA256 digest of downloaded artifact is 6b1a51e1c1804b2a9fb5b6639fe8d71b8c19429e5a058a51d42cb49a0d2d4037
+2026-10-15T03:42:21.2989633Z Artifact download completed successfully.
+2026-10-15T03:42:21.4571992Z SHA256 digest of downloaded artifact is cdb4fa26a73b396283fdf25d9a570da4f6835917e54fb8dbe62aa0c280ffd618
+2026-10-15T03:42:21.4572477Z Artifact download completed successfully.
+2026-10-15T03:42:21.5275687Z SHA256 digest of downloaded artifact is ac50ec8ba00d04e6dc0876fabfad97b3c227274ae62d93f6fb5dbb3ad0e66ac8
+2026-10-15T03:42:21.5276265Z Artifact download completed successfully.
+2026-10-15T03:42:21.6575048Z SHA256 digest of downloaded artifact is 0851840add8622312a1955a18334cb369e4e32ea54a4fbe8e47d5e843c392182
+2026-10-15T03:42:21.6575846Z Artifact download completed successfully.
+2026-10-15T03:42:21.6576567Z SHA256 digest of downloaded artifact is e89eba6fd339fa738b14dd8a1e295d9780bd51cf9f913e7fadbe34af9c3e40bb
+2026-10-15T03:42:21.6577233Z Artifact download completed successfully.
+2026-10-15T03:42:21.6862545Z SHA256 digest of downloaded artifact is a45483d8bd151d912d69269f5a07b169536bba23408ace2bbc9955e473371ce1
+2026-10-15T03:42:21.6867455Z Artifact download completed successfully.
+2026-10-15T03:42:21.6875206Z SHA256 digest of downloaded artifact is afe92a31347f85a3e42c7fc659fe0c3e112ea720b9c7dc6cba15d857fa4593fd
+2026-10-15T03:42:21.6875851Z Artifact download completed successfully.
+2026-10-15T03:42:21.6888398Z SHA256 digest of downloaded artifact is 701bfbce537ff082a9397198ea69f863e666956bf12e7be73c2d8dbf2dd10648
+2026-10-15T03:42:21.6888965Z Artifact download completed successfully.
+2026-10-15T03:42:21.7357117Z SHA256 digest of downloaded artifact is 133b4a518b65fe3e576ce3327f5a98965594bb397ec9329635cecce8c1fd9b85
+2026-10-15T03:42:21.7357758Z Artifact download completed successfully.
+2026-10-15T03:42:21.7722152Z SHA256 digest of downloaded artifact is e6f9f9f276fdc0e04ec27ca666b1703439673973c8e57cbe76d5ef974bef3c51
+2026-10-15T03:42:21.7722997Z Artifact download completed successfully.
+2026-10-15T03:42:21.7727988Z SHA256 digest of downloaded artifact is 7810644ac619c0a77cd54db2b29d14b360562256fa2fc639d2a2f159157e69fa
+2026-10-15T03:42:21.7729979Z Artifact download completed successfully.
+2026-10-15T03:42:21.8149922Z SHA256 digest of downloaded artifact is 8631a35f30a893eb95363316bb67a5a28dc98f8b160f1a12def79114aa5a1de6
+2026-10-15T03:42:21.8150688Z Artifact download completed successfully.
+2026-10-15T03:42:21.8167515Z SHA256 digest of downloaded artifact is 94cd5b15a999c30d0b7765f473ef66b1e5d11997d555b1733f2ed88e7998dbd5
+2026-10-15T03:42:21.8168177Z Artifact download completed successfully.
+2026-10-15T03:42:21.8672094Z SHA256 digest of downloaded artifact is e0090bd6e9e09dbd70eff2b77ad5b5525f23b721e8a51b901c94b3572cf48764
+2026-10-15T03:42:21.8672793Z Artifact download completed successfully.
+2026-10-15T03:42:21.8958985Z SHA256 digest of downloaded artifact is 0961777517e9869ea0391ea144b12663550319a2b23c7cb7799fdda027b88148
+2026-10-15T03:42:21.8959703Z Artifact download completed successfully.
+2026-10-15T03:42:22.0725849Z SHA256 digest of downloaded artifact is 81e265485ffdc2ecb673c96b8ffbe0f4b06e0701db905a442eddb30ef4e233c4
+2026-10-15T03:42:22.0726614Z Artifact download completed successfully.
+2026-10-15T03:42:22.0736251Z SHA256 digest of downloaded artifact is 8d12f57a834130d9cc4750240688e4b1bc75aa542d2229fc7ce59286aad1546c
+2026-10-15T03:42:22.0736903Z Artifact download completed successfully.
+2026-10-15T03:42:22.1891355Z SHA256 digest of downloaded artifact is 877a10c17fef292abe3b2dcd85c53128f50b9dcad46492b5238b198b03240ce1
+2026-10-15T03:42:22.1891989Z Artifact download completed successfully.
+2026-10-15T03:42:22.1966584Z SHA256 digest of downloaded artifact is f91c553751cb40d11ea78d195253a1575e6bee44a24c729a177155fe18fb3617
+2026-10-15T03:42:22.1967279Z Artifact download completed successfully.
+2026-10-15T03:42:22.1977944Z SHA256 digest of downloaded artifact is 6a2ccaee44f33247ea9b7845367a70c14a54977fb972adbe26c4a7144434267f
+2026-10-15T03:42:22.1978602Z Artifact download completed successfully.
+2026-10-15T03:42:22.2258457Z SHA256 digest of downloaded artifact is da26b6f8ac9a52265436501ced421f6760abc852216186e1638aa54812467679
+2026-10-15T03:42:22.2258919Z Artifact download completed successfully.
+2026-10-15T03:42:22.2337625Z SHA256 digest of downloaded artifact is 0f11166a45b765a222dbb5aa0690495c720431f0d051f9c60c97bc7b076d6583
+2026-10-15T03:42:22.2338526Z Artifact download completed successfully.
+2026-10-15T03:42:22.2511573Z SHA256 digest of downloaded artifact is 2e9892efd895e57cf9bb842ffe8169c972c713d0642aba7e2ed11c1037d3d46b
+2026-10-15T03:42:22.2512159Z Artifact download completed successfully.
+2026-10-15T03:42:22.2702162Z SHA256 digest of downloaded artifact is 7fb0be121b7cf926c03cecc9affafeca496cc4ea4a715c9a9acbfd725b5fd95b
+2026-10-15T03:42:22.2702808Z Artifact download completed successfully.
+2026-10-15T03:42:22.3287427Z SHA256 digest of downloaded artifact is 01cc0d3f32cb0b94e185194679e59185cc7dda4ba3fedb09facb50b60815808a
+2026-10-15T03:42:22.3288093Z Artifact download completed successfully.
+2026-10-15T03:42:22.3759564Z SHA256 digest of downloaded artifact is dc99c860f9792807dcc2aa0b18d1f01edbe8dad64e30a6f0c7948db9bd9521be
+2026-10-15T03:42:22.3760034Z Artifact download completed successfully.
+2026-10-15T03:42:22.4512095Z SHA256 digest of downloaded artifact is 4700739a1e762d56b300ebc42183d129f01d1bdaff520d64500dd90f696d478d
+2026-10-15T03:42:22.4512574Z Artifact download completed successfully.
+2026-10-15T03:42:22.6344315Z SHA256 digest of downloaded artifact is e0f72801e02b2f98855fcb833d659490c92eb09268e7a472d56a3d8286a4bbbe
+2026-10-15T03:42:22.6345028Z Artifact download completed successfully.
+2026-10-15T03:42:22.6709029Z SHA256 digest of downloaded artifact is e7d5b8ec8647d8dfc4a1a7e4b677c6ff3c5b14e726019549903d21face82a28e
+2026-10-15T03:42:22.6709572Z Artifact download completed successfully.
+2026-10-15T03:42:22.6741645Z SHA256 digest of downloaded artifact is 4f8a4a33b72670e7f294ab8218299aa38d5dbc76e44b456c733f6d53dee2dc73
+2026-10-15T03:42:22.6742270Z Artifact download completed successfully.
+2026-10-15T03:42:22.7844065Z SHA256 digest of downloaded artifact is 56deb77fe21ef56c38035744dd5423007ac5dfcdfc44739b306433d5ceba1020
+2026-10-15T03:42:22.7844766Z Artifact download completed successfully.
+2026-10-15T03:42:22.7895747Z SHA256 digest of downloaded artifact is 4e5e0eda4fcadcb48b79d871a34fb6640721b5ef3d50c4b6ee345b3a704c56ea
+2026-10-15T03:42:22.7896203Z Artifact download completed successfully.
+2026-10-15T03:42:22.7954356Z SHA256 digest of downloaded artifact is f64fdfea4168e449a074fc141bc30fc17abf9ddf43b2d538597aec1e1e217714
+2026-10-15T03:42:22.7954881Z Artifact download completed successfully.
+2026-10-15T03:42:22.9263277Z SHA256 digest of downloaded artifact is d9f0107c6daf6ef4804c5503c325a6d78bddc4056d71658f41666801577804ae
+2026-10-15T03:42:22.9263971Z Artifact download completed successfully.
+2026-10-15T03:42:22.9879174Z SHA256 digest of downloaded artifact is c5a6fab483ed9afde4305adc6224fe2b4c0768aba387fdfdd2b8e5e2a55e977d
+2026-10-15T03:42:22.9879944Z Artifact download completed successfully.
+2026-10-15T03:42:23.0409684Z SHA256 digest of downloaded artifact is 244e0a389c31ef170b716103b1d3898a5067e0c3b63998b45a11070d8a3bfb0c
+2026-10-15T03:42:23.0410127Z Artifact download completed successfully.
+2026-10-15T03:42:23.0683734Z SHA256 digest of downloaded artifact is 6de48ca33d18ebade847b4d558a6361d26db7afa6d562a42ea7b7daefe460b80
+2026-10-15T03:42:23.0684223Z Artifact download completed successfully.
+2026-10-15T03:42:23.0933024Z SHA256 digest of downloaded artifact is 5802eaae828c116cce1467516f70e890bebfeb25d9e1e98f38fdf27f522cbe61
+2026-10-15T03:42:23.0933522Z Artifact download completed successfully.
+2026-10-15T03:42:23.1342963Z SHA256 digest of downloaded artifact is 934aac68916dcd4937a3f9aa519974395b88db35d7f6a5da58720deb39a0069e
+2026-10-15T03:42:23.1343625Z Artifact download completed successfully.
+2026-10-15T03:42:23.1934279Z SHA256 digest of downloaded artifact is 0a3ea34eb92055d5ac5c2dd4119b511702880a9195a211c516e81daf10863cab
+2026-10-15T03:42:23.1934851Z Artifact download completed successfully.
+2026-10-15T03:42:23.1954228Z SHA256 digest of downloaded artifact is eba11cbd49cb96cdc4013eeac298a64ede5af3e1386739ea83e74d6507e38525
+2026-10-15T03:42:23.1954875Z Artifact download completed successfully.
+2026-10-15T03:42:23.2896633Z SHA256 digest of downloaded artifact is 944002dcb6aca4c6e1783b45df5f90723bdf66925c46961295c4ad971160a5fb
+2026-10-15T03:42:23.2897093Z Artifact download completed successfully.
+2026-10-15T03:42:23.3573876Z SHA256 digest of downloaded artifact is f92ead939f477ee4df888bfa0490ae2bbc17de728a732ed5ff4bebdfd8632340
+2026-10-15T03:42:23.3574577Z Artifact download completed successfully.
+2026-10-15T03:42:23.4684266Z SHA256 digest of downloaded artifact is c4f6a3d9e950a0c1f8f75a09c2e24a2810e4437e2f4e0206bac603387308811c
+2026-10-15T03:42:23.4684945Z Artifact download completed successfully.
+2026-10-15T03:42:23.4776759Z SHA256 digest of downloaded artifact is 1b96cef9d106e24ca1dd63d9cdf9cddb39ab309f6eeddba08f395e8dfc901943
+2026-10-15T03:42:23.4777444Z Artifact download completed successfully.
+2026-10-15T03:42:23.4897171Z SHA256 digest of downloaded artifact is 02059ccfcf894bf7d9f7cef0e0d471e553d5a06486a4a5d0305f01dc726218d5
+2026-10-15T03:42:23.4897603Z Artifact download completed successfully.
+2026-10-15T03:42:23.7777997Z SHA256 digest of downloaded artifact is 666ccfbbf3268f020a95f026fdbbd8f2e895001656e07efc863c2bc9c8dc9434
+2026-10-15T03:42:23.7778713Z Artifact download completed successfully.
+2026-10-15T03:42:24.0069764Z SHA256 digest of downloaded artifact is bc9b025af98b3caa09622cf23fcce3ac71a9752b81f597d4a015e38529477a30
+2026-10-15T03:42:24.0070459Z Artifact download completed successfully.
+2026-10-15T03:42:24.3996625Z SHA256 digest of downloaded artifact is 9b5188976731a87fc515ba0be652fa53a302d1dbeff8e65dda28e71d1bc6a540
+2026-10-15T03:42:24.3997123Z Artifact download completed successfully.
+2026-10-15T03:42:24.4836615Z SHA256 digest of downloaded artifact is 60e620d3e80fc50657aa8372e1d79d6553822de9012497597ea177aefbb4e394
+2026-10-15T03:42:24.4837842Z Artifact download completed successfully.
+2026-10-15T03:42:24.4901904Z SHA256 digest of downloaded artifact is 88ce83e5be968bb993dd5e02d6f540512e2f83e7efaf1ab1322ec9a018376b80
+2026-10-15T03:42:24.4902578Z Artifact download completed successfully.
+2026-10-15T03:42:24.5761062Z SHA256 digest of downloaded artifact is 801477ef5eb5dd9b33e7c073eb6cf22ba9dff11044ed922162458d821a9638cc
+2026-10-15T03:42:24.5761581Z Artifact download completed successfully.
+2026-10-15T03:42:24.6262077Z SHA256 digest of downloaded artifact is 9661d73f67617745a2fe9922d35c38d0a45c59b78a101c0939820202f60379c5
+2026-10-15T03:42:24.6262776Z Artifact download completed successfully.
+2026-10-15T03:42:24.7215084Z SHA256 digest of downloaded artifact is 75719f1769783883c50e4d1856bbbc4342bf436be1b5d1b712e71840117ac8c1
+2026-10-15T03:42:24.7215766Z Artifact download completed successfully.
+2026-10-15T03:42:24.7790498Z SHA256 digest of downloaded artifact is 75bf08d81d66caedcd0cf0974c036c6905ac04eb45b313d770c25e7d36c20c6e
+2026-10-15T03:42:24.7790949Z Artifact download completed successfully.
+2026-10-15T03:42:24.7791379Z SHA256 digest of downloaded artifact is dfb08bd789a6b74a95f53319119dc73beeff1e1572b49737361c241e33c792df
+2026-10-15T03:42:24.7791772Z Artifact download completed successfully.
+2026-10-15T03:42:24.7920381Z SHA256 digest of downloaded artifact is 1bf1f8e2fc9e903602e8af2ec87c0ead28412c4010d0ac1617adb9fc91ad27f4
+2026-10-15T03:42:24.7921000Z Artifact download completed successfully.
+2026-10-15T03:42:24.7961125Z SHA256 digest of downloaded artifact is be38899931de9fca8c605fd1a0eefa8188694dcfeb0d7945a276347744bdda6e
+2026-10-15T03:42:24.7961983Z Artifact download completed successfully.
+2026-10-15T03:42:24.8907070Z SHA256 digest of downloaded artifact is 4d9f395273816e5829b4d97f7aa72046c867673f8bc13e2aeb7d60c05df3afc7
+2026-10-15T03:42:24.8907722Z Artifact download completed successfully.
+2026-10-15T03:42:25.5321772Z SHA256 digest of downloaded artifact is a6a172c866afb33a9976407ee1c3f0f934a1d4a96ab45bfa3cc9f6c437d81b95
+2026-10-15T03:42:25.5322229Z Artifact download completed successfully.
+2026-10-15T03:42:25.8580589Z SHA256 digest of downloaded artifact is d97d5a281cfdc6b882d6884c5bc573109ed04fa5d765fd1e62b230a540b55a73
+2026-10-15T03:42:25.8581031Z Artifact download completed successfully.
+2026-10-15T03:42:26.2933826Z SHA256 digest of downloaded artifact is 275a63ccc06c625d938ae8cd995663eb2216df3cc572920a3c0c63bf1ab0353f
+2026-10-15T03:42:26.2934339Z Artifact download completed successfully.
+2026-10-15T03:42:26.2934651Z Total of 100 artifact(s) downloaded
+2026-10-15T03:42:26.2940137Z Download artifact has finished successfully
+2026-10-15T03:42:26.3283726Z ##[group]Run python -I examples/continue_qualification.py aggregate --inputs inputs --producer-inputs producer-inputs --out .superpowers/continuation-audit
+2026-10-15T03:42:26.3284543Z [36;1mpython -I examples/continue_qualification.py aggregate --inputs inputs --producer-inputs producer-inputs --out .superpowers/continuation-audit[0m
+2026-10-15T03:42:26.3285057Z [36;1mif ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }[0m
+2026-10-15T03:42:26.3309121Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-15T03:42:26.3309427Z env:
+2026-10-15T03:42:26.3309628Z   OMP_NUM_THREADS: 1
+2026-10-15T03:42:26.3309858Z   OPENBLAS_NUM_THREADS: 1
+2026-10-15T03:42:26.3310081Z   MKL_NUM_THREADS: 1
+2026-10-15T03:42:26.3312029Z   GH_TOKEN: ***
+2026-10-15T03:42:26.3312311Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T03:42:26.3312693Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.11.9\x64/lib/pkgconfig
+2026-10-15T03:42:26.3313094Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T03:42:26.3313561Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T03:42:26.3313966Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T03:42:26.3314412Z ##[endgroup]
+2026-10-15T03:42:29.7881606Z Continuation did not qualify; evidence saved, no signal follow-on.
+2026-10-15T03:42:29.9569652Z ##[error]Process completed with exit code 1.
+2026-10-15T03:42:29.9682495Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-10-15T03:42:29.9682864Z with:
+2026-10-15T03:42:29.9683093Z   name: qualification-continuation-audit
+2026-10-15T03:42:29.9683381Z   path: .superpowers/continuation-audit/
+2026-10-15T03:42:29.9683655Z   include-hidden-files: true
+2026-10-15T03:42:29.9683906Z   if-no-files-found: error
+2026-10-15T03:42:29.9684146Z   retention-days: 30
+2026-10-15T03:42:29.9684377Z   compression-level: 6
+2026-10-15T03:42:29.9684614Z   overwrite: false
+2026-10-15T03:42:29.9684829Z env:
+2026-10-15T03:42:29.9685029Z   OMP_NUM_THREADS: 1
+2026-10-15T03:42:29.9685254Z   OPENBLAS_NUM_THREADS: 1
+2026-10-15T03:42:29.9685498Z   MKL_NUM_THREADS: 1
+2026-10-15T03:42:29.9687337Z   GH_TOKEN: ***
+2026-10-15T03:42:29.9687624Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T03:42:29.9688013Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.11.9\x64/lib/pkgconfig
+2026-10-15T03:42:29.9688422Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T03:42:29.9688784Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T03:42:29.9689134Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T03:42:29.9689426Z ##[endgroup]
+2026-10-15T03:42:30.0834383Z (node:8084) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-15T03:42:30.0834947Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-15T03:42:30.0876351Z With the provided path, there will be 3 files uploaded
+2026-10-15T03:42:30.0879429Z Artifact name is valid!
+2026-10-15T03:42:30.0880442Z Root directory input is valid!
+2026-10-15T03:42:30.3739314Z Beginning upload of artifact content to blob storage
+2026-10-15T03:42:30.3894982Z (node:8084) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-15T03:42:30.5743577Z Uploaded bytes 53759
+2026-10-15T03:42:30.6124188Z Finished uploading artifact content to blob storage!
+2026-10-15T03:42:30.6124831Z SHA256 digest of uploaded artifact zip is b0eac68c6fac089240ed4933733a9cf6600d4bb2f2a04ffae8db21aa2e921e32
+2026-10-15T03:42:30.6126344Z Finalizing artifact upload
+2026-10-15T03:42:30.8441443Z Artifact qualification-continuation-audit.zip successfully finalized. Artifact ID 11946715595
+2026-10-15T03:42:30.8442397Z Artifact qualification-continuation-audit has been successfully uploaded! Final size is 53759 bytes. Artifact ID is 11946715595
+2026-10-15T03:42:30.8448278Z Artifact download URL: https://github.com/imh-ds/open/actions/runs/38676310704/artifacts/11946715595
+2026-10-15T03:42:30.8684239Z Post job cleanup.
+2026-10-15T03:42:30.9710455Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-15T03:42:30.9910075Z git version 2.56.0.windows.2
+2026-10-15T03:42:31.0167339Z Temporarily overriding HOME='D:\a\_temp\bc4ca2e9-2d11-4a4d-b2fa-a55b470a3d71' before making global git config changes
+2026-10-15T03:42:31.0168206Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-15T03:42:31.0174223Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\open\open
+2026-10-15T03:42:31.0374855Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-15T03:42:31.0568300Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-15T03:42:31.3836806Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-15T03:42:31.4029301Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-15T03:42:31.7941903Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-15T03:42:31.8133156Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-15T03:42:32.2125404Z Cleaning up orphan processes
+2026-10-15T03:42:32.2167655Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093, actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
