@@ -103,3 +103,22 @@ of all ordinary model fits. This is a source-derived fit-count opportunity,
 not an experimentally verified runtime saving. It is not applied to this frozen
 continuation: grid counts, parameter/tie conventions and exact prediction parity
 would need explicit regression evidence in a later optimization change.
+
+## RF-only continuation launched
+
+[Run38788630751](https://github.com/imh-ds/open/actions/runs/38788630751) continues
+only the two unfinished RF fixtures. Each job allows150minutes, including132
+additional compute minutes; the total new reservation is346runner-minutes.
+No scientific defaults, seeds or datasets change. Preparation passed frozen
+source/runtime and producer transport checks; downloaded authorization exactly
+matches the two RF cases on attempt1/sourcefa709359a461a561de7ccc3aa2fc3f9de483e59c.
+Both case jobs started. The code reuses408 audited completed assessments and
+refuses failed or unmatched attempts. Four original GBM/LightGBM cases are reused
+in aggregation, with no rerun. This is still timing evidence, not qualification.
+
+45focused software checks pass. A Windows report line-ending fingerprint mismatch
+was found and fixed before dispatch; raw ZIP/checkpoint SHA256 checks remain
+strict. Implementation, normalization fix, cost evidence and actual launch
+records were committed separately. See rf-continuation-38788630751/launch.json
+and saved authorization for provenance. Review completed mixed results before
+considering any larger reliability study or default optimization.
