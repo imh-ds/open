@@ -1,0 +1,60 @@
+{
+  "producer_run": "38690088093",
+  "producer_source": "34729fd23f820711f31ea081c8e4b46769d3ed4f",
+  "producer_attempt": 1,
+  "original_workflow_conclusion": "failure",
+  "local_independent_audit_complete": true,
+  "complete": 110,
+  "planned": 110,
+  "qualified": true,
+  "integrity_errors": [],
+  "target_resample_assessments": 33000,
+  "observation_loss_checks": 59208959,
+  "warnings": 0,
+  "model_refits": 0,
+  "new_actions_dispatches": 0,
+  "prior_reserved_runner_minutes": 9889,
+  "unallocated_runner_minutes": 111,
+  "focused_tests_passed": 24,
+  "cache_hits_verified_with_reauditing_forbidden": 110,
+  "independent_closed_form_intervals_checked": true,
+  "correlated_cases_pending": 110,
+  "scope": "continuous Gaussian known chain; shipped default ElasticNet only",
+  "cells": {
+    "chain-n200": {
+      "complete": 55,
+      "incorrect": {
+        "count": 0,
+        "lower": 0.0,
+        "upper": 0.06487076082542459
+      },
+      "planned": 55,
+      "qualified": true,
+      "recovery": {
+        "count": 55,
+        "lower": 0.9351292391745754,
+        "upper": 1.0
+      },
+      "unknown": 0
+    },
+    "chain-n80": {
+      "complete": 55,
+      "incorrect": {
+        "count": 0,
+        "lower": 0.0,
+        "upper": 0.06487076082542459
+      },
+      "planned": 55,
+      "qualified": true,
+      "recovery": {
+        "count": 55,
+        "lower": 0.9351292391745754,
+        "upper": 1.0
+      },
+      "unknown": 0
+    }
+  },
+  "independent_result_review": "passed; case rows, identities, intervals, thresholds and graph independently checked",
+  "manifest_digest": "d896d2185cf6a895f27317c501cfaa5d479662460b507f1a35b5837679b114f1",
+  "replay_source_sha256": "d68fd1298429952dd873b3a082eb5cd6473472f7d399bcdcf73467835adaaf64"
+}

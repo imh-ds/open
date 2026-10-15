@@ -63,3 +63,9 @@ def test_empty_summary_cannot_pass():
     r=c.report([],{},dict(verified=True))
     assert r['planned']==110 and r['complete']==0 and not r['qualified']
     assert r['original_workflow_conclusion']=='failure'
+
+
+def test_replay_source_line_endings_are_pinned_for_portable_cache():
+    import replay_chain_verification as c
+    attributes=(c.chain.ROOT/'.gitattributes').read_text()
+    assert 'examples/replay_chain_verification.py text eol=lf' in attributes.splitlines()
