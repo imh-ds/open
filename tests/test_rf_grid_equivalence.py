@@ -45,3 +45,40 @@ def test_mismatched_predictions_fail_the_equivalence_gate():
     reduced = dict(selected=base['selected'], scores=[-1., -2.], predictions=[0., 1.01])
     with pytest.raises(AssertionError, match='predictions'):
         probe.require_parity(base, reduced)
+
+
+def test_risk_reports_actual_reduced_tuning_work_with_identical_losses():
+    """Catch stale grid-size accounting at the real risk/clone boundary."""
+    from unittest.mock import patch
+    import pandas as pd
+    from sklearn.ensemble import RandomForestRegressor
+    from open.learners import trees
+    from open.risk import evaluate_risk
+    from open.splits import SplitFold, SplitPlan
+    frame = pd.DataFrame({'x': np.arange(24.), 'y': np.arange(24.)**2})
+    plan = SplitPlan(n_samples=24, folds=2, repeats=1, random_seed=17,
+                     splits=(SplitFold(0, 0, tuple(range(12)), tuple(range(12, 24))),
+                             SplitFold(0, 1, tuple(range(12, 24)), tuple(range(12)))))
+    original_fit = RandomForestRegressor.fit
+    results, counts = [], []
+    for features in ([.7, 1.], [.7]):
+        count = 0
+
+        def counted_fit(estimator, *args, **kwargs):
+            nonlocal count
+            count += 1
+            return original_fit(estimator, *args, **kwargs)
+
+        with patch.dict(trees.GRIDS, {'random_forest': {
+                'min_samples_leaf': [2, 5], 'max_features': features}}), \
+                patch.object(RandomForestRegressor, 'fit', counted_fit):
+            results.append(evaluate_risk(frame, target='y', candidate_set=('x',),
+                predictors=('x',), split_plan=plan,
+                predictor=trees.TreePredictor('random_forest', random_seed=17),
+                tuning_folds=3))
+        counts.append(count)
+    assert counts == [26, 14]  # 24/12 inner fits plus two outer fits
+    assert [r.tuning_model_fit_count for r in results] == [24, 12]
+    assert [r.outer_model_fit_count for r in results] == [2, 2]
+    assert results[0].aggregate_risk == results[1].aggregate_risk
+    assert results[0].folds == results[1].folds
