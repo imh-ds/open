@@ -1,0 +1,840 @@
+........................................................................ [  8%]
+.....FFFFFF............................................................. [ 16%]
+........................................................................ [ 25%]
+........................................................................ [ 33%]
+........................................................................ [ 42%]
+........................................................................ [ 50%]
+........................................................................ [ 58%]
+.........................F.........FFFFF................................ [ 67%]
+......................F..FFFF.......F.................................F. [ 75%]
+F.F...........F......................................................... [ 84%]
+........................................................................ [ 92%]
+................................................................         [100%]
+================================== FAILURES ===================================
+_______________________ test_frozen_context_and_shards ________________________
+
+tmp_path = WindowsPath('C:/Users/imhoh/GitHub/open/.worktrees/open-phase2/.superpowers/rf-optimized-full-suite/test_frozen_context_and_shards0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001DE85D8E410>
+
+    def test_frozen_context_and_shards(tmp_path,monkeypatch):
+>       m=module(tmp_path);m.freeze();assert len(m.shard_tasks('005'))==10
+
+tests\test_confidence_diagnostic_study.py:16: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_confidence_diagnostic_study.py:12: in module
+    m.MANIFEST=tmp/'manifest.json';m.freeze(False);return m
+examples\confidence_diagnostic_study.py:33: in freeze
+    old.freeze('confirmation');v=manifest()
+examples\pair_confidence_study.py:71: in freeze
+    io.validate_environment();value=manifest(stage)
+examples\pair_confidence_study.py:66: in manifest
+    validate_rule();value['thresholds_sha256']=threshold_digest()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def validate_rule():
+        if not THRESHOLDS.exists():raise ValueError('confirmation requires committed calibration thresholds')
+        v=io.read(THRESHOLDS)
+        if (v.get('schema')!='open.pair_confidence_thresholds.v1' or v.get('status')!='complete' or
+            v.get('rule')!=rules.RULE or v.get('calibration_manifest')!=io.fingerprint(manifest('calibration'))):
+>           raise ValueError('calibration rule provenance differs')
+E           ValueError: calibration rule provenance differs
+
+examples\pair_confidence_study.py:48: ValueError
+_______________ test_oracle_vectors_are_diagnostic_and_audited ________________
+
+tmp_path = WindowsPath('C:/Users/imhoh/GitHub/open/.worktrees/open-phase2/.superpowers/rf-optimized-full-suite/test_oracle_vectors_are_diagno0')
+
+    def test_oracle_vectors_are_diagnostic_and_audited(tmp_path):
+>       m=module(tmp_path);c=m.d.tasks()[18];data=m.old.comparisons(c)[0]
+
+tests\test_confidence_diagnostic_study.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_confidence_diagnostic_study.py:12: in module
+    m.MANIFEST=tmp/'manifest.json';m.freeze(False);return m
+examples\confidence_diagnostic_study.py:33: in freeze
+    old.freeze('confirmation');v=manifest()
+examples\pair_confidence_study.py:71: in freeze
+    io.validate_environment();value=manifest(stage)
+examples\pair_confidence_study.py:66: in manifest
+    validate_rule();value['thresholds_sha256']=threshold_digest()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def validate_rule():
+        if not THRESHOLDS.exists():raise ValueError('confirmation requires committed calibration thresholds')
+        v=io.read(THRESHOLDS)
+        if (v.get('schema')!='open.pair_confidence_thresholds.v1' or v.get('status')!='complete' or
+            v.get('rule')!=rules.RULE or v.get('calibration_manifest')!=io.fingerprint(manifest('calibration'))):
+>           raise ValueError('calibration rule provenance differs')
+E           ValueError: calibration rule provenance differs
+
+examples\pair_confidence_study.py:48: ValueError
+_______________ test_partial_evidence_retains_missing_and_cost ________________
+
+tmp_path = WindowsPath('C:/Users/imhoh/GitHub/open/.worktrees/open-phase2/.superpowers/rf-optimized-full-suite/test_partial_evidence_retains_0')
+
+    def test_partial_evidence_retains_missing_and_cost(tmp_path):
+>       m=module(tmp_path);c=m.d.tasks()[0];data=m.old.comparisons(c)[0];v=m.old.models.compare(*data,c['split_seed']);out=tmp_path/'out'
+
+tests\test_confidence_diagnostic_study.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_confidence_diagnostic_study.py:12: in module
+    m.MANIFEST=tmp/'manifest.json';m.freeze(False);return m
+examples\confidence_diagnostic_study.py:33: in freeze
+    old.freeze('confirmation');v=manifest()
+examples\pair_confidence_study.py:71: in freeze
+    io.validate_environment();value=manifest(stage)
+examples\pair_confidence_study.py:66: in manifest
+    validate_rule();value['thresholds_sha256']=threshold_digest()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def validate_rule():
+        if not THRESHOLDS.exists():raise ValueError('confirmation requires committed calibration thresholds')
+        v=io.read(THRESHOLDS)
+        if (v.get('schema')!='open.pair_confidence_thresholds.v1' or v.get('status')!='complete' or
+            v.get('rule')!=rules.RULE or v.get('calibration_manifest')!=io.fingerprint(manifest('calibration'))):
+>           raise ValueError('calibration rule provenance differs')
+E           ValueError: calibration rule provenance differs
+
+examples\pair_confidence_study.py:48: ValueError
+________________ test_verified_resume_and_prediction_tampering ________________
+
+tmp_path = WindowsPath('C:/Users/imhoh/GitHub/open/.worktrees/open-phase2/.superpowers/rf-optimized-full-suite/test_verified_resume_and_predi0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001DE86D2A5D0>
+
+    def test_verified_resume_and_prediction_tampering(tmp_path,monkeypatch):
+>       m=module(tmp_path);c=m.d.tasks()[0];out=tmp_path/'out';v=m.run_task(c,out);assert len(v['comparisons'])==4
+
+tests\test_confidence_diagnostic_study.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_confidence_diagnostic_study.py:12: in module
+    m.MANIFEST=tmp/'manifest.json';m.freeze(False);return m
+examples\confidence_diagnostic_study.py:33: in freeze
+    old.freeze('confirmation');v=manifest()
+examples\pair_confidence_study.py:71: in freeze
+    io.validate_environment();value=manifest(stage)
+examples\pair_confidence_study.py:66: in manifest
+    validate_rule();value['thresholds_sha256']=threshold_digest()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def validate_rule():
+        if not THRESHOLDS.exists():raise ValueError('confirmation requires committed calibration thresholds')
+        v=io.read(THRESHOLDS)
+        if (v.get('schema')!='open.pair_confidence_thresholds.v1' or v.get('status')!='complete' or
+            v.get('rule')!=rules.RULE or v.get('calibration_manifest')!=io.fingerprint(manifest('calibration'))):
+>           raise ValueError('calibration rule provenance differs')
+E           ValueError: calibration rule provenance differs
+
+examples\pair_confidence_study.py:48: ValueError
+______________ test_foreign_stamps_and_error_context_fail_audit _______________
+
+tmp_path = WindowsPath('C:/Users/imhoh/GitHub/open/.worktrees/open-phase2/.superpowers/rf-optimized-full-suite/test_foreign_stamps_and_error_0')
+
+    def test_foreign_stamps_and_error_context_fail_audit(tmp_path):
+>       m=module(tmp_path);out=tmp_path/'out';m.io.write(out/'shard-999.json',dict(id='999'))
+
+tests\test_confidence_diagnostic_study.py:50: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_confidence_diagnostic_study.py:12: in module
+    m.MANIFEST=tmp/'manifest.json';m.freeze(False);return m
+examples\confidence_diagnostic_study.py:33: in freeze
+    old.freeze('confirmation');v=manifest()
+examples\pair_confidence_study.py:71: in freeze
+    io.validate_environment();value=manifest(stage)
+examples\pair_confidence_study.py:66: in manifest
+    validate_rule();value['thresholds_sha256']=threshold_digest()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def validate_rule():
+        if not THRESHOLDS.exists():raise ValueError('confirmation requires committed calibration thresholds')
+        v=io.read(THRESHOLDS)
+        if (v.get('schema')!='open.pair_confidence_thresholds.v1' or v.get('status')!='complete' or
+            v.get('rule')!=rules.RULE or v.get('calibration_manifest')!=io.fingerprint(manifest('calibration'))):
+>           raise ValueError('calibration rule provenance differs')
+E           ValueError: calibration rule provenance differs
+
+examples\pair_confidence_study.py:48: ValueError
+________________ test_repeated_failures_preserve_every_attempt ________________
+
+tmp_path = WindowsPath('C:/Users/imhoh/GitHub/open/.worktrees/open-phase2/.superpowers/rf-optimized-full-suite/test_repeated_failures_preserv0')
+
+    def test_repeated_failures_preserve_every_attempt(tmp_path):
+>       m=module(tmp_path);c=m.d.tasks()[0];folder=tmp_path/'out'/c['id']
+
+tests\test_confidence_diagnostic_study.py:56: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_confidence_diagnostic_study.py:12: in module
+    m.MANIFEST=tmp/'manifest.json';m.freeze(False);return m
+examples\confidence_diagnostic_study.py:33: in freeze
+    old.freeze('confirmation');v=manifest()
+examples\pair_confidence_study.py:71: in freeze
+    io.validate_environment();value=manifest(stage)
+examples\pair_confidence_study.py:66: in manifest
+    validate_rule();value['thresholds_sha256']=threshold_digest()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def validate_rule():
+        if not THRESHOLDS.exists():raise ValueError('confirmation requires committed calibration thresholds')
+        v=io.read(THRESHOLDS)
+        if (v.get('schema')!='open.pair_confidence_thresholds.v1' or v.get('status')!='complete' or
+            v.get('rule')!=rules.RULE or v.get('calibration_manifest')!=io.fingerprint(manifest('calibration'))):
+>           raise ValueError('calibration rule provenance differs')
+E           ValueError: calibration rule provenance differs
+
+examples\pair_confidence_study.py:48: ValueError
+____________ test_partial_receipt_context_and_unknown_failure_cost ____________
+
+tmp_path = WindowsPath('C:/Users/imhoh/GitHub/open/.worktrees/open-phase2/.superpowers/rf-optimized-full-suite/test_partial_receipt_context_a0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001DE8FEB6C50>
+
+    def test_partial_receipt_context_and_unknown_failure_cost(tmp_path,monkeypatch):
+        m=load();c=m.study.d.tasks()[0];out=tmp_path/'out'
+        m.study.io.write(out/c['id']/'receipt.json',dict(task=c,context='foreign',environment=m.study.io.environment()))
+>       a=m.aggregate('null',[out],out,m.study.manifest())
+
+tests\test_prospective_interaction_report.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+examples\prospective_interaction_study.py:39: in manifest
+    old.validate_rule()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def validate_rule():
+        if not THRESHOLDS.exists():raise ValueError('confirmation requires committed calibration thresholds')
+        v=io.read(THRESHOLDS)
+        if (v.get('schema')!='open.pair_confidence_thresholds.v1' or v.get('status')!='complete' or
+            v.get('rule')!=rules.RULE or v.get('calibration_manifest')!=io.fingerprint(manifest('calibration'))):
+>           raise ValueError('calibration rule provenance differs')
+E           ValueError: calibration rule provenance differs
+
+examples\pair_confidence_study.py:48: ValueError
+____________________ test_freeze_context_and_signal_guard _____________________
+
+tmp_path = WindowsPath('C:/Users/imhoh/GitHub/open/.worktrees/open-phase2/.superpowers/rf-optimized-full-suite/test_freeze_context_and_signal0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001DE887ADE10>
+
+    def test_freeze_context_and_signal_guard(tmp_path,monkeypatch):
+>       m=module(tmp_path,monkeypatch);m.freeze();c=m.d.tasks()[0]
+
+tests\test_prospective_interaction_study.py:16: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_prospective_interaction_study.py:12: in module
+    m.freeze(False);return m
+examples\prospective_interaction_study.py:49: in freeze
+    io.validate_environment();old.freeze('confirmation');v=manifest()
+examples\pair_confidence_study.py:71: in freeze
+    io.validate_environment();value=manifest(stage)
+examples\pair_confidence_study.py:66: in manifest
+    validate_rule();value['thresholds_sha256']=threshold_digest()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def validate_rule():
+        if not THRESHOLDS.exists():raise ValueError('confirmation requires committed calibration thresholds')
+        v=io.read(THRESHOLDS)
+        if (v.get('schema')!='open.pair_confidence_thresholds.v1' or v.get('status')!='complete' or
+            v.get('rule')!=rules.RULE or v.get('calibration_manifest')!=io.fingerprint(manifest('calibration'))):
+>           raise ValueError('calibration rule provenance differs')
+E           ValueError: calibration rule provenance differs
+
+examples\pair_confidence_study.py:48: ValueError
+_________________ test_verified_resume_and_prediction_tamper __________________
+
+tmp_path = WindowsPath('C:/Users/imhoh/GitHub/open/.worktrees/open-phase2/.superpowers/rf-optimized-full-suite/test_verified_resume_and_predi1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001DE871587D0>
+
+    def test_verified_resume_and_prediction_tamper(tmp_path,monkeypatch):
+>       m=module(tmp_path,monkeypatch);c=m.d.tasks()[0];out=tmp_path/'out'
+
+tests\test_prospective_interaction_study.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_prospective_interaction_study.py:12: in module
+    m.freeze(False);return m
+examples\prospective_interaction_study.py:49: in freeze
+    io.validate_environment();old.freeze('confirmation');v=manifest()
+examples\pair_confidence_study.py:71: in freeze
+    io.validate_environment();value=manifest(stage)
+examples\pair_confidence_study.py:66: in manifest
+    validate_rule();value['thresholds_sha256']=threshold_digest()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def validate_rule():
+        if not THRESHOLDS.exists():raise ValueError('confirmation requires committed calibration thresholds')
+        v=io.read(THRESHOLDS)
+        if (v.get('schema')!='open.pair_confidence_thresholds.v1' or v.get('status')!='complete' or
+            v.get('rule')!=rules.RULE or v.get('calibration_manifest')!=io.fingerprint(manifest('calibration'))):
+>           raise ValueError('calibration rule provenance differs')
+E           ValueError: calibration rule provenance differs
+
+examples\pair_confidence_study.py:48: ValueError
+____________________ test_partial_cost_and_repeat_history _____________________
+
+tmp_path = WindowsPath('C:/Users/imhoh/GitHub/open/.worktrees/open-phase2/.superpowers/rf-optimized-full-suite/test_partial_cost_and_repeat_h0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001DE86F79590>
+
+    def test_partial_cost_and_repeat_history(tmp_path,monkeypatch):
+>       m=module(tmp_path,monkeypatch);c=m.d.tasks()[0];folder=tmp_path/'out'/c['id']
+
+tests\test_prospective_interaction_study.py:36: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_prospective_interaction_study.py:12: in module
+    m.freeze(False);return m
+examples\prospective_interaction_study.py:49: in freeze
+    io.validate_environment();old.freeze('confirmation');v=manifest()
+examples\pair_confidence_study.py:71: in freeze
+    io.validate_environment();value=manifest(stage)
+examples\pair_confidence_study.py:66: in manifest
+    validate_rule();value['thresholds_sha256']=threshold_digest()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def validate_rule():
+        if not THRESHOLDS.exists():raise ValueError('confirmation requires committed calibration thresholds')
+        v=io.read(THRESHOLDS)
+        if (v.get('schema')!='open.pair_confidence_thresholds.v1' or v.get('status')!='complete' or
+            v.get('rule')!=rules.RULE or v.get('calibration_manifest')!=io.fingerprint(manifest('calibration'))):
+>           raise ValueError('calibration rule provenance differs')
+E           ValueError: calibration rule provenance differs
+
+examples\pair_confidence_study.py:48: ValueError
+_________ test_failed_verification_attempt_survives_completed_resume __________
+
+tmp_path = WindowsPath('C:/Users/imhoh/GitHub/open/.worktrees/open-phase2/.superpowers/rf-optimized-full-suite/test_failed_verification_attem0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001DE87005D90>
+
+    def test_failed_verification_attempt_survives_completed_resume(tmp_path,monkeypatch):
+>       m=module(tmp_path,monkeypatch);c=m.d.tasks()[0];out=tmp_path/'out';original=m.audit_task
+
+tests\test_prospective_interaction_study.py:46: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_prospective_interaction_study.py:12: in module
+    m.freeze(False);return m
+examples\prospective_interaction_study.py:49: in freeze
+    io.validate_environment();old.freeze('confirmation');v=manifest()
+examples\pair_confidence_study.py:71: in freeze
+    io.validate_environment();value=manifest(stage)
+examples\pair_confidence_study.py:66: in manifest
+    validate_rule();value['thresholds_sha256']=threshold_digest()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def validate_rule():
+        if not THRESHOLDS.exists():raise ValueError('confirmation requires committed calibration thresholds')
+        v=io.read(THRESHOLDS)
+        if (v.get('schema')!='open.pair_confidence_thresholds.v1' or v.get('status')!='complete' or
+            v.get('rule')!=rules.RULE or v.get('calibration_manifest')!=io.fingerprint(manifest('calibration'))):
+>           raise ValueError('calibration rule provenance differs')
+E           ValueError: calibration rule provenance differs
+
+examples\pair_confidence_study.py:48: ValueError
+_____________ test_interrupted_fit_remains_unknown_after_success ______________
+
+tmp_path = WindowsPath('C:/Users/imhoh/GitHub/open/.worktrees/open-phase2/.superpowers/rf-optimized-full-suite/test_interrupted_fit_remains_u0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001DE868E62D0>
+
+    def test_interrupted_fit_remains_unknown_after_success(tmp_path,monkeypatch):
+>       m=module(tmp_path,monkeypatch);c=m.d.tasks()[0];out=tmp_path/'out';original=m.old.models.compare
+
+tests\test_prospective_interaction_study.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_prospective_interaction_study.py:12: in module
+    m.freeze(False);return m
+examples\prospective_interaction_study.py:49: in freeze
+    io.validate_environment();old.freeze('confirmation');v=manifest()
+examples\pair_confidence_study.py:71: in freeze
+    io.validate_environment();value=manifest(stage)
+examples\pair_confidence_study.py:66: in manifest
+    validate_rule();value['thresholds_sha256']=threshold_digest()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def validate_rule():
+        if not THRESHOLDS.exists():raise ValueError('confirmation requires committed calibration thresholds')
+        v=io.read(THRESHOLDS)
+        if (v.get('schema')!='open.pair_confidence_thresholds.v1' or v.get('status')!='complete' or
+            v.get('rule')!=rules.RULE or v.get('calibration_manifest')!=io.fingerprint(manifest('calibration'))):
+>           raise ValueError('calibration rule provenance differs')
+E           ValueError: calibration rule provenance differs
+
+examples\pair_confidence_study.py:48: ValueError
+____ test_streamed_raw_audit_preserves_missing_and_rejects_duplicate_shard ____
+
+tmp_path = WindowsPath('C:/Users/imhoh/GitHub/open/.worktrees/open-phase2/.superpowers/rf-optimized-full-suite/test_streamed_raw_audit_preser0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001DE868D9610>
+
+    def test_streamed_raw_audit_preserves_missing_and_rejects_duplicate_shard(tmp_path,monkeypatch):
+        r,v=modules();m=r.study
+        monkeypatch.setattr(m,'MANIFEST',tmp_path/'manifest.json')
+>       monkeypatch.setattr(m,'sources',lambda:m.old.sources());m.freeze(False)
+
+tests\test_realistic_interaction_report.py:78: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+examples\realistic_interaction_study.py:46: in freeze
+    io.validate_environment();previous.freeze();v=manifest()
+examples\prospective_interaction_study.py:49: in freeze
+    io.validate_environment();old.freeze('confirmation');v=manifest()
+examples\pair_confidence_study.py:71: in freeze
+    io.validate_environment();value=manifest(stage)
+examples\pair_confidence_study.py:66: in manifest
+    validate_rule();value['thresholds_sha256']=threshold_digest()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def validate_rule():
+        if not THRESHOLDS.exists():raise ValueError('confirmation requires committed calibration thresholds')
+        v=io.read(THRESHOLDS)
+        if (v.get('schema')!='open.pair_confidence_thresholds.v1' or v.get('status')!='complete' or
+            v.get('rule')!=rules.RULE or v.get('calibration_manifest')!=io.fingerprint(manifest('calibration'))):
+>           raise ValueError('calibration rule provenance differs')
+E           ValueError: calibration rule provenance differs
+
+examples\pair_confidence_study.py:48: ValueError
+____________________________ test_guard_and_splits ____________________________
+
+tmp_path = WindowsPath('C:/Users/imhoh/GitHub/open/.worktrees/open-phase2/.superpowers/rf-optimized-full-suite/test_guard_and_splits0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001DE8634B150>
+
+    def test_guard_and_splits(tmp_path,monkeypatch):
+>       m=module(tmp_path,monkeypatch);c=m.d.tasks()[0]
+
+tests\test_realistic_interaction_study.py:19: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_realistic_interaction_study.py:15: in module
+    m.freeze(False);return m
+examples\realistic_interaction_study.py:46: in freeze
+    io.validate_environment();previous.freeze();v=manifest()
+examples\prospective_interaction_study.py:49: in freeze
+    io.validate_environment();old.freeze('confirmation');v=manifest()
+examples\pair_confidence_study.py:71: in freeze
+    io.validate_environment();value=manifest(stage)
+examples\pair_confidence_study.py:66: in manifest
+    validate_rule();value['thresholds_sha256']=threshold_digest()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def validate_rule():
+        if not THRESHOLDS.exists():raise ValueError('confirmation requires committed calibration thresholds')
+        v=io.read(THRESHOLDS)
+        if (v.get('schema')!='open.pair_confidence_thresholds.v1' or v.get('status')!='complete' or
+            v.get('rule')!=rules.RULE or v.get('calibration_manifest')!=io.fingerprint(manifest('calibration'))):
+>           raise ValueError('calibration rule provenance differs')
+E           ValueError: calibration rule provenance differs
+
+examples\pair_confidence_study.py:48: ValueError
+_____________________ test_real_resume_refits_and_tamper ______________________
+
+tmp_path = WindowsPath('C:/Users/imhoh/GitHub/open/.worktrees/open-phase2/.superpowers/rf-optimized-full-suite/test_real_resume_refits_and_ta0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001DEFFEACA10>
+
+    def test_real_resume_refits_and_tamper(tmp_path,monkeypatch):
+>       m=module(tmp_path,monkeypatch);c=m.d.tasks()[0];out=tmp_path/'out'
+
+tests\test_realistic_interaction_study.py:30: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_realistic_interaction_study.py:15: in module
+    m.freeze(False);return m
+examples\realistic_interaction_study.py:46: in freeze
+    io.validate_environment();previous.freeze();v=manifest()
+examples\prospective_interaction_study.py:49: in freeze
+    io.validate_environment();old.freeze('confirmation');v=manifest()
+examples\pair_confidence_study.py:71: in freeze
+    io.validate_environment();value=manifest(stage)
+examples\pair_confidence_study.py:66: in manifest
+    validate_rule();value['thresholds_sha256']=threshold_digest()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def validate_rule():
+        if not THRESHOLDS.exists():raise ValueError('confirmation requires committed calibration thresholds')
+        v=io.read(THRESHOLDS)
+        if (v.get('schema')!='open.pair_confidence_thresholds.v1' or v.get('status')!='complete' or
+            v.get('rule')!=rules.RULE or v.get('calibration_manifest')!=io.fingerprint(manifest('calibration'))):
+>           raise ValueError('calibration rule provenance differs')
+E           ValueError: calibration rule provenance differs
+
+examples\pair_confidence_study.py:48: ValueError
+_______________ test_precomputed_truth_failure_prevents_any_fit _______________
+
+tmp_path = WindowsPath('C:/Users/imhoh/GitHub/open/.worktrees/open-phase2/.superpowers/rf-optimized-full-suite/test_precomputed_truth_failure0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001DE85ECE1D0>
+
+    def test_precomputed_truth_failure_prevents_any_fit(tmp_path,monkeypatch):
+>       m=module(tmp_path,monkeypatch);c=m.d.tasks()[0]
+
+tests\test_realistic_interaction_study.py:40: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_realistic_interaction_study.py:15: in module
+    m.freeze(False);return m
+examples\realistic_interaction_study.py:46: in freeze
+    io.validate_environment();previous.freeze();v=manifest()
+examples\prospective_interaction_study.py:49: in freeze
+    io.validate_environment();old.freeze('confirmation');v=manifest()
+examples\pair_confidence_study.py:71: in freeze
+    io.validate_environment();value=manifest(stage)
+examples\pair_confidence_study.py:66: in manifest
+    validate_rule();value['thresholds_sha256']=threshold_digest()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def validate_rule():
+        if not THRESHOLDS.exists():raise ValueError('confirmation requires committed calibration thresholds')
+        v=io.read(THRESHOLDS)
+        if (v.get('schema')!='open.pair_confidence_thresholds.v1' or v.get('status')!='complete' or
+            v.get('rule')!=rules.RULE or v.get('calibration_manifest')!=io.fingerprint(manifest('calibration'))):
+>           raise ValueError('calibration rule provenance differs')
+E           ValueError: calibration rule provenance differs
+
+examples\pair_confidence_study.py:48: ValueError
+________________________ test_failed_fit_cost_retained ________________________
+
+tmp_path = WindowsPath('C:/Users/imhoh/GitHub/open/.worktrees/open-phase2/.superpowers/rf-optimized-full-suite/test_failed_fit_cost_retained0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001DE8D992410>
+
+    def test_failed_fit_cost_retained(tmp_path,monkeypatch):
+>       m=module(tmp_path,monkeypatch);c=m.d.tasks()[0];out=tmp_path/'out'
+
+tests\test_realistic_interaction_study.py:50: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_realistic_interaction_study.py:15: in module
+    m.freeze(False);return m
+examples\realistic_interaction_study.py:46: in freeze
+    io.validate_environment();previous.freeze();v=manifest()
+examples\prospective_interaction_study.py:49: in freeze
+    io.validate_environment();old.freeze('confirmation');v=manifest()
+examples\pair_confidence_study.py:71: in freeze
+    io.validate_environment();value=manifest(stage)
+examples\pair_confidence_study.py:66: in manifest
+    validate_rule();value['thresholds_sha256']=threshold_digest()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def validate_rule():
+        if not THRESHOLDS.exists():raise ValueError('confirmation requires committed calibration thresholds')
+        v=io.read(THRESHOLDS)
+        if (v.get('schema')!='open.pair_confidence_thresholds.v1' or v.get('status')!='complete' or
+            v.get('rule')!=rules.RULE or v.get('calibration_manifest')!=io.fingerprint(manifest('calibration'))):
+>           raise ValueError('calibration rule provenance differs')
+E           ValueError: calibration rule provenance differs
+
+examples\pair_confidence_study.py:48: ValueError
+_________________ test_realistic_freeze_and_legacy_preserved __________________
+
+    def test_realistic_freeze_and_legacy_preserved():
+        import realistic_interaction_study as s
+        assert (ROOT/'.github/workflows/realistic-interaction.yml').exists(),'realistic workflow missing'
+>       s.previous.freeze();m=s.manifest()
+
+tests\test_realistic_interaction_workflow.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+examples\prospective_interaction_study.py:49: in freeze
+    io.validate_environment();old.freeze('confirmation');v=manifest()
+examples\pair_confidence_study.py:71: in freeze
+    io.validate_environment();value=manifest(stage)
+examples\pair_confidence_study.py:66: in manifest
+    validate_rule();value['thresholds_sha256']=threshold_digest()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def validate_rule():
+        if not THRESHOLDS.exists():raise ValueError('confirmation requires committed calibration thresholds')
+        v=io.read(THRESHOLDS)
+        if (v.get('schema')!='open.pair_confidence_thresholds.v1' or v.get('status')!='complete' or
+            v.get('rule')!=rules.RULE or v.get('calibration_manifest')!=io.fingerprint(manifest('calibration'))):
+>           raise ValueError('calibration rule provenance differs')
+E           ValueError: calibration rule provenance differs
+
+examples\pair_confidence_study.py:48: ValueError
+___ test_full_recorded_production_path_audits_with_scripted_mean_predictor ____
+
+tmp_path = WindowsPath('C:/Users/imhoh/GitHub/open/.worktrees/open-phase2/.superpowers/rf-optimized-full-suite/test_full_recorded_production_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001DE8706E7D0>
+
+    def test_full_recorded_production_path_audits_with_scripted_mean_predictor(tmp_path, monkeypatch):
+        """Exercise real risk recording/recursion/artifacts; no ML training or scientific fixture."""
+        from open.learners.base import Predictor
+        from layer_helpers import make_config
+        import recursive_preview_runner as runner
+        import recursive_preview_design as design
+        m = module()
+        class Mean(Predictor):
+            engine_name = 'elastic_net'
+            tuning_grid_size = 25
+            def tune(self, *args, **kw): return {'alpha':1., 'l1_ratio':.5}
+            def fit(self, X, y, params=None): self.mean = float(np.mean(y)); return self
+            def predict(self, X): return np.full(len(X), self.mean)
+            def clone(self): return Mean()
+        monkeypatch.setattr(runner.analysis, 'make_predictor', lambda c:Mean())
+        monkeypatch.setattr(runner.package, '__file__', 'C:/test/site-packages/open/__init__.py')
+        native_version = runner.importlib.metadata.version
+        monkeypatch.setattr(runner.importlib.metadata, 'version',
+            lambda n:design.RUNTIME[n] if n in design.RUNTIME else native_version(n))
+        class Future:
+            def __init__(self, value): self.value = value
+            def result(self): return self.value
+        class Pool:
+            def __init__(self, **kw): pass
+            def __enter__(self): return self
+            def __exit__(self, *args): pass
+            def submit(self, fn, *args): return Future(fn(*args))
+        monkeypatch.setattr(runner, 'ProcessPoolExecutor', Pool)
+        spec = {'id':'unit-baseline', 'fixture':'scripted'}
+        data = pd.DataFrame({'y':np.arange(20,dtype=float), 'a':np.arange(20,dtype=float)})
+        config = make_config(n_resamples=2)
+        manifest = {'runtime':design.RUNTIME}
+        directory = tmp_path/spec['id']
+>       runner.run_case(spec, directory, manifest, data=data, config=config)
+
+tests\test_recursive_preview_audit.py:156: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+examples\recursive_preview_runner.py:220: in run_case
+    network = fit_recorded(data, config, directory/'checkpoints', context, start+seconds)
+examples\recursive_preview_runner.py:191: in fit_recorded
+    return engine.fit_layer_consensus(data, config.analysis.root, tuple(data), config)
+src\open\layer_stability.py:121: in fit_layer_consensus
+    evidence = tuple(aggregate_target_assessments(
+src\open\layer_stability.py:122: in <genexpr>
+    assess_layer_target(data, depth=depth, target=target, candidates=candidates,
+examples\recursive_preview_runner.py:178: in __call__
+    futures = [pool.submit(one_assessment, data, depth, target, candidates, plan,
+examples\recursive_preview_runner.py:178: in <listcomp>
+    futures = [pool.submit(one_assessment, data, depth, target, candidates, plan,
+tests\test_recursive_preview_audit.py:149: in submit
+    def submit(self, fn, *args): return Future(fn(*args))
+examples\recursive_preview_runner.py:138: in one_assessment
+    assessment = NATIVE_ASSESS(data, depth=depth, target=target, candidates=candidates,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = (       y     a
+0    0.0   0.0
+1    1.0   1.0
+2    2.0   2.0
+3    3.0   3.0
+4    4.0   4.0
+5    5.0   5.0
+6    6.0   6...  12.0  12.0
+13  13.0  13.0
+14  14.0  14.0
+15  15.0  15.0
+16  16.0  16.0
+17  17.0  17.0
+18  18.0  18.0
+19  19.0  19.0,)
+kwargs = {'candidates': ('a',), 'config': OpenConfig(analysis=AnalysisConfig(root='y', random_seed=20, max_depth=3), outcome=Ou...), test_indices=(3, 4, 6, 7, 9, 10, 12, 14))), version=1, scheme='repeated_k_fold'), infeasibility_reason=None),), ...}
+
+    def forbidden(*args, **kwargs):
+>       raise RuntimeError('model fitting is prohibited in this independent evidence replay')
+E       RuntimeError: model fitting is prohibited in this independent evidence replay
+
+examples\results\2026-10-14-recursive-qualification\combined-38676310704\reproduce.py:22: RuntimeError
+______________ test_completed_fixture_is_reused_without_fitting _______________
+
+tmp_path = WindowsPath('C:/Users/imhoh/GitHub/open/.worktrees/open-phase2/.superpowers/rf-optimized-full-suite/test_completed_fixture_is_reus0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001DE86BFB1D0>
+
+    def test_completed_fixture_is_reused_without_fitting(tmp_path, monkeypatch):
+        import recursive_preview_design as d
+        import recursive_preview_actions as a
+        from open.layer_artifacts import reconstruct_payloads
+        def forbid(*args,**kw):
+            pytest.fail('completed fixture must never be fitted again')
+        monkeypatch.setattr(a,'run_case',forbid)
+        base = d.ROOT/'examples/results/2026-10-14-default-preview-pilot/default-pilot-chain/.superpowers/default-pilot/chain/bundle'
+        names = ('analysis_metadata.json','layer_evidence.json','assessment_ledger.json')
+        baseline,_ = reconstruct_payloads(*(json.loads((base/n).read_text()) for n in names))
+        data = pd.read_csv(d.ROOT/'examples/results/2026-10-08-layer-fixtures/chain/sample.csv')
+>       result = a.reuse_original_fixture(d.PRODUCER/'raw',d.manifest(),baseline,data,tmp_path)
+
+tests\test_recursive_preview_continuation.py:40: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+evidence = WindowsPath('C:/Users/imhoh/GitHub/open/.worktrees/open-phase2/examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/raw')
+manifest = {'allocated_runner_minutes': 9917, 'approved_ceiling': 10000, 'case_seconds': 900, 'cases': [{'analysis_seed': 1700000..., ...}, {'analysis_seed': 1700005000, 'generator_seed': 1600005000, 'id': 'noise-n80-r05', 'index': 5, ...}, ...], ...}
+baseline = LayeredOPENResult(config=OpenConfig(analysis=AnalysisConfig(root='Anxiety', random_seed=20261004, max_depth=3), outcom..., 'scipy': '1.11.2'}), learner_versions=mappingproxy({'elastic_net': '1.3.0'}), version_availability=mappingproxy({})))
+data =      Anxiety  Depression    Stress
+0  -0.328114   -0.296211  0.127516
+1   0.874219    0.750880  0.634280
+2  -1.201562 ...6131   -0.034694  0.395466
+78  0.368611    0.227727  0.224590
+79  0.045806   -0.455857 -0.490602
+
+[80 rows x 3 columns]
+output = WindowsPath('C:/Users/imhoh/GitHub/open/.worktrees/open-phase2/.superpowers/rf-optimized-full-suite/test_completed_fixture_is_reus0')
+
+    def reuse_original_fixture(evidence, manifest, baseline, data, output):
+        """Verify original producer bytes and audit them; this path never fits a model."""
+        proof = manifest['continuation']
+        archive = find_one(evidence,'preflight-all-attempts.zip')
+        if hashlib.sha256(archive.read_bytes()).hexdigest() != proof['archive_sha256']:
+            raise ValueError('original fixture archive fingerprint differs')
+        original = load_json(design.PRODUCER/'raw/producer-manifest.json')
+        control = load_json(design.PRODUCER/'raw/preflight.json')
+        if (design.digest(original) != proof['producer_manifest_digest']
+            or control['manifest'] != proof['producer_manifest_digest']
+            or str(control['github_run']) != proof['producer_run_id']
+            or control['github_sha'] != proof['producer_source']
+            or control['status'] != 'FAILED' or control['planned_cases'] != {}):
+            raise ValueError('original producer identity/computation boundary differs')
+        old_source = {n:h for n,h in original['sources'].items() if n.startswith('src/open/')}
+        new_source = {n:h for n,h in manifest['sources'].items() if n.startswith('src/open/')}
+        if old_source != new_source:
+>           raise ValueError('production package source changed since fixture producer')
+E           ValueError: production package source changed since fixture producer
+
+examples\recursive_preview_actions.py:150: ValueError
+_____ test_reuse_rejects_edited_receipt_and_changed_computation_boundary ______
+
+tmp_path = WindowsPath('C:/Users/imhoh/GitHub/open/.worktrees/open-phase2/.superpowers/rf-optimized-full-suite/test_reuse_rejects_edited_rece0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001DE86387950>
+
+    def test_reuse_rejects_edited_receipt_and_changed_computation_boundary(tmp_path,monkeypatch):
+        import recursive_preview_design as d
+        import recursive_preview_actions as a
+        from types import SimpleNamespace
+        from open.config import load_config
+        value = d.manifest()
+        value['continuation']['fixture_receipt_sha256'] = 'edited'
+        baseline = SimpleNamespace(config=load_config(d.ROOT/'configs/default.yaml'))
+        with pytest.raises(ValueError,match='receipt fingerprint'):
+>           a.reuse_original_fixture(d.PRODUCER/'raw',value,baseline,None,tmp_path)
+
+tests\test_recursive_preview_continuation.py:71: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+evidence = WindowsPath('C:/Users/imhoh/GitHub/open/.worktrees/open-phase2/examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/raw')
+manifest = {'allocated_runner_minutes': 9917, 'approved_ceiling': 10000, 'case_seconds': 900, 'cases': [{'analysis_seed': 1700000..., ...}, {'analysis_seed': 1700005000, 'generator_seed': 1600005000, 'id': 'noise-n80-r05', 'index': 5, ...}, ...], ...}
+baseline = namespace(config=OpenConfig(analysis=AnalysisConfig(root='Anxiety', random_seed=20261004, max_depth=3), outcome=Outcom...ow_screened=True, show_unstable=True, distance_mode='visual_strength', edge_width='unique', edge_opacity='stability')))
+data = None
+output = WindowsPath('C:/Users/imhoh/GitHub/open/.worktrees/open-phase2/.superpowers/rf-optimized-full-suite/test_reuse_rejects_edited_rece0')
+
+    def reuse_original_fixture(evidence, manifest, baseline, data, output):
+        """Verify original producer bytes and audit them; this path never fits a model."""
+        proof = manifest['continuation']
+        archive = find_one(evidence,'preflight-all-attempts.zip')
+        if hashlib.sha256(archive.read_bytes()).hexdigest() != proof['archive_sha256']:
+            raise ValueError('original fixture archive fingerprint differs')
+        original = load_json(design.PRODUCER/'raw/producer-manifest.json')
+        control = load_json(design.PRODUCER/'raw/preflight.json')
+        if (design.digest(original) != proof['producer_manifest_digest']
+            or control['manifest'] != proof['producer_manifest_digest']
+            or str(control['github_run']) != proof['producer_run_id']
+            or control['github_sha'] != proof['producer_source']
+            or control['status'] != 'FAILED' or control['planned_cases'] != {}):
+            raise ValueError('original producer identity/computation boundary differs')
+        old_source = {n:h for n,h in original['sources'].items() if n.startswith('src/open/')}
+        new_source = {n:h for n,h in manifest['sources'].items() if n.startswith('src/open/')}
+        if old_source != new_source:
+>           raise ValueError('production package source changed since fixture producer')
+E           ValueError: production package source changed since fixture producer
+
+examples\recursive_preview_actions.py:150: ValueError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = WindowsPath('C:/Users/imhoh/GitHub/open/.worktrees/open-phase2/.superpowers/rf-optimized-full-suite/test_reuse_rejects_edited_rece0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001DE86387950>
+
+    def test_reuse_rejects_edited_receipt_and_changed_computation_boundary(tmp_path,monkeypatch):
+        import recursive_preview_design as d
+        import recursive_preview_actions as a
+        from types import SimpleNamespace
+        from open.config import load_config
+        value = d.manifest()
+        value['continuation']['fixture_receipt_sha256'] = 'edited'
+        baseline = SimpleNamespace(config=load_config(d.ROOT/'configs/default.yaml'))
+>       with pytest.raises(ValueError,match='receipt fingerprint'):
+E       AssertionError: Regex pattern did not match.
+E        Regex: 'receipt fingerprint'
+E        Input: 'production package source changed since fixture producer'
+
+tests\test_recursive_preview_continuation.py:70: AssertionError
+____ test_parallel_adapter_matches_scripted_recursion_and_restores_native _____
+
+tmp_path = WindowsPath('C:/Users/imhoh/GitHub/open/.worktrees/open-phase2/.superpowers/rf-optimized-full-suite/test_parallel_adapter_matches_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001DE86A36110>
+
+    def test_parallel_adapter_matches_scripted_recursion_and_restores_native(tmp_path, monkeypatch):
+        import time
+        from layer_helpers import make_config, install_scripted_analyzer
+        m = module()
+        c = make_config(n_resamples=2)
+        data = pd.DataFrame({n:range(20) for n in ('y','x1','x2','x3')})
+        install_scripted_analyzer(monkeypatch, selections={
+            (t,b):(s,) for t,s in (('y','x1'),('x1','x2'),('x2','x3')) for b in range(2)})
+        native = m.engine.fit_layer_consensus(data, 'y', tuple(data), c)
+        class Future:
+            def __init__(self, value): self.value = value
+            def result(self): return self.value
+        class Pool:
+            def __init__(self, **kw): pass
+            def __enter__(self): return self
+            def __exit__(self, *args): pass
+            def submit(self, fn, *args): return Future(fn(*args))
+        monkeypatch.setattr(m, 'ProcessPoolExecutor', Pool)
+>       result = m.fit_recorded(data, c, tmp_path, 'context', time.monotonic()+30)
+
+tests\test_recursive_preview_runner.py:68: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+examples\recursive_preview_runner.py:191: in fit_recorded
+    return engine.fit_layer_consensus(data, config.analysis.root, tuple(data), config)
+src\open\layer_stability.py:121: in fit_layer_consensus
+    evidence = tuple(aggregate_target_assessments(
+src\open\layer_stability.py:122: in <genexpr>
+    assess_layer_target(data, depth=depth, target=target, candidates=candidates,
+examples\recursive_preview_runner.py:178: in __call__
+    futures = [pool.submit(one_assessment, data, depth, target, candidates, plan,
+examples\recursive_preview_runner.py:178: in <listcomp>
+    futures = [pool.submit(one_assessment, data, depth, target, candidates, plan,
+tests\test_recursive_preview_runner.py:66: in submit
+    def submit(self, fn, *args): return Future(fn(*args))
+examples\recursive_preview_runner.py:138: in one_assessment
+    assessment = NATIVE_ASSESS(data, depth=depth, target=target, candidates=candidates,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = (     y  x1  x2  x3
+0    0   0   0   0
+1    1   1   1   1
+2    2   2   2   2
+3    3   3   3   3
+4    4   4   4   4
+5  ... 13
+14  14  14  14  14
+15  15  15  15  15
+16  16  16  16  16
+17  17  17  17  17
+18  18  18  18  18
+19  19  19  19  19,)
+kwargs = {'candidates': ('x1', 'x2', 'x3'), 'config': OpenConfig(analysis=AnalysisConfig(root='y', random_seed=20, max_depth=3)...), test_indices=(3, 4, 6, 7, 9, 10, 12, 14))), version=1, scheme='repeated_k_fold'), infeasibility_reason=None),), ...}
+
+    def forbidden(*args, **kwargs):
+>       raise RuntimeError('model fitting is prohibited in this independent evidence replay')
+E       RuntimeError: model fitting is prohibited in this independent evidence replay
+
+examples\results\2026-10-14-recursive-qualification\combined-38676310704\reproduce.py:22: RuntimeError
+============================== warnings summary ===============================
+tests/test_layer_visualization.py::test_unique_fixed_depth_count_width_and_evidence
+tests/test_layer_visualization.py::test_one_joint_connector_and_no_unique_member_arrows
+  C:\Users\imhoh\GitHub\open\.worktrees\open-phase2\src\open\layer_visualization.py:77: UserWarning: Glyph 30561 (\N{CJK UNIFIED IDEOGRAPH-7761}) missing from font(s) DejaVu Sans.
+    bounds = text.get_window_extent(fig.canvas.get_renderer())
+
+tests/test_layer_visualization.py::test_unique_fixed_depth_count_width_and_evidence
+tests/test_layer_visualization.py::test_one_joint_connector_and_no_unique_member_arrows
+  C:\Users\imhoh\GitHub\open\.worktrees\open-phase2\src\open\layer_visualization.py:77: UserWarning: Glyph 30496 (\N{CJK UNIFIED IDEOGRAPH-7720}) missing from font(s) DejaVu Sans.
+    bounds = text.get_window_extent(fig.canvas.get_renderer())
+
+tests/test_missing_targets.py: 25 warnings
+  C:\Users\imhoh\AppData\Local\Programs\Python\Python311\Lib\site-packages\sklearn\linear_model\_coordinate_descent.py:628: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 0.000e+00, tolerance: 0.000e+00
+    model = cd_fast.enet_coordinate_descent(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_confidence_diagnostic_study.py::test_frozen_context_and_shards
+FAILED tests/test_confidence_diagnostic_study.py::test_oracle_vectors_are_diagnostic_and_audited
+FAILED tests/test_confidence_diagnostic_study.py::test_partial_evidence_retains_missing_and_cost
+FAILED tests/test_confidence_diagnostic_study.py::test_verified_resume_and_prediction_tampering
+FAILED tests/test_confidence_diagnostic_study.py::test_foreign_stamps_and_error_context_fail_audit
+FAILED tests/test_confidence_diagnostic_study.py::test_repeated_failures_preserve_every_attempt
+FAILED tests/test_prospective_interaction_report.py::test_partial_receipt_context_and_unknown_failure_cost
+FAILED tests/test_prospective_interaction_study.py::test_freeze_context_and_signal_guard
+FAILED tests/test_prospective_interaction_study.py::test_verified_resume_and_prediction_tamper
+FAILED tests/test_prospective_interaction_study.py::test_partial_cost_and_repeat_history
+FAILED tests/test_prospective_interaction_study.py::test_failed_verification_attempt_survives_completed_resume
+FAILED tests/test_prospective_interaction_study.py::test_interrupted_fit_remains_unknown_after_success
+FAILED tests/test_realistic_interaction_report.py::test_streamed_raw_audit_preserves_missing_and_rejects_duplicate_shard
+FAILED tests/test_realistic_interaction_study.py::test_guard_and_splits - Val...
+FAILED tests/test_realistic_interaction_study.py::test_real_resume_refits_and_tamper
+FAILED tests/test_realistic_interaction_study.py::test_precomputed_truth_failure_prevents_any_fit
+FAILED tests/test_realistic_interaction_study.py::test_failed_fit_cost_retained
+FAILED tests/test_realistic_interaction_workflow.py::test_realistic_freeze_and_legacy_preserved
+FAILED tests/test_recursive_preview_audit.py::test_full_recorded_production_path_audits_with_scripted_mean_predictor
+FAILED tests/test_recursive_preview_continuation.py::test_completed_fixture_is_reused_without_fitting
+FAILED tests/test_recursive_preview_continuation.py::test_reuse_rejects_edited_receipt_and_changed_computation_boundary
+FAILED tests/test_recursive_preview_runner.py::test_parallel_adapter_matches_scripted_recursion_and_restores_native
+22 failed, 834 passed, 29 warnings in 989.41s (0:16:29)

@@ -1,0 +1,104 @@
+{
+  "schema": "open.rf_production_grid_verification.v1",
+  "production_change": true,
+  "scientific_qualification": false,
+  "benchmark": {
+    "passed_conditions": 12,
+    "paired_repetitions": 12,
+    "actual_tuning_fits_original": 12,
+    "actual_tuning_fits_production": 6,
+    "scope": "exact numerical parity; concurrent timings not interpreted"
+  },
+  "full_suite_initial": {
+    "passed": 834,
+    "failed": 22,
+    "warnings": 29,
+    "seconds": 989.41,
+    "failed_tests": [
+      "tests/test_confidence_diagnostic_study.py::test_frozen_context_and_shards",
+      "tests/test_confidence_diagnostic_study.py::test_oracle_vectors_are_diagnostic_and_audited",
+      "tests/test_confidence_diagnostic_study.py::test_partial_evidence_retains_missing_and_cost",
+      "tests/test_confidence_diagnostic_study.py::test_verified_resume_and_prediction_tampering",
+      "tests/test_confidence_diagnostic_study.py::test_foreign_stamps_and_error_context_fail_audit",
+      "tests/test_confidence_diagnostic_study.py::test_repeated_failures_preserve_every_attempt",
+      "tests/test_prospective_interaction_report.py::test_partial_receipt_context_and_unknown_failure_cost",
+      "tests/test_prospective_interaction_study.py::test_freeze_context_and_signal_guard",
+      "tests/test_prospective_interaction_study.py::test_verified_resume_and_prediction_tamper",
+      "tests/test_prospective_interaction_study.py::test_partial_cost_and_repeat_history",
+      "tests/test_prospective_interaction_study.py::test_failed_verification_attempt_survives_completed_resume",
+      "tests/test_prospective_interaction_study.py::test_interrupted_fit_remains_unknown_after_success",
+      "tests/test_realistic_interaction_report.py::test_streamed_raw_audit_preserves_missing_and_rejects_duplicate_shard",
+      "tests/test_realistic_interaction_study.py::test_guard_and_splits",
+      "tests/test_realistic_interaction_study.py::test_real_resume_refits_and_tamper",
+      "tests/test_realistic_interaction_study.py::test_precomputed_truth_failure_prevents_any_fit",
+      "tests/test_realistic_interaction_study.py::test_failed_fit_cost_retained",
+      "tests/test_realistic_interaction_workflow.py::test_realistic_freeze_and_legacy_preserved",
+      "tests/test_recursive_preview_audit.py::test_full_recorded_production_path_audits_with_scripted_mean_predictor",
+      "tests/test_recursive_preview_continuation.py::test_completed_fixture_is_reused_without_fitting",
+      "tests/test_recursive_preview_continuation.py::test_reuse_rejects_edited_receipt_and_changed_computation_boundary",
+      "tests/test_recursive_preview_runner.py::test_parallel_adapter_matches_scripted_recursion_and_restores_native"
+    ]
+  },
+  "repair_verification": {
+    "focused_passed": 14,
+    "focused_seconds": 39.21,
+    "research_fixtures_passed": 24,
+    "research_fixtures_seconds": 110.62,
+    "replay_and_guard_passed": 34,
+    "replay_and_guard_seconds": 80.39,
+    "last_failed_passed": 17,
+    "last_failed_seconds": 110.9,
+    "last_failed_nodes": [
+      "tests/test_confidence_diagnostic_study.py::test_foreign_stamps_and_error_context_fail_audit",
+      "tests/test_confidence_diagnostic_study.py::test_frozen_context_and_shards",
+      "tests/test_confidence_diagnostic_study.py::test_oracle_vectors_are_diagnostic_and_audited",
+      "tests/test_confidence_diagnostic_study.py::test_partial_evidence_retains_missing_and_cost",
+      "tests/test_confidence_diagnostic_study.py::test_repeated_failures_preserve_every_attempt",
+      "tests/test_confidence_diagnostic_study.py::test_verified_resume_and_prediction_tampering",
+      "tests/test_prospective_interaction_report.py::test_partial_receipt_context_and_unknown_failure_cost",
+      "tests/test_prospective_interaction_study.py::test_failed_verification_attempt_survives_completed_resume",
+      "tests/test_prospective_interaction_study.py::test_freeze_context_and_signal_guard",
+      "tests/test_prospective_interaction_study.py::test_interrupted_fit_remains_unknown_after_success",
+      "tests/test_prospective_interaction_study.py::test_partial_cost_and_repeat_history",
+      "tests/test_prospective_interaction_study.py::test_verified_resume_and_prediction_tamper",
+      "tests/test_realistic_interaction_study.py::test_failed_fit_cost_retained",
+      "tests/test_realistic_interaction_study.py::test_guard_and_splits",
+      "tests/test_realistic_interaction_study.py::test_precomputed_truth_failure_prevents_any_fit",
+      "tests/test_realistic_interaction_study.py::test_real_resume_refits_and_tamper",
+      "tests/test_realistic_interaction_workflow.py::test_realistic_freeze_and_legacy_preserved"
+    ],
+    "other_five_failures_rechecked_in_34_test_group": [
+      "tests/test_realistic_interaction_report.py::test_streamed_raw_audit_preserves_missing_and_rejects_duplicate_shard",
+      "tests/test_recursive_preview_audit.py::test_full_recorded_production_path_audits_with_scripted_mean_predictor",
+      "tests/test_recursive_preview_continuation.py::test_completed_fixture_is_reused_without_fitting",
+      "tests/test_recursive_preview_continuation.py::test_reuse_rejects_edited_receipt_and_changed_computation_boundary",
+      "tests/test_recursive_preview_runner.py::test_parallel_adapter_matches_scripted_recursion_and_restores_native"
+    ],
+    "unresolved_current_test_failures": [],
+    "current_collected": 859,
+    "stale_cache_nodes_outside_collection": [
+      "tests/test_interactions.py::test_effect_workflow_is_opt_in_and_reuses_explanatory_fits"
+    ]
+  },
+  "qualification": "Full suite ran once; all 22 failures were repaired and retested. A second clean full-suite run was not performed. New edge-case and fixture-guard tests passed in focused groups.",
+  "commits": {
+    "optimization": "8d2c3b1",
+    "reporting": "a13c67b",
+    "initial_fixture_isolation": "864d54a",
+    "shared_fixture_isolation": "e58ebc7",
+    "replay_import_guard": "a5612e9",
+    "historical_replay_context": "5f9e22e"
+  },
+  "review": "Independent read-only review found no remaining correctness issues; partial-missing-inner-fold regression suggestion implemented.",
+  "historical_manifest_or_evidence_changes": false,
+  "scientific_workflow_dispatches": 0,
+  "log_sha256": {
+    "full-suite-before-fixture-repairs.txt": "79dffe4fbfb7a9d3bc52aa3485d5fede835ad2077d560718a6eef73e547e5f0e",
+    "production-and-provenance-focused.txt": "c9a38bbc725b41fe21c2e775ce41c80e69b90b223e955e19202b7da8532ecc50",
+    "research-fixtures.txt": "4d6ef302a616031350677f8122ff97875bac615cefc0a6bf262cfdfa87ed737e",
+    "replay-and-guard-repairs.txt": "191a6867c038c7deba01a3087c8f388285e8771b0027b10b2943412b6f3071c9",
+    "last-failed-rerun.txt": "dbc8007ee30054023b1f97ea7b980fdfbff20a82ac9b86f341ff2f2b795170c0",
+    "last-failed-rerun.xml": "baf22d10f124f85cc39ab8de7bd4a03698adb913eb66889a30872b0a68801287",
+    "current-test-collection.txt": "d5e4181f2badfc7ab18bc671f2bed53f499243b21a16d447f7d26d66db5e0204"
+  }
+}

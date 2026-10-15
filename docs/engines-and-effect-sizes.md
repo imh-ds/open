@@ -61,7 +61,19 @@ on the same evaluation observations or averaging different networks.
 All engines share data, candidate sets, seeds, outer/inner folds, reference
 endpoints, scale, and loss. Fold-local imputation/scaling occurs inside tuning.
 Each engine has a documented finite grid: elastic net retains its historical
-25 candidates, tree engines use four candidates. Fit counts and grids are saved;
+25 candidates. Tree engines use four candidates, except RF searches with one
+numeric predictor, which use two: both `min_samples_leaf` settings with
+`max_features=0.7`. At one predictor, the former feature fractions 0.7 and 1.0
+both select that same feature. Keeping the first fraction preserves the original
+tie order and selected parameter representation. Numeric imputation preserves
+columns even when an inner training fold contains only missing values.
+
+The effective grid is chosen independently for each tuned model. Thus a broad
+single-predictor model can search two settings while its multivariable full model
+searches four. Three-fold inner CV uses six singleton tuning fits instead of
+twelve; outer prediction fits remain separate. Risk counts use the tuned clone's
+actual search size, and the effect supplement exports the full model's effective
+grid and size. Fit counts and grids are saved;
 these are transparent development defaults, not an equal-budget benchmark.
 Stochastic engines use explicit seeds and one worker. LightGBM imports lazily
 and fails with an installation instruction when requested but unavailable.
