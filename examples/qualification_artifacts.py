@@ -16,7 +16,7 @@ def github_api(path):
     return json.loads(subprocess.check_output(['gh','api','repos/imh-ds/open/'+path]))
 
 
-def select_artifacts(run_id, names, *, api=github_api):
+def select_artifacts(run_id, names, *, api=github_api, allow_missing=False):
     if not str(run_id).isdigit() or not names or len(set(names)) != len(names):
         raise ValueError('requires one run and distinct required artifact names')
     if any(not re.fullmatch(r'[A-Za-z0-9_-]+',n) for n in names):
@@ -42,26 +42,40 @@ def select_artifacts(run_id, names, *, api=github_api):
     chosen = []
     for name in names:
         matches = [r for r in records if r['name'] == name]
+        if allow_missing and (not matches or len(matches)==1 and matches[0]['expired']):
+            continue
         if len(matches) != 1 or matches[0]['expired']:
             raise ValueError(f'required artifact missing, duplicate or expired: {name}')
         chosen.append(matches[0])
     return chosen
 
 
-def download_artifacts(run_id, names, output, *, api=github_api, run=subprocess.run):
-    selected = select_artifacts(run_id, names, api=api)
+def download_artifacts(run_id, names, output, *, api=github_api, run=subprocess.run, allow_missing=False):
+    selected = select_artifacts(run_id, names, api=api, allow_missing=allow_missing)
     output = Path(output)
     output.mkdir(parents=True, exist_ok=True)
     # Check all target directories before any download, never overwrite evidence.
     if any((output/r['name']).exists() for r in selected):
         raise ValueError('artifact target already exists; preserve previous download')
+    inventory=dict(run=str(run_id),artifacts=selected)
+    if allow_missing:
+        found={r['name'] for r in selected}
+        inventory.update(missing=[n for n in names if n not in found],failed=[])
     with (output/'download-inventory.json').open('x',encoding='utf-8') as stream:
-        json.dump(dict(run=str(run_id),artifacts=selected),stream,indent=2)
+        json.dump(inventory,stream,indent=2)
         stream.write('\n')
     for record in selected:
         directory = output/record['name']
-        run(['gh','run','download',str(run_id),'--repo','imh-ds/open',
-             '--name',record['name'],'--dir',str(directory)],check=True)
+        try:
+            run(['gh','run','download',str(run_id),'--repo','imh-ds/open',
+                 '--name',record['name'],'--dir',str(directory)],check=True)
+        except subprocess.CalledProcessError:
+            if not allow_missing:
+                raise
+            inventory['failed'].append(record['name'])
+            (output/'download-inventory.json').write_text(json.dumps(inventory,indent=2)+'\n',encoding='utf-8')
+    if allow_missing and (inventory['missing'] or inventory['failed']):
+        raise ValueError('some artifacts missing/expired or failed transfer; available evidence retained')
     return selected
 
 
