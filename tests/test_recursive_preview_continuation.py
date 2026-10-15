@@ -9,6 +9,12 @@ import pytest
 sys.path.insert(0,str(Path(__file__).parents[1]/'examples'))
 
 
+def archived_manifest():
+    """Replay under its declared original context, never claim new-source reuse."""
+    root=Path(__file__).parents[1]
+    return json.loads((root/'examples/study_manifests/recursive-preview-validation.json').read_text())
+
+
 def test_continuation_manifest_preserves_identities_and_cumulative_budget():
     import recursive_preview_design as d
     value = d.manifest()
@@ -37,7 +43,7 @@ def test_completed_fixture_is_reused_without_fitting(tmp_path, monkeypatch):
     names = ('analysis_metadata.json','layer_evidence.json','assessment_ledger.json')
     baseline,_ = reconstruct_payloads(*(json.loads((base/n).read_text()) for n in names))
     data = pd.read_csv(d.ROOT/'examples/results/2026-10-08-layer-fixtures/chain/sample.csv')
-    result = a.reuse_original_fixture(d.PRODUCER/'raw',d.manifest(),baseline,data,tmp_path)
+    result = a.reuse_original_fixture(d.PRODUCER/'raw',archived_manifest(),baseline,data,tmp_path)
     assert result['new_fixture_fits'] == 0
     assert result['audit']['assessments'] == 200
     assert result['audit']['observation_checks'] == 140761
@@ -64,7 +70,7 @@ def test_reuse_rejects_edited_receipt_and_changed_computation_boundary(tmp_path,
     import recursive_preview_actions as a
     from types import SimpleNamespace
     from open.config import load_config
-    value = d.manifest()
+    value = archived_manifest()
     value['continuation']['fixture_receipt_sha256'] = 'edited'
     baseline = SimpleNamespace(config=load_config(d.ROOT/'configs/default.yaml'))
     with pytest.raises(ValueError,match='receipt fingerprint'):
