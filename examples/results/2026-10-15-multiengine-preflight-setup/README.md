@@ -22,3 +22,22 @@ After completion, preserve and independently audit all six raw case archives,
 including incomplete attempts. Report runtime, correct/missed/extra links and
 variable depths separately. Review timing and storage needs before proposing a
 funded reliability study. The 990-dataset proposal remains unapproved.
+
+## Two Random Forest cases stopped at the time limit
+
+Both Random Forest cases stopped at the prespecified 4,500-second soft deadline,
+not an estimator exception. Saved attempt ledgers contain no failed assessments.
+N=80 completed 216 assessments (100 at Y, 100 at X2, 16 at X1) in 75.65 minutes.
+N=200 completed 192 (100 at Y, 92 at X2) in 75.17 minutes. They remain incomplete;
+partial results cannot establish final network accuracy.
+
+GBM completed in 29.06 minutes (N=80) and 45.88 minutes (N=200). LightGBM completed
+in 16.12 and 20.95 minutes, respectively. All four saved 300 completed assessments.
+These are computation statuses from receipts, not independent accuracy conclusions.
+The cloud arithmetic audit was still running when this diagnosis was recorded.
+
+All six artifacts were downloaded locally and their raw ZIP CRCs checked.
+`case-status-diagnosis.json` records raw archive SHA256 values and checkpoint
+counts. No software change, scientific refit, rerun or additional Actions dispatch
+was made. The next step is to review the completed audit, then prepare a separately
+budgeted checkpoint continuation for RF rather than repeating completed work.

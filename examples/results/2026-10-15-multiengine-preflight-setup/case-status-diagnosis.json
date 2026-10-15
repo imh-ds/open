@@ -1,0 +1,164 @@
+{
+  "run": 38775613523,
+  "scope": "failure diagnosis from saved receipts, attempt ledgers and job logs; independent arithmetic audit pending",
+  "failure_cause": "Both Random Forest cases reached the frozen 4500-second soft computation deadline.",
+  "new_model_fits": 0,
+  "new_actions_dispatches": 0,
+  "cases": [
+    {
+      "spec": {
+        "analysis_seed": 1700240000,
+        "engine": "gbm",
+        "generator_seed": 1600240000,
+        "id": "pilot-gbm-chain-n200-r00",
+        "index": 240,
+        "n": 200,
+        "reference_id": "chain-n200-r00",
+        "repetition": 0,
+        "scenario": "chain"
+      },
+      "status": "complete",
+      "seconds": 2752.7030000000004,
+      "failure": null,
+      "checkpoints_by_target": {
+        "d0-Y": 100,
+        "d1-X2": 100,
+        "d2-X1": 100
+      },
+      "completed": 300,
+      "failed": 0,
+      "archive_crc_verified": true,
+      "archive_sha256": "8096d4ecf69a1828cf88e819e85e773bd09c8586f3a2754963cf80b6d45766aa",
+      "archive_bytes": 20582576
+    },
+    {
+      "spec": {
+        "analysis_seed": 1700160000,
+        "engine": "gbm",
+        "generator_seed": 1600160000,
+        "id": "pilot-gbm-chain-n80-r00",
+        "index": 160,
+        "n": 80,
+        "reference_id": "chain-n80-r00",
+        "repetition": 0,
+        "scenario": "chain"
+      },
+      "status": "complete",
+      "seconds": 1743.454,
+      "failure": null,
+      "checkpoints_by_target": {
+        "d0-Y": 100,
+        "d1-X2": 100,
+        "d2-X1": 100
+      },
+      "completed": 300,
+      "failed": 0,
+      "archive_crc_verified": true,
+      "archive_sha256": "f7ddb953179484731b2876dc6f0d9015904f3bef61bc5f3e7d349b57d7971a59",
+      "archive_bytes": 8887620
+    },
+    {
+      "spec": {
+        "analysis_seed": 1700240000,
+        "engine": "lightgbm",
+        "generator_seed": 1600240000,
+        "id": "pilot-lightgbm-chain-n200-r00",
+        "index": 240,
+        "n": 200,
+        "reference_id": "chain-n200-r00",
+        "repetition": 0,
+        "scenario": "chain"
+      },
+      "status": "complete",
+      "seconds": 1256.922,
+      "failure": null,
+      "checkpoints_by_target": {
+        "d0-Y": 100,
+        "d1-X2": 100,
+        "d2-X1": 100
+      },
+      "completed": 300,
+      "failed": 0,
+      "archive_crc_verified": true,
+      "archive_sha256": "eb8dfb1814eed93ec619d6fff7e8981837a6b8252646b1d8033ad37f0c6ac7fc",
+      "archive_bytes": 20945172
+    },
+    {
+      "spec": {
+        "analysis_seed": 1700160000,
+        "engine": "lightgbm",
+        "generator_seed": 1600160000,
+        "id": "pilot-lightgbm-chain-n80-r00",
+        "index": 160,
+        "n": 80,
+        "reference_id": "chain-n80-r00",
+        "repetition": 0,
+        "scenario": "chain"
+      },
+      "status": "complete",
+      "seconds": 967.1719999999998,
+      "failure": null,
+      "checkpoints_by_target": {
+        "d0-Y": 100,
+        "d1-X2": 100,
+        "d2-X1": 100
+      },
+      "completed": 300,
+      "failed": 0,
+      "archive_crc_verified": true,
+      "archive_sha256": "3a1d4dc2ed823e88becc36bf1e832a816b4a62c872dd033f4f37f3cf330b0eb6",
+      "archive_bytes": 8847454
+    },
+    {
+      "spec": {
+        "analysis_seed": 1700240000,
+        "engine": "random_forest",
+        "generator_seed": 1600240000,
+        "id": "pilot-random_forest-chain-n200-r00",
+        "index": 240,
+        "n": 200,
+        "reference_id": "chain-n200-r00",
+        "repetition": 0,
+        "scenario": "chain"
+      },
+      "status": "incomplete",
+      "seconds": 4510.328,
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "checkpoints_by_target": {
+        "d0-Y": 100,
+        "d1-X2": 92
+      },
+      "completed": 192,
+      "failed": 0,
+      "archive_crc_verified": true,
+      "archive_sha256": "cac2c70a1f2e48ba3f3ef56edf15ab1b528ba239c2b9c9d1c5e22b1ded4b6f2a",
+      "archive_bytes": 15539784
+    },
+    {
+      "spec": {
+        "analysis_seed": 1700160000,
+        "engine": "random_forest",
+        "generator_seed": 1600160000,
+        "id": "pilot-random_forest-chain-n80-r00",
+        "index": 160,
+        "n": 80,
+        "reference_id": "chain-n80-r00",
+        "repetition": 0,
+        "scenario": "chain"
+      },
+      "status": "incomplete",
+      "seconds": 4538.906,
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "checkpoints_by_target": {
+        "d0-Y": 100,
+        "d1-X2": 100,
+        "d2-X1": 16
+      },
+      "completed": 216,
+      "failed": 0,
+      "archive_crc_verified": true,
+      "archive_sha256": "c90328a7c40e459bf8988c1d5bf3dd19de36a18b45ff9b0e155afd3dc3a7ad5d",
+      "archive_bytes": 7144198
+    }
+  ]
+}
