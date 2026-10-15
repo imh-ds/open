@@ -10,6 +10,8 @@ class Predictor(ABC):
     """A predictor that can tune, fit, predict, and create an unfitted clone."""
 
     engine_name: str
+    # Size of the most recent tune() search; nominal size before first tuning.
+    # Risk accounting must read this on the tuned clone, after tune() returns.
     tuning_grid_size: int
 
     @abstractmethod

@@ -1,4 +1,4 @@
-"""Guard a matched optimization probe; production grids remain unchanged."""
+"""Guard production equivalence against the explicit historical grid reference."""
 import importlib.util
 from pathlib import Path
 
@@ -61,7 +61,7 @@ def test_risk_reports_actual_reduced_tuning_work_with_identical_losses():
                              SplitFold(0, 1, tuple(range(12, 24)), tuple(range(12)))))
     original_fit = RandomForestRegressor.fit
     results, counts = [], []
-    for features in ([.7, 1.], [.7]):
+    for predictor_class in (load_probe().OriginalGridPredictor, trees.TreePredictor):
         count = 0
 
         def counted_fit(estimator, *args, **kwargs):
@@ -69,12 +69,10 @@ def test_risk_reports_actual_reduced_tuning_work_with_identical_losses():
             count += 1
             return original_fit(estimator, *args, **kwargs)
 
-        with patch.dict(trees.GRIDS, {'random_forest': {
-                'min_samples_leaf': [2, 5], 'max_features': features}}), \
-                patch.object(RandomForestRegressor, 'fit', counted_fit):
+        with patch.object(RandomForestRegressor, 'fit', counted_fit):
             results.append(evaluate_risk(frame, target='y', candidate_set=('x',),
                 predictors=('x',), split_plan=plan,
-                predictor=trees.TreePredictor('random_forest', random_seed=17),
+                predictor=predictor_class('random_forest', random_seed=17),
                 tuning_folds=3))
         counts.append(count)
     assert counts == [26, 14]  # 24/12 inner fits plus two outer fits

@@ -1,7 +1,7 @@
 """Matched RF singleton-grid probe. Does not change production defaults.
 
-Run serially: scoped patches instrument real fits and temporarily supply the
-candidate grid to the existing TreePredictor. Never import this into a worker.
+Run serially: scoped patches instrument real fits. An explicit historical
+search is compared with the production TreePredictor. Never import into a worker.
 """
 from __future__ import annotations
 
@@ -23,6 +23,31 @@ from threadpoolctl import threadpool_limits
 from open.learners import trees
 
 
+class OriginalGridPredictor(trees.TreePredictor):
+    """Historical four-candidate reference, confined to this comparison probe.
+
+    Production now deduplicates singleton searches automatically. Keep the
+    original tune implementation explicit so the baseline still does real
+    duplicate fits; comparing production to itself would be a false check.
+    """
+
+    def tune(self, X, y, cv, loss='mse'):
+        if loss not in ('mse', 'neg_mean_squared_error'):
+            raise ValueError('tree engines support MSE loss only')
+        self._pipeline = None
+        self._tuned_params = None
+        splits = trees._materialize_cv(cv, X, y)
+        grid = trees.GRIDS[self.engine_name]
+        self.tuning_grid_size = len(trees.ParameterGrid(grid))
+        initial = {k: v[0] for k, v in grid.items()}
+        search = trees.GridSearchCV(self._new_pipeline(initial),
+            {'regressor__'+k: v for k, v in grid.items()}, cv=splits,
+            scoring='neg_mean_squared_error', refit=False, n_jobs=1, error_score='raise')
+        search.fit(X, y)
+        self._tuned_params = {k.removeprefix('regressor__'): v for k, v in search.best_params_.items()}
+        return dict(self._tuned_params)
+
+
 def require_parity(original, reduced):
     """Fail closed on numerical or tie-selection differences; no tolerance."""
     assert original['selected'] == reduced['selected'], 'selected parameters differ'
@@ -35,7 +60,6 @@ def require_parity(original, reduced):
 
 
 def _run(X, y, heldout, splits, seed, reduced):
-    grid = {'min_samples_leaf': [2, 5], 'max_features': [.7] if reduced else [.7, 1.]}
     counts = {'tuning': 0, 'final': 0}
     searches = []
     phase = 'tuning'
@@ -51,10 +75,10 @@ def _run(X, y, heldout, splits, seed, reduced):
         searches.append(search)
         return search
 
-    with patch.dict(trees.GRIDS, {'random_forest': grid}), \
-            patch.object(RandomForestRegressor, 'fit', counted_fit), \
+    with patch.object(RandomForestRegressor, 'fit', counted_fit), \
             patch.object(trees, 'GridSearchCV', recorded_search):
-        predictor = trees.TreePredictor('random_forest', random_seed=seed)
+        predictor_class = trees.TreePredictor if reduced else OriginalGridPredictor
+        predictor = predictor_class('random_forest', random_seed=seed)
         start = perf_counter()
         params = predictor.tune(X, y, splits)
         seconds = perf_counter() - start
@@ -147,7 +171,7 @@ def main():
     source_paths = ('src/open/learners/trees.py', 'src/open/preprocessing.py',
                     'src/open/risk.py', 'examples/rf_grid_equivalence.py')
     report = dict(schema='open.rf_grid_equivalence', schema_version=1,
-                  production_defaults_changed=False, scientific_qualification=False,
+                  comparison='historical_full_grid_vs_production', scientific_qualification=False,
                   python=platform.python_version(), sklearn=sklearn.__version__, numpy=np.__version__,
                   source_sha256={p:sha256(Path(p).read_bytes()).hexdigest() for p in source_paths},
                   cases=cases, completed_cases=len(cases),

@@ -18,6 +18,20 @@ GRIDS = {
 }
 
 
+def effective_grid(engine, n_features):
+    """Return the actual search grid for the numeric, width-preserving pipeline."""
+    if isinstance(n_features, bool) or not isinstance(n_features, Integral) or n_features < 1:
+        raise ValueError("n_features must be a positive integer")
+    grid = {name: list(values) for name, values in GRIDS[engine].items()}
+    if engine == "random_forest" and n_features == 1:
+        # Both fractions resolve to one feature. Keep the first setting to
+        # preserve GridSearchCV's existing tie order and exported parameters.
+        # Median imputation keeps empty numeric columns, so inner-fold width
+        # remains one even when a predictor is entirely missing in that fold.
+        grid["max_features"] = grid["max_features"][:1]
+    return grid
+
+
 class TreePredictor(Predictor):
     def __init__(self, engine, preprocessing=None, random_seed=0):
         if engine not in GRIDS:
@@ -66,9 +80,14 @@ class TreePredictor(Predictor):
         self._pipeline = None
         self._tuned_params = None
         splits = _materialize_cv(cv, X, y)
-        initial = {k:v[0] for k,v in GRIDS[self.engine_name].items()}
+        shape = np.shape(X)
+        if len(shape) != 2:
+            raise ValueError("X must be a two-dimensional predictor matrix")
+        grid = effective_grid(self.engine_name, shape[1])
+        self.tuning_grid_size = len(ParameterGrid(grid))
+        initial = {k:v[0] for k,v in grid.items()}
         search = GridSearchCV(self._new_pipeline(initial),
-            {"regressor__"+k:v for k,v in GRIDS[self.engine_name].items()},
+            {"regressor__"+k:v for k,v in grid.items()},
             cv=splits, scoring="neg_mean_squared_error", refit=False, n_jobs=1, error_score="raise")
         search.fit(X,y)
         self._tuned_params = {k.removeprefix("regressor__"):v for k,v in search.best_params_.items()}
