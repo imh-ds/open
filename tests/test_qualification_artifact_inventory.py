@@ -2,6 +2,7 @@
 import importlib.util
 from pathlib import Path
 import sys
+from unittest.mock import patch
 
 import pytest
 
@@ -52,19 +53,29 @@ def test_downloader_uses_exact_required_names_and_keeps_artifact_directories(tmp
 
 
 def test_offline_replay_rejects_unrecorded_api_requests():
+    import recursive_preview_runner as runner
+    original = runner.NATIVE_ASSESS
     p = Path(__file__).parents[1]/'examples/results/2026-10-14-recursive-qualification/combined-38676310704/reproduce.py'
     spec = importlib.util.spec_from_file_location('combined_replay',p)
     module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
+    # The archived CLI intentionally installs a process-wide no-fit guard.
+    # Scope that import side effect to this test's import, not the whole suite.
+    with patch.object(runner,'NATIVE_ASSESS',original):
+        spec.loader.exec_module(module)
+    assert runner.NATIVE_ASSESS is original, 'archive import leaked its no-fit guard'
     with pytest.raises(ValueError,match='unexpected API'):
         module.saved_api('actions/runs/another-run')
 
 
 def test_replay_can_stage_preserved_inputs_without_ignored_downloads(tmp_path,monkeypatch):
+    import recursive_preview_runner as runner
+    original = runner.NATIVE_ASSESS
     p = Path(__file__).parents[1]/'examples/results/2026-10-14-recursive-qualification/combined-38676310704/reproduce.py'
     spec = importlib.util.spec_from_file_location('staging_replay',p)
     module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
+    with patch.object(runner,'NATIVE_ASSESS',original):
+        spec.loader.exec_module(module)
+    assert runner.NATIVE_ASSESS is original
     monkeypatch.setattr(module,'ROOT',tmp_path)
     monkeypatch.setattr(module,'BASE',tmp_path/'combined')
     monkeypatch.setattr(module.c,'completed',lambda:[dict(index=1)])
