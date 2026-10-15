@@ -41,3 +41,65 @@ All six artifacts were downloaded locally and their raw ZIP CRCs checked.
 counts. No software change, scientific refit, rerun or additional Actions dispatch
 was made. The next step is to review the completed audit, then prepare a separately
 budgeted checkpoint continuation for RF rather than repeating completed work.
+
+## What made Random Forest slow?
+
+The completed independent cloud audit verifies the four GBM/LightGBM cases each
+recovered X1 -> X2 -> Y with correct depths. Both RF prefixes passed their saved
+observation-loss/split/parameter/count checks, with no failed or unmatched
+attempts. The parent aggregate correctly remains failed with two incomplete cases.
+LightGBM recorded156 warnings per case; these remain visible for later inspection.
+
+Recorded median worker time for one root assessment (four predictors):
+
+|Engine|N80 seconds|N200 seconds|
+|---|---:|---:|
+|Random Forest|94.265|102.038|
+|GBM|27.750|43.484|
+|LightGBM|14.328|17.797|
+
+Each target has100 resamples. Each assessment uses10 outer partitions (5folds,
+repeatedtwice). Every tuned model searches4 candidates with3 inner folds:12tuning
+fits per outer partition. At four predictors, the full model and four separate
+single-predictor models are tuned:5x10x12=600tuningfits per assessment. Ordinary
+full/broad/leave-one-out prediction adds90 outer fits, with occasional additional
+group-ablation fits. Every RF fit builds100 trees. Thus one root assessment
+requires about69,000 trees, and the root alone about6.9million across100resamples.
+Later targets cost less as candidate sets shrink: tuning480then360 per assessment.
+
+The two unfinished RF prefixes already required113,760 and104,160 tuning fits,
+plus16,911 and15,441 outer fits. About87% of the recorded fits were tuning fits.
+This is a fit-count share, not a measured share of elapsed time. The total is
+408completed assessments and250,272model fits, roughly25million RF trees already
+built. Those results can be reused; they should not be recomputed.
+
+Four worker processes run assessments concurrently. Each estimator uses one
+thread, avoiding nested parallelism. The runner waits for batches of four; batch
+barriers may add overhead, but the saved records do not isolate that overhead.
+Equal numbers of100-tree fits are not equal work: RF trees and shallow GBM stages
+have different training costs, and LightGBM uses another implementation. The
+observed comparisons establish runtime differences, not a causal performance
+ablation of each setting. No per-risk timers or controlled setting comparisons
+were collected. Candidate filters, repeat count, tuning size, tree count and
+worker scheduling are future optimization candidates, each needing matched
+accuracy/stability evidence before changing defaults.
+
+Keep these settings unchanged in the RF-only continuation. Reuse216assessments
+atN80 and192atN200. From completed per-depth medians, roughly20-30additional
+minutes of computation may suffice for the unfinished depths; this is a planning
+estimate, not a guarantee. The150-minute job cap gives room for download, prefix
+verification, runner variability and upload. Its132-minute soft compute allowance
+is additional time, not a change to scientific settings. No larger study follows
+automatically.
+
+A concrete avoidable cost also appears in the pinned implementation: RF searches
+max_features=.7 and1.0 even for a single-predictor model. sklearn1.3.0 resolves
+both to one candidate feature (max(1,int(fraction*n_features))). The two search
+entries therefore have the same effective feature-sampling setting for each
+min_samples_leaf choice. With unchanged seeds/data, this is a candidate for
+numerical-equivalence testing and deduplication. Across three complete targets
+with4/3/2predictors, this could remove54,000of144,000tuning fits, aboutone-third
+of all ordinary model fits. This is a source-derived fit-count opportunity,
+not an experimentally verified runtime saving. It is not applied to this frozen
+continuation: grid counts, parameter/tie conventions and exact prediction parity
+would need explicit regression evidence in a later optimization change.
