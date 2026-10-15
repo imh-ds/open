@@ -1,0 +1,30 @@
+{
+  "focused_tests": {
+    "command": "python -m pytest tests/test_rf_grid_equivalence.py -q",
+    "passed": 4,
+    "failed": 0,
+    "seconds": 7.58
+  },
+  "full_suite": {
+    "status": "incomplete",
+    "passed_claim": false,
+    "reason": "Stopped at approximately five-minute allowance; last 60-second diagnostic identified existing test_engines.py::test_engine_runs_recursive_layer_consensus fitting RF trees. No failure summary was produced.",
+    "initial_attempt": "Also interrupted; reran with explicit numerical thread limits and timeout diagnostics."
+  },
+  "benchmark": {
+    "status": "passed",
+    "cases": 12,
+    "matched_pairs": 48,
+    "actual_model_fits": 960,
+    "prior_timing_run": "Exact-parity preliminary run; superseded for timing because full test suite was active.",
+    "final_timing_run": "No concurrent task-owned pytest or benchmark process; numerical threads limited to one.",
+    "dataset_and_source_hashes_verified": true
+  },
+  "production_defaults_changed": false,
+  "cloud_dispatches": 0,
+  "scientific_qualification": false,
+  "commits": {
+    "probe": "3dc80e5",
+    "risk_regression": "87b72b2"
+  }
+}
