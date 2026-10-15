@@ -1,0 +1,471 @@
+﻿2026-10-15T08:42:01.7892002Z Current runner version: '2.337.0'
+2026-10-15T08:42:01.7918768Z ##[group]Runner Image Provisioner
+2026-10-15T08:42:01.7919624Z Hosted Compute Agent
+2026-10-15T08:42:01.7920254Z Version: 20261012.601
+2026-10-15T08:42:01.7920916Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+2026-10-15T08:42:01.7921705Z Build Date: 2026-10-12T17:48:21Z
+2026-10-15T08:42:01.7922451Z Worker ID: {6aa1529d-faa8-42a0-93ac-1cb108d4e3dd}
+2026-10-15T08:42:01.7923316Z Region: westus3
+2026-10-15T08:42:01.7923904Z Cloud: Azure
+2026-10-15T08:42:01.7924449Z ##[endgroup]
+2026-10-15T08:42:01.7925942Z ##[group]Operating System
+2026-10-15T08:42:01.7926678Z Microsoft Windows Server 2022
+2026-10-15T08:42:01.7927336Z 10.0.20348
+2026-10-15T08:42:01.7927883Z Datacenter
+2026-10-15T08:42:01.7928424Z ##[endgroup]
+2026-10-15T08:42:01.7928969Z ##[group]Runner Image
+2026-10-15T08:42:01.7929621Z Image: windows-2022
+2026-10-15T08:42:01.7930211Z Version: 20261012.333.1
+2026-10-15T08:42:01.7931923Z Included Software: https://github.com/actions/runner-images/blob/win22/20261012.333/images/windows/Windows2022-Readme.md
+2026-10-15T08:42:01.7933768Z Image Release: https://github.com/actions/runner-images/releases/tag/win22%2F20261012.333
+2026-10-15T08:42:01.7934931Z ##[endgroup]
+2026-10-15T08:42:01.7936235Z ##[group]GITHUB_TOKEN Permissions
+2026-10-15T08:42:01.7938131Z Actions: read
+2026-10-15T08:42:01.7938728Z Contents: read
+2026-10-15T08:42:01.7939302Z Metadata: read
+2026-10-15T08:42:01.7939896Z ##[endgroup]
+2026-10-15T08:42:01.7941898Z Secret source: Actions
+2026-10-15T08:42:01.7942856Z Cache mode: write
+2026-10-15T08:42:01.7943629Z Prepare workflow directory
+2026-10-15T08:42:01.8373441Z Prepare all required actions
+2026-10-15T08:42:01.8414582Z Getting action download info
+2026-10-15T08:42:02.1769208Z Download action repository 'actions/checkout@11d5960a326750d5838078e36cf38b85af677262' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-15T08:42:02.2846171Z Download action repository 'actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-10-15T08:42:02.4024363Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-15T08:42:02.8440657Z Complete job name: aggregate
+2026-10-15T08:42:03.0030867Z ##[group]Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+2026-10-15T08:42:03.0031954Z with:
+2026-10-15T08:42:03.0032311Z   persist-credentials: false
+2026-10-15T08:42:03.0032741Z   sparse-checkout-cone-mode: false
+2026-10-15T08:42:03.0045611Z   sparse-checkout: src/**
+pyproject.toml
+README.md
+LICENSE
+configs/default.yaml
+.github/workflows/recursive-preview-validation.yml
+examples/recursive_preview_*.py
+examples/recursive_preview_validation_protocol.md
+examples/recursive_preview_continuation_proposal.md
+examples/study_manifests/recursive-preview-*.json
+examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/raw/producer-manifest.json
+examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/raw/preflight.json
+examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/audit/raw-sha256.json
+examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/audit/diagnosis.json
+examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38621370295/raw/producer-manifest.json
+examples/results/2026-10-14-recursive-preview-validation/timing-completed-38629900589/audit/verification.json
+examples/results/2026-10-14-recursive-preview-validation/timing-completed-38629900589/audit/raw-sha256.json
+examples/time_scenario_validation.py
+examples/qualify_recursive_validation.py
+examples/qualification_validation_protocol.md
+.github/workflows/recursive-qualification.yml
+examples/study_manifests/recursive-qualification*.json
+examples/results/2026-10-14-recursive-preview-validation/scenario-timing-completed-38645875109/audit/verification.json
+examples/results/2026-10-14-recursive-qualification/noise-gate/audit.json
+examples/continue_qualification.py
+examples/qualification_continuation_protocol.md
+.github/workflows/qualification-continuation.yml
+examples/study_manifests/qualification-continuation.json
+examples/results/2026-10-14-recursive-qualification/continuation-plan/*.json
+examples/qualify_chain_validation.py
+examples/qualification_artifacts.py
+examples/chain_validation_protocol.md
+.github/workflows/chain-qualification.yml
+examples/study_manifests/chain-qualification*.json
+examples/results/2026-10-14-recursive-qualification/combined-38676310704/audit/audit.json
+examples/results/2026-10-14-recursive-qualification/combined-38676310704/archive-inventory.json
+examples/results/2026-10-14-recursive-qualification/combined-38676310704/publication.json
+
+2026-10-15T08:42:03.0059693Z   repository: imh-ds/open
+2026-10-15T08:42:03.0063179Z   token: ***
+2026-10-15T08:42:03.0063533Z   ssh-strict: true
+2026-10-15T08:42:03.0063884Z   ssh-user: git
+2026-10-15T08:42:03.0064218Z   clean: true
+2026-10-15T08:42:03.0064549Z   fetch-depth: 1
+2026-10-15T08:42:03.0064884Z   fetch-tags: false
+2026-10-15T08:42:03.0065244Z   show-progress: true
+2026-10-15T08:42:03.0065597Z   lfs: false
+2026-10-15T08:42:03.0065934Z   submodules: false
+2026-10-15T08:42:03.0066290Z   set-safe-directory: true
+2026-10-15T08:42:03.0066691Z   allow-unsafe-pr-checkout: false
+2026-10-15T08:42:03.0067392Z env:
+2026-10-15T08:42:03.0067711Z   OMP_NUM_THREADS: 1
+2026-10-15T08:42:03.0068079Z   OPENBLAS_NUM_THREADS: 1
+2026-10-15T08:42:03.0068447Z   MKL_NUM_THREADS: 1
+2026-10-15T08:42:03.0071722Z   GH_TOKEN: ***
+2026-10-15T08:42:03.0072059Z ##[endgroup]
+2026-10-15T08:42:03.1296904Z Syncing repository: imh-ds/open
+2026-10-15T08:42:03.1298414Z ##[group]Getting Git version info
+2026-10-15T08:42:03.1298894Z Working directory is 'D:\a\open\open'
+2026-10-15T08:42:03.1992990Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-15T08:42:03.6163840Z git version 2.56.0.windows.2
+2026-10-15T08:42:03.6195725Z ##[endgroup]
+2026-10-15T08:42:03.6210336Z Temporarily overriding HOME='D:\a\_temp\f0ad8d94-b115-4c7f-ba2a-fab1333f1c4d' before making global git config changes
+2026-10-15T08:42:03.6211779Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-15T08:42:03.6221454Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\open\open
+2026-10-15T08:42:03.6780542Z Deleting the contents of 'D:\a\open\open'
+2026-10-15T08:42:03.6785005Z ##[group]Initializing the repository
+2026-10-15T08:42:03.6792818Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\open\open
+2026-10-15T08:42:03.7773416Z Initialized empty Git repository in D:/a/open/open/.git/
+2026-10-15T08:42:03.7806238Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/imh-ds/open
+2026-10-15T08:42:03.8376446Z ##[endgroup]
+2026-10-15T08:42:03.8377842Z ##[group]Disabling automatic garbage collection
+2026-10-15T08:42:03.8388235Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+2026-10-15T08:42:03.8636698Z ##[endgroup]
+2026-10-15T08:42:03.8638182Z ##[group]Setting up auth
+2026-10-15T08:42:03.8646681Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-15T08:42:03.8893222Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-15T08:42:05.2945184Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-15T08:42:05.3192250Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-15T08:42:05.7267250Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-15T08:42:05.7510438Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-15T08:42:06.1488228Z [command]"C:\Program Files\Git\bin\git.exe" config --local http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+2026-10-15T08:42:06.1731710Z ##[endgroup]
+2026-10-15T08:42:06.1732074Z ##[group]Fetching the repository
+2026-10-15T08:42:06.1743255Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --filter=blob:none --depth=1 origin +34729fd23f820711f31ea081c8e4b46769d3ed4f:refs/remotes/origin/codex/qualification-continuation
+2026-10-15T08:42:08.1561839Z From https://github.com/imh-ds/open
+2026-10-15T08:42:08.1562617Z  * [new ref]         34729fd23f820711f31ea081c8e4b46769d3ed4f -> origin/codex/qualification-continuation
+2026-10-15T08:42:08.1588480Z ##[endgroup]
+2026-10-15T08:42:08.1588915Z ##[group]Determining the checkout info
+2026-10-15T08:42:08.1590655Z ##[endgroup]
+2026-10-15T08:42:08.1591018Z ##[group]Setting up sparse checkout
+2026-10-15T08:42:08.1598513Z [command]"C:\Program Files\Git\bin\git.exe" config core.sparseCheckout true
+2026-10-15T08:42:08.1834415Z [command]"C:\Program Files\Git\bin\git.exe" rev-parse --git-path info/sparse-checkout
+2026-10-15T08:42:08.2080079Z .git/info/sparse-checkout
+2026-10-15T08:42:08.2104956Z ##[endgroup]
+2026-10-15T08:42:08.2105288Z ##[group]Checking out the ref
+2026-10-15T08:42:08.2112810Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force -B codex/qualification-continuation refs/remotes/origin/codex/qualification-continuation
+2026-10-15T08:42:09.6311538Z Updating files:   0% (1/104)
+2026-10-15T08:42:09.6312718Z Updating files:   1% (2/104)
+2026-10-15T08:42:09.6315269Z Updating files:   2% (3/104)
+2026-10-15T08:42:09.6320024Z Updating files:   3% (4/104)
+2026-10-15T08:42:09.6322305Z Updating files:   4% (5/104)
+2026-10-15T08:42:09.6325016Z Updating files:   5% (6/104)
+2026-10-15T08:42:09.6328323Z Updating files:   6% (7/104)
+2026-10-15T08:42:09.6330346Z Updating files:   7% (8/104)
+2026-10-15T08:42:09.6333362Z Updating files:   8% (9/104)
+2026-10-15T08:42:09.6336118Z Updating files:   9% (10/104)
+2026-10-15T08:42:09.6338281Z Updating files:  10% (11/104)
+2026-10-15T08:42:09.6340735Z Updating files:  11% (12/104)
+2026-10-15T08:42:09.6343622Z Updating files:  12% (13/104)
+2026-10-15T08:42:09.6347168Z Updating files:  13% (14/104)
+2026-10-15T08:42:09.6350183Z Updating files:  14% (15/104)
+2026-10-15T08:42:09.6353126Z Updating files:  15% (16/104)
+2026-10-15T08:42:09.6354862Z Updating files:  16% (17/104)
+2026-10-15T08:42:09.6357244Z Updating files:  17% (18/104)
+2026-10-15T08:42:09.6359049Z Updating files:  18% (19/104)
+2026-10-15T08:42:09.6361332Z Updating files:  19% (20/104)
+2026-10-15T08:42:09.6363968Z Updating files:  20% (21/104)
+2026-10-15T08:42:09.6366964Z Updating files:  21% (22/104)
+2026-10-15T08:42:09.6369414Z Updating files:  22% (23/104)
+2026-10-15T08:42:09.6372026Z Updating files:  23% (24/104)
+2026-10-15T08:42:09.6374176Z Updating files:  24% (25/104)
+2026-10-15T08:42:09.6379599Z Updating files:  25% (26/104)
+2026-10-15T08:42:09.6381709Z Updating files:  26% (28/104)
+2026-10-15T08:42:09.6383953Z Updating files:  27% (29/104)
+2026-10-15T08:42:09.6386306Z Updating files:  28% (30/104)
+2026-10-15T08:42:09.6388709Z Updating files:  29% (31/104)
+2026-10-15T08:42:09.6390972Z Updating files:  30% (32/104)
+2026-10-15T08:42:09.6393760Z Updating files:  31% (33/104)
+2026-10-15T08:42:09.6396412Z Updating files:  32% (34/104)
+2026-10-15T08:42:09.6397961Z Updating files:  33% (35/104)
+2026-10-15T08:42:09.6400343Z Updating files:  34% (36/104)
+2026-10-15T08:42:09.6406127Z Updating files:  35% (37/104)
+2026-10-15T08:42:09.6409962Z Updating files:  36% (38/104)
+2026-10-15T08:42:09.6413093Z Updating files:  37% (39/104)
+2026-10-15T08:42:09.6416791Z Updating files:  38% (40/104)
+2026-10-15T08:42:09.6419654Z Updating files:  39% (41/104)
+2026-10-15T08:42:09.6421558Z Updating files:  40% (42/104)
+2026-10-15T08:42:09.6423940Z Updating files:  41% (43/104)
+2026-10-15T08:42:09.6426206Z Updating files:  42% (44/104)
+2026-10-15T08:42:09.6431479Z Updating files:  43% (45/104)
+2026-10-15T08:42:09.6434630Z Updating files:  44% (46/104)
+2026-10-15T08:42:09.6437095Z Updating files:  45% (47/104)
+2026-10-15T08:42:09.6439510Z Updating files:  46% (48/104)
+2026-10-15T08:42:09.6442284Z Updating files:  47% (49/104)
+2026-10-15T08:42:09.6444883Z Updating files:  48% (50/104)
+2026-10-15T08:42:09.6448749Z Updating files:  49% (51/104)
+2026-10-15T08:42:09.6454043Z Updating files:  50% (52/104)
+2026-10-15T08:42:09.6456294Z Updating files:  51% (54/104)
+2026-10-15T08:42:09.6458998Z Updating files:  52% (55/104)
+2026-10-15T08:42:09.6461224Z Updating files:  53% (56/104)
+2026-10-15T08:42:09.6463336Z Updating files:  54% (57/104)
+2026-10-15T08:42:09.6467145Z Updating files:  55% (58/104)
+2026-10-15T08:42:09.6470190Z Updating files:  56% (59/104)
+2026-10-15T08:42:09.6472898Z Updating files:  57% (60/104)
+2026-10-15T08:42:09.6477201Z Updating files:  58% (61/104)
+2026-10-15T08:42:09.6479509Z Updating files:  59% (62/104)
+2026-10-15T08:42:09.6482231Z Updating files:  60% (63/104)
+2026-10-15T08:42:09.6484439Z Updating files:  61% (64/104)
+2026-10-15T08:42:09.6486654Z Updating files:  62% (65/104)
+2026-10-15T08:42:09.6488516Z Updating files:  63% (66/104)
+2026-10-15T08:42:09.6490348Z Updating files:  64% (67/104)
+2026-10-15T08:42:09.6492353Z Updating files:  65% (68/104)
+2026-10-15T08:42:09.6494401Z Updating files:  66% (69/104)
+2026-10-15T08:42:09.6497880Z Updating files:  67% (70/104)
+2026-10-15T08:42:09.6499821Z Updating files:  68% (71/104)
+2026-10-15T08:42:09.6502780Z Updating files:  69% (72/104)
+2026-10-15T08:42:09.6504839Z Updating files:  70% (73/104)
+2026-10-15T08:42:09.6506701Z Updating files:  71% (74/104)
+2026-10-15T08:42:09.6509094Z Updating files:  72% (75/104)
+2026-10-15T08:42:09.6511315Z Updating files:  73% (76/104)
+2026-10-15T08:42:09.6513955Z Updating files:  74% (77/104)
+2026-10-15T08:42:09.6518025Z Updating files:  75% (78/104)
+2026-10-15T08:42:09.6520280Z Updating files:  76% (80/104)
+2026-10-15T08:42:09.6522827Z Updating files:  77% (81/104)
+2026-10-15T08:42:09.6524909Z Updating files:  78% (82/104)
+2026-10-15T08:42:09.6526422Z Updating files:  79% (83/104)
+2026-10-15T08:42:09.6527949Z Updating files:  80% (84/104)
+2026-10-15T08:42:09.6529921Z Updating files:  81% (85/104)
+2026-10-15T08:42:09.6532400Z Updating files:  82% (86/104)
+2026-10-15T08:42:09.6534632Z Updating files:  83% (87/104)
+2026-10-15T08:42:09.6536959Z Updating files:  84% (88/104)
+2026-10-15T08:42:09.6538227Z Updating files:  85% (89/104)
+2026-10-15T08:42:09.6540240Z Updating files:  86% (90/104)
+2026-10-15T08:42:09.6609481Z Updating files:  87% (91/104)
+2026-10-15T08:42:09.6609928Z Updating files:  88% (92/104)
+2026-10-15T08:42:09.6610259Z Updating files:  89% (93/104)
+2026-10-15T08:42:09.6610547Z Updating files:  90% (94/104)
+2026-10-15T08:42:09.6610793Z Updating files:  91% (95/104)
+2026-10-15T08:42:09.6611019Z Updating files:  92% (96/104)
+2026-10-15T08:42:09.6611238Z Updating files:  93% (97/104)
+2026-10-15T08:42:09.6611461Z Updating files:  94% (98/104)
+2026-10-15T08:42:09.6611718Z Updating files:  95% (99/104)
+2026-10-15T08:42:09.6611950Z Updating files:  96% (100/104)
+2026-10-15T08:42:09.6612230Z Updating files:  97% (101/104)
+2026-10-15T08:42:09.6612465Z Updating files:  98% (102/104)
+2026-10-15T08:42:09.6612710Z Updating files:  99% (103/104)
+2026-10-15T08:42:09.6612949Z Updating files: 100% (104/104)
+2026-10-15T08:42:09.6613250Z Updating files: 100% (104/104), done.
+2026-10-15T08:42:09.6680004Z Switched to a new branch 'codex/qualification-continuation'
+2026-10-15T08:42:09.6693704Z branch 'codex/qualification-continuation' set up to track 'origin/codex/qualification-continuation'.
+2026-10-15T08:42:09.6723258Z ##[endgroup]
+2026-10-15T08:42:09.7047476Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+2026-10-15T08:42:09.7267837Z 34729fd23f820711f31ea081c8e4b46769d3ed4f
+2026-10-15T08:42:09.7295295Z ##[group]Removing auth
+2026-10-15T08:42:09.7302546Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-15T08:42:09.7540493Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-15T08:42:10.1451825Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-15T08:42:10.1659388Z http.https://github.com/.extraheader
+2026-10-15T08:42:10.1688367Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all http.https://github.com/.extraheader
+2026-10-15T08:42:10.1948432Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-15T08:42:10.5989092Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-15T08:42:10.6231814Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-15T08:42:10.9931727Z ##[endgroup]
+2026-10-15T08:42:11.0336960Z ##[group]Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+2026-10-15T08:42:11.0337401Z with:
+2026-10-15T08:42:11.0337569Z   python-version: 3.11.9
+2026-10-15T08:42:11.0337759Z   check-latest: false
+2026-10-15T08:42:11.0339727Z   token: ***
+2026-10-15T08:42:11.0339888Z   update-environment: true
+2026-10-15T08:42:11.0340087Z   allow-prereleases: false
+2026-10-15T08:42:11.0340250Z   freethreaded: false
+2026-10-15T08:42:11.0340405Z env:
+2026-10-15T08:42:11.0340569Z   OMP_NUM_THREADS: 1
+2026-10-15T08:42:11.0340736Z   OPENBLAS_NUM_THREADS: 1
+2026-10-15T08:42:11.0340900Z   MKL_NUM_THREADS: 1
+2026-10-15T08:42:11.0342784Z   GH_TOKEN: ***
+2026-10-15T08:42:11.0342935Z ##[endgroup]
+2026-10-15T08:42:11.1540943Z ##[group]Installed versions
+2026-10-15T08:42:11.1579693Z (node:2316) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-15T08:42:11.1580376Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-15T08:42:11.1580842Z Successfully set up CPython (3.11.9)
+2026-10-15T08:42:11.1581899Z ##[endgroup]
+2026-10-15T08:42:11.1793883Z ##[group]Run python -m pip install numpy==1.26.4 pandas==2.2.3 scipy==1.11.2 scikit-learn==1.3.0 matplotlib==3.9.2 PyYAML==6.0.2 setuptools==75.1.0 wheel==0.45.1
+2026-10-15T08:42:11.1794775Z [36;1mpython -m pip install numpy==1.26.4 pandas==2.2.3 scipy==1.11.2 scikit-learn==1.3.0 matplotlib==3.9.2 PyYAML==6.0.2 setuptools==75.1.0 wheel==0.45.1[0m
+2026-10-15T08:42:11.1795337Z [36;1mif ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }[0m
+2026-10-15T08:42:11.1795645Z [36;1mpython -m pip install --no-build-isolation --no-deps .[0m
+2026-10-15T08:42:11.1795941Z [36;1mif ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }[0m
+2026-10-15T08:42:11.1796179Z [36;1mpython -m pip check[0m
+2026-10-15T08:42:11.1796396Z [36;1mif ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }[0m
+2026-10-15T08:42:11.1796670Z [36;1mpython -I examples/qualify_chain_validation.py check[0m
+2026-10-15T08:42:11.1796944Z [36;1mif ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }[0m
+2026-10-15T08:42:11.1797261Z [36;1mpython -m pip freeze | Out-File -Encoding utf8 runtime.txt[0m
+2026-10-15T08:42:11.4033736Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-15T08:42:11.4034042Z env:
+2026-10-15T08:42:11.4034235Z   OMP_NUM_THREADS: 1
+2026-10-15T08:42:11.4034422Z   OPENBLAS_NUM_THREADS: 1
+2026-10-15T08:42:11.4034586Z   MKL_NUM_THREADS: 1
+2026-10-15T08:42:11.4037515Z   GH_TOKEN: ***
+2026-10-15T08:42:11.4037743Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T08:42:11.4038106Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.11.9\x64/lib/pkgconfig
+2026-10-15T08:42:11.4038459Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T08:42:11.4038764Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T08:42:11.4039058Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T08:42:11.4039300Z ##[endgroup]
+2026-10-15T08:42:20.4932557Z Collecting numpy==1.26.4
+2026-10-15T08:42:20.6250277Z   Downloading numpy-1.26.4-cp311-cp311-win_amd64.whl.metadata (61 kB)
+2026-10-15T08:42:20.8535251Z Collecting pandas==2.2.3
+2026-10-15T08:42:20.8592317Z   Downloading pandas-2.2.3-cp311-cp311-win_amd64.whl.metadata (19 kB)
+2026-10-15T08:42:21.3016821Z Collecting scipy==1.11.2
+2026-10-15T08:42:21.3095331Z   Downloading scipy-1.11.2-cp311-cp311-win_amd64.whl.metadata (59 kB)
+2026-10-15T08:42:21.5151625Z Collecting scikit-learn==1.3.0
+2026-10-15T08:42:21.5203374Z   Downloading scikit_learn-1.3.0-cp311-cp311-win_amd64.whl.metadata (11 kB)
+2026-10-15T08:42:21.8396425Z Collecting matplotlib==3.9.2
+2026-10-15T08:42:21.8493799Z   Downloading matplotlib-3.9.2-cp311-cp311-win_amd64.whl.metadata (11 kB)
+2026-10-15T08:42:22.1211345Z Collecting PyYAML==6.0.2
+2026-10-15T08:42:22.1287676Z   Downloading PyYAML-6.0.2-cp311-cp311-win_amd64.whl.metadata (2.1 kB)
+2026-10-15T08:42:22.2765753Z Collecting setuptools==75.1.0
+2026-10-15T08:42:22.3239317Z   Downloading setuptools-75.1.0-py3-none-any.whl.metadata (6.9 kB)
+2026-10-15T08:42:22.4477919Z Collecting wheel==0.45.1
+2026-10-15T08:42:22.4519132Z   Downloading wheel-0.45.1-py3-none-any.whl.metadata (2.3 kB)
+2026-10-15T08:42:22.5038672Z Collecting python-dateutil>=2.8.2 (from pandas==2.2.3)
+2026-10-15T08:42:22.5096556Z   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+2026-10-15T08:42:22.7562781Z Collecting pytz>=2020.1 (from pandas==2.2.3)
+2026-10-15T08:42:22.7604220Z   Downloading pytz-2026.5-py2.py3-none-any.whl.metadata (22 kB)
+2026-10-15T08:42:22.8828140Z Collecting tzdata>=2022.7 (from pandas==2.2.3)
+2026-10-15T08:42:22.8870952Z   Downloading tzdata-2026.5-py2.py3-none-any.whl.metadata (1.4 kB)
+2026-10-15T08:42:22.9366190Z Collecting joblib>=1.1.1 (from scikit-learn==1.3.0)
+2026-10-15T08:42:22.9408892Z   Downloading joblib-1.6.0-py3-none-any.whl.metadata (6.5 kB)
+2026-10-15T08:42:23.4830743Z Collecting threadpoolctl>=2.0.0 (from scikit-learn==1.3.0)
+2026-10-15T08:42:23.4875129Z   Downloading threadpoolctl-3.7.0-py3-none-any.whl.metadata (24 kB)
+2026-10-15T08:42:23.5925051Z Collecting contourpy>=1.0.1 (from matplotlib==3.9.2)
+2026-10-15T08:42:23.5967914Z   Downloading contourpy-1.3.3-cp311-cp311-win_amd64.whl.metadata (5.5 kB)
+2026-10-15T08:42:23.6552100Z Collecting cycler>=0.10 (from matplotlib==3.9.2)
+2026-10-15T08:42:23.6596069Z   Downloading cycler-0.12.1-py3-none-any.whl.metadata (3.8 kB)
+2026-10-15T08:42:23.8692907Z Collecting fonttools>=4.22.0 (from matplotlib==3.9.2)
+2026-10-15T08:42:23.8746070Z   Downloading fonttools-4.67.0-cp311-cp311-win_amd64.whl.metadata (139 kB)
+2026-10-15T08:42:24.0242921Z Collecting kiwisolver>=1.3.1 (from matplotlib==3.9.2)
+2026-10-15T08:42:24.0468578Z   Downloading kiwisolver-1.5.1-cp311-cp311-win_amd64.whl.metadata (5.2 kB)
+2026-10-15T08:42:24.1087498Z Collecting packaging>=20.0 (from matplotlib==3.9.2)
+2026-10-15T08:42:24.1128354Z   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+2026-10-15T08:42:24.2922294Z Collecting pillow>=8 (from matplotlib==3.9.2)
+2026-10-15T08:42:24.3099368Z   Downloading pillow-12.3.0-cp311-cp311-win_amd64.whl.metadata (9.3 kB)
+2026-10-15T08:42:24.4134993Z Collecting pyparsing>=2.3.1 (from matplotlib==3.9.2)
+2026-10-15T08:42:24.4177004Z   Downloading pyparsing-3.3.3-py3-none-any.whl.metadata (5.9 kB)
+2026-10-15T08:42:24.4656586Z Collecting cloudpickle>=3.0 (from joblib>=1.1.1->scikit-learn==1.3.0)
+2026-10-15T08:42:24.4697002Z   Downloading cloudpickle-3.1.2-py3-none-any.whl.metadata (7.1 kB)
+2026-10-15T08:42:24.5505719Z Collecting six>=1.5 (from python-dateutil>=2.8.2->pandas==2.2.3)
+2026-10-15T08:42:24.5546189Z   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+2026-10-15T08:42:24.5836776Z Downloading numpy-1.26.4-cp311-cp311-win_amd64.whl (15.8 MB)
+2026-10-15T08:42:25.1755820Z    ---------------------------------------- 15.8/15.8 MB 26.9 MB/s  0:00:00
+2026-10-15T08:42:25.1806220Z Downloading pandas-2.2.3-cp311-cp311-win_amd64.whl (11.6 MB)
+2026-10-15T08:42:25.2684220Z    ---------------------------------------- 11.6/11.6 MB 145.6 MB/s  0:00:00
+2026-10-15T08:42:25.2756151Z Downloading scipy-1.11.2-cp311-cp311-win_amd64.whl (44.0 MB)
+2026-10-15T08:42:26.1531375Z    ---------------------------------------- 44.0/44.0 MB 50.8 MB/s  0:00:00
+2026-10-15T08:42:26.1752231Z Downloading scikit_learn-1.3.0-cp311-cp311-win_amd64.whl (9.2 MB)
+2026-10-15T08:42:26.2693050Z    ---------------------------------------- 9.2/9.2 MB 95.0 MB/s  0:00:00
+2026-10-15T08:42:26.2743817Z Downloading matplotlib-3.9.2-cp311-cp311-win_amd64.whl (7.8 MB)
+2026-10-15T08:42:26.3353957Z    ---------------------------------------- 7.8/7.8 MB 122.1 MB/s  0:00:00
+2026-10-15T08:42:26.3404500Z Downloading PyYAML-6.0.2-cp311-cp311-win_amd64.whl (161 kB)
+2026-10-15T08:42:26.3644840Z Downloading setuptools-75.1.0-py3-none-any.whl (1.2 MB)
+2026-10-15T08:42:26.3949863Z    ---------------------------------------- 1.2/1.2 MB 61.6 MB/s  0:00:00
+2026-10-15T08:42:26.3990691Z Downloading wheel-0.45.1-py3-none-any.whl (72 kB)
+2026-10-15T08:42:26.4293608Z Downloading contourpy-1.3.3-cp311-cp311-win_amd64.whl (225 kB)
+2026-10-15T08:42:26.4514750Z Downloading cycler-0.12.1-py3-none-any.whl (8.3 kB)
+2026-10-15T08:42:26.5057473Z Downloading fonttools-4.67.0-cp311-cp311-win_amd64.whl (1.6 MB)
+2026-10-15T08:42:26.5351248Z    ---------------------------------------- 1.6/1.6 MB 44.7 MB/s  0:00:00
+2026-10-15T08:42:26.5393077Z Downloading joblib-1.6.0-py3-none-any.whl (306 kB)
+2026-10-15T08:42:26.5797975Z Downloading cloudpickle-3.1.2-py3-none-any.whl (22 kB)
+2026-10-15T08:42:26.6134784Z Downloading kiwisolver-1.5.1-cp311-cp311-win_amd64.whl (70 kB)
+2026-10-15T08:42:26.6483643Z Downloading packaging-26.3-py3-none-any.whl (129 kB)
+2026-10-15T08:42:26.6830213Z Downloading pillow-12.3.0-cp311-cp311-win_amd64.whl (7.2 MB)
+2026-10-15T08:42:26.7522517Z    ---------------------------------------- 7.2/7.2 MB 112.4 MB/s  0:00:00
+2026-10-15T08:42:26.7599416Z Downloading pyparsing-3.3.3-py3-none-any.whl (126 kB)
+2026-10-15T08:42:26.7894938Z Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+2026-10-15T08:42:26.8161225Z Downloading pytz-2026.5-py2.py3-none-any.whl (506 kB)
+2026-10-15T08:42:26.8388865Z Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+2026-10-15T08:42:26.8693174Z Downloading threadpoolctl-3.7.0-py3-none-any.whl (26 kB)
+2026-10-15T08:42:26.8993275Z Downloading tzdata-2026.5-py2.py3-none-any.whl (347 kB)
+2026-10-15T08:42:27.4626269Z Installing collected packages: pytz, wheel, tzdata, threadpoolctl, six, setuptools, PyYAML, pyparsing, pillow, packaging, numpy, kiwisolver, fonttools, cycler, cloudpickle, scipy, python-dateutil, joblib, contourpy, scikit-learn, pandas, matplotlib
+2026-10-15T08:42:29.0675727Z   Attempting uninstall: setuptools
+2026-10-15T08:42:29.0691032Z     Found existing installation: setuptools 65.5.0
+2026-10-15T08:42:29.4213361Z     Uninstalling setuptools-65.5.0:
+2026-10-15T08:42:29.4967316Z       Successfully uninstalled setuptools-65.5.0
+2026-10-15T08:43:02.1552105Z 
+2026-10-15T08:43:02.1567002Z Successfully installed PyYAML-6.0.2 cloudpickle-3.1.2 contourpy-1.3.3 cycler-0.12.1 fonttools-4.67.0 joblib-1.6.0 kiwisolver-1.5.1 matplotlib-3.9.2 numpy-1.26.4 packaging-26.3 pandas-2.2.3 pillow-12.3.0 pyparsing-3.3.3 python-dateutil-2.9.0.post0 pytz-2026.5 scikit-learn-1.3.0 scipy-1.11.2 setuptools-75.1.0 six-1.17.0 threadpoolctl-3.7.0 tzdata-2026.5 wheel-0.45.1
+2026-10-15T08:43:03.2691331Z Processing .\.
+2026-10-15T08:43:03.2710848Z   Preparing metadata (pyproject.toml): started
+2026-10-15T08:43:03.6237029Z   Preparing metadata (pyproject.toml): finished with status 'done'
+2026-10-15T08:43:03.6267508Z Building wheels for collected packages: open-predictive-expansion
+2026-10-15T08:43:03.6284482Z   Building wheel for open-predictive-expansion (pyproject.toml): started
+2026-10-15T08:43:03.9281770Z   Building wheel for open-predictive-expansion (pyproject.toml): finished with status 'done'
+2026-10-15T08:43:03.9319275Z   Created wheel for open-predictive-expansion: filename=open_predictive_expansion-0.1.0.dev0-py3-none-any.whl size=132212 sha256=1b5d695b6eb65cb99bb81ea81094222c668bb08536e0d4654095217843566585
+2026-10-15T08:43:03.9321070Z   Stored in directory: C:\Users\runneradmin\AppData\Local\Temp\pip-ephem-wheel-cache-0kbpssf_\wheels\d7\fa\42\cef5441cca6128ac0c8fb2737846ca7a177f22761b1392d73c
+2026-10-15T08:43:03.9349522Z Successfully built open-predictive-expansion
+2026-10-15T08:43:03.9468900Z Installing collected packages: open-predictive-expansion
+2026-10-15T08:43:04.2184274Z Successfully installed open-predictive-expansion-0.1.0.dev0
+2026-10-15T08:43:04.5393389Z No broken requirements found.
+2026-10-15T08:43:06.3559249Z PASS d896d2185cf6a895f27317c501cfaa5d479662460b507f1a35b5837679b114f1 frozen chain source/runtime/gate
+2026-10-15T08:43:06.8733941Z ##[group]Run python -I examples/qualify_chain_validation.py download --out .superpowers/chain-inputs
+2026-10-15T08:43:06.8734592Z [36;1mpython -I examples/qualify_chain_validation.py download --out .superpowers/chain-inputs[0m
+2026-10-15T08:43:06.8735008Z [36;1mif ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }[0m
+2026-10-15T08:43:06.8764619Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-15T08:43:06.8764905Z env:
+2026-10-15T08:43:06.8765059Z   OMP_NUM_THREADS: 1
+2026-10-15T08:43:06.8765228Z   OPENBLAS_NUM_THREADS: 1
+2026-10-15T08:43:06.8765401Z   MKL_NUM_THREADS: 1
+2026-10-15T08:43:06.8767405Z   GH_TOKEN: ***
+2026-10-15T08:43:06.8767663Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T08:43:06.8768018Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.11.9\x64/lib/pkgconfig
+2026-10-15T08:43:06.8768360Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T08:43:06.8768713Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T08:43:06.8769024Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T08:43:06.8769268Z ##[endgroup]
+2026-10-15T08:46:37.9830820Z ##[group]Run python -I examples/qualify_chain_validation.py aggregate --inputs .superpowers/chain-inputs --out .superpowers/chain-audit
+2026-10-15T08:46:37.9831715Z [36;1mpython -I examples/qualify_chain_validation.py aggregate --inputs .superpowers/chain-inputs --out .superpowers/chain-audit[0m
+2026-10-15T08:46:37.9832234Z [36;1mif ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }[0m
+2026-10-15T08:46:37.9863274Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-15T08:46:37.9863596Z env:
+2026-10-15T08:46:37.9863776Z   OMP_NUM_THREADS: 1
+2026-10-15T08:46:37.9863992Z   OPENBLAS_NUM_THREADS: 1
+2026-10-15T08:46:37.9864213Z   MKL_NUM_THREADS: 1
+2026-10-15T08:46:37.9866612Z   GH_TOKEN: ***
+2026-10-15T08:46:37.9866914Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T08:46:37.9867319Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.11.9\x64/lib/pkgconfig
+2026-10-15T08:46:37.9867768Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T08:46:37.9868130Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T08:46:37.9868497Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T08:46:37.9868785Z ##[endgroup]
+2026-10-15T09:18:45.9784076Z ##[error]The action 'Independent observation-loss replay; zero model fits' has timed out after 32 minutes.
+2026-10-15T09:18:46.0383158Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-10-15T09:18:46.0384049Z with:
+2026-10-15T09:18:46.0384262Z   name: chain-audit
+2026-10-15T09:18:46.0384635Z   path: .superpowers/chain-audit/
+.superpowers/chain-inputs/download-inventory.json
+runtime.txt
+2026-10-15T09:18:46.0385478Z   include-hidden-files: true
+2026-10-15T09:18:46.0387151Z   if-no-files-found: error
+2026-10-15T09:18:46.0387942Z   retention-days: 30
+2026-10-15T09:18:46.0388278Z   compression-level: 6
+2026-10-15T09:18:46.0388606Z   overwrite: false
+2026-10-15T09:18:46.0388966Z env:
+2026-10-15T09:18:46.0389315Z   OMP_NUM_THREADS: 1
+2026-10-15T09:18:46.0389955Z   OPENBLAS_NUM_THREADS: 1
+2026-10-15T09:18:46.0390433Z   MKL_NUM_THREADS: 1
+2026-10-15T09:18:46.0392700Z   GH_TOKEN: ***
+2026-10-15T09:18:46.0392997Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T09:18:46.0393485Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.11.9\x64/lib/pkgconfig
+2026-10-15T09:18:46.0393886Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T09:18:46.0394225Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T09:18:46.0394523Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-10-15T09:18:46.0394799Z ##[endgroup]
+2026-10-15T09:18:46.2300255Z (node:6784) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-15T09:18:46.2300886Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-15T09:18:46.2358200Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-10-15T09:18:46.2360626Z The least common ancestor is D:\a\open\open. This will be the root directory of the artifact
+2026-10-15T09:18:46.2361202Z With the provided path, there will be 3 files uploaded
+2026-10-15T09:18:46.2365023Z Artifact name is valid!
+2026-10-15T09:18:46.2366228Z Root directory input is valid!
+2026-10-15T09:18:46.6845685Z Beginning upload of artifact content to blob storage
+2026-10-15T09:18:46.7086876Z (node:6784) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-15T09:18:46.9042345Z Uploaded bytes 13196
+2026-10-15T09:18:46.9615822Z Finished uploading artifact content to blob storage!
+2026-10-15T09:18:46.9616749Z SHA256 digest of uploaded artifact zip is 27db570a2479626ffd21c61842eb4246cdb8c6dc17b2e647be9ba72ee845c68e
+2026-10-15T09:18:46.9618533Z Finalizing artifact upload
+2026-10-15T09:18:47.2150892Z Artifact chain-audit.zip successfully finalized. Artifact ID 11961451146
+2026-10-15T09:18:47.2151611Z Artifact chain-audit has been successfully uploaded! Final size is 13196 bytes. Artifact ID is 11961451146
+2026-10-15T09:18:47.2158712Z Artifact download URL: https://github.com/imh-ds/open/actions/runs/38690088093/artifacts/11961451146
+2026-10-15T09:18:47.2907611Z Post job cleanup.
+2026-10-15T09:18:47.4726715Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-15T09:18:47.4957368Z git version 2.56.0.windows.2
+2026-10-15T09:18:47.5007353Z Temporarily overriding HOME='D:\a\_temp\f585f227-a867-46ec-abaf-c5effde20d25' before making global git config changes
+2026-10-15T09:18:47.5008284Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-15T09:18:47.5019708Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\open\open
+2026-10-15T09:18:47.5262899Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-15T09:18:47.5494382Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-15T09:18:47.9172416Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-15T09:18:47.9405922Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-15T09:18:48.3393835Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-15T09:18:48.3636942Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-15T09:18:48.7647186Z Cleaning up orphan processes
+2026-10-15T09:18:48.7673813Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
