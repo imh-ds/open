@@ -1,0 +1,307 @@
+name: Full-default recursive tree-engine timing preflight
+'on':
+  workflow_dispatch: {}
+  push:
+    branches:
+    - codex/multiengine-preflight
+    paths:
+    - .github/workflows/multiengine-preflight.yml
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: recursive-reference-validation
+  cancel-in-progress: false
+defaults:
+  run:
+    shell: pwsh
+env:
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+  GH_TOKEN: ${{ github.token }}
+jobs:
+  register:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+    - run: Write-Output 'Registration only; no model fits.'
+  prepare:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: windows-2022
+    timeout-minutes: 15
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
+    steps:
+    - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      with:
+        persist-credentials: false
+        sparse-checkout-cone-mode: false
+        sparse-checkout: |
+          src/**
+          pyproject.toml
+          README.md
+          LICENSE
+          configs/default.yaml
+          .github/workflows/recursive-preview-validation.yml
+          examples/recursive_preview_*.py
+          examples/recursive_preview_validation_protocol.md
+          examples/recursive_preview_continuation_proposal.md
+          examples/study_manifests/recursive-preview-*.json
+          examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/raw/producer-manifest.json
+          examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/raw/preflight.json
+          examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/audit/raw-sha256.json
+          examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/audit/diagnosis.json
+          examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38621370295/raw/producer-manifest.json
+          examples/results/2026-10-14-recursive-preview-validation/timing-completed-38629900589/audit/verification.json
+          examples/results/2026-10-14-recursive-preview-validation/timing-completed-38629900589/audit/raw-sha256.json
+          examples/time_scenario_validation.py
+          examples/qualify_recursive_validation.py
+          examples/qualification_validation_protocol.md
+          .github/workflows/recursive-qualification.yml
+          examples/study_manifests/recursive-qualification*.json
+          examples/results/2026-10-14-recursive-preview-validation/scenario-timing-completed-38645875109/audit/verification.json
+          examples/results/2026-10-14-recursive-qualification/noise-gate/audit.json
+          examples/continue_qualification.py
+          examples/qualification_continuation_protocol.md
+          .github/workflows/qualification-continuation.yml
+          examples/study_manifests/qualification-continuation.json
+          examples/results/2026-10-14-recursive-qualification/continuation-plan/*.json
+          examples/qualify_chain_validation.py
+          examples/qualification_artifacts.py
+          examples/chain_validation_protocol.md
+          .github/workflows/chain-qualification.yml
+          examples/study_manifests/chain-qualification*.json
+          examples/results/2026-10-14-recursive-qualification/combined-38676310704/audit/audit.json
+          examples/results/2026-10-14-recursive-qualification/combined-38676310704/archive-inventory.json
+          examples/results/2026-10-14-recursive-qualification/combined-38676310704/publication.json
+          examples/multiengine_preflight.py
+          examples/multiengine_recursive_audit.py
+          examples/multiengine_recursive_validation_plan.md
+          examples/study_manifests/multiengine-preflight.json
+          .github/workflows/multiengine-preflight.yml
+    - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+      with:
+        python-version: 3.11.9
+    - name: Install pinned package/runtime and verify source
+      timeout-minutes: 3
+      run: |
+        python -m pip install numpy==1.26.4 pandas==2.2.3 scipy==1.11.2 scikit-learn==1.3.0 matplotlib==3.9.2 PyYAML==6.0.2 lightgbm==4.6.0 setuptools==75.1.0 wheel==0.45.1
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+        python -m pip install --no-build-isolation --no-deps .
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+        python -m pip check
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+        python -I examples/multiengine_preflight.py check
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+        python -m pip freeze | Out-File -Encoding utf8 runtime.txt
+    - id: matrix
+      name: Authorize the six existing timing fixtures for the three engines
+      timeout-minutes: 8
+      run: |
+        $taskMatrix = python -I examples/multiengine_preflight.py prepare --out .superpowers/tree-prepare
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+        "matrix=$taskMatrix" >> $env:GITHUB_OUTPUT
+    - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      if: always()
+      timeout-minutes: 2
+      with:
+        name: tree-authorization
+        path: .superpowers/tree-prepare/
+        include-hidden-files: true
+        if-no-files-found: error
+        retention-days: 30
+  case:
+    name: case (${{ matrix.id }})
+    needs: prepare
+    runs-on: windows-2022
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
+    steps:
+    - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      with:
+        persist-credentials: false
+        sparse-checkout-cone-mode: false
+        sparse-checkout: |
+          src/**
+          pyproject.toml
+          README.md
+          LICENSE
+          configs/default.yaml
+          .github/workflows/recursive-preview-validation.yml
+          examples/recursive_preview_*.py
+          examples/recursive_preview_validation_protocol.md
+          examples/recursive_preview_continuation_proposal.md
+          examples/study_manifests/recursive-preview-*.json
+          examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/raw/producer-manifest.json
+          examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/raw/preflight.json
+          examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/audit/raw-sha256.json
+          examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/audit/diagnosis.json
+          examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38621370295/raw/producer-manifest.json
+          examples/results/2026-10-14-recursive-preview-validation/timing-completed-38629900589/audit/verification.json
+          examples/results/2026-10-14-recursive-preview-validation/timing-completed-38629900589/audit/raw-sha256.json
+          examples/time_scenario_validation.py
+          examples/qualify_recursive_validation.py
+          examples/qualification_validation_protocol.md
+          .github/workflows/recursive-qualification.yml
+          examples/study_manifests/recursive-qualification*.json
+          examples/results/2026-10-14-recursive-preview-validation/scenario-timing-completed-38645875109/audit/verification.json
+          examples/results/2026-10-14-recursive-qualification/noise-gate/audit.json
+          examples/continue_qualification.py
+          examples/qualification_continuation_protocol.md
+          .github/workflows/qualification-continuation.yml
+          examples/study_manifests/qualification-continuation.json
+          examples/results/2026-10-14-recursive-qualification/continuation-plan/*.json
+          examples/qualify_chain_validation.py
+          examples/qualification_artifacts.py
+          examples/chain_validation_protocol.md
+          .github/workflows/chain-qualification.yml
+          examples/study_manifests/chain-qualification*.json
+          examples/results/2026-10-14-recursive-qualification/combined-38676310704/audit/audit.json
+          examples/results/2026-10-14-recursive-qualification/combined-38676310704/archive-inventory.json
+          examples/results/2026-10-14-recursive-qualification/combined-38676310704/publication.json
+          examples/multiengine_preflight.py
+          examples/multiengine_recursive_audit.py
+          examples/multiengine_recursive_validation_plan.md
+          examples/study_manifests/multiengine-preflight.json
+          .github/workflows/multiengine-preflight.yml
+    - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+      with:
+        python-version: 3.11.9
+    - name: Install pinned package/runtime and verify source
+      timeout-minutes: 3
+      run: |
+        python -m pip install numpy==1.26.4 pandas==2.2.3 scipy==1.11.2 scikit-learn==1.3.0 matplotlib==3.9.2 PyYAML==6.0.2 lightgbm==4.6.0 setuptools==75.1.0 wheel==0.45.1
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+        python -m pip install --no-build-isolation --no-deps .
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+        python -m pip check
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+        python -I examples/multiengine_preflight.py check
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+        python -m pip freeze | Out-File -Encoding utf8 runtime.txt
+    - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+      timeout-minutes: 2
+      with:
+        name: tree-authorization
+        path: .superpowers/tree-authorization
+    - name: Recorded production recursion; no automatic fit retry
+      timeout-minutes: 78
+      run: |
+        python -I examples/multiengine_preflight.py case --id ${{ matrix.id }} --out .superpowers/tree-case --authorization .superpowers/tree-authorization/authorization.json
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+    - name: Preserve checkpoints even if compute step timed out
+      if: always()
+      timeout-minutes: 1
+      run: |
+        python -I examples/multiengine_preflight.py pack --out .superpowers/tree-case
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+    - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      if: always()
+      timeout-minutes: 2
+      with:
+        name: tree-case-${{ matrix.id }}
+        path: |-
+          .superpowers/tree-case/control.json
+          .superpowers/tree-case/raw/case.zip
+          runtime.txt
+        include-hidden-files: true
+        if-no-files-found: error
+        retention-days: 30
+  aggregate:
+    if: always() && github.event_name == 'workflow_dispatch' && needs.prepare.result == 'success'
+    needs:
+    - prepare
+    - case
+    runs-on: windows-2022
+    timeout-minutes: 30
+    steps:
+    - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      with:
+        persist-credentials: false
+        sparse-checkout-cone-mode: false
+        sparse-checkout: |
+          src/**
+          pyproject.toml
+          README.md
+          LICENSE
+          configs/default.yaml
+          .github/workflows/recursive-preview-validation.yml
+          examples/recursive_preview_*.py
+          examples/recursive_preview_validation_protocol.md
+          examples/recursive_preview_continuation_proposal.md
+          examples/study_manifests/recursive-preview-*.json
+          examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/raw/producer-manifest.json
+          examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/raw/preflight.json
+          examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/audit/raw-sha256.json
+          examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38615814397/audit/diagnosis.json
+          examples/results/2026-10-14-recursive-preview-validation/preflight-failure-38621370295/raw/producer-manifest.json
+          examples/results/2026-10-14-recursive-preview-validation/timing-completed-38629900589/audit/verification.json
+          examples/results/2026-10-14-recursive-preview-validation/timing-completed-38629900589/audit/raw-sha256.json
+          examples/time_scenario_validation.py
+          examples/qualify_recursive_validation.py
+          examples/qualification_validation_protocol.md
+          .github/workflows/recursive-qualification.yml
+          examples/study_manifests/recursive-qualification*.json
+          examples/results/2026-10-14-recursive-preview-validation/scenario-timing-completed-38645875109/audit/verification.json
+          examples/results/2026-10-14-recursive-qualification/noise-gate/audit.json
+          examples/continue_qualification.py
+          examples/qualification_continuation_protocol.md
+          .github/workflows/qualification-continuation.yml
+          examples/study_manifests/qualification-continuation.json
+          examples/results/2026-10-14-recursive-qualification/continuation-plan/*.json
+          examples/qualify_chain_validation.py
+          examples/qualification_artifacts.py
+          examples/chain_validation_protocol.md
+          .github/workflows/chain-qualification.yml
+          examples/study_manifests/chain-qualification*.json
+          examples/results/2026-10-14-recursive-qualification/combined-38676310704/audit/audit.json
+          examples/results/2026-10-14-recursive-qualification/combined-38676310704/archive-inventory.json
+          examples/results/2026-10-14-recursive-qualification/combined-38676310704/publication.json
+          examples/multiengine_preflight.py
+          examples/multiengine_recursive_audit.py
+          examples/multiengine_recursive_validation_plan.md
+          examples/study_manifests/multiengine-preflight.json
+          .github/workflows/multiengine-preflight.yml
+    - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+      with:
+        python-version: 3.11.9
+    - name: Install pinned package/runtime and verify source
+      timeout-minutes: 3
+      run: |
+        python -m pip install numpy==1.26.4 pandas==2.2.3 scipy==1.11.2 scikit-learn==1.3.0 matplotlib==3.9.2 PyYAML==6.0.2 lightgbm==4.6.0 setuptools==75.1.0 wheel==0.45.1
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+        python -m pip install --no-build-isolation --no-deps .
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+        python -m pip check
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+        python -I examples/multiengine_preflight.py check
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+        python -m pip freeze | Out-File -Encoding utf8 runtime.txt
+    - name: Download all exact artifact names using qualification_artifacts.py pagination
+      timeout-minutes: 5
+      run: |
+        python -I examples/multiengine_preflight.py download --out .superpowers/tree-inputs
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+    - name: Independent observation-loss replay; zero model fits
+      if: always()
+      timeout-minutes: 18
+      run: |
+        python -I examples/multiengine_preflight.py aggregate --inputs .superpowers/tree-inputs --out .superpowers/tree-audit
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+    - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      if: always()
+      timeout-minutes: 2
+      with:
+        name: tree-audit
+        path: |-
+          .superpowers/tree-audit/
+          .superpowers/tree-inputs/download-inventory.json
+          runtime.txt
+        include-hidden-files: true
+        if-no-files-found: error
+        retention-days: 30
