@@ -39,7 +39,9 @@ def test_plain_report_withholds_amplitude_claim(tmp_path):
 
 
 def test_partial_receipt_context_and_unknown_failure_cost(tmp_path,monkeypatch):
+    from study_fixture_helpers import isolate_prospective
     m=load();c=m.study.d.tasks()[0];out=tmp_path/'out'
+    isolate_prospective(m.study,tmp_path/'context',monkeypatch)
     m.study.io.write(out/c['id']/'receipt.json',dict(task=c,context='foreign',environment=m.study.io.environment()))
     a=m.aggregate('null',[out],out,m.study.manifest())
     assert a['missing']==14400 and a['audit_errors'] and c['id'] in a['unknown_attempt_cost_ids']

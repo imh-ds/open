@@ -2,12 +2,15 @@ import sys
 from pathlib import Path
 import numpy as np
 import pytest
+from study_fixture_helpers import isolate_caches, isolate_prospective
 sys.path.insert(0,str(Path(__file__).parents[1]/'examples'))
 
 
 def module(tmp,monkeypatch):
     assert (Path(__file__).parents[1]/'examples/realistic_interaction_study.py').exists(),'realistic runner missing'
     import realistic_interaction_study as m
+    isolate_prospective(m.previous,tmp/'previous',monkeypatch)
+    isolate_caches(m,monkeypatch)
     monkeypatch.setattr(m,'MANIFEST',tmp/'manifest.json')
     monkeypatch.setattr(m,'THRESHOLDS',tmp/'thresholds.json')
     monkeypatch.setattr(m,'CALIBRATION_AUDIT',tmp/'calibration-audit.json')

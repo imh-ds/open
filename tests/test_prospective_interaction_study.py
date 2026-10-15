@@ -1,6 +1,7 @@
 import importlib.util,sys
 from pathlib import Path
 import pytest
+from study_fixture_helpers import isolate_prospective
 
 
 def module(tmp,monkeypatch):
@@ -9,7 +10,7 @@ def module(tmp,monkeypatch):
     sys.path.insert(0,str(p.parent));s=importlib.util.spec_from_file_location('prospective_study',p)
     m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
     m.MANIFEST=tmp/'manifest.json';monkeypatch.setattr(m,'sources',lambda: m.old.sources())
-    m.freeze(False);return m
+    isolate_prospective(m,tmp,monkeypatch);return m
 
 
 def test_freeze_context_and_signal_guard(tmp_path,monkeypatch):

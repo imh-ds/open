@@ -19,8 +19,10 @@ def test_workflow_budget_and_sparse_sources():
     assert 'examples/*protocol.md' in worker['steps'][0]['with']['sparse-checkout']
 
 
-def test_realistic_freeze_and_legacy_preserved():
+def test_realistic_freeze_and_legacy_preserved(tmp_path,monkeypatch):
+    from study_fixture_helpers import isolate_prospective
     import realistic_interaction_study as s
+    isolate_prospective(s.previous,tmp_path/'previous',monkeypatch)
     assert (ROOT/'.github/workflows/realistic-interaction.yml').exists(),'realistic workflow missing'
     s.previous.freeze();m=s.manifest()
     assert m['planned_fits']==9964800 and m['planned_verification_refits']==288000

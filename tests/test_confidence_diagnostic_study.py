@@ -1,5 +1,5 @@
 import importlib.util,sys,json
-from functools import lru_cache
+from study_fixture_helpers import isolate_pair_calibration
 from pathlib import Path
 import numpy as np
 import pytest
@@ -12,14 +12,7 @@ def module(tmp,monkeypatch):
     spec=importlib.util.spec_from_file_location('diagnostic_study',p);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
     # Exercise real provenance checks with isolated unit-test evidence. The
     # committed calibration is bound to historical source and must stay frozen.
-    monkeypatch.setattr(m.old,'MANIFESTS',{s:tmp/f'{s}.json' for s in ('calibration','confirmation')})
-    monkeypatch.setattr(m.old,'THRESHOLDS',tmp/'thresholds.json')
-    monkeypatch.setattr(m.old,'identity',lru_cache(None)(m.old.identity.__wrapped__))
-    m.old.freeze('calibration',False)
-    rows=[dict(id=c['id'],cell=c['cell'],scenario=c['scenario'],score=0.,result_sha256='a'*64)
-          for c in m.old.rules.tasks('calibration')]
-    m.io.write(m.old.THRESHOLDS,m.old.make_rule(rows))
-    m.old.freeze('confirmation',False)
+    isolate_pair_calibration(m.old,tmp/'pair',monkeypatch)
     m.MANIFEST=tmp/'manifest.json';m.freeze(False);return m
 
 

@@ -73,7 +73,10 @@ def test_shape_magnitude_and_truth_blind_display():
 
 
 def test_streamed_raw_audit_preserves_missing_and_rejects_duplicate_shard(tmp_path,monkeypatch):
+    from study_fixture_helpers import isolate_caches, isolate_prospective
     r,v=modules();m=r.study
+    isolate_prospective(m.previous,tmp_path/'previous',monkeypatch)
+    isolate_caches(m,monkeypatch)
     monkeypatch.setattr(m,'MANIFEST',tmp_path/'manifest.json')
     monkeypatch.setattr(m,'sources',lambda:m.old.sources());m.freeze(False)
     c=m.d.tasks()[0];raw=tmp_path/'raw';m.run_task(c,raw)
