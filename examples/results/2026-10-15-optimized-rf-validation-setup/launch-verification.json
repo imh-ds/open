@@ -1,0 +1,28 @@
+{
+  "authorization_verified": true,
+  "run": 38816428068,
+  "source": "c9b512459be657d0e11c33fb808e4616708a6de9",
+  "attempt": 1,
+  "event": "workflow_dispatch",
+  "manifest": "840948cb5d67b0f5b28f784209b474835c6851b7426c23c074134e54048cebc7",
+  "planned_cases": 2,
+  "ceiling": 300,
+  "reserved_minutes": 286,
+  "preparation_succeeded": true,
+  "case_compute_started": true,
+  "cases": [
+    {
+      "job": 116702516299,
+      "name": "case (optimized-pilot-random_forest-chain-n200-r00)",
+      "status": "in_progress",
+      "started_at": "2026-10-15T22:22:38Z"
+    },
+    {
+      "job": 116702516357,
+      "name": "case (optimized-pilot-random_forest-chain-n80-r00)",
+      "status": "in_progress",
+      "started_at": "2026-10-15T22:22:49Z"
+    }
+  ],
+  "scientific_results_pending": true
+}
