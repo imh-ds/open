@@ -1,5 +1,7 @@
 # OPEN research-preview release readiness
 
+Latest execution amendment: the owner approved a [longer continuation of the same 38 unfinished null datasets](../examples/results/2026-10-14-recursive-qualification/continuation-plan/README.md), retaining all 72 completed results and the original 110-case denominator. All partial checkpoints passed independent no-fit replay; the new 60-minute case workflow passed 31 focused tests and read-only review. The original null run remains failed, the signal stage remains on hold, and no qualification or release acceptance is implied. The continuation reallocates future compute within the existing 10,000-minute ceiling.
+
 The target is a v0.1 **research preview** of the current method. This document freezes the intended claim scope; it does not announce a release. The current package version remains `0.1.0.dev0`.
 
 Current validation: the owner approved the [fresh 330-dataset protocol](../examples/qualification_validation_protocol.md), with unchanged model settings and 55 independent datasets per condition. [Stage A launch evidence](../examples/results/2026-10-14-recursive-qualification/launch/README.md) tracks the once-only 110-case null run; the 220 signal cases remain gated on complete, audited, preserved and qualified null results. The total reservation is 9,897 runner-minutes inside the existing 10,000-minute ceiling. The original 480-case study remains incomplete, and all six timing pilots are excluded from qualification. Scientific and release gates remain open.
