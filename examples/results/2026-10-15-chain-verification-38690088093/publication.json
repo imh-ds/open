@@ -1,0 +1,25 @@
+{
+  "public_report_branch": "codex/chain-verification-report",
+  "public_report_commit": "f5f98f4e6af1ba0158fd79c99673408e84a2def7",
+  "remote_report_paths_verified": 124,
+  "full_packet_git_hashes_verified": 452,
+  "local_full_packet_complete": true,
+  "local_original_archives": 110,
+  "remote_original_archives": 27,
+  "full_remote_archive_complete": false,
+  "retained_transport_refs": [
+    "ad8f778b991c63db370c8162292dd34bbf5cc2b2\trefs/heads/codex/chain-evidence-transfer-0",
+    "0673ec37209d10878a04dd15a7e3c4737e6396b6\trefs/heads/codex/chain-evidence-transfer-1",
+    "1c9a249fc298112797729196ff3b36a698488584\trefs/heads/codex/chain-evidence-transfer-2",
+    "76e1f2e1e4e821478aaa784d8d7e833d6b11059a\trefs/heads/codex/chain-evidence-transfer-3"
+  ],
+  "original_qualification_remote": "c8be8d68c857dcf7a85551dcf27b962ab228ac29",
+  "original_qualification_local_contains_full_packet": true,
+  "network_errors": [
+    "large Git HTTP408 timeout",
+    "direct Git-blob POST90-second timeout"
+  ],
+  "scientific_qualification": "passed both fixed known-chain cells",
+  "model_refits": 0,
+  "new_actions_dispatches": 0
+}
