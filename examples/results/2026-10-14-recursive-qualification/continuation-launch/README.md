@@ -1,5 +1,7 @@
 # Same-dataset null continuation launched
 
+Completion update: [all 110 combined results passed the frozen noise check](../combined-38676310704/interpretation.md). All 38 continuation cases completed; the aggregate job fetched only100of112 original artifacts and failed. Independent recovery verified the complete inputs without refitting models. Both historical runs retain their failed status; signal validation remains unlaunched. The launch/startup receipts below describe the earlier state.
+
 [Run 38676310704](https://github.com/imh-ds/open/actions/runs/38676310704) was dispatched once from source `bab7b69b367ba577b7305ea633d1fe12b412bd78`, first attempt, event `workflow_dispatch`. It continues the same 38 unfinished identities from the original failed null run and retains the 72 completed originals for the combined 110-case report. The original run remains failed; no signal stage or automatic follow-on is enabled.
 
 [The execution protocol](../../../qualification_continuation_protocol.md) gives each case a 60-minute job, a 48-minute verification/computation step and a 39-minute soft computation allowance. At most 20 case jobs run concurrently, each with four single-threaded assessment workers. Source/settings/seeds/thresholds and the original 55-per-N denominators are unchanged.

@@ -1,5 +1,7 @@
 # Fresh noise-stage result: incomplete
 
+Later completion: [the combined original-plus-continuation audit passed](../combined-38676310704/interpretation.md) with110/110 datasets. This original run and its38 incomplete receipts remain unchanged; the report below records its historical failure rather than the later recovered result.
+
 [Run 38655036215](https://github.com/imh-ds/open/actions/runs/38655036215) failed its completion gate. These datasets contain only noise: a correct result has no retained links.
 
 |Participants per dataset|Finished|Unfinished|Incorrect networks among finished cases|
