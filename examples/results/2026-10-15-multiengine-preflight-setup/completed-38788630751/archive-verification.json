@@ -1,0 +1,84 @@
+{
+  "run": "38788630751",
+  "archives": [
+    {
+      "id": "pilot-random_forest-chain-n80-r00",
+      "archive_sha256": "46a8986fbffcfc97d2b8b22d0c1c335cfe59a11f03059d6a8eda4c2197fbd5d6",
+      "archive_bytes": 9135932,
+      "relative_path": "raw/pilot-random_forest-chain-n80-r00/case.zip",
+      "zip_crc_verified": true
+    },
+    {
+      "id": "pilot-random_forest-chain-n200-r00",
+      "archive_sha256": "b5c5b73ae98cb2abd9f6f3341d6475d512f04cfaf6cef2ceebb1b5cc7f905392",
+      "archive_bytes": 21795440,
+      "relative_path": "raw/pilot-random_forest-chain-n200-r00/case.zip",
+      "zip_crc_verified": true
+    },
+    {
+      "id": "pilot-gbm-chain-n80-r00",
+      "archive_sha256": "f7ddb953179484731b2876dc6f0d9015904f3bef61bc5f3e7d349b57d7971a59",
+      "archive_bytes": 8887620,
+      "relative_path": "raw/pilot-gbm-chain-n80-r00/case.zip",
+      "zip_crc_verified": true
+    },
+    {
+      "id": "pilot-gbm-chain-n200-r00",
+      "archive_sha256": "8096d4ecf69a1828cf88e819e85e773bd09c8586f3a2754963cf80b6d45766aa",
+      "archive_bytes": 20582576,
+      "relative_path": "raw/pilot-gbm-chain-n200-r00/case.zip",
+      "zip_crc_verified": true
+    },
+    {
+      "id": "pilot-lightgbm-chain-n80-r00",
+      "archive_sha256": "3a1d4dc2ed823e88becc36bf1e832a816b4a62c872dd033f4f37f3cf330b0eb6",
+      "archive_bytes": 8847454,
+      "relative_path": "raw/pilot-lightgbm-chain-n80-r00/case.zip",
+      "zip_crc_verified": true
+    },
+    {
+      "id": "pilot-lightgbm-chain-n200-r00",
+      "archive_sha256": "eb8dfb1814eed93ec619d6fff7e8981837a6b8252646b1d8033ad37f0c6ac7fc",
+      "archive_bytes": 20945172,
+      "relative_path": "raw/pilot-lightgbm-chain-n200-r00/case.zip",
+      "zip_crc_verified": true
+    }
+  ],
+  "lightgbm_assessment_warnings": {
+    "pilot-lightgbm-chain-n80-r00": [
+      {
+        "category": "PyparsingDeprecationWarning",
+        "message": "'oneOf' deprecated - use 'one_of'",
+        "count": 12
+      },
+      {
+        "category": "PyparsingDeprecationWarning",
+        "message": "'parseString' deprecated - use 'parse_string'",
+        "count": 72
+      },
+      {
+        "category": "PyparsingDeprecationWarning",
+        "message": "'resetCache' deprecated - use 'reset_cache'",
+        "count": 72
+      }
+    ],
+    "pilot-lightgbm-chain-n200-r00": [
+      {
+        "category": "PyparsingDeprecationWarning",
+        "message": "'oneOf' deprecated - use 'one_of'",
+        "count": 12
+      },
+      {
+        "category": "PyparsingDeprecationWarning",
+        "message": "'parseString' deprecated - use 'parse_string'",
+        "count": 72
+      },
+      {
+        "category": "PyparsingDeprecationWarning",
+        "message": "'resetCache' deprecated - use 'reset_cache'",
+        "count": 72
+      }
+    ]
+  },
+  "local_scientific_fits": 0
+}

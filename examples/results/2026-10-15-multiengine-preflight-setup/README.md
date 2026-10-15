@@ -122,3 +122,11 @@ strict. Implementation, normalization fix, cost evidence and actual launch
 records were committed separately. See rf-continuation-38788630751/launch.json
 and saved authorization for provenance. Review completed mixed results before
 considering any larger reliability study or default optimization.
+
+## Completed continuation
+
+Run 38788630751 passed: all six cases complete and exactly recover the chain,
+with correct layers and no extra links. RF needed 21.5/31.1 additional compute
+minutes (97.1/106.3 total). All six raw archives, audit, status/timings and simple
+interpretation are preserved in [the completed results](completed-38788630751/README.md).
+This completes the timing check, not broad scientific qualification.
