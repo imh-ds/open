@@ -285,3 +285,20 @@ def test_absent_reference_percentiles_are_not_fabricated():
     summary=percentile_effects(ale,[None]*11)
     assert all(p['predictor_value'] is None and p['status']=='no_reference_values' for p in summary['percentile_points'])
     assert all(r['low'] is None and r['high'] is None and r['status']=='no_reference_values' for r in summary['interval_contrasts'])
+
+
+def test_effect_supplement_exports_effective_singleton_grid():
+    from open.config import AnalysisConfig, OpenConfig, PerformanceCVConfig, TuningCVConfig
+    from open.effects import compare_target_engines
+    from open.splits import make_split_plan
+    frame = pd.DataFrame({'x': np.linspace(-2, 2, 24)})
+    frame['y'] = frame.x**2
+    config = OpenConfig(AnalysisConfig('y', 17),
+                        performance_cv=PerformanceCVConfig(2, 1),
+                        tuning_cv=TuningCVConfig(3))
+    result = compare_target_engines(frame, 'y', ('x',), config,
+        make_split_plan(frame, config), engines=('random_forest',), bins=2)
+    engine = result['engines'][0]
+    assert engine['tuning_grid'] == {'min_samples_leaf': [2, 5], 'max_features': [.7]}
+    assert engine['tuning_grid_size'] == 2
+    assert engine['tuning_model_fit_count'] == 12

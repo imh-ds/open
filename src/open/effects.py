@@ -356,13 +356,14 @@ def compare_target_engines(data, target, candidates, config, split_plan, *,
                 edges=reference[source]['edges'],folds=folds,
                 standardized_curve_sd=magnitude,curve_sd=magnitude*outcome_sd if magnitude is not None else None,
                 magnitude_status=magnitude_status,**percentiles))
-        from open.learners.trees import GRIDS
+        from open.learners.trees import effective_grid
         from open.learners.elastic_net import ALPHA_GRID,L1_RATIO_GRID
-        grid={'alpha':list(ALPHA_GRID),'l1_ratio':list(L1_RATIO_GRID)} if engine=='elastic_net' else GRIDS[engine]
+        from sklearn.model_selection import ParameterGrid
+        grid={'alpha':list(ALPHA_GRID),'l1_ratio':list(L1_RATIO_GRID)} if engine=='elastic_net' else effective_grid(engine,len(candidates))
         result['engines'].append(dict(engine=engine,cv_r2=1-full.aggregate_risk/variance if variance>0 else None,
             full_mse=full.aggregate_risk,baseline_mse=baseline.aggregate_risk,heldout_variance=variance,
             heldout_keys=[list(key) for key in keys],full_parameters=[dict(repeat=k[0],fold=k[1],params=v) for k,v in params.items()],
-            tuning_grid=grid,tuning_grid_size=predictor.tuning_grid_size,ablations_retuned=False,
+            tuning_grid=grid,tuning_grid_size=len(ParameterGrid(grid)),ablations_retuned=False,
             scored_outer_fit_count=sum(r.outer_model_fit_count for r in fits),
             explanatory_refit_count=len(splits),tuning_model_fit_count=full.tuning_model_fit_count,
             effects=effects,joint=joint))
