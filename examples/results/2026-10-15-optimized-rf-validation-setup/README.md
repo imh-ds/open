@@ -50,3 +50,9 @@ recorded production-recursion steps started: N=200 at 22:22:38 UTC and N=80 at
 Results are pending. A successful launch does not imply prediction equivalence,
 chain recovery, runtime improvement, or qualification. Preserve all raw outputs
 and the final audit after completion, including failures and partial cases.
+
+Completion update: the run passed all two cases, their prediction/network
+comparisons, and the independent audit. See
+[the completed evidence and simple interpretation](completed-38816428068/README.md).
+The preceding text records the launch-time status; the completed report records
+the subsequent results and their limits.

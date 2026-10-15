@@ -1,0 +1,52 @@
+{
+  "approved_ceiling": 300,
+  "cases": [
+    {
+      "archive_bytes": 9084609,
+      "archive_sha256": "b0bab9536fc1bf5fd2239a434b84dcfc88d7953082a9ebaf9aa0923987e01de6",
+      "checkpoints_checked": 300,
+      "comparison": {
+        "absolute_tolerance": 1e-14,
+        "changed_float_fields": 0,
+        "checkpoints_compared": 300,
+        "equivalent": true,
+        "max_absolute_difference": 0.0,
+        "mismatches": [],
+        "relative_tolerance": 1e-12
+      },
+      "id": "optimized-pilot-random_forest-chain-n80-r00",
+      "observed_time_reduction_pct": 54.015416470497804,
+      "receipt_files_checked": 903,
+      "reference_seconds": 5828.312,
+      "seconds": 2680.125
+    },
+    {
+      "archive_bytes": 21750108,
+      "archive_sha256": "a64a415acf33c7e7e1d67d6388a52807d6a5adf680a606cff2d10b4d45c5c34c",
+      "checkpoints_checked": 300,
+      "comparison": {
+        "absolute_tolerance": 1e-14,
+        "changed_float_fields": 0,
+        "checkpoints_compared": 300,
+        "equivalent": true,
+        "max_absolute_difference": 0.0,
+        "mismatches": [],
+        "relative_tolerance": 1e-12
+      },
+      "id": "optimized-pilot-random_forest-chain-n200-r00",
+      "observed_time_reduction_pct": 32.3142564423013,
+      "receipt_files_checked": 903,
+      "reference_seconds": 6375.6720000000005,
+      "seconds": 4315.421
+    }
+  ],
+  "completed_job_minutes": 123.85,
+  "completed_job_seconds": 7431.0,
+  "local_scientific_fits": 0,
+  "manifest": "840948cb5d67b0f5b28f784209b474835c6851b7426c23c074134e54048cebc7",
+  "reserved_minutes": 286,
+  "run": 38816428068,
+  "scope": "Downloaded archive/receipt hashes, CRC, provenance and all scientific result comparisons. Cloud independently replayed losses/counts; no local model fits.",
+  "source": "c9b512459be657d0e11c33fb808e4616708a6de9",
+  "verified": true
+}
