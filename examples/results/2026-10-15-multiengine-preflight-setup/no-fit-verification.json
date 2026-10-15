@@ -1,0 +1,13 @@
+{
+  "exact_parity": true,
+  "assessments": 300,
+  "observation_checks": 307814,
+  "model_fits": 0,
+  "seconds": 51.56,
+  "reference_case": "chain-n80-r01",
+  "reference_archive_sha256": "3a5838873c48749b5075ffe4c7fb0bbd652bcc6d6c030f981840f45a738602b5",
+  "compared_fields": "Exact full audit_case row equality with preserved independently verified ElasticNet row, excluding archive_sha256 added by wrapper.",
+  "auditor_sha256": "6c3279908e8373ba03603e2a7dc4a56c0ba16040b29142b07678a5265384b47d",
+  "focused_tests_passed": 38,
+  "review": "Independent review found hard-timeout receipt and failed-prefix handling bugs. Both fixed with regression tests; re-review found no launch blocker."
+}
