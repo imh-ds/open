@@ -1,0 +1,1491 @@
+{
+  "run": "38655036215",
+  "verified_archives": 110,
+  "complete": 72,
+  "failure_counts": {
+    "TimeoutError: case soft deadline; no new assessment batches": 36,
+    "TimeoutError: completed after case computation allocation": 1,
+    "KeyboardInterrupt: ": 1
+  },
+  "qualified": false,
+  "cells": {
+    "noise-n200": {
+      "complete": 55,
+      "incorrect": {
+        "count": 0,
+        "lower": 0.0,
+        "upper": 0.06487076082542459
+      },
+      "planned": 55,
+      "qualified": true,
+      "recovery": {
+        "count": 55,
+        "lower": 0.9351292391745754,
+        "upper": 1.0
+      },
+      "unknown": 0
+    },
+    "noise-n80": {
+      "complete": 17,
+      "incorrect": {
+        "count": 0,
+        "inclusive_lower": 0.0,
+        "inclusive_upper": 0.8085535885663785,
+        "lower": null,
+        "possible_counts": [
+          0,
+          38
+        ],
+        "upper": null
+      },
+      "planned": 55,
+      "qualified": false,
+      "recovery": {
+        "count": 17,
+        "inclusive_lower": 0.19144641143362157,
+        "inclusive_upper": 1.0,
+        "lower": null,
+        "possible_counts": [
+          17,
+          55
+        ],
+        "upper": null
+      },
+      "unknown": 38
+    }
+  },
+  "cases": [
+    {
+      "index": 1,
+      "id": "noise-n80-r01",
+      "n": 80,
+      "status": "complete",
+      "failure": null,
+      "seconds": 432.422,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 10,
+      "id": "noise-n80-r10",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 576.844,
+      "checkpoint_targets": {
+        "depth 0: Y": 84
+      },
+      "started": 84,
+      "finished": 84
+    },
+    {
+      "index": 100,
+      "id": "noise-n200-r20",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 484.625,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 101,
+      "id": "noise-n200-r21",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 724.5630000000001,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 102,
+      "id": "noise-n200-r22",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 487.51599999999996,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 103,
+      "id": "noise-n200-r23",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 697.5150000000003,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 104,
+      "id": "noise-n200-r24",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 710.078,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 105,
+      "id": "noise-n200-r25",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 493.688,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 106,
+      "id": "noise-n200-r26",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 534.8899999999999,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 107,
+      "id": "noise-n200-r27",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 702.3910000000001,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 108,
+      "id": "noise-n200-r28",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 475.48400000000004,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 109,
+      "id": "noise-n200-r29",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 693.219,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 11,
+      "id": "noise-n80-r11",
+      "n": 80,
+      "status": "complete",
+      "failure": null,
+      "seconds": 292.828,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 110,
+      "id": "noise-n200-r30",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 694.3280000000001,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 111,
+      "id": "noise-n200-r31",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 709.485,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 112,
+      "id": "noise-n200-r32",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 633.703,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 113,
+      "id": "noise-n200-r33",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 669.8910000000001,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 114,
+      "id": "noise-n200-r34",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 491.828,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 115,
+      "id": "noise-n200-r35",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 700.609,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 116,
+      "id": "noise-n200-r36",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 699.7649999999999,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 117,
+      "id": "noise-n200-r37",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 722.0000000000001,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 118,
+      "id": "noise-n200-r38",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 643.984,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 119,
+      "id": "noise-n200-r39",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 318.79699999999997,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 12,
+      "id": "noise-n80-r12",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 577.875,
+      "checkpoint_targets": {
+        "depth 0: Y": 88
+      },
+      "started": 88,
+      "finished": 88
+    },
+    {
+      "index": 120,
+      "id": "noise-n200-r40",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 719.531,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 121,
+      "id": "noise-n200-r41",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 625.4069999999999,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 122,
+      "id": "noise-n200-r42",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 308.234,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 123,
+      "id": "noise-n200-r43",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 547.265,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 124,
+      "id": "noise-n200-r44",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 732.14,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 125,
+      "id": "noise-n200-r45",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 487.11,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 126,
+      "id": "noise-n200-r46",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 707.9070000000002,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 127,
+      "id": "noise-n200-r47",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 704.5,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 128,
+      "id": "noise-n200-r48",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 697.0319999999999,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 129,
+      "id": "noise-n200-r49",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 354.51599999999996,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 13,
+      "id": "noise-n80-r13",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 570.437,
+      "checkpoint_targets": {
+        "depth 0: Y": 84
+      },
+      "started": 84,
+      "finished": 84
+    },
+    {
+      "index": 130,
+      "id": "noise-n200-r50",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 714.0,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 131,
+      "id": "noise-n200-r51",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 716.297,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 132,
+      "id": "noise-n200-r52",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 711.078,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 133,
+      "id": "noise-n200-r53",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 478.81299999999993,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 134,
+      "id": "noise-n200-r54",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 714.5930000000001,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 135,
+      "id": "noise-n200-r55",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 347.45300000000003,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 14,
+      "id": "noise-n80-r14",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 581.4380000000001,
+      "checkpoint_targets": {
+        "depth 0: Y": 88
+      },
+      "started": 88,
+      "finished": 88
+    },
+    {
+      "index": 15,
+      "id": "noise-n80-r15",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 582.3439999999999,
+      "checkpoint_targets": {
+        "depth 0: Y": 84
+      },
+      "started": 84,
+      "finished": 84
+    },
+    {
+      "index": 16,
+      "id": "noise-n80-r16",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 580.516,
+      "checkpoint_targets": {
+        "depth 0: Y": 88
+      },
+      "started": 88,
+      "finished": 88
+    },
+    {
+      "index": 17,
+      "id": "noise-n80-r17",
+      "n": 80,
+      "status": "complete",
+      "failure": null,
+      "seconds": 474.9839999999999,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 18,
+      "id": "noise-n80-r18",
+      "n": 80,
+      "status": "complete",
+      "failure": null,
+      "seconds": 301.60900000000004,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 19,
+      "id": "noise-n80-r19",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 590.3900000000001,
+      "checkpoint_targets": {
+        "depth 0: Y": 92
+      },
+      "started": 92,
+      "finished": 92
+    },
+    {
+      "index": 2,
+      "id": "noise-n80-r02",
+      "n": 80,
+      "status": "complete",
+      "failure": null,
+      "seconds": 465.438,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 20,
+      "id": "noise-n80-r20",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 590.063,
+      "checkpoint_targets": {
+        "depth 0: Y": 88
+      },
+      "started": 88,
+      "finished": 88
+    },
+    {
+      "index": 21,
+      "id": "noise-n80-r21",
+      "n": 80,
+      "status": "complete",
+      "failure": null,
+      "seconds": 336.60900000000004,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 22,
+      "id": "noise-n80-r22",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 589.532,
+      "checkpoint_targets": {
+        "depth 0: Y": 88
+      },
+      "started": 88,
+      "finished": 88
+    },
+    {
+      "index": 23,
+      "id": "noise-n80-r23",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: completed after case computation allocation",
+      "seconds": 594.5149999999999,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 24,
+      "id": "noise-n80-r24",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 575.7349999999999,
+      "checkpoint_targets": {
+        "depth 0: Y": 84
+      },
+      "started": 84,
+      "finished": 84
+    },
+    {
+      "index": 25,
+      "id": "noise-n80-r25",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 571.11,
+      "checkpoint_targets": {
+        "depth 0: Y": 100,
+        "depth 1: X2": 40
+      },
+      "started": 140,
+      "finished": 140
+    },
+    {
+      "index": 26,
+      "id": "noise-n80-r26",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 574.25,
+      "checkpoint_targets": {
+        "depth 0: Y": 84
+      },
+      "started": 84,
+      "finished": 84
+    },
+    {
+      "index": 27,
+      "id": "noise-n80-r27",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 577.8430000000001,
+      "checkpoint_targets": {
+        "depth 0: Y": 88
+      },
+      "started": 88,
+      "finished": 88
+    },
+    {
+      "index": 28,
+      "id": "noise-n80-r28",
+      "n": 80,
+      "status": "complete",
+      "failure": null,
+      "seconds": 303.5,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 29,
+      "id": "noise-n80-r29",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 577.75,
+      "checkpoint_targets": {
+        "depth 0: Y": 88
+      },
+      "started": 88,
+      "finished": 88
+    },
+    {
+      "index": 3,
+      "id": "noise-n80-r03",
+      "n": 80,
+      "status": "complete",
+      "failure": null,
+      "seconds": 299.797,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 30,
+      "id": "noise-n80-r30",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 587.296,
+      "checkpoint_targets": {
+        "depth 0: Y": 88
+      },
+      "started": 88,
+      "finished": 88
+    },
+    {
+      "index": 31,
+      "id": "noise-n80-r31",
+      "n": 80,
+      "status": "complete",
+      "failure": null,
+      "seconds": 285.5940000000005,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 32,
+      "id": "noise-n80-r32",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "KeyboardInterrupt: ",
+      "seconds": 598.8129999999999,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 33,
+      "id": "noise-n80-r33",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 591.297,
+      "checkpoint_targets": {
+        "depth 0: Y": 88
+      },
+      "started": 88,
+      "finished": 88
+    },
+    {
+      "index": 34,
+      "id": "noise-n80-r34",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 589.828,
+      "checkpoint_targets": {
+        "depth 0: Y": 88
+      },
+      "started": 88,
+      "finished": 88
+    },
+    {
+      "index": 35,
+      "id": "noise-n80-r35",
+      "n": 80,
+      "status": "complete",
+      "failure": null,
+      "seconds": 448.64099999999985,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 36,
+      "id": "noise-n80-r36",
+      "n": 80,
+      "status": "complete",
+      "failure": null,
+      "seconds": 463.62500000000006,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 37,
+      "id": "noise-n80-r37",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 590.2030000000001,
+      "checkpoint_targets": {
+        "depth 0: Y": 88
+      },
+      "started": 88,
+      "finished": 88
+    },
+    {
+      "index": 38,
+      "id": "noise-n80-r38",
+      "n": 80,
+      "status": "complete",
+      "failure": null,
+      "seconds": 447.187,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 39,
+      "id": "noise-n80-r39",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 580.0159999999998,
+      "checkpoint_targets": {
+        "depth 0: Y": 84
+      },
+      "started": 84,
+      "finished": 84
+    },
+    {
+      "index": 4,
+      "id": "noise-n80-r04",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 582.8910000000001,
+      "checkpoint_targets": {
+        "depth 0: Y": 88
+      },
+      "started": 88,
+      "finished": 88
+    },
+    {
+      "index": 40,
+      "id": "noise-n80-r40",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 573.797,
+      "checkpoint_targets": {
+        "depth 0: Y": 96
+      },
+      "started": 96,
+      "finished": 96
+    },
+    {
+      "index": 41,
+      "id": "noise-n80-r41",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 581.547,
+      "checkpoint_targets": {
+        "depth 0: Y": 88
+      },
+      "started": 88,
+      "finished": 88
+    },
+    {
+      "index": 42,
+      "id": "noise-n80-r42",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 571.125,
+      "checkpoint_targets": {
+        "depth 0: Y": 96
+      },
+      "started": 96,
+      "finished": 96
+    },
+    {
+      "index": 43,
+      "id": "noise-n80-r43",
+      "n": 80,
+      "status": "complete",
+      "failure": null,
+      "seconds": 299.90599999999995,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 44,
+      "id": "noise-n80-r44",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 593.2339999999999,
+      "checkpoint_targets": {
+        "depth 0: Y": 88
+      },
+      "started": 88,
+      "finished": 88
+    },
+    {
+      "index": 45,
+      "id": "noise-n80-r45",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 572.4370000000001,
+      "checkpoint_targets": {
+        "depth 0: Y": 88
+      },
+      "started": 88,
+      "finished": 88
+    },
+    {
+      "index": 46,
+      "id": "noise-n80-r46",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 580.875,
+      "checkpoint_targets": {
+        "depth 0: Y": 88
+      },
+      "started": 88,
+      "finished": 88
+    },
+    {
+      "index": 47,
+      "id": "noise-n80-r47",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 593.9069999999999,
+      "checkpoint_targets": {
+        "depth 0: Y": 88
+      },
+      "started": 88,
+      "finished": 88
+    },
+    {
+      "index": 48,
+      "id": "noise-n80-r48",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 585.094,
+      "checkpoint_targets": {
+        "depth 0: Y": 88
+      },
+      "started": 88,
+      "finished": 88
+    },
+    {
+      "index": 49,
+      "id": "noise-n80-r49",
+      "n": 80,
+      "status": "complete",
+      "failure": null,
+      "seconds": 446.6400000000001,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 5,
+      "id": "noise-n80-r05",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 591.0159999999998,
+      "checkpoint_targets": {
+        "depth 0: Y": 88
+      },
+      "started": 88,
+      "finished": 88
+    },
+    {
+      "index": 50,
+      "id": "noise-n80-r50",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 580.0939999999999,
+      "checkpoint_targets": {
+        "depth 0: Y": 88
+      },
+      "started": 88,
+      "finished": 88
+    },
+    {
+      "index": 51,
+      "id": "noise-n80-r51",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 576.6099999999999,
+      "checkpoint_targets": {
+        "depth 0: Y": 84
+      },
+      "started": 84,
+      "finished": 84
+    },
+    {
+      "index": 52,
+      "id": "noise-n80-r52",
+      "n": 80,
+      "status": "complete",
+      "failure": null,
+      "seconds": 295.3430000000001,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 53,
+      "id": "noise-n80-r53",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 585.906,
+      "checkpoint_targets": {
+        "depth 0: Y": 88
+      },
+      "started": 88,
+      "finished": 88
+    },
+    {
+      "index": 54,
+      "id": "noise-n80-r54",
+      "n": 80,
+      "status": "complete",
+      "failure": null,
+      "seconds": 444.7180000000001,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 55,
+      "id": "noise-n80-r55",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 576.2969999999998,
+      "checkpoint_targets": {
+        "depth 0: Y": 88
+      },
+      "started": 88,
+      "finished": 88
+    },
+    {
+      "index": 6,
+      "id": "noise-n80-r06",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 594.281,
+      "checkpoint_targets": {
+        "depth 0: Y": 88
+      },
+      "started": 88,
+      "finished": 88
+    },
+    {
+      "index": 7,
+      "id": "noise-n80-r07",
+      "n": 80,
+      "status": "complete",
+      "failure": null,
+      "seconds": 449.3589999999999,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 8,
+      "id": "noise-n80-r08",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 582.875,
+      "checkpoint_targets": {
+        "depth 0: Y": 84
+      },
+      "started": 84,
+      "finished": 84
+    },
+    {
+      "index": 81,
+      "id": "noise-n200-r01",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 653.125,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 82,
+      "id": "noise-n200-r02",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 738.406,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 83,
+      "id": "noise-n200-r03",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 706.125,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 84,
+      "id": "noise-n200-r04",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 699.328,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 85,
+      "id": "noise-n200-r05",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 695.9529999999999,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 86,
+      "id": "noise-n200-r06",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 481.812,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 87,
+      "id": "noise-n200-r07",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 712.0620000000001,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 88,
+      "id": "noise-n200-r08",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 635.5,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 89,
+      "id": "noise-n200-r09",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 672.047,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 9,
+      "id": "noise-n80-r09",
+      "n": 80,
+      "status": "incomplete",
+      "failure": "TimeoutError: case soft deadline; no new assessment batches",
+      "seconds": 596.266,
+      "checkpoint_targets": {
+        "depth 0: Y": 88
+      },
+      "started": 88,
+      "finished": 88
+    },
+    {
+      "index": 90,
+      "id": "noise-n200-r10",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 711.125,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 91,
+      "id": "noise-n200-r11",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 487.359,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 92,
+      "id": "noise-n200-r12",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 722.156,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 93,
+      "id": "noise-n200-r13",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 711.3909999999998,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 94,
+      "id": "noise-n200-r14",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 703.125,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 95,
+      "id": "noise-n200-r15",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 706.922,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 96,
+      "id": "noise-n200-r16",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 708.843,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 97,
+      "id": "noise-n200-r17",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 704.3750000000001,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 98,
+      "id": "noise-n200-r18",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 496.1249999999999,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    },
+    {
+      "index": 99,
+      "id": "noise-n200-r19",
+      "n": 200,
+      "status": "complete",
+      "failure": null,
+      "seconds": 652.828,
+      "checkpoint_targets": {
+        "depth 0: Y": 100
+      },
+      "started": 100,
+      "finished": 100
+    }
+  ],
+  "verification": "Local CRC, archive SHA256, receipt SHA256, file inventories and provenance; completed-case arithmetic replay is the preserved CI audit. No local fits or retries."
+}
