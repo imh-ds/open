@@ -106,8 +106,16 @@ def audit_case(spec, store, manifest, *, data=None, config=None):
     engine = spec.get("engine")
     if engine not in ENGINES or engine not in manifest.get("engines", ()):
         raise ValueError("case engine is not in frozen manifest")
-    auditor = rf_singleton if engine == "random_forest" else legacy
-    row = auditor.audit_case(spec, store, manifest, data=data, config=config)
+    if engine == "random_forest":
+        if manifest.get("grids", {}).get(engine) != rf_singleton.NOMINAL_GRID:
+            raise ValueError("tree null RF grid differs from singleton audit policy")
+        # The receipt seals the original tree-null manifest. Keep it intact and
+        # select the RF verifier explicitly; the historical entrypoint continues
+        # to require its own rf-singleton-v1 manifest label.
+        with rf_singleton._policy_scope():
+            row = legacy.audit_case(spec, store, manifest, data=data, config=config)
+    else:
+        row = legacy.audit_case(spec, store, manifest, data=data, config=config)
     row["case_id"] = spec["id"]
     row["engine"] = engine
     row["sample_size"] = spec["n"]
