@@ -65,6 +65,25 @@ def test_engine_search_policy_has_expected_tuning_fit_counts():
     assert audit.expected_tuning_fits("gbm", 2, 10, 3, tuned=False) == 0
 
 
+@pytest.mark.parametrize("finding", ["edge", "group", "node"])
+def test_null_endpoint_counts_replayed_network_without_legacy_structure(tmp_path, monkeypatch, finding):
+    import tree_recursive_qualification_audit as audit
+
+    saved = {"status": "complete", "structure": None, "edges": [], "groups": [],
+             "assigned_depth": {"Y": 0}}
+    if finding == "edge":
+        saved["edges"] = [["X1", "Y"]]
+    elif finding == "group":
+        saved["groups"] = [["Y", ["X1", "X2"]]]
+    else:
+        saved["assigned_depth"]["X1"] = 1
+    monkeypatch.setattr(audit.legacy, "audit_case", lambda *a, **k: saved)
+    row = audit.audit_case({"id": "gbm-case", "engine": "gbm", "n": 80},
+                          SimpleNamespace(location=tmp_path),
+                          {"schema": audit.SCHEMA, "grid_policy": audit.POLICY, "engines": ["gbm"]})
+    assert row["false_network"] is True
+
+
 @pytest.mark.parametrize(
     "network,expected",
     [

@@ -127,11 +127,12 @@ def audit_case(spec, store, manifest, *, data=None, config=None):
         row["archive_sha256"] = hashlib.sha256(location.read_bytes()).hexdigest()
         row["archive_bytes"] = location.stat().st_size
     if row.get("status") == "complete":
-        structure = row.get("structure") or {}
+        # Null-study specs have no legacy scenario index, so `structure` is
+        # absent. Count the independently reconstructed network itself.
         findings = {
-            "nodes": structure.get("unexpected_nodes", ()),
-            "edges": structure.get("extra", ()),
-            "groups": structure.get("groups", ()),
+            "nodes": [name for name, depth in row["assigned_depth"].items() if depth > 0],
+            "edges": row["edges"],
+            "groups": row["groups"],
         }
         row["false_network"] = has_false_findings(findings)
     else:
