@@ -1,4 +1,6 @@
-# Multi-engine recursive null validation: checked results
+# Multi-engine recursive null validation: original checked results
+
+**Correction available:** The RF audit blockage was subsequently repaired. All 110 RF cases passed saved-evidence replay with zero false networks. See [the separately retained corrected audit](../2026-10-16-multiengine-null-audit-correction/README.md). This directory preserves the original report and its original unknown rows.
 
 Source: `279c380c637ad7b0420df9d93f1e680480f2cf3e`.
 [Completed run](https://github.com/imh-ds/open/actions/runs/38846677048).

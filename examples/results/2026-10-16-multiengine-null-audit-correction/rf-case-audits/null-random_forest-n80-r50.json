@@ -1,0 +1,55 @@
+{
+  "context": {
+    "adapter_sha256": "07a0c7f07434eb9c76c9272b420adfaaede0d00a98c2d8cfe6e39316c1e613e8",
+    "archive_sha256": "9449b4b77ea70dc1188b92e9153f9a66fb6ad8eb049d3f5f36ff12ac9e051f5a",
+    "audit_source": "366a126777218b105d95648ed6e88afbb900f066",
+    "case_id": "null-random_forest-n80-r50",
+    "manifest_sha256": "3a31a744ed6c38b7b497c5fb6e010ac715b7e597d3a1666f5c21448875c6dccb",
+    "original_report_sha256": "7d02c498b5023b5a3cd8e3513aba00feaa92f498548e26cfa3fdd01c2618ed5d",
+    "producer_run": "38846677048",
+    "producer_source": "279c380c637ad7b0420df9d93f1e680480f2cf3e",
+    "replay_sha256": "293cf91d5875d34a8e53e06a2ad7ec77732bbef64f9641cbf3a8d9aa6b988f12"
+  },
+  "row": {
+    "archive_bytes": 3643551,
+    "archive_sha256": "9449b4b77ea70dc1188b92e9153f9a66fb6ad8eb049d3f5f36ff12ac9e051f5a",
+    "assessments": 100,
+    "assigned_depth": {
+      "Y": 0
+    },
+    "attempt": 1,
+    "case_id": "null-random_forest-n80-r50",
+    "edges": [],
+    "engine": "random_forest",
+    "false_network": false,
+    "finished_assessments": 100,
+    "fit_cost_unknown": false,
+    "groups": [],
+    "manifest_sha256": "3a31a744ed6c38b7b497c5fb6e010ac715b7e597d3a1666f5c21448875c6dccb",
+    "observation_checks": 128000,
+    "outer_fits": 9000,
+    "receipt_sha256": "92d3f6d85cec4ec1735fef78c2a16ad04ca271abaf97f3239b821e7ad9bfbb66",
+    "repetition": 50,
+    "sample_size": 80,
+    "seconds": 1580.454,
+    "source_sha": "279c380c637ad7b0420df9d93f1e680480f2cf3e",
+    "spec": {
+      "analysis_seed": 2700008050,
+      "engine": "random_forest",
+      "generator_seed": 2600008050,
+      "id": "null-random_forest-n80-r50",
+      "n": 80,
+      "repetition": 50,
+      "sample_size": 80,
+      "scenario": "noise"
+    },
+    "started_assessments": 100,
+    "status": "complete",
+    "structure": null,
+    "study_id": "tree-recursive-null-2026-10-15",
+    "tuning_fits": 36000,
+    "warnings": 0,
+    "worker_os_peak_bytes": 133595136
+  },
+  "row_sha256": "dc11cacea52ddddf65c40db1457f473b8df79650aa70c4e42ff1a4857f870793"
+}

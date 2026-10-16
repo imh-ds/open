@@ -1,0 +1,55 @@
+{
+  "context": {
+    "adapter_sha256": "07a0c7f07434eb9c76c9272b420adfaaede0d00a98c2d8cfe6e39316c1e613e8",
+    "archive_sha256": "726cda67846c1b4b2b58f78dec5ef9eceafe45ef41ac9d6e9cb7be4795872f3e",
+    "audit_source": "366a126777218b105d95648ed6e88afbb900f066",
+    "case_id": "null-random_forest-n200-r08",
+    "manifest_sha256": "3a31a744ed6c38b7b497c5fb6e010ac715b7e597d3a1666f5c21448875c6dccb",
+    "original_report_sha256": "7d02c498b5023b5a3cd8e3513aba00feaa92f498548e26cfa3fdd01c2618ed5d",
+    "producer_run": "38846677048",
+    "producer_source": "279c380c637ad7b0420df9d93f1e680480f2cf3e",
+    "replay_sha256": "293cf91d5875d34a8e53e06a2ad7ec77732bbef64f9641cbf3a8d9aa6b988f12"
+  },
+  "row": {
+    "archive_bytes": 8919719,
+    "archive_sha256": "726cda67846c1b4b2b58f78dec5ef9eceafe45ef41ac9d6e9cb7be4795872f3e",
+    "assessments": 100,
+    "assigned_depth": {
+      "Y": 0
+    },
+    "attempt": 1,
+    "case_id": "null-random_forest-n200-r08",
+    "edges": [],
+    "engine": "random_forest",
+    "false_network": false,
+    "finished_assessments": 100,
+    "fit_cost_unknown": false,
+    "groups": [],
+    "manifest_sha256": "3a31a744ed6c38b7b497c5fb6e010ac715b7e597d3a1666f5c21448875c6dccb",
+    "observation_checks": 320000,
+    "outer_fits": 9000,
+    "receipt_sha256": "2335b5a03a333d2cde637ecbfae06610d19758cb86d0596070b23c069ed40192",
+    "repetition": 8,
+    "sample_size": 200,
+    "seconds": 1195.735,
+    "source_sha": "279c380c637ad7b0420df9d93f1e680480f2cf3e",
+    "spec": {
+      "analysis_seed": 2700020008,
+      "engine": "random_forest",
+      "generator_seed": 2600020008,
+      "id": "null-random_forest-n200-r08",
+      "n": 200,
+      "repetition": 8,
+      "sample_size": 200,
+      "scenario": "noise"
+    },
+    "started_assessments": 100,
+    "status": "complete",
+    "structure": null,
+    "study_id": "tree-recursive-null-2026-10-15",
+    "tuning_fits": 36000,
+    "warnings": 0,
+    "worker_os_peak_bytes": 137342976
+  },
+  "row_sha256": "a655d51ae3cade868a5bcaced6132ebf71be7061edefbe99f6ae2b5c5685f52d"
+}
