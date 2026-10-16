@@ -44,6 +44,8 @@ SOURCE_FILES = (
     "examples/recursive_preview_design.py",
     "examples/recursive_preview_runner.py",
     "examples/recursive_preview_actions.py",
+    "examples/recursive_preview_equivalence.py",
+    "examples/recursive_preview_audit.py",
     "examples/qualification_artifacts.py",
     "examples/multiengine_recursive_audit.py",
     "examples/optimized_rf_recursive_audit.py",

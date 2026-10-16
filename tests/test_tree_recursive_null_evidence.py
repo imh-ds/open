@@ -1,5 +1,7 @@
 import hashlib
 import json
+import shutil
+import subprocess
 import sys
 import time
 from pathlib import Path
@@ -8,6 +10,36 @@ import pytest
 import yaml
 
 sys.path.insert(0, str(Path(__file__).parents[1] / "examples"))
+
+
+@pytest.mark.parametrize("job_name", ["prepare", "case-n80", "case-n200", "aggregate", "publish"])
+def test_sparse_checkout_imports_entrypoint_and_deferred_audit_dependencies(tmp_path, job_name):
+    root = Path(__file__).parents[1]
+    workflow = yaml.safe_load((root / ".github/workflows/tree-recursive-qualification.yml").read_text())
+    checkout = next(step for step in workflow["jobs"][job_name]["steps"]
+                    if step.get("uses", "").startswith("actions/checkout@"))
+    for pattern in checkout["with"]["sparse-checkout"].splitlines():
+        if pattern == "src/**":
+            shutil.copytree(root / "src", tmp_path / "src", ignore=shutil.ignore_patterns("__pycache__"))
+        else:
+            destination = tmp_path / pattern
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(root / pattern, destination)
+    # -I excludes the full checkout and PYTHONPATH, so missing sparse files cannot
+    # be accidentally supplied by the developer environment. Imports fit no models.
+    script = "\n".join([
+        "import sys",
+        "from pathlib import Path",
+        "root = Path(sys.argv[1])",
+        "sys.path[:0] = [str(root / 'src'), str(root / 'examples')]",
+        "import tree_recursive_null_actions",
+        "import recursive_preview_actions",  # deferred transport audit import
+        "import qualification_artifacts",  # deferred aggregate import
+        "assert Path(tree_recursive_null_actions.__file__).is_relative_to(root)",
+    ])
+    result = subprocess.run([sys.executable, "-I", "-c", script, str(tmp_path)],
+                            cwd=tmp_path, capture_output=True, text=True, timeout=60)
+    assert result.returncode == 0, result.stderr
 
 
 def test_release_bundles_are_split_deterministic_and_hash_verifiable(tmp_path):
