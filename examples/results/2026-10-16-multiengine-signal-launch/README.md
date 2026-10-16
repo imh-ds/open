@@ -1,6 +1,6 @@
 # Matched-chain multi-engine signal validation launch
 
-Status: implementation and no-fit verification complete; approved for dispatch under the new30,000 runner-minute ceiling. No scientific model has been fitted locally while preparing this study.
+Status: [dispatched once as run38891293628](https://github.com/imh-ds/open/actions/runs/38891293628) from `e1dc2fa5cf25611ff2ab54499594f6121298bfd7`; preparation passed and both case matrices started. The new30,000 runner-minute ceiling applies. No scientific model has been fitted locally while preparing this study.
 
 ## What will be tested
 
