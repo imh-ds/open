@@ -1,0 +1,476 @@
+{
+  "case_count": 165,
+  "diagnostic_source_sha256": "f04cf9b5f297fb1daf0af413e2e9478aaf9aa4da3baef8e140fd79786a110f40",
+  "input_bundles": [
+    {
+      "name": "tree-signal-random_forest-n200-part01.zip",
+      "sha256": "6ceab0226272c4ed4cf1d0362c8cfd6f5f3b638d7d686b3a8db78500aa614ee7"
+    },
+    {
+      "name": "tree-signal-gbm-n200-part01.zip",
+      "sha256": "b6317f5b27d68f87e5629dbce836cfbff397f1d0dfe0d736fcf6f05277e1a85f"
+    },
+    {
+      "name": "tree-signal-lightgbm-n200-part01.zip",
+      "sha256": "994c23770f0cf46117478612bb064cf0b3a7d8e1c22e606596ae1de60b4a8f36"
+    }
+  ],
+  "limitations": [
+    "posthoc same-data descriptions",
+    "folds/subsamples are dependent, not independent replications",
+    "max_features contexts were selected by tuning, not randomized comparisons",
+    "no change to historical results or scientific gates"
+  ],
+  "manifest_sha256": "afbff171ed5bae801c366530028c4fd24bac3f87adb44c73bd904ed18be32c53",
+  "producer_run": "38891293628",
+  "producer_source": "e1dc2fa5cf25611ff2ab54499594f6121298bfd7",
+  "python": "3.11.9",
+  "retention_snapshots": [
+    {
+      "cutoff": 0.7,
+      "engine": "gbm",
+      "retained_false_edges": 2,
+      "retained_true_edges": 55,
+      "scope": "fixed already-scored X2 comparisons; posthoc, not a rerun or validation"
+    },
+    {
+      "cutoff": 0.7,
+      "engine": "lightgbm",
+      "retained_false_edges": 5,
+      "retained_true_edges": 53,
+      "scope": "fixed already-scored X2 comparisons; posthoc, not a rerun or validation"
+    },
+    {
+      "cutoff": 0.7,
+      "engine": "random_forest",
+      "retained_false_edges": 6,
+      "retained_true_edges": 55,
+      "scope": "fixed already-scored X2 comparisons; posthoc, not a rerun or validation"
+    },
+    {
+      "cutoff": 0.75,
+      "engine": "gbm",
+      "retained_false_edges": 1,
+      "retained_true_edges": 55,
+      "scope": "fixed already-scored X2 comparisons; posthoc, not a rerun or validation"
+    },
+    {
+      "cutoff": 0.75,
+      "engine": "lightgbm",
+      "retained_false_edges": 1,
+      "retained_true_edges": 53,
+      "scope": "fixed already-scored X2 comparisons; posthoc, not a rerun or validation"
+    },
+    {
+      "cutoff": 0.75,
+      "engine": "random_forest",
+      "retained_false_edges": 5,
+      "retained_true_edges": 55,
+      "scope": "fixed already-scored X2 comparisons; posthoc, not a rerun or validation"
+    },
+    {
+      "cutoff": 0.8,
+      "engine": "gbm",
+      "retained_false_edges": 1,
+      "retained_true_edges": 55,
+      "scope": "fixed already-scored X2 comparisons; posthoc, not a rerun or validation"
+    },
+    {
+      "cutoff": 0.8,
+      "engine": "lightgbm",
+      "retained_false_edges": 1,
+      "retained_true_edges": 53,
+      "scope": "fixed already-scored X2 comparisons; posthoc, not a rerun or validation"
+    },
+    {
+      "cutoff": 0.8,
+      "engine": "random_forest",
+      "retained_false_edges": 3,
+      "retained_true_edges": 55,
+      "scope": "fixed already-scored X2 comparisons; posthoc, not a rerun or validation"
+    },
+    {
+      "cutoff": 0.85,
+      "engine": "gbm",
+      "retained_false_edges": 1,
+      "retained_true_edges": 55,
+      "scope": "fixed already-scored X2 comparisons; posthoc, not a rerun or validation"
+    },
+    {
+      "cutoff": 0.85,
+      "engine": "lightgbm",
+      "retained_false_edges": 0,
+      "retained_true_edges": 52,
+      "scope": "fixed already-scored X2 comparisons; posthoc, not a rerun or validation"
+    },
+    {
+      "cutoff": 0.85,
+      "engine": "random_forest",
+      "retained_false_edges": 2,
+      "retained_true_edges": 55,
+      "scope": "fixed already-scored X2 comparisons; posthoc, not a rerun or validation"
+    },
+    {
+      "cutoff": 0.9,
+      "engine": "gbm",
+      "retained_false_edges": 0,
+      "retained_true_edges": 55,
+      "scope": "fixed already-scored X2 comparisons; posthoc, not a rerun or validation"
+    },
+    {
+      "cutoff": 0.9,
+      "engine": "lightgbm",
+      "retained_false_edges": 0,
+      "retained_true_edges": 50,
+      "scope": "fixed already-scored X2 comparisons; posthoc, not a rerun or validation"
+    },
+    {
+      "cutoff": 0.9,
+      "engine": "random_forest",
+      "retained_false_edges": 0,
+      "retained_true_edges": 55,
+      "scope": "fixed already-scored X2 comparisons; posthoc, not a rerun or validation"
+    },
+    {
+      "cutoff": 0.95,
+      "engine": "gbm",
+      "retained_false_edges": 0,
+      "retained_true_edges": 54,
+      "scope": "fixed already-scored X2 comparisons; posthoc, not a rerun or validation"
+    },
+    {
+      "cutoff": 0.95,
+      "engine": "lightgbm",
+      "retained_false_edges": 0,
+      "retained_true_edges": 46,
+      "scope": "fixed already-scored X2 comparisons; posthoc, not a rerun or validation"
+    },
+    {
+      "cutoff": 0.95,
+      "engine": "random_forest",
+      "retained_false_edges": 0,
+      "retained_true_edges": 55,
+      "scope": "fixed already-scored X2 comparisons; posthoc, not a rerun or validation"
+    }
+  ],
+  "rf_fold_comparison_contexts": 110000,
+  "saved_X2_warning_counts": {
+    "PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'": 220,
+    "PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'": 1320,
+    "PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'": 1320
+  },
+  "scientific_fits": 0,
+  "summaries": [
+    {
+      "count": 108,
+      "engine": "gbm",
+      "median_broad_baseline_fraction": {
+        "max": -0.015446227537814071,
+        "median": -0.11874474954562801,
+        "min": -0.20559530007063587
+      },
+      "median_unique_baseline_fraction": {
+        "max": 0.023472164227025336,
+        "median": -0.009641044061259343,
+        "min": -0.03892488585757277
+      },
+      "median_unique_gain_fraction": {
+        "max": 0.11048045747971093,
+        "median": -0.039762716783041885,
+        "min": -0.2494378116745281
+      },
+      "population_truth": false,
+      "retention": {
+        "max": 0.66,
+        "median": 0.165,
+        "min": 0.0
+      },
+      "sample_r_known_error": {
+        "max": 0.204617371214736,
+        "median": -0.006494549267451922,
+        "min": -0.18604946922755172
+      },
+      "selected": false
+    },
+    {
+      "count": 2,
+      "engine": "gbm",
+      "median_broad_baseline_fraction": {
+        "max": -0.07981497894265444,
+        "median": -0.09911239662428414,
+        "min": -0.11840981430591385
+      },
+      "median_unique_baseline_fraction": {
+        "max": 0.04455635039132756,
+        "median": 0.035499880745996755,
+        "min": 0.026443411100665944
+      },
+      "median_unique_gain_fraction": {
+        "max": 0.15003439588044076,
+        "median": 0.1363954475338291,
+        "min": 0.1227564991872174
+      },
+      "population_truth": false,
+      "retention": {
+        "max": 0.86,
+        "median": 0.7849999999999999,
+        "min": 0.71
+      },
+      "sample_r_known_error": {
+        "max": -0.0037501588573493902,
+        "median": -0.025786710795758786,
+        "min": -0.04782326273416818
+      },
+      "selected": true
+    },
+    {
+      "count": 55,
+      "engine": "gbm",
+      "median_broad_baseline_fraction": {
+        "max": 0.42623605925674335,
+        "median": 0.25943890134316777,
+        "min": 0.13522637772601878
+      },
+      "median_unique_baseline_fraction": {
+        "max": 0.5391153492468843,
+        "median": 0.37718730699899694,
+        "min": 0.21704876022103908
+      },
+      "median_unique_gain_fraction": {
+        "max": 2.2294010283531227,
+        "median": 1.5820719725984462,
+        "min": 1.100888436554302
+      },
+      "population_truth": true,
+      "retention": {
+        "max": 1.0,
+        "median": 1.0,
+        "min": 0.91
+      },
+      "sample_r_known_error": {
+        "max": 0.15343848506217037,
+        "median": -0.018387616812980206,
+        "min": -0.1951990484264473
+      },
+      "selected": true
+    },
+    {
+      "count": 105,
+      "engine": "lightgbm",
+      "median_broad_baseline_fraction": {
+        "max": -0.03927760087885043,
+        "median": -0.14533572111816936,
+        "min": -0.21804981914483657
+      },
+      "median_unique_baseline_fraction": {
+        "max": 0.03383111558751131,
+        "median": -0.014818457708516305,
+        "min": -0.05925922487773539
+      },
+      "median_unique_gain_fraction": {
+        "max": 0.3297929931233601,
+        "median": -0.07019504564337,
+        "min": -0.5622714745316513
+      },
+      "population_truth": false,
+      "retention": {
+        "max": 0.67,
+        "median": 0.2,
+        "min": 0.0
+      },
+      "sample_r_known_error": {
+        "max": 0.204617371214736,
+        "median": -0.004124901038458661,
+        "min": -0.18604946922755172
+      },
+      "selected": false
+    },
+    {
+      "count": 5,
+      "engine": "lightgbm",
+      "median_broad_baseline_fraction": {
+        "max": -0.11200445229942732,
+        "median": -0.1164073918569446,
+        "min": -0.1834526275645079
+      },
+      "median_unique_baseline_fraction": {
+        "max": 0.03782989854897466,
+        "median": 0.03308111264280307,
+        "min": 0.019544767159833998
+      },
+      "median_unique_gain_fraction": {
+        "max": 0.23793130719110198,
+        "median": 0.17079390822351012,
+        "min": 0.14451177783686014
+      },
+      "population_truth": false,
+      "retention": {
+        "max": 0.81,
+        "median": 0.73,
+        "min": 0.71
+      },
+      "sample_r_known_error": {
+        "max": 0.13669799453529766,
+        "median": -0.027158631645802178,
+        "min": -0.0932527423783562
+      },
+      "selected": true
+    },
+    {
+      "count": 2,
+      "engine": "lightgbm",
+      "median_broad_baseline_fraction": {
+        "max": 0.1432821397457607,
+        "median": 0.11943523170372379,
+        "min": 0.09558832366168687
+      },
+      "median_unique_baseline_fraction": {
+        "max": 0.27750048502230074,
+        "median": 0.2521078543999735,
+        "min": 0.2267152237776463
+      },
+      "median_unique_gain_fraction": {
+        "max": 3.4819361456615945,
+        "median": 3.420496225154822,
+        "min": 3.359056304648049
+      },
+      "population_truth": true,
+      "retention": {
+        "max": 0.69,
+        "median": 0.655,
+        "min": 0.62
+      },
+      "sample_r_known_error": {
+        "max": -0.1476404895517014,
+        "median": -0.17141976898907435,
+        "min": -0.1951990484264473
+      },
+      "selected": false
+    },
+    {
+      "count": 53,
+      "engine": "lightgbm",
+      "median_broad_baseline_fraction": {
+        "max": 0.41209047257572484,
+        "median": 0.24195342164356926,
+        "min": 0.10884893924935901
+      },
+      "median_unique_baseline_fraction": {
+        "max": 0.5912287910464032,
+        "median": 0.402968255639813,
+        "min": 0.1963287264175799
+      },
+      "median_unique_gain_fraction": {
+        "max": 3.7266807199228467,
+        "median": 2.2274746153214586,
+        "min": 1.3879562091130773
+      },
+      "population_truth": true,
+      "retention": {
+        "max": 1.0,
+        "median": 1.0,
+        "min": 0.8
+      },
+      "sample_r_known_error": {
+        "max": 0.15343848506217037,
+        "median": -0.018020944186461402,
+        "min": -0.12150172463745348
+      },
+      "selected": true
+    },
+    {
+      "count": 104,
+      "engine": "random_forest",
+      "median_broad_baseline_fraction": {
+        "max": -0.05923386296288538,
+        "median": -0.1329090093313549,
+        "min": -0.19733654845809484
+      },
+      "median_unique_baseline_fraction": {
+        "max": 0.02639943228874026,
+        "median": -0.0014974490111972585,
+        "min": -0.027979367519094564
+      },
+      "median_unique_gain_fraction": {
+        "max": 0.07734725224263617,
+        "median": -0.00586566352098454,
+        "min": -0.13437077965993685
+      },
+      "population_truth": false,
+      "retention": {
+        "max": 0.65,
+        "median": 0.19,
+        "min": 0.0
+      },
+      "sample_r_known_error": {
+        "max": 0.204617371214736,
+        "median": -0.006494549267451922,
+        "min": -0.18604946922755172
+      },
+      "selected": false
+    },
+    {
+      "count": 6,
+      "engine": "random_forest",
+      "median_broad_baseline_fraction": {
+        "max": -0.09635625032537287,
+        "median": -0.11325080604640572,
+        "min": -0.13953004614669523
+      },
+      "median_unique_baseline_fraction": {
+        "max": 0.0441041676890693,
+        "median": 0.0271922424226295,
+        "min": 0.02316334071815806
+      },
+      "median_unique_gain_fraction": {
+        "max": 0.16941001174312742,
+        "median": 0.10884513544769936,
+        "min": 0.09272335076172492
+      },
+      "population_truth": false,
+      "retention": {
+        "max": 0.88,
+        "median": 0.79,
+        "min": 0.73
+      },
+      "sample_r_known_error": {
+        "max": 0.13669799453529766,
+        "median": -0.015454395251575784,
+        "min": -0.130629429585352
+      },
+      "selected": true
+    },
+    {
+      "count": 55,
+      "engine": "random_forest",
+      "median_broad_baseline_fraction": {
+        "max": 0.41352909252241854,
+        "median": 0.25419017885850337,
+        "min": 0.11883647139774349
+      },
+      "median_unique_baseline_fraction": {
+        "max": 0.5194606178800646,
+        "median": 0.3604528767327318,
+        "min": 0.19174644949701566
+      },
+      "median_unique_gain_fraction": {
+        "max": 1.7296271799195595,
+        "median": 1.3440222512777806,
+        "min": 1.077609814698448
+      },
+      "population_truth": true,
+      "retention": {
+        "max": 1.0,
+        "median": 1.0,
+        "min": 1.0
+      },
+      "sample_r_known_error": {
+        "max": 0.15343848506217037,
+        "median": -0.018387616812980206,
+        "min": -0.1951990484264473
+      },
+      "selected": true
+    }
+  ],
+  "target_comparison_rows": 495
+}

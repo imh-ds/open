@@ -1,0 +1,20 @@
+{
+  "checks_passed": true,
+  "cases": 165,
+  "candidate_rows": 495,
+  "selected_false_links": 13,
+  "rf_paired_fold_contexts": 110000,
+  "scientific_fits": 0,
+  "source_and_frozen_receipt_checks": "passed during full archive reader execution",
+  "compiled_scripts": [
+    "examples/diagnose_signal_false_links.py",
+    "examples/signal_gate_assurance.py"
+  ],
+  "files": {
+    "diagnosis.json": "a9ef5b99e719623f5f66d2c4aec9f3a28dcedac21de54665fe7501673a01e681",
+    "gate-assurance.csv": "4a7933527041401a2c7526ae8faf1622d2827a3e2d8aae22f7a9d8fadd015346",
+    "README.md": "804278292c5246a8ff05a369a4ac6164f99882f1b6ea50cbb4995422207253fe",
+    "rf-feature-sampling.csv": "2c8df5d85d1d31f4c0e6f1a74cda1143534bcd86ef85e56f22b6af38eb72ad6e",
+    "target-comparisons.csv": "a34e08d7e1e710f17f97c490a17e9ca11ec9a99f7c09894a1990b105b6322a61"
+  }
+}
