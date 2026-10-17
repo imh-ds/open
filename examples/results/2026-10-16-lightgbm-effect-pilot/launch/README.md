@@ -31,3 +31,17 @@ is retained locally. Each wave will preserve its reports and available raw case
 archives in a dedicated prerelease, verify remote asset hashes by download, and
 retain incomplete evidence and planned denominators. Dispatch provenance is saved
 separately once run IDs and the actual public source are verified.
+
+## Dispatched waves
+
+- [N=200 run39000850264](https://github.com/imh-ds/open/actions/runs/39000850264):
+  first manual attempt, source8108299ffc777e8ec584bc08fef475ed833f7247;
+  preparation succeeded, live authorization equals the frozen N200 manifest,
+  all30 expected case jobs verified. Scientific outcomes pending.
+- [N=300 run39000866314](https://github.com/imh-ds/open/actions/runs/39000866314):
+  first manual attempt at the same source, queued behind N200. Its live
+  preparation/matrix check awaits execution; the local frozen controls passed.
+
+`dispatch-verification.json` records the checked scope. Run API snapshots,
+N200 startup job records and its live producer authorization are retained beside
+the frozen manifests. These are startup records, not completion evidence.
