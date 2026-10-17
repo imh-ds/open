@@ -53,8 +53,19 @@ on the same evaluation observations or averaging different networks.
   is unavailable if any intervening bin lacks support in any outer fold. Curves
   outside the contrast can be partially unavailable. Constant predictors/outcomes
   are explicitly flagged. No fabricated zero or confidence interval is produced.
-- Elastic net can additionally report raw b and standardized beta from its actual
+- Elastic net and the opt-in OLS reference can additionally report raw b and standardized beta from their actual
   fitted coefficients. Tree engines do not receive surrogate linear coefficients.
+
+OLS (`learner.library: [ols]`) fits unpenalized least squares with an intercept
+and the same fold-local imputation/scaling as Elastic Net. It has no tuning grid
+and performs zero inner tuning fits. It does not select coefficients using
+p-values. Its network is still pruned by the existing held-out gain, unique/shared
+relevance and layer-consensus rules; OLS itself does not shrink coefficients.
+This separates learner regularization from network selection. The default remains
+Elastic Net. OLS predictions use sklearn's least-squares solution, including a
+minimum-norm solution for rank-deficient designs; individual coefficients are not
+uniquely identified in that situation. Adding this reference is implementation
+support, not evidence that its recursive networks are already reliable.
 
 ## Comparison protocol
 

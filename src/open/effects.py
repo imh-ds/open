@@ -227,7 +227,7 @@ def compare_target_engines(data, target, candidates, config, split_plan, *,
     if interaction_screen is not None and not isinstance(interaction_screen,PairScreenConfig):
         raise ValueError('interaction_screen must be PairScreenConfig or None')
     if (not isinstance(engines,tuple) or not engines or len(set(engines))!=len(engines)
-            or any(type(e) is not str or e not in ('elastic_net','random_forest','gbm','lightgbm') for e in engines)):
+            or any(type(e) is not str or e not in ('elastic_net','random_forest','gbm','lightgbm','ols') for e in engines)):
         raise ValueError("engines must be distinct supported engine names")
     if type(bins) is not int or bins<2:
         raise ValueError("bins must be an integer at least two")
@@ -320,7 +320,7 @@ def compare_target_engines(data, target, candidates, config, split_plan, *,
                 # unavailable contrasts rather than dropping the predictor.
                 ale.update(percentile_effects(ale,ref['percentile_values']))
                 fold_effects[source].append(ale)
-                if engine=='elastic_net':
+                if engine in ('elastic_net','ols'):
                     pipeline=model._pipeline
                     b=float(pipeline['regressor'].coef_[i]/pipeline['preprocessor']['scaler'].scale_[i])
                     coefficients[source].append(b)
@@ -359,11 +359,13 @@ def compare_target_engines(data, target, candidates, config, split_plan, *,
         from open.learners.trees import effective_grid
         from open.learners.elastic_net import ALPHA_GRID,L1_RATIO_GRID
         from sklearn.model_selection import ParameterGrid
-        grid={'alpha':list(ALPHA_GRID),'l1_ratio':list(L1_RATIO_GRID)} if engine=='elastic_net' else effective_grid(engine,len(candidates))
+        grid=({} if engine=='ols' else
+              {'alpha':list(ALPHA_GRID),'l1_ratio':list(L1_RATIO_GRID)} if engine=='elastic_net'
+              else effective_grid(engine,len(candidates)))
         result['engines'].append(dict(engine=engine,cv_r2=1-full.aggregate_risk/variance if variance>0 else None,
             full_mse=full.aggregate_risk,baseline_mse=baseline.aggregate_risk,heldout_variance=variance,
             heldout_keys=[list(key) for key in keys],full_parameters=[dict(repeat=k[0],fold=k[1],params=v) for k,v in params.items()],
-            tuning_grid=grid,tuning_grid_size=len(ParameterGrid(grid)),ablations_retuned=False,
+            tuning_grid=grid,tuning_grid_size=0 if engine=='ols' else len(ParameterGrid(grid)),ablations_retuned=False,
             scored_outer_fit_count=sum(r.outer_model_fit_count for r in fits),
             explanatory_refit_count=len(splits),tuning_model_fit_count=full.tuning_model_fit_count,
             effects=effects,joint=joint))

@@ -6,5 +6,8 @@ def make_predictor(config):
     engine = config.learner.library[0]
     if engine == "elastic_net":
         return ElasticNetPredictor(config)
+    if engine == "ols":
+        from open.learners.ols import OLSPredictor
+        return OLSPredictor(config)
     from open.learners.trees import TreePredictor
     return TreePredictor(engine, config.preprocessing, config.analysis.random_seed)

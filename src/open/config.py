@@ -59,8 +59,8 @@ class LearnerConfig:
     def __post_init__(self) -> None:
         _choice("learner.mode", self.mode, "fixed")
         if (not isinstance(self.library, tuple) or len(self.library) != 1
-                or self.library[0] not in ("elastic_net", "random_forest", "gbm", "lightgbm")):
-            raise ValueError("learner.library must contain exactly one supported engine: elastic_net, random_forest, gbm, lightgbm")
+                or self.library[0] not in ("elastic_net", "random_forest", "gbm", "lightgbm", "ols")):
+            raise ValueError("learner.library must contain exactly one supported engine: elastic_net, random_forest, gbm, lightgbm, ols")
         _choice("learner.retune_ablation", self.retune_ablation, False)
 
 
