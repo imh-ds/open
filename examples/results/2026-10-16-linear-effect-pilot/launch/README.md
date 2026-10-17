@@ -34,3 +34,13 @@ unknown cases in planned denominators. These are development comparisons on
 already-seen data,not independent scientific qualification. Current snapshot and
 launch controls stay separate from future completed results. Exact evidence bytes
 are preserved across Git checkouts.
+
+## Verified dispatch
+
+[Run39004942944](https://github.com/imh-ds/open/actions/runs/39004942944), first
+manual attempt at public source2e0da27ec17745af37085b02f2627df7756507e4.
+Preparation succeeded; the downloaded live authorization equals the frozen
+manifest and all60 expected case-job identities match. `dispatch-verification.json`,
+the live producer authorization and startup run/job API records preserve these
+checks. Scientific outcomes are pending. The separate LightGBM N300 run remains
+at its original source and was not cancelled or changed.
