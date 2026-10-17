@@ -1,0 +1,684 @@
+{
+  "checks_passed": true,
+  "scientific_fits": 0,
+  "case_count": 60,
+  "independent_datasets": 30,
+  "root_assessments": 6000,
+  "remote_asset_digests_verified": 9,
+  "source": "2e0da27ec17745af37085b02f2627df7756507e4",
+  "run": "39004942944",
+  "engine_identity_and_tuning_policy_verified_cases": 60,
+  "cells": [
+    {
+      "complete": 10,
+      "direct_links": 1,
+      "effect": 0.2,
+      "engine": "elastic_net",
+      "exact_networks": 0,
+      "extra_finding_networks": 0,
+      "indirect_links": 0,
+      "indirect_target_tested": 1,
+      "planned": 10,
+      "unknown": 0
+    },
+    {
+      "complete": 10,
+      "direct_links": 9,
+      "effect": 0.3,
+      "engine": "elastic_net",
+      "exact_networks": 5,
+      "extra_finding_networks": 1,
+      "indirect_links": 6,
+      "indirect_target_tested": 9,
+      "planned": 10,
+      "unknown": 0
+    },
+    {
+      "complete": 10,
+      "direct_links": 10,
+      "effect": 0.4,
+      "engine": "elastic_net",
+      "exact_networks": 8,
+      "extra_finding_networks": 1,
+      "indirect_links": 9,
+      "indirect_target_tested": 10,
+      "planned": 10,
+      "unknown": 0
+    },
+    {
+      "complete": 10,
+      "direct_links": 1,
+      "effect": 0.2,
+      "engine": "ols",
+      "exact_networks": 0,
+      "extra_finding_networks": 0,
+      "indirect_links": 0,
+      "indirect_target_tested": 1,
+      "planned": 10,
+      "unknown": 0
+    },
+    {
+      "complete": 10,
+      "direct_links": 9,
+      "effect": 0.3,
+      "engine": "ols",
+      "exact_networks": 5,
+      "extra_finding_networks": 1,
+      "indirect_links": 6,
+      "indirect_target_tested": 9,
+      "planned": 10,
+      "unknown": 0
+    },
+    {
+      "complete": 10,
+      "direct_links": 10,
+      "effect": 0.4,
+      "engine": "ols",
+      "exact_networks": 9,
+      "extra_finding_networks": 1,
+      "indirect_links": 10,
+      "indirect_target_tested": 10,
+      "planned": 10,
+      "unknown": 0
+    }
+  ],
+  "root_summaries": [
+    {
+      "engine": "elastic_net",
+      "effect": 0.2,
+      "median_full_gain_relative": -0.0001630015697964273,
+      "root_gain_gate_passes": 217,
+      "root_assessments": 1000,
+      "median_direct_selections": 10.0
+    },
+    {
+      "engine": "elastic_net",
+      "effect": 0.3,
+      "median_full_gain_relative": 0.08778963958228356,
+      "root_gain_gate_passes": 888,
+      "root_assessments": 1000,
+      "median_direct_selections": 98.0
+    },
+    {
+      "engine": "elastic_net",
+      "effect": 0.4,
+      "median_full_gain_relative": 0.1154395170816421,
+      "root_gain_gate_passes": 994,
+      "root_assessments": 1000,
+      "median_direct_selections": 100.0
+    },
+    {
+      "engine": "ols",
+      "effect": 0.2,
+      "median_full_gain_relative": -0.006571928997465816,
+      "root_gain_gate_passes": 240,
+      "root_assessments": 1000,
+      "median_direct_selections": 12.0
+    },
+    {
+      "engine": "ols",
+      "effect": 0.3,
+      "median_full_gain_relative": 0.08016140404115249,
+      "root_gain_gate_passes": 912,
+      "root_assessments": 1000,
+      "median_direct_selections": 98.5
+    },
+    {
+      "engine": "ols",
+      "effect": 0.4,
+      "median_full_gain_relative": 0.11213562641438976,
+      "root_gain_gate_passes": 995,
+      "root_assessments": 1000,
+      "median_direct_selections": 100.0
+    }
+  ],
+  "recorded_median_analysis_minutes": {
+    "elastic_net": 20.316933333333335,
+    "ols": 2.5458333333333334
+  },
+  "root_warning_counts": {},
+  "cases": [
+    {
+      "case_id": "elastic_net-n200-e20-r01",
+      "engine": "elastic_net",
+      "effect": 0.2,
+      "median_full_gain_relative": -0.010097829750372187,
+      "root_gain_gate_passes": 0,
+      "direct_selections": 0,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "elastic_net-n200-e20-r02",
+      "engine": "elastic_net",
+      "effect": 0.2,
+      "median_full_gain_relative": -0.0011381318128375704,
+      "root_gain_gate_passes": 3,
+      "direct_selections": 3,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "elastic_net-n200-e20-r03",
+      "engine": "elastic_net",
+      "effect": 0.2,
+      "median_full_gain_relative": 0.022348461163988052,
+      "root_gain_gate_passes": 54,
+      "direct_selections": 54,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "elastic_net-n200-e20-r04",
+      "engine": "elastic_net",
+      "effect": 0.2,
+      "median_full_gain_relative": -0.0050504586289062195,
+      "root_gain_gate_passes": 0,
+      "direct_selections": 0,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "elastic_net-n200-e20-r05",
+      "engine": "elastic_net",
+      "effect": 0.2,
+      "median_full_gain_relative": 0.0008121286732447158,
+      "root_gain_gate_passes": 18,
+      "direct_selections": 18,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "elastic_net-n200-e20-r06",
+      "engine": "elastic_net",
+      "effect": 0.2,
+      "median_full_gain_relative": 0.004008688768284697,
+      "root_gain_gate_passes": 14,
+      "direct_selections": 14,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "elastic_net-n200-e20-r07",
+      "engine": "elastic_net",
+      "effect": 0.2,
+      "median_full_gain_relative": 0.011299130433835715,
+      "root_gain_gate_passes": 32,
+      "direct_selections": 32,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "elastic_net-n200-e20-r08",
+      "engine": "elastic_net",
+      "effect": 0.2,
+      "median_full_gain_relative": 0.04897573642286881,
+      "root_gain_gate_passes": 89,
+      "direct_selections": 89,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "elastic_net-n200-e20-r09",
+      "engine": "elastic_net",
+      "effect": 0.2,
+      "median_full_gain_relative": -0.007365697792162434,
+      "root_gain_gate_passes": 1,
+      "direct_selections": 1,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "elastic_net-n200-e20-r10",
+      "engine": "elastic_net",
+      "effect": 0.2,
+      "median_full_gain_relative": -0.0020271874085623144,
+      "root_gain_gate_passes": 6,
+      "direct_selections": 6,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "elastic_net-n200-e30-r01",
+      "engine": "elastic_net",
+      "effect": 0.3,
+      "median_full_gain_relative": 0.0547544933674531,
+      "root_gain_gate_passes": 92,
+      "direct_selections": 91,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "elastic_net-n200-e30-r02",
+      "engine": "elastic_net",
+      "effect": 0.3,
+      "median_full_gain_relative": 0.08260728974096496,
+      "root_gain_gate_passes": 96,
+      "direct_selections": 96,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "elastic_net-n200-e30-r03",
+      "engine": "elastic_net",
+      "effect": 0.3,
+      "median_full_gain_relative": 0.003229843178841749,
+      "root_gain_gate_passes": 26,
+      "direct_selections": 26,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "elastic_net-n200-e30-r04",
+      "engine": "elastic_net",
+      "effect": 0.3,
+      "median_full_gain_relative": 0.11934584973190604,
+      "root_gain_gate_passes": 100,
+      "direct_selections": 100,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "elastic_net-n200-e30-r05",
+      "engine": "elastic_net",
+      "effect": 0.3,
+      "median_full_gain_relative": 0.16105366767251866,
+      "root_gain_gate_passes": 100,
+      "direct_selections": 100,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "elastic_net-n200-e30-r06",
+      "engine": "elastic_net",
+      "effect": 0.3,
+      "median_full_gain_relative": 0.18343815091605575,
+      "root_gain_gate_passes": 100,
+      "direct_selections": 100,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "elastic_net-n200-e30-r07",
+      "engine": "elastic_net",
+      "effect": 0.3,
+      "median_full_gain_relative": 0.03698300170316884,
+      "root_gain_gate_passes": 83,
+      "direct_selections": 83,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "elastic_net-n200-e30-r08",
+      "engine": "elastic_net",
+      "effect": 0.3,
+      "median_full_gain_relative": 0.10216158536646877,
+      "root_gain_gate_passes": 100,
+      "direct_selections": 100,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "elastic_net-n200-e30-r09",
+      "engine": "elastic_net",
+      "effect": 0.3,
+      "median_full_gain_relative": 0.052187497315844544,
+      "root_gain_gate_passes": 91,
+      "direct_selections": 91,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "elastic_net-n200-e30-r10",
+      "engine": "elastic_net",
+      "effect": 0.3,
+      "median_full_gain_relative": 0.09297198942360214,
+      "root_gain_gate_passes": 100,
+      "direct_selections": 100,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "elastic_net-n200-e40-r01",
+      "engine": "elastic_net",
+      "effect": 0.4,
+      "median_full_gain_relative": 0.1937480810184413,
+      "root_gain_gate_passes": 100,
+      "direct_selections": 100,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "elastic_net-n200-e40-r02",
+      "engine": "elastic_net",
+      "effect": 0.4,
+      "median_full_gain_relative": 0.08154281084421787,
+      "root_gain_gate_passes": 99,
+      "direct_selections": 99,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "elastic_net-n200-e40-r03",
+      "engine": "elastic_net",
+      "effect": 0.4,
+      "median_full_gain_relative": 0.11554538003828738,
+      "root_gain_gate_passes": 100,
+      "direct_selections": 100,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "elastic_net-n200-e40-r04",
+      "engine": "elastic_net",
+      "effect": 0.4,
+      "median_full_gain_relative": 0.12082749047622812,
+      "root_gain_gate_passes": 100,
+      "direct_selections": 100,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "elastic_net-n200-e40-r05",
+      "engine": "elastic_net",
+      "effect": 0.4,
+      "median_full_gain_relative": 0.08330310233946575,
+      "root_gain_gate_passes": 98,
+      "direct_selections": 98,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "elastic_net-n200-e40-r06",
+      "engine": "elastic_net",
+      "effect": 0.4,
+      "median_full_gain_relative": 0.08547050404445282,
+      "root_gain_gate_passes": 99,
+      "direct_selections": 99,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "elastic_net-n200-e40-r07",
+      "engine": "elastic_net",
+      "effect": 0.4,
+      "median_full_gain_relative": 0.2029325018995241,
+      "root_gain_gate_passes": 100,
+      "direct_selections": 100,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "elastic_net-n200-e40-r08",
+      "engine": "elastic_net",
+      "effect": 0.4,
+      "median_full_gain_relative": 0.11533365412499683,
+      "root_gain_gate_passes": 98,
+      "direct_selections": 98,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "elastic_net-n200-e40-r09",
+      "engine": "elastic_net",
+      "effect": 0.4,
+      "median_full_gain_relative": 0.12125991999913026,
+      "root_gain_gate_passes": 100,
+      "direct_selections": 100,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "elastic_net-n200-e40-r10",
+      "engine": "elastic_net",
+      "effect": 0.4,
+      "median_full_gain_relative": 0.11473993873587908,
+      "root_gain_gate_passes": 100,
+      "direct_selections": 100,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "ols-n200-e20-r01",
+      "engine": "ols",
+      "effect": 0.2,
+      "median_full_gain_relative": -0.025431803862519614,
+      "root_gain_gate_passes": 5,
+      "direct_selections": 5,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "ols-n200-e20-r02",
+      "engine": "ols",
+      "effect": 0.2,
+      "median_full_gain_relative": -0.008703255466054619,
+      "root_gain_gate_passes": 3,
+      "direct_selections": 3,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "ols-n200-e20-r03",
+      "engine": "ols",
+      "effect": 0.2,
+      "median_full_gain_relative": 0.027864063685244134,
+      "root_gain_gate_passes": 61,
+      "direct_selections": 61,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "ols-n200-e20-r04",
+      "engine": "ols",
+      "effect": 0.2,
+      "median_full_gain_relative": -0.03572495794818816,
+      "root_gain_gate_passes": 0,
+      "direct_selections": 0,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "ols-n200-e20-r05",
+      "engine": "ols",
+      "effect": 0.2,
+      "median_full_gain_relative": -0.006380254319482572,
+      "root_gain_gate_passes": 18,
+      "direct_selections": 18,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "ols-n200-e20-r06",
+      "engine": "ols",
+      "effect": 0.2,
+      "median_full_gain_relative": 0.0033998043241732483,
+      "root_gain_gate_passes": 15,
+      "direct_selections": 15,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "ols-n200-e20-r07",
+      "engine": "ols",
+      "effect": 0.2,
+      "median_full_gain_relative": 0.008189655002492198,
+      "root_gain_gate_passes": 32,
+      "direct_selections": 32,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "ols-n200-e20-r08",
+      "engine": "ols",
+      "effect": 0.2,
+      "median_full_gain_relative": 0.05980971511459732,
+      "root_gain_gate_passes": 91,
+      "direct_selections": 91,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "ols-n200-e20-r09",
+      "engine": "ols",
+      "effect": 0.2,
+      "median_full_gain_relative": -0.0067636036754490595,
+      "root_gain_gate_passes": 10,
+      "direct_selections": 9,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "ols-n200-e20-r10",
+      "engine": "ols",
+      "effect": 0.2,
+      "median_full_gain_relative": -0.009805027301135295,
+      "root_gain_gate_passes": 5,
+      "direct_selections": 5,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "ols-n200-e30-r01",
+      "engine": "ols",
+      "effect": 0.3,
+      "median_full_gain_relative": 0.05977028181892419,
+      "root_gain_gate_passes": 94,
+      "direct_selections": 94,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "ols-n200-e30-r02",
+      "engine": "ols",
+      "effect": 0.3,
+      "median_full_gain_relative": 0.07438927665592998,
+      "root_gain_gate_passes": 97,
+      "direct_selections": 97,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "ols-n200-e30-r03",
+      "engine": "ols",
+      "effect": 0.3,
+      "median_full_gain_relative": 0.013927967192441182,
+      "root_gain_gate_passes": 41,
+      "direct_selections": 41,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "ols-n200-e30-r04",
+      "engine": "ols",
+      "effect": 0.3,
+      "median_full_gain_relative": 0.1084110790928568,
+      "root_gain_gate_passes": 100,
+      "direct_selections": 100,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "ols-n200-e30-r05",
+      "engine": "ols",
+      "effect": 0.3,
+      "median_full_gain_relative": 0.15022575909617,
+      "root_gain_gate_passes": 100,
+      "direct_selections": 100,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "ols-n200-e30-r06",
+      "engine": "ols",
+      "effect": 0.3,
+      "median_full_gain_relative": 0.17924392363671304,
+      "root_gain_gate_passes": 100,
+      "direct_selections": 100,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "ols-n200-e30-r07",
+      "engine": "ols",
+      "effect": 0.3,
+      "median_full_gain_relative": 0.03993708724965506,
+      "root_gain_gate_passes": 83,
+      "direct_selections": 83,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "ols-n200-e30-r08",
+      "engine": "ols",
+      "effect": 0.3,
+      "median_full_gain_relative": 0.08965167483616461,
+      "root_gain_gate_passes": 100,
+      "direct_selections": 100,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "ols-n200-e30-r09",
+      "engine": "ols",
+      "effect": 0.3,
+      "median_full_gain_relative": 0.058091152804703554,
+      "root_gain_gate_passes": 98,
+      "direct_selections": 98,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "ols-n200-e30-r10",
+      "engine": "ols",
+      "effect": 0.3,
+      "median_full_gain_relative": 0.08593353142637501,
+      "root_gain_gate_passes": 99,
+      "direct_selections": 99,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "ols-n200-e40-r01",
+      "engine": "ols",
+      "effect": 0.4,
+      "median_full_gain_relative": 0.1896360203680848,
+      "root_gain_gate_passes": 100,
+      "direct_selections": 100,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "ols-n200-e40-r02",
+      "engine": "ols",
+      "effect": 0.4,
+      "median_full_gain_relative": 0.08406921342234727,
+      "root_gain_gate_passes": 99,
+      "direct_selections": 99,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "ols-n200-e40-r03",
+      "engine": "ols",
+      "effect": 0.4,
+      "median_full_gain_relative": 0.10998693200052323,
+      "root_gain_gate_passes": 100,
+      "direct_selections": 100,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "ols-n200-e40-r04",
+      "engine": "ols",
+      "effect": 0.4,
+      "median_full_gain_relative": 0.11440721499897005,
+      "root_gain_gate_passes": 100,
+      "direct_selections": 100,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "ols-n200-e40-r05",
+      "engine": "ols",
+      "effect": 0.4,
+      "median_full_gain_relative": 0.07306499949690817,
+      "root_gain_gate_passes": 98,
+      "direct_selections": 98,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "ols-n200-e40-r06",
+      "engine": "ols",
+      "effect": 0.4,
+      "median_full_gain_relative": 0.07581302963474615,
+      "root_gain_gate_passes": 99,
+      "direct_selections": 99,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "ols-n200-e40-r07",
+      "engine": "ols",
+      "effect": 0.4,
+      "median_full_gain_relative": 0.18395531615052946,
+      "root_gain_gate_passes": 100,
+      "direct_selections": 100,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "ols-n200-e40-r08",
+      "engine": "ols",
+      "effect": 0.4,
+      "median_full_gain_relative": 0.1142843208282563,
+      "root_gain_gate_passes": 99,
+      "direct_selections": 99,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "ols-n200-e40-r09",
+      "engine": "ols",
+      "effect": 0.4,
+      "median_full_gain_relative": 0.10407502662288895,
+      "root_gain_gate_passes": 100,
+      "direct_selections": 100,
+      "root_assessments": 100
+    },
+    {
+      "case_id": "ols-n200-e40-r10",
+      "engine": "ols",
+      "effect": 0.4,
+      "median_full_gain_relative": 0.11640922647671133,
+      "root_gain_gate_passes": 100,
+      "direct_selections": 100,
+      "root_assessments": 100
+    }
+  ],
+  "review_script_sha256": "fe444b855047deba418d9338c478f6417438ab51e7172c09fb14839bb01d3745",
+  "scope": "No-fit saved-evidence check; original full checkpoint replay occurred in Actions; no fresh validation"
+}
