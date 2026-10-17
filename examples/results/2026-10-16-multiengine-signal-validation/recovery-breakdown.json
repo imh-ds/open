@@ -1,0 +1,72 @@
+[
+  {
+    "engine": "gbm",
+    "n": 80,
+    "exact": 31,
+    "extra": 10,
+    "direct": 55,
+    "indirect": 39,
+    "extra_targets": {
+      "Y": 5,
+      "X2": 5
+    }
+  },
+  {
+    "engine": "gbm",
+    "n": 200,
+    "exact": 53,
+    "extra": 2,
+    "direct": 55,
+    "indirect": 55,
+    "extra_targets": {
+      "X2": 2
+    }
+  },
+  {
+    "engine": "lightgbm",
+    "n": 80,
+    "exact": 23,
+    "extra": 9,
+    "direct": 55,
+    "indirect": 30,
+    "extra_targets": {
+      "Y": 6,
+      "X2": 4
+    }
+  },
+  {
+    "engine": "lightgbm",
+    "n": 200,
+    "exact": 48,
+    "extra": 5,
+    "direct": 55,
+    "indirect": 53,
+    "extra_targets": {
+      "X2": 5
+    }
+  },
+  {
+    "engine": "random_forest",
+    "n": 80,
+    "exact": 43,
+    "extra": 12,
+    "direct": 55,
+    "indirect": 55,
+    "extra_targets": {
+      "X2": 9,
+      "Y": 2,
+      "X1": 1
+    }
+  },
+  {
+    "engine": "random_forest",
+    "n": 200,
+    "exact": 49,
+    "extra": 6,
+    "direct": 55,
+    "indirect": 55,
+    "extra_targets": {
+      "X2": 6
+    }
+  }
+]

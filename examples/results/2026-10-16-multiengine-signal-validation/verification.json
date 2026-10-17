@@ -1,0 +1,37 @@
+{
+  "run_id": 38891293628,
+  "source_sha": "e1dc2fa5cf25611ff2ab54499594f6121298bfd7",
+  "manifest_sha256": "afbff171ed5bae801c366530028c4fd24bac3f87adb44c73bd904ed18be32c53",
+  "original_report_retained": true,
+  "original_transport_verified": false,
+  "original_transport_issue": "one temporary GitHub API HTTP502; five other cell transport checks succeeded",
+  "reconciled_transport": {
+    "verified": true,
+    "run_id": "38891293628",
+    "source_sha": "e1dc2fa5cf25611ff2ab54499594f6121298bfd7",
+    "planned_case_jobs": 330,
+    "observed_jobs": 340,
+    "errors": []
+  },
+  "job_outcomes": {
+    "success": 339,
+    "skipped": 1
+  },
+  "audited_cases": 330,
+  "unknown_cases": 0,
+  "all_cell_summaries_recomputed_equal": true,
+  "case_archives_matched_to_release_inventory": 330,
+  "release_metadata_files_sha_verified": 11,
+  "raw_bundles_republished": false,
+  "local_raw_bundle_redownloads": 0,
+  "all_six_scientific_gates_passed": false,
+  "runner_minutes_from_job_timestamps": 13446.733333333335,
+  "scientific_fits_in_this_review": 0,
+  "evidence_sha256": {
+    "study-report.json": "6ef43b3b65fe1169d8ffd56e13fe061d9c6cabb167ff2f1073a9b49eaeac65a7",
+    "study-manifest.json": "65d90c52bab29b29c22a5e2fd2a4a937b3d2620b7b526008da4185afb9bc6893",
+    "run-api.json": "8abf2c84681c30684478b659f6c5df707cf101703c35a2af3cb381ac723a268a",
+    "jobs-api-pages.json": "b14f3c5e1e9085d126c4982b3de98178840eae2516c0a00e7c2adee6c32f601e",
+    "release-api.json": "174f2dcc5366f75e4fea2e87cde5b9bb96e948128834f6f24518d983a0172f5f"
+  }
+}
