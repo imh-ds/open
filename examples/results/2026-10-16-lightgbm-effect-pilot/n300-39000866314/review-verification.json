@@ -1,0 +1,329 @@
+{
+  "checks_passed": true,
+  "scientific_fits": 0,
+  "case_count": 30,
+  "root_assessments": 3000,
+  "source": "8108299ffc777e8ec584bc08fef475ed833f7247",
+  "run": "39000866314",
+  "cells": [
+    {
+      "effect": 0.2,
+      "median_of_dataset_median_full_gain_relative": -0.14276659147407453,
+      "median_of_dataset_median_X2_alone_gain_relative": -0.06817180303128054,
+      "full_model_worse_than_baseline_assessments": 997,
+      "root_gain_gate_passes": 1,
+      "root_assessments": 1000,
+      "median_direct_selections": 0.0
+    },
+    {
+      "effect": 0.3,
+      "median_of_dataset_median_full_gain_relative": -0.07863022297329147,
+      "median_of_dataset_median_X2_alone_gain_relative": 0.01612519846788244,
+      "full_model_worse_than_baseline_assessments": 779,
+      "root_gain_gate_passes": 149,
+      "root_assessments": 1000,
+      "median_direct_selections": 0.5
+    },
+    {
+      "effect": 0.4,
+      "median_of_dataset_median_full_gain_relative": -0.0010512127612107413,
+      "median_of_dataset_median_X2_alone_gain_relative": 0.04272689412121164,
+      "full_model_worse_than_baseline_assessments": 504,
+      "root_gain_gate_passes": 355,
+      "root_assessments": 1000,
+      "median_direct_selections": 32.5
+    }
+  ],
+  "cases": [
+    {
+      "case_id": "lgbm-n300-e20-r01",
+      "effect": 0.2,
+      "median_full_gain_relative": -0.20150462837896826,
+      "median_X2_alone_gain_relative": -0.06880215797109733,
+      "root_assessments_passing_gain_gate": 0,
+      "root_assessments_full_worse_than_baseline": 100,
+      "direct_proximal_selected": 0
+    },
+    {
+      "case_id": "lgbm-n300-e20-r02",
+      "effect": 0.2,
+      "median_full_gain_relative": -0.10078860933703623,
+      "median_X2_alone_gain_relative": -0.06382710329197541,
+      "root_assessments_passing_gain_gate": 0,
+      "root_assessments_full_worse_than_baseline": 98,
+      "direct_proximal_selected": 0
+    },
+    {
+      "case_id": "lgbm-n300-e20-r03",
+      "effect": 0.2,
+      "median_full_gain_relative": -0.13907499265188,
+      "median_X2_alone_gain_relative": -0.04599819588969856,
+      "root_assessments_passing_gain_gate": 0,
+      "root_assessments_full_worse_than_baseline": 100,
+      "direct_proximal_selected": 0
+    },
+    {
+      "case_id": "lgbm-n300-e20-r04",
+      "effect": 0.2,
+      "median_full_gain_relative": -0.09982575744122771,
+      "median_X2_alone_gain_relative": -0.055889560758345426,
+      "root_assessments_passing_gain_gate": 1,
+      "root_assessments_full_worse_than_baseline": 99,
+      "direct_proximal_selected": 1
+    },
+    {
+      "case_id": "lgbm-n300-e20-r05",
+      "effect": 0.2,
+      "median_full_gain_relative": -0.14337743025188743,
+      "median_X2_alone_gain_relative": -0.12407487765350017,
+      "root_assessments_passing_gain_gate": 0,
+      "root_assessments_full_worse_than_baseline": 100,
+      "direct_proximal_selected": 0
+    },
+    {
+      "case_id": "lgbm-n300-e20-r06",
+      "effect": 0.2,
+      "median_full_gain_relative": -0.1765049579598869,
+      "median_X2_alone_gain_relative": -0.0961198489756841,
+      "root_assessments_passing_gain_gate": 0,
+      "root_assessments_full_worse_than_baseline": 100,
+      "direct_proximal_selected": 0
+    },
+    {
+      "case_id": "lgbm-n300-e20-r07",
+      "effect": 0.2,
+      "median_full_gain_relative": -0.134625649518835,
+      "median_X2_alone_gain_relative": -0.06754144809146376,
+      "root_assessments_passing_gain_gate": 0,
+      "root_assessments_full_worse_than_baseline": 100,
+      "direct_proximal_selected": 0
+    },
+    {
+      "case_id": "lgbm-n300-e20-r08",
+      "effect": 0.2,
+      "median_full_gain_relative": -0.14215575269626163,
+      "median_X2_alone_gain_relative": -0.0494389997966874,
+      "root_assessments_passing_gain_gate": 0,
+      "root_assessments_full_worse_than_baseline": 100,
+      "direct_proximal_selected": 0
+    },
+    {
+      "case_id": "lgbm-n300-e20-r09",
+      "effect": 0.2,
+      "median_full_gain_relative": -0.17405129846315393,
+      "median_X2_alone_gain_relative": -0.10711573754491102,
+      "root_assessments_passing_gain_gate": 0,
+      "root_assessments_full_worse_than_baseline": 100,
+      "direct_proximal_selected": 0
+    },
+    {
+      "case_id": "lgbm-n300-e20-r10",
+      "effect": 0.2,
+      "median_full_gain_relative": -0.15317245154209347,
+      "median_X2_alone_gain_relative": -0.07704857583274563,
+      "root_assessments_passing_gain_gate": 0,
+      "root_assessments_full_worse_than_baseline": 100,
+      "direct_proximal_selected": 0
+    },
+    {
+      "case_id": "lgbm-n300-e30-r01",
+      "effect": 0.3,
+      "median_full_gain_relative": -0.07656227213959096,
+      "median_X2_alone_gain_relative": -0.058092320078023243,
+      "root_assessments_passing_gain_gate": 0,
+      "root_assessments_full_worse_than_baseline": 96,
+      "direct_proximal_selected": 0
+    },
+    {
+      "case_id": "lgbm-n300-e30-r02",
+      "effect": 0.3,
+      "median_full_gain_relative": -0.08829919802410183,
+      "median_X2_alone_gain_relative": 0.012960282874166005,
+      "root_assessments_passing_gain_gate": 0,
+      "root_assessments_full_worse_than_baseline": 97,
+      "direct_proximal_selected": 0
+    },
+    {
+      "case_id": "lgbm-n300-e30-r03",
+      "effect": 0.3,
+      "median_full_gain_relative": -0.09702973520426043,
+      "median_X2_alone_gain_relative": -0.0721970153662914,
+      "root_assessments_passing_gain_gate": 0,
+      "root_assessments_full_worse_than_baseline": 99,
+      "direct_proximal_selected": 0
+    },
+    {
+      "case_id": "lgbm-n300-e30-r04",
+      "effect": 0.3,
+      "median_full_gain_relative": -0.013140856327855333,
+      "median_X2_alone_gain_relative": 0.06917559499286938,
+      "root_assessments_passing_gain_gate": 23,
+      "root_assessments_full_worse_than_baseline": 60,
+      "direct_proximal_selected": 23
+    },
+    {
+      "case_id": "lgbm-n300-e30-r05",
+      "effect": 0.3,
+      "median_full_gain_relative": -0.018435194571412194,
+      "median_X2_alone_gain_relative": 0.03442394065439522,
+      "root_assessments_passing_gain_gate": 15,
+      "root_assessments_full_worse_than_baseline": 64,
+      "direct_proximal_selected": 15
+    },
+    {
+      "case_id": "lgbm-n300-e30-r06",
+      "effect": 0.3,
+      "median_full_gain_relative": 0.07951169295171856,
+      "median_X2_alone_gain_relative": 0.10704986434797142,
+      "root_assessments_passing_gain_gate": 95,
+      "root_assessments_full_worse_than_baseline": 1,
+      "direct_proximal_selected": 95
+    },
+    {
+      "case_id": "lgbm-n300-e30-r07",
+      "effect": 0.3,
+      "median_full_gain_relative": -0.08069817380699199,
+      "median_X2_alone_gain_relative": 0.0024932940773814798,
+      "root_assessments_passing_gain_gate": 1,
+      "root_assessments_full_worse_than_baseline": 96,
+      "direct_proximal_selected": 1
+    },
+    {
+      "case_id": "lgbm-n300-e30-r08",
+      "effect": 0.3,
+      "median_full_gain_relative": -0.014969369135173435,
+      "median_X2_alone_gain_relative": 0.01929011406159888,
+      "root_assessments_passing_gain_gate": 15,
+      "root_assessments_full_worse_than_baseline": 67,
+      "direct_proximal_selected": 15
+    },
+    {
+      "case_id": "lgbm-n300-e30-r09",
+      "effect": 0.3,
+      "median_full_gain_relative": -0.10797333126255762,
+      "median_X2_alone_gain_relative": -0.05261580588721107,
+      "root_assessments_passing_gain_gate": 0,
+      "root_assessments_full_worse_than_baseline": 99,
+      "direct_proximal_selected": 0
+    },
+    {
+      "case_id": "lgbm-n300-e30-r10",
+      "effect": 0.3,
+      "median_full_gain_relative": -0.08889988362185536,
+      "median_X2_alone_gain_relative": 0.026431727645796134,
+      "root_assessments_passing_gain_gate": 0,
+      "root_assessments_full_worse_than_baseline": 100,
+      "direct_proximal_selected": 0
+    },
+    {
+      "case_id": "lgbm-n300-e40-r01",
+      "effect": 0.4,
+      "median_full_gain_relative": 0.034980494707604566,
+      "median_X2_alone_gain_relative": 0.08498792198397279,
+      "root_assessments_passing_gain_gate": 62,
+      "root_assessments_full_worse_than_baseline": 23,
+      "direct_proximal_selected": 62
+    },
+    {
+      "case_id": "lgbm-n300-e40-r02",
+      "effect": 0.4,
+      "median_full_gain_relative": -0.02564882624720606,
+      "median_X2_alone_gain_relative": 0.03865822106685076,
+      "root_assessments_passing_gain_gate": 18,
+      "root_assessments_full_worse_than_baseline": 70,
+      "direct_proximal_selected": 18
+    },
+    {
+      "case_id": "lgbm-n300-e40-r03",
+      "effect": 0.4,
+      "median_full_gain_relative": 0.13271969420102742,
+      "median_X2_alone_gain_relative": 0.09936457760481042,
+      "root_assessments_passing_gain_gate": 100,
+      "root_assessments_full_worse_than_baseline": 0,
+      "direct_proximal_selected": 100
+    },
+    {
+      "case_id": "lgbm-n300-e40-r04",
+      "effect": 0.4,
+      "median_full_gain_relative": 0.004492722559843945,
+      "median_X2_alone_gain_relative": 0.02649859020531921,
+      "root_assessments_passing_gain_gate": 34,
+      "root_assessments_full_worse_than_baseline": 42,
+      "direct_proximal_selected": 34
+    },
+    {
+      "case_id": "lgbm-n300-e40-r05",
+      "effect": 0.4,
+      "median_full_gain_relative": -0.05160438960998805,
+      "median_X2_alone_gain_relative": -0.033242367426695174,
+      "root_assessments_passing_gain_gate": 0,
+      "root_assessments_full_worse_than_baseline": 95,
+      "direct_proximal_selected": 0
+    },
+    {
+      "case_id": "lgbm-n300-e40-r06",
+      "effect": 0.4,
+      "median_full_gain_relative": 0.0022206482858305454,
+      "median_X2_alone_gain_relative": 0.04388889361409218,
+      "root_assessments_passing_gain_gate": 37,
+      "root_assessments_full_worse_than_baseline": 46,
+      "direct_proximal_selected": 37
+    },
+    {
+      "case_id": "lgbm-n300-e40-r07",
+      "effect": 0.4,
+      "median_full_gain_relative": -0.004323073808252028,
+      "median_X2_alone_gain_relative": 0.06559204829589574,
+      "root_assessments_passing_gain_gate": 33,
+      "root_assessments_full_worse_than_baseline": 53,
+      "direct_proximal_selected": 33
+    },
+    {
+      "case_id": "lgbm-n300-e40-r08",
+      "effect": 0.4,
+      "median_full_gain_relative": 0.004468494901824854,
+      "median_X2_alone_gain_relative": 0.0415648946283311,
+      "root_assessments_passing_gain_gate": 32,
+      "root_assessments_full_worse_than_baseline": 45,
+      "direct_proximal_selected": 32
+    },
+    {
+      "case_id": "lgbm-n300-e40-r09",
+      "effect": 0.4,
+      "median_full_gain_relative": -0.011296685930902347,
+      "median_X2_alone_gain_relative": 0.0657428106441664,
+      "root_assessments_passing_gain_gate": 19,
+      "root_assessments_full_worse_than_baseline": 63,
+      "direct_proximal_selected": 19
+    },
+    {
+      "case_id": "lgbm-n300-e40-r10",
+      "effect": 0.4,
+      "median_full_gain_relative": -0.014692547591203314,
+      "median_X2_alone_gain_relative": 0.028469203327556238,
+      "root_assessments_passing_gain_gate": 20,
+      "root_assessments_full_worse_than_baseline": 67,
+      "direct_proximal_selected": 19
+    }
+  ],
+  "remote_asset_digests_verified": 10,
+  "datasets_verified_as_N200_plus_100_rows": 30,
+  "root_warning_counts": {
+    "PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'": 120,
+    "PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'": 720,
+    "PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'": 720
+  },
+  "scope": "No-fit verification and dependent within-dataset prediction descriptions; not fresh validation",
+  "review_script_sha256": "c54cb4fee454e7449bc1d3569335f6b610b0e25b0a4b42ed67ff537c3d1a7935",
+  "asset_sha256": {
+    "candidate-comparisons.csv": "cadc637ab71ae66a0886bd03d4aa1db797ca506533a16b8886ff1aeb777fb031",
+    "inventory.json": "10981c40da665cec1c083e5e365ed175be53cbe9a35f900d8cb7a0865e53017f",
+    "manifest.json": "05aea8363a0f0672c00b41d959c64f19dbacfd1b7431f372f2f679433f6c8d3c",
+    "protocol.md": "f8a48f2c9644bab885a7d7e959c9a360f02392080fcd63d9396e86dfe80451c8",
+    "README.md": "2ccbfccd921b68b42d11ff3d3fb74c9a0568febbca04723e74bd057cce06db80",
+    "report.json": "426006475675eae65952057c7333b484efe9b96121876add6b6c2060ea13d417",
+    "retention-snapshots.csv": "e712e86f136dd86205f784ba626447650450bfd35e29ac7b011c4dabcd147046",
+    "seed-audit.json": "24356e14974b48583663821d11fed04e4188c2661071241585e788c65b47baf3",
+    "lgbm-n300-part01.zip": "3a2d426a18067ca2bac92f935af2b1281b1f7932c3ce084919a38a8bd4960f43"
+  }
+}
