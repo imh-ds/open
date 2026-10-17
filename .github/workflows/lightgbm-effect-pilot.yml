@@ -1,0 +1,263 @@
+name: LightGBM moderate-effect recursive pilot
+'on':
+  workflow_dispatch:
+    inputs:
+      sample_size:
+        type: choice
+        description: Approved participant count for this 2000-runner-minute wave
+        required: true
+        default: '200'
+        options: ['200', '300']
+  push:
+    branches: [codex/multiengine-preflight]
+    paths: [.github/workflows/lightgbm-effect-pilot.yml]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: lightgbm-moderate-pilot
+  cancel-in-progress: false
+defaults:
+  run:
+    shell: pwsh
+env:
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+  GH_TOKEN: ${{ github.token }}
+jobs:
+  register:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - run: echo 'Registration only; no scientific fits.'
+  prepare:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: windows-2022
+    timeout-minutes: 30
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            src/**
+            configs/default.yaml
+            pyproject.toml
+            README.md
+            LICENSE
+            examples/*.py
+            examples/lightgbm_effect_pilot_protocol.md
+            examples/study_manifests/lightgbm-effect-seed-audit.json
+            .github/workflows/lightgbm-effect-pilot.yml
+            tests/test_lightgbm_effect_pilot.py
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: 3.11.9
+      - name: Install pinned runtime
+        timeout-minutes: 5
+        run: |
+          python -m pip install numpy==1.26.4 pandas==2.2.3 scipy==1.11.2 scikit-learn==1.3.0 matplotlib==3.9.2 PyYAML==6.0.2 lightgbm==4.6.0 setuptools==75.1.0 wheel==0.45.1
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -m pip install --no-build-isolation --no-deps .
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -m pip check
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - id: matrix
+        name: Freeze source data and configuration without fitting
+        env:
+          PILOT_N: ${{ inputs.sample_size }}
+        run: |
+          $prepared = python examples/lightgbm_effect_pilot.py prepare --n $env:PILOT_N --out .superpowers/pilot-authorization
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          "matrix=$prepared" >> $env:GITHUB_OUTPUT
+      - name: Upload frozen authorization
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: lgbm-pilot-authorization
+          path: .superpowers/pilot-authorization/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+  case:
+    name: case (${{ matrix.id }})
+    needs: prepare
+    runs-on: windows-2022
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
+    steps:
+      - name: Record job start
+        run: '"PILOT_JOB_STARTED=$([DateTimeOffset]::UtcNow.ToUnixTimeSeconds())" >> $env:GITHUB_ENV'
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            src/**
+            configs/default.yaml
+            pyproject.toml
+            README.md
+            LICENSE
+            examples/*.py
+            examples/lightgbm_effect_pilot_protocol.md
+            examples/study_manifests/lightgbm-effect-seed-audit.json
+            .github/workflows/lightgbm-effect-pilot.yml
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: 3.11.9
+      - name: Install pinned runtime
+        timeout-minutes: 5
+        run: |
+          python -m pip install numpy==1.26.4 pandas==2.2.3 scipy==1.11.2 scikit-learn==1.3.0 matplotlib==3.9.2 PyYAML==6.0.2 lightgbm==4.6.0 setuptools==75.1.0 wheel==0.45.1
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -m pip install --no-build-isolation --no-deps .
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -m pip check
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: lgbm-pilot-authorization
+          path: .superpowers/authorization
+      - name: Reserve evidence preservation time
+        id: budget
+        run: |
+          $elapsed = [DateTimeOffset]::UtcNow.ToUnixTimeSeconds() - [long]$env:PILOT_JOB_STARTED
+          $minutes = [Math]::Max(1, [Math]::Floor((3000 - $elapsed) / 60))
+          "minutes=$minutes" >> $env:GITHUB_OUTPUT
+      - name: Run checkpointed production analysis
+        timeout-minutes: ${{ fromJSON(steps.budget.outputs.minutes) }}
+        env:
+          PILOT_CASE_ID: ${{ matrix.id }}
+        run: |
+          python examples/lightgbm_effect_pilot.py case --manifest .superpowers/authorization/manifest.json --id $env:PILOT_CASE_ID --out .superpowers/case-output --job-started $env:PILOT_JOB_STARTED
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Preserve interrupted checkpoints without refitting
+        if: always()
+        timeout-minutes: 2
+        env:
+          PILOT_CASE_ID: ${{ matrix.id }}
+        run: |
+          python examples/lightgbm_effect_pilot.py preserve --manifest .superpowers/authorization/manifest.json --id $env:PILOT_CASE_ID --out .superpowers/case-output
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Upload case evidence
+        if: always()
+        timeout-minutes: 8
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: lgbm-case-${{ matrix.id }}
+          path: |
+            .superpowers/case-output/control.json
+            .superpowers/case-output/raw/case.zip
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+  aggregate:
+    needs: [prepare, case]
+    if: ${{ always() && needs.prepare.result == 'success' }}
+    runs-on: windows-2022
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            src/**
+            configs/default.yaml
+            pyproject.toml
+            README.md
+            LICENSE
+            examples/*.py
+            examples/lightgbm_effect_pilot_protocol.md
+            examples/study_manifests/lightgbm-effect-seed-audit.json
+            .github/workflows/lightgbm-effect-pilot.yml
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: 3.11.9
+      - name: Install pinned runtime
+        timeout-minutes: 5
+        run: |
+          python -m pip install numpy==1.26.4 pandas==2.2.3 scipy==1.11.2 scikit-learn==1.3.0 matplotlib==3.9.2 PyYAML==6.0.2 lightgbm==4.6.0 setuptools==75.1.0 wheel==0.45.1
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -m pip install --no-build-isolation --no-deps .
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -m pip check
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: lgbm-pilot-authorization
+          path: .superpowers/authorization
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        continue-on-error: true
+        with:
+          pattern: lgbm-case-*
+          path: .superpowers/downloaded
+      - name: Independently replay all available cases without fitting
+        run: |
+          python examples/lightgbm_effect_pilot.py aggregate --manifest .superpowers/authorization/manifest.json --download .superpowers/downloaded --out .superpowers/report
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          Get-Content .superpowers/report/README.md >> $env:GITHUB_STEP_SUMMARY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        timeout-minutes: 8
+        with:
+          name: lgbm-pilot-report
+          path: .superpowers/report/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+  publish:
+    needs: aggregate
+    if: ${{ always() && needs.aggregate.result == 'success' }}
+    permissions:
+      contents: write
+      actions: read
+    runs-on: windows-2022
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            src/**
+            configs/default.yaml
+            pyproject.toml
+            README.md
+            LICENSE
+            examples/*.py
+            examples/lightgbm_effect_pilot_protocol.md
+            examples/study_manifests/lightgbm-effect-seed-audit.json
+            .github/workflows/lightgbm-effect-pilot.yml
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: 3.11.9
+      - name: Install pinned runtime
+        timeout-minutes: 5
+        run: |
+          python -m pip install numpy==1.26.4 pandas==2.2.3 scipy==1.11.2 scikit-learn==1.3.0 matplotlib==3.9.2 PyYAML==6.0.2 lightgbm==4.6.0 setuptools==75.1.0 wheel==0.45.1
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -m pip install --no-build-isolation --no-deps .
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: lgbm-pilot-report
+          path: .superpowers/report
+      - name: Publish and verify durable evidence
+        run: |
+          python examples/lightgbm_effect_pilot.py publish --out .superpowers/report
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: lgbm-publication-verification
+          path: .superpowers/report/publication-verification.json
+          if-no-files-found: error
+          retention-days: 30
