@@ -17,6 +17,7 @@ results. Do not edit them.
 | Study | Run it with | Summary results | Raw outputs (GitHub release) |
 |---|---|---|---|
 | Exploratory validation | Workflow `exploratory-validation.yml` (probe: `exploratory-validation-probe.yml`); one cell locally: `python examples/exploratory_validation.py run --engine ols --n 300 --shape linear --reps 0:200 --out out` | `examples/results/2026-10-19-exploratory-validation/` | `exploratory-validation-2026-10-19-39184696821` |
+| Threshold sensitivity (re-analysis of the exploratory validation) | Download and unzip the exploratory validation release, then `python examples/threshold_sensitivity.py RAW_DIR OUT_DIR` (a few seconds, local) | `examples/results/2026-10-20-threshold-sensitivity/` | Uses `exploratory-validation-2026-10-19-39184696821` |
 | Phase A (linear reference) | `python examples/phase_a_linear_reference.py --help` | `examples/results/2026-10-17-phase-a-linear-reference/` | `phase-a-linear-reference-2026-10-17-local` |
 | Phase A′ (OLS small-sample calibration) | Workflow `phase-a-prime-small-sample.yml` (harness `examples/phase_a_prime_actions.py`) | `examples/results/2026-10-17-phase-a-prime-small-sample/` | `phase-a-prime-small-sample-2026-10-17-39105797558` |
 | Phase B (engine p-values) | Workflows `phase-b-check.yml`, then `phase-b-local-detector.yml` (harness `examples/phase_b_actions.py`) | `examples/results/2026-10-18-phase-b-local-detector/` | `phase-b-local-detector-2026-10-18-39144406136` |

@@ -30,6 +30,16 @@ release.
   mostly flags rather than keeps.
 - **Small effects** (r² .01) and interactions are rarely kept at N ≤ 1,000.
 
+**Threshold sensitivity** (re-analysis of the same records, depth 1;
+`examples/results/2026-10-20-threshold-sensitivity/interpretation.md`):
+
+- Keeping at 70% gives about 3–10 times more false solid lines than 80%.
+  Keeping at 90% removes almost all of them, but cuts the true links kept by
+  about 35–80%.
+- Flagging at 50% instead of 40% roughly halves the false dotted interactions.
+- The hide floor changes little at N ≤ 1,000.
+- The defaults sit between these extremes, and no change is proposed.
+
 ## 2. Phase A: linear reference
 
 `examples/results/2026-10-17-phase-a-linear-reference/`
@@ -69,6 +79,6 @@ OLS were unaffected.
 | Software claim | Evidence |
 |---|---|
 | Offered engines: OLS, Elastic-Net, LightGBM | Studies 1 and 4; [engines.md](engines.md) |
-| Default thresholds (80%, 40%, 95% bar) | Study 1 |
+| Default thresholds (80%, 40%, 95% bar) | Study 1 and its threshold sensitivity re-analysis |
 | `confirm` with OLS from N ≥ 275 | Study 3 |
 | `confirm` with LightGBM from N ≥ 300 | Study 4 |
