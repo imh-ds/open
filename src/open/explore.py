@@ -28,7 +28,7 @@ contrast over all of them, and the pass rate is the share of the R x K folds.
 """
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass, replace
+from dataclasses import asdict, dataclass, field, replace
 import hashlib
 from itertools import combinations
 
@@ -50,6 +50,8 @@ TIERS = ("kept", "flagged", "dropped", "hidden")
 # "x noise" is shown only when the noise bar is at least this; below it the
 # ratio divides by about zero (e.g. Elastic-Net shrinks noise columns to 0).
 RATIO_MIN_BAR = 0.001
+FIT_COLUMNS = ["depth", "target", "pool_size", "network_size", "network", "r2_network", "r2_pool",
+               "share_of_pool", "folds"]
 
 
 @dataclass(frozen=True)
@@ -103,6 +105,8 @@ class ExploreResult:
     bars: pd.DataFrame      # noise bar per target and contrast
     stops: dict
     settings: dict
+    fit: pd.DataFrame = field(default_factory=lambda: pd.DataFrame(columns=FIT_COLUMNS))
+    # network fit per explored target: held-out R² from its kept predictors and from its whole pool
 
     def summary(self) -> str:
         s = self.settings
@@ -128,6 +132,12 @@ class ExploreResult:
                              f"[{r.tier}]{extra}")
         if shown.empty:
             lines.append("No link reached the flagged tier.")
+        if len(self.fit):
+            lines.append("Network fit (held-out R2 from the kept predictors, and from all candidates):")
+            for _, r in self.fit.iterrows():
+                share = f" ({r.share_of_pool:.0%} of the pool's)" if np.isfinite(r.share_of_pool) else ""
+                lines.append(f"  {r.target}: {r.r2_network:.3f} from {r.network_size} predictor(s), "
+                             f"{r.r2_pool:.3f} from all {r.pool_size}{share}")
         hidden = int((self.links.tier == "hidden").sum()) if len(self.links) else 0
         if hidden:
             lines.append(f"Hidden: {hidden} relation(s) passed enough folds but have median R2 below "
@@ -358,6 +368,41 @@ def _interactions(Xo, yo, fold_o, active, candidates, noise_of, depth, target, c
     return pd.DataFrame(rows), {"*".join(p): p for p in real}
 
 
+def network_fit(data: pd.DataFrame, target: str, pool: tuple[str, ...], network: tuple[str, ...],
+                fold_ids, engine, config: ExploreConfig, depth: int = 1) -> dict:
+    """Held-out R² of ``target`` from its network predictors and from its whole pool.
+
+    The predictive counterpart of a fit index ("node predictability"). The
+    same folds as the exploration are used. In each fold the engine is tuned
+    once on the whole pool (without noise columns), and both models reuse those
+    settings, as the contrasts do. R² is relative to the training mean, and
+    averaged over all folds (and repeats). With no network predictors, the
+    network R² is 0.
+    """
+    fold_sets = (fold_ids,) if isinstance(fold_ids, np.ndarray) else tuple(fold_ids)
+    pool, network = tuple(pool), tuple(c for c in pool if c in set(network))
+    X = data[list(pool)].astype(float).reset_index(drop=True)
+    y = data[target].to_numpy(dtype=float, na_value=np.nan)
+    observed = ~np.isnan(y)
+    r2 = {"network": [], "pool": []}
+    for r, fold_r in enumerate(fold_sets):
+        seed = _repeat_seed(config.seed, r)
+        model = _predictor(engine, target, seed)
+        for k in range(config.folds):
+            train, test = observed & (fold_r != k), observed & (fold_r == k)
+            Xtr, Xte = X[train].reset_index(drop=True), X[test].reset_index(drop=True)
+            ytr, yte = y[train], y[test]
+            inner = KFold(config.tuning_folds, shuffle=True, random_state=_sub_seed(seed, "fit", depth, target, k))
+            params = dict(model.clone().tune(Xtr, ytr, inner, "mse"))
+            base = _risk(model, params, Xtr, ytr, Xte, yte, ())
+            for name, cols in (("network", network), ("pool", pool)):
+                r2[name].append(1 - _risk(model, params, Xtr, ytr, Xte, yte, cols) / base)
+    net, full = float(np.mean(r2["network"])), float(np.mean(r2["pool"]))
+    return dict(depth=depth, target=target, pool_size=len(pool), network_size=len(network),
+                network=network, r2_network=net, r2_pool=full,
+                share_of_pool=net / full if full > 0 else np.nan, folds=len(r2["pool"]))
+
+
 def assess_target(data: pd.DataFrame, target: str, candidates: tuple[str, ...], fold_ids,
                   engine, config: ExploreConfig, depth: int = 1):
     """Fold-level contrasts, links and pair classes for one target.
@@ -509,7 +554,7 @@ def explore(data: pd.DataFrame, outcome: str, predictors=None, engine="ols",
     fold_ids = _fold_sets(n, config)
 
     depths, parents, stops = {outcome: 0}, {}, {}
-    all_folds, all_links, all_pairs = [], [], []
+    all_folds, all_links, all_pairs, all_fit = [], [], [], []
     frontier, depth = (outcome,), 0
     while frontier:
         if config.max_depth is not None and depth >= config.max_depth:
@@ -532,6 +577,7 @@ def explore(data: pd.DataFrame, outcome: str, predictors=None, engine="ols",
             promoted = set()
             for _, r in links[(links.tier == "kept") & (links.kind != "interaction")].iterrows():
                 promoted.update(r.members)
+            all_fit.append(network_fit(data, target, pool, tuple(promoted), fold_ids, engine, config, depth))
             if not promoted:
                 stops[target] = "NOTHING_KEPT"
             for v in promoted:
@@ -550,4 +596,5 @@ def explore(data: pd.DataFrame, outcome: str, predictors=None, engine="ols",
             if len(folds) else pd.DataFrame())
     name = engine.engine_name if isinstance(engine, Predictor) else engine
     settings = dict(outcome=outcome, engine=name, n=n, **asdict(config))
-    return ExploreResult(nodes, links, pairs, folds, bars, stops, settings)
+    fit = pd.DataFrame(all_fit, columns=FIT_COLUMNS)
+    return ExploreResult(nodes, links, pairs, folds, bars, stops, settings, fit)

@@ -213,3 +213,21 @@ def test_flagged_interactions_are_hidden_from_the_graph_by_default():
     assert list(_drawn(links, True, False).index) == [0, 1, 2]
     assert list(_drawn(links, True, True).index) == [0, 1, 2, 3]
     assert list(_drawn(links, False, True).index) == [0, 2]
+
+
+def test_network_fit_reports_held_out_r2_per_explored_target(chain_result):
+    fit = chain_result.fit.set_index('target')
+    explored = set(chain_result.folds.target)
+    assert set(fit.index) == explored
+    y = fit.loc['Y']
+    assert y.network_size == len(chain_result.nodes) - 1 - (chain_result.nodes.depth == 2).sum()
+    assert .1 < y.r2_network <= y.r2_pool + .02 and y.folds == 10
+    assert 'Network fit' in chain_result.summary()
+
+
+def test_network_fit_is_zero_without_kept_predictors():
+    r = np.random.default_rng(9)
+    d = pd.DataFrame(r.normal(size=(400, 4)), columns=['Y', 'A', 'B', 'C'])
+    res = explore(d, 'Y', engine='ols', config=ExploreConfig(max_depth=1, interactions=False))
+    row = res.fit.iloc[0]
+    assert row.network_size == 0 and row.r2_network == 0 and row.r2_pool < .02
