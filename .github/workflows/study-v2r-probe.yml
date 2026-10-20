@@ -1,0 +1,58 @@
+name: Study v2-R timing probe
+# Times one dataset per engine x cell (N x shape, pool 25) for all four runs
+# (repeats 1 and 5, seeds 0 and 1), with confirmation of r1s0 and r5s0.
+# Pre-probe estimate per job, from the study v2 probe: OLS 42, Elastic-Net 72, LightGBM 104 minutes;
+# timeouts are 3x (owner rule).
+'on':
+  workflow_dispatch: {}
+permissions:
+  contents: read
+concurrency:
+  group: study-v2r-probe
+  cancel-in-progress: false
+env:
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  probe:
+    name: probe (${{ matrix.engine }})
+    runs-on: ubuntu-24.04
+    timeout-minutes: ${{ matrix.timeout }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {engine: ols, timeout: 130}
+          - {engine: elastic_net, timeout: 220}
+          - {engine: lightgbm, timeout: 320}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            src/
+            examples/study_v2.py
+            examples/study_v2r.py
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: 3.11.9
+      - name: Install pinned runtime
+        timeout-minutes: 10
+        run: |
+          python -m pip install numpy==1.26.4 scipy==1.11.2 pandas==2.2.3 scikit-learn==1.3.0 lightgbm==4.6.0
+          python -m pip check
+      - name: Probe
+        run: |
+          # nproc honours OMP_NUM_THREADS=1, so ask Python for the CPU count.
+          workers=$(python -c 'import os; print(os.cpu_count())')
+          echo "cpu count: $workers"
+          python -I examples/study_v2r.py probe --out .probe --workers "$workers" --engines ${{ matrix.engine }}
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: study-v2r-probe-${{ matrix.engine }}
+          path: .probe/
+          include-hidden-files: true
+          if-no-files-found: warn
