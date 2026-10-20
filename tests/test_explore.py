@@ -204,3 +204,12 @@ def test_hide_floor_hides_tiny_effects_and_stops_their_promotion():
 def test_unvalidated_engines_are_rejected(engine):
     with pytest.raises(ValueError, match='not validated'):
         explore(_chain(n=400), 'Y', engine=engine, config=ExploreConfig(max_depth=1, interactions=False))
+
+
+def test_flagged_interactions_are_hidden_from_the_graph_by_default():
+    from open.explore_report import _drawn
+    links = pd.DataFrame({"kind": ["unique", "unique", "interaction", "interaction", "unique"],
+                          "tier": ["kept", "flagged", "kept", "flagged", "dropped"]})
+    assert list(_drawn(links, True, False).index) == [0, 1, 2]
+    assert list(_drawn(links, True, True).index) == [0, 1, 2, 3]
+    assert list(_drawn(links, False, True).index) == [0, 2]

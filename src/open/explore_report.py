@@ -13,6 +13,10 @@ network graph. ``plot_explore`` draws the graph:
 - predictors that are only flagged, and never kept, as grey candidate nodes.
 
 Relations hidden by ``hide_below`` are left out of the graph but stay in the tables.
+Flagged interactions are also left out by default (``show_flagged_interactions``):
+in the validation study they were mostly false. They stay in the tables.
+
+An arrow means "predicts the target beyond the other candidates", not "causes".
 """
 from __future__ import annotations
 
@@ -26,6 +30,7 @@ from open.explore import ExploreResult
 
 
 def write_explore(result: ExploreResult, out_dir, *, plot: bool = True, show_flagged: bool = True,
+                  show_flagged_interactions: bool = False,
                   confirmation: pd.DataFrame | None = None) -> Path:
     """Save the tables, settings, summary and graph.
 
@@ -46,13 +51,16 @@ def write_explore(result: ExploreResult, out_dir, *, plot: bool = True, show_fla
     if confirmation is not None:
         confirmation.to_csv(out / "confirmation.csv", index=False)
     if plot:
-        plot_explore(result, out / "network.png", show_flagged=show_flagged, confirmation=confirmation)
+        plot_explore(result, out / "network.png", show_flagged=show_flagged,
+                     show_flagged_interactions=show_flagged_interactions, confirmation=confirmation)
     return out
 
 
-def write_split(split, out_dir, *, plot: bool = True, show_flagged: bool = True) -> Path:
+def write_split(split, out_dir, *, plot: bool = True, show_flagged: bool = True,
+                show_flagged_interactions: bool = False) -> Path:
     """Save an ``open.confirm.explore_and_confirm`` result: exploration, confirmation and split settings."""
     out = write_explore(split.exploration, out_dir, plot=plot, show_flagged=show_flagged,
+                        show_flagged_interactions=show_flagged_interactions,
                         confirmation=split.confirmation)
     (out / "split-settings.json").write_text(json.dumps(split.settings, indent=2) + "\n")
     (out / "summary.txt").write_text(split.summary() + "\n", encoding="utf-8")
@@ -87,7 +95,17 @@ def _layout(result: ExploreResult, links: pd.DataFrame):
     return pos, candidate
 
 
+def _drawn(links: pd.DataFrame, show_flagged: bool, show_flagged_interactions: bool) -> pd.DataFrame:
+    if not len(links):
+        return links
+    drawn = links.tier.eq("kept") | (show_flagged & links.tier.eq("flagged"))
+    if not show_flagged_interactions:
+        drawn &= ~(links.kind.eq("interaction") & links.tier.eq("flagged"))
+    return links[drawn]
+
+
 def plot_explore(result: ExploreResult, path=None, *, show_flagged: bool = True,
+                 show_flagged_interactions: bool = False,
                  confirmation: pd.DataFrame | None = None):
     import matplotlib
     if path is not None:
@@ -95,10 +113,7 @@ def plot_explore(result: ExploreResult, path=None, *, show_flagged: bool = True,
     import matplotlib.pyplot as plt
     from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
 
-    links = result.links
-    if len(links):
-        keep = ["kept", "flagged"] if show_flagged else ["kept"]
-        links = links[links.tier.isin(keep)]
+    links = _drawn(result.links, show_flagged, show_flagged_interactions)
     pos, candidate = _layout(result, links)
     depth_count = max([0] + [int(d) for d in result.nodes.depth] + [int(d) for d in links.depth])
     tall = max([1] + [sum(1 for p in pos.values() if p[0] == x) for x in {p[0] for p in pos.values()}])
@@ -156,7 +171,9 @@ def plot_explore(result: ExploreResult, path=None, *, show_flagged: bool = True,
     s = result.settings
     ax.set_title(f"{s['outcome']}: {s['engine']}, N = {s['n']}. Solid: kept (≥ {s['keep']:.0%} of folds); "
                  f"dotted: flagged (≥ {s['flag']:.0%}).\nLabel: folds above the noise bar | held-out R² lost "
-                 f"(gained, for × interactions). Blue box: shared group. Grey: flagged only.", fontsize=9)
+                 f"(gained, for × interactions). Blue box: shared group. Grey: flagged only.
+"
+                 f"Arrows show prediction beyond the other candidates, not causation.", fontsize=9)
     xs = [p[0] for p in pos.values()] or [0]
     ys = [p[1] for p in pos.values()] or [0]
     ax.set_xlim(min(xs) - 1.2, max(xs) + 1.2)
