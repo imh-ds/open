@@ -32,7 +32,9 @@ print(result.summary())
 write_explore(result, "open-output")           # tables plus network.png
 ```
 
-**Reading the output:**
+**Reading the output.** The graph is a radial network: the outcome sits in
+the centre, and each target's predictors branch outwards from it. Node colour
+shows the depth, and grey dashed nodes are predictors that were only flagged.
 
 - **Solid line (kept):** the predictor beat the noise bar in at least 80% of
   folds. It becomes a target at the next depth.
@@ -41,16 +43,19 @@ write_explore(result, "open-output")           # tables plus network.png
 - **R² lost:** held-out R² lost when the predictor is left out, which is its
   unique predictive contribution. **R² above noise:** R² lost minus the noise
   bar.
-- **Blue box:** correlated predictors that matter together (a shared group).
+- **Edge labels:** a solid edge is labelled with its R² lost, with ✓ when it
+  was confirmed on new data. Every value is in the tables.
+- **Blue band:** correlated predictors that matter together (a shared group).
   **× marker:** a pairwise interaction. Flagged interactions are listed in the
   tables but not drawn by default, because most were false in validation.
-- **Lines are predictive, not causal.** Each line joins a predictor (left) to
-  the target it predicts (right): X predicts T beyond T's other candidates on
+- **Lines are predictive, not causal.** Each line joins a predictor (outer) to
+  the target it predicts (inner): X predicts T beyond T's other candidates on
   held-out data. It is not a causal claim, and not a partial correlation. Depth
   is predictive distance from the outcome, not a causal order.
-- **Network fit (green, under each target):** held-out R² of the target from
-  its solid lines. With confirmation, it also shows the R² cross-validated on
-  the new data. This is OPEN's counterpart of a fit index (see
+- **Network fit (green ring around each target):** the filled share of the
+  ring is the held-out R² of the target from its solid lines, also printed
+  below it. With confirmation, the R² cross-validated on the new data is shown
+  too ("new .29"). This is OPEN's counterpart of a fit index (see
   [docs/method.md](docs/method.md)).
 - **The fold tally is an exploratory rule, not a p-value.** Formal tests come
   from confirmation on independent data (below).

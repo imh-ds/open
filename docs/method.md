@@ -138,8 +138,9 @@ confirmation always uses independent data:
 
 **Lines are predictive, not causal.**
 
-- The graph draws plain lines, without arrowheads. Each line joins a predictor
-  (left) to the target it predicts (right).
+- The graph is a radial network with the outcome in the centre. It draws plain
+  lines, without arrowheads. Each line joins a predictor (outer) to the target
+  it predicts (inner).
 - A line X — T means that X predicts T beyond the other candidates in T's pool,
   on held-out data. It does not mean that X causes T. It is also not a partial
   correlation, as in a GGM network: the claim is one-sided, about predicting T
@@ -186,7 +187,9 @@ in network analysis:
   data, so the predictors were chosen elsewhere and the network R² carries no
   selection bias. This is the closest analogue of "the model fits new data".
 
-The graph shows the network R² under each explored target ("R² .27 | new .29").
+In the graph, a green ring around each explored target is filled in
+proportion to its network R², with the value printed below it ("R² .27 new .29"
+when confirmed).
 
 ## Scope and assumptions
 
