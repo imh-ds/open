@@ -44,9 +44,14 @@ write_explore(result, "open-output")           # tables plus network.png
 - **Blue box:** correlated predictors that matter together (a shared group).
   **× marker:** a pairwise interaction. Flagged interactions are listed in the
   tables but not drawn by default, because most were false in validation.
-- **Arrows are predictive, not causal.** X → T means X predicts T beyond the
-  other candidates on held-out data. Depth is predictive distance from the
-  outcome, not a causal order.
+- **Lines are predictive, not causal.** Each line joins a predictor (left) to
+  the target it predicts (right): X predicts T beyond T's other candidates on
+  held-out data. It is not a causal claim, and not a partial correlation. Depth
+  is predictive distance from the outcome, not a causal order.
+- **Network fit (green, under each target):** held-out R² of the target from
+  its solid lines. With confirmation, it also shows the R² cross-validated on
+  the new data. This is OPEN's counterpart of a fit index (see
+  [docs/method.md](docs/method.md)).
 - **The fold tally is an exploratory rule, not a p-value.** Formal tests come
   from confirmation on independent data (below).
 

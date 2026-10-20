@@ -136,10 +136,14 @@ confirmation always uses independent data:
 
 ## What the results mean
 
-**Arrows are predictive, not causal.**
+**Lines are predictive, not causal.**
 
-- An arrow X → T means that X predicts T beyond the other candidates in T's pool,
-  on held-out data. It does not mean that X causes T.
+- The graph draws plain lines, without arrowheads. Each line joins a predictor
+  (left) to the target it predicts (right).
+- A line X — T means that X predicts T beyond the other candidates in T's pool,
+  on held-out data. It does not mean that X causes T. It is also not a partial
+  correlation, as in a GGM network: the claim is one-sided, about predicting T
+  given T's pool.
 - Depth is predictive distance from the outcome, not a causal or temporal order.
   A depth-2 variable predicts a depth-1 variable; it is not shown to act through
   it (mediation).
@@ -155,6 +159,34 @@ confirmation always uses independent data:
   ([validation-evidence.md](validation-evidence.md)): about 0.01–0.07 kept false
   links per dataset in the validation study.
 - Formal error control comes only from confirmation on independent data.
+
+## Network fit
+
+SEM fit indices (CFI, RMSEA, chi-square) compare a model's implied covariance
+matrix with the observed one. OPEN is a chain of predictive regressions, not a
+model of the joint covariance, so these indices do not apply. Fitting OPEN's
+network as a linear path model would misfit for structural reasons, because
+OPEN deliberately omits paths among same-depth variables. It would also ignore
+nonlinear engines.
+
+OPEN instead reports **predictive fit**, the counterpart of node predictability
+in network analysis:
+
+- **Exploration** (`result.fit`, `fit.csv`). For each explored target:
+  - *network R²:* held-out R² from its kept predictors, the solid lines;
+  - *pool R²:* held-out R² from all its candidates;
+  - *share:* the network R² as a share of the pool R².
+
+  Both are computed on the exploration folds, with the engine tuned once per
+  fold on the whole pool. The network R² is optimistic, because the same data
+  chose the predictors.
+- **Confirmation** (`open.confirm.confirmation_fit`, `SplitResult.fit`,
+  `confirmation-fit.csv`). The same R²s on independent data. Each target's
+  kept predictors are re-fitted by 10-fold cross-validation within the new
+  data, so the predictors were chosen elsewhere and the network R² carries no
+  selection bias. This is the closest analogue of "the model fits new data".
+
+The graph shows the network R² under each explored target ("R² .27 | new .29").
 
 ## Scope and assumptions
 
