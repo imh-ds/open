@@ -433,7 +433,9 @@ CELL = ["engine", "n", "pool", "corr", "ptype", "shape"]
 
 def _read(inputs, table):
     paths = sorted(Path(inputs).rglob(f"*-{table}.csv*"))
-    return pd.concat([pd.read_csv(p) for p in paths], ignore_index=True) if paths else pd.DataFrame()
+    # Only empty fields are missing: the source class "null" must stay a string.
+    frames = [pd.read_csv(p, keep_default_na=False, na_values=[""]) for p in paths]
+    return pd.concat(frames, ignore_index=True) if paths else pd.DataFrame()
 
 
 def aggregate(inputs, out):
