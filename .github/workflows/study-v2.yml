@@ -1,0 +1,261 @@
+name: Study v2
+# Design: 3 engines x (8 core + 3 variant) conditions = 33 cells, 100 datasets each,
+# in 5 shards of 20 (165 jobs). Budget from probe run 39377209685, conservatively
+# using the slowest probe dataset per engine x N x pool for every dataset:
+# about 6,440 runner-minutes estimated; each shard's timeout is 3x its estimate
+# (owner rule), so the hard ceiling is about 19,770 runner-minutes.
+'on':
+  workflow_dispatch: {}
+permissions:
+  contents: read
+concurrency:
+  group: study-v2
+  cancel-in-progress: false
+env:
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  shard:
+    name: shard (${{ matrix.engine }}, ${{ matrix.n }}, ${{ matrix.pool }}, ${{ matrix.corr }}, ${{ matrix.ptype }}, ${{ matrix.shape }}, ${{ matrix.reps }})
+    runs-on: ubuntu-24.04
+    timeout-minutes: ${{ matrix.timeout }}
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        include:
+          - {engine: ols, n: 1000, pool: 13, corr: correlated, ptype: normal, shape: linear, reps: '0:20', timeout: 40}
+          - {engine: ols, n: 1000, pool: 13, corr: correlated, ptype: normal, shape: linear, reps: '20:40', timeout: 40}
+          - {engine: ols, n: 1000, pool: 13, corr: correlated, ptype: normal, shape: linear, reps: '40:60', timeout: 35}
+          - {engine: ols, n: 1000, pool: 13, corr: correlated, ptype: normal, shape: linear, reps: '60:80', timeout: 30}
+          - {engine: ols, n: 1000, pool: 13, corr: correlated, ptype: normal, shape: linear, reps: '80:100', timeout: 30}
+          - {engine: ols, n: 1000, pool: 13, corr: correlated, ptype: normal, shape: u_shape, reps: '0:20', timeout: 40}
+          - {engine: ols, n: 1000, pool: 13, corr: correlated, ptype: normal, shape: u_shape, reps: '20:40', timeout: 40}
+          - {engine: ols, n: 1000, pool: 13, corr: correlated, ptype: normal, shape: u_shape, reps: '40:60', timeout: 35}
+          - {engine: ols, n: 1000, pool: 13, corr: correlated, ptype: normal, shape: u_shape, reps: '60:80', timeout: 30}
+          - {engine: ols, n: 1000, pool: 13, corr: correlated, ptype: normal, shape: u_shape, reps: '80:100', timeout: 30}
+          - {engine: ols, n: 1000, pool: 25, corr: correlated, ptype: normal, shape: linear, reps: '0:20', timeout: 130}
+          - {engine: ols, n: 1000, pool: 25, corr: correlated, ptype: normal, shape: linear, reps: '20:40', timeout: 130}
+          - {engine: ols, n: 1000, pool: 25, corr: correlated, ptype: normal, shape: linear, reps: '40:60', timeout: 105}
+          - {engine: ols, n: 1000, pool: 25, corr: correlated, ptype: normal, shape: linear, reps: '60:80', timeout: 80}
+          - {engine: ols, n: 1000, pool: 25, corr: correlated, ptype: normal, shape: linear, reps: '80:100', timeout: 80}
+          - {engine: ols, n: 1000, pool: 25, corr: correlated, ptype: normal, shape: u_shape, reps: '0:20', timeout: 130}
+          - {engine: ols, n: 1000, pool: 25, corr: correlated, ptype: normal, shape: u_shape, reps: '20:40', timeout: 130}
+          - {engine: ols, n: 1000, pool: 25, corr: correlated, ptype: normal, shape: u_shape, reps: '40:60', timeout: 105}
+          - {engine: ols, n: 1000, pool: 25, corr: correlated, ptype: normal, shape: u_shape, reps: '60:80', timeout: 80}
+          - {engine: ols, n: 1000, pool: 25, corr: correlated, ptype: normal, shape: u_shape, reps: '80:100', timeout: 80}
+          - {engine: ols, n: 2000, pool: 13, corr: correlated, ptype: normal, shape: linear, reps: '0:20', timeout: 90}
+          - {engine: ols, n: 2000, pool: 13, corr: correlated, ptype: normal, shape: linear, reps: '20:40', timeout: 90}
+          - {engine: ols, n: 2000, pool: 13, corr: correlated, ptype: normal, shape: linear, reps: '40:60', timeout: 65}
+          - {engine: ols, n: 2000, pool: 13, corr: correlated, ptype: normal, shape: linear, reps: '60:80', timeout: 45}
+          - {engine: ols, n: 2000, pool: 13, corr: correlated, ptype: normal, shape: linear, reps: '80:100', timeout: 45}
+          - {engine: ols, n: 2000, pool: 13, corr: correlated, ptype: normal, shape: u_shape, reps: '0:20', timeout: 90}
+          - {engine: ols, n: 2000, pool: 13, corr: correlated, ptype: normal, shape: u_shape, reps: '20:40', timeout: 90}
+          - {engine: ols, n: 2000, pool: 13, corr: correlated, ptype: normal, shape: u_shape, reps: '40:60', timeout: 65}
+          - {engine: ols, n: 2000, pool: 13, corr: correlated, ptype: normal, shape: u_shape, reps: '60:80', timeout: 45}
+          - {engine: ols, n: 2000, pool: 13, corr: correlated, ptype: normal, shape: u_shape, reps: '80:100', timeout: 45}
+          - {engine: ols, n: 2000, pool: 25, corr: correlated, ptype: normal, shape: linear, reps: '0:20', timeout: 145}
+          - {engine: ols, n: 2000, pool: 25, corr: correlated, ptype: normal, shape: linear, reps: '20:40', timeout: 145}
+          - {engine: ols, n: 2000, pool: 25, corr: correlated, ptype: normal, shape: linear, reps: '40:60', timeout: 120}
+          - {engine: ols, n: 2000, pool: 25, corr: correlated, ptype: normal, shape: linear, reps: '60:80', timeout: 90}
+          - {engine: ols, n: 2000, pool: 25, corr: correlated, ptype: normal, shape: linear, reps: '80:100', timeout: 90}
+          - {engine: ols, n: 2000, pool: 25, corr: correlated, ptype: normal, shape: u_shape, reps: '0:20', timeout: 145}
+          - {engine: ols, n: 2000, pool: 25, corr: correlated, ptype: normal, shape: u_shape, reps: '20:40', timeout: 145}
+          - {engine: ols, n: 2000, pool: 25, corr: correlated, ptype: normal, shape: u_shape, reps: '40:60', timeout: 120}
+          - {engine: ols, n: 2000, pool: 25, corr: correlated, ptype: normal, shape: u_shape, reps: '60:80', timeout: 90}
+          - {engine: ols, n: 2000, pool: 25, corr: correlated, ptype: normal, shape: u_shape, reps: '80:100', timeout: 90}
+          - {engine: ols, n: 2000, pool: 25, corr: independent, ptype: normal, shape: linear, reps: '0:20', timeout: 90}
+          - {engine: ols, n: 2000, pool: 25, corr: independent, ptype: normal, shape: linear, reps: '20:40', timeout: 90}
+          - {engine: ols, n: 2000, pool: 25, corr: independent, ptype: normal, shape: linear, reps: '40:60', timeout: 90}
+          - {engine: ols, n: 2000, pool: 25, corr: independent, ptype: normal, shape: linear, reps: '60:80', timeout: 90}
+          - {engine: ols, n: 2000, pool: 25, corr: independent, ptype: normal, shape: linear, reps: '80:100', timeout: 90}
+          - {engine: ols, n: 2000, pool: 25, corr: correlated, ptype: skewed, shape: linear, reps: '0:20', timeout: 90}
+          - {engine: ols, n: 2000, pool: 25, corr: correlated, ptype: skewed, shape: linear, reps: '20:40', timeout: 90}
+          - {engine: ols, n: 2000, pool: 25, corr: correlated, ptype: skewed, shape: linear, reps: '40:60', timeout: 90}
+          - {engine: ols, n: 2000, pool: 25, corr: correlated, ptype: skewed, shape: linear, reps: '60:80', timeout: 90}
+          - {engine: ols, n: 2000, pool: 25, corr: correlated, ptype: skewed, shape: linear, reps: '80:100', timeout: 90}
+          - {engine: ols, n: 2000, pool: 25, corr: correlated, ptype: likert, shape: linear, reps: '0:20', timeout: 90}
+          - {engine: ols, n: 2000, pool: 25, corr: correlated, ptype: likert, shape: linear, reps: '20:40', timeout: 90}
+          - {engine: ols, n: 2000, pool: 25, corr: correlated, ptype: likert, shape: linear, reps: '40:60', timeout: 90}
+          - {engine: ols, n: 2000, pool: 25, corr: correlated, ptype: likert, shape: linear, reps: '60:80', timeout: 90}
+          - {engine: ols, n: 2000, pool: 25, corr: correlated, ptype: likert, shape: linear, reps: '80:100', timeout: 90}
+          - {engine: elastic_net, n: 1000, pool: 13, corr: correlated, ptype: normal, shape: linear, reps: '0:20', timeout: 95}
+          - {engine: elastic_net, n: 1000, pool: 13, corr: correlated, ptype: normal, shape: linear, reps: '20:40', timeout: 95}
+          - {engine: elastic_net, n: 1000, pool: 13, corr: correlated, ptype: normal, shape: linear, reps: '40:60', timeout: 75}
+          - {engine: elastic_net, n: 1000, pool: 13, corr: correlated, ptype: normal, shape: linear, reps: '60:80', timeout: 50}
+          - {engine: elastic_net, n: 1000, pool: 13, corr: correlated, ptype: normal, shape: linear, reps: '80:100', timeout: 50}
+          - {engine: elastic_net, n: 1000, pool: 13, corr: correlated, ptype: normal, shape: u_shape, reps: '0:20', timeout: 95}
+          - {engine: elastic_net, n: 1000, pool: 13, corr: correlated, ptype: normal, shape: u_shape, reps: '20:40', timeout: 95}
+          - {engine: elastic_net, n: 1000, pool: 13, corr: correlated, ptype: normal, shape: u_shape, reps: '40:60', timeout: 75}
+          - {engine: elastic_net, n: 1000, pool: 13, corr: correlated, ptype: normal, shape: u_shape, reps: '60:80', timeout: 50}
+          - {engine: elastic_net, n: 1000, pool: 13, corr: correlated, ptype: normal, shape: u_shape, reps: '80:100', timeout: 50}
+          - {engine: elastic_net, n: 1000, pool: 25, corr: correlated, ptype: normal, shape: linear, reps: '0:20', timeout: 215}
+          - {engine: elastic_net, n: 1000, pool: 25, corr: correlated, ptype: normal, shape: linear, reps: '20:40', timeout: 215}
+          - {engine: elastic_net, n: 1000, pool: 25, corr: correlated, ptype: normal, shape: linear, reps: '40:60', timeout: 170}
+          - {engine: elastic_net, n: 1000, pool: 25, corr: correlated, ptype: normal, shape: linear, reps: '60:80', timeout: 120}
+          - {engine: elastic_net, n: 1000, pool: 25, corr: correlated, ptype: normal, shape: linear, reps: '80:100', timeout: 120}
+          - {engine: elastic_net, n: 1000, pool: 25, corr: correlated, ptype: normal, shape: u_shape, reps: '0:20', timeout: 215}
+          - {engine: elastic_net, n: 1000, pool: 25, corr: correlated, ptype: normal, shape: u_shape, reps: '20:40', timeout: 215}
+          - {engine: elastic_net, n: 1000, pool: 25, corr: correlated, ptype: normal, shape: u_shape, reps: '40:60', timeout: 170}
+          - {engine: elastic_net, n: 1000, pool: 25, corr: correlated, ptype: normal, shape: u_shape, reps: '60:80', timeout: 120}
+          - {engine: elastic_net, n: 1000, pool: 25, corr: correlated, ptype: normal, shape: u_shape, reps: '80:100', timeout: 120}
+          - {engine: elastic_net, n: 2000, pool: 13, corr: correlated, ptype: normal, shape: linear, reps: '0:20', timeout: 135}
+          - {engine: elastic_net, n: 2000, pool: 13, corr: correlated, ptype: normal, shape: linear, reps: '20:40', timeout: 135}
+          - {engine: elastic_net, n: 2000, pool: 13, corr: correlated, ptype: normal, shape: linear, reps: '40:60', timeout: 105}
+          - {engine: elastic_net, n: 2000, pool: 13, corr: correlated, ptype: normal, shape: linear, reps: '60:80', timeout: 70}
+          - {engine: elastic_net, n: 2000, pool: 13, corr: correlated, ptype: normal, shape: linear, reps: '80:100', timeout: 70}
+          - {engine: elastic_net, n: 2000, pool: 13, corr: correlated, ptype: normal, shape: u_shape, reps: '0:20', timeout: 135}
+          - {engine: elastic_net, n: 2000, pool: 13, corr: correlated, ptype: normal, shape: u_shape, reps: '20:40', timeout: 135}
+          - {engine: elastic_net, n: 2000, pool: 13, corr: correlated, ptype: normal, shape: u_shape, reps: '40:60', timeout: 105}
+          - {engine: elastic_net, n: 2000, pool: 13, corr: correlated, ptype: normal, shape: u_shape, reps: '60:80', timeout: 70}
+          - {engine: elastic_net, n: 2000, pool: 13, corr: correlated, ptype: normal, shape: u_shape, reps: '80:100', timeout: 70}
+          - {engine: elastic_net, n: 2000, pool: 25, corr: correlated, ptype: normal, shape: linear, reps: '0:20', timeout: 230}
+          - {engine: elastic_net, n: 2000, pool: 25, corr: correlated, ptype: normal, shape: linear, reps: '20:40', timeout: 230}
+          - {engine: elastic_net, n: 2000, pool: 25, corr: correlated, ptype: normal, shape: linear, reps: '40:60', timeout: 180}
+          - {engine: elastic_net, n: 2000, pool: 25, corr: correlated, ptype: normal, shape: linear, reps: '60:80', timeout: 130}
+          - {engine: elastic_net, n: 2000, pool: 25, corr: correlated, ptype: normal, shape: linear, reps: '80:100', timeout: 130}
+          - {engine: elastic_net, n: 2000, pool: 25, corr: correlated, ptype: normal, shape: u_shape, reps: '0:20', timeout: 230}
+          - {engine: elastic_net, n: 2000, pool: 25, corr: correlated, ptype: normal, shape: u_shape, reps: '20:40', timeout: 230}
+          - {engine: elastic_net, n: 2000, pool: 25, corr: correlated, ptype: normal, shape: u_shape, reps: '40:60', timeout: 180}
+          - {engine: elastic_net, n: 2000, pool: 25, corr: correlated, ptype: normal, shape: u_shape, reps: '60:80', timeout: 130}
+          - {engine: elastic_net, n: 2000, pool: 25, corr: correlated, ptype: normal, shape: u_shape, reps: '80:100', timeout: 130}
+          - {engine: elastic_net, n: 2000, pool: 25, corr: independent, ptype: normal, shape: linear, reps: '0:20', timeout: 130}
+          - {engine: elastic_net, n: 2000, pool: 25, corr: independent, ptype: normal, shape: linear, reps: '20:40', timeout: 130}
+          - {engine: elastic_net, n: 2000, pool: 25, corr: independent, ptype: normal, shape: linear, reps: '40:60', timeout: 130}
+          - {engine: elastic_net, n: 2000, pool: 25, corr: independent, ptype: normal, shape: linear, reps: '60:80', timeout: 130}
+          - {engine: elastic_net, n: 2000, pool: 25, corr: independent, ptype: normal, shape: linear, reps: '80:100', timeout: 130}
+          - {engine: elastic_net, n: 2000, pool: 25, corr: correlated, ptype: skewed, shape: linear, reps: '0:20', timeout: 130}
+          - {engine: elastic_net, n: 2000, pool: 25, corr: correlated, ptype: skewed, shape: linear, reps: '20:40', timeout: 130}
+          - {engine: elastic_net, n: 2000, pool: 25, corr: correlated, ptype: skewed, shape: linear, reps: '40:60', timeout: 130}
+          - {engine: elastic_net, n: 2000, pool: 25, corr: correlated, ptype: skewed, shape: linear, reps: '60:80', timeout: 130}
+          - {engine: elastic_net, n: 2000, pool: 25, corr: correlated, ptype: skewed, shape: linear, reps: '80:100', timeout: 130}
+          - {engine: elastic_net, n: 2000, pool: 25, corr: correlated, ptype: likert, shape: linear, reps: '0:20', timeout: 130}
+          - {engine: elastic_net, n: 2000, pool: 25, corr: correlated, ptype: likert, shape: linear, reps: '20:40', timeout: 130}
+          - {engine: elastic_net, n: 2000, pool: 25, corr: correlated, ptype: likert, shape: linear, reps: '40:60', timeout: 130}
+          - {engine: elastic_net, n: 2000, pool: 25, corr: correlated, ptype: likert, shape: linear, reps: '60:80', timeout: 130}
+          - {engine: elastic_net, n: 2000, pool: 25, corr: correlated, ptype: likert, shape: linear, reps: '80:100', timeout: 130}
+          - {engine: lightgbm, n: 1000, pool: 13, corr: correlated, ptype: normal, shape: linear, reps: '0:20', timeout: 100}
+          - {engine: lightgbm, n: 1000, pool: 13, corr: correlated, ptype: normal, shape: linear, reps: '20:40', timeout: 100}
+          - {engine: lightgbm, n: 1000, pool: 13, corr: correlated, ptype: normal, shape: linear, reps: '40:60', timeout: 85}
+          - {engine: lightgbm, n: 1000, pool: 13, corr: correlated, ptype: normal, shape: linear, reps: '60:80', timeout: 75}
+          - {engine: lightgbm, n: 1000, pool: 13, corr: correlated, ptype: normal, shape: linear, reps: '80:100', timeout: 75}
+          - {engine: lightgbm, n: 1000, pool: 13, corr: correlated, ptype: normal, shape: u_shape, reps: '0:20', timeout: 100}
+          - {engine: lightgbm, n: 1000, pool: 13, corr: correlated, ptype: normal, shape: u_shape, reps: '20:40', timeout: 100}
+          - {engine: lightgbm, n: 1000, pool: 13, corr: correlated, ptype: normal, shape: u_shape, reps: '40:60', timeout: 85}
+          - {engine: lightgbm, n: 1000, pool: 13, corr: correlated, ptype: normal, shape: u_shape, reps: '60:80', timeout: 75}
+          - {engine: lightgbm, n: 1000, pool: 13, corr: correlated, ptype: normal, shape: u_shape, reps: '80:100', timeout: 75}
+          - {engine: lightgbm, n: 1000, pool: 25, corr: correlated, ptype: normal, shape: linear, reps: '0:20', timeout: 325}
+          - {engine: lightgbm, n: 1000, pool: 25, corr: correlated, ptype: normal, shape: linear, reps: '20:40', timeout: 325}
+          - {engine: lightgbm, n: 1000, pool: 25, corr: correlated, ptype: normal, shape: linear, reps: '40:60', timeout: 265}
+          - {engine: lightgbm, n: 1000, pool: 25, corr: correlated, ptype: normal, shape: linear, reps: '60:80', timeout: 205}
+          - {engine: lightgbm, n: 1000, pool: 25, corr: correlated, ptype: normal, shape: linear, reps: '80:100', timeout: 205}
+          - {engine: lightgbm, n: 1000, pool: 25, corr: correlated, ptype: normal, shape: u_shape, reps: '0:20', timeout: 325}
+          - {engine: lightgbm, n: 1000, pool: 25, corr: correlated, ptype: normal, shape: u_shape, reps: '20:40', timeout: 325}
+          - {engine: lightgbm, n: 1000, pool: 25, corr: correlated, ptype: normal, shape: u_shape, reps: '40:60', timeout: 265}
+          - {engine: lightgbm, n: 1000, pool: 25, corr: correlated, ptype: normal, shape: u_shape, reps: '60:80', timeout: 205}
+          - {engine: lightgbm, n: 1000, pool: 25, corr: correlated, ptype: normal, shape: u_shape, reps: '80:100', timeout: 205}
+          - {engine: lightgbm, n: 2000, pool: 13, corr: correlated, ptype: normal, shape: linear, reps: '0:20', timeout: 205}
+          - {engine: lightgbm, n: 2000, pool: 13, corr: correlated, ptype: normal, shape: linear, reps: '20:40', timeout: 205}
+          - {engine: lightgbm, n: 2000, pool: 13, corr: correlated, ptype: normal, shape: linear, reps: '40:60', timeout: 160}
+          - {engine: lightgbm, n: 2000, pool: 13, corr: correlated, ptype: normal, shape: linear, reps: '60:80', timeout: 110}
+          - {engine: lightgbm, n: 2000, pool: 13, corr: correlated, ptype: normal, shape: linear, reps: '80:100', timeout: 110}
+          - {engine: lightgbm, n: 2000, pool: 13, corr: correlated, ptype: normal, shape: u_shape, reps: '0:20', timeout: 205}
+          - {engine: lightgbm, n: 2000, pool: 13, corr: correlated, ptype: normal, shape: u_shape, reps: '20:40', timeout: 205}
+          - {engine: lightgbm, n: 2000, pool: 13, corr: correlated, ptype: normal, shape: u_shape, reps: '40:60', timeout: 160}
+          - {engine: lightgbm, n: 2000, pool: 13, corr: correlated, ptype: normal, shape: u_shape, reps: '60:80', timeout: 110}
+          - {engine: lightgbm, n: 2000, pool: 13, corr: correlated, ptype: normal, shape: u_shape, reps: '80:100', timeout: 110}
+          - {engine: lightgbm, n: 2000, pool: 25, corr: correlated, ptype: normal, shape: linear, reps: '0:20', timeout: 255}
+          - {engine: lightgbm, n: 2000, pool: 25, corr: correlated, ptype: normal, shape: linear, reps: '20:40', timeout: 255}
+          - {engine: lightgbm, n: 2000, pool: 25, corr: correlated, ptype: normal, shape: linear, reps: '40:60', timeout: 170}
+          - {engine: lightgbm, n: 2000, pool: 25, corr: correlated, ptype: normal, shape: linear, reps: '60:80', timeout: 80}
+          - {engine: lightgbm, n: 2000, pool: 25, corr: correlated, ptype: normal, shape: linear, reps: '80:100', timeout: 80}
+          - {engine: lightgbm, n: 2000, pool: 25, corr: correlated, ptype: normal, shape: u_shape, reps: '0:20', timeout: 255}
+          - {engine: lightgbm, n: 2000, pool: 25, corr: correlated, ptype: normal, shape: u_shape, reps: '20:40', timeout: 255}
+          - {engine: lightgbm, n: 2000, pool: 25, corr: correlated, ptype: normal, shape: u_shape, reps: '40:60', timeout: 170}
+          - {engine: lightgbm, n: 2000, pool: 25, corr: correlated, ptype: normal, shape: u_shape, reps: '60:80', timeout: 80}
+          - {engine: lightgbm, n: 2000, pool: 25, corr: correlated, ptype: normal, shape: u_shape, reps: '80:100', timeout: 80}
+          - {engine: lightgbm, n: 2000, pool: 25, corr: independent, ptype: normal, shape: linear, reps: '0:20', timeout: 80}
+          - {engine: lightgbm, n: 2000, pool: 25, corr: independent, ptype: normal, shape: linear, reps: '20:40', timeout: 80}
+          - {engine: lightgbm, n: 2000, pool: 25, corr: independent, ptype: normal, shape: linear, reps: '40:60', timeout: 80}
+          - {engine: lightgbm, n: 2000, pool: 25, corr: independent, ptype: normal, shape: linear, reps: '60:80', timeout: 80}
+          - {engine: lightgbm, n: 2000, pool: 25, corr: independent, ptype: normal, shape: linear, reps: '80:100', timeout: 80}
+          - {engine: lightgbm, n: 2000, pool: 25, corr: correlated, ptype: skewed, shape: linear, reps: '0:20', timeout: 80}
+          - {engine: lightgbm, n: 2000, pool: 25, corr: correlated, ptype: skewed, shape: linear, reps: '20:40', timeout: 80}
+          - {engine: lightgbm, n: 2000, pool: 25, corr: correlated, ptype: skewed, shape: linear, reps: '40:60', timeout: 80}
+          - {engine: lightgbm, n: 2000, pool: 25, corr: correlated, ptype: skewed, shape: linear, reps: '60:80', timeout: 80}
+          - {engine: lightgbm, n: 2000, pool: 25, corr: correlated, ptype: skewed, shape: linear, reps: '80:100', timeout: 80}
+          - {engine: lightgbm, n: 2000, pool: 25, corr: correlated, ptype: likert, shape: linear, reps: '0:20', timeout: 80}
+          - {engine: lightgbm, n: 2000, pool: 25, corr: correlated, ptype: likert, shape: linear, reps: '20:40', timeout: 80}
+          - {engine: lightgbm, n: 2000, pool: 25, corr: correlated, ptype: likert, shape: linear, reps: '40:60', timeout: 80}
+          - {engine: lightgbm, n: 2000, pool: 25, corr: correlated, ptype: likert, shape: linear, reps: '60:80', timeout: 80}
+          - {engine: lightgbm, n: 2000, pool: 25, corr: correlated, ptype: likert, shape: linear, reps: '80:100', timeout: 80}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            src/
+            examples/study_v2.py
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: 3.11.9
+      - name: Install pinned runtime
+        timeout-minutes: 10
+        run: |
+          python -m pip install numpy==1.26.4 scipy==1.11.2 pandas==2.2.3 scikit-learn==1.3.0 lightgbm==4.6.0
+          python -m pip check
+      - name: Run shard
+        run: |
+          # nproc honours OMP_NUM_THREADS=1, so ask Python for the CPU count.
+          workers=$(python -c 'import os; print(os.cpu_count())')
+          echo "cpu count: $workers"
+          python -I examples/study_v2.py run --engine ${{ matrix.engine }} --n ${{ matrix.n }} --pool ${{ matrix.pool }} \
+            --corr ${{ matrix.corr }} --ptype ${{ matrix.ptype }} --shape ${{ matrix.shape }} \
+            --reps ${{ matrix.reps }} --out .shard --workers "$workers"
+      - name: Name artifact
+        id: name
+        run: echo "name=study-v2-${{ matrix.engine }}-${{ matrix.n }}-${{ matrix.pool }}-${{ matrix.corr }}-${{ matrix.ptype }}-${{ matrix.shape }}-$(echo '${{ matrix.reps }}' | tr ':' '-')" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: ${{ steps.name.outputs.name }}
+          path: .shard/
+          include-hidden-files: true
+          if-no-files-found: error
+  aggregate:
+    if: ${{ !cancelled() }}
+    needs: shard
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            src/
+            examples/study_v2.py
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: 3.11.9
+      - name: Install pinned runtime
+        timeout-minutes: 10
+        run: |
+          python -m pip install numpy==1.26.4 scipy==1.11.2 pandas==2.2.3 scikit-learn==1.3.0 lightgbm==4.6.0
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          pattern: study-v2-*
+          path: shards
+      - name: Aggregate
+        run: |
+          found=$(ls shards | wc -l)
+          echo "shard artifacts: $found of 165"
+          python -I examples/study_v2.py aggregate --inputs shards --out results
+          cp -r shards results/shards
+          echo "$found" > results/shard-count.txt
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: study-v2-results
+          path: results/
+          if-no-files-found: error
