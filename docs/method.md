@@ -156,11 +156,23 @@ confirmation always uses independent data:
   imputation).
 - **Confirmation** uses complete rows only (listwise deletion) for each target
   and its pool.
-- **Validated range:** the validation study used 10 candidates, depth 2,
-  N 300–1,000, and independent normal predictors. Confirmation p-values are
-  calibrated from N ≥ 275 (OLS) and N ≥ 300 (LightGBM) for single regressions.
-  Larger pools, deeper networks, and correlated, skewed or Likert predictors are
-  outside what has been tested so far.
+- **Validated range:**
+  - The validation studies cover 10–25 candidates, depth up to 3, and
+    exploration samples of 300–1,000.
+  - They include independent, correlated (including noisy copies of true
+    predictors), skewed and 5-point Likert predictors, with linear and curved
+    effects.
+  - Confirmation was checked end to end on split samples of 500 and 1,000
+    rows.
+  - Larger pools and networks are extrapolation.
+- **Known limits:**
+  - With OLS or Elastic-Net on curved data, a link can be found and confirmed
+    because it stands in for an effect the linear model cannot represent.
+    Prefer LightGBM when effects may be curved.
+  - Elastic-Net can keep links between two variables that share a parent in
+    the pool.
+  - The network changes noticeably with `seed`: re-run with another seed to
+    see which kept links are stable.
 
 ## Defaults
 

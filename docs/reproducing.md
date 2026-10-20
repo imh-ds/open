@@ -17,6 +17,7 @@ results. Do not edit them.
 | Study | Run it with | Summary results | Raw outputs (GitHub release) |
 |---|---|---|---|
 | Exploratory validation | Workflow `exploratory-validation.yml` (probe: `exploratory-validation-probe.yml`); one cell locally: `python examples/exploratory_validation.py run --engine ols --n 300 --shape linear --reps 0:200 --out out` | `examples/results/2026-10-19-exploratory-validation/` | `exploratory-validation-2026-10-19-39184696821` |
+| Study v2 | Workflow `study-v2.yml` (probe: `study-v2-probe.yml`), then locally: unzip the raw release, `python examples/study_v2.py aggregate --inputs shards --out agg` and `python examples/study_v2_report.py shards agg OUT` | `examples/results/2026-10-20-study-v2/` | `study-v2-2026-10-20-39397875389` |
 | Threshold sensitivity (re-analysis of the exploratory validation) | Download and unzip the exploratory validation release, then `python examples/threshold_sensitivity.py RAW_DIR OUT_DIR` (a few seconds, local) | `examples/results/2026-10-20-threshold-sensitivity/` | Uses `exploratory-validation-2026-10-19-39184696821` |
 | Phase A (linear reference) | `python examples/phase_a_linear_reference.py --help` | `examples/results/2026-10-17-phase-a-linear-reference/` | `phase-a-linear-reference-2026-10-17-local` |
 | Phase A′ (OLS small-sample calibration) | Workflow `phase-a-prime-small-sample.yml` (harness `examples/phase_a_prime_actions.py`) | `examples/results/2026-10-17-phase-a-prime-small-sample/` | `phase-a-prime-small-sample-2026-10-17-39105797558` |
@@ -33,6 +34,7 @@ verification record and an `interpretation.md`.
 | `phase-b-local-detector-2026-10-18-39144406136-raw.zip` | `7eabf07b8fbdc16931cea85ef91228594cbccb46dcaabf207b924a8e275e5793` |
 | `phase-a-prime-pvalues.zip` | `40129d65aa9bd4ed04fedcb135efeaf40049530c2eaee7395b59289fdbb526e3` |
 | `phase-a-pvalues.zip` | `a87a177282bc0493879907e35f874a60d5a53cbe1199043a0de5bdf448454744` |
+| `study-v2-2026-10-20-39397875389-raw.zip` | `940f9313d3d78d9a669f23978af93cffbb15f3d0d21afdf9b1c25b59de81d336` |
 
 ## Notes
 
