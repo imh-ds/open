@@ -14,8 +14,10 @@ network graph. ``plot_explore`` draws the graph as a radial tree:
   cross-validated R² on the new data, as text);
 - shared (substitute) groups as a blue band joining their members, with one
   edge to the target;
-- interactions as a × marker between the two predictors, with an edge to the
-  target;
+- interactions as a fork: solid orange lines from the two predictors meet in a
+  small diamond, labelled with the pair ("F·N7"), and one edge runs on to the
+  target. Only that last edge is solid (kept) or dashed (flagged), because the
+  pairing itself is not uncertain;
 - predictors that are only flagged, and never kept, as grey dashed nodes.
 
 Relations hidden by ``hide_below`` are left out of the graph but stay in the
@@ -183,7 +185,12 @@ def _point_segment(p, a, b):
 
 
 def _layout(result: ExploreResult, links: pd.DataFrame):
-    """Node positions: (positions, ring of each node, flagged-only candidates).
+    """Node positions: (positions, ring of each node, flagged-only candidates, junctions).
+
+    Each drawn interaction gets a junction (the diamond), laid out as a small node
+    of its own: pulled towards its two variables and its target, pushed away from
+    everything else, so it settles in open space. ``junctions`` maps
+    (depth, target, source) to its position.
 
     Starts from a radial tree (outcome in the centre, each target's predictors
     fanning outwards) and relaxes it with a spring layout: linked nodes attract
@@ -195,14 +202,33 @@ def _layout(result: ExploreResult, links: pd.DataFrame):
     ring, parent, candidate = _tree(result, links)
     start = _radial(outcome, ring, parent, candidate, links)
     names = list(start)
+    inter = links[links.kind == "interaction"]
+    keys = [(int(r.depth), r.target, r.source) for r in inter.itertuples()]
+    for key, r in zip(keys, inter.itertuples()):  # start between the pair, a third of the way to the target
+        a, b, t = (np.array(start[v]) for v in (*r.members, r.target))
+        mid = (a + b) / 2
+        spot = mid + (t - mid) / 3
+        if np.linalg.norm(spot - t) < 1.0:       # pair on opposite sides of the target: step aside
+            side = np.array([-(b - a)[1], (b - a)[0]])
+            spot = t + side / (np.linalg.norm(side) + 1e-12) * RING_STEP * .7
+        start[key] = tuple(spot)
+    names = list(start)
     if len(names) == 1:
-        return {outcome: (0.0, 0.0)}, ring, candidate
+        return {outcome: (0.0, 0.0)}, ring, candidate, {}
     index = {v: i for i, v in enumerate(names)}
     P = np.array([start[v] for v in names], dtype=float)
     springs = {}
     segments = []
     for r in links.itertuples():
         w = 1.0 if r.tier == "kept" else .7
+        if r.kind == "interaction":
+            j = index[(int(r.depth), r.target, r.source)]
+            for m in r.members:
+                springs[tuple(sorted((index[m], j)))] = 1.0
+                segments.append((index[m], j))
+            springs[tuple(sorted((j, index[r.target])))] = w
+            segments.append((j, index[r.target]))
+            continue
         for m in r.members:
             key = tuple(sorted((index[m], index[r.target])))
             springs[key] = max(springs.get(key, 0), w)
@@ -253,7 +279,9 @@ def _layout(result: ExploreResult, links: pd.DataFrame):
         P[pin] = 0
         if not moved:
             break
-    return {v: (float(P[index[v], 0]), float(P[index[v], 1])) for v in names}, ring, candidate
+    out = {v: (float(P[index[v], 0]), float(P[index[v], 1])) for v in names}
+    junctions = {key: out.pop(key) for key in keys}
+    return out, ring, candidate, junctions
 
 
 def plot_explore(result: ExploreResult, path=None, *, show_flagged: bool = True,
@@ -268,15 +296,15 @@ def plot_explore(result: ExploreResult, path=None, *, show_flagged: bool = True,
         matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     from matplotlib.lines import Line2D
-    from matplotlib.patches import Circle, Wedge
+    from matplotlib.patches import Circle, RegularPolygon, Wedge
 
     links = _drawn(result.links, show_flagged, show_flagged_interactions)
     if not len(links):
         links = pd.DataFrame(columns=["depth", "target", "source", "kind", "members", "tier", "pass_rate",
                                       "r2_median"])
-    pos, ring, candidate = _layout(result, links)
+    pos, ring, candidate, junctions = _layout(result, links)
     outcome = result.settings.get("outcome") or result.nodes.variable.iloc[0]
-    xy = np.array(list(pos.values()))
+    xy = np.array(list(pos.values()) + list(junctions.values()))
     lo, hi = xy.min(axis=0) - 1.25, xy.max(axis=0) + 1.25
     span = hi - lo
     scale = float(np.clip(9.5 / max(span), .6, .95))
@@ -318,20 +346,20 @@ def plot_explore(result: ExploreResult, path=None, *, show_flagged: bool = True,
                 edge(pos[m], target, r.tier, r.r2_median, SHARED, label_for(r) if i == 0 else None,
                      lw=_width(r.r2_median) * .75)
         else:
-            (ax_, ay), (bx, by) = pos[members[0]], pos[members[1]]
-            mid = ((ax_ + bx) / 2, (ay + by) / 2)
-            # slide the marker along its edge until it clears every node
-            mark = None
-            for t in (.35, .25, .45, .15, .55, .65, .1):
-                mark = (mid[0] + t * (target[0] - mid[0]), mid[1] + t * (target[1] - mid[1]))
-                if all(math.dist(mark, q) > (OUTCOME_R if v == outcome else NODE_R) + .28
-                       for v, q in pos.items()):
-                    break
-            for m in members:
-                edge(pos[m], mark, r.tier, 0, INTERACTION, lw=1.1)
+            mark = junctions[(int(r.depth), r.target, r.source)]
+            for m in members:                         # the pair: always solid
+                edge(pos[m], mark, "kept", 0, INTERACTION, lw=1.6)
             edge(mark, target, r.tier, r.r2_median, INTERACTION, label_for(r))
-            ax.add_patch(Circle(mark, .17, fc="white", ec=INTERACTION, lw=1.2, zorder=4))
-            ax.text(*mark, "×", fontsize=10, ha="center", va="center", color=INTERACTION, zorder=5)
+            fill = INTERACTION if r.tier == "kept" else _soft(INTERACTION, .3)
+            ax.add_patch(RegularPolygon(mark, numVertices=4, radius=.2, orientation=0, fc=fill, ec="white",
+                                        lw=1.2, zorder=4))
+            # name the pair beside the diamond, on the side away from the target
+            away = np.array(mark) - np.array(target)
+            away = away / (np.linalg.norm(away) + 1e-12)
+            normal = np.array([-away[1], away[0]])
+            spot = np.array(mark) + .34 * normal + .12 * away
+            ax.text(*spot, "·".join(members), fontsize=7.5, ha="center", va="center", color=INTERACTION,
+                    zorder=5, bbox=dict(boxstyle="round,pad=0.12", fc="white", ec="none", alpha=.9))
 
     fit = {r.target: r.r2_network for r in result.fit.itertuples()}
     sizes = {r.target: r.network_size for r in result.fit.itertuples()}
@@ -365,7 +393,8 @@ def plot_explore(result: ExploreResult, path=None, *, show_flagged: bool = True,
     handles = [Line2D([], [], color=KEPT, lw=2.5, label=f"kept (≥ {s['keep']:.0%} of folds)"),
                Line2D([], [], color=_soft(KEPT), lw=2.5, ls=(0, (4, 2.5)), label=f"flagged (≥ {s['flag']:.0%})"),
                Line2D([], [], color=SHARED, lw=2.5, label="shared group"),
-               Line2D([], [], color=INTERACTION, lw=2.5, label="interaction (×)"),
+               Line2D([], [], color=INTERACTION, lw=2.5, marker="D", markersize=6, markeredgecolor="white",
+                      label="interaction (◆ joins the pair)"),
                Line2D([], [], color=FIT, lw=0, marker="o", markersize=9, markerfacecolor="white",
                       markeredgewidth=2.5, label="ring: held-out R² from kept links"),
                Line2D([], [], color=MUTED, lw=0, marker="o", markersize=9, markerfacecolor="#f4f5f7",
@@ -376,7 +405,8 @@ def plot_explore(result: ExploreResult, path=None, *, show_flagged: bool = True,
     ax.legend(handles=handles, loc="upper center", bbox_to_anchor=(.5, -.01), ncol=3, frameon=False,
               fontsize=8.5, handlelength=2.6, columnspacing=1.6)
     note = ("Each edge: the outer variable predicts the inner one beyond that target's other candidates. "
-            "Label: held-out R² lost" + (" (✓ confirmed on new data)" if verdict else "") +
+            "Label: held-out R² lost (gained, for interactions)" +
+            (" (✓ confirmed on new data)" if verdict else "") +
             ". Not causal; not a partial correlation.")
     fig.text(.5, .012, note, ha="center", fontsize=8, color=MUTED, wrap=True)
     ax.set_xlim(lo[0], hi[0])

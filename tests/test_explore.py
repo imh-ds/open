@@ -237,13 +237,17 @@ def test_graph_layout_is_centred_spaced_and_deterministic(chain_result):
     import math
     from open.explore_report import MIN_SEP, _drawn, _layout
     links = _drawn(chain_result.links, True, True)
-    pos, ring, candidate = _layout(chain_result, links)
+    pos, ring, candidate, junctions = _layout(chain_result, links)
     assert pos['Y'] == (0.0, 0.0)
+    assert set(junctions) == {(int(r.depth), r.target, r.source)
+                              for r in links[links.kind == 'interaction'].itertuples()}
     assert {m for ms in links.members for m in ms} | set(links.target) <= set(pos)
     names = list(pos)
     for i, a in enumerate(names):
         for b in names[i + 1:]:
             assert math.dist(pos[a], pos[b]) >= .98 * MIN_SEP, (a, b)
+    for j in junctions.values():                       # diamonds never sit on a node
+        assert all(math.dist(j, q) >= .98 * MIN_SEP for q in pos.values())
     assert _layout(chain_result, links)[0] == pos
 
 
