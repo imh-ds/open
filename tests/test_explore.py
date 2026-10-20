@@ -262,3 +262,34 @@ def test_plot_draws_interactions_groups_and_confirmation(tmp_path):
     conf = pd.DataFrame(dict(depth=[1], target=['Y'], source=['A'], p=[.001], confirmed=[True]))
     out = plot_explore(res, tmp_path / 'g.png', show_flagged_interactions=True, confirmation=conf)
     assert out.stat().st_size > 10_000
+
+
+def test_graph_style_settings_scale_the_layout_and_validate(chain_result, tmp_path):
+    import math
+    from open.explore_report import GraphStyle, _drawn, _layout, plot_explore, write_explore
+    links = _drawn(chain_result.links, True, True)
+
+    def spread(style):
+        pos = _layout(chain_result, links, style)[0]
+        names = list(pos)
+        closest = min(math.dist(pos[a], pos[b]) for i, a in enumerate(names) for b in names[i + 1:])
+        return max(math.dist(p, (0, 0)) for p in pos.values()), closest
+
+    compact, closest_compact = spread(GraphStyle(spacing=.4))
+    wide, _ = spread(GraphStyle(spacing=1.6))
+    assert compact < wide
+    assert closest_compact >= .98 * GraphStyle(spacing=.4).min_sep() >= 2 * GraphStyle().node_r()
+    big = GraphStyle(node_size=2, spacing=.4)
+    assert spread(big)[1] >= .98 * big.min_sep()                  # bigger nodes never overlap
+    kept = _drawn(chain_result.links, False, False)
+    assert not _layout(chain_result, kept, GraphStyle(show_flagged=False))[2]   # no flagged-only nodes
+    for bad in (dict(node_size=0), dict(spacing=-1), dict(label_size=True), dict(edge_labels="some"),
+                dict(show_flagged="yes"), dict(dpi=10)):
+        with pytest.raises(ValueError):
+            GraphStyle(**bad)
+    with pytest.raises(TypeError):
+        plot_explore(chain_result, tmp_path / 'x.png', colour='red')
+    out = plot_explore(chain_result, tmp_path / 'a.png', style=GraphStyle(spacing=.7), node_size=1.3,
+                       edge_width=.6, label_size=1.2, show_flagged=False, edge_labels=None, dpi=90)
+    assert out.exists()
+    assert (write_explore(chain_result, tmp_path / 'w', spacing=.8) / 'network.png').exists()
