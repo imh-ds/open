@@ -1,0 +1,16 @@
+engine,corr,source_class,kept,flagged,false_tested,kept_rate,flagged_rate
+elastic_net,correlated,null,107,260,44967,0.0024,0.0058
+elastic_net,correlated,proxy,41,120,7300,0.0056,0.0164
+elastic_net,correlated,structural,153,334,27698,0.0055,0.0121
+elastic_net,independent,null,36,64,10397,0.0035,0.0062
+elastic_net,independent,structural,9,28,3095,0.0029,0.009
+lightgbm,correlated,null,1,147,19584,0.0001,0.0075
+lightgbm,correlated,proxy,0,22,3496,0.0,0.0063
+lightgbm,correlated,structural,0,177,14588,0.0,0.0121
+lightgbm,independent,null,0,19,4905,0.0,0.0039
+lightgbm,independent,structural,0,9,1868,0.0,0.0048
+ols,correlated,null,1,1564,28853,0.0,0.0542
+ols,correlated,proxy,1,304,4747,0.0002,0.064
+ols,correlated,structural,18,1256,19554,0.0009,0.0642
+ols,independent,null,0,422,7785,0.0,0.0542
+ols,independent,structural,0,162,2669,0.0,0.0607
