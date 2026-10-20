@@ -25,7 +25,13 @@ import pandas as pd
 from open.explore import ExploreResult
 
 
-def write_explore(result: ExploreResult, out_dir, *, plot: bool = True, show_flagged: bool = True) -> Path:
+def write_explore(result: ExploreResult, out_dir, *, plot: bool = True, show_flagged: bool = True,
+                  confirmation: pd.DataFrame | None = None) -> Path:
+    """Save the tables, settings, summary and graph.
+
+    With ``confirmation`` (from ``open.confirm.confirm``), also save it as
+    ``confirmation.csv`` and mark confirmed links in the graph.
+    """
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
     nodes = result.nodes.assign(parents=result.nodes.parents.map(";".join))
@@ -37,8 +43,19 @@ def write_explore(result: ExploreResult, out_dir, *, plot: bool = True, show_fla
     result.bars.to_csv(out / "noise-bars.csv", index=False)
     (out / "settings.json").write_text(json.dumps(dict(result.settings, stops=result.stops), indent=2) + "\n")
     (out / "summary.txt").write_text(result.summary() + "\n", encoding="utf-8")
+    if confirmation is not None:
+        confirmation.to_csv(out / "confirmation.csv", index=False)
     if plot:
-        plot_explore(result, out / "network.png", show_flagged=show_flagged)
+        plot_explore(result, out / "network.png", show_flagged=show_flagged, confirmation=confirmation)
+    return out
+
+
+def write_split(split, out_dir, *, plot: bool = True, show_flagged: bool = True) -> Path:
+    """Save an ``open.confirm.explore_and_confirm`` result: exploration, confirmation and split settings."""
+    out = write_explore(split.exploration, out_dir, plot=plot, show_flagged=show_flagged,
+                        confirmation=split.confirmation)
+    (out / "split-settings.json").write_text(json.dumps(split.settings, indent=2) + "\n")
+    (out / "summary.txt").write_text(split.summary() + "\n", encoding="utf-8")
     return out
 
 
@@ -70,7 +87,8 @@ def _layout(result: ExploreResult, links: pd.DataFrame):
     return pos, candidate
 
 
-def plot_explore(result: ExploreResult, path=None, *, show_flagged: bool = True):
+def plot_explore(result: ExploreResult, path=None, *, show_flagged: bool = True,
+                 confirmation: pd.DataFrame | None = None):
     import matplotlib
     if path is not None:
         matplotlib.use("Agg")
@@ -94,9 +112,17 @@ def plot_explore(result: ExploreResult, path=None, *, show_flagged: bool = True)
         ax.text(mx, my + 0.12, label, fontsize=7, ha="center", color=color, zorder=3,
                 bbox=dict(boxstyle="round,pad=0.1", fc="white", ec="none", alpha=0.8))
 
+    verdict = {}
+    if confirmation is not None:
+        for c in confirmation.itertuples():
+            verdict[(c.depth, c.target, c.source)] = (
+                "not tested" if pd.isna(c.p) else
+                f"{'confirmed' if c.confirmed else 'not confirmed'} p {c.p_adjusted:.2g}")
     for r in links.itertuples():
         target = pos[r.target]
         label = f"{r.pass_rate:.0%} | R² {_r2(r.r2_median)}"
+        if (r.depth, r.target, r.source) in verdict:
+            label += "\n" + verdict[(r.depth, r.target, r.source)]
         if r.kind == "unique":
             arrow(pos[r.source], target, r.tier, r.r2_median, label)
         elif r.kind == "shared":

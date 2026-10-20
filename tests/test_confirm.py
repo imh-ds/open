@@ -136,3 +136,16 @@ def test_explore_and_confirm_warns_for_small_n_and_null_links_rarely_confirm():
         res = explore_and_confirm(data, 'Y', config=ExploreConfig(max_depth=1, interactions=False, flag=.1),
                                   include_flagged=True)
     assert not res.confirmation.confirmed.any()
+
+
+def test_write_split_saves_confirmation(tmp_path):
+    from open.confirm import explore_and_confirm
+    from open.explore_report import write_split
+    res = explore_and_confirm(_chain(1200, 7), 'Y', split_seed=1,
+                              config=ExploreConfig(max_depth=1, interactions=False))
+    out = write_split(res, tmp_path / 'out')
+    for name in ('confirmation.csv', 'split-settings.json', 'summary.txt', 'network.png', 'links.csv'):
+        assert (out / name).stat().st_size > 0
+    table = pd.read_csv(out / 'confirmation.csv')
+    assert {'p', 'p_adjusted', 'confirmed', 'explore_tier'} <= set(table.columns)
+    assert 'Confirmation:' in (out / 'summary.txt').read_text(encoding='utf-8')
