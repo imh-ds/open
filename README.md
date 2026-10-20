@@ -46,8 +46,11 @@ shows the depth, and grey dashed nodes are predictors that were only flagged.
 - **Edge labels:** a solid edge is labelled with its R² lost, with ✓ when it
   was confirmed on new data. Every value is in the tables.
 - **Blue band:** correlated predictors that matter together (a shared group).
-  **Orange diamond:** a pairwise interaction. Solid lines from the two variables meet in the diamond (labelled with the pair, e.g. "F·N7"); the line on to the target is solid if the interaction is kept and dashed if flagged. Flagged interactions are listed in the
-  tables but not drawn by default, because most were false in validation.
+  **Orange diamond:** a pairwise interaction. Solid lines from the two variables
+  meet in the diamond (labelled with the pair, e.g. "F·N7"); the line on to the
+  target is solid if the interaction is kept and dashed if flagged. Flagged
+  interactions are listed in the tables but not drawn by default, because most
+  were false in validation.
 - **Lines are predictive, not causal.** Each line joins a predictor (outer) to
   the target it predicts (inner): X predicts T beyond T's other candidates on
   held-out data. It is not a causal claim, and not a partial correlation. Depth
