@@ -63,13 +63,26 @@ gradient boosting were evaluated and dropped ([docs/engines.md](docs/engines.md)
 Exploration and confirmation must use different data. To confirm, either split
 one dataset before any analysis or use a new sample:
 
+**One dataset (N of about 1,000 or more):** split once, explore on one part and
+confirm on the other.
+
+```python
+from open.confirm import explore_and_confirm
+from open.explore_report import write_split
+
+split = explore_and_confirm(data, outcome="Y", engine="ols", split_seed=1)
+print(split.summary())
+write_split(split, "open-output")              # adds confirmation.csv; the graph marks confirmed links
+```
+
+**A new sample:** explore on all of your current data, then confirm on the new
+sample.
+
 ```python
 from open.confirm import confirm
 
-explore_half = data.sample(frac=0.5, random_state=1)
-confirm_half = data.drop(explore_half.index)
-result = explore(explore_half, outcome="Y", engine="ols")
-table = confirm(result, confirm_half)           # Holm-adjusted p-values for the frozen links
+result = explore(data, outcome="Y", engine="ols")
+table = confirm(result, new_sample)             # Holm-adjusted p-values for the frozen links
 ```
 
 `confirm` tests only the links found by the exploration, adjusting for the same

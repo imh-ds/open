@@ -79,6 +79,16 @@ confirmation always uses independent data:
   N ≥ about 1,000; below that, both parts lose power.
 - **Smaller samples:** explore on all the data and confirm in a new sample.
 
+**In code:**
+
+- `open.confirm.split_sample(data, explore_fraction, seed)` returns the two
+  parts.
+- `open.confirm.explore_and_confirm(data, outcome, ..., split_seed=...)` runs
+  the whole procedure and returns the exploration, the confirmation table and
+  the split settings.
+- `open.explore_report.write_split` saves them.
+- With a new sample, call `open.confirm.confirm(result, new_sample)`.
+
 **Procedure:**
 
 1. **Freeze.** The exploratory network's kept links (or kept and flagged, with
