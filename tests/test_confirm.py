@@ -149,3 +149,15 @@ def test_write_split_saves_confirmation(tmp_path):
     table = pd.read_csv(out / 'confirmation.csv')
     assert {'p', 'p_adjusted', 'confirmed', 'explore_tier'} <= set(table.columns)
     assert 'Confirmation:' in (out / 'summary.txt').read_text(encoding='utf-8')
+
+
+def test_lightgbm_column_subset_matches_full_computation():
+    pytest.importorskip("lightgbm")
+    r = np.random.default_rng(3)
+    X = r.normal(size=(160, 4))
+    T = np.tanh(X[:, 0]) + .3 * X[:, 2] + r.normal(size=160)
+    folds = _folds(160, 7)
+    full = gcm_pcm_pvalues(X, T, folds, 7)
+    np.testing.assert_array_equal(gcm_pcm_pvalues(X, T, folds, 7, columns=[2, 0]), full[[2, 0]])
+    with pytest.raises(ValueError):
+        gcm_pcm_pvalues(X, T, folds, 7, columns=[1, 1])

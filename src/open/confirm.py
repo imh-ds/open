@@ -76,31 +76,33 @@ def _fit_predict(Xtr, ytr, Xtests, seed):
     return [m.predict(Z, num_iteration=best) for Z in Xtests]
 
 
-def _gcm_residuals(X, T, fold, K, dseed, engine="F3"):
+def _gcm_residuals(X, T, fold, K, dseed, engine="F3", columns=None):
     n, p = X.shape
-    eT, eX = np.empty((p, n)), np.empty((p, n))
-    for j in range(p):
+    columns = range(p) if columns is None else columns
+    eT, eX = np.empty((len(columns), n)), np.empty((len(columns), n))
+    for row, j in enumerate(columns):
         C = np.delete(X, j, axis=1)
         for k in range(K):
             test = fold == k
             train = ~test
             fT, = _fit_predict(C[train], T[train], [C[test]], _seed(dseed, engine, K, k, "gcmT", j))
             fX, = _fit_predict(C[train], X[train, j], [C[test]], _seed(dseed, engine, K, k, "gcmX", j))
-            eT[j, test] = T[test] - fT
-            eX[j, test] = X[test, j] - fX
+            eT[row, test] = T[test] - fT
+            eX[row, test] = X[test, j] - fX
     return eT, eX
 
 
-def _pcm_products(X, T, half, fold, K, dseed, engine="F3"):
+def _pcm_products(X, T, half, fold, K, dseed, engine="F3", columns=None):
     n, p = X.shape
+    columns = range(p) if columns is None else columns
     out = []
     for h in (0, 1):
         A, B = half == h, half != h
         gA, gB = _fit_predict(X[A], T[A], [X[A], X[B]], _seed(dseed, engine, K, h, "pcm_g", -1))
         fB = fold[B]
         TB = T[B]
-        Rh = np.empty((p, int(B.sum())))
-        for j in range(p):
+        Rh = np.empty((len(columns), int(B.sum())))
+        for row, j in enumerate(columns):
             C = np.delete(X, j, axis=1)
             mB, = _fit_predict(C[A], gA, [C[B]], _seed(dseed, engine, K, h, "pcm_m", j))
             hB = gB - mB
@@ -110,7 +112,7 @@ def _pcm_products(X, T, half, fold, K, dseed, engine="F3"):
                 train = ~test
                 fT, = _fit_predict(CB[train], TB[train], [CB[test]], _seed(dseed, engine, K, h, f"pcmT{k}", j))
                 fH, = _fit_predict(CB[train], hB[train], [CB[test]], _seed(dseed, engine, K, h, f"pcmH{k}", j))
-                Rh[j, test] = (TB[test] - fT) * (hB[test] - fH)
+                Rh[row, test] = (TB[test] - fT) * (hB[test] - fH)
         out.append((Rh, fB))
     return out
 
@@ -136,11 +138,20 @@ def _folds(n, seed):
     return out
 
 
-def gcm_pcm_pvalues(X: np.ndarray, T: np.ndarray, folds: dict, dseed: int) -> np.ndarray:
-    """Combined GCM/PCM p-value per column of X (Phase B, F3 with G2)."""
-    eT, eX = _gcm_residuals(X, T, folds["k10"], GCM_FOLDS, dseed)
+def gcm_pcm_pvalues(X: np.ndarray, T: np.ndarray, folds: dict, dseed: int, columns=None) -> np.ndarray:
+    """Combined GCM/PCM p-value per column of X (Phase B, F3 with G2).
+
+    With ``columns`` (indices into X), only those columns are tested, in that
+    order. Seeds are keyed by each column's index in X, so the p-values equal
+    those of the full computation.
+    """
+    if columns is not None:
+        columns = [int(j) for j in columns]
+        if len(set(columns)) != len(columns) or not all(0 <= j < X.shape[1] for j in columns):
+            raise ValueError("columns must be distinct indices into X")
+    eT, eX = _gcm_residuals(X, T, folds["k10"], GCM_FOLDS, dseed, columns=columns)
     p_gcm = _stat_cluster(eT * eX, folds["k10"], GCM_FOLDS)
-    parts = _pcm_products(X, T, folds["half"], folds["k10"], GCM_FOLDS, dseed)
+    parts = _pcm_products(X, T, folds["half"], folds["k10"], GCM_FOLDS, dseed, columns=columns)
     ps = [_stat_cluster(Rh, fB, GCM_FOLDS, two_sided=False) for Rh, fB in parts]
     p_pcm = np.minimum(1.0, 2 * np.minimum(ps[0], ps[1]))
     return np.minimum(1.0, 2 * np.minimum(p_gcm, p_pcm))
@@ -212,11 +223,12 @@ def confirm(result: ExploreResult, data: pd.DataFrame, engine: str | None = None
         testable = group.kind == "unique"
         if testable.any():
             if engine == "ols":
-                p_all = hc4_pvalues(X, T)
-            else:
+                p_of = dict(zip(pool, hc4_pvalues(X, T)))
+            else:   # only the frozen columns: about 61 LightGBM fits per column
                 dseed = _seed(seed, "confirm", depth, target)
-                p_all = gcm_pcm_pvalues(X, T, _folds(n, dseed), dseed)
-            p_of = dict(zip(pool, p_all))
+                wanted = list(dict.fromkeys(group.source[testable]))
+                cols = [pool.index(c) for c in wanted]
+                p_of = dict(zip(wanted, gcm_pcm_pvalues(X, T, _folds(n, dseed), dseed, columns=cols)))
         for _, r in group.iterrows():
             row = dict(depth=depth, target=target, source=r.source, kind=r.kind, explore_tier=r.tier,
                        explore_pass_rate=r.pass_rate, explore_r2=r.r2_median, engine=engine, n=n,
