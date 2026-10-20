@@ -231,3 +231,30 @@ def test_network_fit_is_zero_without_kept_predictors():
     res = explore(d, 'Y', engine='ols', config=ExploreConfig(max_depth=1, interactions=False))
     row = res.fit.iloc[0]
     assert row.network_size == 0 and row.r2_network == 0 and row.r2_pool < .02
+
+
+def test_graph_layout_is_centred_spaced_and_deterministic(chain_result):
+    import math
+    from open.explore_report import MIN_SEP, _drawn, _layout
+    links = _drawn(chain_result.links, True, True)
+    pos, ring, candidate = _layout(chain_result, links)
+    assert pos['Y'] == (0.0, 0.0)
+    assert {m for ms in links.members for m in ms} | set(links.target) <= set(pos)
+    names = list(pos)
+    for i, a in enumerate(names):
+        for b in names[i + 1:]:
+            assert math.dist(pos[a], pos[b]) >= .98 * MIN_SEP, (a, b)
+    assert _layout(chain_result, links)[0] == pos
+
+
+def test_plot_draws_interactions_groups_and_confirmation(tmp_path):
+    from open.explore_report import plot_explore
+    r = np.random.default_rng(4)
+    n = 800
+    d = pd.DataFrame(r.normal(size=(n, 6)), columns=['A', 'B', 'C', 'D', 'E', 'L'])
+    d['S1'], d['S2'] = d.L + .1 * r.normal(size=n), d.L + .1 * r.normal(size=n)
+    d['Y'] = .4 * d.A + .3 * d.L + .4 * d.A * d.B + r.normal(size=n)
+    res = explore(d.drop(columns='L'), 'Y', engine='ols', config=ExploreConfig(max_depth=1, max_interaction_pairs=6))
+    conf = pd.DataFrame(dict(depth=[1], target=['Y'], source=['A'], p=[.001], confirmed=[True]))
+    out = plot_explore(res, tmp_path / 'g.png', show_flagged_interactions=True, confirmation=conf)
+    assert out.stat().st_size > 10_000
