@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+
+# Tests and tools
+.pytest_cache/
+.pytest-tmp*/
+.coverage
+
+# Raw study outputs live in GitHub releases and Zenodo, never in git
+examples/results/**/pvalues/
+examples/results/**/regen/
+examples/results/**/cells/
+*.npz
+*.zip
+
+# Private planning and local scratch
+outline/
+.superpowers/
+.claude/
