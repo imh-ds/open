@@ -235,3 +235,73 @@ def confirm(result: ExploreResult, data: pd.DataFrame, engine: str | None = None
     out["confirmed"] = out.p_adjusted < alpha
     out.attrs.update(correction=correction, alpha=alpha, links_tested=int(tested.sum()))
     return out
+
+
+# ---------------------------------------------------------------- one dataset: split, explore, confirm
+
+def split_sample(data: pd.DataFrame, explore_fraction: float = 0.5, seed: int = 0):
+    """Randomly split rows once, before any analysis, into (explore, confirm) parts.
+
+    Record ``seed`` with the results so the split can be reproduced.
+    """
+    if not isinstance(data, pd.DataFrame):
+        raise TypeError("data must be a pandas DataFrame")
+    if not 0 < explore_fraction < 1:
+        raise ValueError("explore_fraction must be in (0, 1)")
+    n = len(data)
+    n_explore = int(round(explore_fraction * n))
+    if n_explore < 1 or n_explore >= n:
+        raise ValueError("both parts of the split must have rows")
+    order = np.random.default_rng(seed).permutation(n)
+    return data.iloc[np.sort(order[:n_explore])], data.iloc[np.sort(order[n_explore:])]
+
+
+class SplitResult:
+    """An exploratory network from one part of the data, confirmed on the other."""
+
+    def __init__(self, exploration: ExploreResult, confirmation: pd.DataFrame, settings: dict):
+        self.exploration = exploration
+        self.confirmation = confirmation
+        self.settings = settings
+
+    def summary(self) -> str:
+        s = self.settings
+        lines = [f"Split (seed {s['split_seed']}): explored on {s['n_explore']} rows, "
+                 f"confirmed on {s['n_confirm']} rows with {s['confirm_engine']} "
+                 f"({s['correction']}-adjusted, alpha {s['alpha']}).",
+                 self.exploration.summary(), "Confirmation:"]
+        if self.confirmation.empty:
+            lines.append("  No links to confirm.")
+        for _, r in self.confirmation.iterrows():
+            if pd.isna(r.p):
+                verdict = r.note
+            else:
+                verdict = (f"{'confirmed' if r.confirmed else 'not confirmed'} "
+                           f"(p = {r.p:.3g}, adjusted {r.p_adjusted:.3g})")
+            lines.append(f"  {r.source} -> {r.target} ({r.kind}, {r.explore_tier}): {verdict}")
+        return "\n".join(lines)
+
+
+def explore_and_confirm(data: pd.DataFrame, outcome: str, predictors=None, engine: str = "ols", config=None,
+                        explore_fraction: float = 0.5, split_seed: int = 0, confirm_engine: str | None = None,
+                        include_flagged: bool = False, correction: str = "holm",
+                        alpha: float = 0.05) -> SplitResult:
+    """Split one dataset, explore on one part and confirm the frozen links on the other.
+
+    Splitting suits N of about 1,000 or more; with less data both parts lose
+    power, and confirming in a new sample is better.
+    """
+    from open.explore import explore
+    if len(data) < 1000:
+        warnings.warn(f"N = {len(data)}: splitting leaves small parts; with under about 1,000 rows, "
+                      "exploring on all data and confirming in a new sample keeps more power.", stacklevel=2)
+    explore_part, confirm_part = split_sample(data, explore_fraction, split_seed)
+    exploration = explore(explore_part, outcome, predictors, engine=engine, config=config)
+    confirmation = confirm(exploration, confirm_part, engine=confirm_engine, include_flagged=include_flagged,
+                           correction=correction, alpha=alpha)
+    used = confirmation.engine.iloc[0] if len(confirmation) else (
+        confirm_engine or ("lightgbm" if engine == "lightgbm" else "ols"))
+    settings = dict(split_seed=split_seed, explore_fraction=explore_fraction, n_explore=len(explore_part),
+                    n_confirm=len(confirm_part), explore_engine=engine, confirm_engine=used,
+                    include_flagged=include_flagged, correction=correction, alpha=alpha)
+    return SplitResult(exploration, confirmation, settings)

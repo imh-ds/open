@@ -98,3 +98,41 @@ def test_elastic_net_network_is_confirmed_with_ols():
                   config=ExploreConfig(max_depth=1, interactions=False, folds=5))
     out = confirm(res, data.iloc[600:])
     assert len(out) and set(out.engine) == {'ols'}
+
+
+def test_split_sample_is_reproducible_and_disjoint():
+    from open.confirm import split_sample
+    data = _chain(1000, 3)
+    a1, b1 = split_sample(data, .6, seed=4)
+    a2, b2 = split_sample(data, .6, seed=4)
+    assert a1.index.equals(a2.index) and b1.index.equals(b2.index)
+    assert len(a1) == 600 and len(b1) == 400
+    assert not set(a1.index) & set(b1.index) and len(set(a1.index) | set(b1.index)) == 1000
+    a3, _ = split_sample(data, .6, seed=5)
+    assert not a3.index.equals(a1.index)
+    with pytest.raises(ValueError):
+        split_sample(data, 1.0)
+
+
+def test_explore_and_confirm_on_one_dataset():
+    from open.confirm import explore_and_confirm
+    data = _chain(1400, 6)
+    res = explore_and_confirm(data, 'Y', engine='ols', split_seed=2,
+                              config=ExploreConfig(max_depth=2, interactions=False))
+    assert res.settings['n_explore'] == 700 and res.settings['n_confirm'] == 700
+    assert res.settings['confirm_engine'] == 'ols'
+    assert set(zip(res.confirmation.source, res.confirmation.target)) >= {('X1', 'Y'), ('X3', 'Y')}
+    assert res.confirmation.confirmed.all()
+    text = res.summary()
+    assert 'Confirmation:' in text and 'confirmed (p =' in text
+
+
+def test_explore_and_confirm_warns_for_small_n_and_null_links_rarely_confirm():
+    from open.confirm import explore_and_confirm
+    r = np.random.default_rng(12)
+    data = pd.DataFrame(r.normal(size=(700, 8)), columns=[f'N{i}' for i in range(8)])
+    data['Y'] = r.normal(size=700)
+    with pytest.warns(UserWarning, match='small parts'):
+        res = explore_and_confirm(data, 'Y', config=ExploreConfig(max_depth=1, interactions=False, flag=.1),
+                                  include_flagged=True)
+    assert not res.confirmation.confirmed.any()
