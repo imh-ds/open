@@ -4,8 +4,13 @@
 network graph. ``plot_explore`` draws the graph:
 
 - outcome on the right, one column per depth going left;
+- plain lines, without arrowheads: each line joins a predictor (left) to the
+  target it predicts (right); the layout gives the roles, and a line is not a
+  causal claim;
 - solid lines for kept links, dotted lines for flagged links, widths scaled
   by held-out R² lost;
+- under each explored target, its network fit: held-out R² from its kept
+  predictors (and, with confirmation, the cross-validated R² on the new data);
 - shared (substitute) groups as a box around their members, with one line
   to the target;
 - interactions as a × marker joining the two predictors, with a line to the
@@ -16,7 +21,9 @@ Relations hidden by ``hide_below`` are left out of the graph but stay in the tab
 Flagged interactions are also left out by default (``show_flagged_interactions``):
 in the validation study they were mostly false. They stay in the tables.
 
-An arrow means "predicts the target beyond the other candidates", not "causes".
+A line means "the left variable predicts the right one beyond that target's
+other candidates" (held-out R²). It is not causal, and it is not a partial
+correlation.
 """
 from __future__ import annotations
 
@@ -31,11 +38,14 @@ from open.explore import ExploreResult
 
 def write_explore(result: ExploreResult, out_dir, *, plot: bool = True, show_flagged: bool = True,
                   show_flagged_interactions: bool = False,
-                  confirmation: pd.DataFrame | None = None) -> Path:
+                  confirmation: pd.DataFrame | None = None,
+                  confirmation_fit: pd.DataFrame | None = None) -> Path:
     """Save the tables, settings, summary and graph.
 
     With ``confirmation`` (from ``open.confirm.confirm``), also save it as
-    ``confirmation.csv`` and mark confirmed links in the graph.
+    ``confirmation.csv`` and mark confirmed links in the graph. With
+    ``confirmation_fit`` (from ``open.confirm.confirmation_fit``), save it as
+    ``confirmation-fit.csv`` and show it under each target.
     """
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
@@ -46,13 +56,18 @@ def write_explore(result: ExploreResult, out_dir, *, plot: bool = True, show_fla
     result.pairs.to_csv(out / "pairs.csv", index=False)
     result.folds.to_csv(out / "folds.csv", index=False)
     result.bars.to_csv(out / "noise-bars.csv", index=False)
+    result.fit.assign(network=result.fit.network.map(";".join)).to_csv(out / "fit.csv", index=False)
     (out / "settings.json").write_text(json.dumps(dict(result.settings, stops=result.stops), indent=2) + "\n")
     (out / "summary.txt").write_text(result.summary() + "\n", encoding="utf-8")
     if confirmation is not None:
         confirmation.to_csv(out / "confirmation.csv", index=False)
+    if confirmation_fit is not None:
+        confirmation_fit.assign(network=confirmation_fit.network.map(";".join)) \
+            .to_csv(out / "confirmation-fit.csv", index=False)
     if plot:
         plot_explore(result, out / "network.png", show_flagged=show_flagged,
-                     show_flagged_interactions=show_flagged_interactions, confirmation=confirmation)
+                     show_flagged_interactions=show_flagged_interactions, confirmation=confirmation,
+                     confirmation_fit=confirmation_fit)
     return out
 
 
@@ -61,7 +76,7 @@ def write_split(split, out_dir, *, plot: bool = True, show_flagged: bool = True,
     """Save an ``open.confirm.explore_and_confirm`` result: exploration, confirmation and split settings."""
     out = write_explore(split.exploration, out_dir, plot=plot, show_flagged=show_flagged,
                         show_flagged_interactions=show_flagged_interactions,
-                        confirmation=split.confirmation)
+                        confirmation=split.confirmation, confirmation_fit=split.fit)
     (out / "split-settings.json").write_text(json.dumps(split.settings, indent=2) + "\n")
     (out / "summary.txt").write_text(split.summary() + "\n", encoding="utf-8")
     return out
@@ -80,8 +95,10 @@ def _layout(result: ExploreResult, links: pd.DataFrame):
     candidate = set()
     for r in links.itertuples():
         for m in r.members:
-            if m not in column:
-                column[m] = int(r.depth)
+            if m not in column or m in candidate:
+                # a flagged-only predictor sits in the column of its deepest link, so every
+                # line runs from a predictor's column to its target's column on the right
+                column[m] = max(column.get(m, 0), int(r.depth))
                 candidate.add(m)
     order = {}
     for r in links.itertuples():   # keep group and interaction members next to each other
@@ -106,7 +123,8 @@ def _drawn(links: pd.DataFrame, show_flagged: bool, show_flagged_interactions: b
 
 def plot_explore(result: ExploreResult, path=None, *, show_flagged: bool = True,
                  show_flagged_interactions: bool = False,
-                 confirmation: pd.DataFrame | None = None):
+                 confirmation: pd.DataFrame | None = None,
+                 confirmation_fit: pd.DataFrame | None = None):
     import matplotlib
     if path is not None:
         matplotlib.use("Agg")
@@ -119,9 +137,9 @@ def plot_explore(result: ExploreResult, path=None, *, show_flagged: bool = True,
     tall = max([1] + [sum(1 for p in pos.values() if p[0] == x) for x in {p[0] for p in pos.values()}])
     fig, ax = plt.subplots(figsize=(3 + 3 * depth_count, 1.5 + 0.9 * tall))
 
-    def arrow(a, b, tier_, r2, label, color="#333333"):
+    def line(a, b, tier_, r2, label, color="#333333"):
         style = "-" if tier_ == "kept" else (0, (2, 2))
-        ax.add_patch(FancyArrowPatch(a, b, arrowstyle="-|>", mutation_scale=12, linewidth=_width(r2),
+        ax.add_patch(FancyArrowPatch(a, b, arrowstyle="-", linewidth=_width(r2),
                                      linestyle=style, color=color, shrinkA=18, shrinkB=18, zorder=1))
         mx, my = (a[0] + b[0]) / 2, (a[1] + b[1]) / 2
         ax.text(mx, my + 0.12, label, fontsize=7, ha="center", color=color, zorder=3,
@@ -139,7 +157,7 @@ def plot_explore(result: ExploreResult, path=None, *, show_flagged: bool = True,
         if (r.depth, r.target, r.source) in verdict:
             label += "\n" + verdict[(r.depth, r.target, r.source)]
         if r.kind == "unique":
-            arrow(pos[r.source], target, r.tier, r.r2_median, label)
+            line(pos[r.source], target, r.tier, r.r2_median, label)
         elif r.kind == "shared":
             xs = [pos[m][0] for m in r.members]
             ys = [pos[m][1] for m in r.members]
@@ -148,7 +166,7 @@ def plot_explore(result: ExploreResult, path=None, *, show_flagged: bool = True,
                                         fill=False, ec="#2b6cb0", lw=1.2,
                                         ls="-" if r.tier == "kept" else (0, (2, 2)), zorder=0))
             start = (max(xs) + 0.55, (min(ys) + max(ys)) / 2)
-            arrow(start, target, r.tier, r.r2_median, "shared " + label, color="#2b6cb0")
+            line(start, target, r.tier, r.r2_median, "shared " + label, color="#2b6cb0")
         else:
             (ax_, ay), (bx, by) = pos[r.members[0]], pos[r.members[1]]
             mx, my = (ax_ + bx) / 2, (ay + by) / 2
@@ -157,10 +175,15 @@ def plot_explore(result: ExploreResult, path=None, *, show_flagged: bool = True,
             for m in r.members:
                 ax.plot([pos[m][0], mark[0]], [pos[m][1], mark[1]], color="#c05621", lw=0.8, ls=ls, zorder=1)
             ax.text(*mark, "×", fontsize=14, ha="center", va="center", color="#c05621", zorder=3)
-            arrow(mark, target, r.tier, r.r2_median, label, color="#c05621")
+            line(mark, target, r.tier, r.r2_median, label, color="#c05621")
 
+    fit = {r.target: r.r2_network for r in result.fit.itertuples()}
+    new = {r.target: r.r2_network for r in confirmation_fit.itertuples()} if confirmation_fit is not None else {}
     for v, (x, y) in pos.items():
         grey = v in candidate
+        if v in fit:   # network fit under each explored target
+            text = f"R² {fit[v]:.2f}" + (f" | new {new[v]:.2f}" if v in new else "")
+            ax.text(x, y - 0.32, text, ha="center", va="top", fontsize=7, color="#2f6f3e", zorder=4)
         ax.text(x, y, v, ha="center", va="center", fontsize=9, zorder=4,
                 color="#777777" if grey else "black",
                 bbox=dict(boxstyle="round,pad=0.35", fc="#f2f2f2" if grey else "white",
@@ -173,7 +196,9 @@ def plot_explore(result: ExploreResult, path=None, *, show_flagged: bool = True,
     ax.set_title(f"{s['outcome']}: {s['engine']}, N = {s['n']}{split}. Solid: kept (≥ {s['keep']:.0%} of folds); "
                  f"dotted: flagged (≥ {s['flag']:.0%}).\nLabel: folds above the noise bar | held-out R² lost "
                  f"(gained, for × interactions). Blue box: shared group. Grey: flagged only.\n"
-                 f"Arrows show prediction beyond the other candidates, not causation.", fontsize=9)
+                 f"Each line: the left variable predicts the right one beyond that target's other candidates "
+                 f"(not causal; not a partial correlation).\nGreen: held-out R² of the target from its solid "
+                 f"lines" + (" | cross-validated on the new data." if new else "."), fontsize=9)
     xs = [p[0] for p in pos.values()] or [0]
     ys = [p[1] for p in pos.values()] or [0]
     ax.set_xlim(min(xs) - 1.2, max(xs) + 1.2)
