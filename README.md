@@ -42,7 +42,13 @@ write_explore(result, "open-output")           # tables plus network.png
   unique predictive contribution. **R² above noise:** R² lost minus the noise
   bar.
 - **Blue box:** correlated predictors that matter together (a shared group).
-  **× marker:** a pairwise interaction.
+  **× marker:** a pairwise interaction. Flagged interactions are listed in the
+  tables but not drawn by default, because most were false in validation.
+- **Arrows are predictive, not causal.** X → T means X predicts T beyond the
+  other candidates on held-out data. Depth is predictive distance from the
+  outcome, not a causal order.
+- **The fold tally is an exploratory rule, not a p-value.** Formal tests come
+  from confirmation on independent data (below).
 
 See [docs/method.md](docs/method.md) for the full procedure and its settings.
 

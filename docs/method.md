@@ -55,7 +55,10 @@ candidate.
   over an additive spline model.
 - **Noise comparison:** each real pair is compared against a pair with one
   member replaced by its noise twin, using the same bar and tiers.
-- **Drawing only:** interactions are drawn, but promote nothing.
+- **Drawing only:** interactions promote nothing. Kept interactions are drawn.
+  Flagged interactions stay in the tables but are left out of the graph by
+  default, because in the validation study most of them were false (1.1–1.4
+  per dataset). Draw them with `show_flagged_interactions=True`.
 
 **7. Recursion.**
 
@@ -106,7 +109,58 @@ confirmation always uses independent data:
 4. **Multiple testing:** p-values are adjusted across the frozen links with
    Holm (default) or Benjamini–Hochberg.
 5. **Not yet tested:** shared groups and interactions are listed as not tested,
-   because no calibrated test exists for them yet.
+   because no calibrated test exists for them yet. They remain exploratory
+   results, even after confirmation.
+
+**Why LightGBM uses different settings in exploration and confirmation.**
+
+- **Exploration** refits the engine many times per target: every fold, every
+  left-out column and every noise column. It uses a fast LightGBM (100 trees,
+  a 4-point tuning grid), whose behaviour was checked in the validation study.
+- **Confirmation** must use exactly the configuration whose p-values were
+  calibrated in Phase B (F3: up to 1,000 trees with early stopping). Changing it
+  would lose that calibration.
+- Using F3 in exploration would multiply its runtime. Each setting is the one
+  validated for its job.
+
+## What the results mean
+
+**Arrows are predictive, not causal.**
+
+- An arrow X → T means that X predicts T beyond the other candidates in T's pool,
+  on held-out data. It does not mean that X causes T.
+- Depth is predictive distance from the outcome, not a causal or temporal order.
+  A depth-2 variable predicts a depth-1 variable; it is not shown to act through
+  it (mediation).
+- Confirmation tests the same predictive claim on new data. It does not make the
+  claim causal.
+
+**The fold tally is a rule, not a probability.**
+
+- The 10 folds share most of their training data (each pair of training sets
+  overlaps by about 89%). "Kept in 9 of 10 folds" is therefore not 9 independent
+  replications, and the tally is not a p-value or an error rate.
+- How often the rule keeps false links is known from simulation
+  ([validation-evidence.md](validation-evidence.md)): about 0.01–0.07 kept false
+  links per dataset in the validation study.
+- Formal error control comes only from confirmation on independent data.
+
+## Scope and assumptions
+
+- **Outcome:** continuous, with no missing values.
+- **Predictors:** numeric. Dummy-code categorical predictors before the
+  analysis.
+- **Missing predictor values:** median-imputed within each training fold. This
+  is reasonable when few values are missing and missingness is unrelated to the
+  values. With more missing data, impute beforehand (for example, multiple
+  imputation).
+- **Confirmation** uses complete rows only (listwise deletion) for each target
+  and its pool.
+- **Validated range:** the validation study used 10 candidates, depth 2,
+  N 300–1,000, and independent normal predictors. Confirmation p-values are
+  calibrated from N ≥ 275 (OLS) and N ≥ 300 (LightGBM) for single regressions.
+  Larger pools, deeper networks, and correlated, skewed or Likert predictors are
+  outside what has been tested so far.
 
 ## Defaults
 
