@@ -63,6 +63,25 @@ shows the depth, and grey dashed nodes are predictors that were only flagged.
 - **The fold tally is an exploratory rule, not a p-value.** Formal tests come
   from confirmation on independent data (below).
 
+**Adjusting the graph.** Every display setting is a `GraphStyle` field. Pass
+the fields as keywords to `plot_explore`, `write_explore` or `write_split`, or
+pass a `style=GraphStyle(...)`. Sizes are multipliers of the defaults:
+
+```python
+from open.explore_report import GraphStyle, plot_explore
+
+plot_explore(result, "network.png",
+             spacing=.7,           # < 1 more compact, > 1 more spread out (nodes never overlap)
+             node_size=1.2,        # circles, fit rings and interaction diamonds
+             edge_width=.8,        # thickness of every edge
+             label_size=1.1,       # all text
+             show_flagged=False,   # hide dashed (flagged) links and flagged-only nodes
+             edge_labels="kept")   # "kept", "all" or None
+```
+
+The defaults are `GraphStyle()`. `show_flagged_interactions=True` also draws
+flagged interactions, and `dpi` sets the image resolution.
+
 See [docs/method.md](docs/method.md) for the full procedure and its settings.
 
 ## Engines
