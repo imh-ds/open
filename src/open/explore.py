@@ -20,10 +20,15 @@ the next depth's targets. Flagged and dropped ones stay in the pool.
 
 Every contrast reuses the parameters tuned for that fold's full model, so
 real and noise columns are treated identically.
+
+With ``repeats`` R > 1, the whole procedure is run R times per target, each
+with its own split into K folds and its own noise columns (repeat 0 uses
+``seed`` exactly as R = 1 does). The R x K folds are pooled: one noise bar per
+contrast over all of them, and the pass rate is the share of the R x K folds.
 """
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
 import hashlib
 from itertools import combinations
 
@@ -50,6 +55,7 @@ RATIO_MIN_BAR = 0.001
 @dataclass(frozen=True)
 class ExploreConfig:
     folds: int = 10
+    repeats: int = 1
     keep: float = 0.80
     flag: float = 0.40
     noise_quantile: float = 0.95
@@ -65,6 +71,8 @@ class ExploreConfig:
     def __post_init__(self):
         if type(self.folds) is not int or self.folds < 2:
             raise ValueError("folds must be an integer of at least 2")
+        if type(self.repeats) is not int or self.repeats < 1:
+            raise ValueError("repeats must be a positive integer")
         if not 0 < self.flag <= self.keep <= 1:
             raise ValueError("need 0 < flag <= keep <= 1")
         if not 0 < self.noise_quantile < 1:
@@ -98,7 +106,8 @@ class ExploreResult:
 
     def summary(self) -> str:
         s = self.settings
-        lines = [f"Outcome: {s['outcome']}  (engine {s['engine']}, N = {s['n']}, {s['folds']} folds; "
+        split = f"{s['folds']} folds" + (f" x {s['repeats']} repeats" if s.get("repeats", 1) > 1 else "")
+        lines = [f"Outcome: {s['outcome']}  (engine {s['engine']}, N = {s['n']}, {split}; "
                  f"kept >= {s['keep']:.0%}, flagged >= {s['flag']:.0%} of folds above the "
                  f"{s['noise_quantile']:.0%} noise bar)"]
         shown = self.links[self.links.tier.isin(["kept", "flagged"])]
@@ -148,6 +157,21 @@ def _predictor(engine, outcome: str, seed: int) -> Predictor:
 def _sub_seed(seed: int, *parts) -> int:
     text = "|".join(str(p) for p in (seed, *parts))
     return int.from_bytes(hashlib.sha256(text.encode()).digest()[:4], "big")
+
+
+def _repeat_seed(seed: int, repeat: int) -> int:
+    """Repeat 0 uses ``seed`` itself, so ``repeats=1`` is the original procedure."""
+    return seed if repeat == 0 else _sub_seed(seed, "repeat", repeat)
+
+
+def _fold_sets(n: int, config) -> tuple[np.ndarray, ...]:
+    """One random split of the rows into ``folds`` per repeat."""
+    sets = []
+    for r in range(config.repeats):
+        fold_ids = np.arange(n) % config.folds
+        np.random.default_rng(_sub_seed(_repeat_seed(config.seed, r), "folds")).shuffle(fold_ids)
+        sets.append(fold_ids)
+    return tuple(sets)
 
 
 def _dependence(data: pd.DataFrame, candidates: tuple[str, ...], tau: float):
@@ -231,11 +255,12 @@ def _classify_pairs(folds, edges, depth, target, config):
     """
     real = folds[~folds.noise]
     passed = {(r.contrast, r.source, r.fold): bool(r.passed) for r in real.itertuples()}
+    n_folds = config.folds * config.repeats   # pooled over repeats
     rows = []
     for a, b, score in edges:
         counts = {"both_proximal": 0, "partner_screening": 0, "shared_redundant": 0}
         screened = {}
-        for k in range(config.folds):
+        for k in range(n_folds):
             ua, ub = passed[("unique", a, k)], passed[("unique", b, k)]
             ba, bb = passed[("broad", a, k)], passed[("broad", b, k)]
             if ua and ub:
@@ -248,14 +273,14 @@ def _classify_pairs(folds, edges, depth, target, config):
                 counts["shared_redundant"] += 1
         order = list(counts)
         relation = max(order, key=lambda r: (counts[r], -order.index(r)))
-        rate = counts[relation] / config.folds
+        rate = counts[relation] / n_folds
         member, by = max(screened, key=screened.get) if relation == "partner_screening" and screened \
             else (None, None)
         rows.append(dict(depth=depth, target=target, a=a, b=b, spearman=score,
                          relation=relation if rate > 0 else "none", rate=rate,
                          tier=tier(rate, config.keep, config.flag) if rate > 0 else "dropped",
                          screened_member=member, screened_by=by,
-                         **{f"rate_{r}": c / config.folds for r, c in counts.items()}))
+                         **{f"rate_{r}": c / n_folds for r, c in counts.items()}))
     return pd.DataFrame(rows, columns=PAIR_COLUMNS)
 
 
@@ -333,72 +358,82 @@ def _interactions(Xo, yo, fold_o, active, candidates, noise_of, depth, target, c
     return pd.DataFrame(rows), {"*".join(p): p for p in real}
 
 
-def assess_target(data: pd.DataFrame, target: str, candidates: tuple[str, ...], fold_ids: np.ndarray,
+def assess_target(data: pd.DataFrame, target: str, candidates: tuple[str, ...], fold_ids,
                   engine, config: ExploreConfig, depth: int = 1):
     """Fold-level contrasts, links and pair classes for one target.
 
-    Returns (folds, links, pairs).
+    ``fold_ids`` is one array of fold numbers, or one per repeat. Each repeat
+    has its own noise columns and seeds; the folds of all repeats are pooled
+    (repeat r's fold k is numbered r * folds + k). Returns (folds, links, pairs).
     """
     candidates = tuple(candidates)
     if not candidates or target in candidates:
         raise ValueError("candidates must be nonempty and exclude the target")
-    model = _predictor(engine, target, config.seed)
-    rng = np.random.default_rng(_sub_seed(config.seed, "noise", depth, target))
+    fold_sets = (fold_ids,) if isinstance(fold_ids, np.ndarray) else tuple(fold_ids)
+    if len(fold_sets) != config.repeats:
+        raise ValueError("need one fold assignment per repeat")
     noise_of = {c: f"{NOISE_PREFIX}{c}" for c in candidates}
-    noise = {noise_of[c]: rng.permutation(data[c].to_numpy(dtype=float, na_value=np.nan))
-             for c in candidates}
-    X = pd.concat([data[list(candidates)].astype(float).reset_index(drop=True),
-                   pd.DataFrame(noise)], axis=1)
-    noise_cols = tuple(noise)
-    columns = candidates + noise_cols
     edges, groups = _dependence(data, candidates, config.dependence_pair)
     y = data[target].to_numpy(dtype=float, na_value=np.nan)
     observed = ~np.isnan(y)
-    group_rng = np.random.default_rng(_sub_seed(config.seed, "groups", depth, target))
-    noise_sets = {m: [tuple(sorted(group_rng.choice(len(noise_cols), m, replace=False)))
-                      for _ in range(config.noise_groups)]
-                  for m in sorted({len(g) for g in groups})}
-    pair_sets = [tuple(sorted(group_rng.choice(len(noise_cols), 2, replace=False)))
-                 for _ in range(config.noise_groups)] if edges else []
 
-    rows = []
-    for k in range(config.folds):
-        train = observed & (fold_ids != k)
-        test = observed & (fold_ids == k)
-        if train.sum() < config.tuning_folds * 2 or test.sum() < 1:
-            raise ValueError(f"target {target!r}: fold {k} has too few observed rows")
-        Xtr, Xte = X[train].reset_index(drop=True), X[test].reset_index(drop=True)
-        ytr, yte = y[train], y[test]
-        tuner = model.clone()
-        inner = KFold(config.tuning_folds, shuffle=True, random_state=_sub_seed(config.seed, "tune", k))
-        params = dict(tuner.tune(Xtr[list(columns)], ytr, inner, "mse"))
-        base = _risk(model, params, Xtr, ytr, Xte, yte, ())
-        full = _risk(model, params, Xtr, ytr, Xte, yte, columns)
-        if base <= 0:
-            raise ValueError(f"target {target!r} is constant in held-out fold {k}")
+    rows, designs = [], []
+    for r, fold_r in enumerate(fold_sets):
+        cfg = replace(config, seed=_repeat_seed(config.seed, r))
+        model = _predictor(engine, target, cfg.seed)
+        rng = np.random.default_rng(_sub_seed(cfg.seed, "noise", depth, target))
+        noise = {noise_of[c]: rng.permutation(data[c].to_numpy(dtype=float, na_value=np.nan))
+                 for c in candidates}
+        X = pd.concat([data[list(candidates)].astype(float).reset_index(drop=True),
+                       pd.DataFrame(noise)], axis=1)
+        noise_cols = tuple(noise)
+        columns = candidates + noise_cols
+        group_rng = np.random.default_rng(_sub_seed(cfg.seed, "groups", depth, target))
+        noise_sets = {m: [tuple(sorted(group_rng.choice(len(noise_cols), m, replace=False)))
+                          for _ in range(config.noise_groups)]
+                      for m in sorted({len(g) for g in groups})}
+        pair_sets = [tuple(sorted(group_rng.choice(len(noise_cols), 2, replace=False)))
+                     for _ in range(config.noise_groups)] if edges else []
+        designs.append((cfg, X, fold_r))
 
-        def add(contrast, source, value, is_noise):
-            rows.append(dict(depth=depth, target=target, fold=k, contrast=contrast, source=source,
-                             noise=is_noise, value=value))
+        for k in range(config.folds):
+            train = observed & (fold_r != k)
+            test = observed & (fold_r == k)
+            if train.sum() < config.tuning_folds * 2 or test.sum() < 1:
+                raise ValueError(f"target {target!r}: fold {k} has too few observed rows")
+            Xtr, Xte = X[train].reset_index(drop=True), X[test].reset_index(drop=True)
+            ytr, yte = y[train], y[test]
+            tuner = model.clone()
+            inner = KFold(config.tuning_folds, shuffle=True, random_state=_sub_seed(cfg.seed, "tune", k))
+            params = dict(tuner.tune(Xtr[list(columns)], ytr, inner, "mse"))
+            base = _risk(model, params, Xtr, ytr, Xte, yte, ())
+            full = _risk(model, params, Xtr, ytr, Xte, yte, columns)
+            if base <= 0:
+                raise ValueError(f"target {target!r} is constant in held-out fold {k}")
+            fold = r * config.folds + k
 
-        def lost(drop):
-            kept = tuple(x for x in columns if x not in drop)
-            return (_risk(model, params, Xtr, ytr, Xte, yte, kept) - full) / base
+            def add(contrast, source, value, is_noise):
+                rows.append(dict(depth=depth, target=target, repeat=r, fold=fold, contrast=contrast,
+                                 source=source, noise=is_noise, value=value))
 
-        for c in columns:
-            alone = _risk(model, params, Xtr, ytr, Xte, yte, (c,))
-            name = c.removeprefix(NOISE_PREFIX)
-            add("unique", name, lost({c}), c in noise)
-            add("broad", name, (base - alone) / base, c in noise)
-        for a, b, _ in edges:
-            add("pair", f"{a}+{b}", lost({a, b}), False)
-        for i, idx in enumerate(pair_sets):
-            add("pair", f"noise-set-{i}", lost({noise_cols[j] for j in idx}), True)
-        for g in groups:
-            add(f"group{len(g)}", "+".join(g), lost(set(g)), False)
-        for m, sets in noise_sets.items():
-            for i, idx in enumerate(sets):
-                add(f"group{m}", f"noise-set-{i}", lost({noise_cols[j] for j in idx}), True)
+            def lost(drop):
+                kept = tuple(x for x in columns if x not in drop)
+                return (_risk(model, params, Xtr, ytr, Xte, yte, kept) - full) / base
+
+            for c in columns:
+                alone = _risk(model, params, Xtr, ytr, Xte, yte, (c,))
+                name = c.removeprefix(NOISE_PREFIX)
+                add("unique", name, lost({c}), c in noise)
+                add("broad", name, (base - alone) / base, c in noise)
+            for a, b, _ in edges:
+                add("pair", f"{a}+{b}", lost({a, b}), False)
+            for i, idx in enumerate(pair_sets):
+                add("pair", f"noise-set-{i}", lost({noise_cols[j] for j in idx}), True)
+            for g in groups:
+                add(f"group{len(g)}", "+".join(g), lost(set(g)), False)
+            for m, sets in noise_sets.items():
+                for i, idx in enumerate(sets):
+                    add(f"group{m}", f"noise-set-{i}", lost({noise_cols[j] for j in idx}), True)
 
     folds = _apply_bars(pd.DataFrame(rows), config.noise_quantile)
     real = folds[~folds.noise]
@@ -419,11 +454,17 @@ def assess_target(data: pd.DataFrame, target: str, candidates: tuple[str, ...], 
         for l in links:
             if l["kind"] == "shared" and l["fold_tier"] != "dropped":
                 active.update(l["members"])
-        inter, members = _interactions(X[observed].reset_index(drop=True), y[observed], fold_ids[observed],
-                                       [c for c in candidates if c in active], candidates, noise_of,
-                                       depth, target, config)
-        if len(inter):
-            inter = _apply_bars(inter, config.noise_quantile)
+        parts, members = [], {}
+        for r, (cfg, X, fold_r) in enumerate(designs):
+            part, members = _interactions(X[observed].reset_index(drop=True), y[observed], fold_r[observed],
+                                          [c for c in candidates if c in active], candidates, noise_of,
+                                          depth, target, cfg)
+            if len(part):
+                part.insert(2, "repeat", r)
+                part["fold"] += r * config.folds
+                parts.append(part)
+        if parts:
+            inter = _apply_bars(pd.concat(parts, ignore_index=True), config.noise_quantile)
             folds = pd.concat([folds, inter], ignore_index=True)
             for source, pair in members.items():
                 g = inter[~inter.noise & (inter.source == source)]
@@ -465,8 +506,7 @@ def explore(data: pd.DataFrame, outcome: str, predictors=None, engine="ols",
     n = len(data)
     if n < config.folds * config.tuning_folds * 2:
         raise ValueError(f"N = {n} is too small for {config.folds} folds")
-    fold_ids = np.arange(n) % config.folds
-    np.random.default_rng(_sub_seed(config.seed, "folds")).shuffle(fold_ids)
+    fold_ids = _fold_sets(n, config)
 
     depths, parents, stops = {outcome: 0}, {}, {}
     all_folds, all_links, all_pairs = [], [], []

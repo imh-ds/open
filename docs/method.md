@@ -5,6 +5,17 @@
 **1. Folds.** The rows are split into `folds` (default 10) once, with a fixed
 seed. Every regression in the network uses the same folds.
 
+**Repeated splits** (`repeats`, default 1).
+
+- With `repeats` R > 1, each target's regression runs R times, each time with
+  its own split into folds and its own noise columns.
+- The R × 10 folds are pooled: one noise bar over all of them, and the tiers
+  use the share of the R × 10 folds passed.
+- Repeat 0 is exactly the `repeats=1` analysis.
+- This reduces the dependence on the seed, which study v2 found to be
+  substantial. It multiplies the exploration time by R.
+- Its validation is in progress (study v2-R).
+
 **2. Each regression.** For a target and its candidate pool, in every fold:
 
 - One **noise column** is added per candidate: a shuffled copy, with the same
@@ -179,6 +190,7 @@ confirmation always uses independent data:
 | Setting | Default |
 |---|---|
 | `folds` | 10 |
+| `repeats` | 1 |
 | `keep` | 0.80 |
 | `flag` | 0.40 |
 | `noise_quantile` | 0.95 |
