@@ -161,3 +161,19 @@ def test_lightgbm_column_subset_matches_full_computation():
     np.testing.assert_array_equal(gcm_pcm_pvalues(X, T, folds, 7, columns=[2, 0]), full[[2, 0]])
     with pytest.raises(ValueError):
         gcm_pcm_pvalues(X, T, folds, 7, columns=[1, 1])
+
+
+def test_confirmation_fit_is_cross_validated_on_the_new_data():
+    from open.confirm import confirmation_fit, explore_and_confirm
+    data = _chain(1600, 8)
+    split = explore_and_confirm(data, 'Y', engine='ols',
+                                config=ExploreConfig(max_depth=2, interactions=False), split_seed=2)
+    fit = split.fit.set_index('target')
+    assert set(fit.index) == set(split.exploration.fit.target)
+    assert (fit.n == 800).all()
+    assert .1 < fit.loc['Y', 'r2_network'] < .4                       # true R² about .24
+    assert 'Network fit on the confirmation data' in split.summary()
+    again = confirmation_fit(split.exploration, data.iloc[800:], seed=2)
+    assert again.r2_network.notna().all()
+    with pytest.raises(ValueError):
+        confirmation_fit(split.exploration, data.drop(columns='X2'))

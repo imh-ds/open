@@ -17,6 +17,10 @@ Tests use the calibrated settings from the reference studies:
 Shared groups and interactions are not tested: no group or interaction test
 has been calibrated yet. They are listed with that reason.
 
+``confirmation_fit`` reports the network's out-of-sample fit on the same new
+data: each target's held-out R² from its kept predictors, with the predictors
+re-fitted by cross-validation within the new data.
+
 The functions below reproduce Phase B's frozen implementation; the identity is
 checked in ``tests/test_confirm.py``.
 """
@@ -268,13 +272,53 @@ def split_sample(data: pd.DataFrame, explore_fraction: float = 0.5, seed: int = 
     return data.iloc[np.sort(order[:n_explore])], data.iloc[np.sort(order[n_explore:])]
 
 
+CONFIRMATION_FIT_COLUMNS = ["depth", "target", "n", "network", "network_size", "pool_size",
+                            "r2_network_explore", "r2_network", "r2_pool", "share_of_pool"]
+
+
+def confirmation_fit(result: ExploreResult, data: pd.DataFrame, folds: int = 10, seed: int = 0) -> pd.DataFrame:
+    """Out-of-sample fit of the network on independent ``data``.
+
+    For each explored target, its kept predictors (the network) and its whole
+    candidate pool are re-fitted with ``folds``-fold cross-validation within
+    ``data``, using the exploration's engine, and scored on the held-out rows.
+    The predictors were chosen on other data, so the network R² is free of
+    selection bias. Rows with a missing value in the target or its pool are
+    dropped for that target.
+    """
+    from dataclasses import replace
+    from open.explore import ExploreConfig, network_fit
+    s = result.settings
+    config = replace(ExploreConfig(), folds=folds, tuning_folds=s.get("tuning_folds", 3), seed=seed)
+    f = result.folds
+    pools = (f[(f.contrast == "unique") & ~f.noise].groupby(["depth", "target"]).source
+             .apply(lambda x: tuple(dict.fromkeys(x))).to_dict()) if len(f) else {}
+    rows = []
+    for r in result.fit.itertuples():
+        pool = pools[(r.depth, r.target)]
+        missing = [c for c in (r.target, *pool) if c not in data]
+        if missing:
+            raise ValueError(f"confirmation data lacks columns {missing}")
+        frame = data[[r.target, *pool]].apply(pd.to_numeric, errors="raise").dropna().reset_index(drop=True)
+        fold_ids = np.arange(len(frame)) % folds
+        np.random.default_rng(_seed(seed, "confirmation-fit", r.depth, r.target)).shuffle(fold_ids)
+        out = network_fit(frame, r.target, pool, r.network, fold_ids, s["engine"], config, r.depth)
+        rows.append(dict(depth=r.depth, target=r.target, n=len(frame), network=out["network"],
+                         network_size=out["network_size"], pool_size=out["pool_size"],
+                         r2_network_explore=r.r2_network, r2_network=out["r2_network"], r2_pool=out["r2_pool"],
+                         share_of_pool=out["share_of_pool"]))
+    return pd.DataFrame(rows, columns=CONFIRMATION_FIT_COLUMNS)
+
+
 class SplitResult:
     """An exploratory network from one part of the data, confirmed on the other."""
 
-    def __init__(self, exploration: ExploreResult, confirmation: pd.DataFrame, settings: dict):
+    def __init__(self, exploration: ExploreResult, confirmation: pd.DataFrame, settings: dict,
+                 fit: pd.DataFrame | None = None):
         self.exploration = exploration
         self.confirmation = confirmation
         self.settings = settings
+        self.fit = fit if fit is not None else pd.DataFrame(columns=CONFIRMATION_FIT_COLUMNS)
 
     def summary(self) -> str:
         s = self.settings
@@ -291,6 +335,11 @@ class SplitResult:
                 verdict = (f"{'confirmed' if r.confirmed else 'not confirmed'} "
                            f"(p = {r.p:.3g}, adjusted {r.p_adjusted:.3g})")
             lines.append(f"  {r.source} -> {r.target} ({r.kind}, {r.explore_tier}): {verdict}")
+        if len(self.fit):
+            lines.append("Network fit on the confirmation data (cross-validated R2 from the kept predictors):")
+            for _, r in self.fit.iterrows():
+                lines.append(f"  {r.target}: {r.r2_network:.3f} (exploration {r.r2_network_explore:.3f}; "
+                             f"all {r.pool_size} candidates {r.r2_pool:.3f})")
         return "\n".join(lines)
 
 
@@ -316,4 +365,5 @@ def explore_and_confirm(data: pd.DataFrame, outcome: str, predictors=None, engin
     settings = dict(split_seed=split_seed, explore_fraction=explore_fraction, n_explore=len(explore_part),
                     n_confirm=len(confirm_part), explore_engine=engine, confirm_engine=used,
                     include_flagged=include_flagged, correction=correction, alpha=alpha)
-    return SplitResult(exploration, confirmation, settings)
+    fit = confirmation_fit(exploration, confirm_part, seed=split_seed)
+    return SplitResult(exploration, confirmation, settings, fit)
