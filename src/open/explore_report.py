@@ -171,8 +171,7 @@ def plot_explore(result: ExploreResult, path=None, *, show_flagged: bool = True,
     s = result.settings
     ax.set_title(f"{s['outcome']}: {s['engine']}, N = {s['n']}. Solid: kept (≥ {s['keep']:.0%} of folds); "
                  f"dotted: flagged (≥ {s['flag']:.0%}).\nLabel: folds above the noise bar | held-out R² lost "
-                 f"(gained, for × interactions). Blue box: shared group. Grey: flagged only.
-"
+                 f"(gained, for × interactions). Blue box: shared group. Grey: flagged only.\n"
                  f"Arrows show prediction beyond the other candidates, not causation.", fontsize=9)
     xs = [p[0] for p in pos.values()] or [0]
     ys = [p[1] for p in pos.values()] or [0]
