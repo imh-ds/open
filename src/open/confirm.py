@@ -318,6 +318,8 @@ def _confirm(result: ExploreResult, data: pd.DataFrame, engine: str | None = Non
             warnings.warn(f"{target}: {note}", stacklevel=2)
         untestable_reason = ("outcome has no variation in complete confirmation rows"
                              if n > 0 and np.min(T) == np.max(T) else None)
+        if fold_provider is not None and n == 0:
+            untestable_reason = "no complete confirmation rows"
         testable = group.kind == "unique"
         if testable.any() and untestable_reason is None:
             if engine == "ols":
@@ -330,7 +332,14 @@ def _confirm(result: ExploreResult, data: pd.DataFrame, engine: str | None = Non
                 wanted = list(dict.fromkeys(group.source[testable]))
                 cols = [pool.index(c) for c in wanted]
                 folds = fold_provider(row_positions) if fold_provider is not None else _folds(n, dseed)
-                p_of = dict(zip(wanted, gcm_pcm_pvalues(X, T, folds, dseed, columns=cols)))
+                if fold_provider is not None and any(
+                    np.sum((folds["half"] == half) & (folds["k10"] == k)) < 1
+                    or np.sum((folds["half"] == half) & (folds["k10"] != k)) < 3
+                    for half in (0, 1) for k in range(GCM_FOLDS)
+                ):
+                    untestable_reason = "too few complete confirmation rows for the GCM/PCM fold plan"
+                else:
+                    p_of = dict(zip(wanted, gcm_pcm_pvalues(X, T, folds, dseed, columns=cols)))
         for _, r in group.iterrows():
             row = dict(depth=depth, target=target, source=r.source, kind=r.kind, explore_tier=r.tier,
                        explore_pass_rate=r.pass_rate, explore_r2=r.r2_median, engine=engine, n=n,
@@ -403,7 +412,7 @@ CONFIRMATION_FIT_COLUMNS = ["depth", "target", "n", "network", "network_size", "
 
 
 def _confirmation_fit(result: ExploreResult, data: pd.DataFrame, folds: int = 10, seed: int = 0,
-                      fold_provider=None) -> pd.DataFrame:
+                      fold_provider=None, allow_untestable: bool = False) -> pd.DataFrame:
     """Out-of-sample fit of the network on independent ``data``.
 
     For each explored target, its kept predictors (the network) and its whole
@@ -435,12 +444,39 @@ def _confirmation_fit(result: ExploreResult, data: pd.DataFrame, folds: int = 10
             np.random.default_rng(_seed(seed, "confirmation-fit", r.depth, r.target)).shuffle(fold_ids)
         else:
             fold_ids = fold_provider(row_positions, folds)
-        out = network_fit(frame, r.target, pool, r.network, fold_ids, s["engine"], config, r.depth, controls)
-        rows.append(dict(depth=r.depth, target=r.target, n=len(frame), network=out["network"],
+        reason = _fit_unavailable_reason(frame, r.target, fold_ids, config) if allow_untestable else ""
+        if reason:
+            network = tuple(c for c in pool if c in r.network)
+            out = dict(network=network, network_size=len(network), pool_size=len(pool),
+                       r2_network=np.nan, r2_pool=np.nan, share_of_pool=np.nan)
+        else:
+            out = network_fit(frame, r.target, pool, r.network, fold_ids, s["engine"], config, r.depth, controls)
+        row = dict(depth=r.depth, target=r.target, n=len(frame), network=out["network"],
                          network_size=out["network_size"], pool_size=out["pool_size"],
                          r2_network_explore=r.r2_network, r2_network=out["r2_network"], r2_pool=out["r2_pool"],
-                         share_of_pool=out["share_of_pool"]))
-    return pd.DataFrame(rows, columns=CONFIRMATION_FIT_COLUMNS)
+                         share_of_pool=out["share_of_pool"])
+        if allow_untestable:
+            row["note"] = f"not evaluated: {reason}" if reason else ""
+        rows.append(row)
+    return pd.DataFrame(rows, columns=CONFIRMATION_FIT_COLUMNS + (["note"] if allow_untestable else []))
+
+
+def _fit_unavailable_reason(frame, target, fold_ids, config) -> str:
+    """Explain unsupported batch fit samples without discarding the target."""
+    if len(frame) == 0:
+        return "no complete confirmation rows"
+    y = frame[target].to_numpy(dtype=float)
+    if np.min(y) == np.max(y):
+        return "outcome has no variation in complete confirmation rows"
+    for k in range(config.folds):
+        train, test = fold_ids != k, fold_ids == k
+        if test.sum() == 0 or train.sum() < config.tuning_folds * 2:
+            return "too few complete confirmation rows for the requested cross-validation"
+        with np.errstate(over="ignore", invalid="ignore"):
+            baseline = np.mean((y[test] - np.mean(y[train])) ** 2)
+        if not np.isfinite(baseline) or baseline <= 0:
+            return "mean-only prediction error is not finite and positive in every fold"
+    return ""
 
 
 def confirmation_fit(result: ExploreResult, data: pd.DataFrame, folds: int = 10, seed: int = 0) -> pd.DataFrame:
@@ -462,7 +498,7 @@ def _confirmation_fit_with_shared_folds(result: ExploreResult, data: pd.DataFram
     provider = lambda row_positions, n_folds: _aligned_fold_ids(
         row_positions, n_folds, fold_seed, "confirmation-fit"
     )
-    return _confirmation_fit(result, data, folds, seed, provider)
+    return _confirmation_fit(result, data, folds, seed, provider, allow_untestable=True)
 
 
 class SplitResult:
@@ -481,6 +517,11 @@ class SplitResult:
                  f"confirmed on {s['n_confirm']} rows with {s['confirm_engine']} "
                  f"({s['correction']}-adjusted, alpha {s['alpha']}).",
                  self.exploration.summary(), "Confirmation:"]
+        if s.get("correction_scope") == "all_outcomes":
+            lines.insert(1, "Confirmation adjustment covers all selected outcomes: "
+                         + ", ".join(s.get("outcomes", ())) + ".")
+        elif s.get("correction_scope") == "per_outcome":
+            lines.insert(1, "Confirmation adjustment covers this outcome only.")
         if self.confirmation.empty:
             lines.append("  No links to confirm.")
         for _, r in self.confirmation.iterrows():
@@ -493,6 +534,9 @@ class SplitResult:
         if len(self.fit):
             lines.append("Network fit on the confirmation data (cross-validated R2 from the kept predictors):")
             for _, r in self.fit.iterrows():
+                if r.get("note", ""):
+                    lines.append(f"  {r.target}: {r['note']}")
+                    continue
                 lines.append(f"  {r.target}: {r.r2_network:.3f} (exploration {r.r2_network_explore:.3f}; "
                              f"all {r.pool_size} candidates {r.r2_pool:.3f})")
         return "\n".join(lines)

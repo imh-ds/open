@@ -184,3 +184,22 @@ def test_csv_export_keeps_optional_dependencies_lazy(tmp_path):
                                env={**os.environ, "PYTHONPATH": str(root / "src")},
                                capture_output=True, text=True)
     assert completed.returncode == 0, completed.stderr
+
+
+def test_export_mapping_preserves_outcome_ownership_after_reordering(analysis, tmp_path):
+    import copy
+    from open.api import save_multi_outcome_analysis
+
+    out = save_multi_outcome_analysis(analysis, tmp_path / "analysis")
+    first = json.loads((out / "outcomes-settings.json").read_text(encoding="utf-8"))["outcome_folders"]
+    for outcome, folder in first.items():
+        (out / folder / "notes.txt").write_text(outcome, encoding="utf-8")
+    reordered = copy.deepcopy(analysis)
+    reordered.by_outcome = dict(reversed(list(reordered.by_outcome.items())))
+    save_multi_outcome_analysis(reordered, out)
+    second = json.loads((out / "outcomes-settings.json").read_text(encoding="utf-8"))["outcome_folders"]
+    assert second == first
+    for outcome, folder in second.items():
+        assert (out / folder / "notes.txt").read_text(encoding="utf-8") == outcome
+        settings = json.loads((out / folder / "split-settings.json").read_text(encoding="utf-8"))
+        assert settings["outcome"] == outcome

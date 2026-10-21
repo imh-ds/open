@@ -381,3 +381,75 @@ def test_batch_does_not_reuse_assessment_when_depth_or_pool_differs(monkeypatch)
     for outcome in ("Y1", "Y2"):
         uncached = exploration.explore(explore_part, outcome, ("X1", "Z", "W"), config=config)
         _assert_same_exploration(result.by_outcome[outcome].exploration, uncached)
+
+
+@pytest.mark.parametrize("role", ["predictors", "controls", "covariates"])
+def test_validates_model_columns_before_hashing(role):
+    from open.multi_outcome import explore_and_confirm_outcomes
+
+    data = _data()
+    data["Bad"] = pd.Series([[1]] * len(data), dtype=object)
+    options = {"predictors": ["X1"]}
+    options[role] = ["Bad"]
+    with pytest.raises(ValueError, match="numeric"):
+        explore_and_confirm_outcomes(data, ["Y1", "Y2"], **options)
+
+
+def test_correction_provenance_survives_independent_inspection():
+    from open.api import ExploreConfig, explore_and_confirm_outcomes
+
+    data = _data()
+    data["Y2"] += 1.5 * data.X1
+    result = explore_and_confirm_outcomes(
+        data, ["Y1", "Y2"], config=ExploreConfig(folds=3, max_depth=1, interactions=False),
+    )
+    assert result.confirmation.attrs == {
+        "correction": "holm", "correction_scope": "all_outcomes", "alpha": 0.05,
+        "links_tested": int(result.confirmation.p.notna().sum()),
+    }
+    assert all("all selected outcomes" in item.summary() for item in result.by_outcome.values())
+
+
+@pytest.mark.parametrize("sample", ["empty", "small", "constant"])
+def test_batch_retains_unsupported_confirmation_fits(sample):
+    from open.api import ExploreConfig, explore_and_confirm_outcomes
+    from open.confirm import split_sample
+
+    data = _data()
+    _, heldout = split_sample(data, seed=0)
+    if sample == "constant":
+        data.loc[heldout.index, "Y1"] = 1.0
+    else:
+        unavailable = heldout.index if sample == "empty" else heldout.index[5:]
+        data.loc[unavailable, "X1"] = np.nan
+    with _no_warning_context():
+        result = explore_and_confirm_outcomes(
+            data, ["Y1", "Y2"], config=ExploreConfig(folds=3, max_depth=1, interactions=False),
+        )
+    y1 = result.fit[result.fit.root_outcome.eq("Y1")]
+    assert len(y1) == 1
+    assert y1.r2_network.isna().all() and y1.r2_pool.isna().all()
+    assert y1.note.str.contains("not evaluated").all()
+    assert "not evaluated" in result.by_outcome["Y1"].summary()
+    if sample == "empty":
+        assert result.confirmation.p.isna().all()
+        assert result.confirmation.n.eq(0).all()
+
+
+@pytest.mark.parametrize("eligible", [0, 5])
+def test_batch_skips_lightgbm_test_without_eligible_rows(monkeypatch, eligible):
+    from open.api import ExploreConfig, explore_and_confirm_outcomes
+    from open.confirm import split_sample
+
+    data = _data()
+    _, heldout = split_sample(data, seed=0)
+    data.loc[heldout.index[eligible:], "X1"] = np.nan
+    monkeypatch.setattr("open.confirm.gcm_pcm_pvalues",
+                        lambda *a, **k: pytest.fail("no GCM/PCM fit is possible without rows"))
+    with _no_warning_context():
+        result = explore_and_confirm_outcomes(
+            data, ["Y1", "Y2"], confirm_engine="lightgbm",
+            config=ExploreConfig(folds=3, max_depth=1, interactions=False),
+        )
+    assert result.confirmation.p.isna().all()
+    assert result.confirmation.note.str.contains("no complete|too few complete").all()

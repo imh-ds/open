@@ -188,6 +188,20 @@ def _fold_sets(n: int, config) -> tuple[np.ndarray, ...]:
     return tuple(sets)
 
 
+def _validate_model_columns(data: pd.DataFrame, variables) -> None:
+    missing = [v for v in variables if v not in data]
+    if missing:
+        raise ValueError(f"unknown columns: {missing}")
+    for v in variables:
+        if type(v) is not str or not v or v.startswith(NOISE_PREFIX) or "+" in v or "*" in v:
+            raise ValueError(f"variable name {v!r} must be a string without '+', '*' or {NOISE_PREFIX!r}")
+        s = data[v]
+        if not pd.api.types.is_numeric_dtype(s) or pd.api.types.is_bool_dtype(s):
+            raise ValueError(f"variable {v!r} must be numeric")
+        if np.isinf(s.to_numpy(dtype=float, na_value=np.nan)).any():
+            raise ValueError(f"variable {v!r} contains infinity")
+
+
 def _assessment_data_context(data: pd.DataFrame, columns) -> tuple:
     """Create a call-local identity for the selected rows and model values."""
     columns = tuple(columns)
@@ -595,17 +609,7 @@ def _explore_core(data: pd.DataFrame, outcome: str, predictors=None, engine="ols
     if set(predictors) & set(fixed):
         raise ValueError("a variable cannot be both a predictor and a control or covariate")
     variables = (outcome, *predictors, *covariates, *controls)
-    missing = [v for v in variables if v not in data]
-    if missing:
-        raise ValueError(f"unknown columns: {missing}")
-    for v in variables:
-        if type(v) is not str or not v or v.startswith(NOISE_PREFIX) or "+" in v or "*" in v:
-            raise ValueError(f"variable name {v!r} must be a string without '+', '*' or {NOISE_PREFIX!r}")
-        s = data[v]
-        if not pd.api.types.is_numeric_dtype(s) or pd.api.types.is_bool_dtype(s):
-            raise ValueError(f"variable {v!r} must be numeric")
-        if np.isinf(s.to_numpy(dtype=float, na_value=np.nan)).any():
-            raise ValueError(f"variable {v!r} contains infinity")
+    _validate_model_columns(data, variables)
     data = data[list(variables)].reset_index(drop=True)
     if data[outcome].isna().any():
         raise ValueError("the outcome must have no missing values")

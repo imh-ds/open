@@ -17,7 +17,7 @@ from open.confirm import (
     split_sample,
 )
 from open.explore import (ExploreConfig, _assessment_data_context, _explore_with_shared_context,
-                          _fold_sets)
+                          _fold_sets, _validate_model_columns)
 
 
 class MultiOutcomeResult:
@@ -158,6 +158,8 @@ def explore_and_confirm_outcomes(
         raise ValueError("alpha must be in (0, 1)")
 
     explore_config = ExploreConfig() if config is None else config
+    context_columns = tuple(dict.fromkeys((*outcomes, *predictor_names, *controls, *covariates)))
+    _validate_model_columns(data, context_columns)
     if len(data) < 1000:
         warnings.warn(
             f"N = {len(data)}: splitting leaves small parts; with under about 1,000 rows, "
@@ -169,10 +171,6 @@ def explore_and_confirm_outcomes(
     rows = data.reset_index(drop=True)
     explore_part, confirm_part = split_sample(rows, explore_fraction, split_seed)
     fold_ids = _fold_sets(len(explore_part), explore_config)
-    context_columns = tuple(dict.fromkeys((*outcomes, *predictor_names, *controls, *covariates)))
-    unknown = [name for name in context_columns if name not in explore_part.columns]
-    if unknown:
-        raise ValueError(f"unknown columns: {unknown}")
     data_context = _assessment_data_context(explore_part, context_columns)
     assessment_cache = {}
     by_outcome: dict[str, SplitResult] = {}
@@ -227,6 +225,10 @@ def explore_and_confirm_outcomes(
         by_outcome[outcome].settings["correction_scope"] = correction_scope
 
     combined_confirmation = pd.concat(confirmation_tables.values(), ignore_index=True, sort=False)
+    combined_confirmation.attrs.update(
+        correction=correction, correction_scope=correction_scope, alpha=alpha,
+        links_tested=int(combined_confirmation.p.notna().sum()),
+    )
     combined_fit = pd.concat(fit_tables, ignore_index=True, sort=False)
     settings = dict(
         outcomes=outcomes,

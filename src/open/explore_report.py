@@ -42,6 +42,7 @@ not a partial correlation.
 from __future__ import annotations
 
 import json
+import hashlib
 import math
 import re
 import shutil
@@ -607,7 +608,7 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
         neighbours.setdefault(r.target, []).extend(far)
         for m in r.members:
             neighbours.setdefault(m, []).append(junctions.get((int(r.depth), r.target, r.source), pos[r.target]))
-    new = ({r.target: r.r2_network for r in confirmation_fit.itertuples()}
+    new = ({r.target: r.r2_network for r in confirmation_fit.itertuples() if pd.notna(r.r2_network)}
            if confirmation_fit is not None else {})
     for v, (x, y) in pos.items():
         is_outcome = v == outcome
@@ -866,9 +867,12 @@ def save_multi_outcome_analysis(result: MultiOutcomeResult, out_dir: str | Path,
     root = out.resolve()
     _check_output_directory(root / "outcomes")
     mapping = {}
-    for index, outcome in enumerate(result.by_outcome, 1):
+    for outcome in result.by_outcome:
         slug = re.sub(r"[^A-Za-z0-9_-]+", "-", outcome).strip("-_")[:32] or "outcome"
-        folder = f"outcomes/{index:04d}-{slug}"
+        digest = hashlib.sha256(outcome.encode("utf-8")).hexdigest()[:16]
+        folder = f"outcomes/{slug}-{digest}"
+        if folder.casefold() in {value.casefold() for value in mapping.values()}:
+            raise ValueError("could not assign distinct safe folders to the outcome names")
         _check_output_directory(root / folder)
         mapping[outcome] = folder
     for name in _MULTI_EXPORT_FILES:
