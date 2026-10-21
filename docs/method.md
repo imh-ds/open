@@ -168,6 +168,15 @@ slope t statistics; rescaling avoids unnecessary overflow, underflow and rank
 failures due to measurement units. This preserves the calibrated statistic
 within floating point precision and does not expand its validation range.
 
+**One-predictor LightGBM pools.** Removing the tested predictor can leave a
+GCM or PCM nuisance regression with no predictors. In that case its prediction
+is the mean of the supplied training outcomes, repeated for each evaluation
+row. No evaluation outcomes enter that mean, and no LightGBM model is fitted
+for that nuisance regression. This also supports terminal one-predictor pools
+in a recursive network. Nonempty nuisance designs retain the frozen Phase B
+implementation. This software support does not expand the empirically
+calibrated study range.
+
 **Why LightGBM uses different settings in exploration and confirmation.**
 
 - **Exploration** refits the engine many times per target: every fold, every

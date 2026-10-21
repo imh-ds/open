@@ -6,7 +6,8 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from open.confirm import _adjust, _folds, confirm, frozen_network, gcm_pcm_pvalues, hc4_pvalues
+from open.confirm import (_adjust, _fit_predict, _folds, _gcm_residuals, confirm,
+                          frozen_network, gcm_pcm_pvalues, hc4_pvalues)
 from open.explore import ExploreConfig, explore
 
 EXAMPLES = Path(__file__).parents[1] / "examples"
@@ -329,3 +330,67 @@ def test_dropped_constant_predictor_cannot_crash_ols_confirmation():
     assert len(out) == 1 and out.source.iloc[0] == "X" and out.pool_size.iloc[0] == 2
     assert out.p.isna().all() and out.p_adjusted.isna().all() and not out.confirmed.any()
     assert out.note.str.contains("not tested.*rank").all()
+
+
+def test_zero_feature_nuisance_predictions_use_training_mean_without_lightgbm(monkeypatch):
+    monkeypatch.setitem(sys.modules, "lightgbm", None)
+    predicted = _fit_predict(np.empty((3, 0)), np.array([2., 4., 6.]),
+                             [np.empty((2, 0)), np.empty((0, 0)), np.empty((1, 0))], seed=17)
+    assert len(predicted) == 3
+    np.testing.assert_array_equal(predicted[0], [4., 4.])
+    assert predicted[1].shape == (0,)
+    np.testing.assert_array_equal(predicted[2], [4.])
+    assert all(p.dtype.kind == "f" for p in predicted)
+
+
+@pytest.mark.parametrize("training_y", [np.array([]), np.array([1., np.nan]), np.array([1., np.inf])])
+def test_zero_feature_nuisance_rejects_undefined_training_mean(training_y):
+    with pytest.raises(ValueError, match="nonempty|finite"):
+        _fit_predict(np.empty((len(training_y), 0)), training_y, [np.empty((2, 0))], seed=0)
+
+
+@pytest.mark.parametrize("training_y,expected", [
+    ([1e308, 1e308], 1e308), ([-1e308, -1e308], -1e308),
+    ([1e308, -1e308], 0.0), ([1e-308, 1e-308], 1e-308), ([0., 0.], 0.0),
+])
+def test_zero_feature_nuisance_mean_remains_finite_across_outcome_scales(training_y, expected):
+    with np.errstate(over="raise", invalid="raise"):
+        predicted = _fit_predict(np.empty((2, 0)), np.array(training_y), [np.empty((2, 0))], seed=0)
+    np.testing.assert_array_equal(predicted[0], [expected, expected])
+
+
+def test_one_predictor_gcm_residuals_use_only_training_outcomes():
+    X = np.arange(1., 7.)[:, None]
+    T = np.arange(10., 70., 10.)
+    fold = np.array([0, 1, 0, 1, 0, 1])
+    eT, eX = _gcm_residuals(X, T, fold, 2, 5)
+    np.testing.assert_array_equal(eT, [[-30., -10., -10., 10., 10., 30.]])
+    np.testing.assert_array_equal(eX, [[-3., -1., -1., 1., 1., 3.]])
+    changed = T.copy()
+    changed[fold == 0] += 1000
+    new_eT, _ = _gcm_residuals(X, changed, fold, 2, 5)
+    np.testing.assert_array_equal(new_eT[:, fold == 0], eT[:, fold == 0] + 1000)
+
+
+@pytest.mark.parametrize("recursive", [False, True])
+def test_lightgbm_confirmation_supports_one_predictor_pools(recursive):
+    pytest.importorskip("lightgbm")
+    r = np.random.default_rng(12)
+    z = r.normal(size=1200)
+    x = 2 * z + r.normal(size=1200)
+    data = pd.DataFrame({"Y": 3 * x + r.normal(size=1200), "X": x})
+    if recursive:
+        data["Z"] = z
+    result = explore(data.iloc[:600], "Y", config=ExploreConfig(folds=5, max_depth=2, interactions=False))
+    frozen = frozen_network(result)
+    target = "X" if recursive else "Y"
+    row = frozen[frozen.target == target]
+    assert len(row) == 1 and len(row.pool.iloc[0]) == 1
+    if recursive:
+        assert row.depth.iloc[0] == 2
+    out = confirm(result, data.iloc[600:], engine="lightgbm", seed=2)
+    assert len(out) == len(frozen)
+    assert np.isfinite(out[["p", "p_adjusted"]]).all().all()
+    assert out.p.between(0, 1).all() and out.p_adjusted.between(0, 1).all()
+    assert out.loc[out.target == target, "confirmed"].all()
+    assert out.attrs["links_tested"] == len(out)

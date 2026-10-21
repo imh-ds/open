@@ -107,7 +107,14 @@ def _seed(*parts) -> int:
 
 
 def _fit_predict(Xtr, ytr, Xtests, seed):
-    """Phase B configuration F3: LightGBM with early stopping on an inner 20% split."""
+    """Use the training mean without predictors; otherwise Phase B's F3 model."""
+    if Xtr.shape[1] == 0:
+        if len(ytr) == 0 or not np.isfinite(ytr).all():
+            raise ValueError("zero-feature nuisance models require nonempty finite training outcomes")
+        # Normalize before summation so finite outcomes cannot overflow the mean.
+        magnitude = np.max(np.abs(ytr))
+        mean = float(magnitude * np.mean(ytr / magnitude)) if magnitude > 0 else 0.0
+        return [np.full(len(Z), mean, dtype=float) for Z in Xtests]
     import lightgbm as lgb
     n_tr = len(ytr)
     kw = dict(num_leaves=15, learning_rate=0.05, min_child_samples=max(20, math.ceil(0.01 * n_tr)),
