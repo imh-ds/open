@@ -4,12 +4,16 @@ from __future__ import annotations
 
 from collections.abc import Iterable, Mapping
 import math
+import warnings
 from typing import Any
 
 import numpy as np
+from sklearn.base import clone
 from sklearn.linear_model import ElasticNet
-from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import get_scorer
+from sklearn.model_selection import ParameterGrid
 from sklearn.pipeline import Pipeline
+from sklearn.utils import _safe_indexing, indexable
 
 from open.config import PreprocessingConfig
 from open.learners.base import Predictor
@@ -27,8 +31,9 @@ _DEFAULT_PARAMS = {"alpha": 1.0, "l1_ratio": 0.5}
 class ElasticNetPredictor(Predictor):
     """Elastic-net regression using median imputation and standardized inputs.
 
-    The search pipeline contains both transformations and the estimator, so
-    GridSearchCV fits fresh preprocessing state on each inner training fold.
+    Tuning fits preprocessing once on each inner training fold and reuses its
+    transformed matrices across the unchanged parameter grid. No fitted state
+    is shared across folds or tuning calls; outer fits use a fresh pipeline.
     ``cv`` must be built from the outer-training rows passed as ``X`` and ``y``.
     """
 
@@ -70,23 +75,28 @@ class ElasticNetPredictor(Predictor):
         splits = _materialize_cv(cv, X, y)
         self._pipeline = None
         self._tuned_params = None
-        search = GridSearchCV(
-            estimator=self._new_pipeline(),
-            param_grid={
-                "regressor__alpha": ALPHA_GRID,
-                "regressor__l1_ratio": L1_RATIO_GRID,
-            },
-            scoring="neg_mean_squared_error",
-            cv=splits,
-            refit=False,
-            n_jobs=1,
-            error_score="raise",
-        )
-        search.fit(X, y)
-        params = {
-            "alpha": float(search.best_params_["regressor__alpha"]),
-            "l1_ratio": float(search.best_params_["regressor__l1_ratio"]),
-        }
+        X, y = indexable(X, y)
+        candidates = list(ParameterGrid({"alpha": ALPHA_GRID, "l1_ratio": L1_RATIO_GRID}))
+        scores = np.empty((len(candidates), len(splits)))
+        scorer = get_scorer("neg_mean_squared_error")
+        for fold, (train, test) in enumerate(splits):
+            pipeline = self._new_pipeline()
+            ytrain, ytest = _safe_indexing(y, train), _safe_indexing(y, test)
+            preprocessor = pipeline["preprocessor"]
+            Xtrain = preprocessor.fit_transform(_safe_indexing(X, train), ytrain)
+            Xtest = preprocessor.transform(_safe_indexing(X, test))
+            for index, candidate in enumerate(candidates):
+                estimator = clone(pipeline["regressor"]).set_params(**candidate)
+                estimator.fit(Xtrain, ytrain)
+                scores[index, fold] = scorer(estimator, Xtest, ytest)
+        # Match GridSearchCV: unweighted fold means, first grid entry wins a
+        # tie, and NaN candidates rank below valid scores. Retain only one
+        # fold's transformed data at a time, rather than caching whole searches.
+        means = scores.mean(axis=1)
+        if not np.isfinite(means).all():
+            warnings.warn(f"One or more of the test scores are non-finite: {means}", UserWarning)
+        best = int(np.argmax(np.where(np.isnan(means), -np.inf, means)))
+        params = {name: float(value) for name, value in candidates[best].items()}
         self._tuned_params = params
         return dict(params)
 

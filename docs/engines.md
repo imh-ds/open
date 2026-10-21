@@ -12,6 +12,12 @@ Decision date: 2026-10-19 (owner decision).
 
 `open.explore` accepts only these engines (`SUPPORTED_ENGINES`).
 
+Elastic-Net tuning fits median imputation and scaling on each inner training
+fold once, then reuses those transformed training and validation inputs for all
+25 parameter combinations. It retains the same fold scores, grid order and
+first-candidate tie rule. Preprocessing is never shared across folds or tuning
+calls, and outer model fits still create fresh pipelines.
+
 ## Dropped: random forest and scikit-learn gradient boosting
 
 Both were removed. Their code stays in the development archive
