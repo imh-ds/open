@@ -293,3 +293,10 @@ def test_graph_style_settings_scale_the_layout_and_validate(chain_result, tmp_pa
                        edge_width=.6, label_size=1.2, show_flagged=False, edge_labels=None, dpi=90)
     assert out.exists()
     assert (write_explore(chain_result, tmp_path / 'w', spacing=.8) / 'network.png').exists()
+
+
+def test_edge_labels_use_apa_r2_and_folds_passed():
+    from open.explore_report import _apa, _passes
+    assert [_apa(v) for v in (.12, .1204, .0042, .0003, 0, -.0042, -.0002)] == \
+        ['.120', '.120', '.004', '<.001', '.000', '−.004', '.000']
+    assert _passes(.9, 10) == '9/10' and _passes(.82, 50) == '41/50'

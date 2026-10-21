@@ -43,8 +43,10 @@ shows the depth, and grey dashed nodes are predictors that were only flagged.
 - **R² lost:** held-out R² lost when the predictor is left out, which is its
   unique predictive contribution. **R² above noise:** R² lost minus the noise
   bar.
-- **Edge labels:** a solid edge is labelled with its R² lost, with ✓ when it
-  was confirmed on new data. Every value is in the tables.
+- **Edge labels:** a solid edge is labelled with its held-out ΔR² (R² lost)
+  and the folds it passed, for example ".120 (9/10)", with ✓ when it was
+  confirmed on new data. R² is printed APA style (three decimals, no leading
+  zero). Every value is in the tables.
 - **Blue band:** correlated predictors that matter together (a shared group).
   **Orange diamond:** a pairwise interaction. Solid lines from the two variables
   meet in the diamond (labelled with the pair, e.g. "F·N7"); the line on to the

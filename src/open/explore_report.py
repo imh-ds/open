@@ -161,11 +161,17 @@ def _r2(v):
     return f"{v:.3f}" if abs(v) >= .001 else ("<.001" if v > 0 else f"{v:.3f}")
 
 
-def _short(v):
-    """R² without the leading zero, as journals print it: .16, <.001."""
-    if abs(v) < .001:
-        return "<.001" if v > 0 else "0"
-    return f"{v:.2f}".replace("0.", ".", 1) if abs(v) >= .01 else f"{v:.3f}".replace("0.", ".", 1)
+def _apa(v):
+    """R² in APA style: three decimals, no leading zero (.120, −.004); tiny positives as <.001."""
+    if 0 < v < .0005:
+        return "<.001"
+    text = f"{abs(v):.3f}".lstrip("0")
+    return ("−" if v < 0 and text != ".000" else "") + text
+
+
+def _passes(pass_rate, n_folds):
+    """Folds passed out of all folds (repeats included), e.g. "9/10" or "41/50"."""
+    return f"{int(round(pass_rate * n_folds))}/{n_folds}"
 
 
 def _width(r2):
@@ -395,10 +401,11 @@ def plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFrame
             ax.text(x, y, label, fontsize=8 * fs, ha="center", va="center", color=color, zorder=5,
                     bbox=dict(boxstyle="round,pad=0.18", fc="white", ec="none", alpha=.92))
 
+    n_folds = int(result.settings.get("folds", 10)) * int(result.settings.get("repeats", 1))
+
     def label_for(r):
-        text = _short(r.r2_median)
-        ok = verdict.get((r.depth, r.target, r.source))
-        return text + (" ✓" if ok else "") if ok is not None else text
+        text = f"{_apa(r.r2_median)} ({_passes(r.pass_rate, n_folds)})"
+        return text + (" ✓" if verdict.get((r.depth, r.target, r.source)) else "")
 
     for r in links.itertuples():
         target = pos[r.target]
@@ -447,7 +454,7 @@ def plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFrame
             if share > 0:
                 ax.add_patch(Wedge((x, y), rad + .13 * ns, 90 - 360 * share, 90, width=.08 * ns, fc=FIT,
                                    ec="none", zorder=3.5))
-            text = f"R² {_short(fit[v])}" + (f"  new {_short(new[v])}" if v in new else "")
+            text = f"R² {_apa(fit[v])}" + (f"  new {_apa(new[v])}" if v in new else "")
             ax.text(x, y - rad - .22 * ns, text, fontsize=7.5 * fs, ha="center", va="top", color=FIT, zorder=5,
                     bbox=dict(boxstyle="round,pad=0.12", fc="white", ec="none", alpha=.85))
         size_ = 10.5 if is_outcome else (9 if len(v) <= 4 else max(6, 9 - .45 * (len(v) - 4)))
@@ -481,7 +488,7 @@ def plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFrame
     legend = ax.legend(handles=handles, loc="upper center", bbox_to_anchor=(.5, -.01), ncol=3, frameon=False,
                        fontsize=8.5 * fs, handlelength=2.6, columnspacing=1.6)
     note = ("Each edge: the outer variable predicts the inner one beyond that target's other candidates.\n"
-            "Label: held-out R² lost (gained, for interactions)" +
+            "Label: held-out ΔR² (R² lost; gained, for interactions) and folds passed, e.g. .120 (9/10)" +
             (" (✓ confirmed on new data)" if verdict else "") +
             ". Not causal; not a partial correlation.")
     ax.set_xlim(lo[0], hi[0])
