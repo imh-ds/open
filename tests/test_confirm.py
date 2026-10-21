@@ -35,6 +35,22 @@ def test_hc4_matches_frozen_phase_b():
     np.testing.assert_allclose(hc4_pvalues(X, y), pb.hc4_p(X, y), rtol=0, atol=1e-12)
 
 
+@pytest.mark.parametrize("value", [0.0, 1.0, 0.1, -3.25])
+def test_hc4_rejects_constant_outcomes(value):
+    X = np.random.default_rng(2).normal(size=(300, 2))
+    with pytest.raises(ValueError, match="constant|variation"):
+        hc4_pvalues(X, np.full(300, value))
+
+
+def test_hc4_accepts_small_nonzero_outcome_variation():
+    r = np.random.default_rng(7)
+    X = r.normal(size=(300, 2))
+    y = 1e-12 * (X[:, 0] + r.normal(size=300))
+    p = hc4_pvalues(X, y)
+    assert p.shape == (2,) and np.isfinite(p).all()
+    assert p[0] < .001
+
+
 def test_lightgbm_combined_test_matches_frozen_phase_b():
     pytest.importorskip("lightgbm")
     pb = _phase_b()

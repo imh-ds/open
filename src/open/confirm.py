@@ -43,7 +43,9 @@ GCM_FOLDS = 10
 # ---------------------------------------------------------------- OLS + HC4
 
 def hc4_pvalues(X: np.ndarray, y: np.ndarray) -> np.ndarray:
-    """Two-sided HC4 p-values for the slopes of OLS of y on X (intercept added)."""
+    """Two-sided HC4 p-values for OLS slopes; reject an exactly constant outcome."""
+    if len(y) and np.min(y) == np.max(y):
+        raise ValueError("HC4 cannot test a constant outcome (no variation)")
     A = np.column_stack([np.ones(len(X)), X])
     n, k = A.shape
     inv = np.linalg.inv(A.T @ A)
