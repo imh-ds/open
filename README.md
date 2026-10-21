@@ -84,7 +84,7 @@ plot_explore(result, "network.png",
              show_flagged=False,   # hide dashed (flagged) links and flagged-only nodes
              edge_labels="kept",   # "kept", "all" or None
              label_outline="white",       # colour of the solid outline around label text
-             label_outline_width=4)       # its thickness in points; 0 for none
+             label_outline_width=5)       # its thickness in points; 0 for none
 ```
 
 The defaults are `GraphStyle()`. `show_flagged_interactions=True` also draws
