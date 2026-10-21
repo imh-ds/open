@@ -261,6 +261,22 @@ In the graph, a green ring around each explored target is filled in
 proportion to its network R², with the value printed below it ("R² .27 new .29"
 when confirmed).
 
+## Saving and overwriting exports
+
+`write_explore` and `write_split` can reuse an output directory. Each export
+replaces the generated tables, settings and summary. `links.csv` includes its
+column headers even when there are no links. Optional files absent from the new
+export are removed: `confirmation.csv`, `confirmation-fit.csv`, `network.png`
+and `split-settings.json`. Other files and directories are preserved. A directory
+or symbolic link at a generated filename is rejected.
+
+Tables, metadata and the requested graph are prepared before existing files are
+changed. A serialization or rendering failure leaves the previous export
+intact. Publication failures attempt to restore the previous generated files;
+if restoration also fails, the error identifies retained recovery backups.
+This does not provide a transaction across files for concurrent readers or
+writers, or protection against a process crash during publication.
+
 ## Scope and assumptions
 
 - **Outcome:** continuous, with no missing values.

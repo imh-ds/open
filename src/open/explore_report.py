@@ -43,6 +43,8 @@ from __future__ import annotations
 
 import json
 import math
+import shutil
+import tempfile
 from dataclasses import dataclass, replace
 from pathlib import Path
 
@@ -65,19 +67,113 @@ def write_explore(result: ExploreResult, out_dir, *, plot: bool = True,
     ``confirmation.csv`` and mark confirmed links in the graph. With
     ``confirmation_fit`` (from ``open.confirm.confirmation_fit``), save it as
     ``confirmation-fit.csv`` and show it with each target's network fit.
+
+    Reusing a directory replaces generated files and removes optional artifacts
+    absent from this export. Unrelated files are preserved. Preparation happens
+    before publication; ordinary publication failures restore prior files.
     """
+    return _write_export(result, out_dir, plot=plot, confirmation=confirmation,
+                         confirmation_fit=confirmation_fit, style=style, graph_settings=settings)
+
+
+def write_split(split, out_dir, *, plot: bool = True, style: "GraphStyle | None" = None, **settings) -> Path:
+    """Save exploration, confirmation and split settings with overwrite recovery.
+
+    See ``write_explore`` for directory reuse behavior.
+    """
+    return _write_export(split.exploration, out_dir, plot=plot, confirmation=split.confirmation,
+                         confirmation_fit=split.fit, style=style, graph_settings=settings, split=split)
+
+
+_EXPORT_FILES = (
+    "nodes.csv", "links.csv", "pairs.csv", "folds.csv", "noise-bars.csv", "fit.csv",
+    "settings.json", "summary.txt", "confirmation.csv", "confirmation-fit.csv",
+    "network.png", "split-settings.json",
+)
+
+
+class _ExportRollbackError(OSError):
+    """Publication failed and recovery files must remain available."""
+
+
+def _publish_export(stage: Path, out: Path) -> None:
+    # Check every managed name before changing any destination, including names
+    # that this export removes. Never follow a symlink or remove a directory.
+    for name in _EXPORT_FILES:
+        target = out / name
+        if target.is_symlink() or (target.exists() and not target.is_file()):
+            raise ValueError(f"Export destination must be a regular file: {target}")
+    backup = stage / ".previous"
+    backup.mkdir()
+    for name in _EXPORT_FILES:
+        if (out / name).exists():
+            shutil.copy2(out / name, backup / name)
+
+    changed = []
+    try:
+        for name in _EXPORT_FILES:
+            source, target = stage / name, out / name
+            if source.exists():
+                source.replace(target)
+                changed.append(name)
+            elif target.exists():
+                target.unlink()
+                changed.append(name)
+    except OSError as error:
+        failures = []
+        for name in reversed(changed):
+            try:
+                if (backup / name).exists():
+                    (backup / name).replace(out / name)
+                else:
+                    (out / name).unlink(missing_ok=True)
+            except OSError as restore_error:
+                failures.append(f"{name}: {restore_error}")
+        if failures:
+            raise _ExportRollbackError(
+                f"Export failed and could not restore {', '.join(failures)}. "
+                f"Recovery backups retained at {backup}"
+            ) from error
+        raise
+
+
+def _write_export(result, out_dir, *, plot, confirmation, confirmation_fit,
+                  style, graph_settings, split=None) -> Path:
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
+    root = out.resolve()
+    stage = Path(tempfile.mkdtemp(prefix=".open-export-", dir=root))
+    retain_stage = False
+    try:
+        _prepare_export(result, stage, plot=plot, confirmation=confirmation,
+                        confirmation_fit=confirmation_fit, style=style,
+                        graph_settings=graph_settings, split=split)
+        _publish_export(stage, root)
+    except _ExportRollbackError:
+        retain_stage = True
+        raise
+    finally:
+        # Only this newly generated directory, directly within the resolved
+        # output directory, may be recursively cleaned.
+        if not retain_stage and stage.parent == root:
+            shutil.rmtree(stage)
+    return out
+
+
+def _prepare_export(result, out, *, plot, confirmation, confirmation_fit,
+                    style, graph_settings, split):
     nodes = result.nodes.assign(parents=result.nodes.parents.map(";".join))
     nodes.to_csv(out / "nodes.csv", index=False)
-    if len(result.links):
-        result.links.assign(members=result.links.members.map(";".join)).to_csv(out / "links.csv", index=False)
+    result.links.assign(members=result.links.members.map(";".join)).to_csv(out / "links.csv", index=False)
     result.pairs.to_csv(out / "pairs.csv", index=False)
     result.folds.to_csv(out / "folds.csv", index=False)
     result.bars.to_csv(out / "noise-bars.csv", index=False)
     result.fit.assign(network=result.fit.network.map(";".join)).to_csv(out / "fit.csv", index=False)
-    (out / "settings.json").write_text(json.dumps(dict(result.settings, stops=result.stops), indent=2) + "\n")
-    (out / "summary.txt").write_text(result.summary() + "\n", encoding="utf-8")
+    (out / "settings.json").write_text(json.dumps(dict(result.settings, stops=result.stops), indent=2) + "\n",
+                                      encoding="utf-8")
+    if split is not None:
+        (out / "split-settings.json").write_text(json.dumps(split.settings, indent=2) + "\n", encoding="utf-8")
+    (out / "summary.txt").write_text((split if split is not None else result).summary() + "\n", encoding="utf-8")
     if confirmation is not None:
         confirmation.to_csv(out / "confirmation.csv", index=False)
     if confirmation_fit is not None:
@@ -85,17 +181,7 @@ def write_explore(result: ExploreResult, out_dir, *, plot: bool = True,
             .to_csv(out / "confirmation-fit.csv", index=False)
     if plot:
         plot_explore(result, out / "network.png", confirmation=confirmation,
-                     confirmation_fit=confirmation_fit, style=style, **settings)
-    return out
-
-
-def write_split(split, out_dir, *, plot: bool = True, style: "GraphStyle | None" = None, **settings) -> Path:
-    """Save an ``open.confirm.explore_and_confirm`` result: exploration, confirmation and split settings."""
-    out = write_explore(split.exploration, out_dir, plot=plot, confirmation=split.confirmation,
-                        confirmation_fit=split.fit, style=style, **settings)
-    (out / "split-settings.json").write_text(json.dumps(split.settings, indent=2) + "\n")
-    (out / "summary.txt").write_text(split.summary() + "\n", encoding="utf-8")
-    return out
+                     confirmation_fit=confirmation_fit, style=style, **graph_settings)
 
 
 # ---------------------------------------------------------------- graph
