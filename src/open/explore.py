@@ -114,6 +114,10 @@ class ExploreResult:
         lines = [f"Outcome: {s['outcome']}  (engine {s['engine']}, N = {s['n']}, {split}; "
                  f"kept >= {s['keep']:.0%}, flagged >= {s['flag']:.0%} of folds above the "
                  f"{s['noise_quantile']:.0%} noise bar)"]
+        if s.get("controls"):
+            lines.append(f"Adjusted for (controls, in every model, not tested): {', '.join(s['controls'])}")
+        if s.get("covariates"):
+            lines.append(f"Covariates (in every model, tested, never targets): {', '.join(s['covariates'])}")
         shown = self.links[self.links.tier.isin(["kept", "flagged"])]
         for depth, group in shown.groupby("depth"):
             lines.append(f"Depth {depth}:")
@@ -369,7 +373,7 @@ def _interactions(Xo, yo, fold_o, active, candidates, noise_of, depth, target, c
 
 
 def network_fit(data: pd.DataFrame, target: str, pool: tuple[str, ...], network: tuple[str, ...],
-                fold_ids, engine, config: ExploreConfig, depth: int = 1) -> dict:
+                fold_ids, engine, config: ExploreConfig, depth: int = 1, controls=()) -> dict:
     """Held-out R² of ``target`` from its network predictors and from its whole pool.
 
     The predictive counterpart of a fit index ("node predictability"). The
@@ -377,11 +381,13 @@ def network_fit(data: pd.DataFrame, target: str, pool: tuple[str, ...], network:
     once on the whole pool (without noise columns), and both models reuse those
     settings, as the contrasts do. R² is relative to the training mean, and
     averaged over all folds (and repeats). With no network predictors, the
-    network R² is 0.
+    network R² is 0. ``controls`` are included in both models (and in neither
+    count): the R²s are then from the predictors together with the controls.
     """
     fold_sets = (fold_ids,) if isinstance(fold_ids, np.ndarray) else tuple(fold_ids)
+    controls = tuple(controls)
     pool, network = tuple(pool), tuple(c for c in pool if c in set(network))
-    X = data[list(pool)].astype(float).reset_index(drop=True)
+    X = data[list(pool + controls)].astype(float).reset_index(drop=True)
     y = data[target].to_numpy(dtype=float, na_value=np.nan)
     observed = ~np.isnan(y)
     r2 = {"network": [], "pool": []}
@@ -396,7 +402,7 @@ def network_fit(data: pd.DataFrame, target: str, pool: tuple[str, ...], network:
             params = dict(model.clone().tune(Xtr, ytr, inner, "mse"))
             base = _risk(model, params, Xtr, ytr, Xte, yte, ())
             for name, cols in (("network", network), ("pool", pool)):
-                r2[name].append(1 - _risk(model, params, Xtr, ytr, Xte, yte, cols) / base)
+                r2[name].append(1 - _risk(model, params, Xtr, ytr, Xte, yte, cols + controls) / base)
     net, full = float(np.mean(r2["network"])), float(np.mean(r2["pool"]))
     return dict(depth=depth, target=target, pool_size=len(pool), network_size=len(network),
                 network=network, r2_network=net, r2_pool=full,
@@ -404,16 +410,22 @@ def network_fit(data: pd.DataFrame, target: str, pool: tuple[str, ...], network:
 
 
 def assess_target(data: pd.DataFrame, target: str, candidates: tuple[str, ...], fold_ids,
-                  engine, config: ExploreConfig, depth: int = 1):
+                  engine, config: ExploreConfig, depth: int = 1, controls=()):
     """Fold-level contrasts, links and pair classes for one target.
+
+    ``controls`` are in every model but are never left out, tested or given a
+    noise copy: every contrast is then "beyond the controls". The broad
+    contrast becomes the R² a column adds to the controls alone.
 
     ``fold_ids`` is one array of fold numbers, or one per repeat. Each repeat
     has its own noise columns and seeds; the folds of all repeats are pooled
     (repeat r's fold k is numbered r * folds + k). Returns (folds, links, pairs).
     """
-    candidates = tuple(candidates)
+    candidates, controls = tuple(candidates), tuple(controls)
     if not candidates or target in candidates:
         raise ValueError("candidates must be nonempty and exclude the target")
+    if target in controls or set(controls) & set(candidates):
+        raise ValueError("controls must exclude the target and the candidates")
     fold_sets = (fold_ids,) if isinstance(fold_ids, np.ndarray) else tuple(fold_ids)
     if len(fold_sets) != config.repeats:
         raise ValueError("need one fold assignment per repeat")
@@ -430,9 +442,11 @@ def assess_target(data: pd.DataFrame, target: str, candidates: tuple[str, ...], 
         noise = {noise_of[c]: rng.permutation(data[c].to_numpy(dtype=float, na_value=np.nan))
                  for c in candidates}
         X = pd.concat([data[list(candidates)].astype(float).reset_index(drop=True),
-                       pd.DataFrame(noise)], axis=1)
+                       pd.DataFrame(noise)] + ([data[list(controls)].astype(float).reset_index(drop=True)]
+                                               if controls else []), axis=1)
         noise_cols = tuple(noise)
-        columns = candidates + noise_cols
+        columns = candidates + noise_cols            # tested
+        model_cols = columns + controls              # in every model
         group_rng = np.random.default_rng(_sub_seed(cfg.seed, "groups", depth, target))
         noise_sets = {m: [tuple(sorted(group_rng.choice(len(noise_cols), m, replace=False)))
                           for _ in range(config.noise_groups)]
@@ -450,9 +464,10 @@ def assess_target(data: pd.DataFrame, target: str, candidates: tuple[str, ...], 
             ytr, yte = y[train], y[test]
             tuner = model.clone()
             inner = KFold(config.tuning_folds, shuffle=True, random_state=_sub_seed(cfg.seed, "tune", k))
-            params = dict(tuner.tune(Xtr[list(columns)], ytr, inner, "mse"))
+            params = dict(tuner.tune(Xtr[list(model_cols)], ytr, inner, "mse"))
             base = _risk(model, params, Xtr, ytr, Xte, yte, ())
-            full = _risk(model, params, Xtr, ytr, Xte, yte, columns)
+            full = _risk(model, params, Xtr, ytr, Xte, yte, model_cols)
+            floor = _risk(model, params, Xtr, ytr, Xte, yte, controls) if controls else base
             if base <= 0:
                 raise ValueError(f"target {target!r} is constant in held-out fold {k}")
             fold = r * config.folds + k
@@ -462,14 +477,14 @@ def assess_target(data: pd.DataFrame, target: str, candidates: tuple[str, ...], 
                                  source=source, noise=is_noise, value=value))
 
             def lost(drop):
-                kept = tuple(x for x in columns if x not in drop)
+                kept = tuple(x for x in model_cols if x not in drop)
                 return (_risk(model, params, Xtr, ytr, Xte, yte, kept) - full) / base
 
             for c in columns:
-                alone = _risk(model, params, Xtr, ytr, Xte, yte, (c,))
+                alone = _risk(model, params, Xtr, ytr, Xte, yte, controls + (c,))
                 name = c.removeprefix(NOISE_PREFIX)
                 add("unique", name, lost({c}), c in noise)
-                add("broad", name, (base - alone) / base, c in noise)
+                add("broad", name, (floor - alone) / base, c in noise)
             for a, b, _ in edges:
                 add("pair", f"{a}+{b}", lost({a, b}), False)
             for i, idx in enumerate(pair_sets):
@@ -518,8 +533,14 @@ def assess_target(data: pd.DataFrame, target: str, candidates: tuple[str, ...], 
 
 
 def explore(data: pd.DataFrame, outcome: str, predictors=None, engine="ols",
-            config: ExploreConfig | None = None) -> ExploreResult:
+            config: ExploreConfig | None = None, controls=None, covariates=None) -> ExploreResult:
     """Build the exploratory network for ``outcome``, one depth at a time.
+
+    ``controls``: variables adjusted for in every target's model at every depth,
+    never tested, drawn or used as targets (nuisance variables, e.g. cohort).
+    ``covariates``: variables in every target's model at every depth that are
+    also tested and drawn like candidates, but never become targets (e.g.
+    gender). With ``predictors=None``, the predictors are all other columns.
 
     A dependence group (correlated candidates) counts only when none of its
     members is kept by itself; otherwise the kept member already carries the
@@ -530,10 +551,19 @@ def explore(data: pd.DataFrame, outcome: str, predictors=None, engine="ols",
     config = config or ExploreConfig()
     if not isinstance(data, pd.DataFrame):
         raise TypeError("data must be a pandas DataFrame")
-    predictors = tuple(c for c in data.columns if c != outcome) if predictors is None else tuple(predictors)
+    controls = tuple(controls or ())
+    covariates = tuple(covariates or ())
+    fixed = controls + covariates
+    if outcome in fixed or len(set(fixed)) != len(fixed):
+        raise ValueError("controls and covariates must be distinct, not overlap and exclude the outcome")
+    if predictors is None:
+        predictors = tuple(c for c in data.columns if c != outcome and c not in fixed)
+    predictors = tuple(predictors)
     if outcome in predictors or len(set(predictors)) != len(predictors) or not predictors:
         raise ValueError("predictors must be distinct, nonempty and exclude the outcome")
-    variables = (outcome, *predictors)
+    if set(predictors) & set(fixed):
+        raise ValueError("a variable cannot be both a predictor and a control or covariate")
+    variables = (outcome, *predictors, *covariates, *controls)
     missing = [v for v in variables if v not in data]
     if missing:
         raise ValueError(f"unknown columns: {missing}")
@@ -566,18 +596,21 @@ def explore(data: pd.DataFrame, outcome: str, predictors=None, engine="ols",
             break
         depth += 1
         next_parents = {}
+        tested = pool + covariates                  # covariates: in every pool, never targets
         for target in frontier:
-            folds, links, pairs = assess_target(data, target, pool, fold_ids, engine, config, depth)
+            folds, links, pairs = assess_target(data, target, tested, fold_ids, engine, config, depth, controls)
             kept_alone = set(links.source[(links.kind == "unique") & (links.tier == "kept")])
             redundant = (links.kind == "shared") & links.members.map(lambda m: bool(set(m) & kept_alone))
             links = links[~redundant]
             all_folds.append(folds)
             all_links.append(links)
             all_pairs.append(pairs)
-            promoted = set()
+            kept = set()
             for _, r in links[(links.tier == "kept") & (links.kind != "interaction")].iterrows():
-                promoted.update(r.members)
-            all_fit.append(network_fit(data, target, pool, tuple(promoted), fold_ids, engine, config, depth))
+                kept.update(r.members)
+            promoted = kept - set(covariates)
+            all_fit.append(network_fit(data, target, tested, tuple(kept), fold_ids, engine, config, depth,
+                                       controls))
             if not promoted:
                 stops[target] = "NOTHING_KEPT"
             for v in promoted:
@@ -596,5 +629,7 @@ def explore(data: pd.DataFrame, outcome: str, predictors=None, engine="ols",
             if len(folds) else pd.DataFrame())
     name = engine.engine_name if isinstance(engine, Predictor) else engine
     settings = dict(outcome=outcome, engine=name, n=n, **asdict(config))
+    if controls or covariates:
+        settings.update(controls=list(controls), covariates=list(covariates))
     fit = pd.DataFrame(all_fit, columns=FIT_COLUMNS)
     return ExploreResult(nodes, links, pairs, folds, bars, stops, settings, fit)

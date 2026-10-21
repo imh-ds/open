@@ -164,13 +164,19 @@ def gcm_pcm_pvalues(X: np.ndarray, T: np.ndarray, folds: dict, dseed: int, colum
 # ---------------------------------------------------------------- confirmation
 
 def frozen_network(result: ExploreResult, include_flagged: bool = False) -> pd.DataFrame:
-    """The links to confirm, each with the candidate pool its target was explored with."""
+    """The links to confirm, each with the candidate pool its target was explored with.
+
+    The pool includes the exploration's covariates (tested there) and its
+    controls (adjusted for there), so each link is confirmed beyond the same
+    variables it was found beyond.
+    """
     tiers = ["kept", "flagged"] if include_flagged else ["kept"]
     links = result.links[result.links.tier.isin(tiers)].copy()
     f = result.folds
     pools = (f[(f.contrast == "unique") & ~f.noise].groupby(["depth", "target"]).source
              .apply(lambda s: tuple(dict.fromkeys(s))).to_dict())
-    links["pool"] = [pools[(d, t)] for d, t in zip(links.depth, links.target)]
+    controls = tuple(result.settings.get("controls", ()))
+    links["pool"] = [pools[(d, t)] + controls for d, t in zip(links.depth, links.target)]
     return links.reset_index(drop=True)
 
 
@@ -293,16 +299,18 @@ def confirmation_fit(result: ExploreResult, data: pd.DataFrame, folds: int = 10,
     f = result.folds
     pools = (f[(f.contrast == "unique") & ~f.noise].groupby(["depth", "target"]).source
              .apply(lambda x: tuple(dict.fromkeys(x))).to_dict()) if len(f) else {}
+    controls = tuple(s.get("controls", ()))
     rows = []
     for r in result.fit.itertuples():
         pool = pools[(r.depth, r.target)]
-        missing = [c for c in (r.target, *pool) if c not in data]
+        missing = [c for c in (r.target, *pool, *controls) if c not in data]
         if missing:
             raise ValueError(f"confirmation data lacks columns {missing}")
-        frame = data[[r.target, *pool]].apply(pd.to_numeric, errors="raise").dropna().reset_index(drop=True)
+        frame = (data[[r.target, *pool, *controls]].apply(pd.to_numeric, errors="raise").dropna()
+                 .reset_index(drop=True))
         fold_ids = np.arange(len(frame)) % folds
         np.random.default_rng(_seed(seed, "confirmation-fit", r.depth, r.target)).shuffle(fold_ids)
-        out = network_fit(frame, r.target, pool, r.network, fold_ids, s["engine"], config, r.depth)
+        out = network_fit(frame, r.target, pool, r.network, fold_ids, s["engine"], config, r.depth, controls)
         rows.append(dict(depth=r.depth, target=r.target, n=len(frame), network=out["network"],
                          network_size=out["network_size"], pool_size=out["pool_size"],
                          r2_network_explore=r.r2_network, r2_network=out["r2_network"], r2_pool=out["r2_pool"],
@@ -346,7 +354,7 @@ class SplitResult:
 def explore_and_confirm(data: pd.DataFrame, outcome: str, predictors=None, engine: str = "ols", config=None,
                         explore_fraction: float = 0.5, split_seed: int = 0, confirm_engine: str | None = None,
                         include_flagged: bool = False, correction: str = "holm",
-                        alpha: float = 0.05) -> SplitResult:
+                        alpha: float = 0.05, controls=None, covariates=None) -> SplitResult:
     """Split one dataset, explore on one part and confirm the frozen links on the other.
 
     Splitting suits N of about 1,000 or more; with less data both parts lose
@@ -357,7 +365,8 @@ def explore_and_confirm(data: pd.DataFrame, outcome: str, predictors=None, engin
         warnings.warn(f"N = {len(data)}: splitting leaves small parts; with under about 1,000 rows, "
                       "exploring on all data and confirming in a new sample keeps more power.", stacklevel=2)
     explore_part, confirm_part = split_sample(data, explore_fraction, split_seed)
-    exploration = explore(explore_part, outcome, predictors, engine=engine, config=config)
+    exploration = explore(explore_part, outcome, predictors, engine=engine, config=config, controls=controls,
+                          covariates=covariates)
     confirmation = confirm(exploration, confirm_part, engine=confirm_engine, include_flagged=include_flagged,
                            correction=correction, alpha=alpha)
     used = confirmation.engine.iloc[0] if len(confirmation) else (
