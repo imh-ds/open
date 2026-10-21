@@ -26,6 +26,8 @@ def test_api_preserves_original_functions_and_types():
         "explore_and_confirm": ("open.confirm", "explore_and_confirm"),
         "explore_and_confirm_outcomes": ("open.multi_outcome", "explore_and_confirm_outcomes"),
         "MultiOutcomeResult": ("open.multi_outcome", "MultiOutcomeResult"),
+        "plot_outcomes": ("open.explore_report", "plot_outcomes"),
+        "save_multi_outcome_analysis": ("open.explore_report", "save_multi_outcome_analysis"),
         "evaluate_confirmation_fit": ("open.confirm", "confirmation_fit"),
         "split_sample": ("open.confirm", "split_sample"),
         "plot_network": ("open.explore_report", "plot_explore"),

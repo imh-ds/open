@@ -43,15 +43,22 @@ from __future__ import annotations
 
 import json
 import math
+import re
 import shutil
+import stat
 import tempfile
 from dataclasses import dataclass, replace
 from pathlib import Path
+from typing import TYPE_CHECKING, Literal
 
 import numpy as np
 import pandas as pd
 
 from open.explore import ExploreResult
+
+if TYPE_CHECKING:
+    from matplotlib.figure import Figure
+    from open.multi_outcome import MultiOutcomeResult
 
 
 def write_explore(result: ExploreResult, out_dir, *, plot: bool = True,
@@ -96,22 +103,22 @@ class _ExportRollbackError(OSError):
     """Publication failed and recovery files must remain available."""
 
 
-def _publish_export(stage: Path, out: Path) -> None:
+def _publish_export(stage: Path, out: Path, managed_files=_EXPORT_FILES) -> None:
     # Check every managed name before changing any destination, including names
     # that this export removes. Never follow a symlink or remove a directory.
-    for name in _EXPORT_FILES:
+    for name in managed_files:
         target = out / name
         if target.is_symlink() or (target.exists() and not target.is_file()):
             raise ValueError(f"Export destination must be a regular file: {target}")
     backup = stage / ".previous"
     backup.mkdir()
-    for name in _EXPORT_FILES:
+    for name in managed_files:
         if (out / name).exists():
             shutil.copy2(out / name, backup / name)
 
     changed = []
     try:
-        for name in _EXPORT_FILES:
+        for name in managed_files:
             source, target = stage / name, out / name
             if source.exists():
                 source.replace(target)
@@ -468,6 +475,18 @@ def _layout(result: ExploreResult, links: pd.DataFrame, style: GraphStyle | None
 
 def plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFrame | None = None,
                  confirmation_fit: pd.DataFrame | None = None, style: GraphStyle | None = None, **settings):
+    """Draw the radial network; return its figure or save to the requested path.
+
+    GraphStyle fields may also be supplied as keyword settings. Confirmation
+    tables mark confirmed links and show fit on the independent data.
+    """
+    return _plot_explore(result, path, confirmation=confirmation, confirmation_fit=confirmation_fit,
+                         style=style, **settings)
+
+
+def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFrame | None = None,
+                  confirmation_fit: pd.DataFrame | None = None, style: GraphStyle | None = None,
+                  axes=None, **settings):
     """Draw the network; save it to ``path`` if given, else return the figure.
 
     ``style`` is a ``GraphStyle``; ``settings`` override its fields, so
@@ -502,7 +521,10 @@ def plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFrame
     span = hi - lo
     scale = float(np.clip(9.5 / max(span), .6, .95))       # inches per unit
     points = scale * 72                                    # points per unit
-    fig, ax = plt.subplots(figsize=(max(6.5, span[0] * scale + .6), max(5.5, span[1] * scale + 1.9)))
+    if axes is None:
+        fig, ax = plt.subplots(figsize=(max(6.5, span[0] * scale + .6), max(5.5, span[1] * scale + 1.9)))
+    else:
+        fig, ax = axes.figure, axes
     ax.set_aspect("equal")
 
     verdict = {}
@@ -654,6 +676,8 @@ def plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFrame
     ax.set_xlim(lo[0], hi[0])
     ax.set_ylim(lo[1], hi[1])
     ax.axis("off")
+    if axes is not None:
+        return fig
     fig.tight_layout()
     fig.canvas.draw()                              # place the footnote just below the legend
     box = legend.get_window_extent().transformed(fig.transFigure.inverted())
@@ -672,3 +696,205 @@ def _soft(hex_color: str, amount: float = .45) -> str:
     h = hex_color.lstrip("#")
     rgb = [int(h[i:i + 2], 16) for i in (0, 2, 4)]
     return "#" + "".join(f"{round(c + (255 - c) * amount):02x}" for c in rgb)
+
+
+def plot_outcomes(result: MultiOutcomeResult, layout: Literal["facets", "combined"] = "facets",
+                  path: str | Path | None = None, style: GraphStyle | None = None) -> Figure | Path:
+    """Plot separate outcome networks as radial facets or an outcome-colored overlay."""
+    if layout not in ("facets", "combined"):
+        raise ValueError("layout must be 'facets' or 'combined'")
+    if not result.by_outcome:
+        raise ValueError("at least one outcome network is required")
+    st = _style(style, {})
+    import matplotlib
+    if path is not None:
+        matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    if layout == "facets":
+        count = len(result.by_outcome)
+        columns = min(count, 2)
+        rows = math.ceil(count / columns)
+        panel_style = replace(st, spacing=st.spacing * 1.3)
+        widths, heights = [], []
+        for split in result.by_outcome.values():
+            drawn = _drawn(split.exploration.links, st.show_flagged, st.show_flagged_interactions)
+            positions, _, _, junctions = _layout(split.exploration, drawn, panel_style)
+            points = np.array(list(positions.values()) + list(junctions.values()))
+            span = np.ptp(points, axis=0) + 2 * (.7 + 1.3 * st.node_r() + .25 * st.label_size)
+            scale = float(np.clip(9.5 / max(span), .6, .95))
+            widths.append(max(7.5, span[0] * scale + 1.5))
+            heights.append(max(4.5, span[1] * scale + 2))
+        fig, axes = plt.subplots(rows, columns,
+                                 figsize=(max(widths) * columns, max(heights) * rows + .7), squeeze=False)
+        for ax, split in zip(axes.flat, result.by_outcome.values()):
+            _plot_explore(split.exploration, confirmation=split.confirmation,
+                          confirmation_fit=split.fit, style=panel_style, axes=ax)
+        for ax in list(axes.flat)[count:]:
+            fig.delaxes(ax)
+        fig.suptitle("Separate predictive outcome networks", fontsize=15 * st.label_size)
+        fig.subplots_adjust(top=.91, bottom=.14, hspace=.42, wspace=.2)
+        fig.text(.5, .035, "Each panel has its own root and depth ordering. Arrows show prediction, not causation.\n"
+                 "Edge labels: held-out ΔR² and folds passed; ✓ marks confirmation. Node rings show held-out R².",
+                 ha="center", fontsize=9 * st.label_size, color=MUTED)
+    else:
+        fig = _plot_outcome_overlay(result, st)
+    if path is not None:
+        fig.savefig(path, dpi=st.dpi, facecolor="white", bbox_inches="tight", pad_inches=.3)
+        plt.close(fig)
+        return Path(path)
+    return fig
+
+
+def _plot_outcome_overlay(result, st):
+    import matplotlib.pyplot as plt
+    from matplotlib.lines import Line2D
+    from matplotlib.patches import FancyArrowPatch
+
+    outcomes = tuple(result.by_outcome)
+    cmap = plt.get_cmap("tab10" if len(outcomes) <= 10 else "tab20" if len(outcomes) <= 20 else "hsv")
+    colors = {outcome: cmap(i if len(outcomes) <= 20 else i / len(outcomes))
+              for i, outcome in enumerate(outcomes)}
+    variables = dict.fromkeys(outcomes)
+    relations, junctions = [], {}
+    for outcome, split in result.by_outcome.items():
+        links = _drawn(split.exploration.links, st.show_flagged, st.show_flagged_interactions)
+        for index, link in enumerate(links.itertuples()):
+            variables.setdefault(link.target, None)
+            for member in link.members:
+                variables.setdefault(member, None)
+            if link.kind == "unique":
+                relations.append((link.members[0], link.target, outcome, link.tier, link.r2_median, True))
+            else:
+                # Relation nodes preserve group/interaction semantics in the overlay.
+                key = (outcome, index, link.kind)
+                junctions[key] = (link.kind, tuple(link.members), link.target)
+                for member in link.members:
+                    relations.append((member, key, outcome, "kept", 0, False))
+                relations.append((key, link.target, outcome, link.tier, link.r2_median, True))
+    names = tuple(variables)
+    radius = max(2.5, .42 * len(names)) * st.spacing
+    positions = {name: np.array([radius * math.cos(math.pi / 2 + 2 * math.pi * i / len(names)),
+                                 radius * math.sin(math.pi / 2 + 2 * math.pi * i / len(names))])
+                 for i, name in enumerate(names)}
+    for index, (key, (_, members, target)) in enumerate(junctions.items()):
+        points = [positions[name] for name in (*members, target)]
+        center = np.mean(points, axis=0)
+        # Distinct relation nodes stay separate even for the same members/target.
+        positions[key] = center + .25 * np.array([math.cos(index * 2.4), math.sin(index * 2.4)])
+    fig, ax = plt.subplots(figsize=(max(8, radius * 1.8), max(7, radius * 1.8)))
+    groups = {}
+    for relation in relations:
+        a, b = relation[:2]
+        pair = frozenset((a, b))
+        groups.setdefault(pair, []).append(relation)
+    for group in groups.values():
+        canonical = group[0][0]
+        for index, (a, b, outcome, tier, r2, head) in enumerate(group):
+            curvature = (index - (len(group) - 1) / 2) * .28
+            if a != canonical:
+                curvature *= -1
+            arrow = FancyArrowPatch(
+                positions[a], positions[b], arrowstyle="-|>" if head else "-",
+                connectionstyle=f"arc3,rad={curvature}", color=colors[outcome],
+                linestyle="-" if tier == "kept" else "--", linewidth=_width(r2) * st.edge_width,
+                mutation_scale=14 * st.node_size, shrinkA=22 * st.node_size, shrinkB=22 * st.node_size,
+                alpha=.9, zorder=1,
+            )
+            arrow.set_gid(f"{outcome}:{a}->{b}")
+            ax.add_patch(arrow)
+            if head and (st.edge_labels == "all" or (st.edge_labels == "kept" and tier == "kept")):
+                delta = positions[b] - positions[a]
+                normal = np.array([-delta[1], delta[0]]) / (np.linalg.norm(delta) + 1e-12)
+                center = (positions[a] + positions[b]) / 2 - normal * curvature * np.linalg.norm(delta) / 2
+                ax.text(*center, _apa(r2), fontsize=8 * st.label_size, color=colors[outcome],
+                        ha="center", va="center", bbox=dict(facecolor="white", edgecolor="none", alpha=.85))
+    for name in names:
+        root = name in colors
+        ax.scatter(*positions[name], s=(1100 if root else 850) * st.node_size ** 2,
+                   color=colors[name] if root else "#eef2f6", edgecolor=INK, zorder=3)
+        ax.text(*positions[name], name, ha="center", va="center", color="white" if root else INK,
+                fontsize=9 * st.label_size, fontweight="bold" if root else "normal", zorder=4)
+    for key, (kind, members, _) in junctions.items():
+        ax.scatter(*positions[key], marker="D" if kind == "interaction" else "s", s=180 * st.node_size ** 2,
+                   color=colors[key[0]], zorder=3)
+        label = (" × " if kind == "interaction" else " + ").join(members) + f" ({kind})"
+        ax.annotate(label, positions[key], xytext=(0, 12), textcoords="offset points", ha="center",
+                    fontsize=8 * st.label_size, color=colors[key[0]])
+    handles = [Line2D([], [], color=colors[outcome], lw=2.5, label=outcome) for outcome in outcomes]
+    ax.legend(handles=handles, loc="upper center", bbox_to_anchor=(.5, -.03), ncol=min(4, len(outcomes)),
+              frameon=False)
+    ax.set_title("Overlay of separate predictive analyses", fontsize=14 * st.label_size, pad=22)
+    fig.text(.5, .025, "Colors identify each outcome's analysis; shared variables are drawn once.\n"
+             "Solid: kept; dashed: flagged. Labels: held-out ΔR². Arrows show prediction, not causation.",
+             ha="center", fontsize=9 * st.label_size, color=MUTED)
+    ax.set_aspect("equal")
+    ax.margins(.3)
+    ax.axis("off")
+    fig.subplots_adjust(bottom=.2, top=.9)
+    return fig
+
+
+_MULTI_EXPORT_FILES = ("outcomes-confirmation.csv", "outcomes-fit.csv", "outcomes-settings.json",
+                       "outcomes-summary.txt", "outcomes-network.png")
+
+
+def _check_output_directory(path: Path) -> None:
+    if path.is_symlink() or (path.exists() and
+                            getattr(path.lstat(), "st_file_attributes", 0) & stat.FILE_ATTRIBUTE_REPARSE_POINT):
+        raise ValueError(f"Export directory must not be a symlink or reparse point: {path}")
+    if path.exists() and not path.is_dir():
+        raise ValueError(f"Export destination must be a directory: {path}")
+
+
+def save_multi_outcome_analysis(result: MultiOutcomeResult, out_dir: str | Path, *,
+                                 plot: Literal[False, "facets", "combined"] = False,
+                                 style: GraphStyle | None = None) -> Path:
+    """Save per-outcome analyses and aggregate tables, with an optional batch plot.
+
+    Publication recovers per outcome directory and per aggregate file set.
+    A failure can leave earlier outcome directories updated. Unrelated files
+    and outcome directories from prior batches are preserved.
+    """
+    if plot is not False and plot not in ("facets", "combined"):
+        raise ValueError("plot must be False, 'facets', or 'combined'")
+    if not result.by_outcome:
+        raise ValueError("at least one outcome network is required")
+    out = Path(out_dir)
+    _check_output_directory(out)
+    out.mkdir(parents=True, exist_ok=True)
+    root = out.resolve()
+    _check_output_directory(root / "outcomes")
+    mapping = {}
+    for index, outcome in enumerate(result.by_outcome, 1):
+        slug = re.sub(r"[^A-Za-z0-9_-]+", "-", outcome).strip("-_")[:32] or "outcome"
+        folder = f"outcomes/{index:04d}-{slug}"
+        _check_output_directory(root / folder)
+        mapping[outcome] = folder
+    for name in _MULTI_EXPORT_FILES:
+        target = root / name
+        if target.is_symlink() or (target.exists() and not target.is_file()):
+            raise ValueError(f"Export destination must be a regular file: {target}")
+    stage = Path(tempfile.mkdtemp(prefix=".open-multi-", dir=root))
+    retain_stage = False
+    try:
+        result.confirmation.to_csv(stage / "outcomes-confirmation.csv", index=False)
+        fit = result.fit
+        if "network" in fit:
+            fit = fit.assign(network=fit.network.map(";".join))
+        fit.to_csv(stage / "outcomes-fit.csv", index=False)
+        (stage / "outcomes-settings.json").write_text(
+            json.dumps({**result.settings, "outcome_folders": mapping}, indent=2) + "\n", encoding="utf-8")
+        (stage / "outcomes-summary.txt").write_text(result.summary() + "\n", encoding="utf-8")
+        if plot:
+            plot_outcomes(result, layout=plot, path=stage / "outcomes-network.png", style=style)
+        for outcome, split in result.by_outcome.items():
+            write_split(split, root / mapping[outcome], plot=False)
+        _publish_export(stage, root, managed_files=_MULTI_EXPORT_FILES)
+    except _ExportRollbackError:
+        retain_stage = True
+        raise
+    finally:
+        if not retain_stage and stage.parent == root:
+            shutil.rmtree(stage)
+    return out

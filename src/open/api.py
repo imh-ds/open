@@ -14,6 +14,8 @@ from open.confirm import (
 from open.explore import ExploreConfig, ExploreResult, explore as explore_network
 from open.explore_report import (
     GraphStyle,
+    plot_outcomes,
+    save_multi_outcome_analysis,
     plot_explore as plot_network,
     write_explore as save_exploration,
     write_split as save_split_analysis,
@@ -24,6 +26,7 @@ __all__ = (
     "ExploreConfig", "ExploreResult", "GraphStyle", "SplitResult",
     "confirm_network", "evaluate_confirmation_fit", "explore_and_confirm",
     "explore_and_confirm_outcomes", "MultiOutcomeResult",
+    "plot_outcomes", "save_multi_outcome_analysis",
     "explore_network", "plot_network", "save_exploration", "save_split_analysis",
     "split_sample",
 )
