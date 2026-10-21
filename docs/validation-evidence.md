@@ -1,6 +1,6 @@
 # Validation evidence
 
-Five simulation studies support the method. Each has a frozen script, a
+Six simulation studies support the method. Each has a frozen script, a
 protocol, summary results in `examples/results/`, and raw outputs in a GitHub
 release.
 
@@ -108,6 +108,32 @@ OLS were unaffected.
 - **Networks vary noticeably with the seed:** 50–79% of kept true links are
   kept again under a second seed.
 
+## 6. Study v2-R: repeated splits
+
+`examples/results/2026-10-20-study-v2r/interpretation.md`
+
+**Design:**
+
+- Study v2's datasets 0–49 in 12 pool-25 cells (3 engines × N × shape).
+- Each dataset explored with `repeats` 1 and 5, under two seeds each.
+
+**Findings:**
+
+- **R = 5 does not meet the pre-set stability target.** True links kept again
+  under another seed rise only from .43–.74 to .60–.84 at depth 1.
+- **It makes "kept" stricter.** True links near the 80% line move to flagged,
+  so OLS at 500 exploration rows keeps .21 → .06 of true links.
+- **It cleans the dotted tier.** False dotted links per network fall by half
+  or more, and false solid links fall to 0 for OLS and LightGBM.
+- **"Kept or flagged" is already stable at R = 1:** 86–97% of true links agree
+  across seeds. The seed mainly moves links across the kept/flagged line.
+- **Default kept at `repeats = 1`;** R > 1 is offered as an option.
+- **Reproducibility:** the R = 1 runs reproduce study v2's runs of the same
+  datasets, which used older code on other machines. OLS and LightGBM match
+  exactly. Elastic-Net matches except for R² = 0 links, where its zeroed
+  noise bar lets floating-point noise decide a pass; this changed one flagged
+  interaction among about 115,000 links.
+
 ## How the evidence maps to the software
 
 | Software claim | Evidence |
@@ -118,3 +144,4 @@ OLS were unaffected.
 | `confirm` with LightGBM from N ≥ 300 | Studies 4 and 5 |
 | Split-sample confirmation of whole networks | Study 5 |
 | Comparison with simpler selection rules | Study 5 |
+| `repeats` option and the default of 1 | Study 6 |

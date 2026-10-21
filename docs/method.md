@@ -12,9 +12,15 @@ seed. Every regression in the network uses the same folds.
 - The R × 10 folds are pooled: one noise bar over all of them, and the tiers
   use the share of the R × 10 folds passed.
 - Repeat 0 is exactly the `repeats=1` analysis.
-- This reduces the dependence on the seed, which study v2 found to be
-  substantial. It multiplies the exploration time by R.
-- Its validation is in progress (study v2-R).
+- It multiplies the exploration time by R.
+- **What it does (study v2-R):** pooling measures each link's pass rate more
+  precisely, so the 80% rule becomes a sharper cut-off.
+  - False dotted links fall by half or more, false solid links fall further,
+    and the exact tier agrees more often across seeds.
+  - True links that pass about 50–80% of folds move from kept to flagged, so
+    fewer true links are kept. The pre-set stability target was not reached.
+- The default stays 1. Use R = 3–5 when a cleaner dotted tier and more
+  reproducible exact tiers matter more than the number of solid lines.
 
 **2. Each regression.** For a target and its candidate pool, in every fold:
 
@@ -217,8 +223,10 @@ when confirmed).
     Prefer LightGBM when effects may be curved.
   - Elastic-Net can keep links between two variables that share a parent in
     the pool.
-  - The network changes noticeably with `seed`: re-run with another seed to
-    see which kept links are stable.
+  - The split between kept and flagged depends on `seed` for links near the
+    80% line. Whether a true link is kept *or* flagged is stable (86–97% agree
+    across seeds), so read the two tiers together and look at the pass rate.
+    Confirmation on independent data decides.
 
 ## Defaults
 
