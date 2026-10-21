@@ -144,6 +144,14 @@ confirmation always uses independent data:
    because no calibrated test exists for them yet. They remain exploratory
    results, even after confirmation.
 
+**Constant confirmation targets.** If a target has exactly the same value in
+every complete row for that target and its frozen pool, `confirm` retains its
+unique links as untested: `p` and `p_adjusted` are missing, `confirmed` is false,
+and `note` explains the lack of outcome variation. Other targets are still
+tested. This safeguard applies to both confirmation engines and does not
+exclude genuinely varying outcomes just because their scale is small. Direct
+calls to `hc4_pvalues` reject a constant outcome with `ValueError`.
+
 **Why LightGBM uses different settings in exploration and confirmation.**
 
 - **Exploration** refits the engine many times per target: every fold, every

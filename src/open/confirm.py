@@ -211,6 +211,8 @@ def confirm(result: ExploreResult, data: pd.DataFrame, engine: str | None = None
     (an Elastic-Net network is confirmed with OLS + HC4). Rows with a missing
     value in a target or its pool are dropped for that target. Returns one row
     per frozen link, with the raw and adjusted p-value and whether it is confirmed.
+    A constant complete-case target is retained as untested, with missing
+    p-values and an explanatory note; other targets are still tested.
     """
     if engine is None:
         engine = "lightgbm" if result.settings.get("engine") == "lightgbm" else "ols"
@@ -232,8 +234,9 @@ def confirm(result: ExploreResult, data: pd.DataFrame, engine: str | None = None
         if n < CALIBRATED_FROM[engine]:
             note = f"N = {n} is below the calibrated minimum {CALIBRATED_FROM[engine]}"
             warnings.warn(f"{target}: {note}", stacklevel=2)
+        constant_target = n > 0 and np.min(T) == np.max(T)
         testable = group.kind == "unique"
-        if testable.any():
+        if testable.any() and not constant_target:
             if engine == "ols":
                 p_of = dict(zip(pool, hc4_pvalues(X, T)))
             else:   # only the frozen columns: about 61 LightGBM fits per column
@@ -246,7 +249,11 @@ def confirm(result: ExploreResult, data: pd.DataFrame, engine: str | None = None
                        explore_pass_rate=r.pass_rate, explore_r2=r.r2_median, engine=engine, n=n,
                        pool_size=len(pool), p=np.nan, note=note)
             if r.kind == "unique":
-                row["p"] = float(p_of[r.source])
+                if constant_target:
+                    reason = "not tested: outcome has no variation in complete confirmation rows"
+                    row["note"] = f"{note}; {reason}" if note else reason
+                else:
+                    row["p"] = float(p_of[r.source])
             else:
                 row["note"] = f"not tested: no calibrated {r.kind} test"
             rows.append(row)

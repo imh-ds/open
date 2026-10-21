@@ -193,3 +193,76 @@ def test_confirmation_fit_is_cross_validated_on_the_new_data():
     assert again.r2_network.notna().all()
     with pytest.raises(ValueError):
         confirmation_fit(split.exploration, data.drop(columns='X2'))
+
+
+@pytest.fixture(scope="module")
+def constant_target_network():
+    return explore(_chain(900, 5), "Y",
+                   config=ExploreConfig(folds=5, max_depth=2, interactions=False))
+
+
+@pytest.mark.parametrize("engine", ["ols", "lightgbm"])
+@pytest.mark.parametrize("correction", ["holm", "bh"])
+def test_constant_confirmation_targets_are_retained_as_untested(constant_target_network, engine, correction):
+    frozen = frozen_network(constant_target_network)
+    new = _chain(600, 2)
+    for target in frozen.target.unique():
+        new[target] = .1
+    out = confirm(constant_target_network, new, engine=engine, correction=correction)
+    assert len(out) == len(frozen) == 4
+    assert out.p.isna().all() and out.p_adjusted.isna().all()
+    assert not out.confirmed.any()
+    assert out.note.str.contains("not tested.*no variation").all()
+    assert out.attrs["links_tested"] == 0
+
+
+def test_confirmation_checks_outcome_variation_after_complete_case_filtering(constant_target_network):
+    new = _chain(601, 2)
+    new["Y"] = .1
+    new.loc[600, "Y"] = 2.0
+    new.loc[600, "X2"] = np.nan
+    assert new.Y.nunique() == 2
+    out = confirm(constant_target_network, new)
+    skipped = out[out.target == "Y"]
+    assert len(skipped) == 2 and (skipped.n == 600).all()
+    assert skipped.p.isna().all() and skipped.p_adjusted.isna().all()
+    assert not skipped.confirmed.any()
+    assert skipped.note.str.contains("no variation").all()
+
+
+@pytest.mark.parametrize("correction", ["holm", "bh"])
+def test_constant_target_does_not_prevent_other_targets_being_confirmed(constant_target_network, correction):
+    new = _chain(900, 11).assign(Y=.1)
+    out = confirm(constant_target_network, new, correction=correction)
+    skipped, tested = out[out.target == "Y"], out[out.target != "Y"]
+    assert len(skipped) == len(tested) == 2
+    assert skipped.p.isna().all() and not skipped.confirmed.any()
+    assert set(tested.target) == {"X1", "X3"}
+    assert np.isfinite(tested[["p", "p_adjusted"]]).all().all()
+    assert tested.confirmed.all() and (tested.p_adjusted >= tested.p).all()
+    assert out.attrs["links_tested"] == 2
+
+
+def test_constant_target_keeps_small_sample_warning_and_note(constant_target_network):
+    new = _chain(200, 2)
+    for target in frozen_network(constant_target_network).target.unique():
+        new[target] = 1.0
+    with pytest.warns(UserWarning, match="below the calibrated minimum"):
+        out = confirm(constant_target_network, new)
+    assert out.note.str.contains("below the calibrated minimum").all()
+    assert out.note.str.contains("not tested.*no variation").all()
+    assert not out.confirmed.any()
+
+
+def test_constant_target_preserves_unsupported_link_kind_notes():
+    r = np.random.default_rng(11)
+    a = r.normal(size=800)
+    data = pd.DataFrame({"S1": a + .1 * r.normal(size=800), "S2": a + .1 * r.normal(size=800),
+                         "P": r.normal(size=800), "N1": r.normal(size=800)})
+    data["Y"] = .35 * a + .4 * data.P + r.normal(size=800)
+    result = explore(data, "Y", config=ExploreConfig(max_depth=1, interactions=False))
+    out = confirm(result, data.assign(Y=.1))
+    shared = out[out.kind == "shared"]
+    assert len(shared) == 1
+    assert shared.note.str.contains("not tested: no calibrated shared test").all()
+    assert out.p.isna().all() and out.p_adjusted.isna().all() and not out.confirmed.any()
