@@ -33,6 +33,7 @@ import warnings
 import numpy as np
 import pandas as pd
 from scipy import stats
+from scipy.linalg import solve_triangular
 
 from open.explore import ExploreResult
 
@@ -42,20 +43,60 @@ GCM_FOLDS = 10
 
 # ---------------------------------------------------------------- OLS + HC4
 
+class _UntestableOLS(ValueError):
+    """An OLS sample/design cannot support the requested coefficient tests."""
+
+
 def hc4_pvalues(X: np.ndarray, y: np.ndarray) -> np.ndarray:
-    """Two-sided HC4 p-values for OLS slopes; reject an exactly constant outcome."""
-    if len(y) and np.min(y) == np.max(y):
+    """Two-sided HC4 slope tests with an intercept and a full-rank QR solve.
+
+    Invalid shapes raise ValueError. Empty/nonfinite samples, unidentified
+    designs, nonpositive residual degrees of freedom and unit leverage are
+    untestable; no frozen predictor is silently removed to make a test fit.
+    """
+    X, y = np.asarray(X, dtype=float), np.asarray(y, dtype=float)
+    if X.ndim != 2 or y.ndim != 1 or len(X) != len(y):
+        raise ValueError("X must be two-dimensional and y one-dimensional with matching rows")
+    n, p = X.shape
+    k = p + 1
+    if n == 0:
+        raise _UntestableOLS("no complete confirmation rows")
+    if not np.isfinite(X).all() or not np.isfinite(y).all():
+        raise _UntestableOLS("OLS requires finite predictors and outcome")
+    if np.min(y) == np.max(y):
         raise ValueError("HC4 cannot test a constant outcome (no variation)")
-    A = np.column_stack([np.ones(len(X)), X])
-    n, k = A.shape
-    inv = np.linalg.inv(A.T @ A)
-    C = inv @ A.T
-    beta = C @ y
-    e = y - A @ beta
-    h = np.einsum("ij,ji->i", A, C)
+    if n <= k:
+        raise _UntestableOLS(f"no positive residual degrees of freedom (N = {n}, coefficients = {k})")
+
+    # Affine changes of predictor units preserve slope t statistics and hat
+    # values. Scale first to avoid overflow, then center and scale the spread
+    # so numerical rank is not decided by the original measurement units.
+    magnitude = np.max(np.abs(X), axis=0)
+    Z = X / np.where(magnitude > 0, magnitude, 1.0)
+    Z = Z - Z.mean(axis=0)
+    spread = np.max(np.abs(Z), axis=0)
+    Z = Z / np.where(spread > 0, spread, 1.0)
+    A = np.column_stack([np.ones(n), Z])
+    if np.linalg.matrix_rank(A) < k:
+        raise _UntestableOLS("OLS design is rank deficient (including the intercept)")
+    Q, R = np.linalg.qr(A, mode="reduced")
+    C = solve_triangular(R, Q.T)
+    h = np.sum(Q ** 2, axis=1)
+    if np.any(1 - h <= np.finfo(float).eps * max(n, k)):
+        raise _UntestableOLS("HC4 is undefined for numerically unit leverage")
+
+    # Outcome units cancel in the t statistic. Normalize before squaring so
+    # genuine small/large outcome variation does not underflow or overflow.
+    scaled_y = y / np.max(np.abs(y))
+    scaled_y = scaled_y - scaled_y.mean()
+    beta = C @ scaled_y
+    e = scaled_y - A @ beta
     w = e ** 2 / (1 - h) ** np.minimum(4.0, h / (k / n))
-    t = beta / np.sqrt((C ** 2) @ w)
-    return 2 * stats.t.sf(np.abs(t[1:]), n - k)
+    variance = (C[1:] ** 2) @ w
+    if not np.isfinite(variance).all() or np.any(variance <= 0):
+        raise _UntestableOLS("HC4 slope variance must be finite and positive")
+    t = beta[1:] / np.sqrt(variance)
+    return 2 * stats.t.sf(np.abs(t), n - k)
 
 
 # ---------------------------------------------------------------- LightGBM GCM/PCM (Phase B, F3, G2)
