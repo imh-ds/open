@@ -159,6 +159,28 @@ table = confirm_network(result, new_sample)     # Holm-adjusted p-values for the
 candidate pool. It uses OLS + HC4 (calibrated from N ≥ 275) or LightGBM's
 combined GCM/PCM test (calibrated from N ≥ 300).
 
+## Multiple outcomes
+
+Use one call to coordinate separate networks on the same row split:
+
+```python
+from open.api import explore_and_confirm_outcomes, plot_outcomes, save_multi_outcome_analysis
+
+batch = explore_and_confirm_outcomes(data, outcomes=["Y1", "Y2"],
+                                     predictors=[f"X{i}" for i in range(1, 11)], split_seed=42)
+y1 = batch.by_outcome["Y1"]
+plot_outcomes(batch, path="outcome-panels.png")
+plot_outcomes(batch, layout="combined", path="outcome-overlay.png")
+save_multi_outcome_analysis(batch, "multi-output", plot=False)
+```
+
+Outcomes must be numeric and complete. Each network retains its own predictor
+pools and recursion; matching eligible rows share folds. Confirmation adjusts
+across all outcome networks by default. The combined graph overlays separate
+predictive analyses and does not estimate correlated outcome errors. See the
+[multi-outcome API guide](docs/api.md#several-outcomes-in-one-call) for correction
+scopes, exact reuse, result tables, and export behavior.
+
 ## Reproducing the evidence
 
 [docs/reproducing.md](docs/reproducing.md) lists each study, the command or

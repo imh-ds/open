@@ -203,6 +203,41 @@ calibrated study range.
 - Using F3 in exploration would multiply its runtime. Each setting is the one
   validated for its job.
 
+## Coordinating multiple outcomes
+
+`open.api.explore_and_confirm_outcomes` runs one independent recursive network
+per selected numeric outcome on a shared exploration/confirmation split. It
+excludes other selected outcomes from each predictor pool. Each network keeps
+its own recursion state. Exploration fold assignments are shared; LightGBM
+confirmation and confirmation-fit folds are keyed to stable row positions, so matching
+eligible row sets receive the same folds. Different eligible sets receive
+reproducible folds. Target-specific model/randomization sub-seeds are retained.
+
+Exact duplicate target assessments can be reused within a batch. Reuse requires
+the same target, ordered candidates, rows and values, folds, depth/seed context,
+controls, covariates, engine, and configuration. A shared variable reached with
+a different pool or depth is evaluated separately. Shared splits and reuse do
+not force effects or R² values to agree across outcomes.
+
+The default confirmation family includes every testable frozen link across
+all outcome networks, with Holm adjustment applied to their raw p-values.
+Per-outcome adjustment is available explicitly. Untestable links remain in the
+tables and are excluded from adjustment. Correlated outcomes can induce
+dependent tests; choosing BH does not establish FDR control for arbitrary
+dependence. Software regression tests verify orchestration and arithmetic,
+not statistical calibration of this new multi-outcome workflow.
+Batch targets with empty, insufficient, or constant complete-case samples
+retain an explicit unavailability note and missing fit values rather than
+aborting the other outcome analyses.
+
+This orchestration does not estimate a joint multivariate model or correlations
+among outcome errors. Each selected outcome must be complete; predictors may
+still produce different complete-case confirmation samples. The existing
+limitations for grouped/repeated observations and engine calibration remain.
+Facets show each network separately; a combined graph is a provenance-colored
+overlay with no single global depth ordering. See the
+[API examples](api.md#several-outcomes-in-one-call).
+
 ## What the results mean
 
 **Arrows are predictive, not causal.**
