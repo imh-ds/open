@@ -127,6 +127,9 @@ class GraphStyle:
       default: in validation they were mostly false).
     - ``edge_labels``: "kept" labels solid edges with their R², "all" also dashed
       ones, None labels none. The tables hold every value.
+    - ``label_outline``: colour of the solid outline drawn around label text
+      (edge labels, fit values, interaction pairs), any matplotlib colour.
+    - ``label_outline_width``: thickness of that outline in points; 0 turns it off.
     - ``dpi``: resolution of a saved image.
     """
     node_size: float = 1.0
@@ -136,6 +139,8 @@ class GraphStyle:
     show_flagged: bool = True
     show_flagged_interactions: bool = False
     edge_labels: str | None = "kept"
+    label_outline: str = "white"
+    label_outline_width: float = 4.0
     dpi: int = 170
 
     def __post_init__(self):
@@ -148,6 +153,12 @@ class GraphStyle:
                 raise ValueError(f"{name} must be True or False")
         if self.edge_labels not in ("kept", "all", None):
             raise ValueError('edge_labels must be "kept", "all" or None')
+        from matplotlib.colors import is_color_like
+        if not is_color_like(self.label_outline):
+            raise ValueError("label_outline must be a matplotlib colour")
+        w = self.label_outline_width
+        if isinstance(w, bool) or not isinstance(w, (int, float)) or not 0 <= w <= 20:
+            raise ValueError("label_outline_width must be a number in [0, 20]")
         if type(self.dpi) is not int or not 50 <= self.dpi <= 1200:
             raise ValueError("dpi must be an integer in [50, 1200]")
 
@@ -386,9 +397,14 @@ def plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFrame
     if path is not None:
         matplotlib.use("Agg")
     import matplotlib.pyplot as plt
+    from matplotlib import patheffects
     from matplotlib.lines import Line2D
+    from matplotlib.transforms import Bbox
     from matplotlib.patches import Circle, Polygon, RegularPolygon, Wedge
 
+    # a solid outline around label text keeps it readable over edges
+    halo = ([patheffects.withStroke(linewidth=st.label_outline_width, foreground=st.label_outline)]
+            if st.label_outline_width > 0 else [])
     links = _drawn(result.links, st.show_flagged, st.show_flagged_interactions)
     if not len(links):
         links = pd.DataFrame(columns=["depth", "target", "source", "kind", "members", "tier", "pass_rate",
@@ -418,6 +434,8 @@ def plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFrame
         rad = outcome_r if v == outcome else node_r
         return rad + (.22 * ns if v in fit and sizes.get(v, 0) > 0 else .04 * ns)
 
+    pending = []
+
     def edge(a, b, tier_, r2, color, label=None, lw=None, head=None):
         """A line from a to b, behind the nodes; with ``head``, an arrowhead that far short of b."""
         label = label if st.edge_labels == "all" or (st.edge_labels == "kept" and tier_ == "kept") else None
@@ -437,10 +455,24 @@ def plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFrame
                 ax.add_patch(Polygon([tip, tip - u * size + n * size * .55, tip - u * size - n * size * .55],
                                      closed=True, fc=shade, ec="none", zorder=2))
         if label:
-            t = .55                                    # nearer the outer end, where edges are spread out
-            x, y = b[0] + t * (a[0] - b[0]), b[1] + t * (a[1] - b[1])
-            ax.text(x, y, label, fontsize=8 * fs, ha="center", va="center", color=color, zorder=5,
-                    bbox=dict(boxstyle="round,pad=0.18", fc="white", ec="none", alpha=.92))
+            pending.append((a, b, width, label, color))   # placed once the layout is final
+
+    def place_label(a, b, width, label, color, t):
+        """An edge label beside the edge (not on it), a share t of the way from the target."""
+        x, y = b[0] + t * (a[0] - b[0]), b[1] + t * (a[1] - b[1])
+        # offset by half the edge's width plus a margin, on the upper side
+        d = np.array(b, float) - np.array(a, float)
+        n = np.array([-d[1], d[0]]) / (float(np.linalg.norm(d)) + 1e-12)
+        n = n if n[1] > 0 or (n[1] == 0 and n[0] > 0) else -n
+        off = (width / 2 + st.label_outline_width / 2 + 2.5) / points
+        if n[1] > .5:     # above a gently sloped edge: let the text run away from the rising side
+            tx, ty = d / (float(np.linalg.norm(d)) + 1e-12)
+            ha = "center" if abs(ty) < .15 else ("right" if tx * ty > 0 else "left")
+            va = "bottom"
+        else:             # beside a steep edge
+            ha, va = ("left" if n[0] > 0 else "right"), "center"
+        return ax.text(x + n[0] * off, y + n[1] * off, label, fontsize=8 * fs, color=color, zorder=5,
+                       ha=ha, va=va, path_effects=halo)
 
     n_folds = int(result.settings.get("folds", 10)) * int(result.settings.get("repeats", 1))
 
@@ -475,7 +507,7 @@ def plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFrame
             normal = np.array([-away[1], away[0]])
             spot = np.array(mark) + (.14 * ns + .2 * fs) * normal + .12 * ns * away
             ax.text(*spot, "·".join(members), fontsize=7.5 * fs, ha="center", va="center", color=INTERACTION,
-                    zorder=5, bbox=dict(boxstyle="round,pad=0.12", fc="white", ec="none", alpha=.9))
+                    zorder=5, path_effects=halo)
 
     neighbours = {}                               # where each node's edges leave it, to place its fit label
     for r in links.itertuples():
@@ -509,7 +541,7 @@ def plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFrame
             ax.text(x + dist * math.cos(angle), y + dist * math.sin(angle), text, fontsize=7.5 * fs,
                     ha="center" if abs(math.cos(angle)) < .38 else ("left" if math.cos(angle) > 0 else "right"),
                     va="center" if abs(math.sin(angle)) < .38 else ("bottom" if math.sin(angle) > 0 else "top"),
-                    color=FIT, zorder=5, bbox=dict(boxstyle="round,pad=0.12", fc="white", ec="none", alpha=.85))
+                    color=FIT, zorder=5, path_effects=halo)
         size_ = 10.5 if is_outcome else (9 if len(v) <= 4 else max(6, 9 - .45 * (len(v) - 4)))
         ax.text(x, y, v, fontsize=size_ * fs, ha="center", va="center", zorder=6,
                 color="white" if is_outcome else (MUTED if grey else INK),
@@ -554,6 +586,26 @@ def plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFrame
     ax.set_ylim(lo[1], hi[1])
     ax.axis("off")
     fig.tight_layout()
+    # Edge labels last, now that the layout is final: each takes the first position along its edge
+    # whose text overlaps no node and no label already placed.
+    renderer = fig.canvas.get_renderer()
+    taken = [t.get_window_extent(renderer).expanded(1.04, 1.1) for t in ax.texts]
+    for v, (x, y) in pos.items():
+        rad = (outcome_r if v == outcome else node_r) + .13 * ns
+        (x0, y0), (x1, y1) = ax.transData.transform([(x - rad, y - rad), (x + rad, y + rad)])
+        taken.append(Bbox.from_extents(x0, y0, x1, y1))
+    for a, b, width, label, color in pending:
+        choice = None
+        for t in (.55, .4, .7, .3, .8, .2):
+            text = place_label(a, b, width, label, color, t)
+            box = text.get_window_extent(renderer)
+            if not any(box.overlaps(o) for o in taken):
+                choice = text
+                break
+            text.remove()
+        if choice is None:                              # nowhere free: keep the default spot
+            choice = place_label(a, b, width, label, color, .55)
+        taken.append(choice.get_window_extent(renderer).expanded(1.04, 1.1))
     fig.canvas.draw()                              # place the footnote just below the legend
     box = legend.get_window_extent().transformed(fig.transFigure.inverted())
     fig.text(.5, box.y0 - .012, note, ha="center", va="top", fontsize=8 * fs, color=MUTED,

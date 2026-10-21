@@ -284,13 +284,15 @@ def test_graph_style_settings_scale_the_layout_and_validate(chain_result, tmp_pa
     kept = _drawn(chain_result.links, False, False)
     assert not _layout(chain_result, kept, GraphStyle(show_flagged=False))[2]   # no flagged-only nodes
     for bad in (dict(node_size=0), dict(spacing=-1), dict(label_size=True), dict(edge_labels="some"),
-                dict(show_flagged="yes"), dict(dpi=10)):
+                dict(show_flagged="yes"), dict(dpi=10), dict(label_outline="not-a-colour"),
+                dict(label_outline_width=-1)):
         with pytest.raises(ValueError):
             GraphStyle(**bad)
     with pytest.raises(TypeError):
         plot_explore(chain_result, tmp_path / 'x.png', colour='red')
     out = plot_explore(chain_result, tmp_path / 'a.png', style=GraphStyle(spacing=.7), node_size=1.3,
-                       edge_width=.6, label_size=1.2, show_flagged=False, edge_labels=None, dpi=90)
+                       edge_width=.6, label_size=1.2, show_flagged=False, edge_labels=None, dpi=90,
+                       label_outline="#fff3bf", label_outline_width=0)
     assert out.exists()
     assert (write_explore(chain_result, tmp_path / 'w', spacing=.8) / 'network.png').exists()
 
