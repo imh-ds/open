@@ -252,8 +252,8 @@ def confirm(result: ExploreResult, data: pd.DataFrame, engine: str | None = None
     (an Elastic-Net network is confirmed with OLS + HC4). Rows with a missing
     value in a target or its pool are dropped for that target. Returns one row
     per frozen link, with the raw and adjusted p-value and whether it is confirmed.
-    A constant complete-case target is retained as untested, with missing
-    p-values and an explanatory note; other targets are still tested.
+    Constant complete-case targets and invalid OLS designs are retained as
+    untested, with missing p-values and a reason; other targets are still tested.
     """
     if engine is None:
         engine = "lightgbm" if result.settings.get("engine") == "lightgbm" else "ols"
@@ -275,11 +275,15 @@ def confirm(result: ExploreResult, data: pd.DataFrame, engine: str | None = None
         if n < CALIBRATED_FROM[engine]:
             note = f"N = {n} is below the calibrated minimum {CALIBRATED_FROM[engine]}"
             warnings.warn(f"{target}: {note}", stacklevel=2)
-        constant_target = n > 0 and np.min(T) == np.max(T)
+        untestable_reason = ("outcome has no variation in complete confirmation rows"
+                             if n > 0 and np.min(T) == np.max(T) else None)
         testable = group.kind == "unique"
-        if testable.any() and not constant_target:
+        if testable.any() and untestable_reason is None:
             if engine == "ols":
-                p_of = dict(zip(pool, hc4_pvalues(X, T)))
+                try:
+                    p_of = dict(zip(pool, hc4_pvalues(X, T)))
+                except _UntestableOLS as exc:
+                    untestable_reason = str(exc)
             else:   # only the frozen columns: about 61 LightGBM fits per column
                 dseed = _seed(seed, "confirm", depth, target)
                 wanted = list(dict.fromkeys(group.source[testable]))
@@ -290,8 +294,8 @@ def confirm(result: ExploreResult, data: pd.DataFrame, engine: str | None = None
                        explore_pass_rate=r.pass_rate, explore_r2=r.r2_median, engine=engine, n=n,
                        pool_size=len(pool), p=np.nan, note=note)
             if r.kind == "unique":
-                if constant_target:
-                    reason = "not tested: outcome has no variation in complete confirmation rows"
+                if untestable_reason is not None:
+                    reason = f"not tested: {untestable_reason}"
                     row["note"] = f"{note}; {reason}" if note else reason
                 else:
                     row["p"] = float(p_of[r.source])

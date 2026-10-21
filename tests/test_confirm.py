@@ -266,3 +266,66 @@ def test_constant_target_preserves_unsupported_link_kind_notes():
     assert len(shared) == 1
     assert shared.note.str.contains("not tested: no calibrated shared test").all()
     assert out.p.isna().all() and out.p_adjusted.isna().all() and not out.confirmed.any()
+
+
+@pytest.mark.parametrize("correction", ["holm", "bh"])
+@pytest.mark.parametrize("case,reason", [
+    ("constant", "rank"), ("duplicate", "rank"), ("dummy_set", "rank"),
+    ("empty", "no.*rows"), ("all_missing", "no.*rows"),
+    ("saturated", "degrees of freedom"), ("underdetermined", "degrees of freedom"),
+    ("infinite_predictor", "finite"), ("infinite_outcome", "finite"),
+    ("unit_leverage", "leverage"),
+])
+def test_invalid_ols_targets_are_reported_without_changing_frozen_pools(
+        constant_target_network, correction, case, reason):
+    new = _chain(900, 11)
+    if case == "constant":
+        new["X1"] = 1.0
+    elif case == "duplicate":
+        new["X3"] = new.X1
+    elif case == "dummy_set":
+        new[["X2", "X4", "X5"]] = np.eye(3)[np.arange(900) % 3]
+    elif case == "empty":
+        new = new.iloc[:0]
+    elif case == "all_missing":
+        new["X2"] = np.nan
+    elif case == "saturated":
+        new = new.iloc[:8]  # Y's seven frozen predictors plus the intercept
+    elif case == "underdetermined":
+        new = new.iloc[:3]
+    elif case == "infinite_predictor":
+        new.loc[0, "X1"] = np.inf
+    elif case == "infinite_outcome":
+        new.loc[0, "Y"] = np.inf
+    elif case == "unit_leverage":
+        new["X5"] = (np.arange(900) == 0).astype(float)
+    if case in {"empty", "all_missing", "saturated", "underdetermined"}:
+        with pytest.warns(UserWarning, match="below the calibrated minimum"):
+            out = confirm(constant_target_network, new, correction=correction)
+    else:
+        out = confirm(constant_target_network, new, correction=correction)
+    root = out[out.target == "Y"]
+    assert len(out) == 4 and len(root) == 2
+    assert (root.pool_size == 7).all()
+    assert root.p.isna().all() and root.p_adjusted.isna().all() and not root.confirmed.any()
+    assert root.note.str.contains("not tested").all() and root.note.str.contains(reason).all()
+    assert out.attrs["links_tested"] == int(out.p.notna().sum())
+    if case in {"constant", "duplicate", "infinite_predictor", "infinite_outcome", "saturated"}:
+        valid = out[out.target == "X3"]
+        assert len(valid) == 1 and np.isfinite(valid[["p", "p_adjusted"]]).all().all()
+        assert (valid.p_adjusted >= valid.p).all()
+    if case in {"empty", "all_missing"}:
+        assert (out.n == 0).all() and out.attrs["links_tested"] == 0
+        assert out.note.str.contains("below the calibrated minimum").all()
+
+
+def test_dropped_constant_predictor_cannot_crash_ols_confirmation():
+    r = np.random.default_rng(12)
+    x = r.normal(size=600)
+    data = pd.DataFrame({"Y": 3 * x + r.normal(size=600), "X": x, "constant": 1.0})
+    result = explore(data.iloc[:300], "Y", config=ExploreConfig(folds=3, max_depth=1, interactions=False))
+    assert result.links.set_index("source").loc["constant", "tier"] == "dropped"
+    out = confirm(result, data.iloc[300:])
+    assert len(out) == 1 and out.source.iloc[0] == "X" and out.pool_size.iloc[0] == 2
+    assert out.p.isna().all() and out.p_adjusted.isna().all() and not out.confirmed.any()
+    assert out.note.str.contains("not tested.*rank").all()

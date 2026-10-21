@@ -152,6 +152,22 @@ tested. This safeguard applies to both confirmation engines and does not
 exclude genuinely varying outcomes just because their scale is small. Direct
 calls to `hc4_pvalues` reject a constant outcome with `ValueError`.
 
+**Unidentifiable OLS confirmation designs.** OLS also marks a target's unique
+links as untested when no complete rows remain, values are nonfinite, the
+predictors and intercept are rank deficient, residual degrees of freedom are
+not positive, or HC4 cannot produce a finite positive slope variance. HC4 is
+undefined when a row has leverage numerically equal to one; these designs are
+also untested. Notes preserve any small-sample warning, and valid targets
+continue to be tested. The frozen adjustment pool is preserved: predictors
+are never silently discarded to make a test possible. Direct `hc4_pvalues`
+calls raise `ValueError` for these designs.
+
+For identifiable designs, HC4 uses a centered and scaled QR solve instead of
+inverting the normal equations. Predictor and outcome units cancel in the
+slope t statistics; rescaling avoids unnecessary overflow, underflow and rank
+failures due to measurement units. This preserves the calibrated statistic
+within floating point precision and does not expand its validation range.
+
 **Why LightGBM uses different settings in exploration and confirmation.**
 
 - **Exploration** refits the engine many times per target: every fold, every
