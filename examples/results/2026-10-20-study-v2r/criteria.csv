@@ -1,0 +1,13 @@
+cell,true_kept_again_R1,true_kept_again_R5,false_solid_R1,false_solid_R5,true_keep_R1,true_keep_R5,c1_kept_again_ge_90,c2_false_solid_not_higher,c3_keep_not_lower_by_05
+elastic_net|1000|linear,0.685,0.823,0.34,0.1,0.584,0.538,False,True,True
+elastic_net|1000|u_shape,0.111,0.0,0.2,0.06,0.016,0.004,False,True,True
+elastic_net|2000|linear,0.893,0.928,0.72,0.22,0.842,0.827,True,True,True
+elastic_net|2000|u_shape,0.381,0.333,0.38,0.18,0.038,0.016,False,True,True
+lightgbm|1000|linear,0.464,0.25,0.02,0.0,0.051,0.015,False,True,True
+lightgbm|1000|u_shape,0.188,0.0,0.0,0.0,0.029,0.004,False,True,True
+lightgbm|2000|linear,0.339,0.528,0.02,0.0,0.204,0.096,False,True,False
+lightgbm|2000|u_shape,0.464,0.714,0.08,0.0,0.153,0.115,False,True,True
+ols|1000|linear,0.353,0.545,0.06,0.0,0.211,0.06,False,True,False
+ols|1000|u_shape,0.0,,0.02,0.0,0.002,0.0,False,True,True
+ols|2000|linear,0.741,0.824,0.06,0.0,0.54,0.435,False,True,False
+ols|2000|u_shape,0.333,,0.02,0.0,0.005,0.0,False,True,True

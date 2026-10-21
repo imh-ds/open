@@ -1,0 +1,13 @@
+engine,shape,run,tested,below_05,ks_uniform_p
+elastic_net,linear,r1s0,168,0.0417,0.2782
+elastic_net,linear,r5s0,152,0.0461,0.0435
+elastic_net,u_shape,r1s0,51,0.4118,0.0
+elastic_net,u_shape,r5s0,35,0.2857,0.0051
+lightgbm,linear,r1s0,34,0.0882,0.0027
+lightgbm,linear,r5s0,1,0.0,
+lightgbm,u_shape,r1s0,36,0.0833,0.0219
+lightgbm,u_shape,r5s0,1,1.0,
+ols,linear,r1s0,536,0.0429,0.5405
+ols,linear,r5s0,202,0.0594,0.4269
+ols,u_shape,r1s0,108,0.0556,0.7781
+ols,u_shape,r5s0,53,0.0377,0.1225
