@@ -188,6 +188,44 @@ def _fold_sets(n: int, config) -> tuple[np.ndarray, ...]:
     return tuple(sets)
 
 
+def _assessment_data_context(data: pd.DataFrame, columns) -> tuple:
+    """Create a call-local identity for the selected rows and model values."""
+    columns = tuple(columns)
+    frame = data.loc[:, list(columns)]
+    row_hashes = pd.util.hash_pandas_object(frame, index=True).to_numpy(dtype=np.uint64)
+    fingerprint = hashlib.sha256(row_hashes.tobytes()).digest()
+    return object(), len(frame), columns, fingerprint
+
+
+def _fold_signature(fold_ids) -> tuple:
+    fold_sets = (fold_ids,) if isinstance(fold_ids, np.ndarray) else tuple(fold_ids)
+    return tuple(
+        (np.asarray(folds).shape, np.asarray(folds).dtype.str,
+         hashlib.sha256(np.ascontiguousarray(folds).tobytes()).digest())
+        for folds in fold_sets
+    )
+
+
+def _assessment_cache_key(target, candidates, fold_ids, engine, config, depth,
+                          controls, covariates, data_context) -> tuple:
+    if isinstance(engine, Predictor):
+        engine_key = (type(engine).__module__, type(engine).__qualname__, id(engine))
+    else:
+        engine_key = engine
+    return (
+        data_context,
+        target,
+        tuple(candidates),
+        tuple(controls),
+        tuple(covariates),
+        depth,
+        config.seed,
+        tuple(asdict(config).items()),
+        engine_key,
+        _fold_signature(fold_ids),
+    )
+
+
 def _dependence(data: pd.DataFrame, candidates: tuple[str, ...], tau: float):
     """Candidate pairs with |Spearman| >= tau, and their connected components (size >= 2).
 
@@ -535,24 +573,10 @@ def assess_target(data: pd.DataFrame, target: str, candidates: tuple[str, ...], 
     return folds, pd.DataFrame(links), pairs
 
 
-def explore(data: pd.DataFrame, outcome: str, predictors=None, engine="ols",
-            config: ExploreConfig | None = None, controls=None, covariates=None) -> ExploreResult:
-    """Build the exploratory network for ``outcome``, one depth at a time.
-
-    ``controls``: variables adjusted for in every target's model at every depth,
-    never tested, drawn or used as targets (nuisance variables, e.g. cohort).
-    ``covariates``: variables in every target's model at every depth that are
-    also tested and drawn like candidates, but never become targets (e.g.
-    gender). With ``predictors=None``, ordinary predictors are the columns other
-    than the outcome, controls and covariates. Their list may be empty when
-    covariates are supplied.
-
-    A dependence group (correlated candidates) counts only when none of its
-    members is kept by itself; otherwise the kept member already carries the
-    group's signal, and promoting the rest would promote a screened proxy.
-    A kept group promotes all its members.
-    Interactions are reported and drawn but promote nothing.
-    """
+def _explore_core(data: pd.DataFrame, outcome: str, predictors=None, engine="ols",
+                  config: ExploreConfig | None = None, controls=None, covariates=None,
+                  *, fold_ids=None, assessment_cache=None, data_context=None) -> ExploreResult:
+    """Build one exploratory network, optionally using a batch fold plan/cache."""
     config = config or ExploreConfig()
     if not isinstance(data, pd.DataFrame):
         raise TypeError("data must be a pandas DataFrame")
@@ -588,7 +612,14 @@ def explore(data: pd.DataFrame, outcome: str, predictors=None, engine="ols",
     n = len(data)
     if n < config.folds * config.tuning_folds * 2:
         raise ValueError(f"N = {n} is too small for {config.folds} folds")
-    fold_ids = _fold_sets(n, config)
+    if fold_ids is None:
+        fold_ids = _fold_sets(n, config)
+    else:
+        fold_ids = (fold_ids,) if isinstance(fold_ids, np.ndarray) else tuple(fold_ids)
+        if len(fold_ids) != config.repeats or any(np.asarray(f).shape != (n,) for f in fold_ids):
+            raise ValueError("fold_ids must contain one length-N assignment per repeat")
+    if assessment_cache is not None and data_context is None:
+        data_context = _assessment_data_context(data, variables)
 
     depths, parents, stops = {outcome: 0}, {}, {}
     all_folds, all_links, all_pairs, all_fit = [], [], [], []
@@ -605,7 +636,19 @@ def explore(data: pd.DataFrame, outcome: str, predictors=None, engine="ols",
         depth += 1
         next_parents = {}
         for target in frontier:
-            folds, links, pairs = assess_target(data, target, tested, fold_ids, engine, config, depth, controls)
+            if assessment_cache is None:
+                assessment = assess_target(data, target, tested, fold_ids, engine, config, depth, controls)
+            else:
+                key = _assessment_cache_key(
+                    target, tested, fold_ids, engine, config, depth, controls, covariates, data_context,
+                )
+                assessment = assessment_cache.get(key)
+                if assessment is None:
+                    assessment = assess_target(data, target, tested, fold_ids, engine, config, depth, controls)
+                    assessment_cache[key] = tuple(frame.copy(deep=True) for frame in assessment)
+                else:
+                    assessment = tuple(frame.copy(deep=True) for frame in assessment)
+            folds, links, pairs = assessment
             kept_alone = set(links.source[(links.kind == "unique") & (links.tier == "kept")])
             redundant = (links.kind == "shared") & links.members.map(lambda m: bool(set(m) & kept_alone))
             links = links[~redundant]
@@ -640,3 +683,26 @@ def explore(data: pd.DataFrame, outcome: str, predictors=None, engine="ols",
         settings.update(controls=list(controls), covariates=list(covariates))
     fit = pd.DataFrame(all_fit, columns=FIT_COLUMNS)
     return ExploreResult(nodes, links, pairs, folds, bars, stops, settings, fit)
+
+
+def explore(data: pd.DataFrame, outcome: str, predictors=None, engine="ols",
+            config: ExploreConfig | None = None, controls=None, covariates=None) -> ExploreResult:
+    """Build the exploratory network for ``outcome``, one depth at a time.
+
+    ``controls`` are adjusted for in every model but never tested or used as
+    targets. ``covariates`` are tested and drawn but never become targets. A
+    dependence group counts only when none of its members is kept by itself;
+    a kept group promotes all of its members. Interactions are reported but
+    promote nothing.
+    """
+    return _explore_core(data, outcome, predictors, engine, config, controls, covariates)
+
+
+def _explore_with_shared_context(data: pd.DataFrame, outcome: str, predictors, engine,
+                                config: ExploreConfig, controls, covariates, fold_ids,
+                                assessment_cache, data_context) -> ExploreResult:
+    """Batch-only exploration entry point with shared folds and a call-local cache."""
+    return _explore_core(
+        data, outcome, predictors, engine, config, controls, covariates,
+        fold_ids=fold_ids, assessment_cache=assessment_cache, data_context=data_context,
+    )

@@ -46,6 +46,13 @@ def _confirmation_exploration(outcome):
                          {"outcome": outcome, "engine": "ols", "controls": (), "tuning_folds": 2}, fit)
 
 
+def _assert_same_exploration(actual, expected):
+    assert actual.settings == expected.settings
+    assert actual.stops == expected.stops
+    for name in ("nodes", "links", "pairs", "folds", "bars", "fit"):
+        pd.testing.assert_frame_equal(getattr(actual, name), getattr(expected, name))
+
+
 def test_public_api_exposes_multi_outcome_workflow():
     api = importlib.import_module("open.api")
     module = importlib.import_module("open.multi_outcome")
@@ -132,7 +139,7 @@ def test_shared_split_config_fold_ids_and_predictor_exclusion(monkeypatch):
     split_calls = []
     explore_calls = []
     original_split = multi.split_sample
-    original_explore = multi.explore
+    original_explore = multi._explore_with_shared_context
 
     def split_spy(frame, *args, **kwargs):
         split_calls.append(frame.copy())
@@ -143,7 +150,7 @@ def test_shared_split_config_fold_ids_and_predictor_exclusion(monkeypatch):
         return original_explore(frame, outcome, predictors, **kwargs)
 
     monkeypatch.setattr(multi, "split_sample", split_spy)
-    monkeypatch.setattr(multi, "explore", explore_spy)
+    monkeypatch.setattr(multi, "_explore_with_shared_context", explore_spy)
 
     with _no_warning_context():
         result = multi.explore_and_confirm_outcomes(data, ["Y1", "Y2"], config=config, split_seed=9)
@@ -167,7 +174,7 @@ def test_applies_requested_correction_to_raw_testable_pvalues(monkeypatch, scope
 
     raw = {"Y1": [0.01, 0.01, np.nan], "Y2": [0.02, 0.05]}
     monkeypatch.setattr(multi, "split_sample", lambda data, *a, **k: (data, data))
-    monkeypatch.setattr(multi, "explore", lambda data, outcome, *a, **k: _blank_exploration(outcome))
+    monkeypatch.setattr(multi, "_explore_with_shared_context", lambda data, outcome, *a, **k: _blank_exploration(outcome))
 
     def confirm_stub(exploration, data, **kwargs):
         outcome = exploration.settings["outcome"]
@@ -212,7 +219,7 @@ def test_correction_handles_empty_and_single_outcome_families(monkeypatch):
     from open.confirm import _adjust
 
     monkeypatch.setattr(multi, "split_sample", lambda data, *a, **k: (data, data))
-    monkeypatch.setattr(multi, "explore", lambda data, outcome, *a, **k: _blank_exploration(outcome))
+    monkeypatch.setattr(multi, "_explore_with_shared_context", lambda data, outcome, *a, **k: _blank_exploration(outcome))
     p_values = {"Y1": [0.02, 0.04], "Y2": []}
 
     def confirm_stub(exploration, data, **kwargs):
@@ -262,7 +269,7 @@ def test_multi_outcome_confirmation_and_fit_share_folds_for_same_rows(monkeypatc
     data = pd.DataFrame({"Y1": x + rng.normal(size=n), "Y2": -x + rng.normal(size=n), "X": x})
     data.loc[::9, "X"] = np.nan
     data.index = np.tile(np.arange(20), n // 20)  # batch code must replace caller labels with row positions
-    monkeypatch.setattr(multi, "explore", lambda frame, outcome, *a, **k: _confirmation_exploration(outcome))
+    monkeypatch.setattr(multi, "_explore_with_shared_context", lambda frame, outcome, *a, **k: _confirmation_exploration(outcome))
 
     gcm_calls = []
 
@@ -291,3 +298,86 @@ def test_multi_outcome_confirmation_and_fit_share_folds_for_same_rows(monkeypatc
     assert len(fit_calls) == 2
     np.testing.assert_array_equal(fit_calls[0], fit_calls[1])
 
+
+def test_batch_reuses_identical_deeper_assessment_and_matches_scalar_results(monkeypatch):
+    import open.explore as exploration
+    import open.multi_outcome as multi
+    from open.confirm import split_sample
+    from open.explore import ExploreConfig
+
+    rng = np.random.default_rng(51)
+    n = 1200
+    x1, x2, x3 = (rng.normal(size=n) for _ in range(3))
+    data = pd.DataFrame({
+        "Y1": 8 * x1 + 0.05 * rng.normal(size=n),
+        "Y2": -6 * x1 + 0.05 * rng.normal(size=n),
+        "X1": x1, "X2": x2, "X3": x3,
+    })
+    config = ExploreConfig(folds=3, tuning_folds=2, max_depth=2, interactions=False, seed=12)
+    assessments = []
+    original_assess = exploration.assess_target
+
+    def assess_spy(*args, **kwargs):
+        assessments.append((args[1], tuple(args[2]), args[6]))
+        return original_assess(*args, **kwargs)
+
+    monkeypatch.setattr(exploration, "assess_target", assess_spy)
+    with _no_warning_context():
+        result = multi.explore_and_confirm_outcomes(data, ["Y1", "Y2"], config=config, split_seed=17)
+
+    batch_assessments = list(assessments)
+    shared_target_calls = [call for call in batch_assessments if call == ("X1", ("X2", "X3"), 2)]
+    assert len(shared_target_calls) == 1
+
+    explore_part, _ = split_sample(data, seed=17)
+    for outcome in ("Y1", "Y2"):
+        uncached = exploration.explore(explore_part, outcome, ("X1", "X2", "X3"), config=config)
+        _assert_same_exploration(result.by_outcome[outcome].exploration, uncached)
+
+
+def test_batch_does_not_reuse_assessment_when_depth_or_pool_differs(monkeypatch):
+    import open.explore as exploration
+    import open.multi_outcome as multi
+    from open.confirm import split_sample
+    from open.explore import ExploreConfig
+
+    data = _data()
+    data["Z"] = np.random.default_rng(4).normal(size=len(data))
+    data["W"] = np.random.default_rng(5).normal(size=len(data))
+    config = ExploreConfig(folds=2, tuning_folds=2, max_depth=3, interactions=False)
+    assessments = []
+    promote = {("Y1", 1): "X1", ("Y2", 1): "Z", ("Z", 2): "X1"}
+
+    def assess_stub(frame, target, candidates, fold_ids, engine, config, depth, controls=()):
+        candidates = tuple(candidates)
+        assessments.append((target, candidates, depth))
+        selected = promote.get((target, depth))
+        links = pd.DataFrame([
+            {"depth": depth, "target": target, "source": candidate, "kind": "unique",
+             "tier": "kept" if candidate == selected else "dropped", "members": (candidate,)}
+            for candidate in candidates
+        ])
+        return pd.DataFrame(), links, pd.DataFrame()
+
+    def network_fit_stub(frame, target, pool, network, fold_ids, engine, config, depth, controls=()):
+        return {"depth": depth, "target": target, "pool_size": len(pool), "network_size": len(network),
+                "network": tuple(network), "r2_network": 0.1, "r2_pool": 0.2,
+                "share_of_pool": 0.5, "folds": config.folds}
+
+    empty_confirmation = pd.DataFrame({"p": [], "engine": []})
+    monkeypatch.setattr(exploration, "assess_target", assess_stub)
+    monkeypatch.setattr(exploration, "network_fit", network_fit_stub)
+    monkeypatch.setattr(multi, "_confirm_with_shared_folds", lambda *a, **k: empty_confirmation.copy())
+    monkeypatch.setattr(multi, "_confirmation_fit_with_shared_folds", lambda *a, **k: pd.DataFrame())
+
+    result = multi.explore_and_confirm_outcomes(
+        data, ["Y1", "Y2"], predictors=["X1", "Z", "W"], config=config,
+    )
+    batch_assessments = list(assessments)
+    target_x_calls = [call for call in batch_assessments if call[0] == "X1"]
+    assert target_x_calls == [("X1", ("Z", "W"), 2), ("X1", ("W",), 3)]
+
+    explore_part, _ = split_sample(data.reset_index(drop=True), seed=0)
+    for outcome in ("Y1", "Y2"):
+        uncached = exploration.explore(explore_part, outcome, ("X1", "Z", "W"), config=config)
+        _assert_same_exploration(result.by_outcome[outcome].exploration, uncached)

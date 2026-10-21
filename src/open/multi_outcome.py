@@ -16,7 +16,8 @@ from open.confirm import (
     _confirm_with_shared_folds,
     split_sample,
 )
-from open.explore import ExploreConfig, explore
+from open.explore import (ExploreConfig, _assessment_data_context, _explore_with_shared_context,
+                          _fold_sets)
 
 
 class MultiOutcomeResult:
@@ -167,15 +168,23 @@ def explore_and_confirm_outcomes(
     # Positional row identities stay unique even if the caller's index is duplicated.
     rows = data.reset_index(drop=True)
     explore_part, confirm_part = split_sample(rows, explore_fraction, split_seed)
+    fold_ids = _fold_sets(len(explore_part), explore_config)
+    context_columns = tuple(dict.fromkeys((*outcomes, *predictor_names, *controls, *covariates)))
+    unknown = [name for name in context_columns if name not in explore_part.columns]
+    if unknown:
+        raise ValueError(f"unknown columns: {unknown}")
+    data_context = _assessment_data_context(explore_part, context_columns)
+    assessment_cache = {}
     by_outcome: dict[str, SplitResult] = {}
     confirmation_tables: dict[str, pd.DataFrame] = {}
     fit_tables = []
     used_confirm_engines = []
 
     for outcome in outcomes:
-        exploration = explore(
+        exploration = _explore_with_shared_context(
             explore_part, outcome, predictor_names, engine=engine, config=explore_config,
             controls=controls, covariates=covariates,
+            fold_ids=fold_ids, assessment_cache=assessment_cache, data_context=data_context,
         )
         confirmation = _confirm_with_shared_folds(
             exploration, confirm_part, engine=confirm_engine, correction=correction, alpha=alpha,
