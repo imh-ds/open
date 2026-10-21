@@ -53,10 +53,14 @@ shows the depth, and grey dashed nodes are predictors that were only flagged.
   target is solid if the interaction is kept and dashed if flagged. Flagged
   interactions are listed in the tables but not drawn by default, because most
   were false in validation.
-- **Lines are predictive, not causal.** Each line joins a predictor (outer) to
-  the target it predicts (inner): X predicts T beyond T's other candidates on
-  held-out data. It is not a causal claim, and not a partial correlation. Depth
-  is predictive distance from the outcome, not a causal order.
+- **Arrows show prediction, not causation.** An arrow X → T means X predicts T
+  on held-out data, beyond T's other candidates. It shows the direction of
+  prediction in this analysis, not of causation: reversed arrows can be
+  predictive too, for example a noisy measure predicting its source. It is not a
+  partial correlation either. Depth is predictive distance from the outcome,
+  not a causal order.
+- **Tan nodes** are covariates (see below), and the footnote lists any
+  controls.
 - **Network fit (green ring around each target):** the filled share of the
   ring is the held-out R² of the target from its solid lines, also printed
   below it. With confirmation, the R² cross-validated on the new data is shown
@@ -97,6 +101,28 @@ See [docs/method.md](docs/method.md) for the full procedure and its settings.
 Every engine offered was validated in simulation
 ([docs/validation-evidence.md](docs/validation-evidence.md)). Random forest and
 gradient boosting were evaluated and dropped ([docs/engines.md](docs/engines.md)).
+
+## Controls and covariates
+
+Variables that should be in every model, at every depth, whatever they
+predict, go in one of two arguments of `explore` (and `explore_and_confirm`):
+
+```python
+result = explore(data, outcome="Y", engine="ols",
+                 controls=["cohort"],      # adjust only: never tested, drawn or used as a target
+                 covariates=["gender"])    # also tested and drawn (tan), but never a target
+```
+
+- **`controls`:** nuisance variables you only want to adjust for. Every link
+  is then "beyond the controls"; the graph's footnote lists them.
+- **`covariates`:** variables you want adjusted for *and* reported, such as
+  known group differences. They are tested against the noise bar for every
+  target, drawn when they pass, and never become targets themselves.
+
+Without either, a variable such as age is an ordinary candidate. If it is
+kept, it becomes a target ("what predicts age?") and leaves the pools of
+deeper depths. Confirmation adjusts for the same controls and covariates.
+Dummy-code categorical variables first.
 
 ## Confirming links
 

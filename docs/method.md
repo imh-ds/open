@@ -85,6 +85,21 @@ candidate.
 - The recursion stops when nothing is kept, the pool is empty, or `max_depth`
   is reached.
 
+**Controls and covariates** (`explore(..., controls=..., covariates=...)`).
+
+- **Controls** are in every target's model at every depth. They are never left
+  out, tested, given a noise copy, drawn or used as targets. Every contrast is
+  then "beyond the controls", and the broad contrast becomes the R² a column
+  adds to the controls alone.
+- **Covariates** are in every target's pool at every depth and are tested like
+  any candidate: noise copy, noise bar, tiers. They are drawn when they pass,
+  but never promoted, so they never become targets and never leave a pool.
+- Without either, a variable is an ordinary candidate. If kept, it becomes a
+  target and leaves the pools of deeper depths.
+- Confirmation tests each frozen link beyond the same controls and covariates.
+  Network fit includes the controls in both models.
+- Both default to none, which leaves every result unchanged.
+
 **Missing values.** Rows with a missing outcome are not allowed. Missing
 predictor values are median-imputed within each training fold. Rows with a
 missing deeper target are left out of that target's folds.
@@ -142,15 +157,20 @@ confirmation always uses independent data:
 
 ## What the results mean
 
-**Lines are predictive, not causal.**
+**Arrows are predictive, not causal.**
 
-- The graph is a radial network with the outcome in the centre. It draws plain
-  lines, without arrowheads. Each line joins a predictor (outer) to the target
-  it predicts (inner).
-- A line X — T means that X predicts T beyond the other candidates in T's pool,
-  on held-out data. It does not mean that X causes T. It is also not a partial
-  correlation, as in a GGM network: the claim is one-sided, about predicting T
-  given T's pool.
+- The graph is a radial network with the outcome in the centre. Each arrow
+  points from a predictor to the variable it predicts, as in a regression path
+  diagram.
+- An arrow X → T means that X predicts T beyond the other candidates in T's
+  pool, on held-out data. It shows the direction of prediction in this
+  analysis, not of causation. It does not mean that X causes T.
+- **Reversed arrows can be predictive too.** In study v2, a noisy copy of a
+  variable predicted its source (P_A → A), and downstream variables predicted
+  their own causes once the intermediate variable had been placed. Predictive
+  direction and causal direction differ.
+- An arrow is also not a partial correlation, as in a GGM network: the claim
+  is one-sided, about predicting T given T's pool.
 - Depth is predictive distance from the outcome, not a causal or temporal order.
   A depth-2 variable predicts a depth-1 variable; it is not shown to act through
   it (mediation).
