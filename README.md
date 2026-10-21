@@ -23,14 +23,16 @@ Requires Python 3.11 or later. LightGBM and matplotlib are optional extras.
 
 ```python
 import pandas as pd
-from open.explore import ExploreConfig, explore
-from open.explore_report import write_explore
+from open.api import ExploreConfig, explore_network, save_exploration
 
 data = pd.read_csv("my_study.csv")            # numeric columns, one row per person
-result = explore(data, outcome="Y", engine="ols", config=ExploreConfig(max_depth=3))
+result = explore_network(data, outcome="Y", engine="ols", config=ExploreConfig(max_depth=3))
 print(result.summary())
-write_explore(result, "open-output")           # tables plus network.png
+save_exploration(result, "open-output")        # tables plus network.png
 ```
+
+See [the API guide](docs/api.md) for workflow names, return values and existing
+imports, which remain supported.
 
 **Reading the output.** The graph is a radial network: the outcome sits in
 the centre, and each target's predictors branch outwards from it. Node colour
@@ -70,13 +72,14 @@ shows the depth, and grey dashed nodes are predictors that were only flagged.
   from confirmation on independent data (below).
 
 **Adjusting the graph.** Every display setting is a `GraphStyle` field. Pass
-the fields as keywords to `plot_explore`, `write_explore` or `write_split`, or
+the fields as keywords to `plot_network`, `save_exploration` or
+`save_split_analysis`, or
 pass a `style=GraphStyle(...)`. Sizes are multipliers of the defaults:
 
 ```python
-from open.explore_report import GraphStyle, plot_explore
+from open.api import GraphStyle, plot_network
 
-plot_explore(result, "network.png",
+plot_network(result, "network.png",
              spacing=.7,           # < 1 more compact, > 1 more spread out (nodes never overlap)
              node_size=1.2,        # circles, fit rings and interaction diamonds
              edge_width=.8,        # thickness of every edge
@@ -107,10 +110,10 @@ gradient boosting were evaluated and dropped ([docs/engines.md](docs/engines.md)
 ## Controls and covariates
 
 Variables that should be in every model, at every depth, whatever they
-predict, go in one of two arguments of `explore` (and `explore_and_confirm`):
+predict, go in one of two arguments of `explore_network` (and `explore_and_confirm`):
 
 ```python
-result = explore(data, outcome="Y", engine="ols",
+result = explore_network(data, outcome="Y", engine="ols",
                  controls=["cohort"],      # adjust only: never tested, drawn or used as a target
                  covariates=["gender"])    # also tested and drawn (tan), but never a target
 ```
@@ -135,25 +138,24 @@ one dataset before any analysis or use a new sample:
 confirm on the other.
 
 ```python
-from open.confirm import explore_and_confirm
-from open.explore_report import write_split
+from open.api import explore_and_confirm, save_split_analysis
 
 split = explore_and_confirm(data, outcome="Y", engine="ols", split_seed=1)
 print(split.summary())
-write_split(split, "open-output")              # adds confirmation.csv; the graph marks confirmed links
+save_split_analysis(split, "open-output")      # adds confirmation.csv; the graph marks confirmed links
 ```
 
 **A new sample:** explore on all of your current data, then confirm on the new
 sample.
 
 ```python
-from open.confirm import confirm
+from open.api import confirm_network
 
-result = explore(data, outcome="Y", engine="ols")
-table = confirm(result, new_sample)             # Holm-adjusted p-values for the frozen links
+result = explore_network(data, outcome="Y", engine="ols")
+table = confirm_network(result, new_sample)     # Holm-adjusted p-values for the frozen links
 ```
 
-`confirm` tests only the links found by the exploration, adjusting for the same
+`confirm_network` tests only the links found by the exploration, adjusting for the same
 candidate pool. It uses OLS + HC4 (calibrated from N ≥ 275) or LightGBM's
 combined GCM/PCM test (calibrated from N ≥ 300).
 
