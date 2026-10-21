@@ -12,8 +12,8 @@ import pandas as pd
 from open.confirm import (
     SplitResult,
     _adjust,
-    confirmation_fit,
-    confirm,
+    _confirmation_fit_with_shared_folds,
+    _confirm_with_shared_folds,
     split_sample,
 )
 from open.explore import ExploreConfig, explore
@@ -177,14 +177,17 @@ def explore_and_confirm_outcomes(
             explore_part, outcome, predictor_names, engine=engine, config=explore_config,
             controls=controls, covariates=covariates,
         )
-        confirmation = confirm(
+        confirmation = _confirm_with_shared_folds(
             exploration, confirm_part, engine=confirm_engine, correction=correction, alpha=alpha,
+            fold_seed=split_seed,
         )
         used = confirmation.engine.iloc[0] if len(confirmation) else (
             confirm_engine or ("lightgbm" if engine == "lightgbm" else "ols")
         )
         used_confirm_engines.append(used)
-        fit = confirmation_fit(exploration, confirm_part, seed=split_seed)
+        fit = _confirmation_fit_with_shared_folds(
+            exploration, confirm_part, seed=split_seed, fold_seed=split_seed,
+        )
         settings = dict(
             split_seed=split_seed,
             explore_fraction=explore_fraction,

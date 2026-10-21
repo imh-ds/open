@@ -192,6 +192,39 @@ def _folds(n, seed):
     return out
 
 
+def _aligned_fold_ids(row_positions, folds: int, seed: int, purpose: str) -> np.ndarray:
+    """Assign folds by stable row positions, independent of target and row order."""
+    positions = np.asarray(row_positions)
+    if positions.ndim != 1:
+        raise ValueError("row positions must be one-dimensional")
+    if positions.dtype.kind not in "iu":
+        raise ValueError("row positions must be integers")
+    if type(folds) is not int or folds < 1:
+        raise ValueError("folds must be a positive integer")
+    if len(np.unique(positions)) != len(positions):
+        raise ValueError("row positions must be unique")
+    order = np.argsort(positions, kind="stable")
+    ordered_positions = positions[order].astype("<i8", copy=False)
+    header = f"{seed}|aligned-folds|{purpose}|".encode()
+    digest = hashlib.sha256(header + ordered_positions.tobytes()).digest()
+    fold_seed = int.from_bytes(digest[:16], "big")
+    rng = np.random.default_rng(fold_seed)
+    perm = rng.permutation(len(positions))
+    ordered_folds = np.empty(len(positions), dtype=np.int64)
+    ordered_folds[perm] = np.arange(len(positions), dtype=np.int64) % folds
+    out = np.empty(len(positions), dtype=np.int64)
+    out[order] = ordered_folds
+    return out
+
+
+def _aligned_confirmation_folds(row_positions, seed: int) -> dict[str, np.ndarray]:
+    """Build LightGBM test folds that match whenever eligible row identities do."""
+    return {
+        "k10": _aligned_fold_ids(row_positions, GCM_FOLDS, seed, "confirm-k10"),
+        "half": _aligned_fold_ids(row_positions, 2, seed, "confirm-half"),
+    }
+
+
 def gcm_pcm_pvalues(X: np.ndarray, T: np.ndarray, folds: dict, dseed: int, columns=None) -> np.ndarray:
     """Combined GCM/PCM p-value per column of X (Phase B, F3 with G2).
 
@@ -250,9 +283,9 @@ def _adjust(p: np.ndarray, method: str) -> np.ndarray:
     return adj
 
 
-def confirm(result: ExploreResult, data: pd.DataFrame, engine: str | None = None,
-            include_flagged: bool = False, correction: str = "holm", alpha: float = 0.05,
-            seed: int = 0) -> pd.DataFrame:
+def _confirm(result: ExploreResult, data: pd.DataFrame, engine: str | None = None,
+             include_flagged: bool = False, correction: str = "holm", alpha: float = 0.05,
+             seed: int = 0, fold_provider=None) -> pd.DataFrame:
     """Test the frozen links of ``result`` on independent ``data``.
 
     ``engine`` defaults to LightGBM for a LightGBM network and to OLS otherwise
@@ -276,6 +309,7 @@ def confirm(result: ExploreResult, data: pd.DataFrame, engine: str | None = None
         if missing:
             raise ValueError(f"confirmation data lacks columns {missing}")
         frame = data[[target, *pool]].apply(pd.to_numeric, errors="raise").dropna()
+        row_positions = frame.index.to_numpy(copy=True)
         n = len(frame)
         X, T = frame[list(pool)].to_numpy(float), frame[target].to_numpy(float)
         note = ""
@@ -295,7 +329,8 @@ def confirm(result: ExploreResult, data: pd.DataFrame, engine: str | None = None
                 dseed = _seed(seed, "confirm", depth, target)
                 wanted = list(dict.fromkeys(group.source[testable]))
                 cols = [pool.index(c) for c in wanted]
-                p_of = dict(zip(wanted, gcm_pcm_pvalues(X, T, _folds(n, dseed), dseed, columns=cols)))
+                folds = fold_provider(row_positions) if fold_provider is not None else _folds(n, dseed)
+                p_of = dict(zip(wanted, gcm_pcm_pvalues(X, T, folds, dseed, columns=cols)))
         for _, r in group.iterrows():
             row = dict(depth=depth, target=target, source=r.source, kind=r.kind, explore_tier=r.tier,
                        explore_pass_rate=r.pass_rate, explore_r2=r.r2_median, engine=engine, n=n,
@@ -318,6 +353,30 @@ def confirm(result: ExploreResult, data: pd.DataFrame, engine: str | None = None
     out["confirmed"] = out.p_adjusted < alpha
     out.attrs.update(correction=correction, alpha=alpha, links_tested=int(tested.sum()))
     return out
+
+
+def confirm(result: ExploreResult, data: pd.DataFrame, engine: str | None = None,
+            include_flagged: bool = False, correction: str = "holm", alpha: float = 0.05,
+            seed: int = 0) -> pd.DataFrame:
+    """Test the frozen links of ``result`` on independent ``data``.
+
+    ``engine`` defaults to LightGBM for a LightGBM network and to OLS otherwise
+    (an Elastic-Net network is confirmed with OLS + HC4). Rows with a missing
+    value in a target or its pool are dropped for that target. Returns one row
+    per frozen link, with the raw and adjusted p-value and whether it is
+    confirmed. Constant complete-case targets and invalid OLS designs are
+    retained as untested, with missing p-values and a reason; other targets
+    are still tested. Scalar calls retain target-seeded LightGBM folds.
+    """
+    return _confirm(result, data, engine, include_flagged, correction, alpha, seed)
+
+
+def _confirm_with_shared_folds(result: ExploreResult, data: pd.DataFrame, engine: str | None = None,
+                               include_flagged: bool = False, correction: str = "holm",
+                               alpha: float = 0.05, seed: int = 0, fold_seed: int = 0) -> pd.DataFrame:
+    """Batch-only confirmation with folds keyed to stable eligible row positions."""
+    provider = lambda row_positions: _aligned_confirmation_folds(row_positions, fold_seed)
+    return _confirm(result, data, engine, include_flagged, correction, alpha, seed, provider)
 
 
 # ---------------------------------------------------------------- one dataset: split, explore, confirm
@@ -343,7 +402,8 @@ CONFIRMATION_FIT_COLUMNS = ["depth", "target", "n", "network", "network_size", "
                             "r2_network_explore", "r2_network", "r2_pool", "share_of_pool"]
 
 
-def confirmation_fit(result: ExploreResult, data: pd.DataFrame, folds: int = 10, seed: int = 0) -> pd.DataFrame:
+def _confirmation_fit(result: ExploreResult, data: pd.DataFrame, folds: int = 10, seed: int = 0,
+                      fold_provider=None) -> pd.DataFrame:
     """Out-of-sample fit of the network on independent ``data``.
 
     For each explored target, its kept predictors (the network) and its whole
@@ -367,16 +427,42 @@ def confirmation_fit(result: ExploreResult, data: pd.DataFrame, folds: int = 10,
         missing = [c for c in (r.target, *pool, *controls) if c not in data]
         if missing:
             raise ValueError(f"confirmation data lacks columns {missing}")
-        frame = (data[[r.target, *pool, *controls]].apply(pd.to_numeric, errors="raise").dropna()
-                 .reset_index(drop=True))
-        fold_ids = np.arange(len(frame)) % folds
-        np.random.default_rng(_seed(seed, "confirmation-fit", r.depth, r.target)).shuffle(fold_ids)
+        frame = data[[r.target, *pool, *controls]].apply(pd.to_numeric, errors="raise").dropna()
+        row_positions = frame.index.to_numpy(copy=True)
+        frame = frame.reset_index(drop=True)
+        if fold_provider is None:
+            fold_ids = np.arange(len(frame)) % folds
+            np.random.default_rng(_seed(seed, "confirmation-fit", r.depth, r.target)).shuffle(fold_ids)
+        else:
+            fold_ids = fold_provider(row_positions, folds)
         out = network_fit(frame, r.target, pool, r.network, fold_ids, s["engine"], config, r.depth, controls)
         rows.append(dict(depth=r.depth, target=r.target, n=len(frame), network=out["network"],
                          network_size=out["network_size"], pool_size=out["pool_size"],
                          r2_network_explore=r.r2_network, r2_network=out["r2_network"], r2_pool=out["r2_pool"],
                          share_of_pool=out["share_of_pool"]))
     return pd.DataFrame(rows, columns=CONFIRMATION_FIT_COLUMNS)
+
+
+def confirmation_fit(result: ExploreResult, data: pd.DataFrame, folds: int = 10, seed: int = 0) -> pd.DataFrame:
+    """Score the selected network on independent data using cross-validation.
+
+    For each explored target, its kept predictors (the network) and its whole
+    candidate pool are re-fitted with cross-validation within ``data``, using
+    the exploration's engine, and scored on held-out rows. The predictors were
+    chosen on other data, so the network R² is free of selection bias. Rows
+    with a missing value in the target or its pool are dropped for that target.
+    Scalar calls retain their existing target-seeded fold assignments.
+    """
+    return _confirmation_fit(result, data, folds, seed)
+
+
+def _confirmation_fit_with_shared_folds(result: ExploreResult, data: pd.DataFrame, folds: int = 10,
+                                        seed: int = 0, fold_seed: int = 0) -> pd.DataFrame:
+    """Batch-only confirmation fit with folds keyed to stable eligible rows."""
+    provider = lambda row_positions, n_folds: _aligned_fold_ids(
+        row_positions, n_folds, fold_seed, "confirmation-fit"
+    )
+    return _confirmation_fit(result, data, folds, seed, provider)
 
 
 class SplitResult:

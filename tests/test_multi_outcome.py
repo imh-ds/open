@@ -27,6 +27,25 @@ def _blank_exploration(outcome):
                          {"outcome": outcome, "engine": "ols", "controls": ()}, empty)
 
 
+def _confirmation_exploration(outcome):
+    from open.explore import ExploreResult
+
+    links = pd.DataFrame([{
+        "depth": 1, "target": outcome, "source": "X", "kind": "unique", "tier": "kept",
+        "pass_rate": 1.0, "r2_median": 0.2,
+    }])
+    folds = pd.DataFrame([{
+        "depth": 1, "target": outcome, "source": "X", "contrast": "unique", "noise": False,
+    }])
+    fit = pd.DataFrame([{
+        "depth": 1, "target": outcome, "n": 100, "network": ("X",), "network_size": 1,
+        "pool_size": 1, "r2_network": 0.2,
+    }])
+    empty = pd.DataFrame()
+    return ExploreResult(empty, links, empty, folds, empty, {},
+                         {"outcome": outcome, "engine": "ols", "controls": (), "tuning_folds": 2}, fit)
+
+
 def test_public_api_exposes_multi_outcome_workflow():
     api = importlib.import_module("open.api")
     module = importlib.import_module("open.multi_outcome")
@@ -157,8 +176,9 @@ def test_applies_requested_correction_to_raw_testable_pvalues(monkeypatch, scope
                              "engine": ["ols"] * len(p),
                              "note": [""] * len(p)})
 
-    monkeypatch.setattr(multi, "confirm", confirm_stub)
-    monkeypatch.setattr(multi, "confirmation_fit", lambda *a, **k: pd.DataFrame({"r2_network": [0.1]}))
+    monkeypatch.setattr(multi, "_confirm_with_shared_folds", confirm_stub)
+    monkeypatch.setattr(multi, "_confirmation_fit_with_shared_folds",
+                        lambda *a, **k: pd.DataFrame({"r2_network": [0.1]}))
 
     result = multi.explore_and_confirm_outcomes(
         _data(), ["Y1", "Y2"], predictors=["X1"], correction=correction, correction_scope=scope,
@@ -200,11 +220,74 @@ def test_correction_handles_empty_and_single_outcome_families(monkeypatch):
         return pd.DataFrame({"p": p, "p_adjusted": p, "confirmed": [False] * len(p),
                              "engine": ["ols"] * len(p)})
 
-    monkeypatch.setattr(multi, "confirm", confirm_stub)
-    monkeypatch.setattr(multi, "confirmation_fit", lambda *a, **k: pd.DataFrame())
+    monkeypatch.setattr(multi, "_confirm_with_shared_folds", confirm_stub)
+    monkeypatch.setattr(multi, "_confirmation_fit_with_shared_folds", lambda *a, **k: pd.DataFrame())
     single = multi.explore_and_confirm_outcomes(_data(), ["Y1"], predictors=["X1"])
     np.testing.assert_allclose(single.confirmation.p_adjusted, _adjust(np.array([0.02, 0.04]), "holm"))
 
     empty = multi.explore_and_confirm_outcomes(_data(), ["Y2"], predictors=["X1"])
     assert empty.confirmation.empty
+
+
+def test_row_aligned_fold_plans_are_reproducible_and_follow_row_identity():
+    from open.confirm import _aligned_confirmation_folds
+
+    rows = np.arange(31, 55)
+    plan = _aligned_confirmation_folds(rows, seed=19)
+    reversed_plan = _aligned_confirmation_folds(rows[::-1], seed=19)
+    repeated_plan = _aligned_confirmation_folds(rows, seed=19)
+    for name in ("k10", "half"):
+        by_row = dict(zip(rows, plan[name]))
+        reversed_by_row = dict(zip(rows[::-1], reversed_plan[name]))
+        assert by_row == reversed_by_row
+        np.testing.assert_array_equal(plan[name], repeated_plan[name])
+        assert set(plan[name]) <= (set(range(10)) if name == "k10" else {0, 1})
+
+    other_rows = np.arange(32, 56)
+    other = _aligned_confirmation_folds(other_rows, seed=19)
+    other_again = _aligned_confirmation_folds(other_rows, seed=19)
+    for name in ("k10", "half"):
+        np.testing.assert_array_equal(other[name], other_again[name])
+        assert set(other[name]) <= (set(range(10)) if name == "k10" else {0, 1})
+
+
+def test_multi_outcome_confirmation_and_fit_share_folds_for_same_rows(monkeypatch):
+    import open.confirm as confirmation
+    import open.explore as exploration
+    import open.multi_outcome as multi
+
+    rng = np.random.default_rng(23)
+    n = 600
+    x = rng.normal(size=n)
+    data = pd.DataFrame({"Y1": x + rng.normal(size=n), "Y2": -x + rng.normal(size=n), "X": x})
+    data.loc[::9, "X"] = np.nan
+    data.index = np.tile(np.arange(20), n // 20)  # batch code must replace caller labels with row positions
+    monkeypatch.setattr(multi, "explore", lambda frame, outcome, *a, **k: _confirmation_exploration(outcome))
+
+    gcm_calls = []
+
+    def gcm_stub(X, T, folds, dseed, columns=None):
+        gcm_calls.append(({key: value.copy() for key, value in folds.items()}, dseed))
+        return np.full(len(columns), 0.2)
+
+    monkeypatch.setattr(confirmation, "gcm_pcm_pvalues", gcm_stub)
+    fit_calls = []
+
+    def network_fit_stub(data, target, pool, network, fold_ids, *args, **kwargs):
+        fit_calls.append(np.asarray(fold_ids).copy())
+        return {"network": tuple(network), "network_size": len(network), "pool_size": len(pool),
+                "r2_network": 0.3, "r2_pool": 0.4, "share_of_pool": 0.75}
+
+    monkeypatch.setattr(exploration, "network_fit", network_fit_stub)
+    with _no_warning_context():
+        multi.explore_and_confirm_outcomes(
+            data, ["Y1", "Y2"], predictors=["X"], confirm_engine="lightgbm",
+        )
+
+    assert len(gcm_calls) == 2
+    for key in ("k10", "half"):
+        np.testing.assert_array_equal(gcm_calls[0][0][key], gcm_calls[1][0][key])
+    assert gcm_calls[0][1] != gcm_calls[1][1]  # model sub-seeds remain target-specific
+    assert len(fit_calls) == 2
+    np.testing.assert_array_equal(fit_calls[0], fit_calls[1])
 

@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from open.confirm import (_adjust, _fit_predict, _folds, _gcm_residuals, confirm,
+from open.confirm import (_adjust, _fit_predict, _folds, _gcm_residuals, _seed, confirm,
                           frozen_network, gcm_pcm_pvalues, hc4_pvalues)
 from open.explore import ExploreConfig, explore
 
@@ -107,6 +107,61 @@ def test_holm_and_bh_adjustments():
     p = np.array([.01, .04, .03, .005])
     np.testing.assert_allclose(_adjust(p, 'holm'), [.03, .06, .06, .02])
     np.testing.assert_allclose(_adjust(p, 'bh'), [.02, .04, .04, .02])
+
+
+def test_scalar_lightgbm_confirmation_keeps_target_seeded_fold_plan(monkeypatch):
+    from open.explore import ExploreResult
+
+    n = 40
+    data = pd.DataFrame({"Y": np.linspace(0, 1, n), "X": np.sin(np.arange(n))})
+    links = pd.DataFrame([dict(depth=1, target="Y", source="X", kind="unique", tier="kept",
+                               pass_rate=1.0, r2_median=0.2)])
+    folds_table = pd.DataFrame([dict(depth=1, target="Y", source="X", contrast="unique", noise=False)])
+    empty = pd.DataFrame()
+    result = ExploreResult(empty, links, empty, folds_table, empty, {},
+                           {"engine": "ols", "controls": ()}, empty)
+    seen = {}
+
+    def gcm_stub(X, T, folds, dseed, columns=None):
+        seen["folds"] = {key: value.copy() for key, value in folds.items()}
+        seen["seed"] = dseed
+        return np.array([0.1])
+
+    monkeypatch.setattr("open.confirm.gcm_pcm_pvalues", gcm_stub)
+    with pytest.warns(UserWarning, match="below the calibrated minimum"):
+        confirm(result, data, engine="lightgbm", seed=31)
+
+    expected_seed = _seed(31, "confirm", 1, "Y")
+    expected = _folds(n, expected_seed)
+    assert seen["seed"] == expected_seed
+    for key in ("k10", "half"):
+        np.testing.assert_array_equal(seen["folds"][key], expected[key])
+
+
+def test_scalar_confirmation_fit_keeps_target_seeded_fold_ids(monkeypatch):
+    from open.confirm import confirmation_fit
+    from open.explore import ExploreResult
+
+    n = 39
+    data = pd.DataFrame({"Y": np.linspace(0, 1, n), "X": np.cos(np.arange(n))})
+    folds_table = pd.DataFrame([dict(depth=1, target="Y", source="X", contrast="unique", noise=False)])
+    fit = pd.DataFrame([dict(depth=1, target="Y", n=n, network=("X",), network_size=1,
+                             pool_size=1, r2_network=0.2)])
+    empty = pd.DataFrame()
+    result = ExploreResult(empty, empty, empty, folds_table, empty, {},
+                           {"engine": "ols", "controls": ()}, fit)
+    seen = {}
+
+    def network_fit_stub(data, target, pool, network, fold_ids, *args, **kwargs):
+        seen["fold_ids"] = np.asarray(fold_ids).copy()
+        return {"network": tuple(network), "network_size": 1, "pool_size": 1,
+                "r2_network": 0.2, "r2_pool": 0.3, "share_of_pool": 0.5}
+
+    monkeypatch.setattr("open.explore.network_fit", network_fit_stub)
+    confirmation_fit(result, data, folds=3, seed=31)
+    expected = np.arange(n) % 3
+    np.random.default_rng(_seed(31, "confirmation-fit", 1, "Y")).shuffle(expected)
+    np.testing.assert_array_equal(seen["fold_ids"], expected)
 
 
 def test_elastic_net_network_is_confirmed_with_ols():
