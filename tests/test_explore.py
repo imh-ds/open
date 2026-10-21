@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from open.explore import ExploreConfig, assess_target, explore, tier
+from open.explore import ExploreConfig, _pair_features, assess_target, explore, tier
 from open.learners.ols import OLSPredictor
 
 
@@ -88,6 +88,37 @@ def test_missing_target_rows_are_left_out_of_that_targets_folds():
                                     ExploreConfig(interactions=False), depth=2)
     assert set(folds.fold) == set(range(10))
     assert 'X4' in set(links.source[links.tier == 'kept'])
+
+
+def test_default_interactions_allow_an_entirely_missing_predictor():
+    r = np.random.default_rng(12)
+    x = r.normal(size=300)
+    data = pd.DataFrame({"Y": 3 * x + r.normal(size=300), "X": x, "empty": np.nan})
+    result = explore(data, "Y", config=ExploreConfig(folds=3, max_depth=1))
+    assert result.links.set_index("source").loc["X", "tier"] == "kept"
+    inter = result.folds[result.folds.contrast == "interaction"]
+    assert len(inter) and set(inter.noise) == {False, True}
+    assert np.isfinite(result.folds.value).all() and np.isfinite(result.folds.bar).all()
+    assert (inter.groupby("noise").fold.nunique() == 3).all()
+
+
+@pytest.mark.parametrize("missing_member", ["a", "b"])
+def test_interaction_empty_training_column_uses_zero_without_held_out_leakage(missing_member):
+    train = np.arange(10) < 8
+    observed = np.array([-4., -3., -2., -1., 1., 2., 3., 4., 2., np.nan])
+    missing = np.array([np.nan] * 8 + [5., np.nan])
+    xa, xb = (missing, observed) if missing_member == "a" else (observed, missing)
+    features = _pair_features(xa, xb, train)
+    assert np.isfinite(features).all()
+    np.testing.assert_array_equal(features[train, 0], np.zeros(8))
+    # The observed member's training mean is 0 and variance is 7.5; the
+    # empty member is filled with 0 and uses unit scale, even though test=5.
+    np.testing.assert_allclose(features[~train, 0], [10 / np.sqrt(7.5), 0.])
+    changed_a, changed_b = xa.copy(), xb.copy()
+    changed_a[~train] = [200., -300.]
+    changed_b[~train] = [500., 700.]
+    changed_features = _pair_features(changed_a, changed_b, train)
+    np.testing.assert_array_equal(changed_features[train], features[train])
 
 
 def test_seed_reproducible_and_engine_instance_accepted():

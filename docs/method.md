@@ -104,6 +104,12 @@ candidate.
 predictor values are median-imputed within each training fold. Rows with a
 missing deeper target are left out of that target's folds.
 
+If a predictor has no observed values in a training fold, its missing values
+are filled with zero, matching the engines' empty-column imputation policy.
+Interaction features use this same fallback for both real and noise columns.
+Observed held-out values are retained when transformed, and never determine
+the training imputation value, centering, scaling, spline knots or projection.
+
 ## Confirmation (`open.confirm.confirm`)
 
 Testing links on the data that selected them inflates their significance, so

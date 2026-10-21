@@ -301,12 +301,15 @@ def _classify_pairs(folds, edges, depth, target, config):
 def _pair_features(xa, xb, train, knots=3):
     """Centered product plus the spline tensor block with the pair's own curves projected out.
 
-    Everything is fitted on the training rows only.
+    Everything is fitted on the training rows only. Entirely missing training
+    columns are filled with zero, matching the engines' empty-column policy.
     """
     from sklearn.preprocessing import SplineTransformer
 
     def spline(x):
-        x = np.where(np.isnan(x), np.nanmedian(x[train]), x)
+        training = x[train]
+        median = np.nanmedian(training) if not np.isnan(training).all() else 0.0
+        x = np.where(np.isnan(x), median, x)
         st = SplineTransformer(n_knots=knots, degree=3, knots="quantile", extrapolation="linear",
                                include_bias=False).fit(x[train][:, None])
         z = (x - x[train].mean()) / (x[train].std() or 1.0)
