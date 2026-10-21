@@ -70,6 +70,10 @@ candidate.
 - **Gain:** the held-out R² gained by the pair's joint term (a centered
   product plus a spline tensor, with its own cross-validated ridge penalty)
   over an additive spline model.
+- **Additive model tuning:** within each inner training fold, imputation is
+  fitted once and spline features once per knot count, then reused across the
+  ridge penalties. The selected complete pipeline is fitted afresh on the
+  outer training rows. This preserves the search grid and training boundaries.
 - **Noise comparison:** each real pair is compared against a pair with one
   member replaced by its noise twin, using the same bar and tiers.
 - **Drawing only:** interactions promote nothing. Kept interactions are drawn.

@@ -4,14 +4,17 @@
 ``open.explore`` uses as the baseline for interaction gains.
 """
 from dataclasses import dataclass
+import warnings
 
 import numpy as np
-from sklearn.base import BaseEstimator, TransformerMixin
+from sklearn.base import BaseEstimator, TransformerMixin, clone
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import Ridge
-from sklearn.model_selection import GridSearchCV, KFold
+from sklearn.metrics import get_scorer
+from sklearn.model_selection import KFold
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import SplineTransformer, StandardScaler
+from sklearn.utils import _safe_indexing, indexable
 
 
 @dataclass(frozen=True)
@@ -81,10 +84,38 @@ def _estimator(pair=None):
         ('ridge',Ridge(solver='lsqr',tol=1e-8))])
 
 
-def _tune(X,y,pair,config):
-    pipeline=_estimator(pair)
-    splits=list(KFold(config.inner_folds,shuffle=True,random_state=config.seed).split(X))
-    search=GridSearchCV(pipeline,{'curves__n_knots':list(config.knots),
-        'ridge__alpha':list(config.alphas)},cv=splits,scoring='neg_mean_squared_error',
-        refit=True,error_score='raise',n_jobs=1).fit(X,y)
-    return search.best_estimator_,dict(search.best_params_),[len(a) for a,b in splits]
+def _tune(X, y, pair, config):
+    """Search the unchanged grid while reusing each fold's feature preparation.
+
+    Imputation depends on the training split; spline features also depend on
+    the knot count. Ridge penalties share those features, never fitted models.
+    The selected complete pipeline is then fitted afresh on all supplied rows.
+    """
+    X, y = indexable(X, y)
+    pipeline = _estimator(pair)
+    splits = list(KFold(config.inner_folds, shuffle=True, random_state=config.seed).split(X))
+    scores = np.empty((len(config.knots) * len(config.alphas), len(splits)))
+    scorer = get_scorer("neg_mean_squared_error")
+    for fold, (train, test) in enumerate(splits):
+        ytrain, ytest = _safe_indexing(y, train), _safe_indexing(y, test)
+        imputer = clone(pipeline["imputer"])
+        train_imputed = imputer.fit_transform(_safe_indexing(X, train), ytrain)
+        test_imputed = imputer.transform(_safe_indexing(X, test))
+        for knot_index, knots in enumerate(config.knots):
+            curves = clone(pipeline["curves"]).set_params(n_knots=knots)
+            Xtrain = curves.fit_transform(train_imputed, ytrain)
+            Xtest = curves.transform(test_imputed)
+            for alpha_index, alpha in enumerate(config.alphas):
+                ridge = clone(pipeline["ridge"]).set_params(alpha=alpha).fit(Xtrain, ytrain)
+                index = knot_index * len(config.alphas) + alpha_index
+                scores[index, fold] = scorer(ridge, Xtest, ytest)
+    # GridSearchCV orders curves__n_knots before ridge__alpha, preserves the
+    # configured value order, and chooses the first candidate in a mean tie.
+    means = scores.mean(axis=1)
+    if not np.isfinite(means).all():
+        warnings.warn(f"One or more of the test scores are non-finite: {means}", UserWarning)
+    best = int(np.argmax(np.where(np.isnan(means), -np.inf, means)))
+    knot_index, alpha_index = divmod(best, len(config.alphas))
+    params = {"curves__n_knots": config.knots[knot_index], "ridge__alpha": config.alphas[alpha_index]}
+    fitted = pipeline.set_params(**params).fit(X, y)
+    return fitted, params, [len(train) for train, _ in splits]
