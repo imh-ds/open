@@ -5,7 +5,8 @@ network graph. ``plot_explore`` draws the graph as a radial tree:
 
 - the outcome in the centre, each depth on a wider ring, and every target's
   predictors fanning outwards from it;
-- circular nodes, with edges drawn centre to centre behind them;
+- circular nodes, with edges drawn centre to centre behind them and an
+  arrowhead at the rim of the variable being predicted;
 - solid edges for kept links and dashed edges for flagged links, with widths
   scaled by held-out R² lost and labelled with it (a check mark when the link
   was confirmed on new data);
@@ -18,7 +19,10 @@ network graph. ``plot_explore`` draws the graph as a radial tree:
   small diamond, labelled with the pair ("F·N7"), and one edge runs on to the
   target. Only that last edge is solid (kept) or dashed (flagged), because the
   pairing itself is not uncertain;
-- predictors that are only flagged, and never kept, as grey dashed nodes.
+- predictors that are only flagged, and never kept, as grey dashed nodes;
+- covariates (``explore(covariates=...)``) as tan nodes: in every model, tested,
+  never targets. Controls (``controls=...``) are not drawn; the footnote lists
+  them.
 
 Display settings live in ``GraphStyle``: node size, edge thickness, label size,
 spacing between nodes (more compact or more spread out), which flagged edges and
@@ -30,9 +34,10 @@ tables. Flagged interactions are also left out by default
 (``show_flagged_interactions``): in the validation study they were mostly
 false. They stay in the tables.
 
-An edge means "the outer variable predicts the inner one beyond that target's
-other candidates" (held-out R²). It is not causal, and it is not a partial
-correlation.
+An arrow means "this variable predicts that one on held-out data, beyond the
+target's other candidates". It shows the direction of prediction in the
+analysis, not of causation (reversed arrows can be predictive too), and it is
+not a partial correlation.
 """
 from __future__ import annotations
 
@@ -102,6 +107,7 @@ RING_STEP = 2.3         # base distance between depth rings
 
 INK, MUTED = "#1f2933", "#6b7785"
 KEPT, FLAGGED = "#334155", "#94a3b8"
+COVARIATE_FILL, COVARIATE_EDGE = "#f5e6cf", "#9a6b2f"
 SHARED, INTERACTION, FIT, CONFIRMED = "#2563eb", "#d9480f", "#2f9e44", "#2f9e44"
 DEPTH_FILL = ("#1f2933", "#dbe7f6", "#e3f2e1", "#fbefd5", "#f3e3f1", "#e2f0f1")
 
@@ -176,6 +182,19 @@ def _passes(pass_rate, n_folds):
 
 def _width(r2):
     return float(np.clip(1.2 + 30 * max(r2, 0), 1.0, 6.5))
+
+
+def _free_angle(angles) -> float:
+    """The direction (radians) farthest from every edge leaving a node; straight down when there is room."""
+    down = -math.pi / 2
+    if not angles:
+        return down
+    def gap(a):
+        return min(abs((a - b + math.pi) % (2 * math.pi) - math.pi) for b in angles)
+    if gap(down) >= math.pi / 3:
+        return down
+    options = [down + k * math.pi / 12 for k in range(24)]
+    return max(options, key=lambda a: (round(gap(a), 3), -abs(a - down)))
 
 
 def _drawn(links: pd.DataFrame, show_flagged: bool, show_flagged_interactions: bool) -> pd.DataFrame:
@@ -368,7 +387,7 @@ def plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFrame
         matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     from matplotlib.lines import Line2D
-    from matplotlib.patches import Circle, RegularPolygon, Wedge
+    from matplotlib.patches import Circle, Polygon, RegularPolygon, Wedge
 
     links = _drawn(result.links, st.show_flagged, st.show_flagged_interactions)
     if not len(links):
@@ -390,11 +409,33 @@ def plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFrame
         for c in confirmation.itertuples():
             verdict[(c.depth, c.target, c.source)] = None if pd.isna(c.p) else bool(c.confirmed)
 
-    def edge(a, b, tier_, r2, color, label=None, lw=None):
+    fit = {r.target: r.r2_network for r in result.fit.itertuples()}
+    sizes = {r.target: r.network_size for r in result.fit.itertuples()}
+    covariates = set(result.settings.get("covariates", ()))
+
+    def rim(v):
+        """Distance from a node's centre to where an arrow into it should stop."""
+        rad = outcome_r if v == outcome else node_r
+        return rad + (.22 * ns if v in fit and sizes.get(v, 0) > 0 else .04 * ns)
+
+    def edge(a, b, tier_, r2, color, label=None, lw=None, head=None):
+        """A line from a to b, behind the nodes; with ``head``, an arrowhead that far short of b."""
         label = label if st.edge_labels == "all" or (st.edge_labels == "kept" and tier_ == "kept") else None
         style = "-" if tier_ == "kept" else (0, (4, 2.5))
-        ax.plot([a[0], b[0]], [a[1], b[1]], color=color if tier_ == "kept" else _soft(color), ls=style,
-                lw=(lw or _width(r2)) * ew, solid_capstyle="round", zorder=1.5 if tier_ == "kept" else 1)
+        shade = color if tier_ == "kept" else _soft(color)
+        width = (lw or _width(r2)) * ew
+        ax.plot([a[0], b[0]], [a[1], b[1]], color=shade, ls=style,
+                lw=width, solid_capstyle="round", zorder=1.5 if tier_ == "kept" else 1)
+        if head is not None:
+            u = np.array(b, float) - np.array(a, float)
+            length = float(np.linalg.norm(u))
+            if length > head + .05:
+                u /= length
+                n = np.array([-u[1], u[0]])
+                size = (.15 + .012 * width) * ns
+                tip = np.array(b) - u * head
+                ax.add_patch(Polygon([tip, tip - u * size + n * size * .55, tip - u * size - n * size * .55],
+                                     closed=True, fc=shade, ec="none", zorder=2))
         if label:
             t = .55                                    # nearer the outer end, where edges are spread out
             x, y = b[0] + t * (a[0] - b[0]), b[1] + t * (a[1] - b[1])
@@ -411,7 +452,7 @@ def plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFrame
         target = pos[r.target]
         members = list(r.members)
         if r.kind == "unique":
-            edge(pos[r.source], target, r.tier, r.r2_median, KEPT, label_for(r))
+            edge(pos[r.source], target, r.tier, r.r2_median, KEPT, label_for(r), head=rim(r.target))
         elif r.kind == "shared":
             pts = np.array([pos[m] for m in members])
             for i in range(len(pts) - 1):              # band joining the members
@@ -419,12 +460,12 @@ def plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFrame
                         solid_capstyle="round", zorder=.5)
             for i, m in enumerate(members):           # one edge per member, labelled once
                 edge(pos[m], target, r.tier, r.r2_median, SHARED, label_for(r) if i == 0 else None,
-                     lw=_width(r.r2_median) * .75)
+                     lw=_width(r.r2_median) * .75, head=rim(r.target))
         else:
             mark = junctions[(int(r.depth), r.target, r.source)]
             for m in members:                         # the pair: always solid
                 edge(pos[m], mark, "kept", 0, INTERACTION, lw=1.6)
-            edge(mark, target, r.tier, r.r2_median, INTERACTION, label_for(r))
+            edge(mark, target, r.tier, r.r2_median, INTERACTION, label_for(r), head=rim(r.target))
             fill = INTERACTION if r.tier == "kept" else _soft(INTERACTION, .3)
             ax.add_patch(RegularPolygon(mark, numVertices=4, radius=.2 * ns, orientation=0, fc=fill, ec="white",
                                         lw=1.2, zorder=4))
@@ -436,17 +477,24 @@ def plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFrame
             ax.text(*spot, "·".join(members), fontsize=7.5 * fs, ha="center", va="center", color=INTERACTION,
                     zorder=5, bbox=dict(boxstyle="round,pad=0.12", fc="white", ec="none", alpha=.9))
 
-    fit = {r.target: r.r2_network for r in result.fit.itertuples()}
-    sizes = {r.target: r.network_size for r in result.fit.itertuples()}
+    neighbours = {}                               # where each node's edges leave it, to place its fit label
+    for r in links.itertuples():
+        far = [junctions[(int(r.depth), r.target, r.source)]] if r.kind == "interaction" else \
+            [pos[m] for m in r.members]
+        neighbours.setdefault(r.target, []).extend(far)
+        for m in r.members:
+            neighbours.setdefault(m, []).append(junctions.get((int(r.depth), r.target, r.source), pos[r.target]))
     new = ({r.target: r.r2_network for r in confirmation_fit.itertuples()}
            if confirmation_fit is not None else {})
     for v, (x, y) in pos.items():
         is_outcome = v == outcome
         rad = outcome_r if is_outcome else node_r
-        grey = v in candidate
-        fill = "#f4f5f7" if grey else DEPTH_FILL[min(ring[v], len(DEPTH_FILL) - 1)]
-        ax.add_patch(Circle((x, y), rad, fc=fill, ec=MUTED if grey else INK, lw=.9 if grey else 1.2,
-                            ls=(0, (2, 1.5)) if grey else "-", zorder=3))
+        covariate = v in covariates
+        grey = v in candidate and not covariate
+        fill = (COVARIATE_FILL if covariate else "#f4f5f7" if grey
+                else DEPTH_FILL[min(ring[v], len(DEPTH_FILL) - 1)])
+        ax.add_patch(Circle((x, y), rad, fc=fill, ec=COVARIATE_EDGE if covariate else MUTED if grey else INK,
+                            lw=.9 if grey else 1.2, ls=(0, (2, 1.5)) if grey else "-", zorder=3))
         if v in fit and sizes.get(v, 0) > 0:           # network-fit ring: share filled = held-out R²
             ax.add_patch(Wedge((x, y), rad + .13 * ns, 0, 360, width=.08 * ns, fc="#e9ecef", ec="none",
                                zorder=3))
@@ -455,8 +503,13 @@ def plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFrame
                 ax.add_patch(Wedge((x, y), rad + .13 * ns, 90 - 360 * share, 90, width=.08 * ns, fc=FIT,
                                    ec="none", zorder=3.5))
             text = f"R² {_apa(fit[v])}" + (f"  new {_apa(new[v])}" if v in new else "")
-            ax.text(x, y - rad - .22 * ns, text, fontsize=7.5 * fs, ha="center", va="top", color=FIT, zorder=5,
-                    bbox=dict(boxstyle="round,pad=0.12", fc="white", ec="none", alpha=.85))
+            # on the side of the node with the most room between its edges (below if free)
+            angle = _free_angle([math.atan2(q[1] - y, q[0] - x) for q in neighbours.get(v, [])])
+            dist = rad + .2 * ns + .1 * fs
+            ax.text(x + dist * math.cos(angle), y + dist * math.sin(angle), text, fontsize=7.5 * fs,
+                    ha="center" if abs(math.cos(angle)) < .38 else ("left" if math.cos(angle) > 0 else "right"),
+                    va="center" if abs(math.sin(angle)) < .38 else ("bottom" if math.sin(angle) > 0 else "top"),
+                    color=FIT, zorder=5, bbox=dict(boxstyle="round,pad=0.12", fc="white", ec="none", alpha=.85))
         size_ = 10.5 if is_outcome else (9 if len(v) <= 4 else max(6, 9 - .45 * (len(v) - 4)))
         ax.text(x, y, v, fontsize=size_ * fs, ha="center", va="center", zorder=6,
                 color="white" if is_outcome else (MUTED if grey else INK),
@@ -479,18 +532,24 @@ def plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFrame
     if any(sizes.get(v, 0) > 0 for v in pos):
         handles.append(Line2D([], [], color=FIT, lw=0, marker="o", markersize=9, markerfacecolor="white",
                               markeredgewidth=2.5, label="ring: held-out R² from kept links"))
-    if candidate:
+    if candidate - covariates:
         handles.append(Line2D([], [], color=MUTED, lw=0, marker="o", markersize=9, markerfacecolor="#f4f5f7",
                               markeredgecolor=MUTED, label="flagged only"))
+    if covariates & set(pos):
+        handles.append(Line2D([], [], lw=0, marker="o", markersize=9, markerfacecolor=COVARIATE_FILL,
+                              markeredgecolor=COVARIATE_EDGE, label="covariate (every model; never a target)"))
     for d in sorted({d for v, d in ring.items() if d > 0 and v not in candidate}):
         handles.append(Line2D([], [], lw=0, marker="o", markersize=9, markeredgecolor=INK,
                               markerfacecolor=DEPTH_FILL[min(d, len(DEPTH_FILL) - 1)], label=f"depth {d}"))
     legend = ax.legend(handles=handles, loc="upper center", bbox_to_anchor=(.5, -.01), ncol=3, frameon=False,
                        fontsize=8.5 * fs, handlelength=2.6, columnspacing=1.6)
-    note = ("Each edge: the outer variable predicts the inner one beyond that target's other candidates.\n"
+    note = ("Arrows point from a predictor to the variable it predicts on held-out data, beyond that "
+            "variable's other candidates.\nThey show the direction of prediction in this analysis, not of "
+            "causation, and are not partial correlations.\n"
             "Label: held-out ΔR² (R² lost; gained, for interactions) and folds passed, e.g. .120 (9/10)" +
-            (" (✓ confirmed on new data)" if verdict else "") +
-            ". Not causal; not a partial correlation.")
+            (" (✓ confirmed on new data)" if verdict else "") + ".")
+    if s.get("controls"):
+        note += f"\nAll links adjusted for: {', '.join(s['controls'])}."
     ax.set_xlim(lo[0], hi[0])
     ax.set_ylim(lo[1], hi[1])
     ax.axis("off")
