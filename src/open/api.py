@@ -18,10 +18,12 @@ from open.explore_report import (
     write_explore as save_exploration,
     write_split as save_split_analysis,
 )
+from open.multi_outcome import MultiOutcomeResult, explore_and_confirm_outcomes
 
 __all__ = (
     "ExploreConfig", "ExploreResult", "GraphStyle", "SplitResult",
     "confirm_network", "evaluate_confirmation_fit", "explore_and_confirm",
+    "explore_and_confirm_outcomes", "MultiOutcomeResult",
     "explore_network", "plot_network", "save_exploration", "save_split_analysis",
     "split_sample",
 )
