@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from open.confirm import confirmation_fit, frozen_network
+from open.confirm import confirm, confirmation_fit, frozen_network
 from open.explore import ExploreConfig, explore
 
 CFG = ExploreConfig(max_depth=2, interactions=False)
@@ -70,3 +70,67 @@ def test_invalid_controls_and_covariates_raise(kw):
 def test_no_controls_or_covariates_leaves_settings_unchanged():
     res = explore(_data(300), "Y", engine="ols", config=ExploreConfig(max_depth=1, interactions=False))
     assert "controls" not in res.settings and "covariates" not in res.settings
+
+
+def _covariate_chain(n=900, seed=4):
+    r = np.random.default_rng(seed)
+    c, d = r.normal(size=(2, n))
+    x = 2 * c + .5 * d + r.normal(size=n)
+    return pd.DataFrame({"Y": 2 * x + .8 * d + r.normal(size=n), "X": x, "C": c, "D": d})
+
+
+def test_final_target_is_evaluated_against_covariates_and_controls():
+    res = explore(_covariate_chain(), "Y", predictors=["X"], covariates=["C"], controls=["D"],
+                  config=ExploreConfig(folds=5, interactions=False))
+    assert set(res.fit.target) == {"Y", "X"}
+    kept = res.links[res.links.tier == "kept"]
+    assert ("C", "X") in set(zip(kept.source, kept.target))
+    assert set(res.nodes.variable) == {"Y", "X"}
+    assert res.nodes.set_index("variable").loc["X", "parents"] == ("Y",)
+    assert set(res.folds.target) == {"Y", "X"} and res.stops == {"X": "NOTHING_KEPT"}
+    fit = res.fit.set_index("target").loc["X"]
+    assert fit.pool_size == fit.network_size == 1 and fit.network == ("C",)
+    frozen = frozen_network(res)
+    assert frozen.loc[frozen.target == "X", "pool"].iloc[0] == ("C", "D")
+    new = _covariate_chain(seed=12)
+    confirmed = confirm(res, new)
+    terminal = confirmed[(confirmed.target == "X") & (confirmed.source == "C")]
+    assert len(terminal) == 1 and terminal.confirmed.iloc[0]
+    new_fit = confirmation_fit(res, new)
+    assert set(new_fit.target) == {"Y", "X"} and np.isfinite(new_fit.r2_network).all()
+
+
+@pytest.mark.parametrize("predictors", [None, []])
+@pytest.mark.parametrize("adjust", [False, True])
+def test_initial_covariate_only_pool_is_evaluated_once(predictors, adjust):
+    data = _covariate_chain()[["Y", "C", "D"] if adjust else ["Y", "C"]]
+    res = explore(data, "Y", predictors=predictors, covariates=["C"], controls=["D"] if adjust else None,
+                  config=ExploreConfig(folds=5, interactions=False))
+    kept = res.links[res.links.tier == "kept"]
+    assert list(kept.source) == ["C"] and list(kept.target) == ["Y"]
+    assert list(res.nodes.variable) == ["Y"] and list(res.fit.target) == ["Y"]
+    assert set(res.folds.depth) == {1} and res.stops == {"Y": "NOTHING_KEPT"}
+    assert res.fit.network.iloc[0] == ("C",)
+    expected_pool = ("C", "D") if adjust else ("C",)
+    assert frozen_network(res).pool.iloc[0] == expected_pool
+
+
+@pytest.mark.parametrize("predictors", [None, []])
+def test_controls_alone_do_not_form_a_tested_pool(predictors):
+    with pytest.raises(ValueError, match="predictor|covariate|candidate"):
+        explore(_covariate_chain()[["Y", "D"]], "Y", predictors=predictors, controls=["D"],
+                config=ExploreConfig(folds=5, interactions=False))
+
+
+def test_final_covariate_pool_respects_max_depth():
+    res = explore(_covariate_chain(), "Y", predictors=["X"], covariates=["C"], controls=["D"],
+                  config=ExploreConfig(folds=5, max_depth=1, interactions=False))
+    assert set(res.nodes.variable) == {"Y", "X"} and list(res.fit.target) == ["Y"]
+    assert set(res.folds.target) == {"Y"} and res.stops == {"X": "MAX_DEPTH"}
+
+
+def test_empty_pool_without_covariates_keeps_existing_stop_behavior():
+    res = explore(_covariate_chain(), "Y", predictors=["X"], controls=["D"],
+                  config=ExploreConfig(folds=5, interactions=False))
+    assert set(res.nodes.variable) == {"Y", "X"} and list(res.fit.target) == ["Y"]
+    assert res.stops == {"X": "NO_CANDIDATES"}

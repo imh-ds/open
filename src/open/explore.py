@@ -543,7 +543,9 @@ def explore(data: pd.DataFrame, outcome: str, predictors=None, engine="ols",
     never tested, drawn or used as targets (nuisance variables, e.g. cohort).
     ``covariates``: variables in every target's model at every depth that are
     also tested and drawn like candidates, but never become targets (e.g.
-    gender). With ``predictors=None``, the predictors are all other columns.
+    gender). With ``predictors=None``, ordinary predictors are the columns other
+    than the outcome, controls and covariates. Their list may be empty when
+    covariates are supplied.
 
     A dependence group (correlated candidates) counts only when none of its
     members is kept by itself; otherwise the kept member already carries the
@@ -562,8 +564,10 @@ def explore(data: pd.DataFrame, outcome: str, predictors=None, engine="ols",
     if predictors is None:
         predictors = tuple(c for c in data.columns if c != outcome and c not in fixed)
     predictors = tuple(predictors)
-    if outcome in predictors or len(set(predictors)) != len(predictors) or not predictors:
-        raise ValueError("predictors must be distinct, nonempty and exclude the outcome")
+    if outcome in predictors or len(set(predictors)) != len(predictors):
+        raise ValueError("predictors must be distinct and exclude the outcome")
+    if not predictors and not covariates:
+        raise ValueError("at least one predictor or covariate is required")
     if set(predictors) & set(fixed):
         raise ValueError("a variable cannot be both a predictor and a control or covariate")
     variables = (outcome, *predictors, *covariates, *controls)
@@ -594,12 +598,12 @@ def explore(data: pd.DataFrame, outcome: str, predictors=None, engine="ols",
             stops.update((t, "MAX_DEPTH") for t in frontier)
             break
         pool = tuple(v for v in predictors if v not in depths)
-        if not pool:
+        tested = pool + covariates                  # covariates: in every pool, never targets
+        if not tested:
             stops.update((t, "NO_CANDIDATES") for t in frontier)
             break
         depth += 1
         next_parents = {}
-        tested = pool + covariates                  # covariates: in every pool, never targets
         for target in frontier:
             folds, links, pairs = assess_target(data, target, tested, fold_ids, engine, config, depth, controls)
             kept_alone = set(links.source[(links.kind == "unique") & (links.tier == "kept")])

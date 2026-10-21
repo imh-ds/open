@@ -82,8 +82,9 @@ candidate.
 - Kept variables, and members of kept groups, become the next depth's targets.
 - They are regressed on every variable not yet placed, including flagged and
   dropped ones. Variables at the same depth never predict each other.
-- The recursion stops when nothing is kept, the pool is empty, or `max_depth`
-  is reached.
+- The recursion stops when no ordinary predictors are promoted, the tested
+  pool is empty, or `max_depth` is reached. Kept covariates remain reported
+  but do not extend recursion.
 
 **Controls and covariates** (`explore(..., controls=..., covariates=...)`).
 
@@ -94,6 +95,10 @@ candidate.
 - **Covariates** are in every target's pool at every depth and are tested like
   any candidate: noise copy, noise bar, tiers. They are drawn when they pass,
   but never promoted, so they never become targets and never leave a pool.
+- When only covariates remain, the current targets are still evaluated against
+  them, subject to `max_depth`. An analysis may also start with only covariates
+  (`predictors=[]` or no other columns). Controls alone do not form a tested
+  pool; at least one ordinary predictor or covariate is required.
 - Without either, a variable is an ordinary candidate. If kept, it becomes a
   target and leaves the pools of deeper depths.
 - Confirmation tests each frozen link beyond the same controls and covariates.
