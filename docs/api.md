@@ -165,6 +165,24 @@ save_exploration(result, "tables-only", plot=False)
 `plot_network` draws only the graph. The save functions write tables, settings
 and summary, plus a graph by default. Reusing a directory follows the
 [documented overwrite behavior](method.md#saving-and-overwriting-exports).
+Labels automatically dodge other labels, nodes and fit rings using their
+rendered text bounds. Edge labels stay near their own edge, node-fit labels
+stay near their own node, and displaced labels can use thin leader lines.
+Placement favors avoiding edges as well. This does not increase node spacing
+or figure size. Placement is local and best effort; very dense graphs can
+still require more space or fewer displayed annotations. Set
+`GraphStyle(dodge_labels=False)` to keep the original fixed label placement.
+
+A checkmark means the link passed confirmation on independent held-out data
+after the selected multiple-testing correction. Solid/dashed lines instead
+describe exploratory fold stability. No checkmark can mean either unconfirmed
+or untested; the confirmation table distinguishes them. To hide the symbols
+without changing any tests or results:
+
+```python
+plot_outcomes(batch, layout="combined", style=GraphStyle(show_confirmation=False))
+```
+
 Importing `open.api` and saving with `plot=False` require neither matplotlib
 nor LightGBM. Plotting requires the visualization extra; selecting LightGBM
 requires its extra. Construct `GraphStyle` when plotting is needed: its color
