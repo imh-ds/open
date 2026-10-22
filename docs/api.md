@@ -129,7 +129,9 @@ view uses the same radial tree and spring layout, node styling, fit rings, and
 annotated edges as the single-network plot, with multiple outcome roots. It
 draws shared variables once and retains outcome colors for overlapping or
 reversed edges. Links from the same reused assessment with identical effects and
-confirmation status draw once in neutral, labeled `shared ×N`. Independent
+confirmation status draw once in neutral grey, with the ordinary label; the
+legend and footnote explain the dark grey edges, and the tables list which outcomes
+share each link. Independent
 assessments stay separate even when their printed effect labels match. Multiple
 distinct links between a node pair fan into curves with separate triangle
 arrowheads; a lone link remains straight. Differing fit estimates are labeled by

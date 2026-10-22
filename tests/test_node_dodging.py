@@ -41,7 +41,7 @@ def test_label_room_lengthens_an_edge_too_short_for_its_label():
     from open.explore_report import GraphStyle, _make_label_room, _point_segment
 
     positions = {"Y": (0., 0.), "A": (1.3, 0.), "Quiet": (0., 6.)}
-    text = ".123 (10/10) ✓ · shared ×4"
+    text = ".123 (10/10) ✓ (a long label)"
     moved, _, spots = _make_label_room(positions, {}, [_edge_spec("A", "Y", text)], _links(("A", "Y")),
                                        {"Y"}, {"Y"}, GraphStyle(), pinned={"Y"})
     assert moved["Y"] == positions["Y"] and moved["Quiet"] == positions["Quiet"]

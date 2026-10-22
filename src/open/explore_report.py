@@ -895,9 +895,7 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
 
     def label_for(r):
         text = f"{_apa(r.r2_median)} ({_passes(r.pass_rate, n_folds)})"
-        text += " ✓" if st.show_confirmation and verdict.get(_link_key(r)) else ""
-        shared = getattr(r, "shared_outcomes", ())
-        return text + (f" · shared ×{len(shared)}" if len(shared) > 1 else "")
+        return text + (" ✓" if st.show_confirmation and verdict.get(_link_key(r)) else "")
 
     edge_slots = {}
     if _overlay:
@@ -1141,7 +1139,7 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
         handles = [Line2D([], [], color=color, lw=2.5, label=name)
                    for name, color in _overlay["colors"].items()] + handles
         if any(len(r.shared_outcomes) > 1 for r in links.itertuples()):
-            handles.append(Line2D([], [], color=KEPT, lw=2.5, label="shared assessment"))
+            handles.append(Line2D([], [], color=KEPT, lw=2.5, label="shared by several outcomes (same test)"))
     legend = ax.legend(handles=handles, loc="upper center", bbox_to_anchor=(.5, -.01), ncol=3, frameon=False,
                        fontsize=8.5 * fs, handlelength=2.6, columnspacing=1.6)
     note = ("Arrows point from a predictor to the variable it predicts on held-out data, beyond that "
@@ -1153,6 +1151,9 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
         note += f"\nAll links adjusted for: {', '.join(s['controls'])}."
     if _overlay:
         note += "\nColors identify separate outcome analyses; shared nodes do not imply a common depth or joint model."
+        if any(len(r.shared_outcomes) > 1 for r in links.itertuples()):
+            note += ("\nDark grey edges are tested once and shared by several outcome analyses; "
+                     "the tables list which.")
     ax.set_xlim(lo[0], hi[0])
     ax.set_ylim(lo[1], hi[1])
     ax.axis("off")

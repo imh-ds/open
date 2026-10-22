@@ -53,6 +53,15 @@ def test_exports_reused_assessment_ids_and_outcome_membership(shared_analysis, t
         assert all(outcome in settings["assessment_outcomes"][value] for value in table.assessment_id)
 
 
+def _x3_x1_labels(figure, result, source="X3"):
+    """How many edge labels the link from source to X1 has in a combined figure."""
+    from open.explore_report import _apa
+
+    links = next(iter(result.by_outcome.values())).exploration.links
+    r2 = links[links.target.eq("X1") & links.source.eq(source)].r2_median.iloc[0]
+    return sum(t.get_text().startswith(f"{_apa(r2)} (") for t in figure.axes[0].texts)
+
+
 def test_overlay_collapses_reused_links_to_one_neutral_line(shared_analysis):
     import matplotlib.pyplot as plt
     from open.api import plot_outcomes
@@ -60,10 +69,11 @@ def test_overlay_collapses_reused_links_to_one_neutral_line(shared_analysis):
 
     figure = plot_outcomes(shared_analysis, layout="combined")
     axes, = figure.axes
-    shared_labels = [t.get_text() for t in axes.texts if "shared ×2" in t.get_text()]
-    assert len(shared_labels) == 1
+    assert _x3_x1_labels(figure, shared_analysis) == 1
+    assert not any("shared ×" in t.get_text() for t in axes.texts)          # the colour says it
     assert sum(line.get_color() == KEPT for line in axes.lines) == 1
-    assert "shared assessment" in {t.get_text() for t in axes.get_legend().texts}
+    assert "shared by several outcomes (same test)" in {t.get_text() for t in axes.get_legend().texts}
+    assert any("Dark grey edges are tested once" in t.get_text() for t in figure.texts)
     plt.close(figure)
 
 
@@ -190,7 +200,7 @@ def test_overlay_keeps_distinct_assessments_or_verdicts_separate(shared_analysis
         kept = second.confirmation.target.eq("X1") & second.confirmation.source.eq("X3")
         second.confirmation.loc[kept, "confirmed"] = False
     figure = plot_outcomes(result, layout="combined")
-    assert not any("shared ×2" in t.get_text() for t in figure.axes[0].texts)
+    assert _x3_x1_labels(figure, result) == 2
     plt.close(figure)
 
 
@@ -212,7 +222,7 @@ def test_overlay_collapses_reused_groups_and_interactions(shared_analysis, kind)
         split.confirmation = split.confirmation.iloc[:0]
     figure = plot_outcomes(result, layout="combined")
     axes, = figure.axes
-    assert sum("shared ×2" in t.get_text() for t in axes.texts) == 1
+    assert _x3_x1_labels(figure, result, "X2+X3") == 1
     if kind == "interaction":
         assert sum(isinstance(p, RegularPolygon) for p in axes.patches) == 1
     else:
