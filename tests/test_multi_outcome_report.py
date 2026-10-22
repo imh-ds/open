@@ -67,6 +67,80 @@ def test_overlay_collapses_reused_links_to_one_neutral_line(shared_analysis):
     plt.close(figure)
 
 
+@pytest.fixture(scope="module")
+def crowded_analysis():
+    from open.api import ExploreConfig, explore_and_confirm_outcomes
+
+    rng = np.random.default_rng(20261021)
+    x = rng.normal(size=(1200, 10))
+    x[:, 0] = .8 * x[:, 2] + .6 * x[:, 0]
+    data = pd.DataFrame(x, columns=[f"X{i}" for i in range(1, 11)])
+    data["Y1"] = 1.2 * data.X1 + .8 * data.X2 + rng.normal(size=len(data))
+    data["Y2"] = data.X1 + .7 * data.X2 + rng.normal(size=len(data))
+    rng = np.random.default_rng(7)
+    for i in range(3, 7):
+        data[f"Y{i}"] = (.9 + .1 * i) * data.X1 + .7 * data.X2 + rng.normal(size=len(data))
+    return explore_and_confirm_outcomes(
+        data, [f"Y{i}" for i in range(1, 7)], predictors=[f"X{i}" for i in range(1, 11)], split_seed=42,
+        config=ExploreConfig(folds=5, max_depth=3, interactions=False, seed=42),
+    )
+
+
+def test_overlay_dodges_labels_without_spreading_nodes(crowded_analysis):
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import Circle, Wedge
+    from open.api import GraphStyle, plot_outcomes
+
+    before = plot_outcomes(crowded_analysis, layout="combined", style=GraphStyle(dodge_labels=False))
+    after = plot_outcomes(crowded_analysis, layout="combined")
+    ax, = after.axes
+    after.canvas.draw()
+    renderer = after.canvas.get_renderer()
+    names = set(crowded_analysis.settings["outcomes"]) | set(crowded_analysis.settings["predictors"])
+    labels = [t for t in ax.texts if t.get_text() not in names]
+    boxes = [t.get_window_extent(renderer) for t in labels]
+    obstacles = [p.get_window_extent(renderer) for p in ax.patches if isinstance(p, (Circle, Wedge))]
+    assert not any(a.overlaps(b) for i, a in enumerate(boxes) for b in boxes[i + 1:])
+    assert not any(box.overlaps(node) for box in boxes for node in obstacles)
+    assert [p.center for p in before.axes[0].patches if isinstance(p, Circle)] == [
+        p.center for p in ax.patches if isinstance(p, Circle)]
+    np.testing.assert_array_equal(before.get_size_inches(), after.get_size_inches())
+    repeat = plot_outcomes(crowded_analysis, layout="combined")
+    np.testing.assert_array_equal([t.get_position() for t in ax.texts],
+                                  [t.get_position() for t in repeat.axes[0].texts])
+    plt.close(repeat)
+    plt.close(before)
+    plt.close(after)
+
+
+def test_confirmation_marks_can_be_hidden_without_changing_results(shared_analysis):
+    import matplotlib.pyplot as plt
+    from open.api import GraphStyle, plot_outcomes
+
+    confirmed = shared_analysis.confirmation.confirmed.copy()
+    figure = plot_outcomes(shared_analysis, layout="combined", style=GraphStyle(show_confirmation=False))
+    assert not any("✓" in t.get_text() for t in figure.axes[0].texts)
+    assert not any("✓" in t.get_text() for t in figure.texts)
+    pd.testing.assert_series_equal(confirmed, shared_analysis.confirmation.confirmed)
+    plt.close(figure)
+
+
+@pytest.mark.parametrize("setting", ["show_confirmation", "dodge_labels"])
+def test_annotation_style_flags_require_booleans(setting):
+    from open.api import GraphStyle
+
+    with pytest.raises(ValueError, match=setting):
+        GraphStyle(**{setting: "false"})
+
+
+def test_annotation_style_preserves_existing_positional_arguments():
+    from open.api import GraphStyle
+
+    style = GraphStyle(1, 1, 1, 1, True, False, "kept", "white", 5, 170)
+    assert style.edge_labels == "kept" and style.dpi == 170
+    assert style.show_confirmation is True and style.dodge_labels is True
+
+
 @pytest.mark.parametrize("difference", ["identity", "effect", "confirmation"])
 def test_overlay_keeps_distinct_assessments_or_verdicts_separate(shared_analysis, difference):
     import copy

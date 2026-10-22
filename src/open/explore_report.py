@@ -224,6 +224,9 @@ class GraphStyle:
       they bring in. False shows the kept network only.
     - ``show_flagged_interactions``: also draw flagged interactions (off by
       default: in validation they were mostly false).
+    - ``show_confirmation``: mark links that passed held-out confirmation with ✓.
+    - ``dodge_labels``: automatically place annotations around nodes and other
+      labels, keeping node positions and figure size unchanged.
     - ``edge_labels``: "kept" labels solid edges with their R², "all" also dashed
       ones, None labels none. The tables hold every value.
     - ``label_outline``: colour of the solid outline drawn around label text
@@ -241,13 +244,15 @@ class GraphStyle:
     label_outline: str = "white"
     label_outline_width: float = 5.0
     dpi: int = 170
+    show_confirmation: bool = True
+    dodge_labels: bool = True
 
     def __post_init__(self):
         for name in ("node_size", "edge_width", "label_size", "spacing"):
             v = getattr(self, name)
             if isinstance(v, bool) or not isinstance(v, (int, float)) or not 0 < v <= 5:
                 raise ValueError(f"{name} must be a number in (0, 5]")
-        for name in ("show_flagged", "show_flagged_interactions"):
+        for name in ("show_flagged", "show_flagged_interactions", "show_confirmation", "dodge_labels"):
             if not isinstance(getattr(self, name), bool):
                 raise ValueError(f"{name} must be True or False")
         if self.edge_labels not in ("kept", "all", None):
@@ -558,6 +563,7 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
         return rad + (.22 * ns if v in fit and sizes.get(v, 0) > 0 else .04 * ns)
 
     edge_slots = {}
+    annotations = []
     if _overlay:
         for r in links.itertuples():
             if r.kind != "interaction":
@@ -628,14 +634,25 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
             x, y = b[0] + t * (a[0] - b[0]), b[1] + t * (a[1] - b[1])
             if control is not None:
                 x, y = curve_at(1 - t)
-            ax.text(x, y, label, fontsize=8 * fs, ha="center", va="center", color=color, zorder=5,
-                    path_effects=halo)
+            artist = ax.text(x, y, label, fontsize=8 * fs, ha="center", va="center", color=color, zorder=5,
+                             path_effects=halo)
+            locations = np.linspace(.16, .84, 11)
+            samples = (np.array([curve_at(t) for t in locations]) if control is not None else
+                       np.array([(1 - t) * np.asarray(a) + t * np.asarray(b) for t in locations]))
+            source_name = member if member is not None else getattr(relation, "source", None)
+            start_radius = ((outcome_r if source_name in roots else node_r) +
+                            (.15 * ns if sizes.get(source_name, 0) > 0 else .04 * ns)
+                            if source_name in pos else .22 * ns)
+            visible = ((np.linalg.norm(samples - a, axis=1) > start_radius) &
+                       (np.linalg.norm(samples - b, axis=1) > (head or 0)))
+            annotations.append(dict(text=artist, kind="edge", points=samples,
+                                    visible_points=samples[visible], direction=np.asarray(b) - a))
 
     n_folds = int(result.settings.get("folds", 10)) * int(result.settings.get("repeats", 1))
 
     def label_for(r):
         text = f"{_apa(r.r2_median)} ({_passes(r.pass_rate, n_folds)})"
-        text += " ✓" if verdict.get(_link_key(r)) else ""
+        text += " ✓" if st.show_confirmation and verdict.get(_link_key(r)) else ""
         shared = getattr(r, "shared_outcomes", ())
         return text + (f" · shared ×{len(shared)}" if len(shared) > 1 else "")
 
@@ -669,8 +686,9 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
             away = away / (np.linalg.norm(away) + 1e-12)
             normal = np.array([-away[1], away[0]])
             spot = np.array(mark) + (.14 * ns + .2 * fs) * normal + .12 * ns * away
-            ax.text(*spot, "·".join(members), fontsize=7.5 * fs, ha="center", va="center", color=color or INTERACTION,
-                    zorder=5, path_effects=halo)
+            artist = ax.text(*spot, "·".join(members), fontsize=7.5 * fs, ha="center", va="center",
+                             color=color or INTERACTION, zorder=5, path_effects=halo)
+            annotations.append(dict(text=artist, kind="node", anchor=mark, radius=.22 * ns))
 
     neighbours = {}                               # where each node's edges leave it, to place its fit label
     for r in links.itertuples():
@@ -704,10 +722,11 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
             # on the side of the node with the most room between its edges (below if free)
             angle = _free_angle([math.atan2(q[1] - y, q[0] - x) for q in neighbours.get(v, [])])
             dist = rad + .2 * ns + .1 * fs
-            ax.text(x + dist * math.cos(angle), y + dist * math.sin(angle), text, fontsize=7.5 * fs,
-                    ha="center" if abs(math.cos(angle)) < .38 else ("left" if math.cos(angle) > 0 else "right"),
-                    va="center" if abs(math.sin(angle)) < .38 else ("bottom" if math.sin(angle) > 0 else "top"),
-                    color=FIT, zorder=5, path_effects=halo)
+            artist = ax.text(x + dist * math.cos(angle), y + dist * math.sin(angle), text, fontsize=7.5 * fs,
+                             ha="center" if abs(math.cos(angle)) < .38 else ("left" if math.cos(angle) > 0 else "right"),
+                             va="center" if abs(math.sin(angle)) < .38 else ("bottom" if math.sin(angle) > 0 else "top"),
+                             color=FIT, zorder=5, path_effects=halo)
+            annotations.append(dict(text=artist, kind="node", anchor=(x, y), radius=rad + .15 * ns))
         size_ = 10.5 if is_outcome else (9 if len(v) <= 4 else max(6, 9 - .45 * (len(v) - 4)))
         ax.text(x, y, v, fontsize=size_ * fs, ha="center", va="center", zorder=6,
                 color="white" if is_outcome else (MUTED if grey else INK),
@@ -754,7 +773,7 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
             "variable's other candidates.\nThey show the direction of prediction in this analysis, not of "
             "causation, and are not partial correlations.\n"
             "Label: held-out ΔR² (R² lost; gained, for interactions) and folds passed, e.g. .120 (9/10)" +
-            (" (✓ confirmed on new data)" if verdict else "") + ".")
+            (" (✓ confirmed on new data)" if verdict and st.show_confirmation else "") + ".")
     if s.get("controls"):
         note += f"\nAll links adjusted for: {', '.join(s['controls'])}."
     if _overlay:
@@ -762,10 +781,13 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
     ax.set_xlim(lo[0], hi[0])
     ax.set_ylim(lo[1], hi[1])
     ax.axis("off")
+    ax._open_label_specs = annotations
     if axes is not None:
         return fig
     fig.tight_layout()
     fig.canvas.draw()                              # place the footnote just below the legend
+    if st.dodge_labels:
+        _dodge_annotations(ax, annotations, st)
     box = legend.get_window_extent().transformed(fig.transFigure.inverted())
     fig.text(.5, box.y0 - .012, note, ha="center", va="top", fontsize=8 * fs, color=MUTED,
              linespacing=1.5)
@@ -775,6 +797,100 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
         plt.close(fig)
         return Path(path)
     return fig
+
+
+def _dodge_annotations(ax, annotations, style):
+    """Place measured text in local free space without moving graph nodes.
+
+    Candidates stay along their own edge or around their own node. Actual font
+    extents, node/fit-ring bounds and earlier labels are hard obstacles; edge
+    crossings and displacement break ties. No labels or analysis rows are lost.
+    """
+    if not annotations:
+        return
+    from matplotlib.collections import LineCollection
+    from matplotlib.patches import Circle, Wedge, RegularPolygon, PathPatch
+    from matplotlib.transforms import Bbox
+
+    renderer = ax.figure.canvas.get_renderer()
+    transform, inverse = ax.transData, ax.transData.inverted()
+    pixels = ax.figure.dpi / 72
+    padding = (2 + style.label_outline_width / 2) * pixels
+    movable = {id(item["text"]) for item in annotations}
+    obstacles = [p.get_window_extent(renderer).padded(2 * pixels).extents
+                 for p in ax.patches if isinstance(p, (Circle, Wedge, RegularPolygon))]
+    obstacles += [text.get_window_extent(renderer).padded(2 * pixels).extents
+                  for text in ax.texts if id(text) not in movable]
+    paths = [line.get_transform().transform_path(line.get_path()) for line in ax.lines]
+    paths += [p.get_transform().transform_path(p.get_path()) for p in ax.patches if isinstance(p, PathPatch)]
+    boundary = ax.get_window_extent(renderer).padded(-2 * pixels)
+    measured = []
+    for item in annotations:
+        box = item["text"].get_window_extent(renderer)
+        center = np.array([(box.x0 + box.x1) / 2, (box.y0 + box.y1) / 2])
+        measured.append((item, center, box.width, box.height))
+    # Fit labels have a single owning node; longer edge labels need room next.
+    measured.sort(key=lambda row: (row[0]["kind"] != "node", -row[2]))
+    leaders, colors = [], []
+    for item, original, width, height in measured:
+        text = item["text"]
+        text.set_ha("center")
+        text.set_va("center")
+        candidates = [(original, None)]
+        if item["kind"] == "edge":
+            points = transform.transform(item["points"])
+            visible_points = transform.transform(item["visible_points"])
+            for i, point in enumerate(points):
+                tangent = points[min(i + 1, len(points) - 1)] - points[max(i - 1, 0)]
+                if np.linalg.norm(tangent) < 1e-9:
+                    tangent = transform.transform(item["direction"]) - transform.transform([0, 0])
+                normal = np.array([-tangent[1], tangent[0]]) / (np.linalg.norm(tangent) + 1e-12)
+                # Project the text rectangle onto the edge's normal.
+                clearance = (abs(normal[0]) * width + abs(normal[1]) * height) / 2 + padding + 3 * pixels
+                for offset in (0, clearance, -clearance, clearance + 10 * pixels,
+                               -clearance - 10 * pixels, clearance + 22 * pixels, -clearance - 22 * pixels):
+                    leader = (visible_points[np.argmin(np.linalg.norm(visible_points - point, axis=1))]
+                              if len(visible_points) else None)
+                    candidates.append((point + normal * offset, leader))
+        else:
+            anchor = transform.transform(item["anchor"])
+            radius = np.linalg.norm(transform.transform(np.asarray(item["anchor"]) + [item["radius"], 0]) - anchor)
+            preferred = np.arctan2(*(original - anchor)[::-1])
+            for extra in (0, 8 * pixels, 18 * pixels, 32 * pixels):
+                for step in range(24):
+                    angle = preferred + step * np.pi / 12
+                    direction = np.array([np.cos(angle), np.sin(angle)])
+                    support = (abs(direction[0]) * width + abs(direction[1]) * height) / 2
+                    center = anchor + direction * (radius + support + padding + 3 * pixels + extra)
+                    candidates.append((center, anchor + direction * (radius + 2 * pixels)))
+
+        blocked = np.array(obstacles).reshape(-1, 4)
+        best = None
+        for center, leader_anchor in candidates:
+            box = Bbox.from_bounds(center[0] - width / 2 - padding, center[1] - height / 2 - padding,
+                                   width + 2 * padding, height + 2 * padding)
+            dx = np.maximum(0, np.minimum(box.x1, blocked[:, 2]) - np.maximum(box.x0, blocked[:, 0]))
+            dy = np.maximum(0, np.minimum(box.y1, blocked[:, 3]) - np.maximum(box.y0, blocked[:, 1]))
+            overlaps = dx * dy
+            visible = Bbox.intersection(box, boundary)
+            outside = box.width * box.height - (visible.width * visible.height if visible else 0)
+            score = (int((overlaps > 1e-6).sum()) + int(outside > 1e-6),
+                     float(overlaps.sum() + max(outside, 0)),
+                     sum(path.intersects_bbox(box, filled=False) for path in paths),
+                     float(np.linalg.norm(center - original)))
+            if best is None or score < best[0]:
+                best = (score, center, leader_anchor, box)
+        _, center, leader_anchor, box = best
+        text.set_position(inverse.transform(center))
+        obstacles.append(box.extents)
+        if leader_anchor is not None and np.linalg.norm(center - original) > 8 * pixels:
+            end = np.clip(leader_anchor, [box.x0, box.y0], [box.x1, box.y1])
+            if np.linalg.norm(end - leader_anchor) > 4 * pixels:
+                leaders.append(inverse.transform([leader_anchor, end]))
+                colors.append(text.get_color())
+    if leaders:
+        ax.add_collection(LineCollection(leaders, colors=colors, linewidths=.6, alpha=.5, zorder=4),
+                          autolim=False)
 
 
 def _soft(hex_color: str, amount: float = .45) -> str:
@@ -821,8 +937,13 @@ def plot_outcomes(result: MultiOutcomeResult, layout: Literal["facets", "combine
         fig.suptitle("Separate predictive outcome networks", fontsize=15 * st.label_size)
         fig.subplots_adjust(top=.91, bottom=.14, hspace=.42, wspace=.2)
         fig.text(.5, .035, "Each panel has its own root and depth ordering. Arrows show prediction, not causation.\n"
-                 "Edge labels: held-out ΔR² and folds passed; ✓ marks confirmation. Node rings show held-out R².",
+                 "Edge labels: held-out ΔR² and folds passed. " +
+                 ("✓ marks confirmation. " if st.show_confirmation else "") + "Node rings show held-out R².",
                  ha="center", fontsize=9 * st.label_size, color=MUTED)
+        if st.dodge_labels:
+            fig.canvas.draw()
+            for ax in fig.axes:
+                _dodge_annotations(ax, ax._open_label_specs, st)
     else:
         fig = _plot_outcome_overlay(result, st)
     if path is not None:
