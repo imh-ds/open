@@ -235,7 +235,12 @@ among outcome errors. Each selected outcome must be complete; predictors may
 still produce different complete-case confirmation samples. The existing
 limitations for grouped/repeated observations and engine calibration remain.
 Facets show each network separately; a combined graph is a provenance-colored
-overlay with no single global depth ordering. See the
+overlay with no single global depth ordering. A link from one assessment reused
+across outcomes is drawn once in neutral when its exact effect and confirmation
+status agree. The label reports how many outcomes share it; exports retain the
+assessment ID and full outcome membership. Numerical equality alone does not
+merge independent assessments, and the underlying per-outcome results are
+preserved. See the
 [API examples](api.md#several-outcomes-in-one-call).
 
 ## What the results mean

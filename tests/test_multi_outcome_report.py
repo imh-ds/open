@@ -53,6 +53,71 @@ def test_exports_reused_assessment_ids_and_outcome_membership(shared_analysis, t
         assert all(outcome in settings["assessment_outcomes"][value] for value in table.assessment_id)
 
 
+def test_overlay_collapses_reused_links_to_one_neutral_line(shared_analysis):
+    import matplotlib.pyplot as plt
+    from open.api import plot_outcomes
+    from open.explore_report import KEPT
+
+    figure = plot_outcomes(shared_analysis, layout="combined")
+    axes, = figure.axes
+    shared_labels = [t.get_text() for t in axes.texts if "shared ×2" in t.get_text()]
+    assert len(shared_labels) == 1
+    assert sum(line.get_color() == KEPT for line in axes.lines) == 1
+    assert "shared assessment" in {t.get_text() for t in axes.get_legend().texts}
+    plt.close(figure)
+
+
+@pytest.mark.parametrize("difference", ["identity", "effect", "confirmation"])
+def test_overlay_keeps_distinct_assessments_or_verdicts_separate(shared_analysis, difference):
+    import copy
+    from dataclasses import replace
+    import matplotlib.pyplot as plt
+    from open.api import plot_outcomes
+
+    result = copy.deepcopy(shared_analysis)
+    second = result.by_outcome["Y2"]
+    if difference == "identity":
+        # The numbers can match exactly; an independent assessment stays separate.
+        second.exploration.assessment_ids[(2, "X1")] = "independent-assessment"
+    elif difference == "effect":
+        links = second.exploration.links.copy()
+        kept = links.target.eq("X1") & links.source.eq("X3")
+        links.loc[kept, "r2_median"] += 1e-8  # still the same printed label
+        second.exploration = replace(second.exploration, links=links)
+    else:
+        kept = second.confirmation.target.eq("X1") & second.confirmation.source.eq("X3")
+        second.confirmation.loc[kept, "confirmed"] = False
+    figure = plot_outcomes(result, layout="combined")
+    assert not any("shared ×2" in t.get_text() for t in figure.axes[0].texts)
+    plt.close(figure)
+
+
+@pytest.mark.parametrize("kind", ["shared", "interaction"])
+def test_overlay_collapses_reused_groups_and_interactions(shared_analysis, kind):
+    import copy
+    from dataclasses import replace
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import RegularPolygon
+    from open.api import plot_outcomes
+
+    result = copy.deepcopy(shared_analysis)
+    for split in result.by_outcome.values():
+        links = split.exploration.links
+        row = links[links.target.eq("X1") & links.source.eq("X3")].iloc[0].to_dict()
+        row.update(kind=kind, source="X2+X3", members=("X2", "X3"))
+        split.exploration = replace(split.exploration, links=pd.DataFrame([row]))
+        # These synthetic relation kinds have no unique-link confirmation test.
+        split.confirmation = split.confirmation.iloc[:0]
+    figure = plot_outcomes(result, layout="combined")
+    axes, = figure.axes
+    assert sum("shared ×2" in t.get_text() for t in axes.texts) == 1
+    if kind == "interaction":
+        assert sum(isinstance(p, RegularPolygon) for p in axes.patches) == 1
+    else:
+        assert sum(line.get_alpha() == .18 for line in axes.lines) == 1
+    plt.close(figure)
+
+
 def test_facets_keep_independent_outcome_roots(analysis):
     import matplotlib.pyplot as plt
     from open.api import plot_outcomes

@@ -635,12 +635,15 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
 
     def label_for(r):
         text = f"{_apa(r.r2_median)} ({_passes(r.pass_rate, n_folds)})"
-        return text + (" ✓" if verdict.get(_link_key(r)) else "")
+        text += " ✓" if verdict.get(_link_key(r)) else ""
+        shared = getattr(r, "shared_outcomes", ())
+        return text + (f" · shared ×{len(shared)}" if len(shared) > 1 else "")
 
     for r in links.itertuples():
         target = pos[r.target]
         members = list(r.members)
-        color = _overlay["colors"][r.root_outcome] if _overlay else None
+        color = (KEPT if len(getattr(r, "shared_outcomes", ())) > 1 else
+                 _overlay["colors"][r.root_outcome]) if _overlay else None
         if r.kind == "unique":
             edge(pos[r.source], target, r.tier, r.r2_median, color or KEPT, label_for(r),
                  head=rim(r.target), relation=r)
@@ -743,6 +746,8 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
     if _overlay:
         handles = [Line2D([], [], color=color, lw=2.5, label=name)
                    for name, color in _overlay["colors"].items()] + handles
+        if any(len(r.shared_outcomes) > 1 for r in links.itertuples()):
+            handles.append(Line2D([], [], color=KEPT, lw=2.5, label="shared assessment"))
     legend = ax.legend(handles=handles, loc="upper center", bbox_to_anchor=(.5, -.01), ncol=3, frameon=False,
                        fontsize=8.5 * fs, handlelength=2.6, columnspacing=1.6)
     note = ("Arrows point from a predictor to the variable it predicts on held-out data, beyond that "
@@ -883,7 +888,10 @@ def _plot_outcome_overlay(result, st):
     labels = {}
     for outcome, split in result.by_outcome.items():
         exploration = split.exploration
-        link_tables.append(exploration.links.assign(root_outcome=outcome))
+        link_tables.append(exploration.links.assign(root_outcome=outcome, assessment_id=[
+            exploration.assessment_ids.get((int(row.depth), row.target))
+            for row in exploration.links.itertuples()
+        ]))
         fit_tables.append(exploration.fit.assign(root_outcome=outcome))
         confirmations.append(split.confirmation.assign(root_outcome=outcome))
         new_fits.append(split.fit.assign(root_outcome=outcome))
@@ -907,12 +915,42 @@ def _plot_outcome_overlay(result, st):
         if len(group[["r2_network", "network_size"]].drop_duplicates()) == 1:
             agreed.append(group.iloc[0])
     displayed_fit = pd.DataFrame(agreed, columns=fit.columns)
-    combined = replace(first, links=pd.concat(link_tables, ignore_index=True), fit=displayed_fit)
+    confirmation = pd.concat(confirmations, ignore_index=True)
+    combined = replace(first, links=_merge_shared_links(pd.concat(link_tables, ignore_index=True), confirmation),
+                       fit=displayed_fit)
     return _plot_explore(
-        combined, confirmation=pd.concat(confirmations, ignore_index=True),
+        combined, confirmation=confirmation,
         confirmation_fit=pd.concat(new_fits, ignore_index=True), style=st,
         _overlay=dict(colors=colors, kept_nodes=kept_nodes, fit_labels=fit_labels),
     )
+
+
+def _merge_shared_links(links, confirmation):
+    """Collapse only proven reuse with identical effects and confirmation state.
+
+    Unknown provenance stays separate. No rounding or averaging is involved;
+    the representative row is used only for drawing, with all roots retained.
+    """
+    verdicts = {_link_key(row): None if pd.isna(row.p) else bool(row.confirmed)
+                for row in confirmation.itertuples()}
+    records, groups = [], {}
+    fields = ("depth", "target", "source", "kind", "tier", "pass_rate", "r2_median", "r2_above_noise")
+    for row in links.itertuples(index=False):
+        values = row._asdict()
+        assessment_id = values.get("assessment_id")
+        if isinstance(assessment_id, str) and assessment_id:
+            effect = tuple(None if pd.isna(values.get(name)) else values.get(name) for name in fields)
+            key = (assessment_id, effect, tuple(row.members), verdicts.get(_link_key(row)))
+        else:
+            key = (None, len(records))
+        if key in groups:
+            record = records[groups[key]]
+            if row.root_outcome not in record["shared_outcomes"]:
+                record["shared_outcomes"] += (row.root_outcome,)
+        else:
+            groups[key] = len(records)
+            records.append({**values, "shared_outcomes": (row.root_outcome,)})
+    return pd.DataFrame(records, columns=[*links.columns, "shared_outcomes"])
 
 
 _MULTI_EXPORT_FILES = ("outcomes-confirmation.csv", "outcomes-fit.csv", "outcomes-settings.json",

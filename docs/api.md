@@ -110,6 +110,9 @@ call only when its entire modeling context matches, including target, ordered
 pool, rows and values, folds, depth, controls, covariates, engine and config.
 The cache does not persist across calls. Different pools can still give the same
 upstream variable different effects.
+Each contained exploration exposes `assessment_ids`, keyed by `(depth, target)`.
+An ID identifies one assessment within this batch; IDs are not comparable across
+separate calls. Scalar explorations leave this mapping empty.
 
 `correction_scope="all_outcomes"` adjusts the raw testable p-values across all
 outcome networks by default. `"per_outcome"` adjusts each network separately;
@@ -125,9 +128,12 @@ Facets retain a separate root and depth layout for each outcome. The combined
 view uses the same radial tree and spring layout, node styling, fit rings, and
 annotated edges as the single-network plot, with multiple outcome roots. It
 draws shared variables once and retains outcome colors for overlapping or
-reversed edges. Multiple links between a node pair fan into curves with separate
-triangle arrowheads; a lone link remains straight. Differing fit estimates are labeled by outcome rather than
-averaged. Group and interaction junctions retain their relation types.
+reversed edges. Links from the same reused assessment with identical effects and
+confirmation status draw once in neutral, labeled `shared ×N`. Independent
+assessments stay separate even when their printed effect labels match. Multiple
+distinct links between a node pair fan into curves with separate triangle
+arrowheads; a lone link remains straight. Differing fit estimates are labeled by
+outcome rather than averaged. Group and interaction junctions retain their relation types.
 It overlays separate predictive analyses; it does not fit a joint model,
 estimate cross-outcome residual covariance, or establish causal direction.
 
@@ -136,7 +142,11 @@ estimate cross-outcome residual covariance, or establish causal direction.
 `outcomes-summary.txt`, plus an optional `outcomes-network.png`. Each outcome
 has a safe generated folder under `outcomes/`; the settings file maps the exact
 original labels to those folders. Folder names include a digest of the exact
-label and remain stable when outcomes are reordered. Reusing a directory
+label and remain stable when outcomes are reordered. Per-outcome batch
+`links.csv` files include `assessment_id`,
+and `outcomes-settings.json` maps these IDs to their full outcome memberships
+under `assessment_outcomes`. Each outcome's complete links and confirmation
+rows remain separate in the exports. Reusing a directory
 replaces managed files
 and removes a stale aggregate plot when plotting is disabled. Unrelated files
 and outcome directories from earlier batches remain. Publication recovers per
