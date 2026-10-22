@@ -565,22 +565,34 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
         style = "-" if tier_ == "kept" else (0, (4, 2.5))
         shade = color if tier_ == "kept" else _soft(color)
         width = (lw or _width(r2)) * ew
+        control = None
         if _overlay:
             source = member if member is not None else relation.source if relation else None
             slots = edge_slots.get(frozenset((source, relation.target)), []) if relation else []
             slot = slots.index(_link_key(relation)) if relation and _link_key(relation) in slots else 0
             if len(slots) > 1:
-                # Parallel lanes keep overlapping outcome colors visible; the
-                # line and separate arrowhead below are the ordinary renderer.
+                # Fan shared edges into distinct curves while retaining the
+                # ordinary stroke and separate triangle arrowhead.
                 a, b = np.array(a, float), np.array(b, float)
                 delta = b - a
-                normal = np.array([-delta[1], delta[0]]) / (np.linalg.norm(delta) + 1e-12)
+                normal = np.array([-delta[1], delta[0]])
                 if str(source) > str(relation.target):
                     normal *= -1
-                offset = normal * (slot - (len(slots) - 1) / 2) * .32 * ns
-                a, b = a + offset, b + offset
-        ax.plot([a[0], b[0]], [a[1], b[1]], color=shade, ls=style,
-                lw=width, solid_capstyle="round", zorder=1.5 if tier_ == "kept" else 1)
+                lane = slot - (len(slots) - 1) / 2
+                control = (a + b) / 2 + normal * lane * .32
+
+        def curve_at(t):
+            return (1 - t) ** 2 * a + 2 * (1 - t) * t * control + t ** 2 * b
+
+        if control is None:
+            ax.plot([a[0], b[0]], [a[1], b[1]], color=shade, ls=style,
+                    lw=width, solid_capstyle="round", zorder=1.5 if tier_ == "kept" else 1)
+        else:
+            from matplotlib.path import Path as DrawingPath
+            from matplotlib.patches import PathPatch
+            curve = DrawingPath([a, control, b], [DrawingPath.MOVETO, DrawingPath.CURVE3, DrawingPath.CURVE3])
+            ax.add_patch(PathPatch(curve, fill=False, color=shade, ls=style, lw=width,
+                                   capstyle="round", zorder=1.5 if tier_ == "kept" else 1))
         if head is not None:
             u = np.array(b, float) - np.array(a, float)
             length = float(np.linalg.norm(u))
@@ -589,11 +601,28 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
                 n = np.array([-u[1], u[0]])
                 size = (.15 + .012 * width) * ns
                 tip = np.array(b) - u * head
+                if control is not None:
+                    # Locate the tip at the node's rim and align the original
+                    # triangle with the local tangent, not the end-to-end chord.
+                    lo_t, hi_t = 0.0, 1.0
+                    for _ in range(30):
+                        t = (lo_t + hi_t) / 2
+                        if np.linalg.norm(curve_at(t) - b) > head:
+                            lo_t = t
+                        else:
+                            hi_t = t
+                    t = (lo_t + hi_t) / 2
+                    tip = curve_at(t)
+                    u = 2 * ((1 - t) * (control - a) + t * (b - control))
+                    u /= np.linalg.norm(u) + 1e-12
+                    n = np.array([-u[1], u[0]])
                 ax.add_patch(Polygon([tip, tip - u * size + n * size * .55, tip - u * size - n * size * .55],
                                      closed=True, fc=shade, ec="none", zorder=2))
         if label:
             t = .55                                    # nearer the outer end, where edges are spread out
             x, y = b[0] + t * (a[0] - b[0]), b[1] + t * (a[1] - b[1])
+            if control is not None:
+                x, y = curve_at(1 - t)
             ax.text(x, y, label, fontsize=8 * fs, ha="center", va="center", color=color, zorder=5,
                     path_effects=halo)
 

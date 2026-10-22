@@ -62,7 +62,7 @@ def test_overlay_keeps_overlapping_and_reversed_relations(analysis):
     import copy
     from dataclasses import replace
     import matplotlib.pyplot as plt
-    from matplotlib.patches import FancyArrowPatch, Polygon
+    from matplotlib.patches import FancyArrowPatch, Polygon, PathPatch
     from open.api import plot_outcomes
 
     result = copy.deepcopy(analysis)
@@ -78,8 +78,36 @@ def test_overlay_keeps_overlapping_and_reversed_relations(analysis):
     arrows = [p for p in figure.axes[0].patches if isinstance(p, Polygon)]
     assert len(arrows) == 3
     assert len({tuple(p.get_path().vertices.ravel()) for p in arrows}) == 3
-    assert len({tuple(line.get_xydata().ravel()) for line in figure.axes[0].lines}) == 3
+    curves = [p for p in figure.axes[0].patches if isinstance(p, PathPatch)]
+    assert len(curves) == 3
+    assert len({tuple(p.get_path().vertices.ravel()) for p in curves}) == 3
     assert [t.get_text() for t in figure.axes[0].texts].count("Z") == 1
+    plt.close(figure)
+
+
+def test_overlay_many_outcomes_curve_shared_edges_with_separate_triangle_heads(analysis):
+    import copy
+    from dataclasses import replace
+    import matplotlib.pyplot as plt
+    from matplotlib.path import Path
+    from matplotlib.patches import FancyArrowPatch, PathPatch, Polygon
+    from open.api import plot_outcomes
+
+    result = copy.deepcopy(analysis)
+    template = next(iter(result.by_outcome.values()))
+    result.by_outcome = {f"Y{i}": copy.deepcopy(template) for i in range(6)}
+    for split in result.by_outcome.values():
+        row = split.exploration.links.iloc[0].to_dict()
+        row.update(source="X", target="Z", members=("X",), depth=2)
+        split.exploration = replace(split.exploration, links=pd.DataFrame([row]))
+    figure = plot_outcomes(result, layout="combined")
+    axes, = figure.axes
+    curves = [p for p in axes.patches if isinstance(p, PathPatch)]
+    assert len(curves) == 6
+    assert all(Path.CURVE3 in p.get_path().codes for p in curves)
+    assert len({tuple(p.get_path().vertices.ravel()) for p in curves}) == 6
+    assert len([p for p in axes.patches if isinstance(p, Polygon)]) == 6
+    assert not any(isinstance(p, FancyArrowPatch) for p in axes.patches)
     plt.close(figure)
 
 
