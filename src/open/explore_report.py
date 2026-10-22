@@ -311,6 +311,11 @@ def _drawn(links: pd.DataFrame, show_flagged: bool, show_flagged_interactions: b
     return links[drawn]
 
 
+def _link_key(row):
+    key = (int(row.depth), row.target, row.source)
+    return (row.root_outcome, *key) if hasattr(row, "root_outcome") else key
+
+
 def _tree(result: ExploreResult, links: pd.DataFrame):
     """Each drawn node's ring (depth), parent and whether it is a flagged-only candidate.
 
@@ -394,7 +399,7 @@ def _layout(result: ExploreResult, links: pd.DataFrame, style: GraphStyle | None
     start = _radial(outcome, ring, parent, candidate, links, ring_step)
     names = list(start)
     inter = links[links.kind == "interaction"]
-    keys = [(int(r.depth), r.target, r.source) for r in inter.itertuples()]
+    keys = [_link_key(r) for r in inter.itertuples()]
     for key, r in zip(keys, inter.itertuples()):  # start between the pair, a third of the way to the target
         a, b, t = (np.array(start[v]) for v in (*r.members, r.target))
         mid = (a + b) / 2
@@ -413,7 +418,7 @@ def _layout(result: ExploreResult, links: pd.DataFrame, style: GraphStyle | None
     for r in links.itertuples():
         w = 1.0 if r.tier == "kept" else .7
         if r.kind == "interaction":
-            j = index[(int(r.depth), r.target, r.source)]
+            j = index[_link_key(r)]
             for m in r.members:
                 springs[tuple(sorted((index[m], j)))] = 1.0
                 segments.append((index[m], j))
@@ -434,6 +439,8 @@ def _layout(result: ExploreResult, links: pd.DataFrame, style: GraphStyle | None
     for _ in range(400):
         delta = P[:, None, :] - P[None, :, :]
         dist = np.linalg.norm(delta, axis=-1) + np.eye(n)
+        # Separate outcome interactions can start at the same junction position.
+        dist = np.maximum(dist, 1e-9)
         disp = (delta / dist[..., None] * (k * k / dist)[..., None]).sum(axis=1)   # repulsion
         for (a, b), w in springs.items():                                       # attraction
             d = P[a] - P[b]
@@ -487,7 +494,7 @@ def plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFrame
 
 def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFrame | None = None,
                   confirmation_fit: pd.DataFrame | None = None, style: GraphStyle | None = None,
-                  axes=None, **settings):
+                  axes=None, _overlay=None, **settings):
     """Draw the network; save it to ``path`` if given, else return the figure.
 
     ``style`` is a ``GraphStyle``; ``settings`` override its fields, so
@@ -514,8 +521,10 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
     if not len(links):
         links = pd.DataFrame(columns=["depth", "target", "source", "kind", "members", "tier", "pass_rate",
                                       "r2_median"])
-    pos, ring, candidate, junctions = _layout(result, links, st)
+    pos, ring, candidate, junctions = (_layout(result, links, st) if _overlay is None
+                                      else _outcome_layout(result, links, st, _overlay))
     outcome = result.settings.get("outcome") or result.nodes.variable.iloc[0]
+    roots = set(_overlay["colors"]) if _overlay else {outcome}
     xy = np.array(list(pos.values()) + list(junctions.values()))
     pad = .7 + 1.3 * node_r + .25 * fs
     lo, hi = xy.min(axis=0) - pad, xy.max(axis=0) + pad
@@ -531,7 +540,8 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
     verdict = {}
     if confirmation is not None:
         for c in confirmation.itertuples():
-            verdict[(c.depth, c.target, c.source)] = None if pd.isna(c.p) else bool(c.confirmed)
+            key = _link_key(c) if _overlay else (int(c.depth), c.target, c.source)
+            verdict[key] = None if pd.isna(c.p) else bool(c.confirmed)
 
     fit = {r.target: r.r2_network for r in result.fit.itertuples()}
     sizes = {r.target: r.network_size for r in result.fit.itertuples()}
@@ -539,15 +549,46 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
 
     def rim(v):
         """Distance from a node's centre to where an arrow into it should stop."""
-        rad = outcome_r if v == outcome else node_r
+        rad = outcome_r if v in roots else node_r
         return rad + (.22 * ns if v in fit and sizes.get(v, 0) > 0 else .04 * ns)
 
-    def edge(a, b, tier_, r2, color, label=None, lw=None, head=None):
+    edge_slots = {}
+    if _overlay:
+        for r in links.itertuples():
+            if r.kind != "interaction":
+                for m in r.members:
+                    edge_slots.setdefault(frozenset((m, r.target)), []).append(_link_key(r))
+
+    def edge(a, b, tier_, r2, color, label=None, lw=None, head=None, relation=None, member=None):
         """A line from a to b, behind the nodes; with ``head``, an arrowhead that far short of b."""
         label = label if st.edge_labels == "all" or (st.edge_labels == "kept" and tier_ == "kept") else None
         style = "-" if tier_ == "kept" else (0, (4, 2.5))
         shade = color if tier_ == "kept" else _soft(color)
         width = (lw or _width(r2)) * ew
+        if _overlay:
+            from matplotlib.patches import FancyArrowPatch
+            source = member if member is not None else relation.source if relation else None
+            slots = edge_slots.get(frozenset((source, relation.target)), []) if relation else []
+            slot = slots.index(_link_key(relation)) if relation and _link_key(relation) in slots else 0
+            curvature = (slot - (len(slots) - 1) / 2) * .20 if slots else 0
+            if relation and str(source) > str(relation.target):
+                curvature *= -1
+            arrow = FancyArrowPatch(a, b, arrowstyle="-|>" if head else "-",
+                                    connectionstyle=f"arc3,rad={curvature}", color=shade,
+                                    linestyle=style, linewidth=width,
+                                    mutation_scale=10 * ns, shrinkA=0,
+                                    shrinkB=(head or 0) * points, zorder=1.5)
+            if relation:
+                arrow.set_gid(f"{relation.root_outcome}:{relation.source}->{relation.target}")
+            ax.add_patch(arrow)
+            if label:
+                a_, b_ = np.array(a), np.array(b)
+                delta = b_ - a_
+                normal = np.array([-delta[1], delta[0]])
+                spot = b_ + .55 * (a_ - b_) - normal * curvature / 2
+                ax.text(*spot, label, fontsize=8 * fs, ha="center", va="center", color=color,
+                        zorder=5, path_effects=halo)
+            return
         ax.plot([a[0], b[0]], [a[1], b[1]], color=shade, ls=style,
                 lw=width, solid_capstyle="round", zorder=1.5 if tier_ == "kept" else 1)
         if head is not None:
@@ -570,27 +611,30 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
 
     def label_for(r):
         text = f"{_apa(r.r2_median)} ({_passes(r.pass_rate, n_folds)})"
-        return text + (" ✓" if verdict.get((r.depth, r.target, r.source)) else "")
+        return text + (" ✓" if verdict.get(_link_key(r)) else "")
 
     for r in links.itertuples():
         target = pos[r.target]
         members = list(r.members)
+        color = _overlay["colors"][r.root_outcome] if _overlay else None
         if r.kind == "unique":
-            edge(pos[r.source], target, r.tier, r.r2_median, KEPT, label_for(r), head=rim(r.target))
+            edge(pos[r.source], target, r.tier, r.r2_median, color or KEPT, label_for(r),
+                 head=rim(r.target), relation=r)
         elif r.kind == "shared":
             pts = np.array([pos[m] for m in members])
             for i in range(len(pts) - 1):              # band joining the members
-                ax.plot(pts[i:i + 2, 0], pts[i:i + 2, 1], color=SHARED, alpha=.18, lw=.8 * node_r * points,
+                ax.plot(pts[i:i + 2, 0], pts[i:i + 2, 1], color=color or SHARED, alpha=.18, lw=.8 * node_r * points,
                         solid_capstyle="round", zorder=.5)
             for i, m in enumerate(members):           # one edge per member, labelled once
-                edge(pos[m], target, r.tier, r.r2_median, SHARED, label_for(r) if i == 0 else None,
-                     lw=_width(r.r2_median) * .75, head=rim(r.target))
+                edge(pos[m], target, r.tier, r.r2_median, color or SHARED, label_for(r) if i == 0 else None,
+                     lw=_width(r.r2_median) * .75, head=rim(r.target), relation=r, member=m)
         else:
-            mark = junctions[(int(r.depth), r.target, r.source)]
+            mark = junctions[_link_key(r)]
             for m in members:                         # the pair: always solid
-                edge(pos[m], mark, "kept", 0, INTERACTION, lw=1.6)
-            edge(mark, target, r.tier, r.r2_median, INTERACTION, label_for(r), head=rim(r.target))
-            fill = INTERACTION if r.tier == "kept" else _soft(INTERACTION, .3)
+                edge(pos[m], mark, "kept", 0, color or INTERACTION, lw=1.6)
+            edge(mark, target, r.tier, r.r2_median, color or INTERACTION, label_for(r),
+                 head=rim(r.target), relation=r)
+            fill = (color or INTERACTION) if r.tier == "kept" else _soft(color or INTERACTION, .3)
             ax.add_patch(RegularPolygon(mark, numVertices=4, radius=.2 * ns, orientation=0, fc=fill, ec="white",
                                         lw=1.2, zorder=4))
             # name the pair beside the diamond, on the side away from the target
@@ -598,24 +642,25 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
             away = away / (np.linalg.norm(away) + 1e-12)
             normal = np.array([-away[1], away[0]])
             spot = np.array(mark) + (.14 * ns + .2 * fs) * normal + .12 * ns * away
-            ax.text(*spot, "·".join(members), fontsize=7.5 * fs, ha="center", va="center", color=INTERACTION,
+            ax.text(*spot, "·".join(members), fontsize=7.5 * fs, ha="center", va="center", color=color or INTERACTION,
                     zorder=5, path_effects=halo)
 
     neighbours = {}                               # where each node's edges leave it, to place its fit label
     for r in links.itertuples():
-        far = [junctions[(int(r.depth), r.target, r.source)]] if r.kind == "interaction" else \
+        far = [junctions[_link_key(r)]] if r.kind == "interaction" else \
             [pos[m] for m in r.members]
         neighbours.setdefault(r.target, []).extend(far)
         for m in r.members:
-            neighbours.setdefault(m, []).append(junctions.get((int(r.depth), r.target, r.source), pos[r.target]))
+            neighbours.setdefault(m, []).append(junctions.get(_link_key(r), pos[r.target]))
     new = ({r.target: r.r2_network for r in confirmation_fit.itertuples() if pd.notna(r.r2_network)}
            if confirmation_fit is not None else {})
     for v, (x, y) in pos.items():
-        is_outcome = v == outcome
+        is_outcome = v in roots
         rad = outcome_r if is_outcome else node_r
         covariate = v in covariates
         grey = v in candidate and not covariate
         fill = (COVARIATE_FILL if covariate else "#f4f5f7" if grey
+                else INK if _overlay and is_outcome else DEPTH_FILL[1] if _overlay
                 else DEPTH_FILL[min(ring[v], len(DEPTH_FILL) - 1)])
         ax.add_patch(Circle((x, y), rad, fc=fill, ec=COVARIATE_EDGE if covariate else MUTED if grey else INK,
                             lw=.9 if grey else 1.2, ls=(0, (2, 1.5)) if grey else "-", zorder=3))
@@ -626,7 +671,9 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
             if share > 0:
                 ax.add_patch(Wedge((x, y), rad + .13 * ns, 90 - 360 * share, 90, width=.08 * ns, fc=FIT,
                                    ec="none", zorder=3.5))
-            text = f"R² {_apa(fit[v])}" + (f"  new {_apa(new[v])}" if v in new else "")
+        if (_overlay and v in _overlay["fit_labels"]) or (v in fit and sizes.get(v, 0) > 0):
+            text = (_overlay["fit_labels"][v] if _overlay else
+                    f"R² {_apa(fit[v])}" + (f"  new {_apa(new[v])}" if v in new else ""))
             # on the side of the node with the most room between its edges (below if free)
             angle = _free_angle([math.atan2(q[1] - y, q[0] - x) for q in neighbours.get(v, [])])
             dist = rad + .2 * ns + .1 * fs
@@ -641,7 +688,9 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
 
     s = result.settings
     split = f", {s['folds']} folds × {s['repeats']} repeats" if s.get("repeats", 1) > 1 else ""
-    ax.set_title(f"{s['outcome']}  ·  {s['engine']}, N = {s['n']}{split}", fontsize=13 * fs, color=INK, pad=12,
+    title = (f"Separate predictive networks  ·  {s['engine']}, N = {s['n']}" if _overlay else
+             f"{s['outcome']}  ·  {s['engine']}, N = {s['n']}{split}")
+    ax.set_title(title, fontsize=13 * fs, color=INK, pad=12,
                  loc="center")
     handles = [Line2D([], [], color=KEPT, lw=2.5, label=f"kept (≥ {s['keep']:.0%} of folds)")]
     if st.show_flagged:
@@ -649,9 +698,11 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
                               label=f"flagged (≥ {s['flag']:.0%})"))
     kinds = set(links.kind)                       # list only what is drawn
     if "shared" in kinds:
-        handles.append(Line2D([], [], color=SHARED, lw=2.5, label="shared group"))
+        handles.append(Line2D([], [], color=INK if _overlay else SHARED, lw=7, alpha=.3,
+                              label="shared group") if _overlay else
+                       Line2D([], [], color=SHARED, lw=2.5, label="shared group"))
     if "interaction" in kinds:
-        handles.append(Line2D([], [], color=INTERACTION, lw=2.5, marker="D", markersize=6, markeredgecolor="white",
+        handles.append(Line2D([], [], color=INK if _overlay else INTERACTION, lw=2.5, marker="D", markersize=6, markeredgecolor="white",
                               label="interaction (◆ joins the pair)"))
     if any(sizes.get(v, 0) > 0 for v in pos):
         handles.append(Line2D([], [], color=FIT, lw=0, marker="o", markersize=9, markerfacecolor="white",
@@ -662,9 +713,12 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
     if covariates & set(pos):
         handles.append(Line2D([], [], lw=0, marker="o", markersize=9, markerfacecolor=COVARIATE_FILL,
                               markeredgecolor=COVARIATE_EDGE, label="covariate (every model; never a target)"))
-    for d in sorted({d for v, d in ring.items() if d > 0 and v not in candidate}):
+    for d in sorted({d for v, d in ring.items() if d > 0 and v not in candidate}) if not _overlay else ():
         handles.append(Line2D([], [], lw=0, marker="o", markersize=9, markeredgecolor=INK,
                               markerfacecolor=DEPTH_FILL[min(d, len(DEPTH_FILL) - 1)], label=f"depth {d}"))
+    if _overlay:
+        handles = [Line2D([], [], color=color, lw=2.5, label=name)
+                   for name, color in _overlay["colors"].items()] + handles
     legend = ax.legend(handles=handles, loc="upper center", bbox_to_anchor=(.5, -.01), ncol=3, frameon=False,
                        fontsize=8.5 * fs, handlelength=2.6, columnspacing=1.6)
     note = ("Arrows point from a predictor to the variable it predicts on held-out data, beyond that "
@@ -674,6 +728,8 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
             (" (✓ confirmed on new data)" if verdict else "") + ".")
     if s.get("controls"):
         note += f"\nAll links adjusted for: {', '.join(s['controls'])}."
+    if _overlay:
+        note += "\nColors identify separate outcome analyses; shared nodes do not imply a common depth or joint model."
     ax.set_xlim(lo[0], hi[0])
     ax.set_ylim(lo[1], hi[1])
     ax.axis("off")
@@ -747,93 +803,92 @@ def plot_outcomes(result: MultiOutcomeResult, layout: Literal["facets", "combine
     return fig
 
 
+def _outcome_layout(result, links, st, overlay):
+    """Seed a multi-root tree, then reuse the ordinary network relaxation."""
+    roots = tuple(overlay["colors"])
+    names = dict.fromkeys(roots)
+    children = {}
+    for r in links.itertuples():
+        names.setdefault(r.target, None)
+        children.setdefault(r.target, []).extend(r.members)
+        for m in r.members:
+            names.setdefault(m, None)
+    # The invisible layout root is never rendered or included in analysis data.
+    hub = "__open_plot_root__"
+    while hub in names:
+        hub += "_"
+    parents = {root: hub for root in roots}
+    depths = {root: 1 for root in roots}
+    queue = list(roots)
+    for target in queue:
+        for member in children.get(target, ()):
+            if member not in depths:
+                parents[member] = target
+                depths[member] = depths[target] + 1
+                queue.append(member)
+    # Malformed/disconnected display-only relations still receive a stable position.
+    for name in names:
+        if name not in depths:
+            parents[name], depths[name] = hub, 1
+    nodes = pd.DataFrame([dict(variable=hub, depth=0, parents=())] + [
+        dict(variable=name, depth=depths[name], parents=(parents[name],)) for name in names
+    ])
+    anchors = pd.DataFrame([
+        dict(depth=1, target=hub, source=name, members=(name,), kind="unique", tier="kept",
+             root_outcome=None) for name in names if parents[name] == hub
+    ])
+    scaffold = replace(result, nodes=nodes, settings={**result.settings, "outcome": hub})
+    pos, ring, _, junctions = _layout(scaffold, pd.concat([links, anchors], ignore_index=True), st)
+    pos.pop(hub)
+    ring.pop(hub)
+    return pos, ring, set(names) - overlay["kept_nodes"], junctions
+
+
 def _plot_outcome_overlay(result, st):
+    """Use the single-network renderer with multiple roots and outcome provenance."""
     import matplotlib.pyplot as plt
-    from matplotlib.lines import Line2D
-    from matplotlib.patches import FancyArrowPatch
 
     outcomes = tuple(result.by_outcome)
     cmap = plt.get_cmap("tab10" if len(outcomes) <= 10 else "tab20" if len(outcomes) <= 20 else "hsv")
-    colors = {outcome: cmap(i if len(outcomes) <= 20 else i / len(outcomes))
+    # Hex colors also work with the ordinary renderer's flagged-edge tinting.
+    from matplotlib.colors import to_hex
+    colors = {outcome: to_hex(cmap(i if len(outcomes) <= 20 else i / len(outcomes)))
               for i, outcome in enumerate(outcomes)}
-    variables = dict.fromkeys(outcomes)
-    relations, junctions = [], {}
+    link_tables, fit_tables, confirmations, new_fits = [], [], [], []
+    kept_nodes = set(outcomes)
+    labels = {}
     for outcome, split in result.by_outcome.items():
-        links = _drawn(split.exploration.links, st.show_flagged, st.show_flagged_interactions)
-        for index, link in enumerate(links.itertuples()):
-            variables.setdefault(link.target, None)
-            for member in link.members:
-                variables.setdefault(member, None)
-            if link.kind == "unique":
-                relations.append((link.members[0], link.target, outcome, link.tier, link.r2_median, True))
-            else:
-                # Relation nodes preserve group/interaction semantics in the overlay.
-                key = (outcome, index, link.kind)
-                junctions[key] = (link.kind, tuple(link.members), link.target)
-                for member in link.members:
-                    relations.append((member, key, outcome, "kept", 0, False))
-                relations.append((key, link.target, outcome, link.tier, link.r2_median, True))
-    names = tuple(variables)
-    radius = max(2.5, .42 * len(names)) * st.spacing
-    positions = {name: np.array([radius * math.cos(math.pi / 2 + 2 * math.pi * i / len(names)),
-                                 radius * math.sin(math.pi / 2 + 2 * math.pi * i / len(names))])
-                 for i, name in enumerate(names)}
-    for index, (key, (_, members, target)) in enumerate(junctions.items()):
-        points = [positions[name] for name in (*members, target)]
-        center = np.mean(points, axis=0)
-        # Distinct relation nodes stay separate even for the same members/target.
-        positions[key] = center + .25 * np.array([math.cos(index * 2.4), math.sin(index * 2.4)])
-    fig, ax = plt.subplots(figsize=(max(8, radius * 1.8), max(7, radius * 1.8)))
-    groups = {}
-    for relation in relations:
-        a, b = relation[:2]
-        pair = frozenset((a, b))
-        groups.setdefault(pair, []).append(relation)
-    for group in groups.values():
-        canonical = group[0][0]
-        for index, (a, b, outcome, tier, r2, head) in enumerate(group):
-            curvature = (index - (len(group) - 1) / 2) * .28
-            if a != canonical:
-                curvature *= -1
-            arrow = FancyArrowPatch(
-                positions[a], positions[b], arrowstyle="-|>" if head else "-",
-                connectionstyle=f"arc3,rad={curvature}", color=colors[outcome],
-                linestyle="-" if tier == "kept" else "--", linewidth=_width(r2) * st.edge_width,
-                mutation_scale=14 * st.node_size, shrinkA=22 * st.node_size, shrinkB=22 * st.node_size,
-                alpha=.9, zorder=1,
-            )
-            arrow.set_gid(f"{outcome}:{a}->{b}")
-            ax.add_patch(arrow)
-            if head and (st.edge_labels == "all" or (st.edge_labels == "kept" and tier == "kept")):
-                delta = positions[b] - positions[a]
-                normal = np.array([-delta[1], delta[0]]) / (np.linalg.norm(delta) + 1e-12)
-                center = (positions[a] + positions[b]) / 2 - normal * curvature * np.linalg.norm(delta) / 2
-                ax.text(*center, _apa(r2), fontsize=8 * st.label_size, color=colors[outcome],
-                        ha="center", va="center", bbox=dict(facecolor="white", edgecolor="none", alpha=.85))
-    for name in names:
-        root = name in colors
-        ax.scatter(*positions[name], s=(1100 if root else 850) * st.node_size ** 2,
-                   color=colors[name] if root else "#eef2f6", edgecolor=INK, zorder=3)
-        ax.text(*positions[name], name, ha="center", va="center", color="white" if root else INK,
-                fontsize=9 * st.label_size, fontweight="bold" if root else "normal", zorder=4)
-    for key, (kind, members, _) in junctions.items():
-        ax.scatter(*positions[key], marker="D" if kind == "interaction" else "s", s=180 * st.node_size ** 2,
-                   color=colors[key[0]], zorder=3)
-        label = (" × " if kind == "interaction" else " + ").join(members) + f" ({kind})"
-        ax.annotate(label, positions[key], xytext=(0, 12), textcoords="offset points", ha="center",
-                    fontsize=8 * st.label_size, color=colors[key[0]])
-    handles = [Line2D([], [], color=colors[outcome], lw=2.5, label=outcome) for outcome in outcomes]
-    ax.legend(handles=handles, loc="upper center", bbox_to_anchor=(.5, -.03), ncol=min(4, len(outcomes)),
-              frameon=False)
-    ax.set_title("Overlay of separate predictive analyses", fontsize=14 * st.label_size, pad=22)
-    fig.text(.5, .025, "Colors identify each outcome's analysis; shared variables are drawn once.\n"
-             "Solid: kept; dashed: flagged. Labels: held-out ΔR². Arrows show prediction, not causation.",
-             ha="center", fontsize=9 * st.label_size, color=MUTED)
-    ax.set_aspect("equal")
-    ax.margins(.3)
-    ax.axis("off")
-    fig.subplots_adjust(bottom=.2, top=.9)
-    return fig
+        exploration = split.exploration
+        link_tables.append(exploration.links.assign(root_outcome=outcome))
+        fit_tables.append(exploration.fit.assign(root_outcome=outcome))
+        confirmations.append(split.confirmation.assign(root_outcome=outcome))
+        new_fits.append(split.fit.assign(root_outcome=outcome))
+        kept_nodes.update(exploration.nodes.variable)
+        new = {r.target: r.r2_network for r in split.fit.itertuples() if pd.notna(r.r2_network)}
+        for r in exploration.fit.itertuples():
+            if r.network_size > 0:
+                text = f"R² {_apa(r.r2_network)}" + (f"  new {_apa(new[r.target])}" if r.target in new else "")
+                labels.setdefault(r.target, []).append((outcome, text))
+    fit_labels = {}
+    for target, rows in labels.items():
+        texts = {text for _, text in rows}
+        fit_labels[target] = (rows[0][1] if len(texts) == 1 else
+                              "\n".join(f"{outcome}: {text}" for outcome, text in rows))
+    first = next(iter(result.by_outcome.values())).exploration
+    fit = pd.concat(fit_tables, ignore_index=True)
+    # No cross-outcome fit is estimated. A ring is drawn only if every analysis
+    # reports the exact same fit and size for that target; differing fits stay labeled.
+    agreed = []
+    for _, group in fit.groupby("target", sort=False):
+        if len(group[["r2_network", "network_size"]].drop_duplicates()) == 1:
+            agreed.append(group.iloc[0])
+    displayed_fit = pd.DataFrame(agreed, columns=fit.columns)
+    combined = replace(first, links=pd.concat(link_tables, ignore_index=True), fit=displayed_fit)
+    return _plot_explore(
+        combined, confirmation=pd.concat(confirmations, ignore_index=True),
+        confirmation_fit=pd.concat(new_fits, ignore_index=True), style=st,
+        _overlay=dict(colors=colors, kept_nodes=kept_nodes, fit_labels=fit_labels),
+    )
 
 
 _MULTI_EXPORT_FILES = ("outcomes-confirmation.csv", "outcomes-fit.csv", "outcomes-settings.json",

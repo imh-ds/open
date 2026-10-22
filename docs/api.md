@@ -122,8 +122,11 @@ for its confirmation-fit folds, its fit row retains the sample size and a
 LightGBM test fold plans likewise retain untested links with a reason.
 
 Facets retain a separate root and depth layout for each outcome. The combined
-view draws shared variables once and retains outcome colors for overlapping or
-reversed edges. Group and interaction junctions retain their relation types.
+view uses the same radial tree and spring layout, node styling, fit rings, and
+annotated edges as the single-network plot, with multiple outcome roots. It
+draws shared variables once and retains outcome colors for overlapping or
+reversed edges. Differing fit estimates are labeled by outcome rather than
+averaged. Group and interaction junctions retain their relation types.
 It overlays separate predictive analyses; it does not fit a joint model,
 estimate cross-outcome residual covariance, or establish causal direction.
 

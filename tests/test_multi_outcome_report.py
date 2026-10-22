@@ -89,6 +89,76 @@ def test_plot_saves_file_and_rejects_unknown_layout(analysis, tmp_path):
         plot_outcomes(analysis, layout="unknown")
 
 
+def test_combined_uses_network_nodes_fit_rings_and_confirmation_labels(analysis):
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import Circle, Wedge
+    from open.api import plot_outcomes
+
+    figure = plot_outcomes(analysis, layout="combined")
+    axes, = figure.axes
+    # Same data-coordinate nodes and fit rings as the ordinary network graph.
+    assert len([p for p in axes.patches if isinstance(p, Circle)]) == 3
+    assert any(isinstance(p, Wedge) for p in axes.patches)
+    labels = [t.get_text() for t in axes.texts]
+    assert any("R²" in t and "new" in t for t in labels)
+    assert sum("(3/3)" in t and "✓" in t for t in labels) == 2
+    assert all(not t.get_bbox_patch() for t in axes.texts)
+    plt.close(figure)
+
+
+def test_facets_keep_confirmation_marks(analysis):
+    import matplotlib.pyplot as plt
+    from open.api import plot_outcomes
+
+    figure = plot_outcomes(analysis)
+    assert all(any("✓" in t.get_text() for t in ax.texts) for ax in figure.axes)
+    plt.close(figure)
+
+
+def test_overlay_labels_differing_shared_target_fits_without_averaging(analysis):
+    import copy
+    from dataclasses import replace
+    import matplotlib.pyplot as plt
+    from open.api import plot_outcomes
+
+    result = copy.deepcopy(analysis)
+    for i, split in enumerate(result.by_outcome.values()):
+        row = split.exploration.fit.iloc[0].to_dict()
+        row.update(target="X", r2_network=.2 + .3 * i, network_size=1)
+        split.exploration = replace(split.exploration, fit=pd.concat([
+            split.exploration.fit, pd.DataFrame([row])], ignore_index=True))
+    figure = plot_outcomes(result, layout="combined")
+    labels = [t.get_text() for t in figure.axes[0].texts]
+    assert any("../A: R² .200" in t and "..\\A: R² .500" in t for t in labels)
+    plt.close(figure)
+
+
+@pytest.mark.parametrize("kind", ["shared", "interaction"])
+def test_overlay_preserves_group_geometry_and_separate_interaction_junctions(analysis, kind):
+    import copy
+    from dataclasses import replace
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import RegularPolygon
+    from open.api import plot_outcomes
+
+    result = copy.deepcopy(analysis)
+    for split in result.by_outcome.values():
+        row = split.exploration.links.iloc[0].to_dict()
+        row.update(kind=kind, source="X+Z", members=("X", "Z"), target="T", depth=2)
+        split.exploration = replace(split.exploration, links=pd.DataFrame([row]))
+    figure = plot_outcomes(result, layout="combined")
+    ax, = figure.axes
+    assert [t.get_text() for t in ax.texts].count("X") == 1
+    assert [t.get_text() for t in ax.texts].count("Z") == 1
+    if kind == "interaction":
+        diamonds = [p for p in ax.patches if isinstance(p, RegularPolygon)]
+        assert len(diamonds) == 2
+        assert not np.allclose(diamonds[0].xy, diamonds[1].xy)
+    else:
+        assert sum(line.get_alpha() == .18 for line in ax.lines) == 2
+    plt.close(figure)
+
+
 def test_exports_safe_distinct_folders_and_aggregate_tables(analysis, tmp_path):
     from open.api import save_multi_outcome_analysis
 
