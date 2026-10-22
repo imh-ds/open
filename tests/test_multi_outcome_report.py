@@ -39,7 +39,7 @@ def test_facets_keep_independent_outcome_roots(analysis):
 
 def test_combined_overlay_merges_nodes_and_retains_outcome_edges(analysis):
     import matplotlib.pyplot as plt
-    from matplotlib.patches import FancyArrowPatch
+    from matplotlib.patches import FancyArrowPatch, Polygon
     from open.api import plot_outcomes
 
     figure = plot_outcomes(analysis, layout="combined")
@@ -48,9 +48,11 @@ def test_combined_overlay_merges_nodes_and_retains_outcome_edges(analysis):
     assert labels.count("X") == 1
     assert all(labels.count(outcome) == 1 for outcome in analysis.by_outcome)
     assert "separate predictive" in axes.get_title().lower()
-    arrows = [patch for patch in axes.patches if isinstance(patch, FancyArrowPatch)]
+    assert not any(isinstance(p, FancyArrowPatch) for p in axes.patches)
+    arrows = [patch for patch in axes.patches if isinstance(patch, Polygon)]
     assert len(arrows) == 2
-    assert len({patch.get_edgecolor() for patch in arrows}) == 2
+    assert len({patch.get_facecolor() for patch in arrows}) == 2
+    assert len(axes.lines) == 2
     assert {text.get_text() for text in axes.get_legend().texts} >= set(analysis.by_outcome)
     assert all("depth" not in text.get_text().lower() for text in axes.get_legend().texts)
     plt.close(figure)
@@ -60,7 +62,7 @@ def test_overlay_keeps_overlapping_and_reversed_relations(analysis):
     import copy
     from dataclasses import replace
     import matplotlib.pyplot as plt
-    from matplotlib.patches import FancyArrowPatch
+    from matplotlib.patches import FancyArrowPatch, Polygon
     from open.api import plot_outcomes
 
     result = copy.deepcopy(analysis)
@@ -72,9 +74,11 @@ def test_overlay_keeps_overlapping_and_reversed_relations(analysis):
             rows.append({**row, "source": "Z", "target": "X", "members": ("Z",)})
         split.exploration = replace(split.exploration, links=pd.DataFrame(rows))
     figure = plot_outcomes(result, layout="combined")
-    arrows = [p for p in figure.axes[0].patches if isinstance(p, FancyArrowPatch)]
+    assert not any(isinstance(p, FancyArrowPatch) for p in figure.axes[0].patches)
+    arrows = [p for p in figure.axes[0].patches if isinstance(p, Polygon)]
     assert len(arrows) == 3
     assert len({tuple(p.get_path().vertices.ravel()) for p in arrows}) == 3
+    assert len({tuple(line.get_xydata().ravel()) for line in figure.axes[0].lines}) == 3
     assert [t.get_text() for t in figure.axes[0].texts].count("Z") == 1
     plt.close(figure)
 

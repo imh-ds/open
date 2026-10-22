@@ -566,29 +566,19 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
         shade = color if tier_ == "kept" else _soft(color)
         width = (lw or _width(r2)) * ew
         if _overlay:
-            from matplotlib.patches import FancyArrowPatch
             source = member if member is not None else relation.source if relation else None
             slots = edge_slots.get(frozenset((source, relation.target)), []) if relation else []
             slot = slots.index(_link_key(relation)) if relation and _link_key(relation) in slots else 0
-            curvature = (slot - (len(slots) - 1) / 2) * .20 if slots else 0
-            if relation and str(source) > str(relation.target):
-                curvature *= -1
-            arrow = FancyArrowPatch(a, b, arrowstyle="-|>" if head else "-",
-                                    connectionstyle=f"arc3,rad={curvature}", color=shade,
-                                    linestyle=style, linewidth=width,
-                                    mutation_scale=10 * ns, shrinkA=0,
-                                    shrinkB=(head or 0) * points, zorder=1.5)
-            if relation:
-                arrow.set_gid(f"{relation.root_outcome}:{relation.source}->{relation.target}")
-            ax.add_patch(arrow)
-            if label:
-                a_, b_ = np.array(a), np.array(b)
-                delta = b_ - a_
-                normal = np.array([-delta[1], delta[0]])
-                spot = b_ + .55 * (a_ - b_) - normal * curvature / 2
-                ax.text(*spot, label, fontsize=8 * fs, ha="center", va="center", color=color,
-                        zorder=5, path_effects=halo)
-            return
+            if len(slots) > 1:
+                # Parallel lanes keep overlapping outcome colors visible; the
+                # line and separate arrowhead below are the ordinary renderer.
+                a, b = np.array(a, float), np.array(b, float)
+                delta = b - a
+                normal = np.array([-delta[1], delta[0]]) / (np.linalg.norm(delta) + 1e-12)
+                if str(source) > str(relation.target):
+                    normal *= -1
+                offset = normal * (slot - (len(slots) - 1) / 2) * .32 * ns
+                a, b = a + offset, b + offset
         ax.plot([a[0], b[0]], [a[1], b[1]], color=shade, ls=style,
                 lw=width, solid_capstyle="round", zorder=1.5 if tier_ == "kept" else 1)
         if head is not None:
