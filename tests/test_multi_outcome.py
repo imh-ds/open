@@ -328,10 +328,15 @@ def test_batch_reuses_identical_deeper_assessment_and_matches_scalar_results(mon
     batch_assessments = list(assessments)
     shared_target_calls = [call for call in batch_assessments if call == ("X1", ("X2", "X3"), 2)]
     assert len(shared_target_calls) == 1
+    ids1 = result.by_outcome["Y1"].exploration.assessment_ids
+    ids2 = result.by_outcome["Y2"].exploration.assessment_ids
+    assert ids1[(2, "X1")] == ids2[(2, "X1")]
+    assert ids1[(1, "Y1")] != ids2[(1, "Y2")]
 
     explore_part, _ = split_sample(data, seed=17)
     for outcome in ("Y1", "Y2"):
         uncached = exploration.explore(explore_part, outcome, ("X1", "X2", "X3"), config=config)
+        assert uncached.assessment_ids == {}
         _assert_same_exploration(result.by_outcome[outcome].exploration, uncached)
 
 
@@ -376,6 +381,8 @@ def test_batch_does_not_reuse_assessment_when_depth_or_pool_differs(monkeypatch)
     batch_assessments = list(assessments)
     target_x_calls = [call for call in batch_assessments if call[0] == "X1"]
     assert target_x_calls == [("X1", ("Z", "W"), 2), ("X1", ("W",), 3)]
+    assert (result.by_outcome["Y1"].exploration.assessment_ids[(2, "X1")] !=
+            result.by_outcome["Y2"].exploration.assessment_ids[(3, "X1")])
 
     explore_part, _ = split_sample(data.reset_index(drop=True), seed=0)
     for outcome in ("Y1", "Y2"):

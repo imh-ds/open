@@ -230,6 +230,10 @@ def explore_and_confirm_outcomes(
         links_tested=int(combined_confirmation.p.notna().sum()),
     )
     combined_fit = pd.concat(fit_tables, ignore_index=True, sort=False)
+    assessment_outcomes = {}
+    for outcome, split in by_outcome.items():
+        for assessment_id in split.exploration.assessment_ids.values():
+            assessment_outcomes.setdefault(assessment_id, []).append(outcome)
     settings = dict(
         outcomes=outcomes,
         predictors=predictor_names,
@@ -245,5 +249,6 @@ def explore_and_confirm_outcomes(
         controls=controls,
         covariates=covariates,
         explore_config=asdict(explore_config),
+        assessment_outcomes=assessment_outcomes,
     )
     return MultiOutcomeResult(by_outcome, combined_confirmation, combined_fit, settings)

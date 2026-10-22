@@ -24,6 +24,35 @@ def analysis():
     )
 
 
+@pytest.fixture(scope="module")
+def shared_analysis():
+    from open.api import ExploreConfig, explore_and_confirm_outcomes
+
+    rng = np.random.default_rng(20261021)
+    x = rng.normal(size=(1200, 3))
+    x[:, 0] = .8 * x[:, 2] + .6 * x[:, 0]
+    data = pd.DataFrame(x, columns=["X1", "X2", "X3"])
+    data["Y1"] = 1.2 * x[:, 0] + .8 * x[:, 1] + rng.normal(size=1200)
+    data["Y2"] = x[:, 0] + .7 * x[:, 1] + rng.normal(size=1200)
+    return explore_and_confirm_outcomes(
+        data, ["Y1", "Y2"], predictors=["X1", "X2", "X3"], split_seed=42,
+        config=ExploreConfig(folds=3, max_depth=3, interactions=False, seed=42),
+    )
+
+
+def test_exports_reused_assessment_ids_and_outcome_membership(shared_analysis, tmp_path):
+    from open.api import save_multi_outcome_analysis
+
+    out = save_multi_outcome_analysis(shared_analysis, tmp_path / "batch")
+    settings = json.loads((out / "outcomes-settings.json").read_text(encoding="utf-8"))
+    shared_id = shared_analysis.by_outcome["Y1"].exploration.assessment_ids[(2, "X1")]
+    assert settings["assessment_outcomes"][shared_id] == ["Y1", "Y2"]
+    for outcome, folder in settings["outcome_folders"].items():
+        table = pd.read_csv(out / folder / "links.csv")
+        assert table.loc[table.target.eq("X1"), "assessment_id"].eq(shared_id).all()
+        assert all(outcome in settings["assessment_outcomes"][value] for value in table.assessment_id)
+
+
 def test_facets_keep_independent_outcome_roots(analysis):
     import matplotlib.pyplot as plt
     from open.api import plot_outcomes

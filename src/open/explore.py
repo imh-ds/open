@@ -31,6 +31,7 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass, field, replace
 import hashlib
 from itertools import combinations
+from uuid import uuid4
 
 import numpy as np
 import pandas as pd
@@ -107,6 +108,9 @@ class ExploreResult:
     settings: dict
     fit: pd.DataFrame = field(default_factory=lambda: pd.DataFrame(columns=FIT_COLUMNS))
     # network fit per explored target: held-out R² from its kept predictors and from its whole pool
+    # Call-local provenance: identical IDs identify one actual cached assessment.
+    # Scalar exploration has no shared cache and leaves this mapping empty.
+    assessment_ids: dict[tuple[int, str], str] = field(default_factory=dict)
 
     def summary(self) -> str:
         s = self.settings
@@ -626,6 +630,7 @@ def _explore_core(data: pd.DataFrame, outcome: str, predictors=None, engine="ols
         data_context = _assessment_data_context(data, variables)
 
     depths, parents, stops = {outcome: 0}, {}, {}
+    assessment_ids = {}
     all_folds, all_links, all_pairs, all_fit = [], [], [], []
     frontier, depth = (outcome,), 0
     while frontier:
@@ -646,12 +651,14 @@ def _explore_core(data: pd.DataFrame, outcome: str, predictors=None, engine="ols
                 key = _assessment_cache_key(
                     target, tested, fold_ids, engine, config, depth, controls, covariates, data_context,
                 )
-                assessment = assessment_cache.get(key)
-                if assessment is None:
+                cached = assessment_cache.get(key)
+                if cached is None:
                     assessment = assess_target(data, target, tested, fold_ids, engine, config, depth, controls)
-                    assessment_cache[key] = tuple(frame.copy(deep=True) for frame in assessment)
+                    cached = (uuid4().hex, tuple(frame.copy(deep=True) for frame in assessment))
+                    assessment_cache[key] = cached
                 else:
-                    assessment = tuple(frame.copy(deep=True) for frame in assessment)
+                    assessment = tuple(frame.copy(deep=True) for frame in cached[1])
+                assessment_ids[(depth, target)] = cached[0]
             folds, links, pairs = assessment
             kept_alone = set(links.source[(links.kind == "unique") & (links.tier == "kept")])
             redundant = (links.kind == "shared") & links.members.map(lambda m: bool(set(m) & kept_alone))
@@ -686,7 +693,7 @@ def _explore_core(data: pd.DataFrame, outcome: str, predictors=None, engine="ols
     if controls or covariates:
         settings.update(controls=list(controls), covariates=list(covariates))
     fit = pd.DataFrame(all_fit, columns=FIT_COLUMNS)
-    return ExploreResult(nodes, links, pairs, folds, bars, stops, settings, fit)
+    return ExploreResult(nodes, links, pairs, folds, bars, stops, settings, fit, assessment_ids)
 
 
 def explore(data: pd.DataFrame, outcome: str, predictors=None, engine="ols",

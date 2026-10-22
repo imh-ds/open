@@ -172,7 +172,12 @@ def _prepare_export(result, out, *, plot, confirmation, confirmation_fit,
                     style, graph_settings, split):
     nodes = result.nodes.assign(parents=result.nodes.parents.map(";".join))
     nodes.to_csv(out / "nodes.csv", index=False)
-    result.links.assign(members=result.links.members.map(";".join)).to_csv(out / "links.csv", index=False)
+    links = result.links.assign(members=result.links.members.map(";".join))
+    if result.assessment_ids:
+        links = links.assign(assessment_id=[
+            result.assessment_ids.get((int(row.depth), row.target)) for row in result.links.itertuples()
+        ])
+    links.to_csv(out / "links.csv", index=False)
     result.pairs.to_csv(out / "pairs.csv", index=False)
     result.folds.to_csv(out / "folds.csv", index=False)
     result.bars.to_csv(out / "noise-bars.csv", index=False)
