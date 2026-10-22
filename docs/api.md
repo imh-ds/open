@@ -165,21 +165,26 @@ save_exploration(result, "tables-only", plot=False)
 `plot_network` draws only the graph. The save functions write tables, settings
 and summary, plus a graph by default. Reusing a directory follows the
 [documented overwrite behavior](method.md#saving-and-overwriting-exports).
-Nodes are also placed adaptively. After the initial radial/spring layout, a
-bounded local search repositions crowded nodes and interaction junctions to
-clear nearby nodes, fit rings and unrelated edges. It favors fewer edge
-crossings and small displacements, retaining quiet nodes. The combined view
-uses the visible graph for this refinement, without its invisible layout root.
-This rearranges local geometry rather than uniformly increasing spacing.
-Set `GraphStyle(dodge_nodes=False)` to use the initial layout alone.
+Nodes are also placed adaptively, to make room for labels rather than move
+them away. After the initial radial/spring layout, a bounded local search
+repositions crowded nodes and interaction junctions to clear nearby nodes, fit
+rings and unrelated edges. Then each label is sized from its text and given a
+spot on its own edge (or beside its own node). Where a label would still
+collide, only the nodes involved move: an edge too short for its label is
+lengthened, edges whose labels collide are pushed apart and outwards, a node
+in a label's way steps aside, and edges that leave a node in nearly the same
+direction are spread so they do not run on top of each other. Quiet parts of
+the graph keep their place, and the result is deterministic. The combined view
+uses the visible graph, without its invisible layout root. Set
+`GraphStyle(dodge_nodes=False)` to use the initial layout alone.
 
-Labels automatically dodge other labels, nodes and fit rings using their
-rendered text bounds. Edge labels stay near their own edge, node-fit labels
-stay near their own node, and displaced labels can use thin leader lines.
-Placement favors avoiding edges as well. Label placement itself does not move
-nodes or resize the figure. Both placement passes are local and best effort; very dense graphs can
-still require more space or fewer displayed annotations. Set
-`GraphStyle(dodge_labels=False)` to keep the original fixed label placement.
+A final pass checks each label against the rendered text, nodes and fit
+rings. An edge label stays on its own edge, wherever along it is free; only
+when every spot on the edge is blocked does it move beside the edge, with a
+thin leader line. Node-fit labels stay next to their own node. This pass does
+not move nodes or resize the figure. Very dense graphs can still need more
+space or fewer displayed annotations. Set `GraphStyle(dodge_labels=False)` to
+skip it.
 
 A checkmark means the link passed confirmation on independent held-out data
 after the selected multiple-testing correction. Solid/dashed lines instead
