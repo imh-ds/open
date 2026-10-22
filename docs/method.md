@@ -237,8 +237,9 @@ limitations for grouped/repeated observations and engine calibration remain.
 Facets show each network separately; a combined graph is a provenance-colored
 overlay with no single global depth ordering. A link from one assessment reused
 across outcomes is drawn once in neutral when its exact effect and confirmation
-status agree. The label reports how many outcomes share it; exports retain the
-assessment ID and full outcome membership. Numerical equality alone does not
+status agree. Its label reads like any other; the legend and footnote explain
+the neutral edges, and exports retain the assessment ID and full outcome
+membership. Numerical equality alone does not
 merge independent assessments, and the underlying per-outcome results are
 preserved. See the
 [API examples](api.md#several-outcomes-in-one-call).
@@ -351,6 +352,13 @@ writers, or protection against a process crash during publication.
     80% line. Whether a true link is kept *or* flagged is stable (86–97% agree
     across seeds), so read the two tiers together and look at the pass rate.
     Confirmation on independent data decides.
+  - With Elastic-Net, the penalty shrinks weak columns, including every noise
+    column, to exactly zero. The noise bar is then about 0, and floating-point
+    differences between machines (about 10⁻⁹) can decide whether a column with
+    R² ≈ 0 passes a fold. Results can then differ slightly between machines,
+    almost always for links with R² = 0, which are hidden and never drawn
+    (study v2-R: 13 tier changes in 115,469 links, one of them a flagged
+    interaction, which is hidden by default). OLS and LightGBM are unaffected.
 
 ## Defaults
 
