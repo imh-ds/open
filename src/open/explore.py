@@ -30,6 +30,7 @@ from __future__ import annotations
 
 from dataclasses import asdict, dataclass, field, replace
 import hashlib
+import warnings
 from itertools import combinations
 from uuid import uuid4
 
@@ -47,6 +48,8 @@ NOISE_PREFIX = "__noise__"
 # docs/engines.md. New engines are added only after they pass
 # the same validation study.
 SUPPORTED_ENGINES = ("ols", "elastic_net", "lightgbm")
+# Accepted with a warning while they are piloted; not validated.
+EXPERIMENTAL_ENGINES = ("pls", "svr")
 TIERS = ("kept", "flagged", "dropped", "hidden")
 # "x noise" is shown only when the noise bar is at least this; below it the
 # ratio divides by about zero (e.g. Elastic-Net shrinks noise columns to 0).
@@ -164,7 +167,7 @@ def tier(rate: float, keep: float, flag: float) -> str:
 
 def _predictor(engine, outcome: str, seed: int) -> Predictor:
     name = engine.engine_name if isinstance(engine, Predictor) else engine
-    if name not in SUPPORTED_ENGINES:
+    if name not in SUPPORTED_ENGINES + EXPERIMENTAL_ENGINES:
         raise ValueError(f"engine {name!r} is not validated for exploratory mode; "
                          f"use one of {SUPPORTED_ENGINES}")
     if isinstance(engine, Predictor):
@@ -596,6 +599,9 @@ def _explore_core(data: pd.DataFrame, outcome: str, predictors=None, engine="ols
                   *, fold_ids=None, assessment_cache=None, data_context=None) -> ExploreResult:
     """Build one exploratory network, optionally using a batch fold plan/cache."""
     config = config or ExploreConfig()
+    if (engine.engine_name if isinstance(engine, Predictor) else engine) in EXPERIMENTAL_ENGINES:
+        warnings.warn(f"engine {engine!r} is experimental: it has not passed the validation study, "
+                      "so its links are not yet known to be reliable", UserWarning, stacklevel=3)
     if not isinstance(data, pd.DataFrame):
         raise TypeError("data must be a pandas DataFrame")
     controls = tuple(controls or ())

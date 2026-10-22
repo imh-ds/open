@@ -1,7 +1,9 @@
-"""Engine factory for the validated engines: OLS, Elastic-Net and LightGBM."""
+"""Engine factory: the validated engines (OLS, Elastic-Net, LightGBM) and experimental ones (PLS, SVR)."""
 from open.learners.elastic_net import ElasticNetPredictor
 
 ENGINES = ("ols", "elastic_net", "lightgbm")
+# Not yet through the validation study; explore() warns when one is used.
+EXPERIMENTAL_ENGINES = ("pls", "svr")
 
 
 def make_predictor(engine: str, random_seed: int = 0, preprocessing=None):
@@ -14,4 +16,10 @@ def make_predictor(engine: str, random_seed: int = 0, preprocessing=None):
     if engine == "lightgbm":
         from open.learners.lightgbm import LightGBMPredictor
         return LightGBMPredictor(preprocessing, random_seed)
-    raise ValueError(f"unknown engine {engine!r}; use one of {ENGINES}")
+    if engine == "pls":
+        from open.learners.pls import PLSPredictor
+        return PLSPredictor(preprocessing)
+    if engine == "svr":
+        from open.learners.svr import SVRPredictor
+        return SVRPredictor(preprocessing)
+    raise ValueError(f"unknown engine {engine!r}; use one of {ENGINES + EXPERIMENTAL_ENGINES}")
