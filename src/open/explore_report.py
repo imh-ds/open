@@ -227,6 +227,8 @@ class GraphStyle:
     - ``show_confirmation``: mark links that passed held-out confirmation with ✓.
     - ``dodge_labels``: automatically place annotations around nodes and other
       labels, keeping node positions and figure size unchanged.
+    - ``dodge_nodes``: locally rearrange crowded nodes and junctions using their
+      visible sizes, fit rings and edges, without scaling all coordinates.
     - ``edge_labels``: "kept" labels solid edges with their R², "all" also dashed
       ones, None labels none. The tables hold every value.
     - ``label_outline``: colour of the solid outline drawn around label text
@@ -246,13 +248,14 @@ class GraphStyle:
     dpi: int = 170
     show_confirmation: bool = True
     dodge_labels: bool = True
+    dodge_nodes: bool = True
 
     def __post_init__(self):
         for name in ("node_size", "edge_width", "label_size", "spacing"):
             v = getattr(self, name)
             if isinstance(v, bool) or not isinstance(v, (int, float)) or not 0 < v <= 5:
                 raise ValueError(f"{name} must be a number in (0, 5]")
-        for name in ("show_flagged", "show_flagged_interactions", "show_confirmation", "dodge_labels"):
+        for name in ("show_flagged", "show_flagged_interactions", "show_confirmation", "dodge_labels", "dodge_nodes"):
             if not isinstance(getattr(self, name), bool):
                 raise ValueError(f"{name} must be True or False")
         if self.edge_labels not in ("kept", "all", None):
@@ -488,7 +491,131 @@ def _layout(result: ExploreResult, links: pd.DataFrame, style: GraphStyle | None
             break
     out = {v: (float(P[index[v], 0]), float(P[index[v], 1])) for v in names}
     junctions = {key: out.pop(key) for key in keys}
+    if style.dodge_nodes:
+        fitted = {r.target for r in result.fit.itertuples() if r.network_size > 0}
+        out, junctions = _dodge_node_positions(out, junctions, links, {outcome}, fitted, style, pinned={outcome})
     return out, ring, candidate, junctions
+
+
+def _dodge_node_positions(positions, junctions, links, roots, fitted, style, *, pinned=()):
+    """Deterministic local rearrangement of the visible graph, not global scaling.
+
+    Reserve actual root/node/ring clearances and a small annotation margin.
+    Search nearby positions for nodes obstructing another node or edge, then
+    favor fewer crossings and minimal displacement. Quiet nodes stay fixed.
+    Curved duplicate edges are sampled for node/edge clearance checks.
+    """
+    names = [*positions, *junctions]
+    if len(names) < 2:
+        return dict(positions), dict(junctions)
+    index = {name: i for i, name in enumerate(names)}
+    original = np.array([positions.get(name, junctions.get(name)) for name in names], dtype=float)
+    points = original.copy()
+    fixed = {index[name] for name in pinned}
+    ns = style.node_size
+    radii = np.array([
+        (.2 if name in junctions else OUTCOME_R if name in roots else NODE_R) * ns +
+        (.35 if name in fitted else .12) * ns for name in names
+    ])
+    first, second = np.triu_indices(len(names), 1)
+    required = np.maximum(style.min_sep(), radii[first] + radii[second])
+    edges = []
+    for row in links.itertuples():
+        if row.kind == "interaction":
+            junction = index[_link_key(row)]
+            edges.extend((index[member], junction) for member in row.members)
+            edges.append((junction, index[row.target]))
+        else:
+            edges.extend((index[member], index[row.target]) for member in row.members)
+    edges = np.array(edges, dtype=int).reshape(-1, 2)
+    starts, ends = edges[:, 0], edges[:, 1]
+    lanes = np.zeros(len(edges))
+    groups = {}
+    for i, (a, b) in enumerate(edges):
+        groups.setdefault(tuple(sorted((a, b))), []).append(i)
+    for members in groups.values():
+        for slot, i in enumerate(members):
+            a, b = edges[i]
+            direction = 1 if str(names[a]) < str(names[b]) else -1
+            lanes[i] = (slot - (len(members) - 1) / 2) * .32 * direction
+    unrelated = np.ones((len(names), len(edges)), dtype=bool)
+    unrelated[starts, np.arange(len(edges))] = False
+    unrelated[ends, np.arange(len(edges))] = False
+    e1, e2 = np.triu_indices(len(edges), 1)
+    separate = ((starts[e1] != starts[e2]) & (starts[e1] != ends[e2]) &
+                (ends[e1] != starts[e2]) & (ends[e1] != ends[e2]))
+    e1, e2 = e1[separate], e2[separate]
+    initial_lengths = np.linalg.norm(original[ends] - original[starts], axis=1)
+    samples = np.linspace(0, 1, 9)[None, :, None]
+
+    def cross(a, b):
+        return a[..., 0] * b[..., 1] - a[..., 1] * b[..., 0]
+
+    def evaluate(trial):
+        gap = np.maximum(0, required - np.linalg.norm(trial[first] - trial[second], axis=1))
+        a, b = trial[starts], trial[ends]
+        delta = b - a
+        normal = np.stack([-delta[:, 1], delta[:, 0]], axis=1)
+        control = (a + b) / 2 + normal * lanes[:, None]
+        curve = ((1 - samples) ** 2 * a[:, None] + 2 * (1 - samples) * samples * control[:, None] +
+                 samples ** 2 * b[:, None])
+        seg_a, seg_d = curve[:, :-1], np.diff(curve, axis=1)
+        offset = trial[:, None, None] - seg_a[None]
+        fraction = np.clip((offset * seg_d[None]).sum(axis=-1) /
+                           np.maximum((seg_d ** 2).sum(axis=-1)[None], 1e-12), 0, 1)
+        distance = np.linalg.norm(offset - fraction[..., None] * seg_d[None], axis=-1).min(axis=-1)
+        edge_gap = np.maximum(0, radii[:, None] + .07 * ns * style.edge_width - distance) * unrelated
+        # Crossings guide local rearrangement; shared endpoints are not crossings.
+        crossing = ((cross(delta[e1], a[e2] - a[e1]) * cross(delta[e1], b[e2] - a[e1]) < -1e-9) &
+                    (cross(delta[e2], a[e1] - a[e2]) * cross(delta[e2], b[e1] - a[e2]) < -1e-9))
+        crowded = np.zeros(len(names))
+        np.add.at(crowded, first, gap)
+        np.add.at(crowded, second, gap)
+        crowded += edge_gap.sum(axis=1)
+        # Endpoints can reroute an edge that obstructs a pinned node.
+        blocked_edges = edge_gap.sum(axis=0)
+        np.add.at(crowded, starts, blocked_edges * .5)
+        np.add.at(crowded, ends, blocked_edges * .5)
+        for end in (starts[e1[crossing]], ends[e1[crossing]], starts[e2[crossing]], ends[e2[crossing]]):
+            np.add.at(crowded, end, .1)
+        compactness = (((trial - original) ** 2).sum() +
+                       .1 * ((np.linalg.norm(delta, axis=1) - initial_lengths) ** 2).sum())
+        score = (int((gap > 1e-7).sum() + (edge_gap > 1e-7).sum()),
+                 round(float(4 * (gap ** 2).sum() + (edge_gap ** 2).sum()), 9),
+                 int(crossing.sum()), float(compactness))
+        return score, crowded
+
+    offsets = [np.array([np.cos(angle), np.sin(angle)]) * step * ns
+               for step in (.35, .8, 1.3) for angle in np.arange(12) * np.pi / 6]
+    # Bound the refinement work as the visible graph grows.
+    remaining = max(144, min(4096, 2_000_000 // max(len(names) * len(edges), 1)))
+    for _ in range(8):
+        score, crowded = evaluate(points)
+        order = sorted(range(len(names)), key=lambda i: (-crowded[i], i))
+        moved = False
+        for i in order:
+            if i in fixed:
+                continue
+            score, crowded = evaluate(points)
+            if crowded[i] <= 1e-7:
+                continue
+            best_score, best = score, points[i].copy()
+            for offset in offsets:
+                if remaining == 0:
+                    break
+                remaining -= 1
+                trial = points.copy()
+                trial[i] += offset
+                candidate_score, _ = evaluate(trial)
+                if candidate_score < best_score:
+                    best_score, best = candidate_score, trial[i].copy()
+            if best_score < score:
+                points[i] = best
+                moved = True
+        if not moved or remaining == 0:
+            break
+    output = {name: tuple(map(float, points[i])) for i, name in enumerate(names)}
+    return ({name: output[name] for name in positions}, {key: output[key] for key in junctions})
 
 
 def plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFrame | None = None,
@@ -988,9 +1115,13 @@ def _outcome_layout(result, links, st, overlay):
              root_outcome=None) for name in names if parents[name] == hub
     ])
     scaffold = replace(result, nodes=nodes, settings={**result.settings, "outcome": hub})
-    pos, ring, _, junctions = _layout(scaffold, pd.concat([links, anchors], ignore_index=True), st)
+    pos, ring, _, junctions = _layout(scaffold, pd.concat([links, anchors], ignore_index=True),
+                                     replace(st, dodge_nodes=False))
     pos.pop(hub)
     ring.pop(hub)
+    if st.dodge_nodes:
+        fitted = {r.target for r in result.fit.itertuples() if r.network_size > 0}
+        pos, junctions = _dodge_node_positions(pos, junctions, links, set(roots), fitted, st)
     return pos, ring, set(names) - overlay["kept_nodes"], junctions
 
 

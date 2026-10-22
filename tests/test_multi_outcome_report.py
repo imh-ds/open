@@ -113,6 +113,34 @@ def test_overlay_dodges_labels_without_spreading_nodes(crowded_analysis):
     plt.close(after)
 
 
+def test_overlay_rearranges_nodes_locally_instead_of_uniform_scaling(crowded_analysis):
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import Circle, Wedge
+    from open.api import GraphStyle, plot_outcomes
+
+    before = plot_outcomes(crowded_analysis, layout="combined",
+                           style=GraphStyle(dodge_nodes=False, dodge_labels=False))
+    after = plot_outcomes(crowded_analysis, layout="combined", style=GraphStyle(dodge_labels=False))
+    p = np.array([node.center for node in before.axes[0].patches if isinstance(node, Circle)])
+    q = np.array([node.center for node in after.axes[0].patches if isinstance(node, Circle)])
+    assert not np.allclose(p, q)
+    a, b = np.triu_indices(len(p), 1)
+    ratios = np.linalg.norm(q[a] - q[b], axis=1) / np.linalg.norm(p[a] - p[b], axis=1)
+    assert np.std(ratios) > .03
+    radii = {node.center: node.radius for node in after.axes[0].patches if isinstance(node, Circle)}
+    for ring in after.axes[0].patches:
+        if isinstance(ring, Wedge):
+            radii[ring.center] = max(radii[ring.center], ring.r)
+    envelope = np.array([radii[tuple(center)] for center in q])
+    assert np.all(np.linalg.norm(q[a] - q[b], axis=1) >= envelope[a] + envelope[b])
+    # Repeated calls choose the same rearrangement.
+    repeated = plot_outcomes(crowded_analysis, layout="combined", style=GraphStyle(dodge_labels=False))
+    np.testing.assert_array_equal(q, [node.center for node in repeated.axes[0].patches if isinstance(node, Circle)])
+    plt.close(before)
+    plt.close(after)
+    plt.close(repeated)
+
+
 def test_confirmation_marks_can_be_hidden_without_changing_results(shared_analysis):
     import matplotlib.pyplot as plt
     from open.api import GraphStyle, plot_outcomes
@@ -125,7 +153,7 @@ def test_confirmation_marks_can_be_hidden_without_changing_results(shared_analys
     plt.close(figure)
 
 
-@pytest.mark.parametrize("setting", ["show_confirmation", "dodge_labels"])
+@pytest.mark.parametrize("setting", ["show_confirmation", "dodge_labels", "dodge_nodes"])
 def test_annotation_style_flags_require_booleans(setting):
     from open.api import GraphStyle
 
