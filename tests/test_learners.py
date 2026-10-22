@@ -56,7 +56,7 @@ def test_lightgbm_is_deterministic_and_tunes():
 
 def test_experimental_engines_are_offered_separately():
     from open.learners import EXPERIMENTAL_ENGINES
-    assert EXPERIMENTAL_ENGINES == ('pls', 'svr')
+    assert EXPERIMENTAL_ENGINES == ('svr',)
     assert not set(EXPERIMENTAL_ENGINES) & set(ENGINES)
 
 

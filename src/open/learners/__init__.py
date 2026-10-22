@@ -1,9 +1,11 @@
-"""Engine factory: the validated engines (OLS, Elastic-Net, LightGBM) and experimental ones (PLS, SVR)."""
+"""Engine factory: the validated engines (OLS, Elastic-Net, LightGBM) the experimental SVR, and PLS kept as a backend engine."""
 from open.learners.elastic_net import ElasticNetPredictor
 
 ENGINES = ("ols", "elastic_net", "lightgbm")
 # Not yet through the validation study; explore() warns when one is used.
-EXPERIMENTAL_ENGINES = ("pls", "svr")
+EXPERIMENTAL_ENGINES = ("svr",)
+# Available by name but not offered; see docs/engines.md.
+BACKEND_ENGINES = ("pls",)
 
 
 def make_predictor(engine: str, random_seed: int = 0, preprocessing=None):
