@@ -42,6 +42,23 @@ Both were removed. Their code stays in the development archive
 - **Bad defaults for users.** An engine that needs 5,000 or more rows, or that
   fails at large N, would mislead the typical user with N = 300–1,000.
 
+## Experimental: PLS and SVR
+
+`explore` accepts `engine="pls"` and `engine="svr"` with a warning. Neither has
+passed the validation study; the pilot in
+[examples/results/2026-10-22-pilot-pls-svr](../examples/results/2026-10-22-pilot-pls-svr/interpretation.md)
+is the only evidence so far.
+
+- **PLS regression:** the number of components (1, 2, 3, 5, 8, capped at the
+  column count) is tuned on the training folds. In the pilot it behaved like
+  OLS, with an edge only for many weak effects, where Elastic-Net did better.
+- **SVR (RBF kernel):** C (0.3–10) and the kernel width (0.3–3 times
+  1 / columns) are tuned; the outcome is standardized inside each fit. In the
+  pilot it found a U-shaped effect at N = 500 in every dataset and kept no
+  noise links, but missed weak effects spread among many candidates.
+- **Confirmation:** use OLS + HC4 for linear links and LightGBM's test for
+  curved ones; neither engine has its own calibrated test.
+
 ## Adding engines later
 
 PLS, SVR, XGBoost, or random forest again are added only after passing the same
