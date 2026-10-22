@@ -12,7 +12,7 @@ Every link in a dataset uses the cell's shape: linear, U-shaped, threshold
 (a V-shape in C, switched on by D > 0) in the others. Each shape term is
 standardized within the dataset, so r² is the variance share of the term.
 
-Cells: engine (ols, elastic_net, lightgbm) x N (300, 500, 1000) x shape.
+Cells: engine (ols, elastic_net, lightgbm; svr alone on request) x N (300, 500, 1000) x shape.
 The method runs with its defaults (10 folds, keep 80%, flag 40%, 95% noise
 bar, hide floor .001, interactions on), max_depth 2.
 
@@ -38,6 +38,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from open.explore import ExploreConfig, explore  # noqa: E402
 
 ENGINES = ("ols", "elastic_net", "lightgbm")
+RUNNABLE = ENGINES + ("svr",)       # SVR is run alone to see whether it earns a place in ENGINES
 SIZES = (300, 500, 1000)
 SHAPES = ("linear", "u_shape", "threshold", "saturating")
 SEED_BASE = 4_100_000_000
@@ -218,7 +219,7 @@ def main(argv=None):
     a.add_argument("--workers", type=int, default=1)
     a.add_argument("--engines", default=",".join(ENGINES))
     b = sub.add_parser("run")
-    b.add_argument("--engine", choices=ENGINES, required=True)
+    b.add_argument("--engine", choices=RUNNABLE, required=True)
     b.add_argument("--n", type=int, choices=SIZES, required=True)
     b.add_argument("--shape", choices=SHAPES, required=True)
     b.add_argument("--reps", required=True)
