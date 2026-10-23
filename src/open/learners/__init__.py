@@ -3,9 +3,9 @@ from open.learners.elastic_net import ElasticNetPredictor
 
 ENGINES = ("ols", "elastic_net", "lightgbm")
 # Not yet through the validation study; explore() warns when one is used.
-EXPERIMENTAL_ENGINES = ("svr",)
-# Available by name but not offered; see docs/engines.md.
-BACKEND_ENGINES = ("pls",)
+EXPERIMENTAL_ENGINES = ()
+# Available by name but not offered; see docs/dropped-engines.md.
+BACKEND_ENGINES = ("pls", "svr")
 
 
 def make_predictor(engine: str, random_seed: int = 0, preprocessing=None):

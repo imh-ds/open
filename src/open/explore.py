@@ -49,9 +49,9 @@ NOISE_PREFIX = "__noise__"
 # the same validation study.
 SUPPORTED_ENGINES = ("ols", "elastic_net", "lightgbm")
 # Accepted with a warning while they are piloted; not validated.
-EXPERIMENTAL_ENGINES = ("svr",)
-# Kept in the code but not offered: PLS behaved like OLS in the pilot (docs/engines.md).
-BACKEND_ENGINES = ("pls",)
+EXPERIMENTAL_ENGINES = ()
+# In the code but not offered: dropped after the pilot and validation study (docs/dropped-engines.md).
+BACKEND_ENGINES = ("pls", "svr")
 TIERS = ("kept", "flagged", "dropped", "hidden")
 # "x noise" is shown only when the noise bar is at least this; below it the
 # ratio divides by about zero (e.g. Elastic-Net shrinks noise columns to 0).

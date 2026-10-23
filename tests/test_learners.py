@@ -52,12 +52,12 @@ def test_lightgbm_is_deterministic_and_tunes():
     assert np.corrcoef(pa, y)[0, 1] > .9
 
 
-# ---- experimental engines (PLS, SVR): piloted, not validated
+# ---- backend engines (PLS, SVR): piloted, dropped, still runnable by name
 
-def test_experimental_engines_are_offered_separately():
-    from open.learners import EXPERIMENTAL_ENGINES
-    assert EXPERIMENTAL_ENGINES == ('svr',)
-    assert not set(EXPERIMENTAL_ENGINES) & set(ENGINES)
+def test_backend_engines_are_not_offered():
+    from open.learners import BACKEND_ENGINES
+    assert BACKEND_ENGINES == ('pls', 'svr')
+    assert not set(BACKEND_ENGINES) & set(ENGINES)
 
 
 def test_pls_tunes_caps_components_and_equals_ols_at_full_rank():
