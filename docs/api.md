@@ -8,7 +8,7 @@ from open.api import ExploreConfig, analyze, explore, save_split
 
 result = analyze(data, outcome="Y", config=ExploreConfig(max_depth=3))
 print(result.summary())
-save_split(result, "open-output")
+save_split(result, "open-output", plot=False)
 ```
 
 ## Choose the function for your task
@@ -46,13 +46,12 @@ and `GraphStyle` are also available from `open.api`.
 
 ```python
 from open.api import (
-    confirm_network, evaluate_confirmation_fit, explore_network,
-    save_exploration,
+    confirm, evaluate_fit, explore, save_exploration,
 )
 
-result = explore_network(data, outcome="Y", engine="ols")
-confirmation = confirm_network(result, new_sample)
-fit = evaluate_confirmation_fit(result, new_sample)
+result = explore(data, outcome="Y", engine="ols")
+confirmation = confirm(result, new_sample)
+fit = evaluate_fit(result, new_sample)
 save_exploration(result, "confirmed-output",
                  confirmation=confirmation, confirmation_fit=fit)
 ```
@@ -65,15 +64,15 @@ test. See [the method](method.md#confirmation-openconfirmconfirm).
 ## Split one dataset before analysis
 
 ```python
-from open.api import explore_and_confirm, save_split_analysis
+from open.api import analyze, save_split
 
-split = explore_and_confirm(data, outcome="Y", split_seed=1)
+split = analyze(data, outcome="Y", split_seed=1)
 print(split.summary())
-save_split_analysis(split, "split-output")
+save_split(split, "split-output")
 ```
 
-`save_split_analysis` saves an already computed `SplitResult`; the splitting
-happens in `explore_and_confirm`. Splitting is intended for samples of about
+`save_split` saves an already computed `SplitResult`; the splitting
+happens in `analyze`. Splitting is intended for samples of about
 1,000 rows or more; see the [README](../README.md#confirming-links) for context.
 
 ## Several outcomes in one call
@@ -81,13 +80,12 @@ happens in `explore_and_confirm`. Splitting is intended for samples of about
 ```python
 import pandas as pd
 from open.api import (
-    ExploreConfig, explore_and_confirm_outcomes, plot_outcomes,
-    save_multi_outcome_analysis,
+    ExploreConfig, analyze, plot_outcomes, save_batch,
 )
 
 data = pd.read_csv("my_study.csv")
 predictors = [f"X{i}" for i in range(1, 11)]
-batch = explore_and_confirm_outcomes(
+batch = analyze(
     data,
     outcomes=["Y1", "Y2"],
     predictors=predictors,
@@ -102,7 +100,7 @@ print(batch.confirmation)         # aggregate table, labeled root_outcome
 print(batch.fit)                  # separate fit estimates, labeled root_outcome
 plot_outcomes(batch, path="outcome-panels.png")
 plot_outcomes(batch, layout="combined", path="outcome-overlay.png")
-save_multi_outcome_analysis(batch, "multi-output", plot="facets")
+save_batch(batch, "multi-output", plot="facets")
 ```
 
 All selected outcomes must be numeric and have no missing values. The data is
@@ -149,7 +147,7 @@ outcome rather than averaged. Group and interaction junctions retain their relat
 It overlays separate predictive analyses; it does not fit a joint model,
 estimate cross-outcome residual covariance, or establish causal direction.
 
-`save_multi_outcome_analysis` defaults to `plot=False`. It writes aggregate
+`save_batch` defaults to `plot=False`. It writes aggregate
 `outcomes-confirmation.csv`, `outcomes-fit.csv`, `outcomes-settings.json`, and
 `outcomes-summary.txt`, plus an optional `outcomes-network.png`. Each outcome
 has a safe generated folder under `outcomes/`; the settings file maps the exact

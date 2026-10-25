@@ -13,26 +13,45 @@ hypothesis-generating map. Links can then be confirmed on independent data.
 
 ## Install
 
+Clone the repository and install the core package:
+
 ```bash
-pip install "open-predictive-expansion[lightgbm,visualization] @ git+https://github.com/imh-ds/open"
+git clone https://github.com/imh-ds/open.git
+cd open
+python -m pip install .
 ```
 
-Requires Python 3.11 or later. LightGBM and matplotlib are optional extras.
+Requires Python 3.11 or later. Install optional dependencies only when needed:
+
+```bash
+python -m pip install ".[visualization]"  # plotting
+python -m pip install ".[lightgbm]"       # LightGBM engine
+```
 
 ## Quick start
 
+Load a numeric dataset with one row per observation. `analyze` splits the rows,
+explores the network on one part, and confirms selected links on the other:
+
 ```python
 import pandas as pd
-from open.api import ExploreConfig, explore_network, save_exploration
+from open.api import ExploreConfig, analyze, save_split
 
-data = pd.read_csv("my_study.csv")            # numeric columns, one row per person
-result = explore_network(data, outcome="Y", engine="ols", config=ExploreConfig(max_depth=3))
+data = pd.read_csv("my_study.csv")
+result = analyze(
+    data,
+    outcome="Y",
+    predictors=["X1", "X2", "X3"],
+    config=ExploreConfig(max_depth=3),
+    split_seed=42,
+)
 print(result.summary())
-save_exploration(result, "open-output")        # tables plus network.png
+save_split(result, "open-output", plot=False)
 ```
 
-See [the API guide](docs/api.md) for workflow names, return values and existing
-imports, which remain supported.
+The outcome must be numeric and complete. For details and a runnable example,
+see the [quick tutorial](docs/quickstart.md). The [API guide](docs/api.md)
+covers other workflows and the longer function names, which remain supported.
 
 **Reading the output.** The graph is a radial network: the outcome sits in
 the centre, and each target's predictors branch outwards from it. Node colour
@@ -73,7 +92,7 @@ shows the depth, and grey dashed nodes are predictors that were only flagged.
 
 **Adjusting the graph.** Every display setting is a `GraphStyle` field. Pass
 the fields as keywords to `plot_network`, `save_exploration` or
-`save_split_analysis`, or
+`save_split`, or
 pass a `style=GraphStyle(...)`. Sizes are multipliers of the defaults:
 
 ```python
@@ -110,10 +129,10 @@ gradient boosting were evaluated and dropped ([docs/engines.md](docs/engines.md)
 ## Controls and covariates
 
 Variables that should be in every model, at every depth, whatever they
-predict, go in one of two arguments of `explore_network` (and `explore_and_confirm`):
+predict, go in one of two arguments of `explore` or `analyze`:
 
 ```python
-result = explore_network(data, outcome="Y", engine="ols",
+result = explore(data, outcome="Y", engine="ols",
                  controls=["cohort"],      # adjust only: never tested, drawn or used as a target
                  covariates=["gender"])    # also tested and drawn (tan), but never a target
 ```
@@ -180,6 +199,7 @@ across all outcome networks by default. The combined graph overlays separate
 predictive analyses and does not estimate correlated outcome errors. See the
 [multi-outcome API guide](docs/api.md#several-outcomes-in-one-call) for correction
 scopes, exact reuse, result tables, and export behavior.
+Plotting requires the `visualization` extra described above.
 
 ## Reproducing the evidence
 
@@ -192,6 +212,8 @@ holding its raw outputs.
 See [CITATION.cff](CITATION.cff). Development history is archived in
 [imh-ds/open-archive](https://github.com/imh-ds/open-archive)
 ([docs/provenance.md](docs/provenance.md)).
+
+See [CHANGELOG.md](CHANGELOG.md) for developer-preview release notes.
 
 ## License
 
