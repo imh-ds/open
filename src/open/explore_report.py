@@ -1308,7 +1308,9 @@ def _dodge_annotations(ax, annotations, style):
             anchor = transform.transform(item["anchor"])
             radius = np.linalg.norm(transform.transform(np.asarray(item["anchor"]) + [item["radius"], 0]) - anchor)
             preferred = np.arctan2(*(original - anchor)[::-1])
-            for extra in (0, 8 * pixels, 18 * pixels, 32 * pixels):
+            clearance_steps = ((0, 4 * pixels, 8 * pixels) if item.get("fit_label") else
+                               (0, 8 * pixels, 18 * pixels, 32 * pixels))
+            for extra in clearance_steps:
                 for step in range(24):
                     angle = preferred + step * np.pi / 12
                     direction = np.array([np.cos(angle), np.sin(angle)])
@@ -1348,7 +1350,7 @@ def _dodge_annotations(ax, annotations, style):
                 leaders.append(inverse.transform([leader_anchor, end]))
                 colors.append(text.get_color())
     if leaders:
-        ax.add_collection(LineCollection(leaders, colors=colors, linewidths=.6, alpha=.5, zorder=4),
+        ax.add_collection(LineCollection(leaders, colors=colors, linewidths=.8, alpha=.75, zorder=4),
                           autolim=False)
 
 
