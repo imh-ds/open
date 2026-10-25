@@ -8,7 +8,7 @@ predictors around one outcome, one depth at a time:
    variables not yet placed (depth 2), and so on.
 
 Each link shows how consistently it beats noise across 10 cross-validation
-folds, and how much held-out R² it carries. The result is an exploratory,
+folds, and how much held-out R² it carries. The result is a discovery-stage,
 hypothesis-generating map. Links can then be confirmed on independent data.
 
 ## Install
@@ -31,18 +31,18 @@ python -m pip install ".[lightgbm]"       # LightGBM engine
 ## Quick start
 
 Load a numeric dataset with one row per observation. `analyze` splits the rows,
-explores the network on one part, and confirms selected links on the other:
+discovers the network on one part, and confirms selected links on the other:
 
 ```python
 import pandas as pd
-from open.api import ExploreConfig, analyze, save_split
+from open.api import DiscoveryConfig, analyze, save_split
 
 data = pd.read_csv("my_study.csv")
 result = analyze(
     data,
     outcome="Y",
     predictors=["X1", "X2", "X3"],
-    config=ExploreConfig(max_depth=3),
+    config=DiscoveryConfig(max_depth=3),
     split_seed=42,
 )
 print(result.summary())
@@ -92,14 +92,14 @@ shows the depth, and grey dashed nodes are predictors that were only flagged.
   from confirmation on independent data (below).
 
 **Adjusting the graph.** Every display setting is a `GraphStyle` field. Pass
-the fields as keywords to `plot_network`, `save_exploration` or
+the fields as keywords to `plot_discovery`, `save_discovery` or
 `save_split`, or
 pass a `style=GraphStyle(...)`. Sizes are multipliers of the defaults:
 
 ```python
-from open.api import GraphStyle, plot_network
+from open.api import GraphStyle, plot_discovery
 
-plot_network(result, "network.png",
+plot_discovery(result, "network.png",
              spacing=.7,           # < 1 more compact, > 1 more spread out (nodes never overlap)
              node_size=1.2,        # circles, fit rings and interaction diamonds
              edge_width=.8,        # thickness of every edge
@@ -139,10 +139,10 @@ gradient boosting were evaluated and dropped ([docs/engines.md](docs/engines.md)
 ## Controls and covariates
 
 Variables that should be in every model, at every depth, whatever they
-predict, go in one of two arguments of `explore` or `analyze`:
+predict, go in one of two arguments of `discover` or `analyze`:
 
 ```python
-result = explore(data, outcome="Y", engine="ols",
+result = discover(data, outcome="Y", engine="ols",
                  controls=["cohort"],      # adjust only: never tested, drawn or used as a target
                  covariates=["gender"])    # also tested and drawn (tan), but never a target
 ```
@@ -160,10 +160,10 @@ Dummy-code categorical variables first.
 
 ## Confirming links
 
-Exploration and confirmation must use different data. To confirm, either split
+Discovery and confirmation must use different data. To confirm, either split
 one dataset before any analysis or use a new sample:
 
-**One dataset (N of about 1,000 or more):** split once, explore on one part and
+**One dataset (N of about 1,000 or more):** split once, discover on one part and
 confirm on the other.
 
 ```python
@@ -174,17 +174,17 @@ print(split.summary())
 save_split(split, "open-output")      # adds confirmation.csv; the graph marks confirmed links
 ```
 
-**A new sample:** explore on all of your current data, then confirm on the new
+**A new sample:** discover on all of your current data, then confirm on the new
 sample.
 
 ```python
-from open.api import confirm, explore
+from open.api import confirm, discover
 
-result = explore(data, outcome="Y", engine="ols")
+result = discover(data, outcome="Y", engine="ols")
 table = confirm(result, new_sample)     # Holm-adjusted p-values for the frozen links
 ```
 
-`confirm` tests only the links found by the exploration, adjusting for the same
+`confirm` tests only the links found during discovery, adjusting for the same
 candidate pool. It uses OLS + HC4 (calibrated from N ≥ 275) or LightGBM's
 combined GCM/PCM test (calibrated from N ≥ 300).
 

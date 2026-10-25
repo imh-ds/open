@@ -4,9 +4,9 @@ Import the common workflows from `open.api`. Short names are available for the
 most common operations:
 
 ```python
-from open.api import ExploreConfig, analyze, explore, save_split
+from open.api import DiscoveryConfig, analyze, discover, save_split
 
-result = analyze(data, outcome="Y", config=ExploreConfig(max_depth=3))
+result = analyze(data, outcome="Y", config=DiscoveryConfig(max_depth=3))
 print(result.summary())
 save_split(result, "open-output", plot=False)
 ```
@@ -15,13 +15,15 @@ save_split(result, "open-output", plot=False)
 
 | Function in `open.api` | Purpose and return value | Descriptive name, still supported |
 |---|---|---|
-| `explore` | Explore a predictive network; returns `ExploreResult` | `explore_network` |
+| `discover` | Discover a predictive network; returns `DiscoveryResult` | `explore`, `explore_network`, `discover_network` |
 | `confirm` | Test frozen links on independent data; returns a confirmation DataFrame | `confirm_network` |
 | `evaluate_fit` | Cross-validate the frozen network's predictive fit on new data; returns a fit DataFrame | `evaluate_confirmation_fit` |
-| `analyze` / `analyse` | Split data, explore and confirm; returns `SplitResult` for one outcome or `MultiOutcomeResult` for several | `explore_and_confirm` / `explore_and_confirm_outcomes` |
-| `split_sample` | Split data before analysis; returns exploration and confirmation DataFrames | `open.confirm.split_sample` |
-| `plot_network` | Draw the graph; returns a Figure, or a Path when saving to a path | `open.explore_report.plot_explore` |
-| `save_exploration` | Save exploration tables, settings, summary and optional graph; returns a Path | `open.explore_report.write_explore` |
+| `discover_and_confirm` | Split one dataset, discover on one part and confirm on the other | `explore_and_confirm` |
+| `discover_and_confirm_outcomes` | Run coordinated discovery/confirmation for several outcomes | `explore_and_confirm_outcomes` |
+| `analyze` / `analyse` | Split data, discover and confirm; returns `SplitResult` for one outcome or `MultiOutcomeResult` for several | `discover_and_confirm` / `discover_and_confirm_outcomes`; Explore-named forms remain supported |
+| `split_sample` | Split data before analysis; returns discovery and confirmation DataFrames | `open.confirm.split_sample` |
+| `plot_discovery` | Draw the discovery graph; returns a Figure, or a Path when saving to a path | `plot_network`; implementation: `open.explore_report.plot_explore` |
+| `save_discovery` | Save discovery tables, settings, summary and optional graph; returns a Path | `save_exploration`; implementation: `open.explore_report.write_explore` |
 | `save_split` | Save a `SplitResult`, including confirmation and split settings; returns a Path | `save_split_analysis` |
 | `plot_outcomes` | Draw radial facets or a combined outcome overlay; returns a Figure or Path | `open.explore_report.plot_outcomes` |
 | `save_batch` | Save all outcome analyses and aggregate tables; returns a Path | `save_multi_outcome_analysis` |
@@ -36,27 +38,27 @@ several = analyze(data, outcomes=["Y1", "Y2"])
 british_spelling = analyse(data, outcomes=["Y1", "Y2"])
 ```
 
-The longer workflow functions remain available for options specific to one
-workflow, including `include_flagged` and `correction_scope`. The shorter names
-are aliases or convenience wrappers; existing imports and behavior remain
-supported. `ExploreConfig`, `ExploreResult`, `SplitResult`, `MultiOutcomeResult`
-and `GraphStyle` are also available from `open.api`.
+The Discovery-named and Explore-named functions call the same implementations;
+the old names remain supported. The workflow functions accept options such as
+`include_flagged` and `correction_scope`. `DiscoveryConfig` / `ExploreConfig`,
+`DiscoveryResult` / `ExploreResult`, `SplitResult`, `MultiOutcomeResult` and
+`GraphStyle` are available from `open.api`.
 
-## Explore now, confirm on a new sample
+## Discover now, confirm on a new sample
 
 ```python
 from open.api import (
-    confirm, evaluate_fit, explore, save_exploration,
+    confirm, discover, evaluate_fit, save_discovery,
 )
 
-result = explore(data, outcome="Y", engine="ols")
+result = discover(data, outcome="Y", engine="ols")
 confirmation = confirm(result, new_sample)
 fit = evaluate_fit(result, new_sample)
-save_exploration(result, "confirmed-output",
-                 confirmation=confirmation, confirmation_fit=fit)
+save_discovery(result, "confirmed-output",
+               confirmation=confirmation, confirmation_fit=fit)
 ```
 
-Use data independent of exploration for both confirmation and confirmation
+Use data independent of discovery for both confirmation and confirmation
 fit. Shared groups and interactions remain explicitly untested in confirmation.
 Predictive fit is a separate cross-validation summary, not another significance
 test. See [the method](method.md#confirmation-openconfirmconfirm).
@@ -80,7 +82,7 @@ happens in `analyze`. Splitting is intended for samples of about
 ```python
 import pandas as pd
 from open.api import (
-    ExploreConfig, analyze, plot_outcomes, save_batch,
+    DiscoveryConfig, analyze, plot_outcomes, save_batch,
 )
 
 data = pd.read_csv("my_study.csv")
@@ -89,7 +91,7 @@ batch = analyze(
     data,
     outcomes=["Y1", "Y2"],
     predictors=predictors,
-    config=ExploreConfig(max_depth=3, seed=42),
+    config=DiscoveryConfig(max_depth=3, seed=42),
     split_seed=42,
     correction="holm",
     correction_scope="all_outcomes",
@@ -104,7 +106,7 @@ save_batch(batch, "multi-output", plot="facets")
 ```
 
 All selected outcomes must be numeric and have no missing values. The data is
-split once, and all outcomes use the same exploration configuration and folds.
+split once, and all outcomes use the same discovery configuration and folds.
 LightGBM confirmation and confirmation-fit folds align whenever the eligible
 complete rows match; predictor
 missingness can produce different eligible row sets. Model random streams remain
@@ -118,9 +120,9 @@ call only when its entire modeling context matches, including target, ordered
 pool, rows and values, folds, depth, controls, covariates, engine and config.
 The cache does not persist across calls. Different pools can still give the same
 upstream variable different effects.
-Each contained exploration exposes `assessment_ids`, keyed by `(depth, target)`.
+Each contained discovery exposes `assessment_ids`, keyed by `(depth, target)`.
 An ID identifies one assessment within this batch; IDs are not comparable across
-separate calls. Scalar explorations leave this mapping empty.
+separate calls. Scalar discovery runs leave this mapping empty.
 
 `correction_scope="all_outcomes"` adjusts the raw testable p-values across all
 outcome networks by default. `"per_outcome"` adjusts each network separately;
@@ -166,13 +168,13 @@ earlier outcome directories updated.
 ## Plotting and saving
 
 ```python
-from open.api import GraphStyle, plot_network, save_exploration
+from open.api import GraphStyle, plot_discovery, save_discovery
 
-plot_network(result, "network.png", style=GraphStyle(spacing=.8))
-save_exploration(result, "tables-only", plot=False)
+plot_discovery(result, "network.png", style=GraphStyle(spacing=.8))
+save_discovery(result, "tables-only", plot=False)
 ```
 
-`plot_network` draws only the graph. The save functions write tables, settings
+`plot_discovery` draws only the graph. The save functions write tables, settings
 and summary, plus a graph by default. Reusing a directory follows the
 [documented overwrite behavior](method.md#saving-and-overwriting-exports).
 By default, node labels use title case, shorten words longer than 10 characters at a
@@ -206,7 +208,7 @@ skip it.
 
 A checkmark means the link passed confirmation on independent held-out data
 after the selected multiple-testing correction. Solid/dashed lines instead
-describe exploratory fold stability. No checkmark can mean either unconfirmed
+describe discovery-stage fold stability. No checkmark can mean either unconfirmed
 or untested; the confirmation table distinguishes them. To hide the symbols
 without changing any tests or results:
 

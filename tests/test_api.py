@@ -22,19 +22,34 @@ def test_api_preserves_original_functions_and_types():
     api = importlib.import_module("open.api")
     expected = {
         "explore_network": ("open.explore", "explore"),
+        "discover": ("open.explore", "explore"),
+        "discover_network": ("open.explore", "explore"),
+        "explore": ("open.explore", "explore"),
+        "confirm": ("open.confirm", "confirm"),
         "confirm_network": ("open.confirm", "confirm"),
+        "evaluate_fit": ("open.confirm", "confirmation_fit"),
+        "analyze": ("open.api", "analyze"),
+        "analyse": ("open.api", "analyze"),
         "explore_and_confirm": ("open.confirm", "explore_and_confirm"),
+        "discover_and_confirm": ("open.confirm", "explore_and_confirm"),
         "explore_and_confirm_outcomes": ("open.multi_outcome", "explore_and_confirm_outcomes"),
+        "discover_and_confirm_outcomes": ("open.multi_outcome", "explore_and_confirm_outcomes"),
         "MultiOutcomeResult": ("open.multi_outcome", "MultiOutcomeResult"),
         "plot_outcomes": ("open.explore_report", "plot_outcomes"),
         "save_multi_outcome_analysis": ("open.explore_report", "save_multi_outcome_analysis"),
         "evaluate_confirmation_fit": ("open.confirm", "confirmation_fit"),
         "split_sample": ("open.confirm", "split_sample"),
         "plot_network": ("open.explore_report", "plot_explore"),
+        "plot_discovery": ("open.explore_report", "plot_explore"),
         "save_exploration": ("open.explore_report", "write_explore"),
+        "save_discovery": ("open.explore_report", "write_explore"),
         "save_split_analysis": ("open.explore_report", "write_split"),
+        "save_split": ("open.explore_report", "write_split"),
+        "save_batch": ("open.explore_report", "save_multi_outcome_analysis"),
         "ExploreConfig": ("open.explore", "ExploreConfig"),
+        "DiscoveryConfig": ("open.explore", "ExploreConfig"),
         "ExploreResult": ("open.explore", "ExploreResult"),
+        "DiscoveryResult": ("open.explore", "ExploreResult"),
         "SplitResult": ("open.confirm", "SplitResult"),
         "GraphStyle": ("open.explore_report", "GraphStyle"),
         "format_node_label": ("open.explore_report", "format_node_label"),
@@ -67,6 +82,7 @@ def test_split_analysis_export_workflow(data, tmp_path):
 
     split = explore_and_confirm(data, "Y", config=ExploreConfig(folds=3, max_depth=1, interactions=False), split_seed=2)
     assert isinstance(split, SplitResult)
+    assert split.discovery is split.exploration
     out = tmp_path / "split"
     assert save_split_analysis(split, out, plot=False) == out
     assert (out / "split-settings.json").is_file()

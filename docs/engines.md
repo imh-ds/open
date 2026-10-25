@@ -4,13 +4,14 @@ Decision date: 2026-10-19 (owner decision).
 
 ## Supported engines
 
-| Engine | Exploratory mode | Confirmatory p-values (Phase B) |
+| Engine | Discovery mode | Confirmatory p-values (Phase B) |
 |---|---|---|
 | OLS | Validated, N 300–1,000 | Calibrated from N ≥ 275 (OLS + HC4, Phase A′) |
 | Elastic-Net | Validated, N 300–1,000 | Not tested |
 | LightGBM | Validated; finds real effects reliably from about N = 1,000 and is the only validated engine that detects U-shaped effects | Calibrated from N ≥ 300 with the K = 10 cluster correction (G2) |
 
-`open.explore` accepts only these engines (`SUPPORTED_ENGINES`).
+`discover` and `analyze` accept only these engines (`SUPPORTED_ENGINES`;
+implemented in `open.explore`).
 
 Elastic-Net tuning fits median imputation and scaling on each inner training
 fold once, then reuses those transformed training and validation inputs for all
@@ -23,7 +24,7 @@ calls, and outer model fits still create fresh pipelines.
 Random forest, scikit-learn gradient boosting, PLS regression and support
 vector regression were evaluated and dropped. The evidence trail is in
 [dropped-engines.md](dropped-engines.md). PLS and SVR are still in the code
-(`engine="pls"`, `engine="svr"`), accepted by `explore` with a warning, but are
+(`engine="pls"`, `engine="svr"`), accepted by `discover` with a warning, but are
 not offered.
 
 ## Adding engines later

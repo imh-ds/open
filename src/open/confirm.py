@@ -511,6 +511,11 @@ class SplitResult:
         self.settings = settings
         self.fit = fit if fit is not None else pd.DataFrame(columns=CONFIRMATION_FIT_COLUMNS)
 
+    @property
+    def discovery(self) -> ExploreResult:
+        """The discovered network (alias for the established ``exploration`` attribute)."""
+        return self.exploration
+
     def summary(self) -> str:
         s = self.settings
         lines = [f"Split (seed {s['split_seed']}): explored on {s['n_explore']} rows, "
