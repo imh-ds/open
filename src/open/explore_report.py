@@ -220,6 +220,8 @@ class GraphStyle:
     - ``edge_width``: thickness of every edge.
     - ``label_size``: every text: node names, edge labels, fit values, legend.
       The default is 1.1 times the original reference size for easier reading.
+    - ``fit_label_size``: multiplier for the numeric discovery and confirmation
+      R² labels beside target nodes.
     - ``spacing``: distance between nodes. Below 1 is more compact, above 1 more
       spread out. Nodes never overlap, however small it is.
     - ``show_flagged``: draw flagged (dashed) links and the flagged-only nodes
@@ -249,6 +251,7 @@ class GraphStyle:
     node_size: float = 1.0
     edge_width: float = 1.0
     label_size: float = 1.1
+    fit_label_size: float = 1.25
     spacing: float = 1.0
     show_flagged: bool = True
     show_flagged_interactions: bool = False
@@ -263,7 +266,7 @@ class GraphStyle:
     abbreviate_node_labels: bool = True
 
     def __post_init__(self):
-        for name in ("node_size", "edge_width", "label_size", "spacing"):
+        for name in ("node_size", "edge_width", "label_size", "fit_label_size", "spacing"):
             v = getattr(self, name)
             if isinstance(v, bool) or not isinstance(v, (int, float)) or not 0 < v <= 5:
                 raise ValueError(f"{name} must be a number in (0, 5]")
@@ -966,7 +969,8 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
 
     spots = {}
     if st.dodge_nodes:                         # make room for every label on its own edge or node
-        specs = [dict(kind="node", key=("node", v), anchor=v, text=text, fontsize=7.5)
+        specs = [dict(kind="node", key=("node", v), anchor=v, text=text,
+                      fontsize=7.5 * st.fit_label_size)
                  for v, text in fit_text.items()]
         for r in links.itertuples():
             if not labelled(r.tier):
@@ -1138,17 +1142,18 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
         if v in fit_text:
             text = fit_text[v]
             if ("node", v) in spots:               # the spot reserved for it while laying out
-                artist = ax.text(*spots[("node", v)], text, fontsize=7.5 * fs, ha="center", va="center",
+                artist = ax.text(*spots[("node", v)], text, fontsize=7.5 * fs * st.fit_label_size, ha="center", va="center",
                                  color=FIT, zorder=5, path_effects=halo)
             else:
                 # on the side of the node with the most room between its edges (below if free)
                 angle = _free_angle([math.atan2(q[1] - y, q[0] - x) for q in neighbours.get(v, [])])
                 dist = rad + .2 * ns + .1 * fs
-                artist = ax.text(x + dist * math.cos(angle), y + dist * math.sin(angle), text, fontsize=7.5 * fs,
+                artist = ax.text(x + dist * math.cos(angle), y + dist * math.sin(angle), text, fontsize=7.5 * fs * st.fit_label_size,
                                  ha="center" if abs(math.cos(angle)) < .38 else ("left" if math.cos(angle) > 0 else "right"),
                                  va="center" if abs(math.sin(angle)) < .38 else ("bottom" if math.sin(angle) > 0 else "top"),
                                  color=FIT, zorder=5, path_effects=halo)
-            annotations.append(dict(text=artist, kind="node", anchor=(x, y), radius=rad + .15 * ns))
+            annotations.append(dict(text=artist, kind="node", anchor=(x, y), radius=rad + .15 * ns,
+                                    fit_label=True))
         label = _node_display_label(v, st.wrap_node_labels, st.abbreviate_node_labels)
         label_width = max(map(len, label.splitlines()))
         if is_outcome:
@@ -1309,7 +1314,8 @@ def _dodge_annotations(ax, annotations, style):
                     direction = np.array([np.cos(angle), np.sin(angle)])
                     support = (abs(direction[0]) * width + abs(direction[1]) * height) / 2
                     center = anchor + direction * (radius + support + padding + 3 * pixels + extra)
-                    candidates.append((center, anchor + direction * (radius + 2 * pixels), False))
+                    leader = anchor + direction * (radius + 2 * pixels) if item.get("fit_label") else None
+                    candidates.append((center, leader, False))
 
         blocked = np.array(obstacles).reshape(-1, 4)
         scored = []
