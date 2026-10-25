@@ -1,36 +1,46 @@
 # Python API
 
-Import the common workflows from `open.api`:
+Import the common workflows from `open.api`. Short names are available for the
+most common operations:
 
 ```python
-from open.api import ExploreConfig, explore_network, save_exploration
+from open.api import ExploreConfig, analyze, explore, save_split
 
-result = explore_network(data, outcome="Y", config=ExploreConfig(max_depth=3))
+result = analyze(data, outcome="Y", config=ExploreConfig(max_depth=3))
 print(result.summary())
-save_exploration(result, "open-output")
+save_split(result, "open-output")
 ```
 
 ## Choose the function for your task
 
-| Function in `open.api` | Purpose and return value | Existing import, still supported |
+| Function in `open.api` | Purpose and return value | Descriptive name, still supported |
 |---|---|---|
-| `explore_network` | Explore a predictive network; returns `ExploreResult` | `open.explore.explore` |
-| `confirm_network` | Test frozen links on independent data; returns a confirmation DataFrame | `open.confirm.confirm` |
-| `explore_and_confirm` | Split one dataset before exploration and confirmation; returns `SplitResult` | `open.confirm.explore_and_confirm` |
-| `explore_and_confirm_outcomes` | Coordinate several outcome networks on one split; returns `MultiOutcomeResult` | `open.multi_outcome.explore_and_confirm_outcomes` |
-| `evaluate_confirmation_fit` | Cross-validate the frozen network's predictive fit on new data; returns a fit DataFrame | `open.confirm.confirmation_fit` |
+| `explore` | Explore a predictive network; returns `ExploreResult` | `explore_network` |
+| `confirm` | Test frozen links on independent data; returns a confirmation DataFrame | `confirm_network` |
+| `evaluate_fit` | Cross-validate the frozen network's predictive fit on new data; returns a fit DataFrame | `evaluate_confirmation_fit` |
+| `analyze` / `analyse` | Split data, explore and confirm; returns `SplitResult` for one outcome or `MultiOutcomeResult` for several | `explore_and_confirm` / `explore_and_confirm_outcomes` |
 | `split_sample` | Split data before analysis; returns exploration and confirmation DataFrames | `open.confirm.split_sample` |
 | `plot_network` | Draw the graph; returns a Figure, or a Path when saving to a path | `open.explore_report.plot_explore` |
 | `save_exploration` | Save exploration tables, settings, summary and optional graph; returns a Path | `open.explore_report.write_explore` |
-| `save_split_analysis` | Save a `SplitResult`, including confirmation and split settings; returns a Path | `open.explore_report.write_split` |
+| `save_split` | Save a `SplitResult`, including confirmation and split settings; returns a Path | `save_split_analysis` |
 | `plot_outcomes` | Draw radial facets or a combined outcome overlay; returns a Figure or Path | `open.explore_report.plot_outcomes` |
-| `save_multi_outcome_analysis` | Save all outcome analyses and aggregate tables; returns a Path | `open.explore_report.save_multi_outcome_analysis` |
+| `save_batch` | Save all outcome analyses and aggregate tables; returns a Path | `save_multi_outcome_analysis` |
 
-`ExploreConfig`, `ExploreResult`, `SplitResult`, `MultiOutcomeResult` and `GraphStyle` are available
-from the same entry point. These are direct aliases: all existing arguments,
-defaults, exceptions and return types are preserved. There is no deprecation
-or migration requirement. Detailed help is shared with the original functions,
-so `help(explore_network)` displays `explore` and its existing signature.
+`analyze` accepts exactly one of `outcome` or `outcomes`. A string outcome runs
+the single-outcome workflow. A one-item list also runs that workflow; a list
+with multiple outcome names runs the coordinated multi-outcome workflow:
+
+```python
+single = analyze(data, outcome="Y")
+several = analyze(data, outcomes=["Y1", "Y2"])
+british_spelling = analyse(data, outcomes=["Y1", "Y2"])
+```
+
+The longer workflow functions remain available for options specific to one
+workflow, including `include_flagged` and `correction_scope`. The shorter names
+are aliases or convenience wrappers; existing imports and behavior remain
+supported. `ExploreConfig`, `ExploreResult`, `SplitResult`, `MultiOutcomeResult`
+and `GraphStyle` are also available from `open.api`.
 
 ## Explore now, confirm on a new sample
 

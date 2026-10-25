@@ -138,24 +138,24 @@ one dataset before any analysis or use a new sample:
 confirm on the other.
 
 ```python
-from open.api import explore_and_confirm, save_split_analysis
+from open.api import analyze, save_split
 
-split = explore_and_confirm(data, outcome="Y", engine="ols", split_seed=1)
+split = analyze(data, outcome="Y", engine="ols", split_seed=1)
 print(split.summary())
-save_split_analysis(split, "open-output")      # adds confirmation.csv; the graph marks confirmed links
+save_split(split, "open-output")      # adds confirmation.csv; the graph marks confirmed links
 ```
 
 **A new sample:** explore on all of your current data, then confirm on the new
 sample.
 
 ```python
-from open.api import confirm_network
+from open.api import confirm, explore
 
-result = explore_network(data, outcome="Y", engine="ols")
-table = confirm_network(result, new_sample)     # Holm-adjusted p-values for the frozen links
+result = explore(data, outcome="Y", engine="ols")
+table = confirm(result, new_sample)     # Holm-adjusted p-values for the frozen links
 ```
 
-`confirm_network` tests only the links found by the exploration, adjusting for the same
+`confirm` tests only the links found by the exploration, adjusting for the same
 candidate pool. It uses OLS + HC4 (calibrated from N ≥ 275) or LightGBM's
 combined GCM/PCM test (calibrated from N ≥ 300).
 
@@ -164,14 +164,14 @@ combined GCM/PCM test (calibrated from N ≥ 300).
 Use one call to coordinate separate networks on the same row split:
 
 ```python
-from open.api import explore_and_confirm_outcomes, plot_outcomes, save_multi_outcome_analysis
+from open.api import analyze, plot_outcomes, save_batch
 
-batch = explore_and_confirm_outcomes(data, outcomes=["Y1", "Y2"],
-                                     predictors=[f"X{i}" for i in range(1, 11)], split_seed=42)
+batch = analyze(data, outcomes=["Y1", "Y2"],
+                predictors=[f"X{i}" for i in range(1, 11)], split_seed=42)
 y1 = batch.by_outcome["Y1"]
 plot_outcomes(batch, path="outcome-panels.png")
 plot_outcomes(batch, layout="combined", path="outcome-overlay.png")
-save_multi_outcome_analysis(batch, "multi-output", plot=False)
+save_batch(batch, "multi-output", plot=False)
 ```
 
 Outcomes must be numeric and complete. Each network retains its own predictor
