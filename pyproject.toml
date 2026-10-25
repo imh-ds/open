@@ -8,7 +8,18 @@ version = "0.1.0.dev0"
 description = "OPEN: Outcome-centered Predictive Expansion Network, a recursive exploratory predictor-network method"
 readme = "README.md"
 authors = [{ name = "Hohjin Im" }]
+license = { file = "LICENSE" }
 requires-python = ">=3.11"
+keywords = ["predictive modeling", "network analysis", "exploratory methods"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
 dependencies = [
   "numpy>=1.24,<3",
   "pandas>=2.0,<4",
@@ -20,6 +31,12 @@ dependencies = [
 dev = ["pytest>=7.4,<9"]
 visualization = ["matplotlib>=3.9,<4"]
 lightgbm = ["lightgbm>=4,<5"]
+
+[project.urls]
+Repository = "https://github.com/imh-ds/open"
+Documentation = "https://github.com/imh-ds/open/tree/main/docs"
+Issues = "https://github.com/imh-ds/open/issues"
+Changelog = "https://github.com/imh-ds/open/blob/main/CHANGELOG.md"
 
 [tool.setuptools.packages.find]
 where = ["src"]
