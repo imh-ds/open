@@ -1333,14 +1333,27 @@ def _dodge_annotations(ax, annotations, style):
             # crossing its own edge is not a crossing
             near = np.clip(discs[:, :2], [box.x0, box.y0], [box.x1, box.y1])
             rings = np.maximum(0, discs[:, 2] - np.linalg.norm(discs[:, :2] - near, axis=1))
-            score = (int((overlaps > 1e-6).sum() + (rings > 1e-6).sum()) + int(outside > 1e-6), beside,
-                     float(overlaps.sum() + rings.sum() * box.height + max(outside, 0)))
+            outside_count = 0 if item.get("fit_label") else int(outside > 1e-6)
+            outside_area = 0 if item.get("fit_label") else max(outside, 0)
+            score = (int((overlaps > 1e-6).sum() + (rings > 1e-6).sum()) + outside_count, beside,
+                     float(overlaps.sum() + rings.sum() * box.height + outside_area))
             scored.append((score, float(np.linalg.norm(center - original)), center, leader_anchor, box))
         # crossings (the slow part) only break ties among the best spots
         top = min(row[0] for row in scored)
-        best = min((row for row in scored if row[0] == top),
-                   key=lambda row: (sum(path.intersects_bbox(row[4], filled=False) for key, path in paths
-                                        if key != own), row[1]))
+        candidates = (row for row in scored if row[0] == top)
+        if item.get("fit_label"):
+            # Prefer horizontal spots, then the side with more room in the figure.
+            best = min(candidates, key=lambda row: (
+                abs(row[2][1] - anchor[1]),
+                -min(row[4].x0 - boundary.x0, boundary.x1 - row[4].x1,
+                     row[4].y0 - boundary.y0, boundary.y1 - row[4].y1),
+                sum(path.intersects_bbox(row[4], filled=False) for key, path in paths if key != own),
+                row[1],
+            ))
+        else:
+            best = min(candidates, key=lambda row: (
+                sum(path.intersects_bbox(row[4], filled=False) for key, path in paths if key != own), row[1]
+            ))
         _, _, center, leader_anchor, box = best
         text.set_position(inverse.transform(center))
         obstacles.append(box.extents)
