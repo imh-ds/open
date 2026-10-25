@@ -49,9 +49,10 @@ print(result.summary())
 save_split(result, "open-output", plot=False)
 ```
 
-The outcome must be numeric and complete. For details and a runnable example,
-see the [quick tutorial](docs/quickstart.md). The [API guide](docs/api.md)
-covers other workflows and the longer function names, which remain supported.
+The outcome must be numeric and complete. For details and runnable examples,
+see the [OPEN field guide](docs/index.html) or its [Markdown entry point](docs/quickstart.md).
+The [API guide](docs/api.md) covers other workflows and the longer function names,
+which remain supported.
 
 **Reading the output.** The graph is a radial network: the outcome sits in
 the centre, and each target's predictors branch outwards from it. Node colour
@@ -102,15 +103,24 @@ plot_network(result, "network.png",
              spacing=.7,           # < 1 more compact, > 1 more spread out (nodes never overlap)
              node_size=1.2,        # circles, fit rings and interaction diamonds
              edge_width=.8,        # thickness of every edge
-             label_size=1.1,       # all text
+             label_size=1.1,       # all text; this is now the default
+             abbreviate_node_labels=False, # keep the full words in node names
+             wrap_node_labels=False, # keep each node name on one line
              show_flagged=False,   # hide dashed (flagged) links and flagged-only nodes
              edge_labels="kept",   # "kept", "all" or None
              label_outline="white",       # colour of the solid outline around label text
              label_outline_width=5)       # its thickness in points; 0 for none
 ```
 
-The defaults are `GraphStyle()`. `show_flagged_interactions=True` also draws
-flagged interactions, and `dpi` sets the image resolution.
+By default, graph node labels use Title Case, shorten words longer than 10 characters at a
+consonant boundary, then wrap at word boundaries to a 10-character line width.
+All words remain visible, and the full variable names remain in result tables.
+Use `format_node_label(label, max_word_length=10, max_line_length=10,
+abbr_length=5)` to apply this formatting to a string. Set
+`abbreviate_node_labels=False` to keep full words and `wrap_node_labels=False`
+to keep them on one line. `label_size` defaults to 1.1, making all graph text
+slightly larger. `show_flagged_interactions=True` also draws flagged
+interactions, and `dpi` sets the image resolution.
 
 See [docs/method.md](docs/method.md) for the full procedure and its settings.
 

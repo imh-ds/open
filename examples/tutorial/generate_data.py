@@ -58,15 +58,15 @@ def make_business_data(seed: int = BUSINESS_SEED, n: int = N) -> pd.DataFrame:
 
     return pd.DataFrame({
         "renewal_intent": renewal_intent,
-        "product_adoption": product_adoption,
-        "implementation_quality": implementation_quality,
-        "training_completion_pct": training_completion_pct.round(1),
-        "support_satisfaction": support_satisfaction,
-        "support_response_speed": support_response_speed,
-        "customer_success_contacts": customer_success_contacts,
+        "adoption": product_adoption,
+        "setup_quality": implementation_quality,
+        "training_pct": training_completion_pct.round(1),
+        "support_rating": support_satisfaction,
+        "response_speed": support_response_speed,
+        "success_contacts": customer_success_contacts,
         "price_fairness": price_fairness,
         "industry_fit": industry_fit,
-        "account_tenure_months": account_tenure_months,
+        "tenure_months": account_tenure_months,
         "company_size_log": company_size_log.round(2),
     })
 
@@ -96,31 +96,31 @@ def make_psychology_data(seed: int = PSYCHOLOGY_SEED, n: int = N) -> pd.DataFram
     wellbeing_error = 0.45 * shared_residual + np.sqrt(1 - 0.45**2) * rng.normal(size=n)
     anxiety_error = 0.45 * shared_residual + np.sqrt(1 - 0.45**2) * rng.normal(size=n)
     psychological_wellbeing = _score(
-        0.22 * _z(social_support) + 0.20 * _z(sleep_quality)
-        + 0.20 * _z(self_efficacy) + 0.13 * _z(physical_activity_hours)
-        - 0.24 * _z(perceived_stress) - 0.12 * _z(loneliness)
+        0.32 * _z(social_support) + 0.28 * _z(sleep_quality)
+        + 0.28 * _z(self_efficacy) + 0.12 * _z(physical_activity_hours)
+        - 0.32 * _z(perceived_stress) - 0.14 * _z(loneliness)
         + wellbeing_error,
         spread=1.05,
     )
     anxiety_symptoms = _score(
-        0.36 * _z(perceived_stress) + 0.20 * _z(daily_hassles)
-        + 0.13 * _z(financial_strain) + 0.15 * _z(loneliness)
-        - 0.12 * _z(sleep_quality) - 0.10 * _z(self_efficacy)
+        0.40 * _z(perceived_stress) + 0.32 * _z(daily_hassles)
+        + 0.18 * _z(financial_strain) + 0.18 * _z(loneliness)
+        - 0.20 * _z(sleep_quality) - 0.15 * _z(self_efficacy)
         + anxiety_error,
         spread=1.05,
     )
 
     return pd.DataFrame({
-        "psychological_wellbeing": psychological_wellbeing,
-        "anxiety_symptoms": anxiety_symptoms,
-        "perceived_stress": perceived_stress,
-        "daily_hassles": daily_hassles,
+        "wellbeing": psychological_wellbeing,
+        "anxiety": anxiety_symptoms,
+        "stress": perceived_stress,
+        "hassles": daily_hassles,
         "financial_strain": financial_strain,
         "social_support": social_support,
         "loneliness": loneliness,
         "sleep_quality": sleep_quality,
-        "sleep_duration_hours": sleep_duration_hours.round(2),
-        "physical_activity_hours": physical_activity_hours.round(2),
+        "sleep_hours": sleep_duration_hours.round(2),
+        "activity_hours": physical_activity_hours.round(2),
         "self_efficacy": self_efficacy,
         "age_years": age_years,
     })

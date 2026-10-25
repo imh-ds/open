@@ -37,6 +37,7 @@ def test_api_preserves_original_functions_and_types():
         "ExploreResult": ("open.explore", "ExploreResult"),
         "SplitResult": ("open.confirm", "SplitResult"),
         "GraphStyle": ("open.explore_report", "GraphStyle"),
+        "format_node_label": ("open.explore_report", "format_node_label"),
     }
     assert set(api.__all__) == set(expected)
     for name, (module, original) in expected.items():

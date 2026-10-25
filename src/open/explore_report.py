@@ -48,6 +48,7 @@ import re
 import shutil
 import stat
 import tempfile
+import textwrap
 from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import TYPE_CHECKING, Literal
@@ -218,6 +219,7 @@ class GraphStyle:
     - ``node_size``: radius of the circles (and of the fit rings and diamonds).
     - ``edge_width``: thickness of every edge.
     - ``label_size``: every text: node names, edge labels, fit values, legend.
+      The default is 1.1 times the original reference size for easier reading.
     - ``spacing``: distance between nodes. Below 1 is more compact, above 1 more
       spread out. Nodes never overlap, however small it is.
     - ``show_flagged``: draw flagged (dashed) links and the flagged-only nodes
@@ -232,6 +234,11 @@ class GraphStyle:
       room for labels: lengthen edges too short for their label, push apart
       edges whose labels collide, and spread edges that leave a node together.
       Quiet nodes stay put; coordinates are never scaled as a whole.
+    - ``wrap_node_labels``: wrap long node names over multiple lines inside
+      the node. This affects node labels only; tables and edge labels keep the
+      original text.
+    - ``abbreviate_node_labels``: format node labels by shortening long words
+      and wrapping them. The full variable names remain in results and tables.
     - ``edge_labels``: "kept" labels solid edges with their R², "all" also dashed
       ones, None labels none. The tables hold every value.
     - ``label_outline``: colour of the solid outline drawn around label text
@@ -241,7 +248,7 @@ class GraphStyle:
     """
     node_size: float = 1.0
     edge_width: float = 1.0
-    label_size: float = 1.0
+    label_size: float = 1.1
     spacing: float = 1.0
     show_flagged: bool = True
     show_flagged_interactions: bool = False
@@ -252,13 +259,16 @@ class GraphStyle:
     show_confirmation: bool = True
     dodge_labels: bool = True
     dodge_nodes: bool = True
+    wrap_node_labels: bool = True
+    abbreviate_node_labels: bool = True
 
     def __post_init__(self):
         for name in ("node_size", "edge_width", "label_size", "spacing"):
             v = getattr(self, name)
             if isinstance(v, bool) or not isinstance(v, (int, float)) or not 0 < v <= 5:
                 raise ValueError(f"{name} must be a number in (0, 5]")
-        for name in ("show_flagged", "show_flagged_interactions", "show_confirmation", "dodge_labels", "dodge_nodes"):
+        for name in ("show_flagged", "show_flagged_interactions", "show_confirmation", "dodge_labels", "dodge_nodes",
+                     "wrap_node_labels", "abbreviate_node_labels"):
             if not isinstance(getattr(self, name), bool):
                 raise ValueError(f"{name} must be True or False")
         if self.edge_labels not in ("kept", "all", None):
@@ -294,6 +304,45 @@ def _apa(v):
         return "<.001"
     text = f"{abs(v):.3f}".lstrip("0")
     return ("−" if v < 0 and text != ".000" else "") + text
+
+
+def format_node_label(label: str, max_word_length: int = 10, max_line_length: int = 10,
+                      abbr_length: int = 5) -> str:
+    """Title-case, shorten long words and wrap a graph label without dropping words."""
+    if not isinstance(label, str):
+        raise TypeError("label must be a string")
+    for name, value in (("max_word_length", max_word_length),
+                        ("max_line_length", max_line_length), ("abbr_length", abbr_length)):
+        if type(value) is not int or value < 1:
+            raise ValueError(f"{name} must be a positive integer")
+
+    vowels = set("aeiou")
+
+    def shorten(word):
+        if len(word) <= max_word_length:
+            return word
+        candidates = sorted(range(3, min(7, len(word))),
+                            key=lambda n: (abs(n - abbr_length), n))
+        for n in candidates:
+            if word[n - 1].lower() not in vowels and word[n].lower() in vowels:
+                return word[:n]
+        return word[:abbr_length]
+
+    label = re.sub(r"[_\s]+", " ", label.strip())
+    words = [shorten(word) for word in label.split()]
+    formatted = "\n".join(textwrap.wrap(" ".join(words), width=max_line_length,
+                                          break_long_words=False, break_on_hyphens=False))
+    return formatted.title()
+
+
+def _node_display_label(name: str, wrap: bool, format_label: bool) -> str:
+    """Format a graph-only label without changing its underlying variable name."""
+    if format_label:
+        formatted = format_node_label(name)
+        return formatted if wrap else " ".join(formatted.splitlines())
+    label = re.sub(r"[_\s]+", " ", str(name).strip())
+    return textwrap.fill(label, width=10, break_long_words=False,
+                         break_on_hyphens=False) if wrap else str(name)
 
 
 def _passes(pass_rate, n_folds):
@@ -1100,8 +1149,13 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
                                  va="center" if abs(math.sin(angle)) < .38 else ("bottom" if math.sin(angle) > 0 else "top"),
                                  color=FIT, zorder=5, path_effects=halo)
             annotations.append(dict(text=artist, kind="node", anchor=(x, y), radius=rad + .15 * ns))
-        size_ = 10.5 if is_outcome else (9 if len(v) <= 4 else max(6, 9 - .45 * (len(v) - 4)))
-        ax.text(x, y, v, fontsize=size_ * fs, ha="center", va="center", zorder=6,
+        label = _node_display_label(v, st.wrap_node_labels, st.abbreviate_node_labels)
+        label_width = max(map(len, label.splitlines()))
+        if is_outcome:
+            size_ = 8.0 if 9 <= label_width <= 10 else 8.5
+        else:
+            size_ = 9 if label_width <= 4 else max(6, 9 - .45 * (label_width - 4))
+        ax.text(x, y, label, fontsize=size_ * fs, ha="center", va="center", zorder=6,
                 color="white" if is_outcome else (MUTED if grey else INK),
                 fontweight="bold" if is_outcome else "normal")
 
@@ -1149,6 +1203,9 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
             (" (✓ confirmed on new data)" if verdict and st.show_confirmation else "") + ".")
     if s.get("controls"):
         note += f"\nAll links adjusted for: {', '.join(s['controls'])}."
+    if st.abbreviate_node_labels:
+        note += ("\nLong node words are shortened and wrapped; all words are retained "
+                 "and tables show the full variable names.")
     if _overlay:
         note += "\nColors identify separate outcome analyses; shared nodes do not imply a common depth or joint model."
         if any(len(r.shared_outcomes) > 1 for r in links.itertuples()):

@@ -175,6 +175,14 @@ save_exploration(result, "tables-only", plot=False)
 `plot_network` draws only the graph. The save functions write tables, settings
 and summary, plus a graph by default. Reusing a directory follows the
 [documented overwrite behavior](method.md#saving-and-overwriting-exports).
+By default, node labels use title case, shorten words longer than 10 characters at a
+consonant/vowel boundary, then wrap at word boundaries to a 10-character line
+width. No words are dropped; saved results retain the original variable names.
+Use `GraphStyle(abbreviate_node_labels=False)` to keep full words and
+`GraphStyle(wrap_node_labels=False)` to keep the display on one line. The helper
+`open.api.format_node_label(label, max_word_length=10, max_line_length=10,
+abbr_length=5)` applies the same formatting to a string. All graph text is now
+slightly larger by default (`GraphStyle(label_size=1.1)`).
 Nodes are also placed adaptively, to make room for labels rather than move
 them away. After the initial radial/spring layout, a bounded local search
 repositions crowded nodes and interaction junctions to clear nearby nodes, fit

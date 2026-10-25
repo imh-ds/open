@@ -16,6 +16,7 @@ from open.confirm import (
 from open.explore import ExploreConfig, ExploreResult, explore as explore_network
 from open.explore_report import (
     GraphStyle,
+    format_node_label,
     plot_outcomes,
     save_multi_outcome_analysis,
     plot_explore as plot_network,
@@ -105,7 +106,7 @@ def analyze(
 analyse = analyze
 
 __all__ = (
-    "ExploreConfig", "ExploreResult", "GraphStyle", "SplitResult",
+    "ExploreConfig", "ExploreResult", "GraphStyle", "SplitResult", "format_node_label",
     "explore", "confirm", "evaluate_fit", "analyze", "analyse",
     "save_split", "save_batch",
     "confirm_network", "evaluate_confirmation_fit", "explore_and_confirm",
