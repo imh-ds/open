@@ -1,8 +1,10 @@
 name: Study ablation
 # Noise-bar and recursion ablation: 3 engines x 8 core cells x datasets 0-99, arms full and nobar
 # (max_depth 3), plus depth-1 integrity reruns for datasets 0-4. One shard = 10 datasets.
-# Shard sizes and timeouts are provisional (pre-probe estimate per shard: OLS 40, Elastic-Net 70,
-# LightGBM 100 runner-minutes; timeouts 3x, owner rule): revise from the probe before running.
+# Budget from probe run 40733422382 (one dataset per cell, single-core seconds): about 1,000 runner-minutes
+# each for OLS and Elastic-Net, about 4,800 for LightGBM (its nobar networks grow deep), about 7,000 in all.
+# Heaviest 10-dataset shard at 4 workers: OLS 35, Elastic-Net 35, LightGBM 100 minutes.
+# Timeouts are 3x the pre-probe estimate (owner rule) and exceed 3x the heaviest probe shard.
 'on':
   workflow_dispatch: {}
 permissions:
