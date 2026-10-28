@@ -251,7 +251,6 @@ class GraphStyle:
     node_size: float = 1.0
     edge_width: float = 1.0
     label_size: float = 1.1
-    fit_label_size: float = 1.25
     spacing: float = 1.0
     show_flagged: bool = True
     show_flagged_interactions: bool = False
@@ -264,6 +263,7 @@ class GraphStyle:
     dodge_nodes: bool = True
     wrap_node_labels: bool = True
     abbreviate_node_labels: bool = True
+    fit_label_size: float = 1.25
 
     def __post_init__(self):
         for name in ("node_size", "edge_width", "label_size", "fit_label_size", "spacing"):
