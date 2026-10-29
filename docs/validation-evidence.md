@@ -1,6 +1,6 @@
 # Validation evidence
 
-Six simulation studies support the method. Each has a frozen script, a
+Seven simulation studies support the method. Each has a frozen script, a
 protocol, summary results in `examples/results/`, and raw outputs in a GitHub
 release.
 
@@ -134,6 +134,52 @@ OLS were unaffected.
   noise bar lets floating-point noise decide a pass; this changed one flagged
   interaction among about 115,000 links.
 
+## 7. Study ablation: noise bar and recursion
+
+`examples/results/2026-10-28-study-ablation/interpretation.md`
+
+**Design:**
+
+- Study v2's eight core cells (N 1,000 or 2,000, pool 13 or 25, linear or
+  U-shaped), datasets 0–99, three engines.
+- Discovery on the first half of each dataset, `max_depth` 3, four arms: the
+  shipped rules (`full`); the noise bar replaced by zero (`nobar`, a link
+  passes a fold when its held-out gain is above zero); and the depth-1 slices
+  of each (`norec`, `screen`).
+- 5,040 runs, every depth-1 slice checked against a `max_depth` 1 rerun
+  (0 mismatches).
+
+**Findings** (means per network over the eight cells):
+
+| Engine | Arm | False solid links | True links kept |
+|---|---|---:|---:|
+| OLS | full | 0.04 | 2.00 |
+| | no noise bar | 10.9 | 3.49 |
+| | no recursion | 0.01 | 0.92 |
+| Elastic-Net | full | 0.30 | 3.73 |
+| | no noise bar | 3.5 | 4.14 |
+| | no recursion | 0.08 | 1.62 |
+| LightGBM | full | 0.02 | 1.25 |
+| | no noise bar | 19.4 | 4.59 |
+| | no recursion | 0.01 | 0.60 |
+
+- **The noise bar is what keeps recursion safe.** Removing it at least doubles
+  false solid links in all 24 engine-by-cell combinations, and the false links
+  pile up at depth 2–3.
+- **Recursion adds true links.** The full rules keep more true links than the
+  no-recursion arm for every engine (+1.1 OLS, +2.1 Elastic-Net, +0.7
+  LightGBM per network). Depth-2–3 true links are kept in 17 of the 24
+  engine-by-cell combinations: every linear and LightGBM cell. OLS and
+  Elastic-Net keep almost none in U-shaped cells at any depth.
+- **Elastic-Net pays a small price.** With the bar on, recursion adds about
+  0.2 false solid links per network (paired interval above zero in 7 of 8
+  cells); OLS and LightGBM add none that is distinguishable from zero.
+- **Screening alone is not enough.** With neither component, 1–4 false solid
+  links per network are kept.
+
+The "no noise bar" arm is one rule (gain above zero in 80% of folds). No other
+variants were run.
+
 ## How the evidence maps to the software
 
 | Software claim | Evidence |
@@ -145,3 +191,4 @@ OLS were unaffected.
 | Split-sample confirmation of whole networks | Study 5 |
 | Comparison with simpler selection rules | Study 5 |
 | `repeats` option and the default of 1 | Study 6 |
+| Noise bar and recursion each contribute | Study 7 |
