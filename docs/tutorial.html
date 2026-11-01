@@ -5,67 +5,155 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Learn OPEN one step at a time: load data, choose an outcome, configure discovery, confirm links, read results, and extend the network.">
   <title>OPEN, step by step</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;600&family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet">
   <style>
-    :root { color-scheme: light; --ink: #182638; --muted: #526174; --blue: #075d82; --line: #d9e2eb; --wash: #f3f7fa; }
+    /* Axis design system: Light (paper) and Dark (ink) themes. */
+    :root {
+      color-scheme: light;
+      --paper: #F8F4EA; --paper-raised: #EFE9DC; --ink: #1B2236; --ink-muted: #444C61; --ink-soft: #5E667B;
+      --rule: #DDD6C7; --rule-strong: #7A8296; --signal: #DA664E; --signal-strong: #B5452F; --signal-soft: #F6B6A2;
+      --signal-tint: #FDE6DF; --blue: #5B7FD6; --blue-strong: #263F8C; --blue-tint: #E6EDFB; --on-soft: #1B2236;
+      --warm-1: #5E2A22; --warm-2: #8E4535; --warm-3: #A45B41; --warm-glow: rgba(227, 160, 127, .55);
+      --on-warm: #FFF5EA; --on-warm-accent: #FFDDB0; --focus: #5B7FD6;
+      --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+      --font-sans: "Archivo", "Aptos", "Segoe UI", Arial, sans-serif;
+      --font-mono: "IBM Plex Mono", Consolas, "Courier New", monospace;
+      --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        color-scheme: dark;
+        --paper: #3A2A26; --paper-raised: #47342F; --ink: #FAF2E8; --ink-muted: #E9DDCF; --ink-soft: #C9B8A5;
+        --rule: #5A433D; --rule-strong: #A58F87; --signal: #F4967A; --signal-strong: #F4967A; --signal-tint: #583A33;
+        --blue: #94ADEA; --blue-strong: #D3DEFB; --blue-tint: #34405E;
+        --warm-1: #41221D; --warm-2: #6C3329; --warm-3: #9A5440; --warm-glow: rgba(201, 136, 102, .5); --focus: #94ADEA;
+      }
+    }
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --paper: #3A2A26; --paper-raised: #47342F; --ink: #FAF2E8; --ink-muted: #E9DDCF; --ink-soft: #C9B8A5;
+      --rule: #5A433D; --rule-strong: #A58F87; --signal: #F4967A; --signal-strong: #F4967A; --signal-tint: #583A33;
+      --blue: #94ADEA; --blue-strong: #D3DEFB; --blue-tint: #34405E;
+      --warm-1: #41221D; --warm-2: #6C3329; --warm-3: #9A5440; --warm-glow: rgba(201, 136, 102, .5); --focus: #94ADEA;
+    }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; scroll-padding-top: 24px; }
-    body { margin: 0; background: var(--wash); color: var(--ink); font: 17px/1.75 system-ui, -apple-system, "Segoe UI", sans-serif; }
-    a { color: var(--blue); text-underline-offset: 3px; }
-    a:hover { color: #093d57; }
-    a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid #bd7912; outline-offset: 4px; }
-    .wrap { max-width: 1180px; margin: auto; padding: 0 28px; }
-    header { background: #142b40; color: white; padding: 48px 0; }
-    header a { color: #b3e7f6; }
-    header p { max-width: 740px; color: #e0ebf3; }
-    .eyebrow, .step { font-size: .8rem; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
-    .eyebrow { color: #9ed9ed; }
-    h1 { font-size: clamp(2.6rem, 5vw, 4.1rem); line-height: 1.08; margin: 12px 0 20px; }
-    h2 { font-size: 1.65rem; line-height: 1.3; margin: 8px 0 20px; }
-    h3 { font-size: 1.15rem; line-height: 1.4; margin: 28px 0 8px; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font: 300 17px/1.65 var(--font-sans); }
+    strong, b { font-weight: 500; }
+    a { color: var(--blue-strong); text-decoration-color: var(--blue); text-underline-offset: 3px; }
+    a:hover { color: var(--ink); }
+    a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+    .wrap { max-width: 1180px; margin: auto; padding: 0 32px; }
+    /* Title moment: the warm gradient, with one glow, a vignette and light grain. */
+    header, .part { position: relative; overflow: hidden; color: var(--on-warm);
+      background:
+        radial-gradient(circle at 92% 6%, var(--warm-glow) 0, transparent 42%),
+        radial-gradient(circle at 0% 100%, rgba(0, 0, 0, .28) 0, transparent 55%),
+        linear-gradient(115deg, var(--warm-1) 0%, var(--warm-2) 50%, var(--warm-3) 100%); }
+    header { padding: 64px 0 72px; }
+    header::after, .part::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .09; mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    header .wrap { position: relative; z-index: 1; }
+    header a { color: var(--on-warm); text-decoration-color: var(--on-warm-accent); }
+    header a:hover { color: var(--on-warm-accent); }
+    header p { max-width: 64ch; color: var(--on-warm); }
+    .marker { display: block; width: 48px; height: 8px; background: var(--on-warm-accent); margin-bottom: 12px; }
+    .eyebrow, .step { display: block; font: 600 12px/1.2 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; }
+    header .eyebrow, .part .eyebrow { color: var(--on-warm-accent); letter-spacing: .22em; }
+    .step { color: var(--signal-strong); }
+    .step::before { content: ""; display: block; width: 48px; height: 8px; background: var(--signal); margin-bottom: 12px; }
+    h1 { font: 400 clamp(2.4rem, 5vw, 3.6rem)/1.08 var(--font-display); letter-spacing: -.02em; margin: 16px 0 22px; }
+    h2 { font: 400 30px/1.2 var(--font-display); letter-spacing: -.015em; margin: 14px 0 20px; max-width: 30ch; }
+    h3 { font: 500 20px/1.3 var(--font-sans); margin: 32px 0 8px; }
     p { margin: 12px 0 18px; }
-    .layout { display: grid; grid-template-columns: 232px minmax(0, 1fr); gap: 34px; align-items: start; margin-top: 30px; margin-bottom: 50px; }
-    nav { position: sticky; top: 18px; max-height: calc(100vh - 36px); overflow-y: auto; padding: 8px 0 16px; font-size: .87rem; line-height: 1.5; }
-    nav strong { display: block; margin: 10px 0 7px; }
-    nav a { display: block; padding: 5px 0; text-decoration: none; }
-    main { min-width: 0; }
-    section { background: white; border: 1px solid var(--line); border-radius: 10px; padding: clamp(22px, 4vw, 38px); margin-bottom: 22px; }
-    .step { color: var(--blue); }
-    .note, .checkpoint { padding: 14px 18px; border-left: 4px solid #32829a; background: #eef7fb; margin: 22px 0; }
-    .checkpoint { border-color: #347956; background: #eff7f1; }
-    .warning { border-color: #b37a1d; background: #fff7e7; }
-    code, pre { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: .88em; }
-    code { background: #eef3f6; border-radius: 4px; padding: .12em .3em; overflow-wrap: anywhere; }
-    pre { background: #142637; color: #f1f6fa; padding: 18px; border-radius: 8px; overflow-x: auto; line-height: 1.65; margin: 16px 0; }
+    main p, main li, main dd, main dt { max-width: 72ch; }
+    .layout { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 48px; align-items: start; }
+    /* The spine: a paper-raised column carrying the contents. */
+    nav { position: sticky; top: 0; max-height: 100vh; min-height: 100vh; overflow-y: auto; margin-left: -32px; padding: 32px 20px 32px 32px;
+      font: 400 14px/1.45 var(--font-sans); background: var(--paper-raised); border-right: 1px solid var(--rule); }
+    nav strong { display: block; margin: 24px 0 8px; font: 600 11px/1.2 var(--font-mono); letter-spacing: .18em; text-transform: uppercase; color: var(--ink-soft); }
+    nav strong:first-child { margin-top: 0; }
+    nav a { display: block; padding: 5px 0; text-decoration: none; color: var(--ink-muted); }
+    nav a:hover { color: var(--signal-strong); }
+    main { min-width: 0; padding: 40px 0 64px; }
+    section { padding: 48px 0; border-top: 1px solid var(--rule); }
+    main > section:first-child { border-top: none; padding-top: 8px; }
+    /* Part dividers: the section-slide moment, with an italic serif numeral. */
+    .part { margin: 24px 0 0; padding: 56px 32px 56px 38%; min-height: 220px; }
+    .part .numeral { position: absolute; left: -10px; top: 50%; transform: translateY(-52%); font: italic 400 300px/1 var(--font-serif); color: var(--on-warm); opacity: .2; pointer-events: none; }
+    .part p { position: relative; z-index: 1; margin: 10px 0 0; font: 400 28px/1.2 var(--font-display); letter-spacing: -.015em; max-width: 24ch; }
+    .part .eyebrow { position: relative; z-index: 1; }
+    .part + section { border-top: none; }
+    /* Callouts: soft fills, no side borders, no shadows. */
+    .note, .checkpoint { padding: 16px 20px; background: var(--blue-tint); margin: 24px 0; max-width: 72ch; }
+    .note > strong:first-child, .checkpoint > strong:first-child { display: block; font: 600 12px/1.4 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 4px; color: var(--blue-strong); }
+    .checkpoint { background: var(--paper-raised); border-top: 2px solid var(--rule-strong); }
+    .checkpoint > strong:first-child { color: var(--ink); }
+    .warning { background: var(--signal-tint); }
+    .warning > strong:first-child { color: var(--signal-strong); }
+    code, pre { font-family: var(--font-mono); font-size: .86em; }
+    code { background: var(--paper-raised); padding: .1em .3em; overflow-wrap: anywhere; }
+    .note code, .checkpoint code { background: var(--paper); }
+    pre { background: var(--paper-raised); color: var(--ink); padding: 18px 20px; border-top: 2px solid var(--rule-strong); overflow-x: auto; line-height: 1.6; margin: 16px 0; }
     pre code { background: none; padding: 0; font-size: inherit; overflow-wrap: normal; }
-    pre:has(.copy) { position: relative; padding-top: 54px; }
-    .code-label { color: var(--muted); font-size: .82rem; margin: 16px 0 -10px; }
-    .copy { position: absolute; top: 12px; right: 12px; border: 1px solid #cad8e4; border-radius: 4px; background: white; color: #142637; padding: 5px 10px; cursor: pointer; }
+    pre:has(.copy) { position: relative; padding-top: 52px; }
+    .code-label { font: 400 13px/1.45 var(--font-mono); color: var(--ink-soft); margin: 24px 0 -10px; }
+    .copy { position: absolute; top: 12px; right: 12px; border: 1px solid var(--rule-strong); border-radius: 0; background: var(--paper); color: var(--ink); padding: 4px 10px; font: 400 12px var(--font-mono); letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
+    .copy:hover { border-color: var(--ink); }
     ul, ol { padding-left: 24px; }
     li { margin: 7px 0; }
+    li::marker { color: var(--signal-strong); }
     dl { margin: 18px 0; }
-    dt { font-weight: 700; margin-top: 16px; }
-    dd { margin: 4px 0 14px; }
-    details { border-top: 1px solid var(--line); margin: 22px 0 0; padding-top: 16px; }
-    summary { cursor: pointer; font-weight: 650; }
-    .table-wrap { overflow-x: auto; }
-    figure { margin: 24px 0; }
-    figure img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 6px; }
-    figcaption { color: var(--muted); font-size: .85rem; margin-top: 10px; }
-    table { width: 100%; border-collapse: collapse; font-size: .9rem; }
-    th, td { text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); padding: 10px; }
-    th { background: #edf3f7; }
-    footer { color: var(--muted); padding: 0 28px 40px; font-size: .9rem; }
-    .skip { position: absolute; top: -80px; left: 12px; padding: 10px; background: white; z-index: 2; }
+    dt { font-weight: 500; margin-top: 16px; }
+    dd { margin: 4px 0 14px; color: var(--ink-muted); }
+    details { border-top: 1px solid var(--rule); margin: 28px 0 0; padding-top: 16px; }
+    summary { cursor: pointer; font-weight: 500; }
+    summary::marker { color: var(--signal-strong); }
+    .table-wrap { overflow-x: auto; margin: 24px 0; }
+    figure { margin: 28px 0; }
+    figure img { display: block; width: 100%; height: auto; border: 1px solid var(--rule); }
+    figcaption, caption { font: 400 13px/1.45 var(--font-mono); color: var(--ink-soft); max-width: 72ch; }
+    figcaption { margin-top: 10px; }
+    caption { text-align: left; caption-side: bottom; padding-top: 10px; }
+    table { width: 100%; border-collapse: collapse; font: 300 16px/1.4 var(--font-sans); font-variant-numeric: tabular-nums; }
+    th, td { text-align: left; vertical-align: top; padding: 12px; border-bottom: 1px solid var(--rule); }
+    th { font-weight: 600; border-top: 2px solid var(--rule-strong); border-bottom: 2px solid var(--rule-strong); }
+    tbody tr:last-child td { border-bottom: 2px solid var(--rule-strong); }
+    footer { color: var(--ink-soft); padding: 24px 32px 48px; font: 400 13px/1.45 var(--font-mono); border-top: 1px solid var(--rule); }
+    .skip { position: absolute; top: -80px; left: 12px; padding: 10px; background: var(--paper); color: var(--ink); z-index: 2; }
     .skip:focus { top: 12px; }
-    @media (max-width: 860px) { .layout { grid-template-columns: 1fr; gap: 12px; } nav { position: static; max-height: none; } nav a { display: inline-block; margin-right: 16px; } .wrap { padding: 0 18px; } body { font-size: 16px; } }
+    @media (max-width: 860px) {
+      .layout { grid-template-columns: 1fr; gap: 0; }
+      nav { position: static; max-height: none; min-height: 0; margin: 0 -16px; padding: 20px 16px; border-right: none; border-bottom: 1px solid var(--rule); }
+      nav a { display: inline-block; margin-right: 16px; }
+      .wrap { padding: 0 16px; }
+      body { font-size: 16px; }
+      header { padding: 44px 0 52px; }
+      .part { padding: 40px 20px 40px 30%; min-height: 160px; }
+      .part .numeral { font-size: 200px; }
+      .part p { font-size: 22px; }
+      main { padding-top: 16px; }
+    }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-    @media print { body { background: white; font-size: 11pt; } header { background: white; color: var(--ink); padding: 10px 0; } header p, .eyebrow { color: var(--ink); } nav, .copy, .skip { display: none; } .layout { display: block; } section { border: none; border-bottom: 1px solid var(--line); padding: 18px 0; } pre { white-space: pre-wrap; background: #f3f5f7; color: black; } h2, h3 { break-after: avoid; } }
+    @media print {
+      body { background: white; font-size: 11pt; }
+      header, .part { background: white; color: var(--ink); padding: 10px 0; min-height: 0; }
+      header::after, .part::after, .part .numeral, .marker, nav, .copy, .skip { display: none; }
+      header p, header a, header .eyebrow, .part .eyebrow { color: var(--ink); }
+      .layout { display: block; }
+      section { padding: 18px 0; }
+      pre { white-space: pre-wrap; }
+      h2, h3 { break-after: avoid; }
+    }
   </style>
 </head>
 <body>
 <a class="skip" href="#before">Skip to the tutorial</a>
 <header>
   <div class="wrap">
+    <span class="marker"></span>
     <div class="eyebrow">OPEN · a guided Python tutorial</div>
     <h1>Build your first network,<br>one step at a time.</h1>
     <p>Start with one question. Add a few lines, understand what they do, and inspect the result before moving on. Continue to recursive networks for well-being and anxiety, then compare them in a combined graph.</p>
@@ -112,6 +200,8 @@
   <div class="note"><strong>Five figures in this version:</strong> <a href="#plot">1. First-layer business network</a> · <a href="#depth">2. Recursive business network</a> · <a href="#wellbeing">3. Well-being network</a> · <a href="#anxiety">4. Anxiety network</a> · <a href="#overlay">5. Combined outcome network</a>. Each figure appears alongside the code and explanation for that stage.</div>
   <p>The runnable companion, <a href="../examples/tutorial/step_by_step.py" download>step_by_step.py</a>, collects the Python from steps 2–17 in order. Read the steps first if you want to understand each decision.</p>
 </section>
+
+<div class="part" role="presentation"><span class="numeral" aria-hidden="true">1</span><span class="eyebrow">Part 1 · steps 01–12</span><p>Your first analysis, one decision at a time</p></div>
 
 <section id="install">
   <span class="step">Step 01</span>
@@ -391,6 +481,8 @@ print(deeper_result.discovery.stops)</code></pre>
   <div class="checkpoint"><strong>Next: use the full two-outcome example.</strong> You now know the basic workflow and recursion. Continue through steps 13–17 to build, interpret, compare, and save the well-being and anxiety networks.</div>
 </section>
 
+<div class="part" role="presentation"><span class="numeral" aria-hidden="true">2</span><span class="eyebrow">Part 2 · steps 13–17</span><p>Two outcomes, two networks, one combined view</p></div>
+
 <section id="outcomes">
   <span class="step">Step 13 · build the two-outcome analysis</span>
   <h2>Ask two related questions in the same participants</h2>
@@ -515,6 +607,8 @@ per_outcome_batch = discover_and_confirm_outcomes(
     <p><code>analyze</code> does not accept <code>correction_scope</code>. Per-outcome adjustment does not account for testing across the whole batch. Both workflows support <code>correction="bh"</code> as an alternative to Holm, but choosing BH does not establish FDR control under arbitrary dependence among outcomes. State the chosen test family and adjustment.</p>
   </details>
 </section>
+
+<div class="part" role="presentation"><span class="numeral" aria-hidden="true">3</span><span class="eyebrow">Part 3 · optional lessons</span><p>Then change one thing and see what moves</p></div>
 
 <section id="roles">
   <span class="step">Optional · variable roles</span>
@@ -675,7 +769,7 @@ new_fit = evaluate_fit(study_network, new_data)</code></pre>
 </section>
 </main>
 </div>
-<footer class="wrap">OPEN is research software. Tutorial data are simulated. This page runs locally without external scripts, fonts, or services.</footer>
+<footer class="wrap">OPEN is research software. Tutorial data are simulated. This page runs locally without external scripts or services; its fonts load from Google Fonts when online and fall back to system fonts otherwise.</footer>
 <script>
   document.querySelectorAll('pre:has(code.language-python), pre:has(code.language-shell)').forEach(pre => {
     const button = document.createElement('button');
