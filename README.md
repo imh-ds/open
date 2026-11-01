@@ -11,6 +11,8 @@ Each link shows how consistently it beats noise across 10 cross-validation
 folds, and how much held-out R² it carries. The result is a discovery-stage,
 hypothesis-generating map. Links can then be confirmed on independent data.
 
+**New to OPEN?** Start with the [step-by-step tutorial](docs/tutorial.md) (styled page: [docs/tutorial.html](docs/tutorial.html)).
+
 ## Install
 
 Clone the repository and install the core package:
