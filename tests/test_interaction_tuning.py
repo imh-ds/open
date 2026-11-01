@@ -6,9 +6,9 @@ from sklearn.impute import SimpleImputer
 from sklearn.linear_model import Ridge
 from sklearn.model_selection import GridSearchCV, KFold
 
-from open.explore import ExploreConfig, explore
-from open import pair_validation as implementation
-from open.pair_validation import PairValidationConfig, SplinePairFeatures, _estimator, _tune
+from opennet.explore import ExploreConfig, explore
+from opennet import pair_validation as implementation
+from opennet.pair_validation import PairValidationConfig, SplinePairFeatures, _estimator, _tune
 
 
 def _data(n=91):

@@ -3,7 +3,7 @@
 import numpy as np
 import pytest
 
-from open.confirm import hc4_pvalues
+from opennet.confirm import hc4_pvalues
 
 
 @pytest.mark.parametrize("case,reason", [

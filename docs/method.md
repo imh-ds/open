@@ -1,6 +1,6 @@
 # The OPEN method
 
-## Exploration (`open.explore.explore`)
+## Discovery (`opennet.api.discover`; implemented in `opennet.explore.explore`)
 
 **1. Folds.** The rows are split into `folds` (default 10) once, with a fixed
 seed. Every regression in the network uses the same folds.
@@ -12,7 +12,7 @@ seed. Every regression in the network uses the same folds.
 - The R × 10 folds are pooled: one noise bar over all of them, and the tiers
   use the share of the R × 10 folds passed.
 - Repeat 0 is exactly the `repeats=1` analysis.
-- It multiplies the exploration time by R.
+- It multiplies the discovery time by R.
 - **What it does (study v2-R):** pooling measures each link's pass rate more
   precisely, so the 80% rule becomes a sharper cut-off.
   - False dotted links fall by half or more, false solid links fall further,
@@ -90,7 +90,7 @@ candidate.
   pool is empty, or `max_depth` is reached. Kept covariates remain reported
   but do not extend recursion.
 
-**Controls and covariates** (`explore(..., controls=..., covariates=...)`).
+**Controls and covariates** (`discover(..., controls=..., covariates=...)`).
 
 - **Controls** are in every target's model at every depth. They are never left
   out, tested, given a noise copy, drawn or used as targets. Every contrast is
@@ -119,32 +119,32 @@ Interaction features use this same fallback for both real and noise columns.
 Observed held-out values are retained when transformed, and never determine
 the training imputation value, centering, scaling, spline knots or projection.
 
-## Confirmation (`open.confirm.confirm`)
+## Confirmation (`opennet.confirm.confirm`)
 
 Testing links on the data that selected them inflates their significance, so
 confirmation always uses independent data:
 
 - **One dataset:** split it at random before any analysis (50/50 or 60/40), and
-  record the seed. Explore on one part and confirm on the other. This suits
+  record the seed. Discover on one part and confirm on the other. This suits
   N ≥ about 1,000; below that, both parts lose power.
-- **Smaller samples:** explore on all the data and confirm in a new sample.
+- **Smaller samples:** discover on all the data and confirm in a new sample.
 
 **In code:**
 
-- `open.confirm.split_sample(data, explore_fraction, seed)` returns the two
+- `opennet.confirm.split_sample(data, explore_fraction, seed)` returns the two
   parts.
-- `open.confirm.explore_and_confirm(data, outcome, ..., split_seed=...)` runs
-  the whole procedure and returns the exploration, the confirmation table and
+- `opennet.api.discover_and_confirm(data, outcome, ..., split_seed=...)` runs
+  the whole procedure and returns the discovery, the confirmation table and
   the split settings.
-- `open.explore_report.write_split` saves them.
-- With a new sample, call `open.confirm.confirm(result, new_sample)`.
+- `save_split` saves them.
+- With a new sample, call `opennet.confirm.confirm(result, new_sample)`.
 
 **Procedure:**
 
-1. **Freeze.** The exploratory network's kept links (or kept and flagged, with
+1. **Freeze.** The discovery-stage network's kept links (or kept and flagged, with
    `include_flagged=True`) are frozen, together with the candidate pool each
-   target was explored with.
-2. **Fit, don't explore.** On the confirmation data, each frozen target is
+   target was analyzed with during discovery.
+2. **Fit, don't discover.** On the confirmation data, each frozen target is
    fitted on its saved pool, and only the frozen links are tested. The recursion
    is not re-run.
 3. **Tests:**
@@ -152,11 +152,11 @@ confirmation always uses independent data:
    - **LightGBM:** the combined GCM/PCM test (Bonferroni of the two), with
      K = 10 cross-fitting folds and fold-cluster variance on a t(9) reference.
      Calibrated from N ≥ 300.
-   - Networks explored with Elastic-Net are confirmed with OLS + HC4.
+   - Networks discovered with Elastic-Net are confirmed with OLS + HC4.
 4. **Multiple testing:** p-values are adjusted across the frozen links with
    Holm (default) or Benjamini–Hochberg.
 5. **Not yet tested:** shared groups and interactions are listed as not tested,
-   because no calibrated test exists for them yet. They remain exploratory
+   because no calibrated test exists for them yet. They remain discovery-stage
    results, even after confirmation.
 
 **Constant confirmation targets.** If a target has exactly the same value in
@@ -192,23 +192,23 @@ in a recursive network. Nonempty nuisance designs retain the frozen Phase B
 implementation. This software support does not expand the empirically
 calibrated study range.
 
-**Why LightGBM uses different settings in exploration and confirmation.**
+**Why LightGBM uses different settings in discovery and confirmation.**
 
-- **Exploration** refits the engine many times per target: every fold, every
+- **Discovery** refits the engine many times per target: every fold, every
   left-out column and every noise column. It uses a fast LightGBM (100 trees,
   a 4-point tuning grid), whose behaviour was checked in the validation study.
 - **Confirmation** must use exactly the configuration whose p-values were
   calibrated in Phase B (F3: up to 1,000 trees with early stopping). Changing it
   would lose that calibration.
-- Using F3 in exploration would multiply its runtime. Each setting is the one
+- Using F3 in discovery would multiply its runtime. Each setting is the one
   validated for its job.
 
 ## Coordinating multiple outcomes
 
-`open.api.explore_and_confirm_outcomes` runs one independent recursive network
-per selected numeric outcome on a shared exploration/confirmation split. It
+`opennet.api.discover_and_confirm_outcomes` runs one independent recursive network
+per selected numeric outcome on a shared discovery/confirmation split. It
 excludes other selected outcomes from each predictor pool. Each network keeps
-its own recursion state. Exploration fold assignments are shared; LightGBM
+its own recursion state. Discovery fold assignments are shared; LightGBM
 confirmation and confirmation-fit folds are keyed to stable row positions, so matching
 eligible row sets receive the same folds. Different eligible sets receive
 reproducible folds. Target-specific model/randomization sub-seeds are retained.
@@ -288,27 +288,32 @@ nonlinear engines.
 OPEN instead reports **predictive fit**, the counterpart of node predictability
 in network analysis:
 
-- **Exploration** (`result.fit`, `fit.csv`). For each explored target:
+- **Discovery** (`result.fit`, `fit.csv`). For each target evaluated during
+  discovery:
   - *network R²:* held-out R² from its kept predictors, the solid lines;
   - *pool R²:* held-out R² from all its candidates;
   - *share:* the network R² as a share of the pool R².
 
-  Both are computed on the exploration folds, with the engine tuned once per
+  Both are computed on the discovery folds, with the engine tuned once per
   fold on the whole pool. The network R² is optimistic, because the same data
   chose the predictors.
-- **Confirmation** (`open.confirm.confirmation_fit`, `SplitResult.fit`,
+- **Confirmation** (`opennet.confirm.confirmation_fit`, `SplitResult.fit`,
   `confirmation-fit.csv`). The same R²s on independent data. Each target's
   kept predictors are re-fitted by 10-fold cross-validation within the new
   data, so the predictors were chosen elsewhere and the network R² carries no
   selection bias. This is the closest analogue of "the model fits new data".
 
-In the graph, a green ring around each explored target is filled in
-proportion to its network R², with the value printed below it ("R² .27 new .29"
-when confirmed).
+In the graph, a green ring around each target evaluated during discovery is
+filled in proportion to its discovery network R². With confirmation fit available,
+the adjacent label uses `R² (D/C): D / C`, where D is discovery cross-validated
+fit and C is confirmation cross-validated fit. The graph key explains this by
+default; `GraphStyle` can hide the key, explanatory footnote, or title, and can
+increase the fit-label size independently.
+In prose and text summaries, write `R²_D/C = D / C` for the same ordered pair.
 
 ## Saving and overwriting exports
 
-`write_explore` and `write_split` can reuse an output directory. Each export
+`save_discovery` and `save_split` can reuse an output directory. Each export
 replaces the generated tables, settings and summary. `links.csv` includes its
 column headers even when there are no links. Optional files absent from the new
 export are removed: `confirmation.csv`, `confirmation-fit.csv`, `network.png`
@@ -335,7 +340,7 @@ writers, or protection against a process crash during publication.
   and its pool.
 - **Validated range:**
   - The validation studies cover 10–25 candidates, depth up to 3, and
-    exploration samples of 300–1,000.
+    discovery samples of 300–1,000.
   - They include independent, correlated (including noisy copies of true
     predictors), skewed and 5-point Likert predictors, with linear and curved
     effects.

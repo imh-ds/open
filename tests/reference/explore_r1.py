@@ -13,9 +13,9 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import KFold
 
-from open.dependence.spearman import score_dependence
-from open.learners import make_predictor
-from open.learners.base import Predictor
+from opennet.dependence.spearman import score_dependence
+from opennet.learners import make_predictor
+from opennet.learners.base import Predictor
 
 NOISE_PREFIX = "__noise__"
 # Engines validated for exploratory mode (validation study run 39184696821).
@@ -281,7 +281,7 @@ def _interactions(Xo, yo, fold_o, active, candidates, noise_of, depth, target, c
     """
     from sklearn.linear_model import RidgeCV
     from sklearn.preprocessing import StandardScaler
-    from open.pair_validation import PairValidationConfig, _tune
+    from opennet.pair_validation import PairValidationConfig, _tune
     real = []
     for a in active:
         for c in candidates:

@@ -1,4 +1,4 @@
-"""Tables and graph for exploratory-mode results (C3, C6).
+"""Tables and graph for discovery-mode results (C3, C6).
 
 ``write_explore`` saves the result tables, settings, a text summary and the
 network graph. ``plot_explore`` draws the graph as a radial tree:
@@ -10,9 +10,9 @@ network graph. ``plot_explore`` draws the graph as a radial tree:
 - solid edges for kept links and dashed edges for flagged links, with widths
   scaled by held-out R² lost and labelled with it (a check mark when the link
   was confirmed on new data);
-- around each explored target, a ring filled in proportion to its network
-  fit: held-out R² from its kept predictors (and, with confirmation, the
-  cross-validated R² on the new data, as text);
+- around each target evaluated during discovery, a ring filled in proportion
+  to its network fit: held-out R² from its kept predictors (and, with
+  confirmation, ``R² (D/C): D / C`` as text);
 - shared (substitute) groups as a blue band joining their members, with one
   edge to the target;
 - interactions as a fork: solid orange lines from the two predictors meet in a
@@ -56,11 +56,11 @@ from typing import TYPE_CHECKING, Literal
 import numpy as np
 import pandas as pd
 
-from open.explore import ExploreResult
+from opennet.explore import ExploreResult
 
 if TYPE_CHECKING:
     from matplotlib.figure import Figure
-    from open.multi_outcome import MultiOutcomeResult
+    from opennet.multi_outcome import MultiOutcomeResult
 
 
 def write_explore(result: ExploreResult, out_dir, *, plot: bool = True,
@@ -72,9 +72,9 @@ def write_explore(result: ExploreResult, out_dir, *, plot: bool = True,
     ``style`` and ``settings`` (``GraphStyle`` fields such as ``spacing`` or
     ``show_flagged``) control the graph; see ``plot_explore``.
 
-    With ``confirmation`` (from ``open.confirm.confirm``), also save it as
+    With ``confirmation`` (from ``opennet.confirm.confirm``), also save it as
     ``confirmation.csv`` and mark confirmed links in the graph. With
-    ``confirmation_fit`` (from ``open.confirm.confirmation_fit``), save it as
+    ``confirmation_fit`` (from ``opennet.confirm.confirmation_fit``), save it as
     ``confirmation-fit.csv`` and show it with each target's network fit.
 
     Reusing a directory replaces generated files and removes optional artifacts
@@ -86,7 +86,7 @@ def write_explore(result: ExploreResult, out_dir, *, plot: bool = True,
 
 
 def write_split(split, out_dir, *, plot: bool = True, style: "GraphStyle | None" = None, **settings) -> Path:
-    """Save exploration, confirmation and split settings with overwrite recovery.
+    """Save discovery, confirmation and split settings with overwrite recovery.
 
     See ``write_explore`` for directory reuse behavior.
     """
@@ -243,6 +243,9 @@ class GraphStyle:
       and wrapping them. The full variable names remain in results and tables.
     - ``edge_labels``: "kept" labels solid edges with their R², "all" also dashed
       ones, None labels none. The tables hold every value.
+    - ``show_title``: draw the graph title.
+    - ``show_r2_legend``: explain the ``R² (D/C)`` pair beside the graph.
+    - ``show_footnote``: draw the explanatory graph footnote.
     - ``label_outline``: colour of the solid outline drawn around label text
       (edge labels, fit values, interaction pairs), any matplotlib colour.
     - ``label_outline_width``: thickness of that outline in points; 0 turns it off.
@@ -264,6 +267,9 @@ class GraphStyle:
     wrap_node_labels: bool = True
     abbreviate_node_labels: bool = True
     fit_label_size: float = 1.25
+    show_title: bool = True
+    show_r2_legend: bool = True
+    show_footnote: bool = True
 
     def __post_init__(self):
         for name in ("node_size", "edge_width", "label_size", "fit_label_size", "spacing"):
@@ -271,7 +277,8 @@ class GraphStyle:
             if isinstance(v, bool) or not isinstance(v, (int, float)) or not 0 < v <= 5:
                 raise ValueError(f"{name} must be a number in (0, 5]")
         for name in ("show_flagged", "show_flagged_interactions", "show_confirmation", "dodge_labels", "dodge_nodes",
-                     "wrap_node_labels", "abbreviate_node_labels"):
+                     "wrap_node_labels", "abbreviate_node_labels", "show_title", "show_r2_legend",
+                     "show_footnote"):
             if not isinstance(getattr(self, name), bool):
                 raise ValueError(f"{name} must be True or False")
         if self.edge_labels not in ("kept", "all", None):
@@ -902,7 +909,7 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
     ``style`` is a ``GraphStyle``; ``settings`` override its fields, so
     ``plot_explore(result, spacing=.8, node_size=1.2, show_flagged=False)`` works
     without building one. With ``confirmation`` / ``confirmation_fit`` (from
-    ``open.confirm``), confirmed links get a check mark and targets their R² on
+    ``opennet.confirm``), confirmed links get a check mark and targets their R² on
     the new data.
     """
     st = _style(style, settings)
@@ -939,7 +946,8 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
     covariates = set(result.settings.get("covariates", ()))
     new = ({r.target: r.r2_network for r in confirmation_fit.itertuples() if pd.notna(r.r2_network)}
            if confirmation_fit is not None else {})
-    fit_text = {v: f"R² {_apa(fit[v])}" + (f"  new {_apa(new[v])}" if v in new else "")
+    fit_text = {v: (f"R$^2$ (D/C): {_apa(fit[v])} / {_apa(new[v])}" if v in new
+                    else f"R$^2$ (D): {_apa(fit[v])}")
                 for v in fit if sizes.get(v, 0) > 0}
     if _overlay:
         fit_text = dict(_overlay["fit_labels"])
@@ -1168,8 +1176,9 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
     split = f", {s['folds']} folds × {s['repeats']} repeats" if s.get("repeats", 1) > 1 else ""
     title = (f"Separate predictive networks  ·  {s['engine']}, N = {s['n']}" if _overlay else
              f"{s['outcome']}  ·  {s['engine']}, N = {s['n']}{split}")
-    ax.set_title(title, fontsize=13 * fs, color=INK, pad=12,
-                 loc="center")
+    if st.show_title:
+        ax.set_title(title, fontsize=13 * fs, color=INK, pad=12,
+                     loc="center")
     handles = [Line2D([], [], color=KEPT, lw=2.5, label=f"kept (≥ {s['keep']:.0%} of folds)")]
     if st.show_flagged:
         handles.append(Line2D([], [], color=_soft(KEPT), lw=2.5, ls=(0, (4, 2.5)),
@@ -1223,12 +1232,18 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
     if axes is not None:
         return fig
     fig.tight_layout()
-    fig.canvas.draw()                              # place the footnote just below the legend
+    fig.canvas.draw()                              # place optional notes below the graph legend
     if st.dodge_labels:
         _dodge_annotations(ax, annotations, st)
     box = legend.get_window_extent().transformed(fig.transFigure.inverted())
-    fig.text(.5, box.y0 - .012, note, ha="center", va="top", fontsize=8 * fs, color=MUTED,
-             linespacing=1.5)
+    note_y = box.y0 - .012
+    if st.show_r2_legend and new:
+        fig.text(.5, note_y, r"$R^2$ (D/C): Discovery / Confirmation cross-validated fit",
+                 ha="center", va="top", fontsize=8.5 * fs, color=FIT)
+        note_y -= .024
+    if st.show_footnote:
+        fig.text(.5, note_y, note, ha="center", va="top", fontsize=8 * fs, color=MUTED,
+                 linespacing=1.5)
     if path is not None:
         # a tight box keeps the title, legend and footnote inside the image at any label size
         fig.savefig(path, dpi=st.dpi, facecolor="white", bbox_inches="tight", pad_inches=.3)
@@ -1408,12 +1423,20 @@ def plot_outcomes(result: MultiOutcomeResult, layout: Literal["facets", "combine
                           confirmation_fit=split.fit, style=panel_style, axes=ax)
         for ax in list(axes.flat)[count:]:
             fig.delaxes(ax)
-        fig.suptitle("Separate predictive outcome networks", fontsize=15 * st.label_size)
-        fig.subplots_adjust(top=.91, bottom=.14, hspace=.42, wspace=.2)
-        fig.text(.5, .035, "Each panel has its own root and depth ordering. Arrows show prediction, not causation.\n"
-                 "Edge labels: held-out ΔR² and folds passed. " +
-                 ("✓ marks confirmation. " if st.show_confirmation else "") + "Node rings show held-out R².",
-                 ha="center", fontsize=9 * st.label_size, color=MUTED)
+        if st.show_title:
+            fig.suptitle("Separate predictive outcome networks", fontsize=15 * st.label_size)
+        has_confirmation_fit = ("r2_network" in result.fit and result.fit.r2_network.notna().any())
+        show_fit_key = st.show_r2_legend and has_confirmation_fit
+        bottom = .18 if st.show_footnote and show_fit_key else .14 if st.show_footnote else .10 if show_fit_key else .04
+        fig.subplots_adjust(top=.91 if st.show_title else .98, bottom=bottom, hspace=.42, wspace=.2)
+        if show_fit_key:
+            fig.text(.5, .075, r"$R^2$ (D/C): Discovery / Confirmation cross-validated fit",
+                     ha="center", fontsize=8.5 * st.label_size, color=FIT)
+        if st.show_footnote:
+            fig.text(.5, .035, "Each panel has its own root and depth ordering. Arrows show prediction, not causation.\n"
+                     "Edge labels: held-out ΔR² and folds passed. " +
+                     ("✓ marks confirmation. " if st.show_confirmation else "") + "Node rings show held-out R².",
+                     ha="center", fontsize=9 * st.label_size, color=MUTED)
         if st.dodge_labels:
             fig.canvas.draw()
             for ax in fig.axes:
@@ -1498,7 +1521,8 @@ def _plot_outcome_overlay(result, st):
         new = {r.target: r.r2_network for r in split.fit.itertuples() if pd.notna(r.r2_network)}
         for r in exploration.fit.itertuples():
             if r.network_size > 0:
-                text = f"R² {_apa(r.r2_network)}" + (f"  new {_apa(new[r.target])}" if r.target in new else "")
+                text = (f"R$^2$ (D/C): {_apa(r.r2_network)} / {_apa(new[r.target])}" if r.target in new
+                        else f"R$^2$ (D): {_apa(r.r2_network)}")
                 labels.setdefault(r.target, []).append((outcome, text))
     fit_labels = {}
     for target, rows in labels.items():

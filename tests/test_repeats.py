@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from open.explore import ExploreConfig, assess_target, explore
+from opennet.explore import ExploreConfig, assess_target, explore
 from reference import explore_r1 as original
 
 

@@ -6,9 +6,9 @@ import numpy as np
 from sklearn.model_selection import GridSearchCV, ParameterGrid
 from sklearn.pipeline import Pipeline
 
-from open.learners.base import Predictor
-from open.learners.elastic_net import _materialize_cv
-from open.preprocessing import make_preprocessor
+from opennet.learners.base import Predictor
+from opennet.learners.elastic_net import _materialize_cv
+from opennet.preprocessing import make_preprocessor
 
 GRID = {"num_leaves": [7, 15], "learning_rate": [.05, .1]}
 
@@ -39,7 +39,7 @@ class LightGBMPredictor(Predictor):
         try:
             from lightgbm import LGBMRegressor
         except ImportError as exc:
-            raise ImportError("lightgbm engine unavailable; install 'open-predictive-expansion[lightgbm]'") from exc
+            raise ImportError("lightgbm engine unavailable; install 'opennet[lightgbm]'") from exc
         estimator = LGBMRegressor(n_estimators=100, min_child_samples=5, random_state=self.random_seed,
                                   n_jobs=1, verbosity=-1, deterministic=True, force_col_wise=True, **params)
         preprocessor = make_preprocessor(self.preprocessing_config)

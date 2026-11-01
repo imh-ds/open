@@ -24,7 +24,7 @@ import numpy as np
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
-from open.explore import tier  # noqa: E402
+from opennet.explore import tier  # noqa: E402
 
 KEEP = (.7, .8, .9)
 FLAG = (.4, .5)

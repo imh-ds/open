@@ -91,7 +91,7 @@ def test_comparators_follow_the_recursion():
 
 
 def test_designed_link_into_an_unexplored_target_is_not_tested():
-    from open.explore import ExploreResult
+    from opennet.explore import ExploreResult
     folds = pd.DataFrame(dict(depth=[1, 1], target=["Y", "Y"], contrast="unique", noise=False,
                               source=["A", "B"]))
     links = pd.DataFrame(dict(depth=[1, 1], target=["Y", "Y"], source=["A", "B"], kind="unique",

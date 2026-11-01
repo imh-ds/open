@@ -6,9 +6,9 @@ from sklearn.impute import SimpleImputer
 from sklearn.linear_model import ElasticNet
 from sklearn.model_selection import GridSearchCV, KFold
 
-from open.explore import ExploreConfig, explore
-from open.learners.elastic_net import ALPHA_GRID, L1_RATIO_GRID, ElasticNetPredictor
-from open.learners import elastic_net as implementation
+from opennet.explore import ExploreConfig, explore
+from opennet.learners.elastic_net import ALPHA_GRID, L1_RATIO_GRID, ElasticNetPredictor
+from opennet.learners import elastic_net as implementation
 
 
 def _reference_search(model, X, y, cv):

@@ -17,7 +17,7 @@ repository or its archive ([provenance.md](provenance.md)); none is offered.
 - **Redundant with LightGBM.** All three are tree ensembles and capture the
   same effects: curves, thresholds and interactions. LightGBM is itself a
   gradient-boosting implementation, and it is faster.
-- **Not validated for exploratory mode.** Neither was part of the exploratory
+- **Not validated for discovery mode.** Neither was part of the discovery-stage
   validation study (run 39184696821); both were too slow for it.
 - **Confirmatory p-values (Phase B, run 39144406136;
   [write-up](../examples/results/2026-10-18-phase-b-local-detector/interpretation.md)).**
@@ -102,7 +102,7 @@ study shows SVR beats the linear engines there, not that it beats LightGBM.
 
 ## Re-adding an engine
 
-An engine is added again only after it passes the same exploratory validation
+An engine is added again only after it passes the same discovery-stage validation
 study (`examples/exploratory_validation.py`, run for that engine alone), and
 after a Phase B-style calibration check if it is to be offered for confirmatory
 p-values. For PLS, a test at p ≥ n would also be needed.

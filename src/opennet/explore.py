@@ -1,4 +1,4 @@
-"""Exploratory mode: depth-by-depth recursion with fold-level noise tests.
+"""Discovery mode: depth-by-depth recursion with fold-level noise tests.
 
 See explore_report for tables and the graph.
 
@@ -38,12 +38,12 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import KFold
 
-from open.dependence.spearman import score_dependence
-from open.learners import make_predictor
-from open.learners.base import Predictor
+from opennet.dependence.spearman import score_dependence
+from opennet.learners import make_predictor
+from opennet.learners.base import Predictor
 
 NOISE_PREFIX = "__noise__"
-# Engines validated for exploratory mode (validation study run 39184696821).
+# Engines validated for discovery mode (validation study run 39184696821).
 # Random forest and sklearn gradient boosting were dropped on 2026-10-19; see
 # docs/engines.md. New engines are added only after they pass
 # the same validation study.
@@ -112,9 +112,9 @@ class ExploreResult:
     stops: dict
     settings: dict
     fit: pd.DataFrame = field(default_factory=lambda: pd.DataFrame(columns=FIT_COLUMNS))
-    # network fit per explored target: held-out R² from its kept predictors and from its whole pool
+    # network fit per target evaluated during discovery: held-out R² from its kept predictors and whole pool
     # Call-local provenance: identical IDs identify one actual cached assessment.
-    # Scalar exploration has no shared cache and leaves this mapping empty.
+    # Scalar discovery has no shared cache and leaves this mapping empty.
     assessment_ids: dict[tuple[int, str], str] = field(default_factory=dict)
 
     def summary(self) -> str:
@@ -146,10 +146,10 @@ class ExploreResult:
         if shown.empty:
             lines.append("No link reached the flagged tier.")
         if len(self.fit):
-            lines.append("Network fit (held-out R2 from the kept predictors, and from all candidates):")
+            lines.append("Discovery network fit (cross-validated R2 from kept predictors and all candidates):")
             for _, r in self.fit.iterrows():
                 share = f" ({r.share_of_pool:.0%} of the pool's)" if np.isfinite(r.share_of_pool) else ""
-                lines.append(f"  {r.target}: {r.r2_network:.3f} from {r.network_size} predictor(s), "
+                lines.append(f"  {r.target}: R²_D = {r.r2_network:.3f} from {r.network_size} predictor(s), "
                              f"{r.r2_pool:.3f} from all {r.pool_size}{share}")
         hidden = int((self.links.tier == "hidden").sum()) if len(self.links) else 0
         if hidden:
@@ -170,7 +170,7 @@ def tier(rate: float, keep: float, flag: float) -> str:
 def _predictor(engine, outcome: str, seed: int) -> Predictor:
     name = engine.engine_name if isinstance(engine, Predictor) else engine
     if name not in SUPPORTED_ENGINES + EXPERIMENTAL_ENGINES + BACKEND_ENGINES:
-        raise ValueError(f"engine {name!r} is not validated for exploratory mode; "
+        raise ValueError(f"engine {name!r} is not validated for discovery mode; "
                          f"use one of {SUPPORTED_ENGINES}")
     if isinstance(engine, Predictor):
         return engine
@@ -402,7 +402,7 @@ def _interactions(Xo, yo, fold_o, active, candidates, noise_of, depth, target, c
     """
     from sklearn.linear_model import RidgeCV
     from sklearn.preprocessing import StandardScaler
-    from open.pair_validation import PairValidationConfig, _tune
+    from opennet.pair_validation import PairValidationConfig, _tune
     real = []
     for a in active:
         for c in candidates:
@@ -441,7 +441,7 @@ def network_fit(data: pd.DataFrame, target: str, pool: tuple[str, ...], network:
     """Held-out R² of ``target`` from its network predictors and from its whole pool.
 
     The predictive counterpart of a fit index ("node predictability"). The
-    same folds as the exploration are used. In each fold the engine is tuned
+    same folds as discovery are used. In each fold the engine is tuned
     once on the whole pool (without noise columns), and both models reuse those
     settings, as the contrasts do. R² is relative to the training mean, and
     averaged over all folds (and repeats). With no network predictors, the
@@ -599,7 +599,7 @@ def assess_target(data: pd.DataFrame, target: str, candidates: tuple[str, ...], 
 def _explore_core(data: pd.DataFrame, outcome: str, predictors=None, engine="ols",
                   config: ExploreConfig | None = None, controls=None, covariates=None,
                   *, fold_ids=None, assessment_cache=None, data_context=None) -> ExploreResult:
-    """Build one exploratory network, optionally using a batch fold plan/cache."""
+    """Build one discovery network, optionally using a batch fold plan/cache."""
     config = config or ExploreConfig()
     if (engine.engine_name if isinstance(engine, Predictor) else engine) in EXPERIMENTAL_ENGINES + BACKEND_ENGINES:
         warnings.warn(f"engine {engine!r} is experimental: it has not passed the validation study, "
@@ -706,7 +706,7 @@ def _explore_core(data: pd.DataFrame, outcome: str, predictors=None, engine="ols
 
 def explore(data: pd.DataFrame, outcome: str, predictors=None, engine="ols",
             config: ExploreConfig | None = None, controls=None, covariates=None) -> ExploreResult:
-    """Build the exploratory network for ``outcome``, one depth at a time.
+    """Build the discovery network for ``outcome``, one depth at a time.
 
     ``controls`` are adjusted for in every model but never tested or used as
     targets. ``covariates`` are tested and drawn but never become targets. A
@@ -720,7 +720,7 @@ def explore(data: pd.DataFrame, outcome: str, predictors=None, engine="ols",
 def _explore_with_shared_context(data: pd.DataFrame, outcome: str, predictors, engine,
                                 config: ExploreConfig, controls, covariates, fold_ids,
                                 assessment_cache, data_context) -> ExploreResult:
-    """Batch-only exploration entry point with shared folds and a call-local cache."""
+    """Batch-only discovery entry point with shared folds and a call-local cache."""
     return _explore_core(
         data, outcome, predictors, engine, config, controls, covariates,
         fold_ids=fold_ids, assessment_cache=assessment_cache, data_context=data_context,

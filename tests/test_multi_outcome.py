@@ -20,7 +20,7 @@ def _data(n=1200, seed=41):
 
 
 def _blank_exploration(outcome):
-    from open.explore import ExploreResult
+    from opennet.explore import ExploreResult
 
     empty = pd.DataFrame()
     return ExploreResult(empty, empty, empty, empty, empty, {},
@@ -28,7 +28,7 @@ def _blank_exploration(outcome):
 
 
 def _confirmation_exploration(outcome):
-    from open.explore import ExploreResult
+    from opennet.explore import ExploreResult
 
     links = pd.DataFrame([{
         "depth": 1, "target": outcome, "source": "X", "kind": "unique", "tier": "kept",
@@ -54,8 +54,8 @@ def _assert_same_exploration(actual, expected):
 
 
 def test_public_api_exposes_multi_outcome_workflow():
-    api = importlib.import_module("open.api")
-    module = importlib.import_module("open.multi_outcome")
+    api = importlib.import_module("opennet.api")
+    module = importlib.import_module("opennet.multi_outcome")
 
     assert api.explore_and_confirm_outcomes is module.explore_and_confirm_outcomes
     assert api.MultiOutcomeResult is module.MultiOutcomeResult
@@ -64,8 +64,8 @@ def test_public_api_exposes_multi_outcome_workflow():
 
 
 def test_two_outcomes_return_separate_split_results_and_aggregate_tables():
-    from open.api import ExploreConfig, SplitResult, explore_and_confirm_outcomes
-    from open.multi_outcome import MultiOutcomeResult
+    from opennet.api import ExploreConfig, SplitResult, explore_and_confirm_outcomes
+    from opennet.multi_outcome import MultiOutcomeResult
 
     data = _data()
     with _no_warning_context():
@@ -103,14 +103,14 @@ class _no_warning_context:
     [([], "at least one"), (["Y1", "Y1"], "distinct"), (["absent"], "unknown")],
 )
 def test_rejects_empty_repeated_or_unknown_outcomes(outcomes, message):
-    from open.multi_outcome import explore_and_confirm_outcomes
+    from opennet.multi_outcome import explore_and_confirm_outcomes
 
     with pytest.raises(ValueError, match=message):
         explore_and_confirm_outcomes(_data(), outcomes)
 
 
 def test_rejects_missing_outcome_values_before_splitting(monkeypatch):
-    import open.multi_outcome as multi
+    import opennet.multi_outcome as multi
 
     def unexpected_split(*args, **kwargs):
         pytest.fail("validation should happen before splitting")
@@ -123,15 +123,15 @@ def test_rejects_missing_outcome_values_before_splitting(monkeypatch):
 
 
 def test_rejects_selected_outcome_in_explicit_predictors():
-    from open.multi_outcome import explore_and_confirm_outcomes
+    from opennet.multi_outcome import explore_and_confirm_outcomes
 
     with pytest.raises(ValueError, match="outcomes.*predictors|predictors.*outcomes"):
         explore_and_confirm_outcomes(_data(), ["Y1", "Y2"], predictors=["X1", "Y2"])
 
 
 def test_shared_split_config_fold_ids_and_predictor_exclusion(monkeypatch):
-    import open.multi_outcome as multi
-    from open.api import ExploreConfig
+    import opennet.multi_outcome as multi
+    from opennet.api import ExploreConfig
 
     data = _data()
     data.index = np.tile(np.arange(100), 12)  # duplicate caller indexes must not define row identity
@@ -169,8 +169,8 @@ def test_shared_split_config_fold_ids_and_predictor_exclusion(monkeypatch):
 @pytest.mark.parametrize("scope", ["all_outcomes", "per_outcome"])
 @pytest.mark.parametrize("correction", ["holm", "bh"])
 def test_applies_requested_correction_to_raw_testable_pvalues(monkeypatch, scope, correction):
-    import open.multi_outcome as multi
-    from open.confirm import SplitResult, _adjust
+    import opennet.multi_outcome as multi
+    from opennet.confirm import SplitResult, _adjust
 
     raw = {"Y1": [0.01, 0.01, np.nan], "Y2": [0.02, 0.05]}
     monkeypatch.setattr(multi, "split_sample", lambda data, *a, **k: (data, data))
@@ -215,8 +215,8 @@ def test_applies_requested_correction_to_raw_testable_pvalues(monkeypatch, scope
 
 
 def test_correction_handles_empty_and_single_outcome_families(monkeypatch):
-    import open.multi_outcome as multi
-    from open.confirm import _adjust
+    import opennet.multi_outcome as multi
+    from opennet.confirm import _adjust
 
     monkeypatch.setattr(multi, "split_sample", lambda data, *a, **k: (data, data))
     monkeypatch.setattr(multi, "_explore_with_shared_context", lambda data, outcome, *a, **k: _blank_exploration(outcome))
@@ -237,7 +237,7 @@ def test_correction_handles_empty_and_single_outcome_families(monkeypatch):
 
 
 def test_row_aligned_fold_plans_are_reproducible_and_follow_row_identity():
-    from open.confirm import _aligned_confirmation_folds
+    from opennet.confirm import _aligned_confirmation_folds
 
     rows = np.arange(31, 55)
     plan = _aligned_confirmation_folds(rows, seed=19)
@@ -259,9 +259,9 @@ def test_row_aligned_fold_plans_are_reproducible_and_follow_row_identity():
 
 
 def test_multi_outcome_confirmation_and_fit_share_folds_for_same_rows(monkeypatch):
-    import open.confirm as confirmation
-    import open.explore as exploration
-    import open.multi_outcome as multi
+    import opennet.confirm as confirmation
+    import opennet.explore as exploration
+    import opennet.multi_outcome as multi
 
     rng = np.random.default_rng(23)
     n = 600
@@ -300,10 +300,10 @@ def test_multi_outcome_confirmation_and_fit_share_folds_for_same_rows(monkeypatc
 
 
 def test_batch_reuses_identical_deeper_assessment_and_matches_scalar_results(monkeypatch):
-    import open.explore as exploration
-    import open.multi_outcome as multi
-    from open.confirm import split_sample
-    from open.explore import ExploreConfig
+    import opennet.explore as exploration
+    import opennet.multi_outcome as multi
+    from opennet.confirm import split_sample
+    from opennet.explore import ExploreConfig
 
     rng = np.random.default_rng(51)
     n = 1200
@@ -341,10 +341,10 @@ def test_batch_reuses_identical_deeper_assessment_and_matches_scalar_results(mon
 
 
 def test_batch_does_not_reuse_assessment_when_depth_or_pool_differs(monkeypatch):
-    import open.explore as exploration
-    import open.multi_outcome as multi
-    from open.confirm import split_sample
-    from open.explore import ExploreConfig
+    import opennet.explore as exploration
+    import opennet.multi_outcome as multi
+    from opennet.confirm import split_sample
+    from opennet.explore import ExploreConfig
 
     data = _data()
     data["Z"] = np.random.default_rng(4).normal(size=len(data))
@@ -392,7 +392,7 @@ def test_batch_does_not_reuse_assessment_when_depth_or_pool_differs(monkeypatch)
 
 @pytest.mark.parametrize("role", ["predictors", "controls", "covariates"])
 def test_validates_model_columns_before_hashing(role):
-    from open.multi_outcome import explore_and_confirm_outcomes
+    from opennet.multi_outcome import explore_and_confirm_outcomes
 
     data = _data()
     data["Bad"] = pd.Series([[1]] * len(data), dtype=object)
@@ -403,7 +403,7 @@ def test_validates_model_columns_before_hashing(role):
 
 
 def test_correction_provenance_survives_independent_inspection():
-    from open.api import ExploreConfig, explore_and_confirm_outcomes
+    from opennet.api import ExploreConfig, explore_and_confirm_outcomes
 
     data = _data()
     data["Y2"] += 1.5 * data.X1
@@ -419,8 +419,8 @@ def test_correction_provenance_survives_independent_inspection():
 
 @pytest.mark.parametrize("sample", ["empty", "small", "constant"])
 def test_batch_retains_unsupported_confirmation_fits(sample):
-    from open.api import ExploreConfig, explore_and_confirm_outcomes
-    from open.confirm import split_sample
+    from opennet.api import ExploreConfig, explore_and_confirm_outcomes
+    from opennet.confirm import split_sample
 
     data = _data()
     _, heldout = split_sample(data, seed=0)
@@ -445,13 +445,13 @@ def test_batch_retains_unsupported_confirmation_fits(sample):
 
 @pytest.mark.parametrize("eligible", [0, 5])
 def test_batch_skips_lightgbm_test_without_eligible_rows(monkeypatch, eligible):
-    from open.api import ExploreConfig, explore_and_confirm_outcomes
-    from open.confirm import split_sample
+    from opennet.api import ExploreConfig, explore_and_confirm_outcomes
+    from opennet.confirm import split_sample
 
     data = _data()
     _, heldout = split_sample(data, seed=0)
     data.loc[heldout.index[eligible:], "X1"] = np.nan
-    monkeypatch.setattr("open.confirm.gcm_pcm_pvalues",
+    monkeypatch.setattr("opennet.confirm.gcm_pcm_pvalues",
                         lambda *a, **k: pytest.fail("no GCM/PCM fit is possible without rows"))
     with _no_warning_context():
         result = explore_and_confirm_outcomes(

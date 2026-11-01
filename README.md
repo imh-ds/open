@@ -35,7 +35,7 @@ discovers the network on one part, and confirms selected links on the other:
 
 ```python
 import pandas as pd
-from open.api import DiscoveryConfig, analyze, save_split
+from opennet.api import DiscoveryConfig, analyze, save_split
 
 data = pd.read_csv("my_study.csv")
 result = analyze(
@@ -84,11 +84,13 @@ shows the depth, and grey dashed nodes are predictors that were only flagged.
 - **Tan nodes** are covariates (see below), and the footnote lists any
   controls.
 - **Network fit (green ring around each target):** the filled share of the
-  ring is the held-out R² of the target from its solid lines, also printed
-  below it. With confirmation, the R² cross-validated on the new data is shown
-  too ("new .29"). This is OPEN's counterpart of a fit index (see
+  ring is the held-out R² of the target from its solid lines. With confirmation,
+  the graph reports `R² (D/C): D / C`: discovery fit first and confirmation fit
+  second. D and C are cross-validated R² values. This is OPEN's counterpart of
+  a fit index (see
   [docs/method.md](docs/method.md)).
-- **The fold tally is an exploratory rule, not a p-value.** Formal tests come
+  When writing the pair in text, use `R²_D/C = D / C` in the same order.
+- **The fold tally is a discovery-stage rule, not a p-value.** Formal tests come
   from confirmation on independent data (below).
 
 **Adjusting the graph.** Every display setting is a `GraphStyle` field. Pass
@@ -97,7 +99,7 @@ the fields as keywords to `plot_discovery`, `save_discovery` or
 pass a `style=GraphStyle(...)`. Sizes are multipliers of the defaults:
 
 ```python
-from open.api import GraphStyle, plot_discovery
+from opennet.api import GraphStyle, plot_discovery
 
 plot_discovery(result, "network.png",
              spacing=.7,           # < 1 more compact, > 1 more spread out (nodes never overlap)
@@ -167,7 +169,7 @@ one dataset before any analysis or use a new sample:
 confirm on the other.
 
 ```python
-from open.api import analyze, save_split
+from opennet.api import analyze, save_split
 
 split = analyze(data, outcome="Y", engine="ols", split_seed=1)
 print(split.summary())
@@ -178,7 +180,7 @@ save_split(split, "open-output")      # adds confirmation.csv; the graph marks c
 sample.
 
 ```python
-from open.api import confirm, discover
+from opennet.api import confirm, discover
 
 result = discover(data, outcome="Y", engine="ols")
 table = confirm(result, new_sample)     # Holm-adjusted p-values for the frozen links
@@ -193,7 +195,7 @@ combined GCM/PCM test (calibrated from N ≥ 300).
 Use one call to coordinate separate networks on the same row split:
 
 ```python
-from open.api import analyze, plot_outcomes, save_batch
+from opennet.api import analyze, plot_outcomes, save_batch
 
 batch = analyze(data, outcomes=["Y1", "Y2"],
                 predictors=[f"X{i}" for i in range(1, 11)], split_seed=42)

@@ -1,10 +1,10 @@
 # Python API
 
-Import the common workflows from `open.api`. Short names are available for the
+Import the common workflows from `opennet.api`. Short names are available for the
 most common operations:
 
 ```python
-from open.api import DiscoveryConfig, analyze, discover, save_split
+from opennet.api import DiscoveryConfig, analyze, discover, save_split
 
 result = analyze(data, outcome="Y", config=DiscoveryConfig(max_depth=3))
 print(result.summary())
@@ -13,7 +13,7 @@ save_split(result, "open-output", plot=False)
 
 ## Choose the function for your task
 
-| Function in `open.api` | Purpose and return value | Descriptive name, still supported |
+| Function in `opennet.api` | Purpose and return value | Descriptive name, still supported |
 |---|---|---|
 | `discover` | Discover a predictive network; returns `DiscoveryResult` | `explore`, `explore_network`, `discover_network` |
 | `confirm` | Test frozen links on independent data; returns a confirmation DataFrame | `confirm_network` |
@@ -21,11 +21,11 @@ save_split(result, "open-output", plot=False)
 | `discover_and_confirm` | Split one dataset, discover on one part and confirm on the other | `explore_and_confirm` |
 | `discover_and_confirm_outcomes` | Run coordinated discovery/confirmation for several outcomes | `explore_and_confirm_outcomes` |
 | `analyze` / `analyse` | Split data, discover and confirm; returns `SplitResult` for one outcome or `MultiOutcomeResult` for several | `discover_and_confirm` / `discover_and_confirm_outcomes`; Explore-named forms remain supported |
-| `split_sample` | Split data before analysis; returns discovery and confirmation DataFrames | `open.confirm.split_sample` |
-| `plot_discovery` | Draw the discovery graph; returns a Figure, or a Path when saving to a path | `plot_network`; implementation: `open.explore_report.plot_explore` |
-| `save_discovery` | Save discovery tables, settings, summary and optional graph; returns a Path | `save_exploration`; implementation: `open.explore_report.write_explore` |
+| `split_sample` | Split data before analysis; returns discovery and confirmation DataFrames | `opennet.confirm.split_sample` |
+| `plot_discovery` | Draw the discovery graph; returns a Figure, or a Path when saving to a path | `plot_network`; implementation: `opennet.explore_report.plot_explore` |
+| `save_discovery` | Save discovery tables, settings, summary and optional graph; returns a Path | `save_exploration`; implementation: `opennet.explore_report.write_explore` |
 | `save_split` | Save a `SplitResult`, including confirmation and split settings; returns a Path | `save_split_analysis` |
-| `plot_outcomes` | Draw radial facets or a combined outcome overlay; returns a Figure or Path | `open.explore_report.plot_outcomes` |
+| `plot_outcomes` | Draw radial facets or a combined outcome overlay; returns a Figure or Path | `opennet.explore_report.plot_outcomes` |
 | `save_batch` | Save all outcome analyses and aggregate tables; returns a Path | `save_multi_outcome_analysis` |
 
 `analyze` accepts exactly one of `outcome` or `outcomes`. A string outcome runs
@@ -42,12 +42,12 @@ The Discovery-named and Explore-named functions call the same implementations;
 the old names remain supported. The workflow functions accept options such as
 `include_flagged` and `correction_scope`. `DiscoveryConfig` / `ExploreConfig`,
 `DiscoveryResult` / `ExploreResult`, `SplitResult`, `MultiOutcomeResult` and
-`GraphStyle` are available from `open.api`.
+`GraphStyle` are available from `opennet.api`.
 
 ## Discover now, confirm on a new sample
 
 ```python
-from open.api import (
+from opennet.api import (
     confirm, discover, evaluate_fit, save_discovery,
 )
 
@@ -66,7 +66,7 @@ test. See [the method](method.md#confirmation-openconfirmconfirm).
 ## Split one dataset before analysis
 
 ```python
-from open.api import analyze, save_split
+from opennet.api import analyze, save_split
 
 split = analyze(data, outcome="Y", split_seed=1)
 print(split.summary())
@@ -81,7 +81,7 @@ happens in `analyze`. Splitting is intended for samples of about
 
 ```python
 import pandas as pd
-from open.api import (
+from opennet.api import (
     DiscoveryConfig, analyze, plot_outcomes, save_batch,
 )
 
@@ -149,6 +149,13 @@ outcome rather than averaged. Group and interaction junctions retain their relat
 It overlays separate predictive analyses; it does not fit a joint model,
 estimate cross-outcome residual covariance, or establish causal direction.
 
+Graph fit labels use ``R² (D/C): D / C`` for discovery and confirmation
+cross-validated fit, in that order. ``GraphStyle.fit_label_size`` adjusts
+their size. The ``show_r2_legend``, ``show_footnote``, and
+``show_title`` options control those graph elements independently; the fit
+legend is shown only when confirmation fit is available.
+In text summaries and prose, report the same pair as ``R²_D/C = D / C``.
+
 `save_batch` defaults to `plot=False`. It writes aggregate
 `outcomes-confirmation.csv`, `outcomes-fit.csv`, `outcomes-settings.json`, and
 `outcomes-summary.txt`, plus an optional `outcomes-network.png`. Each outcome
@@ -168,7 +175,7 @@ earlier outcome directories updated.
 ## Plotting and saving
 
 ```python
-from open.api import GraphStyle, plot_discovery, save_discovery
+from opennet.api import GraphStyle, plot_discovery, save_discovery
 
 plot_discovery(result, "network.png", style=GraphStyle(spacing=.8))
 save_discovery(result, "tables-only", plot=False)
@@ -182,7 +189,7 @@ consonant/vowel boundary, then wrap at word boundaries to a 10-character line
 width. No words are dropped; saved results retain the original variable names.
 Use `GraphStyle(abbreviate_node_labels=False)` to keep full words and
 `GraphStyle(wrap_node_labels=False)` to keep the display on one line. The helper
-`open.api.format_node_label(label, max_word_length=10, max_line_length=10,
+`opennet.api.format_node_label(label, max_word_length=10, max_line_length=10,
 abbr_length=5)` applies the same formatting to a string. All graph text is now
 slightly larger by default (`GraphStyle(label_size=1.1)`).
 Nodes are also placed adaptively, to make room for labels rather than move
@@ -216,7 +223,7 @@ without changing any tests or results:
 plot_outcomes(batch, layout="combined", style=GraphStyle(show_confirmation=False))
 ```
 
-Importing `open.api` and saving with `plot=False` require neither matplotlib
+Importing `opennet.api` and saving with `plot=False` require neither matplotlib
 nor LightGBM. Plotting requires the visualization extra; selecting LightGBM
 requires its extra. Construct `GraphStyle` when plotting is needed: its color
 validation also requires matplotlib.

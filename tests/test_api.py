@@ -19,40 +19,40 @@ def data():
 
 
 def test_api_preserves_original_functions_and_types():
-    api = importlib.import_module("open.api")
+    api = importlib.import_module("opennet.api")
     expected = {
-        "explore_network": ("open.explore", "explore"),
-        "discover": ("open.explore", "explore"),
-        "discover_network": ("open.explore", "explore"),
-        "explore": ("open.explore", "explore"),
-        "confirm": ("open.confirm", "confirm"),
-        "confirm_network": ("open.confirm", "confirm"),
-        "evaluate_fit": ("open.confirm", "confirmation_fit"),
-        "analyze": ("open.api", "analyze"),
-        "analyse": ("open.api", "analyze"),
-        "explore_and_confirm": ("open.confirm", "explore_and_confirm"),
-        "discover_and_confirm": ("open.confirm", "explore_and_confirm"),
-        "explore_and_confirm_outcomes": ("open.multi_outcome", "explore_and_confirm_outcomes"),
-        "discover_and_confirm_outcomes": ("open.multi_outcome", "explore_and_confirm_outcomes"),
-        "MultiOutcomeResult": ("open.multi_outcome", "MultiOutcomeResult"),
-        "plot_outcomes": ("open.explore_report", "plot_outcomes"),
-        "save_multi_outcome_analysis": ("open.explore_report", "save_multi_outcome_analysis"),
-        "evaluate_confirmation_fit": ("open.confirm", "confirmation_fit"),
-        "split_sample": ("open.confirm", "split_sample"),
-        "plot_network": ("open.explore_report", "plot_explore"),
-        "plot_discovery": ("open.explore_report", "plot_explore"),
-        "save_exploration": ("open.explore_report", "write_explore"),
-        "save_discovery": ("open.explore_report", "write_explore"),
-        "save_split_analysis": ("open.explore_report", "write_split"),
-        "save_split": ("open.explore_report", "write_split"),
-        "save_batch": ("open.explore_report", "save_multi_outcome_analysis"),
-        "ExploreConfig": ("open.explore", "ExploreConfig"),
-        "DiscoveryConfig": ("open.explore", "ExploreConfig"),
-        "ExploreResult": ("open.explore", "ExploreResult"),
-        "DiscoveryResult": ("open.explore", "ExploreResult"),
-        "SplitResult": ("open.confirm", "SplitResult"),
-        "GraphStyle": ("open.explore_report", "GraphStyle"),
-        "format_node_label": ("open.explore_report", "format_node_label"),
+        "explore_network": ("opennet.explore", "explore"),
+        "discover": ("opennet.explore", "explore"),
+        "discover_network": ("opennet.explore", "explore"),
+        "explore": ("opennet.explore", "explore"),
+        "confirm": ("opennet.confirm", "confirm"),
+        "confirm_network": ("opennet.confirm", "confirm"),
+        "evaluate_fit": ("opennet.confirm", "confirmation_fit"),
+        "analyze": ("opennet.api", "analyze"),
+        "analyse": ("opennet.api", "analyze"),
+        "explore_and_confirm": ("opennet.confirm", "explore_and_confirm"),
+        "discover_and_confirm": ("opennet.confirm", "explore_and_confirm"),
+        "explore_and_confirm_outcomes": ("opennet.multi_outcome", "explore_and_confirm_outcomes"),
+        "discover_and_confirm_outcomes": ("opennet.multi_outcome", "explore_and_confirm_outcomes"),
+        "MultiOutcomeResult": ("opennet.multi_outcome", "MultiOutcomeResult"),
+        "plot_outcomes": ("opennet.explore_report", "plot_outcomes"),
+        "save_multi_outcome_analysis": ("opennet.explore_report", "save_multi_outcome_analysis"),
+        "evaluate_confirmation_fit": ("opennet.confirm", "confirmation_fit"),
+        "split_sample": ("opennet.confirm", "split_sample"),
+        "plot_network": ("opennet.explore_report", "plot_explore"),
+        "plot_discovery": ("opennet.explore_report", "plot_explore"),
+        "save_exploration": ("opennet.explore_report", "write_explore"),
+        "save_discovery": ("opennet.explore_report", "write_explore"),
+        "save_split_analysis": ("opennet.explore_report", "write_split"),
+        "save_split": ("opennet.explore_report", "write_split"),
+        "save_batch": ("opennet.explore_report", "save_multi_outcome_analysis"),
+        "ExploreConfig": ("opennet.explore", "ExploreConfig"),
+        "DiscoveryConfig": ("opennet.explore", "ExploreConfig"),
+        "ExploreResult": ("opennet.explore", "ExploreResult"),
+        "DiscoveryResult": ("opennet.explore", "ExploreResult"),
+        "SplitResult": ("opennet.confirm", "SplitResult"),
+        "GraphStyle": ("opennet.explore_report", "GraphStyle"),
+        "format_node_label": ("opennet.explore_report", "format_node_label"),
     }
     assert set(api.__all__) == set(expected)
     for name, (module, original) in expected.items():
@@ -61,7 +61,7 @@ def test_api_preserves_original_functions_and_types():
 
 
 def test_exploration_confirmation_and_export_workflow(data, tmp_path):
-    from open.api import (ExploreConfig, ExploreResult, confirm_network, evaluate_confirmation_fit,
+    from opennet.api import (ExploreConfig, ExploreResult, confirm_network, evaluate_confirmation_fit,
                           explore_network, save_exploration, split_sample)
 
     first, independent = split_sample(data, seed=2)
@@ -78,7 +78,7 @@ def test_exploration_confirmation_and_export_workflow(data, tmp_path):
 
 
 def test_split_analysis_export_workflow(data, tmp_path):
-    from open.api import ExploreConfig, SplitResult, explore_and_confirm, save_split_analysis
+    from opennet.api import ExploreConfig, SplitResult, explore_and_confirm, save_split_analysis
 
     split = explore_and_confirm(data, "Y", config=ExploreConfig(folds=3, max_depth=1, interactions=False), split_seed=2)
     assert isinstance(split, SplitResult)
@@ -91,7 +91,7 @@ def test_split_analysis_export_workflow(data, tmp_path):
 
 def test_plot_network_saves_the_expected_path(data, tmp_path):
     pytest.importorskip("matplotlib")
-    from open.api import ExploreConfig, GraphStyle, explore_network, plot_network
+    from opennet.api import ExploreConfig, GraphStyle, explore_network, plot_network
 
     result = explore_network(data, "Y", config=ExploreConfig(folds=3, max_depth=1, interactions=False))
     path = tmp_path / "network.png"
@@ -114,11 +114,11 @@ def test_api_keeps_module_imports_and_optional_dependencies_lazy(tmp_path, order
 
         sys.meta_path.insert(0, BlockOptional())
         if sys.argv[2] == 'modules_first':
-            import open.explore
-            import open.confirm
-        import open.api as api
-        import open.explore as exploration_module
-        import open.confirm as confirmation_module
+            import opennet.explore
+            import opennet.confirm
+        import opennet.api as api
+        import opennet.explore as exploration_module
+        import opennet.confirm as confirmation_module
         assert isinstance(exploration_module, types.ModuleType)
         assert isinstance(confirmation_module, types.ModuleType)
         assert api.explore_network is exploration_module.explore

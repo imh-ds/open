@@ -11,10 +11,10 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVR
 
-from open.config import PreprocessingConfig
-from open.learners._grid import tune_grid
-from open.learners.base import Predictor
-from open.preprocessing import make_preprocessor
+from opennet.config import PreprocessingConfig
+from opennet.learners._grid import tune_grid
+from opennet.learners.base import Predictor
+from opennet.preprocessing import make_preprocessor
 
 C_GRID = (0.3, 1.0, 3.0, 10.0)
 # Kernel width as a multiple of 1 / (number of columns), sklearn's "scale" for standardized inputs.

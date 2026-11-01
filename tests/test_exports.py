@@ -8,9 +8,9 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from open.confirm import SplitResult, explore_and_confirm
-from open.explore import ExploreConfig
-from open import explore_report as report
+from opennet.confirm import SplitResult, explore_and_confirm
+from opennet.explore import ExploreConfig
+from opennet import explore_report as report
 
 
 @pytest.fixture(scope="module")

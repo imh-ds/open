@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from open.config import PreprocessingConfig
+from opennet.config import PreprocessingConfig
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler

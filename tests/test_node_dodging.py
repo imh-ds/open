@@ -9,7 +9,7 @@ def _links(*pairs):
 
 
 def test_node_dodging_moves_obstructing_node_without_moving_quiet_nodes():
-    from open.explore_report import GraphStyle, _dodge_node_positions, _point_segment
+    from opennet.explore_report import GraphStyle, _dodge_node_positions, _point_segment
 
     positions = {"Y": (0., 0.), "A": (4., 0.), "B": (2., .2), "Quiet": (7., 5.)}
     moved, _ = _dodge_node_positions(positions, {}, _links(("A", "Y")), {"Y"}, {"Y", "A"},
@@ -20,7 +20,7 @@ def test_node_dodging_moves_obstructing_node_without_moving_quiet_nodes():
 
 
 def test_node_dodging_respects_fit_rings_and_is_not_uniform_scaling():
-    from open.explore_report import GraphStyle, _dodge_node_positions
+    from opennet.explore_report import GraphStyle, _dodge_node_positions
 
     positions = {"Y": (0., 0.), "A": (1.25, 0.), "B": (2.5, .4), "Quiet": (7., 5.)}
     args = (positions, {}, _links(("A", "Y"), ("B", "A")), {"Y"}, {"Y", "A"}, GraphStyle())
@@ -38,7 +38,7 @@ def _edge_spec(source, target, text, key="e"):
 
 
 def test_label_room_lengthens_an_edge_too_short_for_its_label():
-    from open.explore_report import GraphStyle, _make_label_room, _point_segment
+    from opennet.explore_report import GraphStyle, _make_label_room, _point_segment
 
     positions = {"Y": (0., 0.), "A": (1.3, 0.), "Quiet": (0., 6.)}
     text = ".123 (10/10) ✓ (a long label)"
@@ -53,7 +53,7 @@ def test_label_room_lengthens_an_edge_too_short_for_its_label():
 
 
 def test_label_room_spreads_edges_that_leave_a_node_together():
-    from open.explore_report import GraphStyle, _make_label_room
+    from opennet.explore_report import GraphStyle, _make_label_room
 
     positions = {"Y": (0., 0.), "A": (3., 0.), "B": (6., .25)}
     specs = [_edge_spec("A", "Y", ".200 (5/5)", "a"), _edge_spec("B", "Y", ".150 (5/5)", "b")]
@@ -66,9 +66,9 @@ def test_label_room_spreads_edges_that_leave_a_node_together():
 def test_edge_labels_sit_on_their_own_edges():
     import matplotlib.pyplot as plt
     from matplotlib.collections import LineCollection
-    from open.confirm import explore_and_confirm
-    from open.explore import ExploreConfig
-    from open.explore_report import _point_segment, plot_explore
+    from opennet.confirm import explore_and_confirm
+    from opennet.explore import ExploreConfig
+    from opennet.explore_report import _point_segment, plot_explore
 
     rng = np.random.default_rng(5)
     data = pd.DataFrame(rng.normal(size=(1000, 5)), columns=["A", "B", "C", "N1", "N2"])

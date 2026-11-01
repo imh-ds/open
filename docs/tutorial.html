@@ -213,10 +213,10 @@ cd open</code></pre>
   <p><code>git clone</code> downloads the project. <code>cd open</code> moves the terminal into its root folder.</p>
   <p class="code-label">Terminal · from the repository root</p>
   <pre><code class="language-shell">python -m pip install ".[visualization]"</code></pre>
-  <p><code>python -m pip</code> installs into the environment used by that Python interpreter. The dot means “this project”; <code>[visualization]</code> adds the plotting dependency. Keep the quotes. This installs the package distributed as <code>open-predictive-expansion</code>; the Python import name is <code>open</code>.</p>
+  <p><code>python -m pip</code> installs into the environment used by that Python interpreter. The dot means “this project”; <code>[visualization]</code> adds the plotting dependency. Keep the quotes. This installs the package <code>opennet</code>, which is also the name you import.</p>
   <p>Now open a Python script or notebook using that same environment. In a notebook, check that its kernel uses the environment where you installed OPEN.</p>
   <details><summary>If Python cannot import OPEN or find the CSV</summary>
-    <p><code>ModuleNotFoundError: No module named 'open'</code> usually means the running interpreter differs from the installation environment. Check <code>import sys; print(sys.executable)</code> in your Python session, then install with that interpreter.</p>
+    <p><code>ModuleNotFoundError: No module named 'opennet'</code> usually means the running interpreter differs from the installation environment. Check <code>import sys; print(sys.executable)</code> in your Python session, then install with that interpreter.</p>
     <p>A <code>FileNotFoundError</code> for the example CSV usually means the working directory is wrong. Check <code>from pathlib import Path; print(Path.cwd())</code> and run from the repository root, or use an absolute path to the CSV.</p>
   </details>
 </section>
@@ -267,7 +267,7 @@ raw = pd.get_dummies(raw, columns=["region"], drop_first=True, dtype=float)</cod
 <section id="config">
   <span class="step">Step 04</span>
   <h2>Set up a small first discovery</h2>
-  <pre><code class="language-python" data-run="main">from open.api import DiscoveryConfig</code></pre>
+  <pre><code class="language-python" data-run="main">from opennet.api import DiscoveryConfig</code></pre>
   <p><code>DiscoveryConfig</code> bundles settings for how OPEN discovers the network. It does not hold the data or the results.</p>
   <pre><code class="language-python" data-run="main">config = DiscoveryConfig(
     max_depth=1,
@@ -312,7 +312,7 @@ alpha = 0.05</code></pre>
 <section id="run">
   <span class="step">Step 06</span>
   <h2>Put the decisions together and run once</h2>
-  <pre><code class="language-python" data-run="main">from open.api import analyze</code></pre>
+  <pre><code class="language-python" data-run="main">from opennet.api import analyze</code></pre>
   <p><code>analyze</code> splits the data, discovers a network on one part, tests frozen selected links on the other, and separately evaluates the frozen network's predictive fit.</p>
   <pre><code class="language-python" data-run="main">result = analyze(
     data,
@@ -371,7 +371,7 @@ price_fairness   renewal_intent   0.7        flagged  0.0320</code></pre>
   <p>By default, only kept links enter confirmation. Flagged links remain discovery leads. If no links were kept, an empty confirmation table can be a legitimate result.</p>
   <details><summary>If you planned to confirm flagged links too</summary>
     <p>Use the specific split-workflow function, which exposes this additional option. This is a separate analysis choice; showing flagged edges in a graph does not test them.</p>
-    <pre><code class="language-python" data-run="flagged">from open.api import discover_and_confirm
+    <pre><code class="language-python" data-run="flagged">from opennet.api import discover_and_confirm
 
 with_flagged = discover_and_confirm(
     data, outcome=outcome, predictors=predictors,
@@ -400,7 +400,7 @@ with_flagged = discover_and_confirm(
 <section id="plot">
   <span class="step">Step 10</span>
   <h2>Draw the result you have already computed</h2>
-  <pre><code class="language-python" data-run="main">from open.api import plot_discovery</code></pre>
+  <pre><code class="language-python" data-run="main">from opennet.api import plot_discovery</code></pre>
   <p>This function draws a discovery network. We will explicitly supply the confirmation tables so the graph can also show checkmarks and confirmation fit.</p>
   <pre><code class="language-python" data-run="main">plot_discovery(
     discovery,
@@ -432,14 +432,14 @@ with_flagged = discover_and_confirm(
     abbreviate_node_labels=False,
     wrap_node_labels=False,
 )</code></pre>
-    <p><code>spacing=1.2</code> spreads nodes farther apart. <code>label_size=1.2</code> enlarges text relative to its base size. The last two arguments keep full words on one line; they may require more space. Node names in the tables always retain their original spelling. For repeated styling, import <code>GraphStyle</code> from <code>open.api</code>, put these fields in <code>GraphStyle(...)</code>, and pass that object as <code>style=...</code>.</p>
+    <p><code>spacing=1.2</code> spreads nodes farther apart. <code>label_size=1.2</code> enlarges text relative to its base size. The last two arguments keep full words on one line; they may require more space. Node names in the tables always retain their original spelling. For repeated styling, import <code>GraphStyle</code> from <code>opennet.api</code>, put these fields in <code>GraphStyle(...)</code>, and pass that object as <code>style=...</code>.</p>
   </details>
 </section>
 
 <section id="save">
   <span class="step">Step 11</span>
   <h2>Save the tables and settings as well</h2>
-  <pre><code class="language-python" data-run="main">from open.api import save_split
+  <pre><code class="language-python" data-run="main">from opennet.api import save_split
 
 saved_to = save_split(result, "renewal-depth1-output", plot=False)
 print(saved_to)</code></pre>
@@ -564,7 +564,7 @@ print(anxiety_result.fit.to_string(index=False))</code></pre>
 <section id="overlay">
   <span class="step">Step 16 · combine the views</span>
   <h2>Overlay the two networks after understanding each one</h2>
-  <pre><code class="language-python" data-run="main">from open.api import GraphStyle, plot_outcomes
+  <pre><code class="language-python" data-run="main">from opennet.api import GraphStyle, plot_outcomes
 
 batch_style = GraphStyle(show_flagged=False)
 plot_outcomes(batch, path="psychology-panels.png", style=batch_style)</code></pre>
@@ -588,14 +588,14 @@ plot_outcomes(batch, path="psychology-panels.png", style=batch_style)</code></pr
   <pre><code class="language-python" data-run="main">print(batch.confirmation.to_string(index=False))
 print(batch.fit.to_string(index=False))</code></pre>
   <p>The aggregate tables use <code>root_outcome</code> to identify which network each row belongs to. Read the outcome label before comparing a repeated target such as Stress. As before, distinguish confirmed, tested but unconfirmed, and untested relations using the p-values and <code>note</code>.</p>
-  <pre><code class="language-python" data-run="main">from open.api import save_batch
+  <pre><code class="language-python" data-run="main">from opennet.api import save_batch
 
 save_batch(batch, "psychology-output", plot="combined", style=batch_style)</code></pre>
   <p><code>save_batch</code> exports the individual outcome analyses and aggregate confirmation, fit, settings, and summary files. Here <code>plot="combined"</code> also saves the overlay as <code>outcomes-network.png</code>. The generated folders under <code>outcomes/</code> retain each network's full tables; the aggregate settings map the folder names to the original outcome names. Use a new destination when you want to retain another analysis.</p>
   <div class="checkpoint"><strong>You have completed the full walkthrough.</strong> You progressed from one-layer discovery to recursive expansion, two coordinated outcome networks, separate interpretation, a combined graph, and a complete export. The following lessons revisit individual settings using the objects already defined.</div>
   <details><summary>Change the scope of multiple-testing correction</summary>
     <p>The default scope is <code>"all_outcomes"</code>. If your planned analysis calls for separate correction families, use the specific multi-outcome function:</p>
-    <pre><code class="language-python" data-run="scope">from open.api import discover_and_confirm_outcomes
+    <pre><code class="language-python" data-run="scope">from opennet.api import discover_and_confirm_outcomes
 
 per_outcome_batch = discover_and_confirm_outcomes(
     psych, outcomes=outcomes, predictors=psych_predictors,
@@ -686,7 +686,7 @@ per_outcome_batch = discover_and_confirm_outcomes(
   <span class="step">Optional · choosing settings honestly</span>
   <h2>Try settings on discovery rows, then confirm once</h2>
   <p>In practice you rarely know the right depth or setting before seeing any output. <code>analyze</code> does everything in one call, so every trial it runs also reaches the confirmation rows. Instead, split first and keep the confirmation rows untouched while you compare settings.</p>
-  <pre><code class="language-python" data-run="tune">from open.api import split_sample, discover, confirm, evaluate_fit, save_discovery
+  <pre><code class="language-python" data-run="tune">from opennet.api import split_sample, discover, confirm, evaluate_fit, save_discovery
 
 discovery_rows, confirmation_rows = split_sample(
     data, explore_fraction=explore_fraction, seed=split_seed,
@@ -718,7 +718,7 @@ save_discovery(
   <span class="step">Optional · independent confirmation later</span>
   <h2>Discover now and confirm when new data arrive</h2>
   <p>The split workflow is convenient when one dataset can support both stages. If you instead plan a later independent sample, use <code>discover</code> directly on your discovery sample. The code below is a template for your study; the two CSV names are placeholders, not supplied files.</p>
-  <pre><code class="language-python" data-run="new-sample">from open.api import discover, confirm, evaluate_fit, save_discovery
+  <pre><code class="language-python" data-run="new-sample">from opennet.api import discover, confirm, evaluate_fit, save_discovery
 
 study_data = pd.read_csv("my_discovery_sample.csv")
 study_network = discover(

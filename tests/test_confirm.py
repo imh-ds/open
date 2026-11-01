@@ -6,9 +6,9 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from open.confirm import (_adjust, _fit_predict, _folds, _gcm_residuals, _seed, confirm,
+from opennet.confirm import (_adjust, _fit_predict, _folds, _gcm_residuals, _seed, confirm,
                           frozen_network, gcm_pcm_pvalues, hc4_pvalues)
-from open.explore import ExploreConfig, explore
+from opennet.explore import ExploreConfig, explore
 
 EXAMPLES = Path(__file__).parents[1] / "examples"
 
@@ -110,7 +110,7 @@ def test_holm_and_bh_adjustments():
 
 
 def test_scalar_lightgbm_confirmation_keeps_target_seeded_fold_plan(monkeypatch):
-    from open.explore import ExploreResult
+    from opennet.explore import ExploreResult
 
     n = 40
     data = pd.DataFrame({"Y": np.linspace(0, 1, n), "X": np.sin(np.arange(n))})
@@ -127,7 +127,7 @@ def test_scalar_lightgbm_confirmation_keeps_target_seeded_fold_plan(monkeypatch)
         seen["seed"] = dseed
         return np.array([0.1])
 
-    monkeypatch.setattr("open.confirm.gcm_pcm_pvalues", gcm_stub)
+    monkeypatch.setattr("opennet.confirm.gcm_pcm_pvalues", gcm_stub)
     with pytest.warns(UserWarning, match="below the calibrated minimum"):
         confirm(result, data, engine="lightgbm", seed=31)
 
@@ -139,8 +139,8 @@ def test_scalar_lightgbm_confirmation_keeps_target_seeded_fold_plan(monkeypatch)
 
 
 def test_scalar_confirmation_fit_keeps_target_seeded_fold_ids(monkeypatch):
-    from open.confirm import confirmation_fit
-    from open.explore import ExploreResult
+    from opennet.confirm import confirmation_fit
+    from opennet.explore import ExploreResult
 
     n = 39
     data = pd.DataFrame({"Y": np.linspace(0, 1, n), "X": np.cos(np.arange(n))})
@@ -157,7 +157,7 @@ def test_scalar_confirmation_fit_keeps_target_seeded_fold_ids(monkeypatch):
         return {"network": tuple(network), "network_size": 1, "pool_size": 1,
                 "r2_network": 0.2, "r2_pool": 0.3, "share_of_pool": 0.5}
 
-    monkeypatch.setattr("open.explore.network_fit", network_fit_stub)
+    monkeypatch.setattr("opennet.explore.network_fit", network_fit_stub)
     confirmation_fit(result, data, folds=3, seed=31)
     expected = np.arange(n) % 3
     np.random.default_rng(_seed(31, "confirmation-fit", 1, "Y")).shuffle(expected)
@@ -173,7 +173,7 @@ def test_elastic_net_network_is_confirmed_with_ols():
 
 
 def test_split_sample_is_reproducible_and_disjoint():
-    from open.confirm import split_sample
+    from opennet.confirm import split_sample
     data = _chain(1000, 3)
     a1, b1 = split_sample(data, .6, seed=4)
     a2, b2 = split_sample(data, .6, seed=4)
@@ -187,7 +187,7 @@ def test_split_sample_is_reproducible_and_disjoint():
 
 
 def test_explore_and_confirm_on_one_dataset():
-    from open.confirm import explore_and_confirm
+    from opennet.confirm import explore_and_confirm
     data = _chain(1400, 6)
     res = explore_and_confirm(data, 'Y', engine='ols', split_seed=2,
                               config=ExploreConfig(max_depth=2, interactions=False))
@@ -200,7 +200,7 @@ def test_explore_and_confirm_on_one_dataset():
 
 
 def test_explore_and_confirm_warns_for_small_n_and_null_links_rarely_confirm():
-    from open.confirm import explore_and_confirm
+    from opennet.confirm import explore_and_confirm
     r = np.random.default_rng(12)
     data = pd.DataFrame(r.normal(size=(700, 8)), columns=[f'N{i}' for i in range(8)])
     data['Y'] = r.normal(size=700)
@@ -211,8 +211,8 @@ def test_explore_and_confirm_warns_for_small_n_and_null_links_rarely_confirm():
 
 
 def test_write_split_saves_confirmation(tmp_path):
-    from open.confirm import explore_and_confirm
-    from open.explore_report import write_split
+    from opennet.confirm import explore_and_confirm
+    from opennet.explore_report import write_split
     res = explore_and_confirm(_chain(1200, 7), 'Y', split_seed=1,
                               config=ExploreConfig(max_depth=1, interactions=False))
     out = write_split(res, tmp_path / 'out')
@@ -236,7 +236,7 @@ def test_lightgbm_column_subset_matches_full_computation():
 
 
 def test_confirmation_fit_is_cross_validated_on_the_new_data():
-    from open.confirm import confirmation_fit, explore_and_confirm
+    from opennet.confirm import confirmation_fit, explore_and_confirm
     data = _chain(1600, 8)
     split = explore_and_confirm(data, 'Y', engine='ols',
                                 config=ExploreConfig(max_depth=2, interactions=False), split_seed=2)
@@ -244,7 +244,7 @@ def test_confirmation_fit_is_cross_validated_on_the_new_data():
     assert set(fit.index) == set(split.exploration.fit.target)
     assert (fit.n == 800).all()
     assert .1 < fit.loc['Y', 'r2_network'] < .4                       # true R² about .24
-    assert 'Network fit on the confirmation data' in split.summary()
+    assert 'Network fit on confirmation data' in split.summary()
     again = confirmation_fit(split.exploration, data.iloc[800:], seed=2)
     assert again.r2_network.notna().all()
     with pytest.raises(ValueError):

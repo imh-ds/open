@@ -38,7 +38,7 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from open.explore import ExploreConfig, explore  # noqa: E402
+from opennet.explore import ExploreConfig, explore  # noqa: E402
 
 ENGINES = ("ols", "elastic_net", "lightgbm", "pls", "svr")
 

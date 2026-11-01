@@ -9,8 +9,8 @@ from typing import Any
 import numpy as np
 from sklearn.utils import _safe_indexing, indexable
 
-from open.learners.elastic_net import _materialize_cv
-from open.preprocessing import make_preprocessor
+from opennet.learners.elastic_net import _materialize_cv
+from opennet.preprocessing import make_preprocessor
 
 
 def tune_grid(X: Any, y: Any, cv: Any, preprocessing, candidates: Sequence[Mapping[str, Any]],

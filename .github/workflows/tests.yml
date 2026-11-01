@@ -44,7 +44,7 @@ jobs:
           python -m pip install dist/*.whl
           python -m pip check
           python - <<'PY'
-          import open.api as api
+          import opennet.api as api
           assert api.analyze is api.analyse
           for name in ("explore", "confirm", "evaluate_fit", "save_split", "save_batch"):
               assert callable(getattr(api, name))
@@ -57,7 +57,7 @@ jobs:
           import sys
 
           wheel = next(Path("dist").glob("*.whl")).resolve()
-          requirement = f"open-predictive-expansion[visualization,lightgbm] @ {wheel.as_uri()}"
+          requirement = f"opennet[visualization,lightgbm] @ {wheel.as_uri()}"
           subprocess.run([sys.executable, "-m", "pip", "install", requirement], check=True)
           PY
           python - <<'PY'

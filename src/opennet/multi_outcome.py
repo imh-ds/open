@@ -1,4 +1,4 @@
-"""Coordinated split, exploration, and confirmation for several outcomes."""
+"""Coordinated split, discovery, and confirmation for several outcomes."""
 from __future__ import annotations
 
 from collections.abc import Sequence
@@ -9,14 +9,14 @@ import warnings
 import numpy as np
 import pandas as pd
 
-from open.confirm import (
+from opennet.confirm import (
     SplitResult,
     _adjust,
     _confirmation_fit_with_shared_folds,
     _confirm_with_shared_folds,
     split_sample,
 )
-from open.explore import (ExploreConfig, _assessment_data_context, _explore_with_shared_context,
+from opennet.explore import (ExploreConfig, _assessment_data_context, _explore_with_shared_context,
                           _fold_sets, _validate_model_columns)
 
 
@@ -33,7 +33,7 @@ class MultiOutcomeResult:
     def summary(self) -> str:
         s = self.settings
         lines = [
-            f"Multi-outcome split (seed {s['split_seed']}): explored on {s['n_explore']} rows, "
+            f"Multi-outcome split (seed {s['split_seed']}): discovery on {s['n_explore']} rows, "
             f"confirmed on {s['n_confirm']} rows; {s['correction']} correction, "
             f"scope {s['correction_scope']}, alpha {s['alpha']}.",
         ]
@@ -112,9 +112,9 @@ def explore_and_confirm_outcomes(
     controls: Sequence[str] | None = None,
     covariates: Sequence[str] | None = None,
 ) -> MultiOutcomeResult:
-    """Explore and confirm independent predictive networks for several outcomes.
+    """Discover and confirm independent predictive networks for several outcomes.
 
-    One row split and one exploration configuration are shared across outcomes.
+    One row split and one discovery configuration are shared across outcomes.
     Each outcome keeps its own recursion and network. By default, confirmation
     p-values are adjusted across all outcomes; ``per_outcome`` limits adjustment
     to the links for each outcome.

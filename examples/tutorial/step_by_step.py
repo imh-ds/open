@@ -26,7 +26,7 @@ predictors = [
     "tenure_months", "company_size_log",
 ]
 
-from open.api import DiscoveryConfig
+from opennet.api import DiscoveryConfig
 
 config = DiscoveryConfig(
     max_depth=1,
@@ -41,7 +41,7 @@ split_seed = 42
 correction = "holm"
 alpha = 0.05
 
-from open.api import analyze
+from opennet.api import analyze
 
 result = analyze(
     data,
@@ -71,7 +71,7 @@ print(result.fit[
     ["target", "n", "network_size", "r2_network_explore", "r2_network"]
 ].to_string(index=False))
 
-from open.api import plot_discovery
+from opennet.api import plot_discovery
 
 plot_discovery(
     discovery,
@@ -88,7 +88,7 @@ plot_discovery(
     show_flagged=False,
 )
 
-from open.api import save_split
+from opennet.api import save_split
 
 saved_to = save_split(result, "renewal-depth1-output", plot=False)
 print(saved_to)
@@ -166,7 +166,7 @@ print(anxiety_result.discovery.nodes.to_string(index=False))
 print(anxiety_result.discovery.stops)
 print(anxiety_result.fit.to_string(index=False))
 
-from open.api import GraphStyle, plot_outcomes
+from opennet.api import GraphStyle, plot_outcomes
 
 batch_style = GraphStyle(show_flagged=False)
 plot_outcomes(batch, path="psychology-panels.png", style=batch_style)
@@ -181,6 +181,6 @@ plot_outcomes(
 print(batch.confirmation.to_string(index=False))
 print(batch.fit.to_string(index=False))
 
-from open.api import save_batch
+from opennet.api import save_batch
 
 save_batch(batch, "psychology-output", plot="combined", style=batch_style)

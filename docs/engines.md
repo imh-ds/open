@@ -11,7 +11,7 @@ Decision date: 2026-10-19 (owner decision).
 | LightGBM | Validated; finds real effects reliably from about N = 1,000 and is the only validated engine that detects U-shaped effects | Calibrated from N ≥ 300 with the K = 10 cluster correction (G2) |
 
 `discover` and `analyze` accept only these engines (`SUPPORTED_ENGINES`;
-implemented in `open.explore`).
+implemented in `opennet.explore`).
 
 Elastic-Net tuning fits median imputation and scaling on each inner training
 fold once, then reuses those transformed training and validation inputs for all

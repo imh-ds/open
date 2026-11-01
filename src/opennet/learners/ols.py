@@ -5,9 +5,9 @@ import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn.pipeline import Pipeline
 
-from open.config import PreprocessingConfig
-from open.learners.base import Predictor
-from open.preprocessing import make_preprocessor
+from opennet.config import PreprocessingConfig
+from opennet.learners.base import Predictor
+from opennet.preprocessing import make_preprocessor
 
 
 class OLSPredictor(Predictor):

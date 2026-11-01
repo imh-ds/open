@@ -38,9 +38,9 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 import study_v2 as sv  # noqa: E402
-from open import explore as ex  # noqa: E402
-from open.confirm import split_sample  # noqa: E402
-from open.explore import ExploreConfig, explore  # noqa: E402
+from opennet import explore as ex  # noqa: E402
+from opennet.confirm import split_sample  # noqa: E402
+from opennet.explore import ExploreConfig, explore  # noqa: E402
 
 ENGINES = sv.ENGINES
 CELLS = sv.CORE

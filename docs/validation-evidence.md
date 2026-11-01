@@ -4,7 +4,7 @@ Seven simulation studies support the method. Each has a frozen script, a
 protocol, summary results in `examples/results/`, and raw outputs in a GitHub
 release.
 
-## 1. Exploratory-mode validation (the main evidence)
+## 1. Discovery-stage validation (the main evidence)
 
 `examples/results/2026-10-19-exploratory-validation/interpretation.md`
 
@@ -84,7 +84,7 @@ OLS were unaffected.
 - Depth-3 truth, with pools of 13 or 25.
 - Correlated proxies and null blocks; independent, skewed and Likert variants;
   linear and U-shaped effects.
-- Each dataset is split 50/50: explored on one half and confirmed on the other.
+- Each dataset is split 50/50: discovery is performed on one half and links are confirmed on the other.
 - Compared with naive p < .05 recursion and lasso stability selection.
 - False links are defined from the generating graph (d-separation given the
   pool).
@@ -115,14 +115,14 @@ OLS were unaffected.
 **Design:**
 
 - Study v2's datasets 0–49 in 12 pool-25 cells (3 engines × N × shape).
-- Each dataset explored with `repeats` 1 and 5, under two seeds each.
+- Each dataset analyzed during discovery with `repeats` 1 and 5, under two seeds each.
 
 **Findings:**
 
 - **R = 5 does not meet the pre-set stability target.** True links kept again
   under another seed rise only from .43–.74 to .60–.84 at depth 1.
 - **It makes "kept" stricter.** True links near the 80% line move to flagged,
-  so OLS at 500 exploration rows keeps .21 → .06 of true links.
+  so OLS at 500 discovery rows keeps .21 → .06 of true links.
 - **It cleans the dotted tier.** False dotted links per network fall by half
   or more, and false solid links fall to 0 for OLS and LightGBM.
 - **"Kept or flagged" is already stable at R = 1:** 86–97% of true links agree

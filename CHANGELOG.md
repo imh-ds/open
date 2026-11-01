@@ -1,5 +1,13 @@
 # Release notes
 
+## Unreleased
+
+- The package is renamed `opennet`, for both the distribution and the import
+  (`from opennet.api import ...`). The previous import
+  name, `open`, hid Python's built-in `open()`, and `open` is taken on PyPI.
+  The distribution name `open-predictive-expansion` is retired. Archived study
+  results and frozen protocols keep the old module paths they were run with.
+
 ## 0.1.0.dev0 — developer preview
 
 This is the first developer preview of OPEN, an exploratory, outcome-centered

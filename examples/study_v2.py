@@ -50,8 +50,8 @@ import pandas as pd
 from scipy import stats
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
-from open.confirm import _adjust, confirm, frozen_network, hc4_pvalues, split_sample  # noqa: E402
-from open.explore import ExploreConfig, explore, tier  # noqa: E402
+from opennet.confirm import _adjust, confirm, frozen_network, hc4_pvalues, split_sample  # noqa: E402
+from opennet.explore import ExploreConfig, explore, tier  # noqa: E402
 
 ENGINES = ("ols", "elastic_net", "lightgbm")
 SIZES = (1000, 2000)

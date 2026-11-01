@@ -9,10 +9,10 @@ import numpy as np
 from sklearn.cross_decomposition import PLSRegression
 from sklearn.pipeline import Pipeline
 
-from open.config import PreprocessingConfig
-from open.learners._grid import tune_grid
-from open.learners.base import Predictor
-from open.preprocessing import make_preprocessor
+from opennet.config import PreprocessingConfig
+from opennet.learners._grid import tune_grid
+from opennet.learners.base import Predictor
+from opennet.preprocessing import make_preprocessor
 
 COMPONENT_GRID = (1, 2, 3, 5, 8)
 

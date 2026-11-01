@@ -4,7 +4,7 @@ import pandas as pd
 import pytest
 from sklearn.model_selection import KFold
 
-from open.learners import ENGINES, make_predictor
+from opennet.learners import ENGINES, make_predictor
 
 
 def _data(n=200, seed=0):
@@ -55,7 +55,7 @@ def test_lightgbm_is_deterministic_and_tunes():
 # ---- backend engines (PLS, SVR): piloted, dropped, still runnable by name
 
 def test_backend_engines_are_not_offered():
-    from open.learners import BACKEND_ENGINES
+    from opennet.learners import BACKEND_ENGINES
     assert BACKEND_ENGINES == ('pls', 'svr')
     assert not set(BACKEND_ENGINES) & set(ENGINES)
 
@@ -90,7 +90,7 @@ def test_svr_tunes_and_fits_a_curve_linear_models_miss():
 
 
 def test_explore_accepts_experimental_engines_with_a_warning():
-    from open.explore import ExploreConfig, explore
+    from opennet.explore import ExploreConfig, explore
     X, y = _data(300)
     data = X.assign(Y=y)
     for engine in ('pls', 'svr'):

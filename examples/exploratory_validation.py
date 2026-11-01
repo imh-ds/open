@@ -35,7 +35,7 @@ import numpy as np
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
-from open.explore import ExploreConfig, explore  # noqa: E402
+from opennet.explore import ExploreConfig, explore  # noqa: E402
 
 ENGINES = ("ols", "elastic_net", "lightgbm")
 RUNNABLE = ENGINES + ("svr",)       # SVR is run alone to see whether it earns a place in ENGINES

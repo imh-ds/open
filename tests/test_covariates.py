@@ -3,8 +3,8 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from open.confirm import confirm, confirmation_fit, frozen_network
-from open.explore import ExploreConfig, explore
+from opennet.confirm import confirm, confirmation_fit, frozen_network
+from opennet.explore import ExploreConfig, explore
 
 CFG = ExploreConfig(max_depth=2, interactions=False)
 

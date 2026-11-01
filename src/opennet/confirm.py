@@ -1,9 +1,9 @@
-"""Confirm an exploratory network on independent data.
+"""Confirm a discovered network on independent data.
 
-The links kept by ``open.explore`` (optionally also the flagged ones) are
-frozen. On data the exploration never saw, each frozen target is regressed on
-the same candidate pool it was explored with, and only the frozen links are
-tested. The recursion is not re-run.
+The links kept by ``opennet.explore`` (optionally also the flagged ones) are
+frozen. On data used neither for discovery nor link selection, each frozen
+target is regressed on the same candidate pool selected during discovery, and
+only the frozen links are tested. The recursion is not re-run.
 
 Tests use the calibrated settings from the reference studies:
 
@@ -35,7 +35,7 @@ import pandas as pd
 from scipy import stats
 from scipy.linalg import solve_triangular
 
-from open.explore import ExploreResult
+from opennet.explore import ExploreResult
 
 CALIBRATED_FROM = {"ols": 275, "lightgbm": 300}
 GCM_FOLDS = 10
@@ -247,9 +247,9 @@ def gcm_pcm_pvalues(X: np.ndarray, T: np.ndarray, folds: dict, dseed: int, colum
 # ---------------------------------------------------------------- confirmation
 
 def frozen_network(result: ExploreResult, include_flagged: bool = False) -> pd.DataFrame:
-    """The links to confirm, each with the candidate pool its target was explored with.
+    """The links to confirm, each with the candidate pool used during discovery.
 
-    The pool includes the exploration's covariates (tested there) and its
+    The pool includes the discovery result's covariates (tested there) and its
     controls (adjusted for there), so each link is confirmed beyond the same
     variables it was found beyond.
     """
@@ -388,10 +388,10 @@ def _confirm_with_shared_folds(result: ExploreResult, data: pd.DataFrame, engine
     return _confirm(result, data, engine, include_flagged, correction, alpha, seed, provider)
 
 
-# ---------------------------------------------------------------- one dataset: split, explore, confirm
+# ---------------------------------------------------------------- one dataset: split, discover, confirm
 
 def split_sample(data: pd.DataFrame, explore_fraction: float = 0.5, seed: int = 0):
-    """Randomly split rows once, before any analysis, into (explore, confirm) parts.
+    """Randomly split rows once, before any analysis, into discovery and confirmation parts.
 
     Record ``seed`` with the results so the split can be reproduced.
     """
@@ -415,15 +415,15 @@ def _confirmation_fit(result: ExploreResult, data: pd.DataFrame, folds: int = 10
                       fold_provider=None, allow_untestable: bool = False) -> pd.DataFrame:
     """Out-of-sample fit of the network on independent ``data``.
 
-    For each explored target, its kept predictors (the network) and its whole
-    candidate pool are re-fitted with ``folds``-fold cross-validation within
-    ``data``, using the exploration's engine, and scored on the held-out rows.
+    For each target selected during discovery, its kept predictors (the
+    network) and its whole candidate pool are re-fitted with ``folds``-fold cross-validation within
+``data``, using the selected discovery engine, and scored on the held-out rows.
     The predictors were chosen on other data, so the network R² is free of
     selection bias. Rows with a missing value in the target or its pool are
     dropped for that target.
     """
     from dataclasses import replace
-    from open.explore import ExploreConfig, network_fit
+    from opennet.explore import ExploreConfig, network_fit
     s = result.settings
     config = replace(ExploreConfig(), folds=folds, tuning_folds=s.get("tuning_folds", 3), seed=seed)
     f = result.folds
@@ -482,9 +482,9 @@ def _fit_unavailable_reason(frame, target, fold_ids, config) -> str:
 def confirmation_fit(result: ExploreResult, data: pd.DataFrame, folds: int = 10, seed: int = 0) -> pd.DataFrame:
     """Score the selected network on independent data using cross-validation.
 
-    For each explored target, its kept predictors (the network) and its whole
+For each target selected during discovery, its kept predictors (the network) and its whole
     candidate pool are re-fitted with cross-validation within ``data``, using
-    the exploration's engine, and scored on held-out rows. The predictors were
+the selected discovery engine, and scored on held-out rows. The predictors were
     chosen on other data, so the network R² is free of selection bias. Rows
     with a missing value in the target or its pool are dropped for that target.
     Scalar calls retain their existing target-seeded fold assignments.
@@ -502,7 +502,7 @@ def _confirmation_fit_with_shared_folds(result: ExploreResult, data: pd.DataFram
 
 
 class SplitResult:
-    """An exploratory network from one part of the data, confirmed on the other."""
+    """A discovered network from one part of the data, confirmed on the other."""
 
     def __init__(self, exploration: ExploreResult, confirmation: pd.DataFrame, settings: dict,
                  fit: pd.DataFrame | None = None):
@@ -518,10 +518,10 @@ class SplitResult:
 
     def summary(self) -> str:
         s = self.settings
-        lines = [f"Split (seed {s['split_seed']}): explored on {s['n_explore']} rows, "
+        lines = [f"Split (seed {s['split_seed']}): discovery on {s['n_explore']} rows, "
                  f"confirmed on {s['n_confirm']} rows with {s['confirm_engine']} "
                  f"({s['correction']}-adjusted, alpha {s['alpha']}).",
-                 self.exploration.summary(), "Confirmation:"]
+                 "Discovery:", self.exploration.summary(), "Confirmation:"]
         if s.get("correction_scope") == "all_outcomes":
             lines.insert(1, "Confirmation adjustment covers all selected outcomes: "
                          + ", ".join(s.get("outcomes", ())) + ".")
@@ -537,13 +537,13 @@ class SplitResult:
                            f"(p = {r.p:.3g}, adjusted {r.p_adjusted:.3g})")
             lines.append(f"  {r.source} -> {r.target} ({r.kind}, {r.explore_tier}): {verdict}")
         if len(self.fit):
-            lines.append("Network fit on the confirmation data (cross-validated R2 from the kept predictors):")
+            lines.append("Network fit on confirmation data (cross-validated R2; D/C = discovery/confirmation):")
             for _, r in self.fit.iterrows():
                 if r.get("note", ""):
                     lines.append(f"  {r.target}: {r['note']}")
                     continue
-                lines.append(f"  {r.target}: {r.r2_network:.3f} (exploration {r.r2_network_explore:.3f}; "
-                             f"all {r.pool_size} candidates {r.r2_pool:.3f})")
+                lines.append(f"  {r.target}: R²_D/C = {r.r2_network_explore:.3f} / {r.r2_network:.3f}; "
+                             f"all {r.pool_size} candidates on confirmation data {r.r2_pool:.3f}")
         return "\n".join(lines)
 
 
@@ -551,12 +551,12 @@ def explore_and_confirm(data: pd.DataFrame, outcome: str, predictors=None, engin
                         explore_fraction: float = 0.5, split_seed: int = 0, confirm_engine: str | None = None,
                         include_flagged: bool = False, correction: str = "holm",
                         alpha: float = 0.05, controls=None, covariates=None) -> SplitResult:
-    """Split one dataset, explore on one part and confirm the frozen links on the other.
+    """Split one dataset, discover on one part and confirm frozen links on the other.
 
     Splitting suits N of about 1,000 or more; with less data both parts lose
     power, and confirming in a new sample is better.
     """
-    from open.explore import explore
+    from opennet.explore import explore
     if len(data) < 1000:
         warnings.warn(f"N = {len(data)}: splitting leaves small parts; with under about 1,000 rows, "
                       "exploring on all data and confirming in a new sample keeps more power.", stacklevel=2)

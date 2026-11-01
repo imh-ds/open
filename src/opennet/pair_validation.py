@@ -1,7 +1,7 @@
 """Additive spline ridge model used by discovery-stage interaction tests.
 
 ``_tune`` fits the additive spline model (one curve per predictor) that
-``open.explore`` uses as the baseline for interaction gains.
+``opennet.explore`` uses as the baseline for interaction gains.
 """
 from dataclasses import dataclass
 import warnings

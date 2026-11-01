@@ -3,8 +3,8 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from open.explore import ExploreConfig, _pair_features, assess_target, explore, tier
-from open.learners.ols import OLSPredictor
+from opennet.explore import ExploreConfig, _pair_features, assess_target, explore, tier
+from opennet.learners.ols import OLSPredictor
 
 
 def _chain(n=800, seed=2026):
@@ -194,7 +194,7 @@ def test_planted_interaction_is_detected_without_main_effect_of_partner():
 
 
 def test_write_explore_outputs(tmp_path):
-    from open.explore_report import write_explore
+    from opennet.explore_report import write_explore
     res = explore(_chain(n=400), 'Y', engine='ols', config=ExploreConfig(max_depth=2, interactions=False))
     out = write_explore(res, tmp_path / 'out')
     for name in ('nodes.csv', 'links.csv', 'pairs.csv', 'folds.csv', 'noise-bars.csv', 'settings.json',
@@ -238,7 +238,7 @@ def test_unvalidated_engines_are_rejected(engine):
 
 
 def test_flagged_interactions_are_hidden_from_the_graph_by_default():
-    from open.explore_report import _drawn
+    from opennet.explore_report import _drawn
     links = pd.DataFrame({"kind": ["unique", "unique", "interaction", "interaction", "unique"],
                           "tier": ["kept", "flagged", "kept", "flagged", "dropped"]})
     assert list(_drawn(links, True, False).index) == [0, 1, 2]
@@ -253,7 +253,7 @@ def test_network_fit_reports_held_out_r2_per_explored_target(chain_result):
     y = fit.loc['Y']
     assert y.network_size == len(chain_result.nodes) - 1 - (chain_result.nodes.depth == 2).sum()
     assert .1 < y.r2_network <= y.r2_pool + .02 and y.folds == 10
-    assert 'Network fit' in chain_result.summary()
+    assert 'Discovery network fit' in chain_result.summary()
 
 
 def test_network_fit_is_zero_without_kept_predictors():
@@ -266,7 +266,7 @@ def test_network_fit_is_zero_without_kept_predictors():
 
 def test_graph_layout_is_centred_spaced_and_deterministic(chain_result):
     import math
-    from open.explore_report import MIN_SEP, _drawn, _layout
+    from opennet.explore_report import MIN_SEP, _drawn, _layout
     links = _drawn(chain_result.links, True, True)
     pos, ring, candidate, junctions = _layout(chain_result, links)
     assert pos['Y'] == (0.0, 0.0)
@@ -283,7 +283,7 @@ def test_graph_layout_is_centred_spaced_and_deterministic(chain_result):
 
 
 def test_plot_draws_interactions_groups_and_confirmation(tmp_path):
-    from open.explore_report import plot_explore
+    from opennet.explore_report import plot_explore
     r = np.random.default_rng(4)
     n = 800
     d = pd.DataFrame(r.normal(size=(n, 6)), columns=['A', 'B', 'C', 'D', 'E', 'L'])
@@ -297,7 +297,7 @@ def test_plot_draws_interactions_groups_and_confirmation(tmp_path):
 
 def test_graph_style_settings_scale_the_layout_and_validate(chain_result, tmp_path):
     import math
-    from open.explore_report import GraphStyle, _drawn, _layout, plot_explore, write_explore
+    from opennet.explore_report import GraphStyle, _drawn, _layout, plot_explore, write_explore
     links = _drawn(chain_result.links, True, True)
 
     def spread(style):
@@ -329,7 +329,7 @@ def test_graph_style_settings_scale_the_layout_and_validate(chain_result, tmp_pa
 
 
 def test_edge_labels_use_apa_r2_and_folds_passed():
-    from open.explore_report import _apa, _passes
+    from opennet.explore_report import _apa, _passes
     assert [_apa(v) for v in (.12, .1204, .0042, .0003, 0, -.0042, -.0002)] == \
         ['.120', '.120', '.004', '<.001', '.000', '−.004', '.000']
     assert _passes(.9, 10) == '9/10' and _passes(.82, 50) == '41/50'

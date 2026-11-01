@@ -13,7 +13,7 @@ import pytest
 
 @pytest.fixture(scope="module")
 def analysis():
-    from open.api import ExploreConfig, explore_and_confirm_outcomes
+    from opennet.api import ExploreConfig, explore_and_confirm_outcomes
 
     rng = np.random.default_rng(42)
     x = rng.normal(size=1200)
@@ -26,7 +26,7 @@ def analysis():
 
 @pytest.fixture(scope="module")
 def shared_analysis():
-    from open.api import ExploreConfig, explore_and_confirm_outcomes
+    from opennet.api import ExploreConfig, explore_and_confirm_outcomes
 
     rng = np.random.default_rng(20261021)
     x = rng.normal(size=(1200, 3))
@@ -41,7 +41,7 @@ def shared_analysis():
 
 
 def test_exports_reused_assessment_ids_and_outcome_membership(shared_analysis, tmp_path):
-    from open.api import save_multi_outcome_analysis
+    from opennet.api import save_multi_outcome_analysis
 
     out = save_multi_outcome_analysis(shared_analysis, tmp_path / "batch")
     settings = json.loads((out / "outcomes-settings.json").read_text(encoding="utf-8"))
@@ -55,7 +55,7 @@ def test_exports_reused_assessment_ids_and_outcome_membership(shared_analysis, t
 
 def _x3_x1_labels(figure, result, source="X3"):
     """How many edge labels the link from source to X1 has in a combined figure."""
-    from open.explore_report import _apa
+    from opennet.explore_report import _apa
 
     links = next(iter(result.by_outcome.values())).exploration.links
     r2 = links[links.target.eq("X1") & links.source.eq(source)].r2_median.iloc[0]
@@ -64,8 +64,8 @@ def _x3_x1_labels(figure, result, source="X3"):
 
 def test_overlay_collapses_reused_links_to_one_neutral_line(shared_analysis):
     import matplotlib.pyplot as plt
-    from open.api import plot_outcomes
-    from open.explore_report import KEPT
+    from opennet.api import plot_outcomes
+    from opennet.explore_report import KEPT
 
     figure = plot_outcomes(shared_analysis, layout="combined")
     axes, = figure.axes
@@ -79,7 +79,7 @@ def test_overlay_collapses_reused_links_to_one_neutral_line(shared_analysis):
 
 @pytest.fixture(scope="module")
 def crowded_analysis():
-    from open.api import ExploreConfig, explore_and_confirm_outcomes
+    from opennet.api import ExploreConfig, explore_and_confirm_outcomes
 
     rng = np.random.default_rng(20261021)
     x = rng.normal(size=(1200, 10))
@@ -99,7 +99,7 @@ def crowded_analysis():
 def test_overlay_dodges_labels_without_spreading_nodes(crowded_analysis):
     import matplotlib.pyplot as plt
     from matplotlib.patches import Circle, Wedge
-    from open.api import GraphStyle, plot_outcomes
+    from opennet.api import GraphStyle, plot_outcomes
 
     before = plot_outcomes(crowded_analysis, layout="combined", style=GraphStyle(dodge_labels=False))
     after = plot_outcomes(crowded_analysis, layout="combined")
@@ -126,7 +126,7 @@ def test_overlay_dodges_labels_without_spreading_nodes(crowded_analysis):
 def test_overlay_rearranges_nodes_locally_instead_of_uniform_scaling(crowded_analysis):
     import matplotlib.pyplot as plt
     from matplotlib.patches import Circle, Wedge
-    from open.api import GraphStyle, plot_outcomes
+    from opennet.api import GraphStyle, plot_outcomes
 
     before = plot_outcomes(crowded_analysis, layout="combined",
                            style=GraphStyle(dodge_nodes=False, dodge_labels=False))
@@ -153,7 +153,7 @@ def test_overlay_rearranges_nodes_locally_instead_of_uniform_scaling(crowded_ana
 
 def test_confirmation_marks_can_be_hidden_without_changing_results(shared_analysis):
     import matplotlib.pyplot as plt
-    from open.api import GraphStyle, plot_outcomes
+    from opennet.api import GraphStyle, plot_outcomes
 
     confirmed = shared_analysis.confirmation.confirmed.copy()
     figure = plot_outcomes(shared_analysis, layout="combined", style=GraphStyle(show_confirmation=False))
@@ -165,14 +165,14 @@ def test_confirmation_marks_can_be_hidden_without_changing_results(shared_analys
 
 @pytest.mark.parametrize("setting", ["show_confirmation", "dodge_labels", "dodge_nodes"])
 def test_annotation_style_flags_require_booleans(setting):
-    from open.api import GraphStyle
+    from opennet.api import GraphStyle
 
     with pytest.raises(ValueError, match=setting):
         GraphStyle(**{setting: "false"})
 
 
 def test_annotation_style_preserves_existing_positional_arguments():
-    from open.api import GraphStyle
+    from opennet.api import GraphStyle
 
     style = GraphStyle(1, 1, 1, 1, True, False, "kept", "white", 5, 170)
     assert style.edge_labels == "kept" and style.dpi == 170
@@ -184,7 +184,7 @@ def test_overlay_keeps_distinct_assessments_or_verdicts_separate(shared_analysis
     import copy
     from dataclasses import replace
     import matplotlib.pyplot as plt
-    from open.api import plot_outcomes
+    from opennet.api import plot_outcomes
 
     result = copy.deepcopy(shared_analysis)
     second = result.by_outcome["Y2"]
@@ -210,7 +210,7 @@ def test_overlay_collapses_reused_groups_and_interactions(shared_analysis, kind)
     from dataclasses import replace
     import matplotlib.pyplot as plt
     from matplotlib.patches import RegularPolygon
-    from open.api import plot_outcomes
+    from opennet.api import plot_outcomes
 
     result = copy.deepcopy(shared_analysis)
     for split in result.by_outcome.values():
@@ -232,7 +232,7 @@ def test_overlay_collapses_reused_groups_and_interactions(shared_analysis, kind)
 
 def test_facets_keep_independent_outcome_roots(analysis):
     import matplotlib.pyplot as plt
-    from open.api import plot_outcomes
+    from opennet.api import plot_outcomes
 
     figure = plot_outcomes(analysis)
     assert len(figure.axes) == 2
@@ -246,7 +246,7 @@ def test_facets_keep_independent_outcome_roots(analysis):
 def test_combined_overlay_merges_nodes_and_retains_outcome_edges(analysis):
     import matplotlib.pyplot as plt
     from matplotlib.patches import FancyArrowPatch, Polygon
-    from open.api import plot_outcomes
+    from opennet.api import plot_outcomes
 
     figure = plot_outcomes(analysis, layout="combined")
     axes, = figure.axes
@@ -269,7 +269,7 @@ def test_overlay_keeps_overlapping_and_reversed_relations(analysis):
     from dataclasses import replace
     import matplotlib.pyplot as plt
     from matplotlib.patches import FancyArrowPatch, Polygon, PathPatch
-    from open.api import plot_outcomes
+    from opennet.api import plot_outcomes
 
     result = copy.deepcopy(analysis)
     for index, split in enumerate(result.by_outcome.values()):
@@ -297,7 +297,7 @@ def test_overlay_many_outcomes_curve_shared_edges_with_separate_triangle_heads(a
     import matplotlib.pyplot as plt
     from matplotlib.path import Path
     from matplotlib.patches import FancyArrowPatch, PathPatch, Polygon
-    from open.api import plot_outcomes
+    from opennet.api import plot_outcomes
 
     result = copy.deepcopy(analysis)
     template = next(iter(result.by_outcome.values()))
@@ -318,7 +318,7 @@ def test_overlay_many_outcomes_curve_shared_edges_with_separate_triangle_heads(a
 
 
 def test_plot_saves_file_and_rejects_unknown_layout(analysis, tmp_path):
-    from open.api import plot_outcomes
+    from opennet.api import plot_outcomes
 
     path = tmp_path / "combined.png"
     assert plot_outcomes(analysis, layout="combined", path=path) == path
@@ -330,7 +330,7 @@ def test_plot_saves_file_and_rejects_unknown_layout(analysis, tmp_path):
 def test_combined_uses_network_nodes_fit_rings_and_confirmation_labels(analysis):
     import matplotlib.pyplot as plt
     from matplotlib.patches import Circle, Wedge
-    from open.api import plot_outcomes
+    from opennet.api import plot_outcomes
 
     figure = plot_outcomes(analysis, layout="combined")
     axes, = figure.axes
@@ -338,7 +338,7 @@ def test_combined_uses_network_nodes_fit_rings_and_confirmation_labels(analysis)
     assert len([p for p in axes.patches if isinstance(p, Circle)]) == 3
     assert any(isinstance(p, Wedge) for p in axes.patches)
     labels = [t.get_text() for t in axes.texts]
-    assert any("R²" in t and "new" in t for t in labels)
+    assert any(t.startswith("R$^2$ (D/C): ") and " / " in t for t in labels)
     assert sum("(3/3)" in t and "✓" in t for t in labels) == 2
     assert all(not t.get_bbox_patch() for t in axes.texts)
     plt.close(figure)
@@ -346,7 +346,7 @@ def test_combined_uses_network_nodes_fit_rings_and_confirmation_labels(analysis)
 
 def test_facets_keep_confirmation_marks(analysis):
     import matplotlib.pyplot as plt
-    from open.api import plot_outcomes
+    from opennet.api import plot_outcomes
 
     figure = plot_outcomes(analysis)
     assert all(any("✓" in t.get_text() for t in ax.texts) for ax in figure.axes)
@@ -357,7 +357,7 @@ def test_overlay_labels_differing_shared_target_fits_without_averaging(analysis)
     import copy
     from dataclasses import replace
     import matplotlib.pyplot as plt
-    from open.api import plot_outcomes
+    from opennet.api import plot_outcomes
 
     result = copy.deepcopy(analysis)
     for i, split in enumerate(result.by_outcome.values()):
@@ -367,7 +367,9 @@ def test_overlay_labels_differing_shared_target_fits_without_averaging(analysis)
             split.exploration.fit, pd.DataFrame([row])], ignore_index=True))
     figure = plot_outcomes(result, layout="combined")
     labels = [t.get_text() for t in figure.axes[0].texts]
-    assert any("../A: R² .200" in t and "..\\A: R² .500" in t for t in labels)
+    lines = [line for t in labels for line in t.split("\n")]
+    assert any(line.startswith("../A: R$^2$ (D") and ": .200" in line for line in lines)
+    assert any(line.startswith("..\\A: R$^2$ (D") and ": .500" in line for line in lines)
     plt.close(figure)
 
 
@@ -377,7 +379,7 @@ def test_overlay_preserves_group_geometry_and_separate_interaction_junctions(ana
     from dataclasses import replace
     import matplotlib.pyplot as plt
     from matplotlib.patches import RegularPolygon
-    from open.api import plot_outcomes
+    from opennet.api import plot_outcomes
 
     result = copy.deepcopy(analysis)
     for split in result.by_outcome.values():
@@ -398,7 +400,7 @@ def test_overlay_preserves_group_geometry_and_separate_interaction_junctions(ana
 
 
 def test_exports_safe_distinct_folders_and_aggregate_tables(analysis, tmp_path):
-    from open.api import save_multi_outcome_analysis
+    from opennet.api import save_multi_outcome_analysis
 
     out = tmp_path / "analysis"
     assert save_multi_outcome_analysis(analysis, out) == out
@@ -422,7 +424,7 @@ def test_exports_safe_distinct_folders_and_aggregate_tables(analysis, tmp_path):
 
 
 def test_aggregate_publication_failure_restores_prior_files(analysis, tmp_path, monkeypatch):
-    from open.api import save_multi_outcome_analysis
+    from opennet.api import save_multi_outcome_analysis
 
     out = save_multi_outcome_analysis(analysis, tmp_path / "analysis")
     before = {p.name: p.read_bytes() for p in out.glob("outcomes-*") if p.is_file()}
@@ -443,7 +445,7 @@ def test_aggregate_publication_failure_restores_prior_files(analysis, tmp_path, 
 
 
 def test_export_rejects_unsafe_destination_types(analysis, tmp_path):
-    from open.api import save_multi_outcome_analysis
+    from opennet.api import save_multi_outcome_analysis
 
     out = tmp_path / "analysis"
     out.mkdir()
@@ -454,7 +456,7 @@ def test_export_rejects_unsafe_destination_types(analysis, tmp_path):
 
 
 def test_export_rejects_symlinked_outcome_directory(analysis, tmp_path):
-    from open.api import save_multi_outcome_analysis
+    from opennet.api import save_multi_outcome_analysis
 
     out, external = tmp_path / "analysis", tmp_path / "external"
     out.mkdir()
@@ -479,7 +481,7 @@ def test_csv_export_keeps_optional_dependencies_lazy(tmp_path):
         sys.meta_path.insert(0, BlockOptional())
         import numpy as np
         import pandas as pd
-        from open.api import ExploreConfig, explore_and_confirm_outcomes, save_multi_outcome_analysis
+        from opennet.api import ExploreConfig, explore_and_confirm_outcomes, save_multi_outcome_analysis
         rng = np.random.default_rng(3)
         x = rng.normal(size=1200)
         data = pd.DataFrame({'Y1': x + rng.normal(size=1200), 'Y2': -x + rng.normal(size=1200), 'X': x})
@@ -496,7 +498,7 @@ def test_csv_export_keeps_optional_dependencies_lazy(tmp_path):
 
 def test_export_mapping_preserves_outcome_ownership_after_reordering(analysis, tmp_path):
     import copy
-    from open.api import save_multi_outcome_analysis
+    from opennet.api import save_multi_outcome_analysis
 
     out = save_multi_outcome_analysis(analysis, tmp_path / "analysis")
     first = json.loads((out / "outcomes-settings.json").read_text(encoding="utf-8"))["outcome_folders"]

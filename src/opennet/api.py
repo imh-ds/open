@@ -6,15 +6,15 @@ features are used.
 """
 from collections.abc import Sequence
 
-from open.confirm import (
+from opennet.confirm import (
     SplitResult,
     confirm as confirm_network,
     confirmation_fit as evaluate_confirmation_fit,
     explore_and_confirm,
     split_sample,
 )
-from open.explore import ExploreConfig, ExploreResult, explore as explore_network
-from open.explore_report import (
+from opennet.explore import ExploreConfig, ExploreResult, explore as explore_network
+from opennet.explore_report import (
     GraphStyle,
     format_node_label,
     plot_outcomes,
@@ -23,7 +23,7 @@ from open.explore_report import (
     write_explore as save_exploration,
     write_split as save_split_analysis,
 )
-from open.multi_outcome import MultiOutcomeResult, explore_and_confirm_outcomes
+from opennet.multi_outcome import MultiOutcomeResult, explore_and_confirm_outcomes
 
 
 # Concise and Discovery-named public aliases; the established names remain available.

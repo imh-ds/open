@@ -15,9 +15,9 @@ from sklearn.model_selection import ParameterGrid
 from sklearn.pipeline import Pipeline
 from sklearn.utils import _safe_indexing, indexable
 
-from open.config import PreprocessingConfig
-from open.learners.base import Predictor
-from open.preprocessing import make_preprocessor
+from opennet.config import PreprocessingConfig
+from opennet.learners.base import Predictor
+from opennet.preprocessing import make_preprocessor
 
 
 ALPHA_GRID = (0.0001, 0.001, 0.01, 0.1, 1.0)
