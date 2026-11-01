@@ -1,6 +1,6 @@
 # OPEN quick tutorial
 
-Start with **[OPEN, step by step](tutorial.html)** for a sequential Python
+Start with **[OPEN, step by step](tutorial.html)** ([Markdown version](tutorial.md)) for a sequential Python
 walkthrough. It introduces each function and argument when you need it, walks
 through discovery, confirmation and fit separately, then progresses to recursive
 well-being and anxiety networks with separate and combined figures. Controls,

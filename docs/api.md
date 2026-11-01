@@ -1,5 +1,7 @@
 # Python API
 
+New to OPEN? Start with the [step-by-step tutorial](tutorial.md).
+
 Import the common workflows from `opennet.api`. Short names are available for the
 most common operations:
 
