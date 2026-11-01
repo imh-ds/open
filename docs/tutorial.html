@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Learn OPEN one step at a time: load data, choose an outcome, configure discovery, confirm links, read results, and extend the network.">
+  <title>OPEN, step by step</title>
+  <style>
+    :root { color-scheme: light; --ink: #182638; --muted: #526174; --blue: #075d82; --line: #d9e2eb; --wash: #f3f7fa; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+    body { margin: 0; background: var(--wash); color: var(--ink); font: 17px/1.75 system-ui, -apple-system, "Segoe UI", sans-serif; }
+    a { color: var(--blue); text-underline-offset: 3px; }
+    a:hover { color: #093d57; }
+    a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid #bd7912; outline-offset: 4px; }
+    .wrap { max-width: 1180px; margin: auto; padding: 0 28px; }
+    header { background: #142b40; color: white; padding: 48px 0; }
+    header a { color: #b3e7f6; }
+    header p { max-width: 740px; color: #e0ebf3; }
+    .eyebrow, .step { font-size: .8rem; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
+    .eyebrow { color: #9ed9ed; }
+    h1 { font-size: clamp(2.6rem, 5vw, 4.1rem); line-height: 1.08; margin: 12px 0 20px; }
+    h2 { font-size: 1.65rem; line-height: 1.3; margin: 8px 0 20px; }
+    h3 { font-size: 1.15rem; line-height: 1.4; margin: 28px 0 8px; }
+    p { margin: 12px 0 18px; }
+    .layout { display: grid; grid-template-columns: 232px minmax(0, 1fr); gap: 34px; align-items: start; margin-top: 30px; margin-bottom: 50px; }
+    nav { position: sticky; top: 18px; max-height: calc(100vh - 36px); overflow-y: auto; padding: 8px 0 16px; font-size: .87rem; line-height: 1.5; }
+    nav strong { display: block; margin: 10px 0 7px; }
+    nav a { display: block; padding: 5px 0; text-decoration: none; }
+    main { min-width: 0; }
+    section { background: white; border: 1px solid var(--line); border-radius: 10px; padding: clamp(22px, 4vw, 38px); margin-bottom: 22px; }
+    .step { color: var(--blue); }
+    .note, .checkpoint { padding: 14px 18px; border-left: 4px solid #32829a; background: #eef7fb; margin: 22px 0; }
+    .checkpoint { border-color: #347956; background: #eff7f1; }
+    .warning { border-color: #b37a1d; background: #fff7e7; }
+    code, pre { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: .88em; }
+    code { background: #eef3f6; border-radius: 4px; padding: .12em .3em; overflow-wrap: anywhere; }
+    pre { background: #142637; color: #f1f6fa; padding: 18px; border-radius: 8px; overflow-x: auto; line-height: 1.65; margin: 16px 0; }
+    pre code { background: none; padding: 0; font-size: inherit; overflow-wrap: normal; }
+    pre:has(.copy) { position: relative; padding-top: 54px; }
+    .code-label { color: var(--muted); font-size: .82rem; margin: 16px 0 -10px; }
+    .copy { position: absolute; top: 12px; right: 12px; border: 1px solid #cad8e4; border-radius: 4px; background: white; color: #142637; padding: 5px 10px; cursor: pointer; }
+    ul, ol { padding-left: 24px; }
+    li { margin: 7px 0; }
+    dl { margin: 18px 0; }
+    dt { font-weight: 700; margin-top: 16px; }
+    dd { margin: 4px 0 14px; }
+    details { border-top: 1px solid var(--line); margin: 22px 0 0; padding-top: 16px; }
+    summary { cursor: pointer; font-weight: 650; }
+    .table-wrap { overflow-x: auto; }
+    figure { margin: 24px 0; }
+    figure img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 6px; }
+    figcaption { color: var(--muted); font-size: .85rem; margin-top: 10px; }
+    table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+    th, td { text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); padding: 10px; }
+    th { background: #edf3f7; }
+    footer { color: var(--muted); padding: 0 28px 40px; font-size: .9rem; }
+    .skip { position: absolute; top: -80px; left: 12px; padding: 10px; background: white; z-index: 2; }
+    .skip:focus { top: 12px; }
+    @media (max-width: 860px) { .layout { grid-template-columns: 1fr; gap: 12px; } nav { position: static; max-height: none; } nav a { display: inline-block; margin-right: 16px; } .wrap { padding: 0 18px; } body { font-size: 16px; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    @media print { body { background: white; font-size: 11pt; } header { background: white; color: var(--ink); padding: 10px 0; } header p, .eyebrow { color: var(--ink); } nav, .copy, .skip { display: none; } .layout { display: block; } section { border: none; border-bottom: 1px solid var(--line); padding: 18px 0; } pre { white-space: pre-wrap; background: #f3f5f7; color: black; } h2, h3 { break-after: avoid; } }
+  </style>
+</head>
+<body>
+<a class="skip" href="#before">Skip to the tutorial</a>
+<header>
+  <div class="wrap">
+    <div class="eyebrow">OPEN · a guided Python tutorial</div>
+    <h1>Build your first network,<br>one step at a time.</h1>
+    <p>Start with one question. Add a few lines, understand what they do, and inspect the result before moving on. Continue to recursive networks for well-being and anxiety, then compare them in a combined graph.</p>
+    <p><a href="index.html">Field guide and illustrated examples</a> · <a href="api.md">API reference</a> · <a href="method.md">Method reference</a></p>
+  </div>
+</header>
+<div class="wrap layout">
+<nav aria-label="Tutorial steps">
+  <strong>Your first analysis</strong>
+  <a href="#before">Before you start</a>
+  <a href="#install">01 · Install OPEN</a>
+  <a href="#load">02 · Load and inspect data</a>
+  <a href="#variables">03 · Choose the variables</a>
+  <a href="#config">04 · Set up discovery</a>
+  <a href="#split">05 · Reserve confirmation data</a>
+  <a href="#run">06 · Run the analysis</a>
+  <a href="#links">07 · Read discovery links</a>
+  <a href="#confirmation">08 · Read confirmation tests</a>
+  <a href="#fit">09 · Read predictive fit</a>
+  <a href="#plot">10 · Draw the network</a>
+  <a href="#save">11 · Save the analysis</a>
+  <a href="#depth">12 · Add the next layer</a>
+  <strong>Build the full example</strong>
+  <a href="#outcomes">13 · Set up both outcomes</a>
+  <a href="#wellbeing">14 · Follow well-being</a>
+  <a href="#anxiety">15 · Compare anxiety</a>
+  <a href="#overlay">16 · Combine the networks</a>
+  <a href="#batch-save">17 · Inspect and save both</a>
+  <strong>Then change one thing</strong>
+  <a href="#roles">Account for a control</a>
+  <a href="#engines">Choose another engine</a>
+  <a href="#settings">Adjust discovery settings</a>
+  <a href="#tune">Try settings before confirming</a>
+  <a href="#new-sample">Confirm in a new sample</a>
+  <a href="#your-data">Move to your own data</a>
+</nav>
+<main>
+<section id="before">
+  <h2>What we are going to do</h2>
+  <p>Imagine you have survey data from 1,200 customer accounts. You want to know which account measures help predict <strong>renewal intent</strong>, a score from 1 to 7. Then ask what predicts those measures themselves. The second project applies the same sequence to well-being and anxiety in one coordinated analysis, with separate and combined network figures.</p>
+  <p>OPEN starts with a target, compares the predictive contributions of candidate variables with shuffled-noise references, and retains the more consistent contributions. It can then repeat that process with retained variables as new targets. The arrows describe prediction within these models; they do not establish causes.</p>
+  <p>We will use the supplied <a href="../examples/tutorial/data/business_customer_renewal.csv">fictional business dataset</a>. You need Python 3.11 or later and enough Python familiarity to run a script or notebook cell. No knowledge of OPEN is assumed.</p>
+  <div class="note"><strong>How to follow along:</strong> run steps 1–17 in order. Terminal commands are labeled separately from Python. Keep the Python blocks in the same script or notebook session, and run from the repository root, the folder containing <code>pyproject.toml</code>. Blocks labeled “Read only” show output rather than code to run. Later sections are optional branches; they start from the objects created in steps 1–17.</div>
+  <div class="note"><strong>Five figures in this version:</strong> <a href="#plot">1. First-layer business network</a> · <a href="#depth">2. Recursive business network</a> · <a href="#wellbeing">3. Well-being network</a> · <a href="#anxiety">4. Anxiety network</a> · <a href="#overlay">5. Combined outcome network</a>. Each figure appears alongside the code and explanation for that stage.</div>
+  <p>The runnable companion, <a href="../examples/tutorial/step_by_step.py" download>step_by_step.py</a>, collects the Python from steps 2–17 in order. Read the steps first if you want to understand each decision.</p>
+</section>
+
+<section id="install">
+  <span class="step">Step 01</span>
+  <h2>Install OPEN in your Python environment</h2>
+  <p>If you already have the repository, open a terminal in that folder. Otherwise, get it first:</p>
+  <p class="code-label">Terminal · only if you have not cloned the repository</p>
+  <pre><code class="language-shell">git clone https://github.com/imh-ds/open.git
+cd open</code></pre>
+  <p><code>git clone</code> downloads the project. <code>cd open</code> moves the terminal into its root folder.</p>
+  <p class="code-label">Terminal · from the repository root</p>
+  <pre><code class="language-shell">python -m pip install ".[visualization]"</code></pre>
+  <p><code>python -m pip</code> installs into the environment used by that Python interpreter. The dot means “this project”; <code>[visualization]</code> adds the plotting dependency. Keep the quotes. This installs the package distributed as <code>open-predictive-expansion</code>; the Python import name is <code>open</code>.</p>
+  <p>Now open a Python script or notebook using that same environment. In a notebook, check that its kernel uses the environment where you installed OPEN.</p>
+  <details><summary>If Python cannot import OPEN or find the CSV</summary>
+    <p><code>ModuleNotFoundError: No module named 'open'</code> usually means the running interpreter differs from the installation environment. Check <code>import sys; print(sys.executable)</code> in your Python session, then install with that interpreter.</p>
+    <p>A <code>FileNotFoundError</code> for the example CSV usually means the working directory is wrong. Check <code>from pathlib import Path; print(Path.cwd())</code> and run from the repository root, or use an absolute path to the CSV.</p>
+  </details>
+</section>
+
+<section id="load">
+  <span class="step">Step 02</span>
+  <h2>Load the data before choosing a model</h2>
+  <p>Start your Python session with one import:</p>
+  <pre><code class="language-python" data-run="main">import pandas as pd</code></pre>
+  <p><code>pandas</code> reads and inspects tables. <code>as pd</code> gives it the short name used below.</p>
+  <pre><code class="language-python" data-run="main">data = pd.read_csv("examples/tutorial/data/business_customer_renewal.csv")</code></pre>
+  <p><code>pd.read_csv(...)</code> reads the file into a DataFrame, a table with named columns. <code>data =</code> stores that table; it does not run an analysis.</p>
+  <pre><code class="language-python" data-run="main">print(data.shape)
+print(data.head())</code></pre>
+  <p>The first line prints <code>(1200, 11)</code>: 1,200 rows and 11 columns. The second prints the first five rows. Each row should be one customer account; <code>renewal_intent</code> is the outcome and the other ten columns are candidate measures.</p>
+  <pre><code class="language-python" data-run="main">print(data.dtypes)
+print(data.isna().sum())</code></pre>
+  <p>The first line checks column types. The second counts missing values by column. This example is numeric and complete. For your data, stop here to resolve text labels, missing outcomes, impossible values, and IDs that should not enter a predictive model.</p>
+  <div class="note"><strong>Missingness has different rules at different stages.</strong> The root outcome must be complete. During discovery, missing predictor values are median-imputed using each training fold; missing deeper-target values exclude rows from that target's assessment. Confirmation instead uses complete rows for each target and its frozen pool. Inspect its reported <code>n</code>; it can be smaller than the reserved sample.</div>
+  <details><summary>When your own table is not this tidy</summary>
+    <p>Real exports usually contain identifiers, text categories, and some rows without an outcome. OPEN accepts only numeric, non-boolean columns and stops with <code>variable '…' must be numeric</code> otherwise. A typical preparation looks like this; the file and column names are placeholders:</p>
+    <pre><code class="language-python" data-run="own-data">raw = pd.read_csv("my_study.csv")
+raw = raw.drop(columns=["respondent_id"])
+raw = raw.dropna(subset=["my_outcome"])
+raw["education"] = raw["education"].map({"high school": 1, "bachelor": 2, "graduate": 3})
+raw = pd.get_dummies(raw, columns=["region"], drop_first=True, dtype=float)</code></pre>
+    <p>The first change removes an identifier. The second drops rows missing the root outcome; record how many, because it changes the sample you report. The third codes an <em>ordered</em> category as scores, which is reasonable only if treating the steps as evenly spaced is defensible. The last turns an <em>unordered</em> category into indicator columns such as <code>region_south</code>. Keep <code>dtype=float</code>: pandas otherwise creates boolean columns, which OPEN rejects.</p>
+    <p>Each indicator is then a separate candidate, compared with the dropped reference category. Indicators from one variable are related and can appear together as a shared group. Dates and times need converting to a meaningful number, such as months since enrollment, before they can enter a model.</p>
+  </details>
+</section>
+
+<section id="variables">
+  <span class="step">Step 03</span>
+  <h2>Name the question, then name the candidates</h2>
+  <pre><code class="language-python" data-run="main">outcome = "renewal_intent"</code></pre>
+  <p>This is the exact name of the column you want to predict. The quotes make it a string. OPEN will look up that column in <code>data</code>.</p>
+  <p>Next, specify which other measures you want OPEN to consider:</p>
+  <pre><code class="language-python" data-run="main">predictors = [
+    "adoption", "setup_quality", "training_pct", "support_rating",
+    "response_speed", "success_contacts", "price_fairness", "industry_fit",
+    "tenure_months", "company_size_log",
+]</code></pre>
+  <p>The square brackets make a Python list. Each quoted item names one candidate column; commas separate items. These are candidates to test, not variables already selected for the final network. Leave the outcome out of this list.</p>
+  <p>We name the candidates explicitly so the research question is visible. You can omit <code>predictors</code> in an analysis call and let OPEN use eligible remaining columns, but that can accidentally include IDs, alternative outcomes, or information unavailable at prediction time.</p>
+  <div class="checkpoint"><strong>Checkpoint:</strong> you now have three objects: <code>data</code>, the table; <code>outcome</code>, one column name; and <code>predictors</code>, the candidate names. Nothing has been fitted yet.</div>
+</section>
+
+<section id="config">
+  <span class="step">Step 04</span>
+  <h2>Set up a small first discovery</h2>
+  <pre><code class="language-python" data-run="main">from open.api import DiscoveryConfig</code></pre>
+  <p><code>DiscoveryConfig</code> bundles settings for how OPEN discovers the network. It does not hold the data or the results.</p>
+  <pre><code class="language-python" data-run="main">config = DiscoveryConfig(
+    max_depth=1,
+    folds=10,
+    interactions=False,
+    seed=42,
+)</code></pre>
+  <p>Read this from top to bottom:</p>
+  <dl>
+    <dt><code>config = DiscoveryConfig(</code></dt>
+    <dd>Create a settings object and store it as <code>config</code>. The open parenthesis allows the arguments to continue on separate lines.</dd>
+    <dt><code>max_depth=1,</code></dt>
+    <dd>Search only for predictors of renewal intent. The outcome is at depth 0; its retained predictors are at depth 1. We will add another layer after understanding this one.</dd>
+    <dt><code>folds=10,</code></dt>
+    <dd>Divide discovery rows into ten parts. Train on nine parts and assess predictions on the remaining part, rotating through all ten. The default is ten; we write it explicitly so the later fold tallies are easy to interpret.</dd>
+    <dt><code>interactions=False,</code></dt>
+    <dd>Skip the optional pairwise interaction search for this first lesson. The package default is <code>True</code>. Turning it off makes this example easier to inspect; it does not assert that interactions are absent.</dd>
+    <dt><code>seed=42,</code></dt>
+    <dd>Fix discovery's random partitions and random streams. The number 42 is an arbitrary reproducibility choice, not a setting that improves evidence.</dd>
+    <dt><code>)</code></dt>
+    <dd>Finish creating the object. The trailing comma on the preceding line is valid Python.</dd>
+  </dl>
+  <p>Other discovery settings retain their defaults. You do not need to choose them all now. A fixed seed supports repeatability with the same data, code, and environment; it does not make a result reliable across samples.</p>
+</section>
+
+<section id="split">
+  <span class="step">Step 05</span>
+  <h2>Reserve rows for a separate confirmation stage</h2>
+  <p>Before looking for links, decide how much data discovery may use:</p>
+  <pre><code class="language-python" data-run="main">explore_fraction = 0.5
+split_seed = 42</code></pre>
+  <p><code>explore_fraction</code> is the share assigned to discovery. Here, half of 1,200 gives 600 discovery rows and 600 confirmation rows. Within those 600 discovery rows, ten folds use about 540 rows for training and 60 for assessment at a time.</p>
+  <p><code>split_seed</code> fixes the initial assignment of rows to the two stages and workflow-level random streams. It is separate from <code>config.seed</code>, which controls discovery. We set both explicitly; they do not need to have the same value.</p>
+  <p>Next, choose how confirmation will judge the frozen selected links:</p>
+  <pre><code class="language-python" data-run="main">correction = "holm"
+alpha = 0.05</code></pre>
+  <p><code>correction="holm"</code> adjusts the testable confirmation p-values for multiple testing. <code>alpha=0.05</code> is the threshold applied to adjusted p-values. These are also the defaults. They govern confirmation tests; they do not set discovery's fold thresholds.</p>
+  <div class="note warning"><strong>Make these choices before inspecting results.</strong> A random row split suits this fictional dataset of separate accounts. The standard workflow does not supply group-aware or time-ordered splitting and folds. Repeated observations, clusters, or forecasts need a design that respects those dependencies. With a small sample, consider discovery now and confirmation in a later independent sample rather than leaving both split parts too small. Below about 1,000 rows, <code>analyze</code> warns that splitting leaves small parts. Read that warning as a cue to use the <a href="#new-sample">later-sample workflow</a>, not as noise to suppress.</div>
+  <p>Changing <code>explore_fraction</code> to <code>0.7</code> would give 840 discovery rows and 360 confirmation rows here. More discovery data leaves less confirmation data. There is no universally best split or fold count.</p>
+</section>
+
+<section id="run">
+  <span class="step">Step 06</span>
+  <h2>Put the decisions together and run once</h2>
+  <pre><code class="language-python" data-run="main">from open.api import analyze</code></pre>
+  <p><code>analyze</code> splits the data, discovers a network on one part, tests frozen selected links on the other, and separately evaluates the frozen network's predictive fit.</p>
+  <pre><code class="language-python" data-run="main">result = analyze(
+    data,
+    outcome=outcome,
+    predictors=predictors,
+    engine="ols",
+    config=config,
+    explore_fraction=explore_fraction,
+    split_seed=split_seed,
+    correction=correction,
+    alpha=alpha,
+)</code></pre>
+  <p>Most of these lines simply pass the objects you have already made. In <code>outcome=outcome</code>, the name to the left of <code>=</code> is the function's argument; the name to the right is your variable containing <code>"renewal_intent"</code>. The same pattern applies to <code>predictors</code>, <code>config</code>, and the split and confirmation settings.</p>
+  <p><code>data</code> is the first argument: the input table. The one new choice is <code>engine="ols"</code>, which uses ordinary least squares as the discovery learner. This is a linear starting point. OLS confirmation uses HC4 robust standard errors. We will discuss other engines later.</p>
+  <p><code>result =</code> stores the returned <code>SplitResult</code>. It contains several related outputs, rather than just a picture. The call takes a few seconds here, because held-out assessments require many model fits; the whole companion script takes about a minute on a laptop. Expect more time with more candidates, deeper networks, repeats, interaction search, or LightGBM.</p>
+  <pre><code class="language-python" data-run="main">print(result.summary())</code></pre>
+  <p><code>.summary()</code> makes a readable report; <code>print</code> displays it. First check its opening line: discovery and confirmation should each have 600 rows, with the split seed and correction you specified. Then read depth 1 before moving to the detailed tables.</p>
+  <div class="checkpoint"><strong>Checkpoint:</strong> this is a complete one-outcome analysis. You can stop adding settings and inspect it. Discovery, confirmation tests, and predictive fit answer different questions; the next three steps read them separately.</div>
+  <div class="note warning"><strong>A real study runs this once.</strong> To teach one idea at a time, this tutorial calls <code>analyze</code> again later with a deeper setting on the same split, after you have seen confirmation results. In a study, that lets confirmation results influence the next choice. Fix the outcome, candidates, variable roles, engine, depth, and settings first, then call <code>analyze</code> once. If you need to compare settings, compare them on the discovery rows only: see <a href="#tune">Try settings before confirming</a>.</div>
+</section>
+
+<section id="links">
+  <span class="step">Step 07</span>
+  <h2>Read one discovery link</h2>
+  <pre><code class="language-python" data-run="main">discovery = result.discovery</code></pre>
+  <p><code>result.discovery</code> is the discovery-stage network. We give it a short local name so we can inspect its tables without repeatedly typing the longer expression.</p>
+  <pre><code class="language-python" data-run="main">print(discovery.links[
+    ["depth", "source", "target", "kind", "pass_rate", "tier", "r2_median"]
+].to_string(index=False))</code></pre>
+  <p><code>discovery.links</code> holds the relation table. The inner list chooses columns; <code>.to_string(index=False)</code> prints them without row numbers. Start with a row whose <code>kind</code> is <code>"unique"</code>.</p>
+  <p class="code-label">Read only · three rows from the supplied example, rounded</p>
+  <pre><code>source           target          pass_rate  tier     r2_median
+adoption         renewal_intent   1.0        kept     0.0827
+support_rating   renewal_intent   0.8        kept     0.0535
+price_fairness   renewal_intent   0.7        flagged  0.0320</code></pre>
+  <p>Read <code>source="adoption"</code> and <code>target="renewal_intent"</code> as “adoption helps predict renewal intent, beyond the other available candidates.” This is a conditional predictive contribution, not a correlation or a causal effect.</p>
+  <p><code>pass_rate</code> is the proportion of discovery folds where that contribution exceeded the shuffled-noise bar. With ten folds and the default one repeat, <code>0.9</code> means 9 of 10 folds. At the default thresholds, at least 80% is <code>kept</code>, 40% to below 80% is <code>flagged</code>, and below 40% is <code>dropped</code>. Contributions below the effect floor can instead be <code>hidden</code>; we will return to that setting later.</p>
+  <p><code>r2_median</code> is the median held-out R² contribution across folds. For a unique link it measures R² lost when that predictor is left out. A value of .08 would mean a median loss of .08 R² units in those comparisons. It is not a slope, does not give the sign of the relationship, and does not mean that a one-unit increase in adoption changes renewal intent by .08.</p>
+  <p>In this run, adoption and support rating are kept, while price fairness is flagged. The full table also retains the dropped candidates. These are results for this simulated dataset and configuration; small numerical differences can occur across dependency versions.</p>
+  <div class="note"><strong>A fold pass rate is not a p-value.</strong> The training sets overlap, so 9 of 10 passing folds are not nine independent replications. Confirmation provides the separate tests in the next step.</div>
+  <details><summary>What if the relation is a shared group?</summary>
+    <p>Correlated predictors can contribute together while providing little unique information individually. A <code>kind="shared"</code> row evaluates the loss from removing a group together. Inspect <code>discovery.links</code> for its <code>members</code> and <code>discovery.pairs</code> for pair classifications. The group contribution is not a unique effect for each member. A kept shared group can promote its ordinary members into the next layer.</p>
+  </details>
+</section>
+
+<section id="confirmation">
+  <span class="step">Step 08</span>
+  <h2>Check which selected links were confirmed</h2>
+  <pre><code class="language-python" data-run="main">print(result.confirmation[
+    ["source", "target", "kind", "n", "p", "p_adjusted", "confirmed", "note"]
+].to_string(index=False))</code></pre>
+  <p>This is a different table. It tests frozen selected links using the reserved confirmation rows, adjusting for each target's discovery candidate pool and any specified controls. It does not rediscover the network or test every possible pair of variables.</p>
+  <p>Read <code>n</code> first to see the complete-case sample used. <code>p</code> is the raw test p-value. <code>p_adjusted</code> accounts for the selected correction, and <code>confirmed</code> records whether the adjusted value passed <code>alpha</code>. A small p-value is not the probability that the relationship is true, and it does not measure practical importance.</p>
+  <p>For this depth-1 run, adoption's raw p-value is approximately <code>1.25e-15</code> and its Holm-adjusted p-value is <code>2.49e-15</code>. Here <code>e-15</code> means “times 10 to the power −15.” Both adoption and support rating are confirmed; price fairness is absent from this table because the default confirmation set contains only kept links.</p>
+  <p>If <code>p</code> is missing, read <code>note</code>. Shared groups and interactions have no calibrated confirmation test in the current implementation. Invalid or unidentifiable confirmation models can also leave a relation untested. <code>confirmed=False</code> alone cannot distinguish “tested but unconfirmed” from “not tested.”</p>
+  <p>By default, only kept links enter confirmation. Flagged links remain discovery leads. If no links were kept, an empty confirmation table can be a legitimate result.</p>
+  <details><summary>If you planned to confirm flagged links too</summary>
+    <p>Use the specific split-workflow function, which exposes this additional option. This is a separate analysis choice; showing flagged edges in a graph does not test them.</p>
+    <pre><code class="language-python" data-run="flagged">from open.api import discover_and_confirm
+
+with_flagged = discover_and_confirm(
+    data, outcome=outcome, predictors=predictors,
+    engine="ols", config=config,
+    explore_fraction=explore_fraction, split_seed=split_seed,
+    correction=correction, alpha=alpha,
+    include_flagged=True,
+)</code></pre>
+    <p><code>include_flagged=True</code> expands the frozen link set and can change the correction family. <code>analyze</code> does not accept this argument. Specify this choice in advance rather than adding tests because a particular flagged link looked appealing.</p>
+  </details>
+</section>
+
+<section id="fit">
+  <span class="step">Step 09</span>
+  <h2>Ask how well the selected network predicts</h2>
+  <pre><code class="language-python" data-run="main">print(result.fit[
+    ["target", "n", "network_size", "r2_network_explore", "r2_network"]
+].to_string(index=False))</code></pre>
+  <p>Read the row for renewal intent. <code>network_size</code> counts its kept incoming predictors. <code>r2_network_explore</code> is discovery cross-validated network fit; <code>r2_network</code> is confirmation cross-validated network fit.</p>
+  <p>In this example, renewal intent has two kept predictors and fit of approximately <code>.218 / .170</code>. The graph writes this as <code>R² (D/C): .218 / .170</code>: discovery R² first, confirmation R² second.</p>
+  <p>These are averages of fold R² values relative to a training-fold mean baseline. They are not necessarily the reduction in pooled prediction error. Confirmation fit refits the frozen predictor set within folds of the confirmation sample; it is not the score of one unchanged trained model deployed to new accounts.</p>
+  <p>Selection can make discovery fit optimistic. Confirmation fit may be higher or lower in a particular split, and R² can be negative if predictions are worse than the baseline. Neither statistical confirmation nor a particular R² guarantees useful decisions. For an application, also assess prediction errors, a relevant operational baseline, and the consequences of mistakes.</p>
+  <p>Individual link contributions generally do not add up to the target's network R². They compare different models, and predictors can share information.</p>
+</section>
+
+<section id="plot">
+  <span class="step">Step 10</span>
+  <h2>Draw the result you have already computed</h2>
+  <pre><code class="language-python" data-run="main">from open.api import plot_discovery</code></pre>
+  <p>This function draws a discovery network. We will explicitly supply the confirmation tables so the graph can also show checkmarks and confirmation fit.</p>
+  <pre><code class="language-python" data-run="main">plot_discovery(
+    discovery,
+    path="renewal-depth1.png",
+    confirmation=result.confirmation,
+    confirmation_fit=result.fit,
+)</code></pre>
+  <p>The first argument is the network from step 7. <code>path</code> saves a PNG in your working directory. <code>confirmation</code> supplies link-test results; <code>confirmation_fit</code> supplies the separate fit estimates. Plotting does not refit the analysis.</p>
+  <p>Open <code>renewal-depth1.png</code>. Start at the central renewal-intent node, then follow one incoming arrow. A solid line is kept; a dotted line is flagged. An edge label such as <code>.080 (9/10)</code> combines the median R² contribution and passing-fold tally. A checkmark adds confirmation status. The green ring shows discovery network fit, while D/C text gives discovery and confirmation fit in that order.</p>
+  <p>Now make a simpler version without changing the analysis:</p>
+  <pre><code class="language-python" data-run="main">plot_discovery(
+    discovery,
+    path="renewal-depth1-kept.png",
+    confirmation=result.confirmation,
+    confirmation_fit=result.fit,
+    show_flagged=False,
+)</code></pre>
+  <p>The only new argument is <code>show_flagged=False</code>. It hides flagged links in this image; they remain in the tables. This is a display setting, unlike a discovery threshold, which can change selection and recursion.</p>
+  <figure>
+    <a href="assets/tutorial/step-by-step-depth1.png"><img src="assets/tutorial/step-by-step-depth1.png" width="1447" height="860" alt="Depth-1 renewal-intent network. Adoption is kept in 10 of 10 folds with a contribution of .083; support rating is kept in 8 of 10 with .054. Both are confirmed. Discovery and confirmation network fit are .218 and .170."></a>
+    <figcaption>The kept-only graph generated by the preceding call. Price fairness is hidden from this version, while both kept links carry confirmation checkmarks. Select the image to view it at full size.</figcaption>
+  </figure>
+  <details><summary>Make labels or spacing easier to read</summary>
+    <pre><code class="language-python" data-run="style">plot_discovery(
+    discovery, path="renewal-readable.png",
+    confirmation=result.confirmation, confirmation_fit=result.fit,
+    spacing=1.2,
+    label_size=1.2,
+    abbreviate_node_labels=False,
+    wrap_node_labels=False,
+)</code></pre>
+    <p><code>spacing=1.2</code> spreads nodes farther apart. <code>label_size=1.2</code> enlarges text relative to its base size. The last two arguments keep full words on one line; they may require more space. Node names in the tables always retain their original spelling. For repeated styling, import <code>GraphStyle</code> from <code>open.api</code>, put these fields in <code>GraphStyle(...)</code>, and pass that object as <code>style=...</code>.</p>
+  </details>
+</section>
+
+<section id="save">
+  <span class="step">Step 11</span>
+  <h2>Save the tables and settings as well</h2>
+  <pre><code class="language-python" data-run="main">from open.api import save_split
+
+saved_to = save_split(result, "renewal-depth1-output", plot=False)
+print(saved_to)</code></pre>
+  <p><code>save_split</code> exports the already computed <code>SplitResult</code>. It does not split again. The second argument is the destination folder. <code>plot=False</code> skips creating another graph because you have already saved two.</p>
+  <p>Open the folder and look at <code>links.csv</code>, <code>confirmation.csv</code>, and <code>confirmation-fit.csv</code>. You will also find node, pair, fold, noise-bar, and discovery-fit tables; <code>settings.json</code>; <code>split-settings.json</code>; and <code>summary.txt</code>.</p>
+  <p>Use a new folder for a different analysis you want to retain: reusing a destination replaces OPEN's managed output files. The export records analysis settings, but keep the input dataset, script, and environment/package versions too.</p>
+</section>
+
+<section id="depth">
+  <span class="step">Step 12</span>
+  <h2>Now ask what predicts the retained predictors</h2>
+  <p>Only after reading the first layer do we extend it. Import a small Python utility:</p>
+  <pre><code class="language-python" data-run="main">from dataclasses import replace
+
+deeper_config = replace(config, max_depth=2)</code></pre>
+  <p><code>replace</code> copies the settings object with the named field changed. <code>config</code> still has depth 1; <code>deeper_config</code> has depth 2. All other fields stay the same.</p>
+  <pre><code class="language-python" data-run="main">deeper_result = analyze(
+    data,
+    outcome=outcome,
+    predictors=predictors,
+    engine="ols",
+    config=deeper_config,
+    explore_fraction=explore_fraction,
+    split_seed=split_seed,
+    correction=correction,
+    alpha=alpha,
+)</code></pre>
+  <p>This is the same call as before with a different configuration and result name. It reruns the workflow on the same split. It is a continuation of the example, not an independent replication. In a study, choose the intended depth in advance, or choose it on discovery rows alone as in <a href="#tune">Try settings before confirming</a>; adding depth can add tests and alter the adjusted confirmation values.</p>
+  <p>For example, adoption's raw confirmation p-value stays the same here, but its adjusted value changes from about <code>2.49e-15</code> to <code>4.98e-15</code> because the depth-2 network adds testable links to the Holm family. This does not mean the original discovery contribution changed.</p>
+  <pre><code class="language-python" data-run="main">print(deeper_result.summary())
+print(deeper_result.discovery.nodes.to_string(index=False))
+print(deeper_result.discovery.stops)</code></pre>
+  <p>The summary reports each evaluated layer. The node table lists each variable's <code>depth</code> and <code>parents</code>, where parents are the targets it predicts. <code>stops</code> explains why expansion ended for a target: <code>MAX_DEPTH</code> means the chosen limit was reached; <code>NOTHING_KEPT</code> means no ordinary candidates were promoted; <code>NO_CANDIDATES</code> means there were none left to assess.</p>
+  <p>At depth 1, OPEN predicts renewal intent. At depth 2, the ordinary variables retained at depth 1 become targets. Each target at that layer uses the same snapshot of ordinary candidates not already placed in the network. A candidate can predict more than one target in that layer.</p>
+  <div class="note"><strong>Why might a plausible arrow be absent?</strong> Once an ordinary variable has been retained at an earlier depth, it is excluded from later candidate pools in that outcome's network. If adoption was retained at depth 1, it is not tested as a predictor of support rating at depth 2. That missing arrow means “not eligible here,” not “tested and rejected.” Flagged and dropped ordinary candidates remain available at later layers. A variable's contribution depends on the pool actually assessed.</div>
+  <pre><code class="language-python" data-run="main">save_split(deeper_result, "renewal-depth2-output", show_flagged=False)</code></pre>
+  <p>This time we leave <code>plot</code> at its default, <code>True</code>. The new folder contains the full tables and <code>network.png</code>. Compare its second layer with the depth-1 plot. Depth describes predictive distance from the selected outcome, not a temporal or causal sequence.</p>
+  <figure><a href="assets/tutorial/step-by-step-depth2.png"><img src="assets/tutorial/step-by-step-depth2.png" alt="Two-layer renewal network with setup quality and training predicting adoption, and response speed and success contacts predicting support rating."></a><figcaption>The depth-2 business network. Follow Setup Quality and Training into Adoption, then Adoption into Renewal Intent; the other branch runs through Support Rating. These are successive predictive target models, not a causal chain.</figcaption></figure>
+  <div class="checkpoint"><strong>Next: use the full two-outcome example.</strong> You now know the basic workflow and recursion. Continue through steps 13–17 to build, interpret, compare, and save the well-being and anxiety networks.</div>
+</section>
+
+<section id="outcomes">
+  <span class="step">Step 13 · build the two-outcome analysis</span>
+  <h2>Ask two related questions in the same participants</h2>
+  <p>The first network taught us the mechanics. Now we use the fuller psychology example: which measures predict well-being, which predict anxiety symptoms, and what predicts their retained predictors? Both outcomes come from the same 1,200 fictional participants. Anxiety is a symptom score, not a clinical diagnosis.</p>
+  <pre><code class="language-python" data-run="main">psych = pd.read_csv("examples/tutorial/data/psychology_wellbeing.csv")
+print(psych.shape)
+print(psych.head())</code></pre>
+  <p>Start by inspecting the new table, just as before. Keep <code>data</code> for the business example and use <code>psych</code> here, so the earlier example stays available.</p>
+  <pre><code class="language-python" data-run="main">outcomes = ["wellbeing", "anxiety"]</code></pre>
+  <p>This is now a list of two column names. We want a predictive network centered on each outcome, not a single score combining the outcomes.</p>
+  <pre><code class="language-python" data-run="main">psych_predictors = [name for name in psych.columns if name not in outcomes]
+print(psych_predictors)</code></pre>
+  <p>Read the list comprehension as “keep each column name unless it is one of the two outcomes.” Neither selected outcome may enter the ordinary predictor pool. Here the remaining columns are stress, hassles, financial strain, social support, loneliness, sleep quality, sleep hours, activity hours, self-efficacy, and age. Age is an ordinary candidate for this example; the later variable-role lesson explains how that differs from adjustment.</p>
+  <p>We already have <code>deeper_config</code>, which asks for two layers, uses ten folds, disables interaction discovery, and fixes the discovery seed. Keep that configuration and the original split settings while changing the dataset and outcome argument:</p>
+  <pre><code class="language-python" data-run="main">batch = analyze(
+    psych,
+    outcomes=outcomes,
+    predictors=psych_predictors,
+    engine="ols",
+    config=deeper_config,
+    explore_fraction=explore_fraction,
+    split_seed=split_seed,
+    correction=correction,
+    alpha=alpha,
+)</code></pre>
+  <p><code>psych</code> supplies the new table. <code>outcomes=outcomes</code>, plural, requests the coordinated batch; do not also pass <code>outcome</code>. The remaining lines have the same jobs as before. The return value is a <code>MultiOutcomeResult</code>.</p>
+  <p>OPEN splits the rows once into 600 discovery and 600 confirmation rows. Both outcome networks share that split and the discovery fold plan, while retaining their own candidate pools, depths, and results. The default Holm family includes testable selected links across both networks. Sharing participants does not make this a joint outcome model or an estimate of correlated outcome errors.</p>
+  <div class="checkpoint"><strong>Checkpoint:</strong> you have fitted two recursive networks in one coordinated workflow. Next, inspect each network before overlaying them.</div>
+</section>
+
+<section id="wellbeing">
+  <span class="step">Step 14 · read the first outcome</span>
+  <h2>Follow the well-being network from the center outward</h2>
+  <pre><code class="language-python" data-run="main">wellbeing_result = batch.by_outcome["wellbeing"]
+print(wellbeing_result.summary())</code></pre>
+  <p><code>batch.by_outcome</code> holds the individual analyses. The bracketed name retrieves an ordinary <code>SplitResult</code>, so its discovery, confirmation, and fit tables work exactly as in the business example.</p>
+  <pre><code class="language-python" data-run="main">plot_discovery(
+    wellbeing_result.discovery,
+    path="psychology-wellbeing.png",
+    confirmation=wellbeing_result.confirmation,
+    confirmation_fit=wellbeing_result.fit,
+    show_flagged=False,
+)</code></pre>
+  <p>The first line supplies this outcome's discovered network. The two confirmation arguments supply this outcome's tests and fit. <code>show_flagged=False</code> keeps the picture focused on retained links; the tables still include the weaker leads.</p>
+  <figure><a href="assets/tutorial/step-by-step-wellbeing.png"><img src="assets/tutorial/step-by-step-wellbeing.png" alt="Two-layer well-being network with stress and social support at depth one and further predictors at depth two."></a><figcaption>The well-being network from the preceding call. Select the figure to inspect the labels at full size.</figcaption></figure>
+  <p>First read the arrows entering Wellbeing: Stress and Social Support are kept and confirmed in this example. Its <code>R² (D/C)</code> is approximately <code>.292 / .206</code>. That is the fit of the retained incoming predictors for the well-being score, not an effect of intervening on either variable.</p>
+  <p>Now follow the branches outward. Stress and Social Support become targets at depth 2. Hassles and Financial Strain predict Stress in this path. Loneliness predicts Social Support in the retained network. Each destination has its own target model and fit; a fit beside Stress describes prediction of Stress, not another estimate of the fit for Wellbeing.</p>
+  <pre><code class="language-python" data-run="main">print(wellbeing_result.discovery.nodes.to_string(index=False))
+print(wellbeing_result.discovery.stops)
+print(wellbeing_result.fit.to_string(index=False))</code></pre>
+  <p>Check the table's depths and parents against the figure. Read the stop reasons too: a node sitting at the chosen depth limit is not evidence that nothing could predict it. The fit table supplies exact values and sample sizes rather than requiring you to read rounded labels.</p>
+</section>
+
+<section id="anxiety">
+  <span class="step">Step 15 · compare the second outcome</span>
+  <h2>Read anxiety using the same sequence</h2>
+  <pre><code class="language-python" data-run="main">anxiety_result = batch.by_outcome["anxiety"]
+print(anxiety_result.summary())</code></pre>
+  <p>Only the lookup name changes. This retrieves the second outcome's network from the same batch; it does not split or fit again.</p>
+  <pre><code class="language-python" data-run="main">plot_discovery(
+    anxiety_result.discovery,
+    path="psychology-anxiety.png",
+    confirmation=anxiety_result.confirmation,
+    confirmation_fit=anxiety_result.fit,
+    show_flagged=False,
+)</code></pre>
+  <figure><a href="assets/tutorial/step-by-step-anxiety.png"><img src="assets/tutorial/step-by-step-anxiety.png" alt="Two-layer anxiety network with stress and hassles as direct predictors and financial strain predicting stress at depth two."></a><figcaption>The anxiety network uses the same participants, split, folds, learner, and depth setting as the well-being network.</figcaption></figure>
+  <p>Start at Anxiety. Its retained direct predictors are Stress and Hassles, and its discovery/confirmation fit is approximately <code>.280 / .309</code>. Confirmation fit can be higher or lower than discovery fit in a particular split; this difference does not rank the outcomes' predictability across all populations.</p>
+  <p>Then move outward to Stress. Financial Strain is retained as its predictor here, while Hassles → Stress is absent. This is where comparing the pictures without checking eligibility can mislead.</p>
+  <div class="note"><strong>Why did Hassles → Stress disappear?</strong> In the well-being network, Stress and Social Support were placed at depth 1, leaving Hassles available at depth 2. In the anxiety network, Stress and Hassles were already placed at depth 1. The no-reuse rule excludes Hassles from the later Stress pool in that path. <strong>Hassles → Stress was not tested in the anxiety path.</strong> Its absence does not mean a test rejected it.</div>
+  <p>The generator gives Hassles a larger direct weight in Stress (.38) than Financial Strain (.28), before noise and scaling. Those generating weights are not the conditional held-out ΔR² values shown on arrows. Financial Strain remains eligible in both paths, but the other candidates differ, so its conditional contribution and Stress's network fit can differ too.</p>
+  <pre><code class="language-python" data-run="main">print(anxiety_result.discovery.nodes.to_string(index=False))
+print(anxiety_result.discovery.stops)
+print(anxiety_result.fit.to_string(index=False))</code></pre>
+  <p>Use these tables to confirm which variables were placed at each layer and which targets were evaluated. An untested edge, a dropped edge, a hidden contribution, and a flagged edge omitted by the plotting setting are different situations.</p>
+  <p>In this run, Hassles was also evaluated as a depth-2 target, but no ordinary candidates were promoted for it: its stop reason is <code>NOTHING_KEPT</code>. Financial Strain reaches the chosen depth limit and has <code>MAX_DEPTH</code>. Those are different reasons for a branch to end; the graph alone does not explain the distinction.</p>
+</section>
+
+<section id="overlay">
+  <span class="step">Step 16 · combine the views</span>
+  <h2>Overlay the two networks after understanding each one</h2>
+  <pre><code class="language-python" data-run="main">from open.api import GraphStyle, plot_outcomes
+
+batch_style = GraphStyle(show_flagged=False)
+plot_outcomes(batch, path="psychology-panels.png", style=batch_style)</code></pre>
+  <p><code>GraphStyle(show_flagged=False)</code> creates a reusable display configuration. Unlike <code>plot_discovery</code>, the batch plotting and saving functions take these options through <code>style</code>. <code>plot_outcomes</code> takes the whole batch. Its default layout produces separate panels, useful for comparing each root and its layers side by side. Now change only the layout:</p>
+  <pre><code class="language-python" data-run="main">plot_outcomes(
+    batch,
+    layout="combined",
+    path="psychology-overlay.png",
+    style=batch_style,
+)</code></pre>
+  <p><code>layout="combined"</code> draws shared variable nodes once and preserves outcome-specific links. <code>path</code> names a new image, so the separate views remain available. This is a different view of the same computed results.</p>
+  <figure><a href="assets/tutorial/step-by-step-combined.png"><img src="assets/tutorial/step-by-step-combined.png" alt="Combined overlay of the two recursive outcome networks, preserving distinct well-being and anxiety paths through shared variables."></a><figcaption>The combined network. Follow the outcome colors in the legend rather than treating every visible branch as one fitted model.</figcaption></figure>
+  <p>Find Wellbeing and Anxiety first. Then locate Stress, which predicts both roots and is itself a depth-2 target in both paths. Its fit differs by path: approximately <code>.203 / .171</code> for the well-being path and <code>.044 / .054</code> for the anxiety path. These are separate fits for predicting Stress under different candidate pools; the overlay does not average them.</p>
+  <p>Follow Hassles next: its role as a direct anxiety predictor explains why it is unavailable in anxiety's later Stress pool. A shared node therefore does not imply that its incoming model was identical for every outcome. Identical reused assessments can draw once in neutral gray; distinct assessments remain separate even when rounded labels happen to match.</p>
+  <p>The overlay does not fit a joint outcome model, estimate cross-outcome residual covariance, or establish a causal direction. It helps you compare separate predictive networks built through one coordinated workflow.</p>
+</section>
+
+<section id="batch-save">
+  <span class="step">Step 17 · inspect and save the complete analysis</span>
+  <h2>Keep the outcome labels and test family in the results</h2>
+  <pre><code class="language-python" data-run="main">print(batch.confirmation.to_string(index=False))
+print(batch.fit.to_string(index=False))</code></pre>
+  <p>The aggregate tables use <code>root_outcome</code> to identify which network each row belongs to. Read the outcome label before comparing a repeated target such as Stress. As before, distinguish confirmed, tested but unconfirmed, and untested relations using the p-values and <code>note</code>.</p>
+  <pre><code class="language-python" data-run="main">from open.api import save_batch
+
+save_batch(batch, "psychology-output", plot="combined", style=batch_style)</code></pre>
+  <p><code>save_batch</code> exports the individual outcome analyses and aggregate confirmation, fit, settings, and summary files. Here <code>plot="combined"</code> also saves the overlay as <code>outcomes-network.png</code>. The generated folders under <code>outcomes/</code> retain each network's full tables; the aggregate settings map the folder names to the original outcome names. Use a new destination when you want to retain another analysis.</p>
+  <div class="checkpoint"><strong>You have completed the full walkthrough.</strong> You progressed from one-layer discovery to recursive expansion, two coordinated outcome networks, separate interpretation, a combined graph, and a complete export. The following lessons revisit individual settings using the objects already defined.</div>
+  <details><summary>Change the scope of multiple-testing correction</summary>
+    <p>The default scope is <code>"all_outcomes"</code>. If your planned analysis calls for separate correction families, use the specific multi-outcome function:</p>
+    <pre><code class="language-python" data-run="scope">from open.api import discover_and_confirm_outcomes
+
+per_outcome_batch = discover_and_confirm_outcomes(
+    psych, outcomes=outcomes, predictors=psych_predictors,
+    engine="ols", config=deeper_config,
+    explore_fraction=explore_fraction, split_seed=split_seed,
+    correction=correction, alpha=alpha,
+    correction_scope="per_outcome",
+)</code></pre>
+    <p><code>analyze</code> does not accept <code>correction_scope</code>. Per-outcome adjustment does not account for testing across the whole batch. Both workflows support <code>correction="bh"</code> as an alternative to Holm, but choosing BH does not establish FDR control under arbitrary dependence among outcomes. State the chosen test family and adjustment.</p>
+  </details>
+</section>
+
+<section id="roles">
+  <span class="step">Optional · variable roles</span>
+  <h2>Keep a variable in every model</h2>
+  <p>Suppose you want to adjust for account tenure throughout, without asking what predicts tenure. First remove it from the ordinary candidate list:</p>
+  <pre><code class="language-python" data-run="roles">adjusted_predictors = [name for name in predictors if name != "tenure_months"]</code></pre>
+  <p>This list comprehension keeps every candidate except <code>tenure_months</code>. A variable cannot be both an ordinary predictor and a control or covariate.</p>
+  <pre><code class="language-python" data-run="roles">adjusted_result = analyze(
+    data, outcome=outcome, predictors=adjusted_predictors,
+    engine="ols", config=deeper_config,
+    explore_fraction=explore_fraction, split_seed=split_seed,
+    correction=correction, alpha=alpha,
+    controls=["tenure_months"],
+)</code></pre>
+  <p>The new argument, <code>controls</code>, includes tenure in every target model without testing a tenure link, drawing it, or making it a recursion target. Other contributions are assessed beyond tenure and the available candidates. Controls also enter the fit calculations even though they have no arrow.</p>
+  <p>If you want tenure adjusted for <em>and</em> its link tested and potentially drawn, replace the final argument with:</p>
+  <pre><code class="language-python">covariates=["tenure_months"],</code></pre>
+  <p>This line is a replacement inside the preceding call, not a separate command. Covariates stay in every target pool and never become recursion targets; their drawn nodes are tan. Do not put tenure in both roles. As an ordinary predictor, tenure could instead be retained, become a target, and leave deeper pools. Choose its role from the question before seeing which graph is more attractive.</p>
+</section>
+
+<section id="engines">
+  <span class="step">Optional · prediction engine</span>
+  <h2>Change the model without changing the question</h2>
+  <p>OLS models linear relationships in discovery. If you want regularization for many or correlated predictors, try the supported Elastic-Net learner while keeping the outcome, candidates, split, and depth fixed:</p>
+  <pre><code class="language-python" data-run="elastic">elastic_result = analyze(
+    data, outcome=outcome, predictors=predictors,
+    engine="elastic_net", config=config,
+    explore_fraction=explore_fraction, split_seed=split_seed,
+    correction=correction, alpha=alpha,
+)</code></pre>
+  <p>Only the engine changes. Elastic-Net can shrink coefficients and may produce a different network; it remains a linear discovery model. By default, its frozen unique links are confirmed using OLS with HC4 standard errors, not Elastic-Net coefficient p-values.</p>
+  <p>For relationships that bend or reverse direction, such as a U-shaped pattern, the supported LightGBM learner offers nonlinear flexibility. Install it in the same environment first:</p>
+  <p class="code-label">Terminal · optional dependency</p>
+  <pre><code class="language-shell">python -m pip install ".[lightgbm]"</code></pre>
+  <p>Then run the preceding analysis with <code>engine="lightgbm"</code> and a new result name. Its default confirmation uses the implemented combined cross-fitted GCM/PCM test and can be substantially slower. Engine suitability depends on the relationship, effective sample size, and tested conditions; see the <a href="engines.md">engine notes</a> and <a href="validation-evidence.md">validation evidence</a>.</p>
+  <p><code>confirm_engine</code>, an optional workflow argument, overrides the confirmation-test engine; it does not change the discovery learner. Leave it unset unless you have a reason to change that test. The accepted test engines are <code>"ols"</code> and <code>"lightgbm"</code>.</p>
+  <p>Comparisons on the same data are sensitivity analyses, not replications. Repeatedly choosing the engine with the most favorable confirmation results uses the confirmation sample for selection.</p>
+</section>
+
+<section id="settings">
+  <span class="step">Optional · discovery settings</span>
+  <h2>Change a setting only after understanding its job</h2>
+  <p>Each example below creates an alternative configuration from the original depth-1 <code>config</code>. They do not accumulate and do not run a model. To use one, pass it as <code>config=alternative_config</code> in a fresh analysis call. Record choices in advance for a real study.</p>
+  <h3>Change the number of folds</h3>
+  <pre><code class="language-python" data-run="settings">alternative_config = replace(config, folds=5)</code></pre>
+  <p>With 600 discovery rows, five folds use roughly 480 for training and 120 for assessment per fold. Ten folds used 540 and 60. Fewer folds mean fewer partitions and larger assessment sets; more folds require more computation. There is no validated rule mapping every sample size to a particular fold count. Fold thresholds apply to proportions, so with five folds the default 80% keep rule requires at least four passes.</p>
+  <h3>Repeat discovery partitions</h3>
+  <pre><code class="language-python" data-run="settings">alternative_config = replace(config, repeats=3)</code></pre>
+  <p><code>repeats=3</code> uses three discovery partitions. With ten folds, OPEN pools 30 fold contrasts for the noise bars and pass rates. It costs more computation and measures partition sensitivity on the same observations; it creates no new independent data.</p>
+  <h3>Change the fold-pass thresholds</h3>
+  <pre><code class="language-python" data-run="settings">alternative_config = replace(config, keep=0.9)</code></pre>
+  <p><code>keep=0.9</code> requires at least nine of ten passing folds rather than eight. The flag threshold remains its default <code>0.4</code>. To change that separately, use <code>replace(config, flag=0.5)</code>. Valid settings require <code>0 &lt; flag &lt;= keep &lt;= 1</code>. These are discovery rules, not confirmation significance levels. Lower thresholds can enlarge a network without making it more reliable.</p>
+  <h3>Change the noise reference</h3>
+  <pre><code class="language-python" data-run="settings">alternative_config = replace(config, noise_quantile=0.99)</code></pre>
+  <p>The default is <code>0.95</code>. A real contribution passes when it exceeds the selected quantile of shuffled-noise contributions for that target and contrast, pooled across folds and repeats. A higher quantile generally raises the reference bar. It does not turn the fold tally into a calibrated p-value or establish an error rate for the whole network.</p>
+  <h3>Remove the small-contribution floor</h3>
+  <pre><code class="language-python" data-run="settings">alternative_config = replace(config, hide_below=None)</code></pre>
+  <p>The default <code>hide_below=0.001</code> marks a passing relation <code>hidden</code> when its median R² contribution is below .001. Hidden relations remain in the tables but are not drawn or promoted. <code>None</code> disables that floor. Despite its name, this setting can change recursion; it is more than a graph preference. Compare <code>fold_tier</code> with final <code>tier</code> in the link table to diagnose it.</p>
+  <h3>Enable interaction discovery</h3>
+  <pre><code class="language-python" data-run="settings">alternative_config = replace(config, interactions=True)</code></pre>
+  <p>This restores the package default and enables the implemented pairwise interaction search. Interaction relations measure a joint gain beyond an additive model; they appear as orange junctions. They do not promote their members for recursion by themselves and currently remain untested in confirmation. Flagged interactions are omitted from plots by default; <code>show_flagged_interactions=True</code> is the display option to show them.</p>
+  <details><summary>Settings to revisit when the design calls for them</summary>
+    <dl>
+      <dt><code>dependence_pair=0.70</code></dt><dd>The default absolute Spearman threshold for identifying dependent candidate pairs and connected groups. It governs which relations receive the correlated-predictor assessments; it is not a discovery keep threshold.</dd>
+      <dt><code>noise_groups=10</code></dt><dd>The default number of matched shuffled-noise groups per dependence component for the group reference. Increasing it adds computation; it does not add participants.</dd>
+      <dt><code>tuning_folds=3</code></dt><dd>The default inner-fold setting for learner tuning within discovery training data. It differs from the outer <code>folds</code> used to evaluate contributions.</dd>
+      <dt><code>max_interaction_pairs=100</code></dt><dd>The default cap on candidate interaction pairs assessed for a target when interaction search is enabled.</dd>
+      <dt><code>max_depth=None</code></dt><dd>The package default has no explicit depth cap. Expansion still stops when no ordinary variables are promoted or no candidates remain. Choose a finite depth if that better matches the question.</dd>
+    </dl>
+    <p>See <a href="method.md">the method reference</a> for how these assessments work together. Altering a setting can move outside the conditions covered by the checked-in validation evidence.</p>
+  </details>
+</section>
+
+<section id="tune">
+  <span class="step">Optional · choosing settings honestly</span>
+  <h2>Try settings on discovery rows, then confirm once</h2>
+  <p>In practice you rarely know the right depth or setting before seeing any output. <code>analyze</code> does everything in one call, so every trial it runs also reaches the confirmation rows. Instead, split first and keep the confirmation rows untouched while you compare settings.</p>
+  <pre><code class="language-python" data-run="tune">from open.api import split_sample, discover, confirm, evaluate_fit, save_discovery
+
+discovery_rows, confirmation_rows = split_sample(
+    data, explore_fraction=explore_fraction, seed=split_seed,
+)</code></pre>
+  <p><code>split_sample</code> makes the same split that <code>analyze</code> would make with these arguments. It returns two DataFrames. Here the confirmation rows were already used in steps 6–12; in your own study, split first and do not look at them until the final step.</p>
+  <pre><code class="language-python" data-run="tune">for depth in (1, 2, 3):
+    trial = discover(
+        discovery_rows, outcome=outcome, predictors=predictors,
+        engine="ols", config=replace(config, max_depth=depth),
+    )
+    kept = trial.links.query("tier == 'kept'")
+    print(depth, len(kept), trial.stops)</code></pre>
+  <p>The loop runs discovery alone at three depths and prints how many links are kept and why each branch stopped. In this example, depth 1 keeps 2 links and depth 2 keeps 6. Depth 3 also keeps 6: every depth-2 branch now stops with <code>NOTHING_KEPT</code> rather than <code>MAX_DEPTH</code>, so the network has reached its natural end. That is a reason to choose depth 2 that does not depend on any confirmation result.</p>
+  <pre><code class="language-python" data-run="tune">chosen = discover(
+    discovery_rows, outcome=outcome, predictors=predictors,
+    engine="ols", config=deeper_config,
+)
+final_confirmation = confirm(chosen, confirmation_rows, correction=correction, alpha=alpha)
+final_fit = evaluate_fit(chosen, confirmation_rows, seed=split_seed)
+save_discovery(
+    chosen, "renewal-final-output",
+    confirmation=final_confirmation, confirmation_fit=final_fit,
+)</code></pre>
+  <p>Freeze the chosen network, then use the confirmation rows exactly once. With <code>seed=split_seed</code>, these tables match <code>deeper_result</code> from step 12. <code>save_discovery</code> does not know about the split, so record <code>explore_fraction</code> and <code>split_seed</code> with the export yourself.</p>
+  <p>Comparing settings on discovery rows is still selection: choosing the richest network can make discovery leads look better than they are. That is what the untouched confirmation stage is for. Report which settings you compared and why you chose one.</p>
+</section>
+
+<section id="new-sample">
+  <span class="step">Optional · independent confirmation later</span>
+  <h2>Discover now and confirm when new data arrive</h2>
+  <p>The split workflow is convenient when one dataset can support both stages. If you instead plan a later independent sample, use <code>discover</code> directly on your discovery sample. The code below is a template for your study; the two CSV names are placeholders, not supplied files.</p>
+  <pre><code class="language-python" data-run="new-sample">from open.api import discover, confirm, evaluate_fit, save_discovery
+
+study_data = pd.read_csv("my_discovery_sample.csv")
+study_network = discover(
+    study_data, outcome="renewal_intent", predictors=predictors,
+    engine="ols", config=deeper_config,
+)</code></pre>
+  <p><code>discover</code> uses the supplied rows for discovery without reserving a confirmation half. Its return value is a <code>DiscoveryResult</code>, like <code>result.discovery</code>. Freeze the question and selected links before collecting or inspecting the independent sample.</p>
+  <pre><code class="language-python" data-run="new-sample">new_data = pd.read_csv("my_independent_sample.csv")
+new_confirmation = confirm(study_network, new_data, correction="holm", alpha=0.05)
+new_fit = evaluate_fit(study_network, new_data)</code></pre>
+  <p><code>confirm</code> tests the frozen links; <code>evaluate_fit</code> separately cross-validates predictive fit for the frozen network. Supply the required target and pool columns with compatible coding and measurement. Do not substitute discovery rows for <code>new_data</code>.</p>
+  <pre><code class="language-python" data-run="new-sample">save_discovery(
+    study_network, "independently-confirmed-output",
+    confirmation=new_confirmation,
+    confirmation_fit=new_fit,
+)</code></pre>
+  <p><code>save_discovery</code> exports a discovery object with the separately supplied confirmation results. Use <code>save_split</code> for a <code>SplitResult</code> and <code>save_batch</code> for a <code>MultiOutcomeResult</code>.</p>
+</section>
+
+<section id="your-data">
+  <h2>Take the same sequence to your own study</h2>
+  <p>Start again at step 2 with your own CSV. Change the outcome name and candidate list before changing model settings. Choose the sampling design, variable roles, engine, depth, and confirmation plan from the question.</p>
+  <ol>
+    <li>Check the unit of observation, numeric coding, missingness, and when each measure would be available.</li>
+    <li>Write down the outcome, candidate pool, controls, and covariates.</li>
+    <li>Reserve appropriate independent confirmation data, or plan to collect it later. Compare settings on discovery rows only.</li>
+    <li>Record the configuration, seeds, correction family, and significance threshold.</li>
+    <li>Read discovery links, confirmation tests, fit, and stop reasons before interpreting the figure.</li>
+    <li>Save the tables and settings, retain the input and script, and report planned sensitivity analyses rather than selecting the most favorable run.</li>
+  </ol>
+  <div class="table-wrap">
+    <table>
+      <caption>When you return to the API, choose the function by the object and task.</caption>
+      <thead><tr><th scope="col">You want to…</th><th scope="col">Use</th></tr></thead>
+      <tbody>
+        <tr><td>Split one dataset and run the workflow</td><td><code>analyze</code> (<code>analyse</code> is an alias)</td></tr>
+        <tr><td>Split once, then compare settings on discovery rows only</td><td><code>split_sample</code>, then <code>discover</code></td></tr>
+        <tr><td>Discover without an internal confirmation split</td><td><code>discover</code></td></tr>
+        <tr><td>Test frozen links on independent data</td><td><code>confirm</code></td></tr>
+        <tr><td>Evaluate frozen-network fit on independent data</td><td><code>evaluate_fit</code></td></tr>
+        <tr><td>Plot one network / several networks</td><td><code>plot_discovery</code> / <code>plot_outcomes</code></td></tr>
+        <tr><td>Save discovery / split / batch results</td><td><code>save_discovery</code> / <code>save_split</code> / <code>save_batch</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Use the <a href="api.md">API reference</a> for complete signatures and output details, the <a href="method.md">method reference</a> for the assessments, and the <a href="index.html">field guide</a> for illustrated interpretation. Older <code>Explore</code>-named entry points remain supported; this tutorial uses the <code>Discovery</code> names.</p>
+  <p>When reporting a link, distinguish a discovery lead, a tested but unconfirmed link, an untested relation, and a confirmed predictive association. A missing arrow alone tells you too little. Independent confirmation strengthens the evidence for the specified predictive question; it does not establish causation or guarantee performance in another population.</p>
+</section>
+</main>
+</div>
+<footer class="wrap">OPEN is research software. Tutorial data are simulated. This page runs locally without external scripts, fonts, or services.</footer>
+<script>
+  document.querySelectorAll('pre:has(code.language-python), pre:has(code.language-shell)').forEach(pre => {
+    const button = document.createElement('button');
+    button.className = 'copy';
+    button.type = 'button';
+    button.textContent = 'Copy';
+    button.setAttribute('aria-label', 'Copy code block');
+    pre.prepend(button);
+    button.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(pre.querySelector('code').textContent);
+        button.textContent = 'Copied';
+      } catch {
+        const selection = window.getSelection();
+        const range = document.createRange();
+        range.selectNodeContents(pre.querySelector('code'));
+        selection.removeAllRanges();
+        selection.addRange(range);
+        button.textContent = 'Code selected';
+      }
+      window.setTimeout(() => { button.textContent = 'Copy'; }, 1800);
+    });
+  });
+</script>
+</body>
+</html>
