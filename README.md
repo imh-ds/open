@@ -221,6 +221,18 @@ Plotting requires the `visualization` extra described above.
 GitHub Actions workflow that runs it, pinned package versions, and the release
 holding its raw outputs.
 
+## Repository layout
+
+| Folder | What it holds |
+|---|---|
+| `src/opennet/` | The Python package (`opennet`). The repository and project are named `open`; the package you import is `opennet`. |
+| `tests/` | Unit tests, plus `tests/reference/` for reference implementations used by the tests. |
+| `docs/` | Public documentation: the [step-by-step tutorial](docs/tutorial.md) (styled page: `tutorial.html`), method, API, engines and validation evidence. |
+| `examples/tutorial/` | Runnable code and data for the tutorial. |
+| `examples/` (other files) | Validation-study scripts, protocols and manifests. GitHub Actions workflows call these paths directly. |
+| `examples/results/` | Tracked, dated results of each validation study. Raw per-cell outputs live in GitHub releases and Zenodo, not in git. |
+| `.github/workflows/` | CI and the validation-study workflows. |
+
 ## Citation
 
 See [CITATION.cff](CITATION.cff). Development history is archived in
