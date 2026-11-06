@@ -353,7 +353,7 @@ def test_batch_does_not_reuse_assessment_when_depth_or_pool_differs(monkeypatch)
     assessments = []
     promote = {("Y1", 1): "X1", ("Y2", 1): "Z", ("Z", 2): "X1"}
 
-    def assess_stub(frame, target, candidates, fold_ids, engine, config, depth, controls=()):
+    def assess_stub(frame, target, candidates, fold_ids, engine, config, depth, controls=(), directions=None):
         candidates = tuple(candidates)
         assessments.append((target, candidates, depth))
         selected = promote.get((target, depth))
