@@ -148,6 +148,42 @@ questions.
 - A block is not a structural equation model. There is no latent variable,
   measurement model or fit index, only a joint predictive test and a grouping.
 
+**Direction of effects** (OLS and Elastic-Net; `GraphStyle(show_direction=True)`, off by default).
+
+- An edge's thickness and label show **how much** a predictor matters (held-out
+  R² lost). Direction is a separate quantity and is reported separately. A
+  positive R² loss does not mean a positive coefficient.
+- **Discovery sign.** For each target, the full-pool model (every candidate plus
+  the controls, without the noise columns) is refitted on each training fold
+  with that fold's tuned settings. `result.directions` summarizes each
+  candidate's coefficient over those fits: the median (per original unit and per
+  SD of the predictor), its range, and how many fits were positive, negative or
+  zero. `direction` is "positive" or "negative" when every fit has that sign,
+  "mixed" when signs differ, and "zero" when every fit is exactly zero. There is
+  no threshold: `agreement` (the share of fits with the majority sign) is given
+  so you can decide, and `GraphStyle(direction_agreement=...)` draws a majority
+  sign when at least that share agree. This describes the fitted model; it was
+  not tested or confirmed. Elastic-Net coefficients are penalized, so they depend
+  on the penalty chosen in each fold and a weak predictor can be exactly zero.
+- **Confirmation slope.** The OLS confirmation test also reports the frozen
+  full-pool slope on the confirmation sample, with its HC4 standard error and a
+  95% pointwise interval (`coef`, `se`, `ci_low`, `ci_high`). The adjusted
+  p-value is not a simultaneous interval. `effects_table` keeps this slope apart
+  from the discovery estimate.
+- In the graph, green with `+` is positive, red with `−` negative, purple with `±`
+  mixed signs; the mark repeats the colour for readers who cannot use it. Edges
+  with no sign keep the normal colour: a block's own edge (a joint effect has no
+  single sign), interactions, and every edge under a learner without
+  coefficients. An arrow into a block is coloured only when the members it
+  predicts all have the same sign. A sign describes a conditional association in
+  that model; it is not a benefit, an effect on the outcome in the real world, or
+  a cause.
+- LightGBM can rise in one range and fall in another, so no sign is taken from
+  its importance, average SHAP value or a linear surrogate. It has no direction
+  yet; an effect-profile summary (accumulated local effects is a candidate) is
+  not implemented, and no sign-consistency cutoff or directional guarantee has
+  been validated.
+
 **Depth limit** (`DiscoveryConfig(max_depth=...)`, default `None`: no cap).
 
 - The outcome is depth 0. With `max_depth=4`, variables placed at depth 4 stay

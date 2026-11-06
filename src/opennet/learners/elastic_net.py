@@ -16,7 +16,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.utils import _safe_indexing, indexable
 
 from opennet.config import PreprocessingConfig
-from opennet.learners.base import Predictor
+from opennet.learners.base import Predictor, linear_coefficients
 from opennet.preprocessing import make_preprocessor
 
 
@@ -39,6 +39,7 @@ class ElasticNetPredictor(Predictor):
 
     engine_name = "elastic_net"
     tuning_grid_size = len(ALPHA_GRID) * len(L1_RATIO_GRID)
+    supports_coefficients = True
 
     def __init__(self, preprocessing: PreprocessingConfig | None = None):
         if preprocessing is not None and not isinstance(preprocessing, PreprocessingConfig):
@@ -117,6 +118,16 @@ class ElasticNetPredictor(Predictor):
         if self._pipeline is None:
             raise RuntimeError("fit must be called before predict")
         return np.asarray(self._pipeline.predict(X))
+
+    def coefficients(self) -> tuple[np.ndarray, np.ndarray]:
+        """Penalized coefficients of the fitted model: standardized and per original unit.
+
+        These describe the regularized model, so they depend on the penalty chosen for the training fold;
+        they are not unpenalized estimates and a shrunken-to-zero column is reported as exactly zero.
+        """
+        if self._pipeline is None:
+            raise RuntimeError("fit must be called before coefficients")
+        return linear_coefficients(self._pipeline)
 
     def clone(self) -> "ElasticNetPredictor":
         """Return an unfitted predictor with the same preprocessing settings."""

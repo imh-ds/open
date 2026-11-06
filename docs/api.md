@@ -35,7 +35,10 @@ returns the same numbers as a regression-style table, one row per link:
 predictor, target, held-out R² lost (ΔR²) and its range, the noise bar, folds
 passed, and, for a split result, the confirmation p-values and each target's R²
 on the discovery and confirmation samples. It is also saved as `effects.csv`.
-It does not include coefficients or direction, which are not saved yet.
+For OLS and Elastic-Net it also gives the signed estimate and direction from discovery (and
+`directions.csv`), and, for OLS confirmation, the confirmation slope with its HC4 standard
+error and 95% interval. `plot_discovery(result, path, show_direction=True)` colours edges green
+and red by sign. See "Direction of effects" in [the method](method.md).
 
 ## Choose the function for your task
 

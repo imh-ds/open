@@ -6,7 +6,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.pipeline import Pipeline
 
 from opennet.config import PreprocessingConfig
-from opennet.learners.base import Predictor
+from opennet.learners.base import Predictor, linear_coefficients
 from opennet.preprocessing import make_preprocessor
 
 
@@ -15,6 +15,7 @@ class OLSPredictor(Predictor):
 
     engine_name = 'ols'
     tuning_grid_size = 0
+    supports_coefficients = True
 
     def __init__(self, preprocessing=None):
         if preprocessing is not None and not isinstance(preprocessing,PreprocessingConfig):
@@ -43,6 +44,11 @@ class OLSPredictor(Predictor):
         if self._pipeline is None:
             raise RuntimeError('fit must be called before predict')
         return np.asarray(self._pipeline.predict(X))
+
+    def coefficients(self):
+        if self._pipeline is None:
+            raise RuntimeError('fit must be called before coefficients')
+        return linear_coefficients(self._pipeline)
 
     def clone(self):
         return type(self)(self.preprocessing_config)

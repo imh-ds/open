@@ -97,7 +97,7 @@ def write_split(split, out_dir, *, plot: bool = True, style: "GraphStyle | None"
 _EXPORT_FILES = (
     "nodes.csv", "links.csv", "pairs.csv", "folds.csv", "noise-bars.csv", "fit.csv",
     "settings.json", "summary.txt", "confirmation.csv", "confirmation-fit.csv",
-    "network.png", "split-settings.json", "block-members.csv", "effects.csv",
+    "network.png", "split-settings.json", "block-members.csv", "effects.csv", "directions.csv",
 )
 
 
@@ -206,6 +206,8 @@ def _prepare_export(result, out, *, plot, confirmation, confirmation_fit,
     links.to_csv(out / "links.csv", index=False)
     from opennet.effects import effects_table
     effects_table(result, confirmation, confirmation_fit).to_csv(out / "effects.csv", index=False)
+    if len(getattr(result, "directions", ())):
+        result.directions.to_csv(out / "directions.csv", index=False)
     block_table = _block_member_table(result)
     if len(block_table):
         block_table.to_csv(out / "block-members.csv", index=False)
@@ -249,6 +251,9 @@ INK, MUTED = "#1f2933", "#6b7785"
 KEPT, FLAGGED = "#334155", "#94a3b8"
 COVARIATE_FILL, COVARIATE_EDGE = "#f5e6cf", "#9a6b2f"
 SHARED, INTERACTION, FIT, CONFIRMED = "#2563eb", "#d9480f", "#2f9e44", "#2f9e44"
+POSITIVE, NEGATIVE, MIXED_SIGN = "#2b8a3e", "#c92a2a", "#7048e8"
+DIRECTION_COLORS = {"positive": POSITIVE, "negative": NEGATIVE, "mixed": MIXED_SIGN}
+DIRECTION_MARKS = {"positive": "+ ", "negative": "− ", "mixed": "± "}
 DEPTH_FILL = ("#1f2933", "#dbe7f6", "#e3f2e1", "#fbefd5", "#f3e3f1", "#e2f0f1")
 
 
@@ -293,6 +298,15 @@ class GraphStyle:
     - ``label_outline``: colour of the solid outline drawn around label text
       (edge labels, fit values, interaction pairs), any matplotlib colour.
     - ``label_outline_width``: thickness of that outline in points; 0 turns it off.
+    - ``show_direction``: colour each edge by the sign of the predictor's coefficient in the
+      target's full model on the discovery sample, for OLS and Elastic-Net: green and ``+``
+      positive, red and ``−`` negative, purple and ``±`` mixed signs across folds. Edges
+      with no sign (a block's own edge, interactions, learners without coefficients) keep
+      the normal colour. The sign describes the fitted model; it is not tested or
+      confirmed, and it is a conditional association, not a benefit or a cause. Off by
+      default. ``effects_table`` gives the numbers.
+    - ``direction_agreement``: the share of training-fold fits that must agree on a sign
+      for it to be drawn (default 1: every fit). A descriptive setting, not a test.
     - ``block_detail``: how a declared block is drawn. "summary" (and the default,
       "auto") shows the block as one node; each predictor has one arrow to it,
       labelled with the range of ΔR² over the members it predicts and how many
@@ -322,6 +336,8 @@ class GraphStyle:
     show_r2_legend: bool = True
     show_footnote: bool = True
     show_r2: bool = True
+    show_direction: bool = False
+    direction_agreement: float = 1.0
     block_detail: str = "auto"
 
     def __post_init__(self):
@@ -331,9 +347,12 @@ class GraphStyle:
                 raise ValueError(f"{name} must be a number in (0, 5]")
         for name in ("show_flagged", "show_flagged_interactions", "show_confirmation", "dodge_labels", "dodge_nodes",
                      "wrap_node_labels", "abbreviate_node_labels", "show_title", "show_r2_legend",
-                     "show_footnote", "show_r2"):
+                     "show_footnote", "show_r2", "show_direction"):
             if not isinstance(getattr(self, name), bool):
                 raise ValueError(f"{name} must be True or False")
+        a = self.direction_agreement
+        if isinstance(a, bool) or not isinstance(a, (int, float)) or not .5 < a <= 1:
+            raise ValueError("direction_agreement must be a number in (0.5, 1]")
         if self.block_detail not in ("auto", "summary", "members"):
             raise ValueError('block_detail must be "auto", "summary" or "members"')
         if self.edge_labels not in ("kept", "all", None):
@@ -1412,12 +1431,35 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
     if not st.show_r2:                                # no node R²: no rings, no R² labels, no R² legend
         fit, sizes, new, fit_text, member_fit = {}, {}, {}, {}, {}
 
+    signs = {}
+    if st.show_direction and not _overlay and len(getattr(result, "directions", ())):
+        for d in result.directions.itertuples():
+            if d.direction in ("positive", "negative"):
+                signs[(int(d.depth), d.target, d.source)] = d.direction
+            elif d.direction == "mixed":                  # the majority sign counts only when enough fits agree
+                majority = "positive" if d.coef_std > 0 else "negative" if d.coef_std < 0 else None
+                signs[(int(d.depth), d.target, d.source)] = (
+                    majority if majority and d.agreement >= st.direction_agreement else "mixed")
+
+    def direction_for(r):
+        """The drawn sign of a link: "positive", "negative", "mixed" or None (no sign to show)."""
+        if not signs or r.kind != "unique":
+            return None
+        if r.target in pseudo_info:                       # one arrow standing for several members
+            cells = dict(matrices[pseudo_info[r.target][0]]["rows"]).get(r.source, {})
+            found = {signs.get((int(r.depth), m, r.source)) for m in cells}
+        else:
+            found = {signs.get((int(r.depth), r.target, r.source))}
+        if not found or None in found:
+            return None
+        return found.pop() if len(found) == 1 else "mixed"
+
     def label_for(r):
         override = getattr(r, "label_override", None)
-        if isinstance(override, str):
-            return override
-        text = f"{_apa(r.r2_median)} ({_passes(r.pass_rate, n_folds)})"
-        return text + (" ✓" if st.show_confirmation and verdict.get(_link_key(r)) else "")
+        text = override if isinstance(override, str) else f"{_apa(r.r2_median)} ({_passes(r.pass_rate, n_folds)})"
+        mark = DIRECTION_MARKS.get(direction_for(r), "")
+        tick = " ✓" if not isinstance(override, str) and st.show_confirmation and verdict.get(_link_key(r)) else ""
+        return mark + text + tick
 
     edge_slots = {}
     if _overlay:
@@ -1582,7 +1624,8 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
         color = (KEPT if len(getattr(r, "shared_outcomes", ())) > 1 else
                  _overlay["colors"][r.root_outcome]) if _overlay else None
         if r.kind == "unique":
-            edge(pos[r.source], target, r.tier, r.r2_median, color or KEPT, label_for(r),
+            edge(pos[r.source], target, r.tier, r.r2_median,
+                 color or DIRECTION_COLORS.get(direction_for(r), KEPT), label_for(r),
                  head=rim(r.target, r.source), relation=r)
         elif r.kind == "shared" and getattr(r, "origin", None) == "declared" and r.block in block_shapes:
             # A declared block is one unit: an outline around all its members, and a single edge from the
@@ -1714,6 +1757,11 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
     if st.show_flagged:
         handles.append(Line2D([], [], color=_soft(KEPT), lw=2.5, ls=(0, (4, 2.5)),
                               label=f"flagged (≥ {s['flag']:.0%})"))
+    shown = {direction_for(r) for r in links.itertuples()} - {None}
+    for name, label in (("positive", "positive sign (+)"), ("negative", "negative sign (−)"),
+                        ("mixed", "mixed signs across folds (±)")):
+        if name in shown:
+            handles.append(Line2D([], [], color=DIRECTION_COLORS[name], lw=2.5, label=label))
     kinds = set(links.kind)                       # list only what is drawn
     block_rows = links.origin.eq("declared") if "origin" in links else pd.Series(False, index=links.index)
     automatic_shared = bool(((links.kind == "shared") & ~block_rows).any())
@@ -1757,6 +1805,10 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
             "causation, and are not partial correlations.\n"
             "Label: held-out ΔR² (R² lost; gained, for interactions) and folds passed, e.g. .120 (9/10)" +
             (" (✓ confirmed on new data)" if verdict and st.show_confirmation else "") + ".")
+    if shown:
+        note += ("\nColour and ± mark the sign of the predictor's coefficient in the target's full model on the "
+                 "discovery sample;\nit describes that fit, is not tested or confirmed, and is a conditional "
+                 "association, not a benefit or a cause.")
     if declared or pseudo_info:
         note += ("\nA declared block shows joint evidence for its members together; it does not mean each "
                  "member is individually supported, and it is not confirmed as a group.")

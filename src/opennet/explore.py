@@ -56,6 +56,8 @@ TIERS = ("kept", "flagged", "dropped", "hidden")
 # "x noise" is shown only when the noise bar is at least this; below it the
 # ratio divides by about zero (e.g. Elastic-Net shrinks noise columns to 0).
 RATIO_MIN_BAR = 0.001
+DIRECTION_COLUMNS = ["depth", "target", "source", "model", "n_fits", "coef_std", "coef_std_min", "coef_std_max",
+                     "coef", "n_positive", "n_negative", "n_zero", "agreement", "direction"]
 FIT_COLUMNS = ["depth", "target", "pool_size", "network_size", "network", "r2_network", "r2_pool",
                "share_of_pool", "folds"]
 
@@ -177,6 +179,10 @@ class ExploreResult:
     # frontier targets and the candidates they were not assessed against. Empty otherwise. It records an
     # unexecuted assessment, not a failed retention, and says nothing about deeper structure.
     truncation: dict = field(default_factory=dict)
+    # Signed effect of every candidate in each target's full-pool model, for linear learners (OLS, Elastic-Net):
+    # summarized over the training-fold fits of the discovery sample. Empty for learners without coefficients.
+    # It is a description of the fitted model, not a tested or confirmed sign. See ``_summarize_directions``.
+    directions: pd.DataFrame = field(default_factory=lambda: pd.DataFrame(columns=DIRECTION_COLUMNS))
 
     def summary(self) -> str:
         s = self.settings
@@ -512,6 +518,38 @@ def _interactions(Xo, yo, fold_o, active, candidates, noise_of, depth, target, c
     return pd.DataFrame(rows), {"*".join(p): p for p in real}
 
 
+def _summarize_directions(rows: list, model: str) -> pd.DataFrame:
+    """One row per (depth, target, candidate): the signed effect over the training-fold fits.
+
+    ``coef_std`` is the median standardized coefficient (outcome units per SD of the predictor) and ``coef`` the
+    median per original unit; the min and max show the spread over folds. ``direction`` is descriptive and uses
+    no threshold: "positive" or "negative" when every fit has that sign, "mixed" when both signs occur, "zero"
+    when every fit is exactly zero (Elastic-Net shrinkage), and a fit with zero among signed ones is "mixed".
+    ``agreement`` is the share of fits with the majority sign. Nothing here is a test.
+    """
+    if not rows:
+        return pd.DataFrame(columns=DIRECTION_COLUMNS)
+    frame = pd.DataFrame(rows)
+    out = []
+    for (depth, target, source), g in frame.groupby(["depth", "target", "source"], sort=False):
+        std = g.coef_std.to_numpy()
+        positive, negative, zero = int((std > 0).sum()), int((std < 0).sum()), int((std == 0).sum())
+        n = len(std)
+        if zero == n:
+            direction = "zero"
+        elif negative == 0 and zero == 0:
+            direction = "positive"
+        elif positive == 0 and zero == 0:
+            direction = "negative"
+        else:
+            direction = "mixed"
+        out.append(dict(depth=depth, target=target, source=source, model=model, n_fits=n,
+                        coef_std=float(np.median(std)), coef_std_min=float(std.min()), coef_std_max=float(std.max()),
+                        coef=float(np.median(g.coef.to_numpy())), n_positive=positive, n_negative=negative,
+                        n_zero=zero, agreement=max(positive, negative) / n, direction=direction))
+    return pd.DataFrame(out, columns=DIRECTION_COLUMNS)
+
+
 def network_fit(data: pd.DataFrame, target: str, pool: tuple[str, ...], network: tuple[str, ...],
                 fold_ids, engine, config: ExploreConfig, depth: int = 1, controls=()) -> dict:
     """Held-out R² of ``target`` from its network predictors and from its whole pool.
@@ -550,7 +588,7 @@ def network_fit(data: pd.DataFrame, target: str, pool: tuple[str, ...], network:
 
 
 def assess_target(data: pd.DataFrame, target: str, candidates: tuple[str, ...], fold_ids,
-                  engine, config: ExploreConfig, depth: int = 1, controls=()):
+                  engine, config: ExploreConfig, depth: int = 1, controls=(), directions: list | None = None):
     """Fold-level contrasts, links and pair classes for one target.
 
     ``controls`` are in every model but are never left out, tested or given a
@@ -560,6 +598,10 @@ def assess_target(data: pd.DataFrame, target: str, candidates: tuple[str, ...], 
     ``fold_ids`` is one array of fold numbers, or one per repeat. Each repeat
     has its own noise columns and seeds; the folds of all repeats are pooled
     (repeat r's fold k is numbered r * folds + k). Returns (folds, links, pairs).
+
+    When ``directions`` is a list and the learner is linear, the signed coefficient of every candidate in the
+    full-pool model (candidates and controls, no noise columns) fitted on each training fold, with the fold's
+    tuned settings, is appended to it, one dict per candidate and fold.
     """
     candidates, controls = tuple(candidates), tuple(controls)
     if not candidates or target in candidates:
@@ -616,6 +658,12 @@ def assess_target(data: pd.DataFrame, target: str, candidates: tuple[str, ...], 
             if base <= 0:
                 raise ValueError(f"target {target!r} is constant in held-out fold {k}")
             fold = r * config.folds + k
+            if directions is not None and getattr(model, "supports_coefficients", False):
+                refit = model.clone().fit(Xtr[list(candidates + controls)], ytr, params)
+                standardized, raw = refit.coefficients()
+                for i, c in enumerate(candidates):
+                    directions.append(dict(depth=depth, target=target, source=c, repeat=r, fold=fold,
+                                           coef_std=float(standardized[i]), coef=float(raw[i])))
 
             def add(contrast, source, value, is_noise):
                 rows.append(dict(depth=depth, target=target, repeat=r, fold=fold, contrast=contrast,
@@ -740,7 +788,7 @@ def _explore_core(data: pd.DataFrame, outcome: str, predictors=None, engine="ols
 
     depths, parents, stops = {outcome: 0}, {}, {}
     assessment_ids = {}
-    all_folds, all_links, all_pairs, all_fit = [], [], [], []
+    all_folds, all_links, all_pairs, all_fit, all_directions = [], [], [], [], []
     frontier, depth = (outcome,), 0
     truncation = {}
     while frontier:
@@ -758,20 +806,25 @@ def _explore_core(data: pd.DataFrame, outcome: str, predictors=None, engine="ols
         depth += 1
         next_parents = {}
         for target in frontier:
+            fits = []
             if assessment_cache is None:
-                assessment = assess_target(data, target, tested, fold_ids, engine, config, depth, controls)
+                assessment = assess_target(data, target, tested, fold_ids, engine, config, depth, controls,
+                                           directions=fits)
             else:
                 key = _assessment_cache_key(
                     target, tested, fold_ids, engine, config, depth, controls, covariates, data_context,
                 )
                 cached = assessment_cache.get(key)
                 if cached is None:
-                    assessment = assess_target(data, target, tested, fold_ids, engine, config, depth, controls)
-                    cached = (uuid4().hex, tuple(frame.copy(deep=True) for frame in assessment))
+                    assessment = assess_target(data, target, tested, fold_ids, engine, config, depth, controls,
+                                               directions=fits)
+                    cached = (uuid4().hex, tuple(frame.copy(deep=True) for frame in assessment), tuple(fits))
                     assessment_cache[key] = cached
                 else:
                     assessment = tuple(frame.copy(deep=True) for frame in cached[1])
+                    fits = list(cached[2])
                 assessment_ids[(depth, target)] = cached[0]
+            all_directions.extend(fits)
             folds, links, pairs = assessment
             kept_alone = set(links.source[(links.kind == "unique") & (links.tier == "kept")])
             # Only automatic groups are suppressed by a kept member; a declared block is judged jointly.
@@ -813,7 +866,9 @@ def _explore_core(data: pd.DataFrame, outcome: str, predictors=None, engine="ols
     if controls or covariates:
         settings.update(controls=list(controls), covariates=list(covariates))
     fit = pd.DataFrame(all_fit, columns=FIT_COLUMNS)
-    return ExploreResult(nodes, links, pairs, folds, bars, stops, settings, fit, assessment_ids, truncation)
+    directions = _summarize_directions(all_directions, name)
+    return ExploreResult(nodes, links, pairs, folds, bars, stops, settings, fit, assessment_ids, truncation,
+                         directions)
 
 
 def explore(data: pd.DataFrame, outcome: str, predictors=None, engine="ols",

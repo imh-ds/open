@@ -48,7 +48,15 @@ class _UntestableOLS(ValueError):
 
 
 def hc4_pvalues(X: np.ndarray, y: np.ndarray) -> np.ndarray:
-    """Two-sided HC4 slope tests with an intercept and a full-rank QR solve.
+    """Two-sided HC4 slope p-values; see ``hc4_slopes`` for the estimates and standard errors."""
+    return hc4_slopes(X, y)[2]
+
+
+def hc4_slopes(X: np.ndarray, y: np.ndarray):
+    """OLS slopes with HC4 standard errors and two-sided p-values: ``(slope, se, p, df)``.
+
+    Slopes and standard errors are in the original units (outcome per unit of each predictor). The tests use an
+    intercept and a full-rank QR solve.
 
     Invalid shapes raise ValueError. Empty/nonfinite samples, unidentified
     designs, nonpositive residual degrees of freedom and unit leverage are
@@ -96,7 +104,9 @@ def hc4_pvalues(X: np.ndarray, y: np.ndarray) -> np.ndarray:
     if not np.isfinite(variance).all() or np.any(variance <= 0):
         raise _UntestableOLS("HC4 slope variance must be finite and positive")
     t = beta[1:] / np.sqrt(variance)
-    return 2 * stats.t.sf(np.abs(t), n - k)
+    # back to the original units: Z = (X - mean) / (magnitude * spread) and y_scaled = (y - mean) / max|y|
+    unit = float(np.max(np.abs(y))) / (np.where(magnitude > 0, magnitude, 1.0) * np.where(spread > 0, spread, 1.0))
+    return beta[1:] * unit, np.sqrt(variance) * unit, 2 * stats.t.sf(np.abs(t), n - k), n - k
 
 
 # ---------------------------------------------------------------- LightGBM GCM/PCM (Phase B, F3, G2)
@@ -324,7 +334,10 @@ def _confirm(result: ExploreResult, data: pd.DataFrame, engine: str | None = Non
         if testable.any() and untestable_reason is None:
             if engine == "ols":
                 try:
-                    p_of = dict(zip(pool, hc4_pvalues(X, T)))
+                    slope, se, p_values, dof = hc4_slopes(X, T)
+                    p_of = dict(zip(pool, p_values))
+                    estimates = {c: (float(b), float(e)) for c, b, e in zip(pool, slope, se)}
+                    critical = float(stats.t.ppf(.975, dof))
                 except _UntestableOLS as exc:
                     untestable_reason = str(exc)
             else:   # only the frozen columns: about 61 LightGBM fits per column
@@ -343,18 +356,23 @@ def _confirm(result: ExploreResult, data: pd.DataFrame, engine: str | None = Non
         for _, r in group.iterrows():
             row = dict(depth=depth, target=target, source=r.source, kind=r.kind, explore_tier=r.tier,
                        explore_pass_rate=r.pass_rate, explore_r2=r.r2_median, engine=engine, n=n,
-                       pool_size=len(pool), p=np.nan, note=note)
+                       pool_size=len(pool), p=np.nan, coef=np.nan, se=np.nan, ci_low=np.nan, ci_high=np.nan,
+                       note=note)
             if r.kind == "unique":
                 if untestable_reason is not None:
                     reason = f"not tested: {untestable_reason}"
                     row["note"] = f"{note}; {reason}" if note else reason
                 else:
                     row["p"] = float(p_of[r.source])
+                    if engine == "ols":                  # the frozen full-pool OLS slope on the confirmation sample
+                        b, e = estimates[r.source]
+                        row.update(coef=b, se=e, ci_low=b - critical * e, ci_high=b + critical * e)
             else:
                 row["note"] = f"not tested: no calibrated {r.kind} test"
             rows.append(row)
     out = pd.DataFrame(rows, columns=["depth", "target", "source", "kind", "explore_tier", "explore_pass_rate",
-                                      "explore_r2", "engine", "n", "pool_size", "p", "note"])
+                                      "explore_r2", "engine", "n", "pool_size", "p", "coef", "se", "ci_low",
+                                      "ci_high", "note"])
     tested = out.p.notna()
     out["p_adjusted"] = np.nan
     if tested.any():
