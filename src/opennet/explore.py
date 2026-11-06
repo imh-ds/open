@@ -57,7 +57,9 @@ TIERS = ("kept", "flagged", "dropped", "hidden")
 # ratio divides by about zero (e.g. Elastic-Net shrinks noise columns to 0).
 RATIO_MIN_BAR = 0.001
 DIRECTION_COLUMNS = ["depth", "target", "source", "model", "n_fits", "coef_std", "coef_std_min", "coef_std_max",
-                     "coef", "n_positive", "n_negative", "n_zero", "agreement", "direction"]
+                     "coef", "n_positive", "n_negative", "n_zero", "agreement", "direction",
+                     "basis", "ale_net", "ale_range"]
+ALE_BINS = 10      # quantile bins of the accumulated local effect profile
 FIT_COLUMNS = ["depth", "target", "pool_size", "network_size", "network", "r2_network", "r2_pool",
                "share_of_pool", "folds"]
 
@@ -518,35 +520,110 @@ def _interactions(Xo, yo, fold_o, active, candidates, noise_of, depth, target, c
     return pd.DataFrame(rows), {"*".join(p): p for p in real}
 
 
+def _local_effects(predict, frame: pd.DataFrame, column: str, bins: int = ALE_BINS):
+    """Bin-by-bin accumulated local effect of one column: the mean prediction change across each quantile bin.
+
+    Every row is moved from the lower to the upper edge of its own bin with the other columns held at its own
+    values, so only combinations of values that occur in the data are used (unlike a partial dependence curve).
+    Returns the per-bin changes (outcome units), or None when the column has too few distinct values.
+    """
+    x = frame[column].to_numpy(dtype=float)
+    valid = ~np.isnan(x)
+    if valid.sum() < 2 * bins:
+        return None
+    edges = np.unique(np.quantile(x[valid], np.linspace(0, 1, bins + 1)))
+    if len(edges) < 3:
+        return None
+    index = np.clip(np.searchsorted(edges, x[valid], side="right") - 1, 0, len(edges) - 2)
+    rows = frame[valid].reset_index(drop=True)
+    lower, upper = rows.copy(), rows.copy()
+    lower[column], upper[column] = edges[index], edges[index + 1]
+    both = np.asarray(predict(pd.concat([lower, upper], ignore_index=True)), dtype=float)
+    delta = both[len(rows):] - both[:len(rows)]
+    counts = np.bincount(index, minlength=len(edges) - 1)
+    sums = np.bincount(index, weights=delta, minlength=len(edges) - 1)
+    return np.where(counts > 0, sums / np.maximum(counts, 1), 0.0)
+
+
+def _profile_rows(model, frame: pd.DataFrame, candidates, noise_columns, quantile: float, depth: int, target: str,
+                  repeat: int, fold: int) -> list:
+    """Direction rows from the average local effect profile of each candidate in a fitted model.
+
+    The profile is evaluated on this fold's training rows. The reference is the package's own: the permuted noise
+    columns of the same fitted model. A candidate whose profile moves no more than the ``quantile`` of the noise
+    columns' movement is "flat" (sign 0). Otherwise its bins that change by more than the ``quantile`` of the noise
+    columns' bin changes decide: all up is "increasing" (+1), all down "decreasing" (-1), both ways "mixed" (9).
+    The profile averages over interactions with other columns, so it does not separate them.
+    """
+    noise = [e for e in (_local_effects(model.predict, frame, c) for c in noise_columns) if e is not None]
+    bin_bar = float(np.quantile(np.abs(np.concatenate(noise)), quantile)) if noise else 0.0
+    range_bar = (float(np.quantile([np.ptp(np.concatenate([[0.0], np.cumsum(e)])) for e in noise], quantile))
+                 if noise else 0.0)
+    rows = []
+    for c in candidates:
+        effects = _local_effects(model.predict, frame, c)
+        if effects is None:
+            continue
+        path = np.concatenate([[0.0], np.cumsum(effects)])
+        spread = float(path.max() - path.min())
+        if spread <= range_bar:                      # no more movement than a permuted noise column shows
+            sign = 0
+        else:
+            real = effects[np.abs(effects) > bin_bar]
+            real = real if len(real) else effects
+            sign = 1 if (real > 0).all() else -1 if (real < 0).all() else 9
+        rows.append(dict(depth=depth, target=target, source=c, repeat=repeat, fold=fold, coef_std=np.nan,
+                         coef=np.nan, sign=sign, basis="ale", ale_net=float(path[-1]), ale_range=spread))
+    return rows
+
+
 def _summarize_directions(rows: list, model: str) -> pd.DataFrame:
     """One row per (depth, target, candidate): the signed effect over the training-fold fits.
 
-    ``coef_std`` is the median standardized coefficient (outcome units per SD of the predictor) and ``coef`` the
-    median per original unit; the min and max show the spread over folds. ``direction`` is descriptive and uses
-    no threshold: "positive" or "negative" when every fit has that sign, "mixed" when both signs occur, "zero"
-    when every fit is exactly zero (Elastic-Net shrinkage), and a fit with zero among signed ones is "mixed".
-    ``agreement`` is the share of fits with the majority sign. Nothing here is a test.
+    For linear learners (``basis`` "coefficient"), ``coef_std`` is the median standardized coefficient (outcome
+    units per SD of the predictor) and ``coef`` the median per original unit; the min and max show the spread over
+    folds. For other learners (``basis`` "ale") the sign comes from the average local effect profile of each fit
+    (see ``_profile_rows``): ``ale_net`` is the median net change of the profile across the range of the predictor
+    and ``ale_range`` the median distance between its highest and lowest points, in outcome units.
+    ``direction`` is descriptive and uses no threshold: "positive" or "negative" when every fit has that sign,
+    "mixed" when signs differ or a profile rises and falls, "zero" when every fit is exactly zero (Elastic-Net
+    shrinkage) or has no real change (profile). ``agreement`` is the share of fits with the majority sign. Nothing
+    here is a test.
     """
     if not rows:
         return pd.DataFrame(columns=DIRECTION_COLUMNS)
     frame = pd.DataFrame(rows)
+    if "sign" not in frame:
+        frame["sign"] = np.sign(frame.coef_std).astype(int)
+    for column in ("coef_std", "coef", "ale_net", "ale_range"):
+        if column not in frame:
+            frame[column] = np.nan
+    if "basis" not in frame:
+        frame["basis"] = "coefficient"
     out = []
     for (depth, target, source), g in frame.groupby(["depth", "target", "source"], sort=False):
-        std = g.coef_std.to_numpy()
-        positive, negative, zero = int((std > 0).sum()), int((std < 0).sum()), int((std == 0).sum())
-        n = len(std)
+        sign = g.sign.to_numpy()
+        n = len(sign)
+        positive, negative, zero = int((sign == 1).sum()), int((sign == -1).sum()), int((sign == 0).sum())
         if zero == n:
             direction = "zero"
-        elif negative == 0 and zero == 0:
+        elif positive == n:
             direction = "positive"
-        elif positive == 0 and zero == 0:
+        elif negative == n:
             direction = "negative"
         else:
-            direction = "mixed"
+            direction = "mixed"            # signs differ across fits, a zero among signed fits, or a profile that rises and falls
+
+        def middle(column, how):
+            values = g[column].to_numpy(dtype=float)
+            return float(how(values)) if np.isfinite(values).any() else np.nan
+
         out.append(dict(depth=depth, target=target, source=source, model=model, n_fits=n,
-                        coef_std=float(np.median(std)), coef_std_min=float(std.min()), coef_std_max=float(std.max()),
-                        coef=float(np.median(g.coef.to_numpy())), n_positive=positive, n_negative=negative,
-                        n_zero=zero, agreement=max(positive, negative) / n, direction=direction))
+                        coef_std=middle("coef_std", np.nanmedian), coef_std_min=middle("coef_std", np.nanmin),
+                        coef_std_max=middle("coef_std", np.nanmax), coef=middle("coef", np.nanmedian),
+                        n_positive=positive, n_negative=negative, n_zero=zero,
+                        agreement=max(positive, negative) / n, direction=direction, basis=g.basis.iloc[0],
+                        ale_net=middle("ale_net", np.nanmedian), ale_range=middle("ale_range", np.nanmedian)))
     return pd.DataFrame(out, columns=DIRECTION_COLUMNS)
 
 
@@ -663,7 +740,14 @@ def assess_target(data: pd.DataFrame, target: str, candidates: tuple[str, ...], 
                 standardized, raw = refit.coefficients()
                 for i, c in enumerate(candidates):
                     directions.append(dict(depth=depth, target=target, source=c, repeat=r, fold=fold,
-                                           coef_std=float(standardized[i]), coef=float(raw[i])))
+                                           coef_std=float(standardized[i]), coef=float(raw[i]),
+                                           sign=int(np.sign(standardized[i])), basis="coefficient"))
+            elif directions is not None:
+                # no coefficients (e.g. LightGBM): the average local effect profile of each candidate in the
+                # fitted full model, with the model's own permuted noise columns as the reference
+                refit = model.clone().fit(Xtr[list(model_cols)], ytr, params)
+                directions.extend(_profile_rows(refit, Xtr[list(model_cols)].reset_index(drop=True), candidates,
+                                                noise_cols, config.noise_quantile, depth, target, r, fold))
 
             def add(contrast, source, value, is_noise):
                 rows.append(dict(depth=depth, target=target, repeat=r, fold=fold, contrast=contrast,

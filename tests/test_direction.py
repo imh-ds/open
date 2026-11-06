@@ -13,7 +13,8 @@ from matplotlib.lines import Line2D
 from opennet import explore_report as report
 from opennet.api import DiscoveryConfig, analyze, effects_table
 from opennet.confirm import hc4_pvalues, hc4_slopes
-from opennet.explore import DIRECTION_COLUMNS, ExploreConfig, _summarize_directions, explore
+from opennet.explore import (DIRECTION_COLUMNS, ExploreConfig, _local_effects, _profile_rows,
+                             _summarize_directions, explore)
 from opennet.learners.base import Predictor
 from opennet.learners.elastic_net import ElasticNetPredictor
 from opennet.learners.ols import OLSPredictor
@@ -179,4 +180,88 @@ def test_bundled_arrows_into_a_block_carry_a_sign_only_when_the_members_agree():
     texts = [t.get_text() for t in fig.axes[0].texts]
     bundled = [t for t in texts if "of 2)" in t]
     assert bundled and all(t.startswith(("+ ", "− ", "± ")) for t in bundled)
+    plt.close(fig)
+
+
+# ------------------------------------------------------------------ LightGBM: average local effect profiles
+
+class _Function:
+    """A fitted-model stand-in: predicts from a formula, so the true profile is known."""
+
+    def __init__(self, formula):
+        self.formula = formula
+
+    def predict(self, frame):
+        return self.formula(frame)
+
+
+def _frame(n=600, seed=0):
+    r = np.random.default_rng(seed)
+    cols = {c: r.normal(size=n) for c in ("up", "down", "ushape", "other", "noise_up", "noise_down")}
+    return pd.DataFrame(cols)
+
+
+def test_local_effects_recover_the_slope_of_a_known_function():
+    frame = _frame()
+    effects = _local_effects(lambda f: 2 * f.up.to_numpy(), frame, "up")
+    quantiles = np.quantile(frame.up, np.linspace(0, 1, 11))
+    assert (effects > 0).all() and effects.sum() == pytest.approx(2 * (quantiles[-1] - quantiles[0]), rel=.02)
+    assert _local_effects(lambda f: f.up.to_numpy(), frame.assign(up=1.0), "up") is None   # nothing to profile
+
+
+def test_profiles_are_judged_against_the_models_own_noise_columns():
+    frame = _frame()
+    jitter = np.random.default_rng(1).normal(size=len(frame)) * .02
+
+    def formula(f):
+        return (1.0 * f.up - .8 * f.down + .7 * f.ushape ** 2 + .01 * f.noise_up - .01 * f.noise_down).to_numpy()
+
+    rows = _profile_rows(_Function(formula), frame, ["up", "down", "ushape", "other"],
+                         ["noise_up", "noise_down"], .95, 1, "Y", 0, 0)
+    by = {r["source"]: r for r in rows}
+    assert by["up"]["sign"] == 1 and by["down"]["sign"] == -1
+    assert by["ushape"]["sign"] == 9                         # rises and falls: neither sign
+    assert by["other"]["sign"] == 0                          # no movement beyond the noise columns
+    assert by["up"]["ale_net"] > 0 > by["down"]["ale_net"] and by["ushape"]["ale_range"] > 1
+    assert all(r["basis"] == "ale" for r in rows)
+
+
+def test_a_profile_that_rises_in_one_range_and_falls_in_another_is_mixed_not_averaged_away():
+    frame = _frame()
+    rows = _profile_rows(_Function(lambda f: (np.sin(2 * f.up)).to_numpy()), frame, ["up"],
+                         ["noise_up", "noise_down"], .95, 1, "Y", 0, 0)
+    assert rows[0]["sign"] == 9
+
+
+@pytest.fixture(scope="module")
+def lightgbm_result():
+    pytest.importorskip("lightgbm")
+    r = np.random.default_rng(4)
+    n = 1500
+    d = pd.DataFrame({k: r.normal(size=n) for k in ["Up", "Down", "U", "Inter1", "Inter2", "Noise1"]})
+    d["Y"] = 1.0 * d.Up - .8 * d.Down + .7 * d.U ** 2 + .6 * d.Inter1 * d.Inter2 + r.normal(size=n)
+    return explore(d, "Y", engine="lightgbm", config=ExploreConfig(folds=5, interactions=False, max_depth=1))
+
+
+def test_lightgbm_directions_come_from_the_profile_and_keep_the_shape(lightgbm_result):
+    table = lightgbm_result.directions
+    assert (table.basis == "ale").all() and (table.model == "lightgbm").all() and table.coef.isna().all()
+    direction = dict(zip(table.source, table.direction))
+    assert direction["Up"] == "positive" and direction["Down"] == "negative"
+    assert direction["U"] == "mixed"                             # U-shaped: not forced into a sign
+    assert direction["Inter1"] in ("mixed", "zero") and direction["Inter2"] in ("mixed", "zero")
+    assert direction["Noise1"] in ("zero", "mixed")
+    up = table[table.source == "Up"].iloc[0]
+    assert up.agreement == 1 and up.ale_net > 0 and up.ale_range >= up.ale_net
+
+
+def test_lightgbm_effects_table_and_graph_state_what_the_sign_is(lightgbm_result):
+    table = effects_table(lightgbm_result)
+    up = table[table.predictor == "Up"].iloc[0]
+    assert up.direction == "positive" and up.direction_basis == "ale" and up.profile_net > 0
+    assert np.isnan(up.estimate)                                # no coefficient is invented
+    fig = report.plot_explore(lightgbm_result, show_direction=True)
+    texts = [t.get_text() for t in fig.findobj(matplotlib.text.Text)]
+    assert any("average local effect (ALE) profile" in t for t in texts)
+    assert report.POSITIVE in _line_colours(fig) and report.MIXED_SIGN in _line_colours(fig)
     plt.close(fig)

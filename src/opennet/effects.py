@@ -12,7 +12,11 @@ signed effect, from two different sources that are kept apart:
   in the target's full-pool model, as the median over the training-fold fits (per original unit, and per SD of the
   predictor). ``direction`` is "positive" or "negative" when every fit has that sign, otherwise "mixed" (or
   "zero"); ``direction_agreement`` is the share of fits with the majority sign. It describes the fitted model;
-  it was not tested, and Elastic-Net values are penalized.
+  it was not tested, and Elastic-Net values are penalized. ``direction_basis`` is "coefficient" for these.
+* For learners without coefficients (LightGBM) ``direction_basis`` is "ale": the sign comes from the average
+  local effect (ALE) profile of the fitted model, judged against the model's own permuted noise columns.
+  ``estimate`` is empty and ``profile_net`` is the median net change of the profile over the predictor's range
+  (outcome units). "mixed" there includes a profile that rises and falls.
 * ``slope`` and its interval come from the confirmation sample: the frozen full-pool OLS slope with its HC4
   standard error, for links the confirmation tested with OLS. The interval is a 95% pointwise t interval; the
   adjusted p-value is not a simultaneous interval.
@@ -28,7 +32,8 @@ EFFECT_COLUMNS = [
     "outcome", "target", "depth", "predictor", "kind", "block", "tier",
     "delta_r2", "delta_r2_min", "delta_r2_max", "noise_bar", "above_noise", "folds_passed", "pass_rate",
     "p", "p_adjusted", "confirmed", "confirmation_note",
-    "estimate", "estimate_std", "direction", "direction_agreement", "direction_model",
+    "estimate", "estimate_std", "direction", "direction_agreement", "direction_model", "direction_basis",
+    "profile_net",
     "slope", "slope_se", "slope_ci_low", "slope_ci_high",
     "target_r2_discovery", "target_r2_pool", "target_r2_confirmation",
 ]
@@ -110,20 +115,21 @@ def effects_table(result, confirmation: pd.DataFrame | None = None, confirmation
              "confirmation_note"] = "not tested: no calibrated group test"
 
     signed = getattr(result, "directions", None)
-    for column in ("estimate", "estimate_std", "direction_agreement"):
+    for column in ("estimate", "estimate_std", "direction_agreement", "profile_net"):
         rows[column] = np.nan
-    rows["direction"], rows["direction_model"] = "", ""
+    rows["direction"], rows["direction_model"], rows["direction_basis"] = "", "", ""
     if signed is not None and len(signed):
         lookup = {(int(r.depth), r.target, r.source): r for r in signed.itertuples()}
         for i, row in rows.iterrows():
             found = lookup.get((int(row.depth), row.target, row.predictor)) if row.kind == "unique" else None
             if found is not None:
-                rows.loc[i, ["estimate", "estimate_std", "direction_agreement"]] = [
-                    found.coef, found.coef_std, found.agreement]
+                rows.loc[i, ["estimate", "estimate_std", "direction_agreement", "profile_net"]] = [
+                    found.coef, found.coef_std, found.agreement, found.ale_net]
                 rows.loc[i, "direction"], rows.loc[i, "direction_model"] = found.direction, found.model
+                rows.loc[i, "direction_basis"] = found.basis
     rows.loc[rows.kind.isin(["block", "shared"]), "direction"] = "none: a joint effect has no single sign"
     rows.loc[rows.kind.eq("interaction"), "direction"] = "none: not defined for an interaction"
-    rows.loc[rows.kind.eq("unique") & rows.direction.eq(""), "direction"] = "unavailable: learner has no coefficients"
+    rows.loc[rows.kind.eq("unique") & rows.direction.eq(""), "direction"] = "unavailable: no signed effect for this learner"
 
     fit = result.fit
     discovery = {(int(r.depth), r.target): (r.r2_network, r.r2_pool) for r in fit.itertuples()}

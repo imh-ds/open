@@ -298,8 +298,9 @@ class GraphStyle:
     - ``label_outline``: colour of the solid outline drawn around label text
       (edge labels, fit values, interaction pairs), any matplotlib colour.
     - ``label_outline_width``: thickness of that outline in points; 0 turns it off.
-    - ``show_direction``: colour each edge by the sign of the predictor's coefficient in the
-      target's full model on the discovery sample, for OLS and Elastic-Net: green and ``+``
+    - ``show_direction``: colour each edge by the sign of the predictor's coefficient (OLS,
+      Elastic-Net) or average local effect profile (LightGBM) in the target's full model
+      on the discovery sample: green and ``+``
       positive, red and ``−`` negative, purple and ``±`` mixed signs across folds. Edges
       with no sign (a block's own edge, interactions, learners without coefficients) keep
       the normal colour. The sign describes the fitted model; it is not tested or
@@ -1806,9 +1807,13 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
             "Label: held-out ΔR² (R² lost; gained, for interactions) and folds passed, e.g. .120 (9/10)" +
             (" (✓ confirmed on new data)" if verdict and st.show_confirmation else "") + ".")
     if shown:
-        note += ("\nColour and ± mark the sign of the predictor's coefficient in the target's full model on the "
-                 "discovery sample;\nit describes that fit, is not tested or confirmed, and is a conditional "
-                 "association, not a benefit or a cause.")
+        profile = (getattr(result, "directions", None) is not None and len(result.directions)
+                   and bool((result.directions.basis == "ale").any()))
+        note += ("\nColour and ± mark the sign of the predictor's " +
+                 ("average local effect (ALE) profile" if profile else "coefficient") +
+                 " in the target's full model on the discovery sample;\nit describes that fit, is not tested or "
+                 "confirmed, and is a conditional association, not a benefit or a cause." +
+                 ("\n± also marks a profile that rises and falls." if profile else ""))
     if declared or pseudo_info:
         note += ("\nA declared block shows joint evidence for its members together; it does not mean each "
                  "member is individually supported, and it is not confirmed as a group.")

@@ -178,11 +178,26 @@ questions.
   predicts all have the same sign. A sign describes a conditional association in
   that model; it is not a benefit, an effect on the outcome in the real world, or
   a cause.
-- LightGBM can rise in one range and fall in another, so no sign is taken from
-  its importance, average SHAP value or a linear surrogate. It has no direction
-  yet; an effect-profile summary (accumulated local effects is a candidate) is
-  not implemented, and no sign-consistency cutoff or directional guarantee has
-  been validated.
+- **Learners without coefficients (LightGBM).** A tree model can rise in one range
+  and fall in another, so no sign is taken from its importance, average SHAP value,
+  a correlation or a linear surrogate. Instead each candidate's **accumulated local
+  effect (ALE) profile** is computed from the fitted full-pool model on each
+  training fold: every row is moved from the lower to the upper edge of its own
+  decile bin with its other values held fixed (so only combinations that occur in
+  the data are used), and the mean prediction change per bin is accumulated across
+  the predictor's range. Judged against the package's own noise reference, the
+  permuted noise columns in the same fitted model: a profile that moves no more
+  than the noise columns' `noise_quantile` is "zero"; otherwise, if the bins that
+  change by more than the noise columns' bins all move up it is "positive", all
+  down "negative", and if it rises and falls it is "mixed". `ale_net` is the net
+  change over the range and `ale_range` the distance between its highest and
+  lowest points, in outcome units. Limits: the profile averages over interactions
+  (a predictor whose effect flips with another has a flat or mixed profile, not
+  its conditional effects), it is evaluated on each fold's training rows, and
+  folds overlap, so a consistent sign across folds is not independent evidence.
+  A real positive effect shows "mixed" if even one fold's profile wiggles, which
+  is why `direction_agreement` exists. No cutoff or directional guarantee has been
+  validated, and a sign here is a description of the fitted model, not a test.
 
 **Depth limit** (`DiscoveryConfig(max_depth=...)`, default `None`: no cap).
 
