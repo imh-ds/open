@@ -13,6 +13,13 @@ print(result.summary())
 save_split(result, "open-output", plot=False)
 ```
 
+`max_depth` limits how many layers discovery builds (the outcome is depth 0;
+`None`, the default, has no cap). It is accepted by every workflow through
+`config`, including multi-outcome runs. Targets stopped by the cap have the stop
+reason `MAX_DEPTH`, and `result.discovery.truncation` lists them with the
+candidates that were not assessed. That differs from a link that was assessed and
+not kept; see "Depth limit" in [the method](method.md).
+
 ## Choose the function for your task
 
 | Function in `opennet.api` | Purpose and return value | Descriptive name, still supported |

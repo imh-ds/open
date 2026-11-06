@@ -116,6 +116,10 @@ class ExploreResult:
     # Call-local provenance: identical IDs identify one actual cached assessment.
     # Scalar discovery has no shared cache and leaves this mapping empty.
     assessment_ids: dict[tuple[int, str], str] = field(default_factory=dict)
+    # Set only when ``max_depth`` ended expansion while candidates were still unassessed: the cap, the capped
+    # frontier targets and the candidates they were not assessed against. Empty otherwise. It records an
+    # unexecuted assessment, not a failed retention, and says nothing about deeper structure.
+    truncation: dict = field(default_factory=dict)
 
     def summary(self) -> str:
         s = self.settings
@@ -151,6 +155,13 @@ class ExploreResult:
                 share = f" ({r.share_of_pool:.0%} of the pool's)" if np.isfinite(r.share_of_pool) else ""
                 lines.append(f"  {r.target}: R²_D = {r.r2_network:.3f} from {r.network_size} predictor(s), "
                              f"{r.r2_pool:.3f} from all {r.pool_size}{share}")
+        if self.truncation:
+            t = self.truncation
+            lines.append(f"Depth limit: expansion stopped at max_depth = {t['max_depth']}. "
+                         f"{len(t['frontier'])} target(s) at depth {t['depth']} ({', '.join(t['frontier'])}) "
+                         f"were not assessed against {len(t['unassessed_pool'])} remaining candidate(s). "
+                         "This is an unexecuted assessment, not a failed one: deeper links were not "
+                         "searched for, so their absence is not evidence.")
         hidden = int((self.links.tier == "hidden").sum()) if len(self.links) else 0
         if hidden:
             lines.append(f"Hidden: {hidden} relation(s) passed enough folds but have median R2 below "
@@ -641,12 +652,16 @@ def _explore_core(data: pd.DataFrame, outcome: str, predictors=None, engine="ols
     assessment_ids = {}
     all_folds, all_links, all_pairs, all_fit = [], [], [], []
     frontier, depth = (outcome,), 0
+    truncation = {}
     while frontier:
-        if config.max_depth is not None and depth >= config.max_depth:
-            stops.update((t, "MAX_DEPTH") for t in frontier)
-            break
         pool = tuple(v for v in predictors if v not in depths)
         tested = pool + covariates                  # covariates: in every pool, never targets
+        if config.max_depth is not None and depth >= config.max_depth:
+            stops.update((t, "MAX_DEPTH") for t in frontier)
+            if tested:                              # a cap that coincides with an empty pool truncated nothing
+                truncation = dict(max_depth=config.max_depth, depth=depth, frontier=list(frontier),
+                                  unassessed_pool=list(tested))
+            break
         if not tested:
             stops.update((t, "NO_CANDIDATES") for t in frontier)
             break
@@ -701,7 +716,7 @@ def _explore_core(data: pd.DataFrame, outcome: str, predictors=None, engine="ols
     if controls or covariates:
         settings.update(controls=list(controls), covariates=list(covariates))
     fit = pd.DataFrame(all_fit, columns=FIT_COLUMNS)
-    return ExploreResult(nodes, links, pairs, folds, bars, stops, settings, fit, assessment_ids)
+    return ExploreResult(nodes, links, pairs, folds, bars, stops, settings, fit, assessment_ids, truncation)
 
 
 def explore(data: pd.DataFrame, outcome: str, predictors=None, engine="ols",

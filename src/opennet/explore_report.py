@@ -183,8 +183,10 @@ def _prepare_export(result, out, *, plot, confirmation, confirmation_fit,
     result.folds.to_csv(out / "folds.csv", index=False)
     result.bars.to_csv(out / "noise-bars.csv", index=False)
     result.fit.assign(network=result.fit.network.map(";".join)).to_csv(out / "fit.csv", index=False)
-    (out / "settings.json").write_text(json.dumps(dict(result.settings, stops=result.stops), indent=2) + "\n",
-                                      encoding="utf-8")
+    exported = dict(result.settings, stops=result.stops)
+    if result.truncation:                          # only when max_depth left candidates unassessed
+        exported["truncation"] = result.truncation
+    (out / "settings.json").write_text(json.dumps(exported, indent=2) + "\n", encoding="utf-8")
     if split is not None:
         (out / "split-settings.json").write_text(json.dumps(split.settings, indent=2) + "\n", encoding="utf-8")
     (out / "summary.txt").write_text((split if split is not None else result).summary() + "\n", encoding="utf-8")
@@ -1203,6 +1205,9 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
     for d in sorted({d for v, d in ring.items() if d > 0 and v not in candidate}) if not _overlay else ():
         handles.append(Line2D([], [], lw=0, marker="o", markersize=9, markeredgecolor=INK,
                               markerfacecolor=DEPTH_FILL[min(d, len(DEPTH_FILL) - 1)], label=f"depth {d}"))
+    truncation = {} if _overlay else getattr(result, "truncation", {})
+    if truncation:
+        handles.append(Line2D([], [], lw=0, label=f"depth-limited at max_depth = {truncation['max_depth']}"))
     if _overlay:
         handles = [Line2D([], [], color=color, lw=2.5, label=name)
                    for name, color in _overlay["colors"].items()] + handles
@@ -1215,6 +1220,10 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
             "causation, and are not partial correlations.\n"
             "Label: held-out ΔR² (R² lost; gained, for interactions) and folds passed, e.g. .120 (9/10)" +
             (" (✓ confirmed on new data)" if verdict and st.show_confirmation else "") + ".")
+    if truncation:
+        note += (f"\nDepth limit: nodes at depth {truncation['depth']} were not assessed further because "
+                 f"max_depth = {truncation['max_depth']}. That is not a failed retention, and deeper "
+                 "links were not searched for.")
     if s.get("controls"):
         note += f"\nAll links adjusted for: {', '.join(s['controls'])}."
     if st.abbreviate_node_labels:

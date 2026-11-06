@@ -90,6 +90,23 @@ candidate.
   pool is empty, or `max_depth` is reached. Kept covariates remain reported
   but do not extend recursion.
 
+**Depth limit** (`DiscoveryConfig(max_depth=...)`, default `None`: no cap).
+
+- The outcome is depth 0. With `max_depth=4`, variables placed at depth 4 stay
+  in the network, and no model is fitted to look for depth-5 predictors.
+- A target that ended this way has stop reason `MAX_DEPTH`. That means an
+  assessment was **not run**. It is not a link that was assessed and failed
+  retention (`NOTHING_KEPT`), and a variable not reached is not shown to be
+  irrelevant. Earlier assessments are identical to an uncapped run.
+- When the cap left candidates unassessed, the result carries `truncation`
+  (cap, frontier targets and the candidates not assessed). It also appears in
+  `summary()`, in `settings.json` as `truncation` and in the native graph's
+  legend and footnote. It is absent when no cap was reached.
+- The cap is a choice about the scope of the inquiry. It does not show that
+  deeper structure is absent, and four is only an example: no cap value has been
+  validated as a default. Declare it before an analysis, or report it as a
+  post-result amendment.
+
 **Controls and covariates** (`discover(..., controls=..., covariates=...)`).
 
 - **Controls** are in every target's model at every depth. They are never left
