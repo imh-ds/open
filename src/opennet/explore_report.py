@@ -1765,7 +1765,7 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
                               label=f"flagged (≥ {s['flag']:.0%})"))
     shown = {direction_for(r) for r in links.itertuples()} - {None}
     for name, label in (("positive", "positive sign (+)"), ("negative", "negative sign (−)"),
-                        ("mixed", "mixed signs across folds (±)")):
+                        ("mixed", "mixed sign (±)")):
         if name in shown:
             handles.append(Line2D([], [], color=DIRECTION_COLORS[name], lw=2.5, label=label))
     kinds = set(links.kind)                       # list only what is drawn
