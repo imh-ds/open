@@ -15,8 +15,11 @@ save_split(result, "open-output", plot=False)
 
 `blocks` in `DiscoveryConfig` declares a priori measurement blocks, for example
 `DiscoveryConfig(blocks={"spillover": ["WFpos", "FWpos"]})`. It works in every
-workflow, is saved in `settings.json`, and marks block rows in `links.csv`
-(`block`, `origin="declared"`). See "Declared blocks" in [the method](method.md).
+workflow, is saved in `settings.json`, marks block rows in `links.csv`
+(`block`, `origin="declared"`) and adds `block-members.csv` (who predicts each
+member). The graph draws a block as one node with a matrix beside it
+(`GraphStyle(block_detail=...)`). See "Declared blocks", and "A block or a
+composite score?", in [the method](method.md).
 
 `max_depth` limits how many layers discovery builds (the outcome is depth 0;
 `None`, the default, has no cap). It is accepted by every workflow through
@@ -24,6 +27,15 @@ workflow, is saved in `settings.json`, and marks block rows in `links.csv`
 reason `MAX_DEPTH`, and `result.discovery.truncation` lists them with the
 candidates that were not assessed. That differs from a link that was assessed and
 not kept; see "Depth limit" in [the method](method.md).
+
+A graph can show only the effects, as in a typical path diagram:
+`plot_discovery(result, "network.png", show_r2=False, edge_labels=None)` leaves
+out the node R² rings and labels and the edge numbers. `effects_table(result)`
+returns the same numbers as a regression-style table, one row per link:
+predictor, target, held-out R² lost (ΔR²) and its range, the noise bar, folds
+passed, and, for a split result, the confirmation p-values and each target's R²
+on the discovery and confirmation samples. It is also saved as `effects.csv`.
+It does not include coefficients or direction, which are not saved yet.
 
 ## Choose the function for your task
 
@@ -40,6 +52,7 @@ not kept; see "Depth limit" in [the method](method.md).
 | `save_discovery` | Save discovery tables, settings, summary and optional graph; returns a Path | `save_exploration`; implementation: `opennet.explore_report.write_explore` |
 | `save_split` | Save a `SplitResult`, including confirmation and split settings; returns a Path | `save_split_analysis` |
 | `plot_outcomes` | Draw radial facets or a combined outcome overlay; returns a Figure or Path | `opennet.explore_report.plot_outcomes` |
+| `effects_table` | Regression-style table of every link's effect, evidence and confirmation; returns a DataFrame | |
 | `save_batch` | Save all outcome analyses and aggregate tables; returns a Path | `save_multi_outcome_analysis` |
 
 `analyze` accepts exactly one of `outcome` or `outcomes`. A string outcome runs

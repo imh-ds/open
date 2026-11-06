@@ -97,7 +97,7 @@ def write_split(split, out_dir, *, plot: bool = True, style: "GraphStyle | None"
 _EXPORT_FILES = (
     "nodes.csv", "links.csv", "pairs.csv", "folds.csv", "noise-bars.csv", "fit.csv",
     "settings.json", "summary.txt", "confirmation.csv", "confirmation-fit.csv",
-    "network.png", "split-settings.json",
+    "network.png", "split-settings.json", "block-members.csv", "effects.csv",
 )
 
 
@@ -169,6 +169,31 @@ def _write_export(result, out_dir, *, plot, confirmation, confirmation_fit,
     return out
 
 
+def _block_member_table(result) -> pd.DataFrame:
+    """Member-level rows of every declared block: who predicts each member, and each member's own score.
+
+    ``predicts_member`` rows are ordinary links into a member. ``member_diagnostic`` rows are the member's
+    own score against the block's target; they never place the member (the block's joint result does).
+    """
+    columns = ["block", "role", "depth", "source", "target", "tier", "fold_tier", "pass_rate", "r2_median"]
+    links = result.links
+    if "origin" not in links:
+        return pd.DataFrame(columns=columns)
+    rows = []
+    for b in links[links.origin.eq("declared")].itertuples():
+        members = set(b.members)
+        for r in links[links.kind.eq("unique")].itertuples():
+            if r.target in members:
+                role = "predicts_member"
+            elif r.source in members and r.target == b.target and r.block == b.block:
+                role = "member_diagnostic"
+            else:
+                continue
+            rows.append(dict(block=b.block, role=role, depth=r.depth, source=r.source, target=r.target,
+                             tier=r.tier, fold_tier=r.fold_tier, pass_rate=r.pass_rate, r2_median=r.r2_median))
+    return pd.DataFrame(rows, columns=columns)
+
+
 def _prepare_export(result, out, *, plot, confirmation, confirmation_fit,
                     style, graph_settings, split):
     nodes = result.nodes.assign(parents=result.nodes.parents.map(";".join))
@@ -179,6 +204,11 @@ def _prepare_export(result, out, *, plot, confirmation, confirmation_fit,
             result.assessment_ids.get((int(row.depth), row.target)) for row in result.links.itertuples()
         ])
     links.to_csv(out / "links.csv", index=False)
+    from opennet.effects import effects_table
+    effects_table(result, confirmation, confirmation_fit).to_csv(out / "effects.csv", index=False)
+    block_table = _block_member_table(result)
+    if len(block_table):
+        block_table.to_csv(out / "block-members.csv", index=False)
     result.pairs.to_csv(out / "pairs.csv", index=False)
     result.folds.to_csv(out / "folds.csv", index=False)
     result.bars.to_csv(out / "noise-bars.csv", index=False)
@@ -206,6 +236,14 @@ NODE_R = 0.42          # node radius (data units)
 OUTCOME_R = 0.56
 MIN_SEP = 2.9 * NODE_R  # minimum distance between node centres on a ring
 RING_STEP = 2.3         # base distance between depth rings
+BLOCK_SCALE = 1.45      # a block node is this much larger than an ordinary node
+
+
+def _body_r(name, roots) -> float:
+    """Radius of a node body in data units (before node_size): outcome, declared block, or ordinary."""
+    if name in roots:
+        return OUTCOME_R
+    return BLOCK_SCALE * NODE_R if str(name).startswith("\x00") else NODE_R
 
 INK, MUTED = "#1f2933", "#6b7785"
 KEPT, FLAGGED = "#334155", "#94a3b8"
@@ -248,9 +286,20 @@ class GraphStyle:
     - ``show_title``: draw the graph title.
     - ``show_r2_legend``: explain the ``R² (D/C)`` pair beside the graph.
     - ``show_footnote``: draw the explanatory graph footnote.
+    - ``show_r2``: draw each target's R² (the ring around its node and the
+      ``R²`` label). False leaves only the effects, as in a typical path diagram.
+      Edge labels (ΔR² and folds passed) are controlled by ``edge_labels``;
+      ``effects_table`` gives every value in a table.
     - ``label_outline``: colour of the solid outline drawn around label text
       (edge labels, fit values, interaction pairs), any matplotlib colour.
     - ``label_outline_width``: thickness of that outline in points; 0 turns it off.
+    - ``block_detail``: how a declared block is drawn. "summary" (and the default,
+      "auto") shows the block as one node; each predictor has one arrow to it,
+      labelled with the range of ΔR² over the members it predicts and how many
+      (".091–.261 (6 of 6)"), and every predictor-by-member
+      value is in a small matrix beside the graph (also saved as
+      ``block-members.csv``). "members" draws the block as an outlined container
+      holding its members, with one arrow to each member a variable predicts.
     - ``dpi``: resolution of a saved image.
     """
     node_size: float = 1.0
@@ -272,6 +321,8 @@ class GraphStyle:
     show_title: bool = True
     show_r2_legend: bool = True
     show_footnote: bool = True
+    show_r2: bool = True
+    block_detail: str = "auto"
 
     def __post_init__(self):
         for name in ("node_size", "edge_width", "label_size", "fit_label_size", "spacing"):
@@ -280,9 +331,11 @@ class GraphStyle:
                 raise ValueError(f"{name} must be a number in (0, 5]")
         for name in ("show_flagged", "show_flagged_interactions", "show_confirmation", "dodge_labels", "dodge_nodes",
                      "wrap_node_labels", "abbreviate_node_labels", "show_title", "show_r2_legend",
-                     "show_footnote"):
+                     "show_footnote", "show_r2"):
             if not isinstance(getattr(self, name), bool):
                 raise ValueError(f"{name} must be True or False")
+        if self.block_detail not in ("auto", "summary", "members"):
+            raise ValueError('block_detail must be "auto", "summary" or "members"')
         if self.edge_labels not in ("kept", "all", None):
             raise ValueError('edge_labels must be "kept", "all" or None')
         from matplotlib.colors import is_color_like
@@ -345,6 +398,60 @@ def format_node_label(label: str, max_word_length: int = 10, max_line_length: in
     formatted = "\n".join(textwrap.wrap(" ".join(words), width=max_line_length,
                                           break_long_words=False, break_on_hyphens=False))
     return formatted.title()
+
+
+def _label_candidates(name: str, st) -> list[str]:
+    """Ways to break a node name over lines, from the usual wrap to narrower ones, most readable first."""
+    first = _node_display_label(name, st.wrap_node_labels, st.abbreviate_node_labels)
+    found = [first]
+    if st.wrap_node_labels:
+        for width in (8, 7, 6, 5):
+            if st.abbreviate_node_labels:
+                text = format_node_label(name, max_word_length=width, max_line_length=width,
+                                         abbr_length=min(5, width))
+            else:
+                text = textwrap.fill(re.sub(r"[_\s]+", " ", str(name).strip()), width=width,
+                                     break_long_words=False, break_on_hyphens=False)
+            if text not in found:
+                found.append(text)
+    return found
+
+
+def _fit_node_labels(ax, fig, items, fs) -> None:
+    """Shrink and re-wrap each node name until it sits inside its node (down to a readable floor).
+
+    Runs after the figure is laid out, so sizes come from the rendered text, not an estimate. Of the
+    line breaks that fit, the one with the largest type wins; if none fits at the floor, the least overflow.
+    """
+    if not items:
+        return
+    renderer = fig.canvas.get_renderer()
+    floor = 5.6 * fs
+    for item in items:
+        artist = item["artist"]
+        x0, y0 = ax.transData.transform((item["x"], item["y"]))
+        x1, _ = ax.transData.transform((item["x"] + item["rad"], item["y"]))
+        limit = abs(x1 - x0) * .9                       # pixels from the centre to the text's corner
+        best = None
+        for text in item["candidates"]:
+            size = item["base"]
+            while True:
+                artist.set_text(text)
+                artist.set_fontsize(size)
+                box = artist.get_window_extent(renderer)
+                reach = math.hypot(box.width, box.height) / 2
+                if reach <= limit or size <= floor:
+                    break
+                size = max(floor, size - .4)
+            fits = reach <= limit
+            key = (fits, size if fits else -reach / limit, -text.count("\n"))
+            if best is None or key > best[0]:
+                best = (key, text, size)
+            if fits:
+                best = (key, text, size)                # the fuller wording fits at a readable size: keep its words
+                break
+        artist.set_text(best[1])
+        artist.set_fontsize(best[2])
 
 
 def _node_display_label(name: str, wrap: bool, format_label: bool) -> str:
@@ -578,7 +685,7 @@ def _dodge_node_positions(positions, junctions, links, roots, fitted, style, *, 
     fixed = {index[name] for name in pinned}
     ns = style.node_size
     radii = np.array([
-        (.2 if name in junctions else OUTCOME_R if name in roots else NODE_R) * ns +
+        (.2 if name in junctions else _body_r(name, roots)) * ns +
         (.35 if name in fitted else .12) * ns for name in names
     ])
     first, second = np.triu_indices(len(names), 1)
@@ -722,7 +829,7 @@ def _make_label_room(positions, junctions, specs, links, roots, fitted, style, *
     fixed = np.array([name in pinned for name in names])
     is_junction = np.array([name in junctions for name in names])
     has_ring = np.array([name in fitted for name in names])
-    body = np.array([(.2 if name in junctions else OUTCOME_R if name in roots else NODE_R) * ns for name in names])
+    body = np.array([(.2 if name in junctions else _body_r(name, roots)) * ns for name in names])
     extent = body + np.where(has_ring, .15, .03) * ns
     rim_out = np.where(is_junction, .22 * ns, body + np.where(has_ring, .15, .04) * ns)
     rim_in = body + np.where(has_ring, .22, .04) * ns + .2 * ns
@@ -892,6 +999,46 @@ def _make_label_room(positions, junctions, specs, links, roots, fitted, style, *
     return ({name: out[name] for name in positions}, {key: out[key] for key in junctions}, spots)
 
 
+def _draw_block_matrix(ax, name, data, member_fit, n_folds, fs):
+    """Predictor-by-member table of a summarized block: held-out R² lost and folds passed per kept link."""
+    from matplotlib.colors import to_rgba
+    from matplotlib.patches import Rectangle
+    members, rows = data["members"], data["rows"]
+    top = max([v[0] for _, cells in rows for v in cells.values()] or [1.0])
+    for j, m in enumerate(members):
+        ax.text(j + .5, -.25, _node_display_label(m, False, True), rotation=40, ha="left", va="bottom",
+                fontsize=8.5 * fs, color=INK)
+    for i, (source, cells) in enumerate(rows):
+        ax.text(-.12, i + .5, _node_display_label(source, False, True), ha="right", va="center",
+                fontsize=8.5 * fs, color=INK)
+        for j, m in enumerate(members):
+            cell = cells.get(m)
+            if cell is None:
+                ax.add_patch(Rectangle((j, i), 1, 1, fc="none", ec="#e5e7eb", lw=.8))
+                continue
+            r2, rate, tier_ = cell
+            frac = max(r2, 0) / top
+            kept = tier_ == "kept"
+            ax.add_patch(Rectangle((j, i), 1, 1, fc=to_rgba(KEPT, (.12 + .72 * frac) if kept else .08 + .25 * frac),
+                                   ec="white" if kept else KEPT, lw=1.2, ls="-" if kept else (0, (3, 2))))
+            ax.text(j + .5, i + .5, f"{_apa(r2)}\n{_passes(rate, n_folds)}", ha="center", va="center",
+                    fontsize=7.5 * fs, linespacing=1.15, color="white" if kept and frac > .55 else INK)
+    fit_row = len(rows) + .2
+    if member_fit:
+        ax.text(-.12, fit_row + .5, "R² (D)", ha="right", va="center", fontsize=8 * fs, color=FIT, style="italic")
+        for j, m in enumerate(members):
+            if m in member_fit:
+                ax.text(j + .5, fit_row + .5, _apa(member_fit[m]), ha="center", va="center", fontsize=8 * fs,
+                        color=FIT)
+    ax.set_xlim(-.1, len(members))
+    ax.set_ylim(fit_row + 1.1, -.1)
+    ax.set_aspect("equal")
+    ax.axis("off")
+    ax.set_title(f"{name}: who predicts each member", fontsize=10 * fs, color=SHARED, loc="left", pad=(30 + 3.4 * max(len(_node_display_label(m, False, True)) for m in members)) * fs)
+    ax.text(0, fit_row + 1.35, "Each cell: held-out R² lost (folds passed). Blank: not kept. Dashed: flagged.",
+            fontsize=7 * fs, color=MUTED, va="top")
+
+
 def _stadium(a, b, w, steps=24):
     """Outline of the region within ``w`` of segment ab (a circle when a == b)."""
     a, b = np.array(a, float), np.array(b, float)
@@ -919,7 +1066,73 @@ def _stadium_reach(u, axis, half, w) -> float:
     return (lo + hi) / 2
 
 
-def _block_layout(result: ExploreResult, links: pd.DataFrame, st: GraphStyle, outcome: str):
+def _collapse_summary_blocks(result: ExploreResult, links: pd.DataFrame, summary):
+    """Replace each summarized block by one node; return (result, links, {node: (name, size)}, matrices).
+
+    The block's link to its target becomes an ordinary link from the block node. Links into members are
+    merged into one link per predictor, labelled "k of m". The matrices keep every member-level value.
+    """
+    blocks = {r.block: dict(members=list(r.members), target=r.target, depth=int(r.depth), pseudo=f"\x00{r.block}")
+              for r in links[links.origin.eq("declared")].itertuples() if r.block in summary}
+    owner = {m: b["pseudo"] for b in blocks.values() for m in b["members"]}
+    matrices = {}
+    for name, b in blocks.items():
+        rows = {}
+        for r in links[(links.kind == "unique") & links.target.isin(b["members"])].itertuples():
+            rows.setdefault(r.source, {})[r.target] = (r.r2_median, r.pass_rate, r.tier)
+        order = sorted(rows, key=lambda q: (-len(rows[q]), -max(v[0] for v in rows[q].values()), q))
+        matrices[name] = dict(members=b["members"], rows=[(q, rows[q]) for q in order])
+
+    nodes = []
+    for r in result.nodes.itertuples():
+        if r.variable not in owner:
+            nodes.append(dict(variable=r.variable, depth=r.depth,
+                              parents=tuple(dict.fromkeys(owner.get(q, q) for q in r.parents))))
+    for b in blocks.values():
+        parents = [q for r in result.nodes.itertuples() if r.variable in b["members"] for q in r.parents]
+        nodes.append(dict(variable=b["pseudo"], depth=b["depth"],
+                          parents=tuple(dict.fromkeys(owner.get(q, q) for q in parents))))
+
+    out, bundles = [], {}
+    for d in links.to_dict("records"):
+        if d["kind"] == "interaction" and any(m in owner for m in d["members"]):
+            continue                                         # pairs that touch a member appear in the tables only
+        if d.get("origin") == "declared" and d.get("block") in summary:
+            pseudo = blocks[d["block"]]["pseudo"]
+            d.update(kind="unique", source=pseudo, members=(pseudo,), origin="declared-summary")
+            out.append(d)
+            continue
+        if d["kind"] == "unique" and d["target"] in owner:
+            pseudo = owner[d["target"]]
+            bundles.setdefault((d["depth"], d["source"], pseudo), []).append(d)
+            continue
+        if d["kind"] == "unique" and d["source"] in owner:
+            continue                                         # a member's own score: a diagnostic, not drawn
+        d["members"] = tuple(dict.fromkeys(owner.get(m, m) for m in d["members"]))
+        d["target"] = owner.get(d["target"], d["target"])
+        out.append(d)
+    sizes = {b["pseudo"]: len(b["members"]) for b in blocks.values()}
+    for (depth, source, pseudo), rows in bundles.items():
+        merged = dict(max(rows, key=lambda x: x["r2_median"]))
+        low, high = min(x["r2_median"] for x in rows), max(x["r2_median"] for x in rows)
+        span_text = _apa(high) if _apa(low) == _apa(high) else f"{_apa(low)}–{_apa(high)}"
+        merged.update(target=pseudo, tier="kept" if any(x["tier"] == "kept" for x in rows) else "flagged",
+                      label_override=f"{span_text} ({len(rows)} of {sizes[pseudo]})")
+        out.append(merged)
+    collapsed = pd.DataFrame(out, columns=list(links.columns) + ["label_override"])
+    info = {b["pseudo"]: (name, len(b["members"])) for name, b in blocks.items()}
+    return (replace(result, nodes=pd.DataFrame(nodes, columns=result.nodes.columns)), collapsed, info, matrices)
+
+
+def _summary_blocks(links: pd.DataFrame, st: GraphStyle) -> set:
+    """Names of the declared blocks drawn in summary form (bundled arrows plus a matrix)."""
+    if st.block_detail == "members" or "origin" not in links:
+        return set()
+    declared = links[links.origin.eq("declared")]
+    return {r.block for r in declared.itertuples()}
+
+
+def _block_layout(result: ExploreResult, links: pd.DataFrame, st: GraphStyle, outcome: str, summary=frozenset()):
     """Lay the graph out with each declared block as one unit; return the usual four values and block shapes.
 
     The graph is first laid out with every declared block collapsed to a single node, so the block gets one
@@ -931,12 +1144,14 @@ def _block_layout(result: ExploreResult, links: pd.DataFrame, st: GraphStyle, ou
     if "origin" not in links or not links.origin.eq("declared").any():
         return None
     ns, nr = st.node_size, st.node_r()
-    foot = nr + .24 * ns                                  # a member with its fit ring
-    pad = .14 * ns
-    spacing = 2 * foot + .1 * ns                          # centre-to-centre distance between neighbours
+    foot = nr + .24 * ns                                  # an ordinary node with its fit ring
     blocks = {r.block: dict(members=list(r.members), target=r.target, depth=int(r.depth), pseudo=f"\x00{r.block}")
               for r in links[links.origin.eq("declared")].itertuples()}
-    owner = {m: b["pseudo"] for b in blocks.values() for m in b["members"]}
+    for name, b in blocks.items():           # a summarized block's members carry no fit ring or label: pack tighter
+        b["foot"] = nr + (.08 if name in summary else .24) * ns
+        b["pad"] = (.1 if name in summary else .14) * ns
+        b["spacing"] = 2 * b["foot"] + (.06 if name in summary else .1) * ns
+    owner ={m: b["pseudo"] for b in blocks.values() for m in b["members"]}
 
     # 1. collapsed graph: one node per block, links and parents remapped (duplicates merged)
     rows, placed = [], set()
@@ -999,12 +1214,12 @@ def _block_layout(result: ExploreResult, links: pd.DataFrame, st: GraphStyle, ou
         if b["mode"] == "row":
             direction = b["toward"] if m == 2 else dominant / np.linalg.norm(dominant)
             b["axis"] = np.array([-direction[1], direction[0]])
-            b["half"] = (m - 1) * spacing / 2
-            b["w"] = foot + pad
+            b["half"] = (m - 1) * b["spacing"] / 2
+            b["w"] = b["foot"] + b["pad"]
             b["reach"] = b["half"] + b["w"]                  # bounding radius
         else:
-            b["radius_ring"] = spacing / (2 * math.sin(math.pi / m))
-            b["w"] = b["radius_ring"] + foot + pad
+            b["radius_ring"] = b["spacing"] / (2 * math.sin(math.pi / m))
+            b["w"] = b["radius_ring"] + b["foot"] + b["pad"]
             b["reach"] = b["w"]
     pinned_names = {outcome}
 
@@ -1075,7 +1290,7 @@ def _block_layout(result: ExploreResult, links: pd.DataFrame, st: GraphStyle, ou
                 direction = direction / (np.linalg.norm(direction) + 1e-12)
             b["axis"] = axis = np.array([-direction[1], direction[0]])
             order = sorted(members, key=lambda v: float(np.dot(wants[v], axis)))
-            at = {v: centre + axis * (i - (m - 1) / 2) * spacing for i, v in enumerate(order)}
+            at = {v: centre + axis * (i - (m - 1) / 2) * b["spacing"] for i, v in enumerate(order)}
             a_end, b_end = centre - axis * b["half"], centre + axis * b["half"]
         else:
             desired = {v: math.atan2(wants[v][1], wants[v][0]) for v in members}
@@ -1159,6 +1374,13 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
         links = pd.DataFrame(columns=["depth", "target", "source", "kind", "members", "tier", "pass_rate",
                                       "r2_median"])
     outcome = result.settings.get("outcome") or result.nodes.variable.iloc[0]
+    summary = _summary_blocks(links, st) if _overlay is None and axes is None else set()
+    pseudo_info, matrices, member_fit = {}, {}, {}
+    if summary:
+        fit_by = {r.target: (r.r2_network, r.network_size) for r in result.fit.itertuples()}
+        member_fit = {m: fit_by[m][0] for b in links[links.origin.eq("declared")].itertuples() if b.block in summary
+                      for m in b.members if m in fit_by and fit_by[m][1] > 0}
+        result, links, pseudo_info, matrices = _collapse_summary_blocks(result, links, summary)
     blocked = _block_layout(result, links, st, outcome) if _overlay is None else None
     if blocked is not None:
         pos, ring, candidate, junctions, block_shapes = blocked
@@ -1187,8 +1409,13 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
     if _overlay:
         fit_text = dict(_overlay["fit_labels"])
     n_folds = int(result.settings.get("folds", 10)) * int(result.settings.get("repeats", 1))
+    if not st.show_r2:                                # no node R²: no rings, no R² labels, no R² legend
+        fit, sizes, new, fit_text, member_fit = {}, {}, {}, {}, {}
 
     def label_for(r):
+        override = getattr(r, "label_override", None)
+        if isinstance(override, str):
+            return override
         text = f"{_apa(r.r2_median)} ({_passes(r.pass_rate, n_folds)})"
         return text + (" ✓" if st.show_confirmation and verdict.get(_link_key(r)) else "")
 
@@ -1217,7 +1444,7 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
                  for v, text in fit_text.items()]
         for r in links.itertuples():
             if not labelled(r.tier) or getattr(r, "origin", None) == "declared":
-                continue                           # a declared block's label is placed on its single edge
+                continue                           # a members-view block's label is placed on its own edge
             source = _link_key(r) if r.kind == "interaction" else r.members[0]
             specs.append(dict(kind="edge", key=("edge", _link_key(r)), source=source, target=r.target,
                               text=label_for(r), fontsize=8,
@@ -1232,14 +1459,33 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
     span = hi - lo
     scale = float(np.clip(9.5 / max(span), .6, .95))       # inches per unit
     points = scale * 72                                    # points per unit
-    if axes is None:
+    if axes is None and matrices:
+        gw, gh = max(6.5, span[0] * scale + .6), max(5.5, span[1] * scale + 1.9)
+        dims = [(1.9 + .72 * len(d["members"]) + .09 * max(len(q) for q, _ in d["rows"] or [("", 0)]),
+                 .62 * (len(d["rows"]) + 3) + 1.1) for d in matrices.values()]
+        mw = max(w for w, _ in dims)                       # matrices go to the graph's right, stacked
+        heights = [h for _, h in dims]
+        fig = plt.figure(figsize=(gw + mw, max(gh, sum(heights) + 1.0)))
+        grid = fig.add_gridspec(1, 2, width_ratios=[gw, mw], wspace=.04)
+        ax = fig.add_subplot(grid[0, 0])
+        sub = grid[0, 1].subgridspec(len(heights) + 1, 1,
+                                     height_ratios=[*heights, max(.1, fig.get_figheight() - sum(heights))],
+                                     hspace=.25)
+        for i, (name, data) in enumerate(matrices.items()):
+            _draw_block_matrix(fig.add_subplot(sub[i]), name, data, member_fit, n_folds, fs)
+    elif axes is None:
         fig, ax = plt.subplots(figsize=(max(6.5, span[0] * scale + .6), max(5.5, span[1] * scale + 1.9)))
     else:
         fig, ax = axes.figure, axes
     ax.set_aspect("equal")
 
-    def rim(v):
+    def rim(v, source=None):
         """Distance from a node's centre to where an arrow into it should stop."""
+        if v in pseudo_info and source in pos:         # a block is a square: the edge depends on the direction
+            u = np.array(pos[source], float) - np.array(pos[v], float)
+            u /= np.linalg.norm(u) + 1e-12
+            half = BLOCK_SCALE * node_r
+            return min(half / max(abs(u[0]), abs(u[1]), 1e-9), 1.38 * half) + .05 * ns
         rad = outcome_r if v in roots else node_r
         return rad + (.22 * ns if v in fit and sizes.get(v, 0) > 0 else .04 * ns)
 
@@ -1285,7 +1531,7 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
             if length > head + .05:
                 u /= length
                 n = np.array([-u[1], u[0]])
-                size = (.15 + .012 * width) * ns
+                size = (.15 + .032 * width) * ns                 # the head grows with the line so it stays visible on thick edges
                 tip = np.array(b) - u * head
                 if control is not None:
                     # Locate the tip at the node's rim and align the original
@@ -1320,6 +1566,11 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
             start_radius = ((outcome_r if source_name in roots else node_r) +
                             (.15 * ns if sizes.get(source_name, 0) > 0 else .04 * ns)
                             if source_name in pos else .22 * ns)
+            if source_name in pseudo_info:                # the edge leaves a square block: where depends on direction
+                u = np.asarray(b, float) - np.asarray(a, float)
+                u = u / (np.linalg.norm(u) + 1e-12)
+                half = BLOCK_SCALE * node_r
+                start_radius = min(half / max(abs(u[0]), abs(u[1]), 1e-9), 1.38 * half) + .05 * ns
             visible = ((np.linalg.norm(samples - a, axis=1) > start_radius) &
                        (np.linalg.norm(samples - b, axis=1) > (head or 0)))
             annotations.append(dict(text=artist, kind="edge", points=samples, own=line,
@@ -1332,7 +1583,7 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
                  _overlay["colors"][r.root_outcome]) if _overlay else None
         if r.kind == "unique":
             edge(pos[r.source], target, r.tier, r.r2_median, color or KEPT, label_for(r),
-                 head=rim(r.target), relation=r)
+                 head=rim(r.target, r.source), relation=r)
         elif r.kind == "shared" and getattr(r, "origin", None) == "declared" and r.block in block_shapes:
             # A declared block is one unit: an outline around all its members, and a single edge from the
             # outline to the target. It does not look like separate edges from each member.
@@ -1383,6 +1634,7 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
                              color=color or INTERACTION, zorder=5, path_effects=halo)
             annotations.append(dict(text=artist, kind="node", anchor=mark, radius=.22 * ns))
 
+    node_labels = []
     neighbours = {}                               # where each node's edges leave it, to place its fit label
     for r in links.itertuples():
         far = [junctions[_link_key(r)]] if r.kind == "interaction" else \
@@ -1391,6 +1643,23 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
         for m in r.members:
             neighbours.setdefault(m, []).append(junctions.get(_link_key(r), pos[r.target]))
     for v, (x, y) in pos.items():
+        if v in pseudo_info:                          # a declared block: one square node, dimensions kept apart
+            from matplotlib.patches import FancyBboxPatch
+            name, size = pseudo_info[v]
+            half = BLOCK_SCALE * node_r
+            ax.add_patch(FancyBboxPatch((x - half, y - half), 2 * half, 2 * half,
+                                        boxstyle=f"round,pad=0,rounding_size={.38 * half}",
+                                        fc=DEPTH_FILL[min(ring[v], len(DEPTH_FILL) - 1)], ec=SHARED, lw=2.4,
+                                        zorder=3))
+            title_text = ax.text(x, y + .2 * half,
+                                 _node_display_label(name, st.wrap_node_labels, st.abbreviate_node_labels),
+                                 fontsize=8 * fs, ha="center", va="center", zorder=6, color=INK,
+                                 fontweight="bold")
+            node_labels.append(dict(artist=title_text, x=x, y=y + .2 * half, rad=1.2 * half, base=8 * fs,
+                                    candidates=_label_candidates(name, st)))
+            ax.text(x, y - .62 * half, f"{size} dims", fontsize=7 * fs, ha="center", va="center", zorder=6,
+                    color=SHARED)
+            continue
         is_outcome = v in roots
         rad = outcome_r if is_outcome else node_r
         covariate = v in covariates
@@ -1428,9 +1697,11 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
             size_ = 8.0 if 9 <= label_width <= 10 else 8.5
         else:
             size_ = 9 if label_width <= 4 else max(6, 9 - .45 * (label_width - 4))
-        ax.text(x, y, label, fontsize=size_ * fs, ha="center", va="center", zorder=6,
-                color="white" if is_outcome else (MUTED if grey else INK),
-                fontweight="bold" if is_outcome else "normal")
+        artist = ax.text(x, y, label, fontsize=size_ * fs, ha="center", va="center", zorder=6,
+                         color="white" if is_outcome else (MUTED if grey else INK),
+                         fontweight="bold" if is_outcome else "normal")
+        node_labels.append(dict(artist=artist, x=x, y=y, rad=rad, base=(8.5 if is_outcome else 9) * fs,
+                                candidates=_label_candidates(v, st)))
 
     s = result.settings
     split = f", {s['folds']} folds × {s['repeats']} repeats" if s.get("repeats", 1) > 1 else ""
@@ -1453,6 +1724,9 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
     declared = "origin" in links and bool(links.origin.eq("declared").any())
     if declared:
         handles.append(Line2D([], [], lw=0, label="shared group named a priori = declared block"))
+    if pseudo_info:
+        handles.append(Line2D([], [], lw=0, marker="s", markersize=9, markerfacecolor=DEPTH_FILL[1],
+                              markeredgecolor=SHARED, markeredgewidth=2, label="declared block (dimensions kept apart)"))
     if "interaction" in kinds:
         handles.append(Line2D([], [], color=INK if _overlay else INTERACTION, lw=2.5, marker="D", markersize=6, markeredgecolor="white",
                               label="interaction (◆ joins the pair)"))
@@ -1483,9 +1757,13 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
             "causation, and are not partial correlations.\n"
             "Label: held-out ΔR² (R² lost; gained, for interactions) and folds passed, e.g. .120 (9/10)" +
             (" (✓ confirmed on new data)" if verdict and st.show_confirmation else "") + ".")
-    if declared:
+    if declared or pseudo_info:
         note += ("\nA declared block shows joint evidence for its members together; it does not mean each "
                  "member is individually supported, and it is not confirmed as a group.")
+    if matrices:
+        note += ("\nA block is drawn as one node. An arrow into it gives the range of held-out ΔR² over the "
+                 "dimensions the variable predicts, and how many;\neach is measured against that dimension, so "
+                 "it is not comparable to the block's own ΔR². The matrix gives every value (block-members.csv).")
     if truncation:
         note += (f"\nDepth limit: nodes at depth {truncation['depth']} were not assessed further because "
                  f"max_depth = {truncation['max_depth']}. That is not a failed retention, and deeper "
@@ -1508,6 +1786,7 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
         return fig
     fig.tight_layout()
     fig.canvas.draw()                              # place optional notes below the graph legend
+    _fit_node_labels(ax, fig, node_labels, fs)
     if st.dodge_labels:
         _dodge_annotations(ax, annotations, st)
     box = legend.get_window_extent().transformed(fig.transFigure.inverted())

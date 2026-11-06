@@ -117,14 +117,36 @@ candidate.
 - A kept block is joint evidence, not a set of individually supported links, and
   has no group-level confirmation (the confirmation table says so). Its joint
   result gives no direction: members may act in opposite ways.
-- In the native graph a kept block is one outlined container holding its
-  members, with a single arrow to its target; the layout treats the block as one
-  unit. Members sit in a row when the variables that predict them lie in much
-  the same direction, and on a ring otherwise. Deeper predictors still point at
-  individual members, because each member is its own target.
+- In the native graph a kept block is **one node** (a rounded square marked
+  "k dims"), with one arrow to its target. Each predictor of the members has one
+  arrow to the block, labelled "k of m" for how many members it predicts. Every
+  predictor-by-member value is in a matrix beside the graph and in
+  `block-members.csv` (rows `predicts_member`, plus `member_diagnostic` rows for
+  the members' own scores). Members only receive arrows, so nothing is lost by
+  collapsing them. Pairs (interactions) that touch a member appear in the
+  tables only. `GraphStyle(block_detail="members")` draws the block as an
+  outlined container with its members instead; the matrix is then not drawn.
 - Without `blocks`, results and settings are identical to before. Code tests
   cover behavior only. False retention of blocks and any group-level inference
   still need a frozen validation study.
+
+**A block or a composite score?** Both are supported, and they answer different
+questions.
+
+- **Composite** (average or score the dimensions into one column, then analyze
+  it as an ordinary variable). Choose it when the dimensions are indicators of
+  one construct and you want one score. It cuts measurement noise, keeps the
+  network readable at any number of dimensions, and gets the full validated
+  procedure, including confirmation. It assumes the dimensions measure one thing
+  and fixes their weights in advance, and it can hide dimensions that act in
+  opposite directions. `open` does not build composites; create the column first.
+- **Block.** Choose it when the dimensions are thematically coherent but
+  different enough that you want to argue for grouping them conceptually while
+  analyzing them separately: you want to see which dimension each predictor
+  affects, and keep that dimension-level structure in the recursion. In return
+  there is no group-level confirmation, and the joint test is not calibrated.
+- A block is not a structural equation model. There is no latent variable,
+  measurement model or fit index, only a joint predictive test and a grouping.
 
 **Depth limit** (`DiscoveryConfig(max_depth=...)`, default `None`: no cap).
 

@@ -13,6 +13,7 @@ from opennet.confirm import (
     explore_and_confirm,
     split_sample,
 )
+from opennet.effects import effects_table
 from opennet.explore import ExploreConfig, ExploreResult, explore as explore_network
 from opennet.explore_report import (
     GraphStyle,
@@ -123,5 +124,5 @@ __all__ = (
     "explore_and_confirm_outcomes", "MultiOutcomeResult",
     "plot_outcomes", "save_multi_outcome_analysis",
     "explore_network", "plot_network", "save_exploration", "save_split_analysis",
-    "split_sample",
+    "split_sample", "effects_table",
 )
