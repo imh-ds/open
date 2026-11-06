@@ -117,6 +117,11 @@ candidate.
 - A kept block is joint evidence, not a set of individually supported links, and
   has no group-level confirmation (the confirmation table says so). Its joint
   result gives no direction: members may act in opposite ways.
+- In the native graph a kept block is one outlined container holding its
+  members, with a single arrow to its target; the layout treats the block as one
+  unit. Members sit in a row when the variables that predict them lie in much
+  the same direction, and on a ring otherwise. Deeper predictors still point at
+  individual members, because each member is its own target.
 - Without `blocks`, results and settings are identical to before. Code tests
   cover behavior only. False retention of blocks and any group-level inference
   still need a frozen validation study.

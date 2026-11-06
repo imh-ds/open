@@ -892,6 +892,232 @@ def _make_label_room(positions, junctions, specs, links, roots, fitted, style, *
     return ({name: out[name] for name in positions}, {key: out[key] for key in junctions}, spots)
 
 
+def _stadium(a, b, w, steps=24):
+    """Outline of the region within ``w`` of segment ab (a circle when a == b)."""
+    a, b = np.array(a, float), np.array(b, float)
+    axis = b - a
+    if float(np.linalg.norm(axis)) < 1e-9:
+        t = np.linspace(0, 2 * np.pi, 4 * steps, endpoint=False)
+        return a + w * np.stack([np.cos(t), np.sin(t)], axis=1)
+    phi = math.atan2(axis[1], axis[0])
+    cap_b = np.linspace(phi - np.pi / 2, phi + np.pi / 2, steps)
+    cap_a = np.linspace(phi + np.pi / 2, phi + 3 * np.pi / 2, steps)
+    return np.vstack([b + w * np.stack([np.cos(cap_b), np.sin(cap_b)], axis=1),
+                      a + w * np.stack([np.cos(cap_a), np.sin(cap_a)], axis=1)])
+
+
+def _stadium_reach(u, axis, half, w) -> float:
+    """Distance from a stadium's centre to its outline along unit direction ``u``."""
+    u, axis = np.asarray(u, float), np.asarray(axis, float)
+    normal = np.array([-axis[1], axis[0]])
+    lo, hi = 0.0, half + w + 1.0
+    for _ in range(40):
+        s = (lo + hi) / 2
+        along, across = s * float(np.dot(u, axis)), s * float(np.dot(u, normal))
+        outside = math.hypot(along - float(np.clip(along, -half, half)), across) > w
+        lo, hi = (lo, s) if outside else (s, hi)
+    return (lo + hi) / 2
+
+
+def _block_layout(result: ExploreResult, links: pd.DataFrame, st: GraphStyle, outcome: str):
+    """Lay the graph out with each declared block as one unit; return the usual four values and block shapes.
+
+    The graph is first laid out with every declared block collapsed to a single node, so the block gets one
+    position, whatever its size. Its members are then arranged compactly around that position (side by side
+    for two, on a ring for three or more, turned so each faces the variables that predict it), enough room is
+    reserved for the whole block, and the usual node dodging runs with the members held in place.
+    Returns None when no declared block is drawn.
+    """
+    if "origin" not in links or not links.origin.eq("declared").any():
+        return None
+    ns, nr = st.node_size, st.node_r()
+    foot = nr + .24 * ns                                  # a member with its fit ring
+    pad = .14 * ns
+    spacing = 2 * foot + .1 * ns                          # centre-to-centre distance between neighbours
+    blocks = {r.block: dict(members=list(r.members), target=r.target, depth=int(r.depth), pseudo=f"\x00{r.block}")
+              for r in links[links.origin.eq("declared")].itertuples()}
+    owner = {m: b["pseudo"] for b in blocks.values() for m in b["members"]}
+
+    # 1. collapsed graph: one node per block, links and parents remapped (duplicates merged)
+    rows, placed = [], set()
+    for r in result.nodes.itertuples():
+        if r.variable in owner:
+            continue
+        rows.append(dict(variable=r.variable, depth=r.depth,
+                         parents=tuple(dict.fromkeys(owner.get(p, p) for p in r.parents))))
+    for b in blocks.values():
+        parents = [p for r in result.nodes.itertuples() if r.variable in b["members"] for p in r.parents]
+        rows.append(dict(variable=b["pseudo"], depth=b["depth"],
+                         parents=tuple(dict.fromkeys(owner.get(p, p) for p in parents))))
+    kept = {}
+    skipped = []
+    for d in links.to_dict("records"):
+        if d["kind"] == "interaction" and any(m in owner for m in d["members"]):
+            skipped.append(d)                             # placed beside its pair afterwards
+            continue
+        d["members"] = tuple(dict.fromkeys(owner.get(m, m) for m in d["members"]))
+        d["source"] = owner.get(d["source"], d["source"]) if d["kind"] == "unique" else (
+            d["members"][0] if d.get("origin") == "declared" else d["source"])
+        d["target"] = owner.get(d["target"], d["target"])
+        if d["kind"] != "interaction" and d["target"] in d["members"]:
+            continue
+        key = (d["depth"], d["target"], d["kind"], d["members"])
+        if key not in kept or d["r2_median"] > kept[key]["r2_median"]:
+            kept[key] = d
+    collapsed_links = pd.DataFrame(list(kept.values()), columns=links.columns)
+    collapsed = replace(result, nodes=pd.DataFrame(rows, columns=result.nodes.columns))
+    pos, ring, candidate, junctions = _layout(collapsed, collapsed_links, replace(st, dodge_nodes=False))
+
+    # 2. block shapes and the room they need. Members go in a row when the variables that predict them lie in
+    # much the same direction (so those arrows run side by side, not across other members), else on a ring.
+    def outside_neighbours(v):
+        found = [d["source"] for d in links.to_dict("records")
+                 if d["kind"] == "unique" and d["target"] == v and d["source"] in pos]
+        found += [d["target"] for d in links.to_dict("records")
+                  if d["kind"] == "unique" and d["source"] == v and d["target"] in pos and d["target"] not in owner]
+        return found
+
+    for b in blocks.values():
+        m = len(b["members"])
+        b["centre"] = np.array(pos.pop(b["pseudo"]), float)
+        ring.pop(b["pseudo"], None)
+        for v in b["members"]:
+            ring[v] = b["depth"]
+        if b["pseudo"] in candidate:
+            candidate.discard(b["pseudo"])
+            candidate.update(b["members"])
+        t = np.array(pos[b["target"]], float) if b["target"] in pos else np.zeros(2)
+        toward = t - b["centre"]
+        b["toward"] = toward / (np.linalg.norm(toward) + 1e-12)
+        units = []
+        for v in b["members"]:
+            for q in outside_neighbours(v):
+                gap = np.array(pos[q], float) - b["centre"]
+                units.append(gap / (np.linalg.norm(gap) + 1e-12))
+        dominant = np.mean(units, axis=0) if units else np.zeros(2)
+        b["mode"] = "row" if m == 2 or (m >= 3 and float(np.linalg.norm(dominant)) >= .55) else "ring"
+        if b["mode"] == "row":
+            direction = b["toward"] if m == 2 else dominant / np.linalg.norm(dominant)
+            b["axis"] = np.array([-direction[1], direction[0]])
+            b["half"] = (m - 1) * spacing / 2
+            b["w"] = foot + pad
+            b["reach"] = b["half"] + b["w"]                  # bounding radius
+        else:
+            b["radius_ring"] = spacing / (2 * math.sin(math.pi / m))
+            b["w"] = b["radius_ring"] + foot + pad
+            b["reach"] = b["w"]
+    pinned_names = {outcome}
+
+    def clearance(name):
+        return (OUTCOME_R if name == outcome else NODE_R) * ns + .25 * ns
+
+    for _ in range(80):
+        moved = False
+        for b in blocks.values():                         # room for the arrow into the block's target
+            t = np.array(pos[b["target"]], float) if b["target"] in pos else np.zeros(2)
+            need = b["reach"] + clearance(b["target"]) + 1.2 * ns
+            gap = b["centre"] - t
+            dist = float(np.linalg.norm(gap))
+            if dist < need:
+                b["centre"] = t + (gap / dist if dist > 1e-9 else np.array([0.0, -1.0])) * need
+                moved = True
+            for v, p in pos.items():                      # other nodes stay clear of the whole block
+                if v == b["target"] or v in owner:
+                    continue
+                gap = np.array(p, float) - b["centre"]
+                dist = float(np.linalg.norm(gap))
+                need = b["reach"] + foot + .2 * ns
+                if dist < need:
+                    away = gap / dist if dist > 1e-9 else np.array([1.0, 0.0])
+                    if v in pinned_names:
+                        b["centre"] = b["centre"] - away * (need - dist)
+                    else:
+                        pos[v] = tuple(b["centre"] + away * need)
+                    moved = True
+        others = list(blocks.values())
+        for i in range(len(others)):
+            for j in range(i + 1, len(others)):
+                a, c = others[i], others[j]
+                gap = c["centre"] - a["centre"]
+                dist = float(np.linalg.norm(gap))
+                need = a["reach"] + c["reach"] + .3 * ns
+                if dist < need:
+                    away = gap / dist if dist > 1e-9 else np.array([1.0, 0.0])
+                    a["centre"] = a["centre"] - away * (need - dist) / 2
+                    c["centre"] = c["centre"] + away * (need - dist) / 2
+                    moved = True
+        if not moved:
+            break
+
+    # 3. members around the block's centre, each turned toward the variables that predict it
+    geometry = {}
+    for name, b in blocks.items():
+        members, m, centre = b["members"], len(b["members"]), b["centre"]
+        t = np.array(pos[b["target"]], float) if b["target"] in pos else np.zeros(2)
+        toward = t - centre
+        toward = toward / (np.linalg.norm(toward) + 1e-12)
+        wants = {}
+        for v in members:
+            vec = np.zeros(2)
+            for d in links.to_dict("records"):
+                if d["kind"] == "unique" and d["target"] == v and d["source"] in pos:
+                    vec += np.array(pos[d["source"]], float) - centre
+                elif d["kind"] == "unique" and d["source"] == v and d["target"] in pos and d["target"] not in owner:
+                    vec += np.array(pos[d["target"]], float) - centre
+            wants[v] = vec if np.linalg.norm(vec) > 1e-9 else -toward
+        if b["mode"] == "row":
+            if m == 2:
+                direction = toward
+            else:                                         # recomputed now the block has settled
+                units = [(np.array(pos[q], float) - centre) / (np.linalg.norm(np.array(pos[q], float) - centre) + 1e-12)
+                         for v in members for q in outside_neighbours(v)]
+                direction = np.mean(units, axis=0) if units else toward
+                direction = direction / (np.linalg.norm(direction) + 1e-12)
+            b["axis"] = axis = np.array([-direction[1], direction[0]])
+            order = sorted(members, key=lambda v: float(np.dot(wants[v], axis)))
+            at = {v: centre + axis * (i - (m - 1) / 2) * spacing for i, v in enumerate(order)}
+            a_end, b_end = centre - axis * b["half"], centre + axis * b["half"]
+        else:
+            desired = {v: math.atan2(wants[v][1], wants[v][0]) for v in members}
+            order = sorted(members, key=lambda v: desired[v])
+            base = math.atan2(toward[1], toward[0])
+            best = None
+            for offset in (0.0, math.pi / m):
+                for shift in range(m):
+                    cost = 0.0
+                    for i, v in enumerate(order):
+                        slot = base + offset + 2 * math.pi * ((i + shift) % m) / m
+                        cost += abs((slot - desired[v] + math.pi) % (2 * math.pi) - math.pi)
+                    if best is None or cost < best[0] - 1e-9:
+                        best = (cost, offset, shift)
+            _, offset, shift = best
+            at = {v: centre + b["radius_ring"] * np.array([math.cos(base + offset + 2 * math.pi * ((i + shift) % m) / m),
+                                                           math.sin(base + offset + 2 * math.pi * ((i + shift) % m) / m)])
+                  for i, v in enumerate(order)}
+            a_end = b_end = centre
+        for v, p in at.items():
+            pos[v] = (float(p[0]), float(p[1]))
+        axis = b.get("axis", np.array([1.0, 0.0]))
+        half = b.get("half", 0.0)
+        geometry[name] = dict(a=a_end, b=b_end, w=b["w"], centre=centre, axis=axis, half=half,
+                              label=(centre if b["mode"] == "ring" else
+                                     centre - toward * (_stadium_reach(-toward, axis, half, b["w"]) + .14 * ns)),
+                              reach=b["reach"], toward=toward)
+
+    # 4. interactions that touch a block member sit between their pair, a third of the way to the target
+    for d in skipped:
+        a, c = (np.array(pos[v], float) for v in d["members"])
+        t = np.array(pos[d["target"]], float)
+        mid = (a + c) / 2
+        junctions[_link_key(pd.Series(d))] = tuple(mid + (t - mid) / 3)
+
+    if st.dodge_nodes:
+        fitted = {r.target for r in result.fit.itertuples() if r.network_size > 0}
+        pos, junctions = _dodge_node_positions(pos, junctions, links, {outcome}, fitted, st,
+                                               pinned={outcome, *owner})
+    return pos, ring, candidate, junctions, geometry
+
+
 def plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFrame | None = None,
                  confirmation_fit: pd.DataFrame | None = None, style: GraphStyle | None = None, **settings):
     """Draw the radial network; return its figure or save to the requested path.
@@ -932,9 +1158,16 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
     if not len(links):
         links = pd.DataFrame(columns=["depth", "target", "source", "kind", "members", "tier", "pass_rate",
                                       "r2_median"])
-    pos, ring, candidate, junctions = (_layout(result, links, st) if _overlay is None
-                                      else _outcome_layout(result, links, st, _overlay))
     outcome = result.settings.get("outcome") or result.nodes.variable.iloc[0]
+    blocked = _block_layout(result, links, st, outcome) if _overlay is None else None
+    if blocked is not None:
+        pos, ring, candidate, junctions, block_shapes = blocked
+    else:
+        block_shapes = {}
+        pos, ring, candidate, junctions = (_layout(result, links, st) if _overlay is None
+                                          else _outcome_layout(result, links, st, _overlay))
+    block_members = {m for r in links.itertuples() if getattr(r, "origin", None) == "declared" and not _overlay
+                     for m in r.members}
     roots = set(_overlay["colors"]) if _overlay else {outcome}
 
     verdict = {}
@@ -983,16 +1216,17 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
                       fontsize=7.5 * st.fit_label_size)
                  for v, text in fit_text.items()]
         for r in links.itertuples():
-            if not labelled(r.tier):
-                continue
+            if not labelled(r.tier) or getattr(r, "origin", None) == "declared":
+                continue                           # a declared block's label is placed on its single edge
             source = _link_key(r) if r.kind == "interaction" else r.members[0]
             specs.append(dict(kind="edge", key=("edge", _link_key(r)), source=source, target=r.target,
                               text=label_for(r), fontsize=8,
                               lane=lane_of(source, r) if r.kind != "interaction" else 0.0))
         fitted = {v for v in fit if sizes.get(v, 0) > 0}
         pos, junctions, spots = _make_label_room(pos, junctions, specs, links, roots, fitted, st,
-                                                 pinned=() if _overlay else {outcome})
-    xy = np.array(list(pos.values()) + list(junctions.values()))
+                                                 pinned=() if _overlay else {outcome, *block_members})
+    corners = [p for g in block_shapes.values() for p in _stadium(g["a"], g["b"], g["w"])[::6]]
+    xy = np.array(list(pos.values()) + list(junctions.values()) + corners)
     pad = .7 + 1.3 * node_r + .25 * fs
     lo, hi = xy.min(axis=0) - pad, xy.max(axis=0) + pad
     span = hi - lo
@@ -1099,6 +1333,30 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
         if r.kind == "unique":
             edge(pos[r.source], target, r.tier, r.r2_median, color or KEPT, label_for(r),
                  head=rim(r.target), relation=r)
+        elif r.kind == "shared" and getattr(r, "origin", None) == "declared" and r.block in block_shapes:
+            # A declared block is one unit: an outline around all its members, and a single edge from the
+            # outline to the target. It does not look like separate edges from each member.
+            g = block_shapes[r.block]
+            ax.add_patch(Polygon(_stadium(g["a"], g["b"], g["w"]), closed=True, fc=_soft(SHARED, .88),
+                                 ec=SHARED, lw=1.6, zorder=.4))
+            ax.text(*g["label"], r.block, fontsize=7.5 * fs, ha="center", va="center", color=SHARED,
+                    zorder=5, style="italic", path_effects=halo)
+            toward = np.array(target, float) - g["centre"]
+            toward = toward / (np.linalg.norm(toward) + 1e-12)
+            start = g["centre"] + toward * _stadium_reach(toward, g["axis"], g["half"], g["w"])   # leave the outline
+            edge(start, target, r.tier, r.r2_median, SHARED, None, lw=_width(r.r2_median) * .75,
+                 head=rim(r.target), relation=r)
+            if labelled(r.tier):                       # beside the arrow, so the label never hides its head
+                mid = (start + np.array(target, float)) / 2
+                u = np.array(target, float) - start
+                u /= np.linalg.norm(u) + 1e-12
+                n = np.array([-u[1], u[0]])
+                if n[1] < -1e-9 or (abs(n[1]) < 1e-9 and n[0] < 0):
+                    n = -n                             # the side facing up (or right), clear of the outcome
+                spot = mid + n * .2 * ns
+                ax.text(spot[0], spot[1], label_for(r), fontsize=8 * fs, color=SHARED, zorder=5,
+                        ha="left" if n[0] > .4 else "right" if n[0] < -.4 else "center",
+                        va="bottom" if n[1] > .4 else "top" if n[1] < -.4 else "center", path_effects=halo)
         elif r.kind == "shared":
             pts = np.array([pos[m] for m in members])
             for i in range(len(pts) - 1):              # band joining the members
@@ -1186,7 +1444,9 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
         handles.append(Line2D([], [], color=_soft(KEPT), lw=2.5, ls=(0, (4, 2.5)),
                               label=f"flagged (≥ {s['flag']:.0%})"))
     kinds = set(links.kind)                       # list only what is drawn
-    if "shared" in kinds:
+    block_rows = links.origin.eq("declared") if "origin" in links else pd.Series(False, index=links.index)
+    automatic_shared = bool(((links.kind == "shared") & ~block_rows).any())
+    if "shared" in kinds and (automatic_shared or _overlay):
         handles.append(Line2D([], [], color=INK if _overlay else SHARED, lw=7, alpha=.3,
                               label="shared group") if _overlay else
                        Line2D([], [], color=SHARED, lw=2.5, label="shared group"))

@@ -176,3 +176,51 @@ def test_blocks_flow_through_the_confirmation_workflow_without_group_confirmatio
     assert res.discovery.settings["blocks"] == {"ab": ["A", "B"]}
     shared = res.confirmation[res.confirmation.kind == "shared"]
     assert len(shared) and shared.note.str.contains("not tested").all() and shared.p.isna().all()
+
+
+def _wide(k, shared_driver, seed=8, n=2400, interactions=False):
+    r = np.random.default_rng(seed)
+    d = pd.DataFrame({"Ctx": r.normal(size=n), "Noise": r.normal(size=n)})
+    names = [f"D{i}" for i in range(1, k + 1)]
+    for m in names:
+        driver = d["Ctx"] if shared_driver else r.normal(size=n)
+        if not shared_driver:
+            d[f"Drv_{m}"] = driver
+        d[m] = .6 * driver + .5 * r.normal(size=n)
+    d["Y"] = sum(.3 * d[m] for m in names) + r.normal(size=n)
+    cfg = ExploreConfig(folds=5, interactions=interactions, blocks={"big": names})
+    return explore(d, "Y", engine="ols", config=cfg), names
+
+
+@pytest.mark.parametrize("k, shared", [(2, True), (4, True), (6, True), (6, False)])
+def test_large_blocks_draw_as_one_container_with_members_inside_and_no_member_edges(k, shared):
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import Polygon
+    from opennet.explore_report import _block_layout, GraphStyle, _drawn
+    res, names = _wide(k, shared)
+    assert _block_link(res).iloc[0].tier == "kept"
+    links = _drawn(res.links, True, False)
+    pos, ring, candidate, junctions, shapes = _block_layout(res, links, GraphStyle(), "Y")
+    g = shapes["big"]
+    for m in names:                                           # every member sits inside the one container
+        d = np.asarray(pos[m], float) - g["centre"]
+        along = float(np.clip(d @ g["axis"], -g["half"], g["half"]))
+        assert np.linalg.norm(d - along * g["axis"]) < g["w"] + 1e-6
+    pts = np.array([pos[m] for m in names])                   # members never overlap each other
+    gaps = np.linalg.norm(pts[:, None] - pts[None], axis=-1) + np.eye(k) * 9
+    assert gaps.min() > .8
+    fig = report.plot_explore(res)
+    polys = [p for p in fig.axes[0].patches if isinstance(p, Polygon) and len(p.get_xy()) > 20]
+    assert len(polys) == 1                                    # one container, not one band per member
+    plt.close(fig)
+
+
+def test_block_graph_with_interactions_and_flagged_links_still_draws():
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    res, _ = _wide(4, True, interactions=True)
+    fig = report.plot_explore(res)
+    plt.close(fig)
