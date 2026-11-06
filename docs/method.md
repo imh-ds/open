@@ -153,16 +153,22 @@ questions.
 - An edge's thickness and label show **how much** a predictor matters (held-out
   R² lost). Direction is a separate quantity and is reported separately. A
   positive R² loss does not mean a positive coefficient.
-- **Discovery sign.** For each target, the full-pool model (every candidate plus
-  the controls, without the noise columns) is refitted on each training fold
+- **Discovery sign.** For each target, the full-pool model (every candidate, the
+  controls and the permuted noise columns) is refitted on each training fold
   with that fold's tuned settings. `result.directions` summarizes each
   candidate's coefficient over those fits: the median (per original unit and per
   SD of the predictor), its range, and how many fits were positive, negative or
-  zero. `direction` is "positive" or "negative" when every fit has that sign,
-  "mixed" when signs differ, and "zero" when every fit is exactly zero. There is
-  no threshold: `agreement` (the share of fits with the majority sign) is given
-  so you can decide, and `GraphStyle(direction_agreement=...)` draws a majority
-  sign when at least that share agree. This describes the fitted model; it was
+  inside the noise (`n_noise`). **A fold abstains** when the candidate's
+  standardized coefficient is no larger than the `noise_quantile` of the noise
+  columns' coefficients in that same fold: a coefficient of -0.05 beside
+  +0.32 elsewhere is then chance-sized and does not undo the sign. `direction`
+  is taken over the remaining folds: "positive" or "negative" when all have that
+  sign, "mixed" when folds with a real effect disagree, and "zero" when no fold
+  shows one. No new cutoff is introduced. `agreement` (the share of real folds
+  with the majority sign) is given so you can decide, and
+  `GraphStyle(direction_agreement=...)` draws a majority sign when at least
+  that share agree. Abstaining is not a test of the effect: a sign supported
+  by few real folds is shown with `n_noise` so it can be discounted. This describes the fitted model; it was
   not tested or confirmed. Elastic-Net coefficients are penalized, so they depend
   on the penalty chosen in each fold and a weak predictor can be exactly zero.
 - **Confirmation slope.** The OLS confirmation test also reports the frozen
@@ -171,7 +177,7 @@ questions.
   p-value is not a simultaneous interval. `effects_table` keeps this slope apart
   from the discovery estimate.
 - In the graph, green with `+` is positive, red with `−` negative, purple with `±`
-  mixed signs; the mark repeats the colour for readers who cannot use it. Edges
+  real disagreement between folds, or a profile that rises and falls; the mark repeats the colour for readers who cannot use it. Edges
   with no sign keep the normal colour: a block's own edge (a joint effect has no
   single sign), interactions, and every edge under a learner without
   coefficients. An arrow into a block is coloured only when the members it
@@ -195,8 +201,9 @@ questions.
   (a predictor whose effect flips with another has a flat or mixed profile, not
   its conditional effects), it is evaluated on each fold's training rows, and
   folds overlap, so a consistent sign across folds is not independent evidence.
-  A real positive effect shows "mixed" if even one fold's profile wiggles, which
-  is why `direction_agreement` exists. No cutoff or directional guarantee has been
+  A fold whose profile is within the noise range abstains as above; a real
+  positive effect still shows "mixed" if one fold's profile rises and falls beyond
+  noise, and `direction_agreement` can relax that. No cutoff or directional guarantee has been
   validated, and a sign here is a description of the fitted model, not a test.
 
 **Depth limit** (`DiscoveryConfig(max_depth=...)`, default `None`: no cap).

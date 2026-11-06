@@ -93,8 +93,32 @@ def test_summary_rules_use_no_threshold():
     mixed = summarize([.1, .2, .3, .4, -.01])
     assert mixed.direction == "mixed" and mixed.agreement == .8            # one disagreeing fit is not hidden
     assert summarize([0, 0, 0]).direction == "zero"
-    assert summarize([.2, 0, .3]).direction == "mixed"                      # a zero among signed fits is not consensus
     assert _summarize_directions([], "ols").empty
+
+
+def test_a_fold_inside_the_noise_range_abstains_instead_of_vetoing_the_sign():
+    def summarize(values, real):
+        rows = [dict(depth=1, target="Y", source="X", repeat=0, fold=i, coef_std=v, coef=v, real=ok)
+                for i, (v, ok) in enumerate(zip(values, real))]
+        return _summarize_directions(rows, "ols").iloc[0]
+
+    wobble = summarize([.324, .3, .33, .31, -.05], [True, True, True, True, False])
+    assert wobble.direction == "positive" and wobble.n_noise == 1 and wobble.agreement == 1
+    assert wobble.n_positive == 4 and wobble.n_negative == 0
+    split = summarize([.3, .3, -.3, .3], [True, True, True, True])             # a real opposing fold still counts
+    assert split.direction == "mixed" and split.agreement == .75 and split.n_noise == 0
+    assert summarize([.02, -.03], [False, False]).direction == "zero"
+    assert np.isnan(summarize([.02], [False]).agreement)
+    shrunk = summarize([.2, 0, .3], [True, False, True])                         # Elastic-Net zero abstains too
+    assert shrunk.direction == "positive" and shrunk.n_noise == 1
+
+
+def test_linear_discovery_marks_chance_sized_coefficients_with_the_noise_columns():
+    res = explore(_data(), "Y", config=ExploreConfig(folds=5, interactions=False))
+    t = res.directions
+    assert {"n_noise"} <= set(t.columns) and (t.n_positive + t.n_negative + t.n_noise == t.n_fits).all()
+    strong = t[(t.target == "Y") & (t.source == "A")].iloc[0]
+    assert strong.direction == "positive" and strong.n_noise == 0
 
 
 def test_confirmation_reports_the_frozen_ols_slope_with_hc4_standard_error():

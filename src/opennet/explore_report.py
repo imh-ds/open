@@ -301,13 +301,17 @@ class GraphStyle:
     - ``show_direction``: colour each edge by the sign of the predictor's coefficient (OLS,
       Elastic-Net) or average local effect profile (LightGBM) in the target's full model
       on the discovery sample: green and ``+``
-      positive, red and ``−`` negative, purple and ``±`` mixed signs across folds. Edges
+      positive, red and ``−`` negative, purple and ``±`` real disagreement (folds with a
+      real effect in opposite directions, or a profile that rises and falls). A fold whose
+      effect is inside the range of the permuted noise columns abstains and is not counted
+      against the others. Edges
       with no sign (a block's own edge, interactions, learners without coefficients) keep
       the normal colour. The sign describes the fitted model; it is not tested or
       confirmed, and it is a conditional association, not a benefit or a cause. Off by
       default. ``effects_table`` gives the numbers.
-    - ``direction_agreement``: the share of training-fold fits that must agree on a sign
-      for it to be drawn (default 1: every fit). A descriptive setting, not a test.
+    - ``direction_agreement``: the share of the folds with a real effect that must agree on a
+      sign for it to be drawn (default 1: every such fold; folds inside the noise range
+      do not count). A descriptive setting, not a test.
     - ``block_detail``: how a declared block is drawn. "summary" (and the default,
       "auto") shows the block as one node; each predictor has one arrow to it,
       labelled with the range of ΔR² over the members it predicts and how many
@@ -1438,7 +1442,8 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
             if d.direction in ("positive", "negative"):
                 signs[(int(d.depth), d.target, d.source)] = d.direction
             elif d.direction == "mixed":                  # the majority sign counts only when enough fits agree
-                majority = "positive" if d.coef_std > 0 else "negative" if d.coef_std < 0 else None
+                majority = ("positive" if d.n_positive > d.n_negative else
+                            "negative" if d.n_negative > d.n_positive else None)
                 signs[(int(d.depth), d.target, d.source)] = (
                     majority if majority and d.agreement >= st.direction_agreement else "mixed")
 

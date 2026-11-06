@@ -57,7 +57,7 @@ TIERS = ("kept", "flagged", "dropped", "hidden")
 # ratio divides by about zero (e.g. Elastic-Net shrinks noise columns to 0).
 RATIO_MIN_BAR = 0.001
 DIRECTION_COLUMNS = ["depth", "target", "source", "model", "n_fits", "coef_std", "coef_std_min", "coef_std_max",
-                     "coef", "n_positive", "n_negative", "n_zero", "agreement", "direction",
+                     "coef", "n_positive", "n_negative", "n_noise", "agreement", "direction",
                      "basis", "ale_net", "ale_range"]
 ALE_BINS = 10      # quantile bins of the accumulated local effect profile
 FIT_COLUMNS = ["depth", "target", "pool_size", "network_size", "network", "r2_network", "r2_pool",
@@ -573,7 +573,8 @@ def _profile_rows(model, frame: pd.DataFrame, candidates, noise_columns, quantil
             real = real if len(real) else effects
             sign = 1 if (real > 0).all() else -1 if (real < 0).all() else 9
         rows.append(dict(depth=depth, target=target, source=c, repeat=repeat, fold=fold, coef_std=np.nan,
-                         coef=np.nan, sign=sign, basis="ale", ale_net=float(path[-1]), ale_range=spread))
+                         coef=np.nan, sign=sign, basis="ale", real=sign != 0, ale_net=float(path[-1]),
+                         ale_range=spread))
     return rows
 
 
@@ -585,10 +586,12 @@ def _summarize_directions(rows: list, model: str) -> pd.DataFrame:
     folds. For other learners (``basis`` "ale") the sign comes from the average local effect profile of each fit
     (see ``_profile_rows``): ``ale_net`` is the median net change of the profile across the range of the predictor
     and ``ale_range`` the median distance between its highest and lowest points, in outcome units.
-    ``direction`` is descriptive and uses no threshold: "positive" or "negative" when every fit has that sign,
-    "mixed" when signs differ or a profile rises and falls, "zero" when every fit is exactly zero (Elastic-Net
-    shrinkage) or has no real change (profile). ``agreement`` is the share of fits with the majority sign. Nothing
-    here is a test.
+    A fit whose effect lies within what the permuted noise columns of the same fit show (``real`` False) abstains:
+    it is counted in ``n_noise`` and neither supports nor opposes a sign, so one fold that wobbles across zero does
+    not undo the others. ``direction`` is then taken over the remaining fits and uses no cutoff of its own:
+    "positive" or "negative" when every real fit has that sign, "mixed" when real fits disagree or a profile
+    rises and falls beyond noise, "zero" when no fit shows a real effect. ``agreement`` is the share of real fits
+    with the majority sign. Nothing here is a test.
     """
     if not rows:
         return pd.DataFrame(columns=DIRECTION_COLUMNS)
@@ -600,19 +603,22 @@ def _summarize_directions(rows: list, model: str) -> pd.DataFrame:
             frame[column] = np.nan
     if "basis" not in frame:
         frame["basis"] = "coefficient"
+    if "real" not in frame:
+        frame["real"] = frame.sign != 0
     out = []
     for (depth, target, source), g in frame.groupby(["depth", "target", "source"], sort=False):
-        sign = g.sign.to_numpy()
-        n = len(sign)
-        positive, negative, zero = int((sign == 1).sum()), int((sign == -1).sum()), int((sign == 0).sum())
-        if zero == n:
+        n = len(g)
+        real = g["real"].to_numpy(dtype=bool) & (g.sign.to_numpy() != 0)
+        sign = np.where(real, g.sign.to_numpy(), 0)
+        positive, negative, mixed = int((sign == 1).sum()), int((sign == -1).sum()), int((sign == 9).sum())
+        noise = n - int(real.sum())
+        n_real = n - noise
+        if n_real == 0:
             direction = "zero"
-        elif positive == n:
-            direction = "positive"
-        elif negative == n:
-            direction = "negative"
+        elif mixed or (positive and negative):
+            direction = "mixed"            # real fits disagree, or a profile rises and falls beyond noise
         else:
-            direction = "mixed"            # signs differ across fits, a zero among signed fits, or a profile that rises and falls
+            direction = "positive" if positive else "negative"
 
         def middle(column, how):
             values = g[column].to_numpy(dtype=float)
@@ -621,8 +627,8 @@ def _summarize_directions(rows: list, model: str) -> pd.DataFrame:
         out.append(dict(depth=depth, target=target, source=source, model=model, n_fits=n,
                         coef_std=middle("coef_std", np.nanmedian), coef_std_min=middle("coef_std", np.nanmin),
                         coef_std_max=middle("coef_std", np.nanmax), coef=middle("coef", np.nanmedian),
-                        n_positive=positive, n_negative=negative, n_zero=zero,
-                        agreement=max(positive, negative) / n, direction=direction, basis=g.basis.iloc[0],
+                        n_positive=positive, n_negative=negative, n_noise=noise,
+                        agreement=max(positive, negative) / n_real if n_real else np.nan, direction=direction, basis=g.basis.iloc[0],
                         ale_net=middle("ale_net", np.nanmedian), ale_range=middle("ale_range", np.nanmedian)))
     return pd.DataFrame(out, columns=DIRECTION_COLUMNS)
 
@@ -736,12 +742,18 @@ def assess_target(data: pd.DataFrame, target: str, candidates: tuple[str, ...], 
                 raise ValueError(f"target {target!r} is constant in held-out fold {k}")
             fold = r * config.folds + k
             if directions is not None and getattr(model, "supports_coefficients", False):
-                refit = model.clone().fit(Xtr[list(candidates + controls)], ytr, params)
+                # the permuted noise columns ride along in the refit: their coefficients are what chance looks
+                # like in this fold, so a candidate coefficient inside that range is no evidence of a sign
+                refit = model.clone().fit(Xtr[list(model_cols)], ytr, params)
                 standardized, raw = refit.coefficients()
+                n_c = len(candidates)
+                chance = np.abs(standardized[n_c:n_c + len(noise_cols)])
+                bar = float(np.quantile(chance, config.noise_quantile)) if len(chance) else 0.0
                 for i, c in enumerate(candidates):
                     directions.append(dict(depth=depth, target=target, source=c, repeat=r, fold=fold,
                                            coef_std=float(standardized[i]), coef=float(raw[i]),
-                                           sign=int(np.sign(standardized[i])), basis="coefficient"))
+                                           sign=int(np.sign(standardized[i])), basis="coefficient",
+                                           real=bool(abs(standardized[i]) > bar)))
             elif directions is not None:
                 # no coefficients (e.g. LightGBM): the average local effect profile of each candidate in the
                 # fitted full model, with the model's own permuted noise columns as the reference
