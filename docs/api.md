@@ -13,6 +13,11 @@ print(result.summary())
 save_split(result, "open-output", plot=False)
 ```
 
+`blocks` in `DiscoveryConfig` declares a priori measurement blocks, for example
+`DiscoveryConfig(blocks={"spillover": ["WFpos", "FWpos"]})`. It works in every
+workflow, is saved in `settings.json`, and marks block rows in `links.csv`
+(`block`, `origin="declared"`). See "Declared blocks" in [the method](method.md).
+
 `max_depth` limits how many layers discovery builds (the outcome is depth 0;
 `None`, the default, has no cap). It is accepted by every workflow through
 `config`, including multi-outcome runs. Targets stopped by the cap have the stop

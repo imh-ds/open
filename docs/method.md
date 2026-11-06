@@ -90,6 +90,37 @@ candidate.
   pool is empty, or `max_depth` is reached. Kept covariates remain reported
   but do not extend recursion.
 
+**Declared blocks** (`DiscoveryConfig(blocks={"spillover": ["WFpos", "FWpos"]})`, default none).
+
+- A block is a named set of two or more ordinary candidate predictors that you
+  declare before the analysis, whatever their correlation. Names must be
+  distinct, blocks disjoint, and members cannot be the outcome, a control or a
+  covariate. A singleton is rejected: declare it as an ordinary predictor.
+- Dimensions stay separate observed variables. Nothing is averaged and no latent
+  construct is implied.
+- **Joint assessment.** At every target the block's members are removed together
+  and the held-out loss is compared with size-matched sets of noise columns,
+  as for automatic groups. That reference has not been calibrated for declared
+  blocks.
+- **Recursion.** A kept block promotes all its members together to one layer.
+  They never predict one another (same-layer variables never do), so a block
+  cannot form a chain inside itself. Each member is then assessed as a target
+  against the same outside pool.
+- **Precedence.** The block's joint result alone decides promotion. A member's
+  own score is kept in `links.csv` as a diagnostic (`block` column, `tier`
+  `hidden`, `fold_tier` unchanged) and never places the member; a member that
+  would qualify alone does not rescue a block that fails, and a block can keep
+  a member that did not qualify alone. This changes the question asked about
+  those variables, from "is each one predictive?" to "is the set predictive?".
+  Members are excluded from automatic grouping, which still applies to the
+  other candidates.
+- A kept block is joint evidence, not a set of individually supported links, and
+  has no group-level confirmation (the confirmation table says so). Its joint
+  result gives no direction: members may act in opposite ways.
+- Without `blocks`, results and settings are identical to before. Code tests
+  cover behavior only. False retention of blocks and any group-level inference
+  still need a frozen validation study.
+
 **Depth limit** (`DiscoveryConfig(max_depth=...)`, default `None`: no cap).
 
 - The outcome is depth 0. With `max_depth=4`, variables placed at depth 4 stay

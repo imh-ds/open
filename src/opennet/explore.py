@@ -60,6 +60,59 @@ FIT_COLUMNS = ["depth", "target", "pool_size", "network_size", "network", "r2_ne
                "share_of_pool", "folds"]
 
 
+def _validate_blocks(blocks) -> tuple | None:
+    """Normalize declared blocks to ``((name, (member, ...)), ...)``; ``None`` or empty means no blocks.
+
+    A block is a named set of at least two distinct ordinary candidate predictors, disjoint from every other
+    block. A singleton is rejected: declare that variable as an ordinary predictor instead.
+    """
+    if blocks is None:
+        return None
+    items = tuple(blocks.items()) if isinstance(blocks, dict) else tuple(blocks)
+    if not items:
+        return None
+    out, seen_names, owner = [], set(), {}
+    for item in items:
+        try:
+            name, members = item
+        except (TypeError, ValueError):
+            raise ValueError("blocks must be a mapping of block name to member names") from None
+        if type(name) is not str or not name:
+            raise ValueError(f"block name {name!r} must be a nonempty string")
+        if name in seen_names:
+            raise ValueError(f"duplicate block name {name!r}")
+        seen_names.add(name)
+        if isinstance(members, (str, bytes)) or not hasattr(members, "__iter__"):
+            raise ValueError(f"block {name!r}: members must be a sequence of column names, not {members!r}")
+        members = tuple(members)
+        if any(type(m) is not str or not m for m in members):
+            raise ValueError(f"block {name!r}: members must be nonempty column-name strings")
+        if len(set(members)) != len(members):
+            raise ValueError(f"block {name!r}: duplicate members")
+        if len(members) < 2:
+            raise ValueError(f"block {name!r}: a block needs at least two members; "
+                             "declare a single variable as an ordinary predictor")
+        for m in members:
+            if m in owner:
+                raise ValueError(f"blocks {owner[m]!r} and {name!r} overlap on {m!r}; blocks must be disjoint")
+            owner[m] = name
+        out.append((name, members))
+    return tuple(out)
+
+
+def _blocks_in(config, candidates) -> tuple:
+    """Declared blocks that apply to ``candidates``; a block only partly inside them is an error."""
+    applied = []
+    for name, members in config.blocks or ():
+        inside = [m for m in members if m in candidates]
+        if inside and len(inside) != len(members):
+            raise ValueError(f"block {name!r} is only partly among the candidates "
+                             f"({sorted(set(members) - set(candidates))} missing); members are assessed together")
+        if inside:
+            applied.append((name, members))
+    return tuple(applied)
+
+
 @dataclass(frozen=True)
 class ExploreConfig:
     folds: int = 10
@@ -75,8 +128,12 @@ class ExploreConfig:
     hide_below: float | None = 0.001
     max_depth: int | None = None
     seed: int = 0
+    # Optional a priori measurement blocks, declared before analysis: {name: [member, ...]}. Stored as a
+    # tuple of (name, members) pairs so the config stays hashable and JSON-serializable. See _validate_blocks.
+    blocks: tuple | None = None
 
     def __post_init__(self):
+        object.__setattr__(self, "blocks", _validate_blocks(self.blocks))
         if type(self.folds) is not int or self.folds < 2:
             raise ValueError("folds must be an integer of at least 2")
         if type(self.repeats) is not int or self.repeats < 1:
@@ -138,7 +195,8 @@ class ExploreResult:
                 style = "solid " if r.tier == "kept" else "dotted"
                 ratio = f", {r.r2_above_noise:+.4f} above noise"
                 what = "R2 gained" if r.kind == "interaction" else "R2 lost"
-                lines.append(f"  [{style}] {r.source} -> {r.target}  ({r.kind}) passed {r.pass_rate:.0%}, "
+                kind = f"declared block {r.block}, joint evidence only" if r.get("origin") == "declared" else r.kind
+                lines.append(f"  [{style}] {r.source} -> {r.target}  ({kind}) passed {r.pass_rate:.0%}, "
                              f"{what} {r.r2_median:.4f}{ratio}")
         flagged_pairs = self.pairs[self.pairs.tier != "dropped"]
         if len(flagged_pairs):
@@ -162,7 +220,14 @@ class ExploreResult:
                          f"were not assessed against {len(t['unassessed_pool'])} remaining candidate(s). "
                          "This is an unexecuted assessment, not a failed one: deeper links were not "
                          "searched for, so their absence is not evidence.")
-        hidden = int((self.links.tier == "hidden").sum()) if len(self.links) else 0
+        if self.settings.get("blocks"):
+            lines.append("Declared blocks: " + "; ".join(f"{b} = {' + '.join(m)}"
+                                                          for b, m in self.settings["blocks"].items())
+                         + ". A kept block promotes its members together on its joint result; members' own "
+                         "scores are diagnostics in links.csv, not individually supported links, and "
+                         "blocks have no group-level confirmation.")
+        in_block = self.links.block.notna() if "block" in self.links else pd.Series(False, index=self.links.index)
+        hidden = int(((self.links.tier == "hidden") & ~in_block).sum()) if len(self.links) else 0
         if hidden:
             lines.append(f"Hidden: {hidden} relation(s) passed enough folds but have median R2 below "
                          f"{s['hide_below']} (hide_below).")
@@ -505,7 +570,12 @@ def assess_target(data: pd.DataFrame, target: str, candidates: tuple[str, ...], 
     if len(fold_sets) != config.repeats:
         raise ValueError("need one fold assignment per repeat")
     noise_of = {c: f"{NOISE_PREFIX}{c}" for c in candidates}
-    edges, groups = _dependence(data, candidates, config.dependence_pair)
+    blocks = _blocks_in(config, candidates)
+    in_block = {m for _, members in blocks for m in members}
+    # Declared blocks take precedence: their members are left out of automatic grouping, which applies to the
+    # remaining ungrouped candidates only.
+    edges, groups = _dependence(data, tuple(c for c in candidates if c not in in_block),
+                                config.dependence_pair)
     y = data[target].to_numpy(dtype=float, na_value=np.nan)
     observed = ~np.isnan(y)
 
@@ -525,7 +595,7 @@ def assess_target(data: pd.DataFrame, target: str, candidates: tuple[str, ...], 
         group_rng = np.random.default_rng(_sub_seed(cfg.seed, "groups", depth, target))
         noise_sets = {m: [tuple(sorted(group_rng.choice(len(noise_cols), m, replace=False)))
                           for _ in range(config.noise_groups)]
-                      for m in sorted({len(g) for g in groups})}
+                      for m in sorted({len(g) for g in groups} | {len(b) for _, b in blocks})}
         pair_sets = [tuple(sorted(group_rng.choice(len(noise_cols), 2, replace=False)))
                      for _ in range(config.noise_groups)] if edges else []
         designs.append((cfg, X, fold_r))
@@ -566,6 +636,8 @@ def assess_target(data: pd.DataFrame, target: str, candidates: tuple[str, ...], 
                 add("pair", f"noise-set-{i}", lost({noise_cols[j] for j in idx}), True)
             for g in groups:
                 add(f"group{len(g)}", "+".join(g), lost(set(g)), False)
+            for _, g in blocks:                       # joint removal of every member, size-matched noise sets
+                add(f"group{len(g)}", "+".join(g), lost(set(g)), False)
             for m, sets in noise_sets.items():
                 for i, idx in enumerate(sets):
                     add(f"group{m}", f"noise-set-{i}", lost({noise_cols[j] for j in idx}), True)
@@ -582,6 +654,19 @@ def assess_target(data: pd.DataFrame, target: str, candidates: tuple[str, ...], 
         source = "+".join(grp)
         g = real[(real.contrast == f"group{len(grp)}") & (real.source == source)]
         links.append(_link(depth, target, "shared", source, grp, g, config))
+    for name, grp in blocks:
+        source = "+".join(grp)
+        g = real[(real.contrast == f"group{len(grp)}") & (real.source == source)]
+        links.append(_link(depth, target, "shared", source, grp, g, config, block=name, origin="declared"))
+    if blocks:
+        # Members keep their individual scores as diagnostics (fold_tier, r2_median, ...), but the block's
+        # joint result alone governs promotion: a member's own tier is not used to place it.
+        owner = {m: name for name, members in blocks for m in members}
+        for link in links:
+            if link["kind"] == "unique" and link["source"] in owner:
+                link["block"] = owner[link["source"]]
+                if link["fold_tier"] != "dropped":
+                    link["tier"] = "hidden"
     pairs = _classify_pairs(folds, edges, depth, target, config)
 
     if config.interactions:
@@ -631,6 +716,11 @@ def _explore_core(data: pd.DataFrame, outcome: str, predictors=None, engine="ols
         raise ValueError("at least one predictor or covariate is required")
     if set(predictors) & set(fixed):
         raise ValueError("a variable cannot be both a predictor and a control or covariate")
+    for name, members in config.blocks or ():
+        bad = [m for m in members if m not in predictors]
+        if bad:
+            raise ValueError(f"block {name!r}: {bad} must be candidate predictors (not the outcome, a control, "
+                             "a covariate or outside the predictor list)")
     variables = (outcome, *predictors, *covariates, *controls)
     _validate_model_columns(data, variables)
     data = data[list(variables)].reset_index(drop=True)
@@ -684,7 +774,10 @@ def _explore_core(data: pd.DataFrame, outcome: str, predictors=None, engine="ols
                 assessment_ids[(depth, target)] = cached[0]
             folds, links, pairs = assessment
             kept_alone = set(links.source[(links.kind == "unique") & (links.tier == "kept")])
-            redundant = (links.kind == "shared") & links.members.map(lambda m: bool(set(m) & kept_alone))
+            # Only automatic groups are suppressed by a kept member; a declared block is judged jointly.
+            declared = links.origin.eq("declared") if "origin" in links else pd.Series(False, index=links.index)
+            redundant = (links.kind == "shared") & ~declared & links.members.map(
+                lambda m: bool(set(m) & kept_alone))
             links = links[~redundant]
             all_folds.append(folds)
             all_links.append(links)
@@ -713,6 +806,10 @@ def _explore_core(data: pd.DataFrame, outcome: str, predictors=None, engine="ols
             if len(folds) else pd.DataFrame())
     name = engine.engine_name if isinstance(engine, Predictor) else engine
     settings = dict(outcome=outcome, engine=name, n=n, **asdict(config))
+    if not config.blocks:
+        settings.pop("blocks")                      # no-block settings stay exactly as before
+    else:
+        settings["blocks"] = {b: list(m) for b, m in config.blocks}
     if controls or covariates:
         settings.update(controls=list(controls), covariates=list(covariates))
     fit = pd.DataFrame(all_fit, columns=FIT_COLUMNS)

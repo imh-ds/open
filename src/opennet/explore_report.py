@@ -1190,6 +1190,9 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
         handles.append(Line2D([], [], color=INK if _overlay else SHARED, lw=7, alpha=.3,
                               label="shared group") if _overlay else
                        Line2D([], [], color=SHARED, lw=2.5, label="shared group"))
+    declared = "origin" in links and bool(links.origin.eq("declared").any())
+    if declared:
+        handles.append(Line2D([], [], lw=0, label="shared group named a priori = declared block"))
     if "interaction" in kinds:
         handles.append(Line2D([], [], color=INK if _overlay else INTERACTION, lw=2.5, marker="D", markersize=6, markeredgecolor="white",
                               label="interaction (◆ joins the pair)"))
@@ -1220,6 +1223,9 @@ def _plot_explore(result: ExploreResult, path=None, *, confirmation: pd.DataFram
             "causation, and are not partial correlations.\n"
             "Label: held-out ΔR² (R² lost; gained, for interactions) and folds passed, e.g. .120 (9/10)" +
             (" (✓ confirmed on new data)" if verdict and st.show_confirmation else "") + ".")
+    if declared:
+        note += ("\nA declared block shows joint evidence for its members together; it does not mean each "
+                 "member is individually supported, and it is not confirmed as a group.")
     if truncation:
         note += (f"\nDepth limit: nodes at depth {truncation['depth']} were not assessed further because "
                  f"max_depth = {truncation['max_depth']}. That is not a failed retention, and deeper "
