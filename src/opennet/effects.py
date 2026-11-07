@@ -20,6 +20,12 @@ signed effect, from two different sources that are kept apart:
 * ``slope`` and its interval come from the confirmation sample: the frozen full-pool OLS slope with its HC4
   standard error, for links the confirmation tested with OLS. The interval is a 95% pointwise t interval; the
   adjusted p-value is not a simultaneous interval.
+* Standardization. ``estimate_std`` scales the predictor only (outcome units per SD of the predictor) and is NOT a
+  standardized beta. ``estimate_beta`` (discovery) and ``beta`` (confirmation) scale both: B x SD(predictor) /
+  SD(outcome). Discovery uses the SD of the target in each training fold and takes the median over fits;
+  confirmation uses the sample SDs (n - 1) of the same complete rows as the slope. ``beta_se`` and the interval
+  bounds are the slope's, multiplied by the same factor, so beta has the same p-value as its slope. All are empty
+  where an SD is zero.
 
 Blocks, groups and interactions have no single direction, and learners without coefficients (LightGBM) have none.
 """
@@ -32,9 +38,10 @@ EFFECT_COLUMNS = [
     "outcome", "target", "depth", "predictor", "kind", "block", "tier",
     "delta_r2", "delta_r2_min", "delta_r2_max", "noise_bar", "above_noise", "folds_passed", "pass_rate",
     "p", "p_adjusted", "confirmed", "confirmation_note",
-    "estimate", "estimate_std", "direction", "direction_agreement", "direction_model", "direction_basis",
-    "profile_net",
+    "estimate", "estimate_std", "estimate_beta", "direction", "direction_agreement", "direction_model",
+    "direction_basis", "profile_net",
     "slope", "slope_se", "slope_ci_low", "slope_ci_high",
+    "beta", "beta_se", "beta_ci_low", "beta_ci_high",
     "target_r2_discovery", "target_r2_pool", "target_r2_confirmation",
 ]
 
@@ -96,14 +103,16 @@ def effects_table(result, confirmation: pd.DataFrame | None = None, confirmation
 
     for column in ("p", "p_adjusted", "confirmed", "confirmation_note"):
         rows[column] = np.nan if column != "confirmation_note" else ""
-    for column in ("slope", "slope_se", "slope_ci_low", "slope_ci_high"):
+    for column in ("slope", "slope_se", "slope_ci_low", "slope_ci_high",
+                   "beta", "beta_se", "beta_ci_low", "beta_ci_high"):
         rows[column] = np.nan
     if confirmation is not None and len(confirmation):
         renamed = confirmation.rename(columns={"source": "predictor", "note": "confirmation_note",
                                                "coef": "slope", "se": "slope_se", "ci_low": "slope_ci_low",
                                                "ci_high": "slope_ci_high"})
         wanted = ["depth", "target", "predictor", "p", "p_adjusted", "confirmed", "confirmation_note"]
-        wanted += [c for c in ("slope", "slope_se", "slope_ci_low", "slope_ci_high") if c in renamed]
+        wanted += [c for c in ("slope", "slope_se", "slope_ci_low", "slope_ci_high",
+                               "beta", "beta_se", "beta_ci_low", "beta_ci_high") if c in renamed]
         merged = rows.merge(renamed[wanted], on=["depth", "target", "predictor"], how="left", suffixes=("_x", ""))
         for column in wanted[3:]:
             rows[column] = merged[column].to_numpy()
@@ -115,7 +124,7 @@ def effects_table(result, confirmation: pd.DataFrame | None = None, confirmation
              "confirmation_note"] = "not tested: no calibrated group test"
 
     signed = getattr(result, "directions", None)
-    for column in ("estimate", "estimate_std", "direction_agreement", "profile_net"):
+    for column in ("estimate", "estimate_std", "estimate_beta", "direction_agreement", "profile_net"):
         rows[column] = np.nan
     rows["direction"], rows["direction_model"], rows["direction_basis"] = "", "", ""
     if signed is not None and len(signed):
@@ -123,8 +132,8 @@ def effects_table(result, confirmation: pd.DataFrame | None = None, confirmation
         for i, row in rows.iterrows():
             found = lookup.get((int(row.depth), row.target, row.predictor)) if row.kind == "unique" else None
             if found is not None:
-                rows.loc[i, ["estimate", "estimate_std", "direction_agreement", "profile_net"]] = [
-                    found.coef, found.coef_std, found.agreement, found.ale_net]
+                rows.loc[i, ["estimate", "estimate_std", "estimate_beta", "direction_agreement", "profile_net"]] = [
+                    found.coef, found.coef_std, found.beta, found.agreement, found.ale_net]
                 rows.loc[i, "direction"], rows.loc[i, "direction_model"] = found.direction, found.model
                 rows.loc[i, "direction_basis"] = found.basis
     rows.loc[rows.kind.isin(["block", "shared"]), "direction"] = "none: a joint effect has no single sign"

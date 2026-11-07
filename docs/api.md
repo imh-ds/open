@@ -40,11 +40,16 @@ For OLS and Elastic-Net it also gives the signed estimate and direction from dis
 error and 95% interval. `plot_discovery(result, path)` colours edges green and red by sign by default
 (`show_direction=False` turns it off). See "Direction of effects" in [the method](method.md).
 
-`model_table(split_result, digits=3, ci="columns")` builds an APA-style table of the stepwise models:
-one column group per variable with predictors, upstream first and the final outcome last, with
-observations and R² on the discovery and confirmation samples. `ci="columns"` gives Estimate, Lower,
-Upper and *p* columns (no asterisks); `ci="stacked"` gives one column per model with asterisks and
-the interval in brackets on the next line. `digits` sets the decimals of every non-whole number. The result
+`model_table(split_result, coefficient="standardized", digits=3, ci="columns")` builds an APA-style table of the
+stepwise models: one column group per variable with predictors, upstream first and the final outcome last, with
+observations (the confirmation complete cases per model) and R² on the discovery and confirmation samples.
+`coefficient="standardized"` (default) shows the fully standardized β, B × SD(predictor) / SD(outcome), and
+`"unstandardized"` shows B in original units; the scale is the same throughout a table, and predictor-only scaling
+is never labelled β (`effects_table` keeps it as `estimate_std`). `ci="columns"` gives β/B, Lower, Upper and *p*
+columns (no asterisks); `ci="stacked"` gives one column per model with asterisks and the interval in parentheses on the
+next line (`brackets="square"` for square brackets), under a "β (95% CI)" header row. Discovery-only cells (flagged links, Elastic-Net; no interval or
+*p*) are marked † in grey italics. `digits` sets the decimals of every non-whole number. A row of model numbers ("Model 1", "Model 2", ... left to right) sits above the outcome names;
+`model_labels=False` removes it and a list or dict sets your own labels (the CSV gets them as an extra header row). The result
 has `.data` (strings), `.html`, and `.save("table.html")` or `.save("table.csv")`.
 
 ## Choose the function for your task

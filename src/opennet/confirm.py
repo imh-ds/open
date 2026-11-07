@@ -338,6 +338,10 @@ def _confirm(result: ExploreResult, data: pd.DataFrame, engine: str | None = Non
                     p_of = dict(zip(pool, p_values))
                     estimates = {c: (float(b), float(e)) for c, b, e in zip(pool, slope, se)}
                     critical = float(stats.t.ppf(.975, dof))
+                    # fully standardized: scale by the sample SDs (n - 1) of the predictor and of the outcome, from
+                    # these same complete rows. Standard errors and bounds scale the same way, so beta has B's p.
+                    sd_of = dict(zip(pool, X.std(axis=0, ddof=1)))
+                    sd_y = float(T.std(ddof=1))
                 except _UntestableOLS as exc:
                     untestable_reason = str(exc)
             else:   # only the frozen columns: about 61 LightGBM fits per column
@@ -357,7 +361,8 @@ def _confirm(result: ExploreResult, data: pd.DataFrame, engine: str | None = Non
             row = dict(depth=depth, target=target, source=r.source, kind=r.kind, explore_tier=r.tier,
                        explore_pass_rate=r.pass_rate, explore_r2=r.r2_median, engine=engine, n=n,
                        pool_size=len(pool), p=np.nan, coef=np.nan, se=np.nan, ci_low=np.nan, ci_high=np.nan,
-                       note=note)
+                       beta=np.nan, beta_se=np.nan, beta_ci_low=np.nan, beta_ci_high=np.nan,
+                       sd_x=np.nan, sd_y=np.nan, note=note)
             if r.kind == "unique":
                 if untestable_reason is not None:
                     reason = f"not tested: {untestable_reason}"
@@ -367,12 +372,18 @@ def _confirm(result: ExploreResult, data: pd.DataFrame, engine: str | None = Non
                     if engine == "ols":                  # the frozen full-pool OLS slope on the confirmation sample
                         b, e = estimates[r.source]
                         row.update(coef=b, se=e, ci_low=b - critical * e, ci_high=b + critical * e)
+                        sx = float(sd_of[r.source])
+                        if sx > 0 and sd_y > 0 and np.isfinite(sx) and np.isfinite(sd_y):   # else: left empty
+                            k = sx / sd_y
+                            row.update(beta=b * k, beta_se=e * k, beta_ci_low=(b - critical * e) * k,
+                                       beta_ci_high=(b + critical * e) * k, sd_x=sx, sd_y=sd_y)
             else:
                 row["note"] = f"not tested: no calibrated {r.kind} test"
             rows.append(row)
     out = pd.DataFrame(rows, columns=["depth", "target", "source", "kind", "explore_tier", "explore_pass_rate",
                                       "explore_r2", "engine", "n", "pool_size", "p", "coef", "se", "ci_low",
-                                      "ci_high", "note"])
+                                      "ci_high", "beta", "beta_se", "beta_ci_low", "beta_ci_high", "sd_x", "sd_y",
+                                      "note"])
     tested = out.p.notna()
     out["p_adjusted"] = np.nan
     if tested.any():

@@ -207,6 +207,24 @@ questions.
   noise, and `direction_agreement` can relax that. No cutoff or directional guarantee has been
   validated, and a sign here is a description of the fitted model, not a test.
 
+**Standardized coefficients and model tables** (`model_table`, `effects_table`).
+
+- **Fully standardized β** scales both sides: B × SD(predictor) / SD(outcome). Confirmation uses the sample
+  standard deviations (n − 1) of the same complete rows as the HC4 slope; standard errors and interval bounds are the
+  slope's multiplied by the same factor, which equals refitting on z-scored variables, so β has the p-value of B.
+  Discovery uses the SD of the target in each training fold, with the median over the fold fits. A coefficient scaled
+  only by the predictor (`estimate_std`, outcome units per SD of the predictor) is not a β and is not labelled one.
+- **Conventions.** Confirmation rows are the complete cases of a model's target and its pool, so n differs by model.
+  Intervals are 95% pointwise t intervals, and p-values are multiplicity-adjusted (not simultaneous intervals).
+  A zero standard deviation leaves β empty; the cell is blank, not a fabricated number.
+- **Blank cells** mean "not kept as a predictor in that model". They are not evidence that the variable was outside
+  the pool the procedure assessed, and they are not a zero effect.
+- **Discovery-only cells** (flagged links, and Elastic-Net, whose coefficients are penalized) are marked † in grey
+  italics, show the median fold-fit coefficient on the same scale as the rest of the table, and have no interval or
+  p-value. They are not confirmed holdout estimates and are never mixed across the standardized and unstandardized
+  scales. For reproducibility, the split seed and fraction are in the result's settings; `model_table(...).conventions`
+  lists these conventions in the table's own words.
+
 **Depth limit** (`DiscoveryConfig(max_depth=...)`, default `None`: no cap).
 
 - The outcome is depth 0. With `max_depth=4`, variables placed at depth 4 stay

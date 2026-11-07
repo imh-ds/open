@@ -57,7 +57,7 @@ TIERS = ("kept", "flagged", "dropped", "hidden")
 # ratio divides by about zero (e.g. Elastic-Net shrinks noise columns to 0).
 RATIO_MIN_BAR = 0.001
 DIRECTION_COLUMNS = ["depth", "target", "source", "model", "n_fits", "coef_std", "coef_std_min", "coef_std_max",
-                     "coef", "n_positive", "n_negative", "n_noise", "agreement", "direction",
+                     "coef", "beta", "n_positive", "n_negative", "n_noise", "agreement", "direction",
                      "basis", "ale_net", "ale_range"]
 ALE_BINS = 10      # quantile bins of the accumulated local effect profile
 FIT_COLUMNS = ["depth", "target", "pool_size", "network_size", "network", "r2_network", "r2_pool",
@@ -582,8 +582,10 @@ def _summarize_directions(rows: list, model: str) -> pd.DataFrame:
     """One row per (depth, target, candidate): the signed effect over the training-fold fits.
 
     For linear learners (``basis`` "coefficient"), ``coef_std`` is the median standardized coefficient (outcome
-    units per SD of the predictor) and ``coef`` the median per original unit; the min and max show the spread over
-    folds. For other learners (``basis`` "ale") the sign comes from the average local effect profile of each fit
+    units per SD of the predictor: the predictor is scaled, the outcome is not) and ``coef`` the median per original
+    unit; the min and max show the spread over folds. ``beta`` is the fully standardized coefficient, the
+    predictor-scaled one divided by the SD of the target in that training fold (median over fits); it is empty
+    when that SD is zero. For other learners (``basis`` "ale") the sign comes from the average local effect profile of each fit
     (see ``_profile_rows``): ``ale_net`` is the median net change of the profile across the range of the predictor
     and ``ale_range`` the median distance between its highest and lowest points, in outcome units.
     A fit whose effect lies within what the permuted noise columns of the same fit show (``real`` False) abstains:
@@ -598,7 +600,7 @@ def _summarize_directions(rows: list, model: str) -> pd.DataFrame:
     frame = pd.DataFrame(rows)
     if "sign" not in frame:
         frame["sign"] = np.sign(frame.coef_std).astype(int)
-    for column in ("coef_std", "coef", "ale_net", "ale_range"):
+    for column in ("coef_std", "coef", "beta", "ale_net", "ale_range"):
         if column not in frame:
             frame[column] = np.nan
     if "basis" not in frame:
@@ -627,7 +629,7 @@ def _summarize_directions(rows: list, model: str) -> pd.DataFrame:
         out.append(dict(depth=depth, target=target, source=source, model=model, n_fits=n,
                         coef_std=middle("coef_std", np.nanmedian), coef_std_min=middle("coef_std", np.nanmin),
                         coef_std_max=middle("coef_std", np.nanmax), coef=middle("coef", np.nanmedian),
-                        n_positive=positive, n_negative=negative, n_noise=noise,
+                        beta=middle("beta", np.nanmedian), n_positive=positive, n_negative=negative, n_noise=noise,
                         agreement=(max(positive, negative) / n_real if direction != "zero" else np.nan), direction=direction, basis=g.basis.iloc[0],
                         ale_net=middle("ale_net", np.nanmedian), ale_range=middle("ale_range", np.nanmedian)))
     return pd.DataFrame(out, columns=DIRECTION_COLUMNS)
@@ -749,9 +751,11 @@ def assess_target(data: pd.DataFrame, target: str, candidates: tuple[str, ...], 
                 n_c = len(candidates)
                 chance = np.abs(standardized[n_c:n_c + len(noise_cols)])
                 bar = float(np.quantile(chance, config.noise_quantile)) if len(chance) else 0.0
+                y_sd = float(np.std(ytr, ddof=1))
                 for i, c in enumerate(candidates):
                     directions.append(dict(depth=depth, target=target, source=c, repeat=r, fold=fold,
                                            coef_std=float(standardized[i]), coef=float(raw[i]),
+                                           beta=float(standardized[i]) / y_sd if y_sd > 0 else np.nan,
                                            sign=int(np.sign(standardized[i])), basis="coefficient",
                                            real=bool(abs(standardized[i]) > bar)))
             elif directions is not None:
