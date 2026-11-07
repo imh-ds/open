@@ -254,7 +254,7 @@ def test_arrows_into_a_block_say_how_many_members_a_predictor_feeds():
     fig = report.plot_explore(res)
     labels = [t.get_text() for t in fig.axes[0].texts]
     bundled = [t for t in labels if t.endswith(f"(4 of {len(names)})")]
-    assert bundled and all(re.fullmatch(r"\.\d{3}(–\.\d{3})? \(4 of 4\)", t) for t in bundled)
+    assert bundled and all(re.fullmatch(r"([+−±] )?\.\d{3}(–\.\d{3})? \(4 of 4\)", t) for t in bundled)
     plt.close(fig)
 
 
@@ -346,12 +346,13 @@ def test_bundled_arrow_label_gives_the_effect_range_over_the_members_it_predicts
     res, names = _wide(4, False)                               # each member has its own driver: k = 1
     fig = report.plot_explore(res)
     singles = [t.get_text() for t in fig.axes[0].texts if t.get_text().endswith("(1 of 4)")]
-    assert singles and all(re.fullmatch(r"\.\d{3} \(1 of 4\)", t) for t in singles)
+    assert singles and all(re.fullmatch(r"([+−±] )?\.\d{3} \(1 of 4\)", t) for t in singles)
     plt.close(fig)
     res, names = _wide(4, True)                                # one shared driver: k = 4, a range
     links = res.links[(res.links.kind == "unique") & res.links.target.isin(names) & (res.links.source == "Ctx")]
     low, high = links.r2_median.min(), links.r2_median.max()
     fig = report.plot_explore(res)
     expected = f"{report._apa(low)}–{report._apa(high)} (4 of 4)"
-    assert expected in [t.get_text() for t in fig.axes[0].texts]
+    shown = [t.get_text().removeprefix("+ ").removeprefix("− ").removeprefix("± ") for t in fig.axes[0].texts]
+    assert expected in shown                                     # a sign mark may precede the label
     plt.close(fig)

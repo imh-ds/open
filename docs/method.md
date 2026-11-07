@@ -148,7 +148,7 @@ questions.
 - A block is not a structural equation model. There is no latent variable,
   measurement model or fit index, only a joint predictive test and a grouping.
 
-**Direction of effects** (OLS and Elastic-Net; `GraphStyle(show_direction=True)`, off by default).
+**Direction of effects** (OLS and Elastic-Net; `GraphStyle(show_direction=True)`, on by default).
 
 - An edge's thickness and label show **how much** a predictor matters (held-out
   R² lost). Direction is a separate quantity and is reported separately. A

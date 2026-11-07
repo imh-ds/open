@@ -40,6 +40,7 @@ def test_api_preserves_original_functions_and_types():
         "evaluate_confirmation_fit": ("opennet.confirm", "confirmation_fit"),
         "split_sample": ("opennet.confirm", "split_sample"),
         "effects_table": ("opennet.effects", "effects_table"),
+        "model_table": ("opennet.model_table", "model_table"),
         "plot_network": ("opennet.explore_report", "plot_explore"),
         "plot_discovery": ("opennet.explore_report", "plot_explore"),
         "save_exploration": ("opennet.explore_report", "write_explore"),

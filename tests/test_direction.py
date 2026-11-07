@@ -175,9 +175,12 @@ def _line_colours(fig):
     return [ln.get_color() for ln in fig.axes[0].lines if isinstance(ln, Line2D)]
 
 
-def test_direction_colours_are_opt_in_and_redundantly_marked():
+def test_direction_colours_are_on_by_default_can_be_turned_off_and_are_redundantly_marked():
     res = explore(_data(), "Y", config=ExploreConfig(folds=5, interactions=False))
-    off = report.plot_explore(res)
+    default = report.plot_explore(res)
+    assert report.POSITIVE in _line_colours(default)
+    plt.close(default)
+    off = report.plot_explore(res, show_direction=False)
     assert report.POSITIVE not in _line_colours(off) and report.NEGATIVE not in _line_colours(off)
     plt.close(off)
     on = report.plot_explore(res, show_direction=True)

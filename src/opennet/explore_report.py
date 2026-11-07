@@ -307,8 +307,8 @@ class GraphStyle:
       against the others. Edges
       with no sign (a block's own edge, interactions, learners without coefficients) keep
       the normal colour. The sign describes the fitted model; it is not tested or
-      confirmed, and it is a conditional association, not a benefit or a cause. Off by
-      default. ``effects_table`` gives the numbers.
+      confirmed, and it is a conditional association, not a benefit or a cause. On by
+      default; ``show_direction=False`` turns it off. ``effects_table`` gives the numbers.
     - ``direction_agreement``: the share of the folds with a real effect that must agree on a
       sign for it to be drawn (default 1: every such fold; folds inside the noise range
       do not count). A descriptive setting, not a test.
@@ -341,7 +341,7 @@ class GraphStyle:
     show_r2_legend: bool = True
     show_footnote: bool = True
     show_r2: bool = True
-    show_direction: bool = False
+    show_direction: bool = True
     direction_agreement: float = 1.0
     block_detail: str = "auto"
 

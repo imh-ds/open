@@ -37,8 +37,15 @@ passed, and, for a split result, the confirmation p-values and each target's R²
 on the discovery and confirmation samples. It is also saved as `effects.csv`.
 For OLS and Elastic-Net it also gives the signed estimate and direction from discovery (and
 `directions.csv`), and, for OLS confirmation, the confirmation slope with its HC4 standard
-error and 95% interval. `plot_discovery(result, path, show_direction=True)` colours edges green
-and red by sign. See "Direction of effects" in [the method](method.md).
+error and 95% interval. `plot_discovery(result, path)` colours edges green and red by sign by default
+(`show_direction=False` turns it off). See "Direction of effects" in [the method](method.md).
+
+`model_table(split_result, digits=3, ci="columns")` builds an APA-style table of the stepwise models:
+one column group per variable with predictors, upstream first and the final outcome last, with
+observations and R² on the discovery and confirmation samples. `ci="columns"` gives Estimate, Lower,
+Upper and *p* columns (no asterisks); `ci="stacked"` gives one column per model with asterisks and
+the interval in brackets on the next line. `digits` sets the decimals of every non-whole number. The result
+has `.data` (strings), `.html`, and `.save("table.html")` or `.save("table.csv")`.
 
 ## Choose the function for your task
 
