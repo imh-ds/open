@@ -163,12 +163,12 @@ questions.
   columns' coefficients in that same fold: a coefficient of -0.05 beside
   +0.32 elsewhere is then chance-sized and does not undo the sign. `direction`
   is taken over the remaining folds: "positive" or "negative" when all have that
-  sign, "mixed" when folds with a real effect disagree, and "zero" when no fold
-  shows one. No new cutoff is introduced. `agreement` (the share of real folds
+  sign, "mixed" when folds with a real effect disagree, and "zero" when no more
+  than half of the folds show a real effect (a sign backed by a minority of
+  folds is not shown). The only added rule is that majority. `agreement` (the share of real folds
   with the majority sign) is given so you can decide, and
   `GraphStyle(direction_agreement=...)` draws a majority sign when at least
-  that share agree. Abstaining is not a test of the effect: a sign supported
-  by few real folds is shown with `n_noise` so it can be discounted. This describes the fitted model; it was
+  that share agree. Abstaining is not a test of the effect; `n_noise` shows how many folds abstained. This describes the fitted model; it was
   not tested or confirmed. Elastic-Net coefficients are penalized, so they depend
   on the penalty chosen in each fold and a weak predictor can be exactly zero.
 - **Confirmation slope.** The OLS confirmation test also reports the frozen
@@ -193,9 +193,10 @@ questions.
   the data are used), and the mean prediction change per bin is accumulated across
   the predictor's range. Judged against the package's own noise reference, the
   permuted noise columns in the same fitted model: a profile that moves no more
-  than the noise columns' `noise_quantile` is "zero"; otherwise, if the bins that
-  change by more than the noise columns' bins all move up it is "positive", all
-  down "negative", and if it rises and falls it is "mixed". `ale_net` is the net
+  than the noise columns' `noise_quantile` of movement is "zero"; otherwise a climb
+  (or drop) from one point of the profile to a later one counts when it exceeds that same
+  noise range: only climbing is "positive", only dropping "negative", and if it
+  does both it is "mixed". A small dip inside a long climb is not a drop. `ale_net` is the net
   change over the range and `ale_range` the distance between its highest and
   lowest points, in outcome units. Limits: the profile averages over interactions
   (a predictor whose effect flips with another has a flat or mixed profile, not

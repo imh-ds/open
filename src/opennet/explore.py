@@ -551,12 +551,12 @@ def _profile_rows(model, frame: pd.DataFrame, candidates, noise_columns, quantil
 
     The profile is evaluated on this fold's training rows. The reference is the package's own: the permuted noise
     columns of the same fitted model. A candidate whose profile moves no more than the ``quantile`` of the noise
-    columns' movement is "flat" (sign 0). Otherwise its bins that change by more than the ``quantile`` of the noise
-    columns' bin changes decide: all up is "increasing" (+1), all down "decreasing" (-1), both ways "mixed" (9).
+    columns' movement is "flat" (sign 0). Otherwise a rise (a climb from one point of the profile to a later one)
+    or a fall counts when it exceeds that same noise range: only rising is "increasing" (+1), only falling
+    "decreasing" (-1), both "mixed" (9). A small dip inside a long climb is therefore not a fall.
     The profile averages over interactions with other columns, so it does not separate them.
     """
     noise = [e for e in (_local_effects(model.predict, frame, c) for c in noise_columns) if e is not None]
-    bin_bar = float(np.quantile(np.abs(np.concatenate(noise)), quantile)) if noise else 0.0
     range_bar = (float(np.quantile([np.ptp(np.concatenate([[0.0], np.cumsum(e)])) for e in noise], quantile))
                  if noise else 0.0)
     rows = []
@@ -566,12 +566,12 @@ def _profile_rows(model, frame: pd.DataFrame, candidates, noise_columns, quantil
             continue
         path = np.concatenate([[0.0], np.cumsum(effects)])
         spread = float(path.max() - path.min())
-        if spread <= range_bar:                      # no more movement than a permuted noise column shows
-            sign = 0
-        else:
-            real = effects[np.abs(effects) > bin_bar]
-            real = real if len(real) else effects
-            sign = 1 if (real > 0).all() else -1 if (real < 0).all() else 9
+        # a rise (or fall) is real when the profile climbs (or drops) from some point to a later one by more than
+        # a permuted noise column's whole range ever moves; a small dip inside a long climb is not a fall
+        rise = max(float((path[j] - path[:j]).max()) for j in range(1, len(path)))
+        fall = max(float((path[:j] - path[j]).max()) for j in range(1, len(path)))
+        up, down = rise > range_bar, fall > range_bar
+        sign = 9 if (up and down) else 1 if up else -1 if down else 0
         rows.append(dict(depth=depth, target=target, source=c, repeat=repeat, fold=fold, coef_std=np.nan,
                          coef=np.nan, sign=sign, basis="ale", real=sign != 0, ale_net=float(path[-1]),
                          ale_range=spread))
@@ -588,9 +588,9 @@ def _summarize_directions(rows: list, model: str) -> pd.DataFrame:
     and ``ale_range`` the median distance between its highest and lowest points, in outcome units.
     A fit whose effect lies within what the permuted noise columns of the same fit show (``real`` False) abstains:
     it is counted in ``n_noise`` and neither supports nor opposes a sign, so one fold that wobbles across zero does
-    not undo the others. ``direction`` is then taken over the remaining fits and uses no cutoff of its own:
-    "positive" or "negative" when every real fit has that sign, "mixed" when real fits disagree or a profile
-    rises and falls beyond noise, "zero" when no fit shows a real effect. ``agreement`` is the share of real fits
+    not undo the others. ``direction`` is then taken over the remaining fits: "positive" or "negative" when every
+    real fit has that sign, "mixed" when real fits disagree or a profile rises and falls beyond noise, and "zero"
+    when no more than half of the fits show a real effect (a sign backed by a minority of folds is not shown). ``agreement`` is the share of real fits
     with the majority sign. Nothing here is a test.
     """
     if not rows:
@@ -613,8 +613,8 @@ def _summarize_directions(rows: list, model: str) -> pd.DataFrame:
         positive, negative, mixed = int((sign == 1).sum()), int((sign == -1).sum()), int((sign == 9).sum())
         noise = n - int(real.sum())
         n_real = n - noise
-        if n_real == 0:
-            direction = "zero"
+        if n_real * 2 <= n:
+            direction = "zero"             # no sign has a real effect in most folds: nothing stable to show
         elif mixed or (positive and negative):
             direction = "mixed"            # real fits disagree, or a profile rises and falls beyond noise
         else:
@@ -628,7 +628,7 @@ def _summarize_directions(rows: list, model: str) -> pd.DataFrame:
                         coef_std=middle("coef_std", np.nanmedian), coef_std_min=middle("coef_std", np.nanmin),
                         coef_std_max=middle("coef_std", np.nanmax), coef=middle("coef", np.nanmedian),
                         n_positive=positive, n_negative=negative, n_noise=noise,
-                        agreement=max(positive, negative) / n_real if n_real else np.nan, direction=direction, basis=g.basis.iloc[0],
+                        agreement=(max(positive, negative) / n_real if direction != "zero" else np.nan), direction=direction, basis=g.basis.iloc[0],
                         ale_net=middle("ale_net", np.nanmedian), ale_range=middle("ale_range", np.nanmedian)))
     return pd.DataFrame(out, columns=DIRECTION_COLUMNS)
 

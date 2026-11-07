@@ -111,6 +111,18 @@ def test_a_fold_inside_the_noise_range_abstains_instead_of_vetoing_the_sign():
     assert np.isnan(summarize([.02], [False]).agreement)
     shrunk = summarize([.2, 0, .3], [True, False, True])                         # Elastic-Net zero abstains too
     assert shrunk.direction == "positive" and shrunk.n_noise == 1
+    minority = summarize([.3, .3, .01, .02, -.02], [True, True, False, False, False])
+    assert minority.direction == "zero" and minority.n_positive == 2     # 2 of 5 real folds: no stable sign
+
+
+def test_a_small_dip_inside_a_long_climb_is_not_a_fall():
+    frame = _frame()
+
+    def formula(f):                                   # steady climb with a shallow wiggle in the middle
+        return (2 * f.up + .05 * np.sin(6 * f.up) + .01 * f.noise_up - .01 * f.noise_down).to_numpy()
+
+    rows = _profile_rows(_Function(formula), frame, ["up"], ["noise_up", "noise_down"], .95, 1, "Y", 0, 0)
+    assert rows[0]["sign"] == 1
 
 
 def test_linear_discovery_marks_chance_sized_coefficients_with_the_noise_columns():
