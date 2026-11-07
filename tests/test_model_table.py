@@ -287,3 +287,39 @@ def test_model_labels_can_be_customised_or_turned_off(result):
     for bad in (["only one"], {"nobody": "x"}, "Model 1", 3):
         with pytest.raises(ValueError, match="model_labels"):
             model_table(result, model_labels=bad)
+
+
+def test_include_matches_the_links_of_the_graph_and_the_confirmation(result):
+    e = effects_table(result, include="all")
+    unique = e[e.kind == "unique"]
+    drawn = model_table(result)
+    kept = model_table(result, include="kept")
+    confirmed = model_table(result, include="confirmed")
+
+    def cells(t):
+        return {(m, v) for v in t.data.index for (m, s), x in t.data.loc[v].items()
+                if s == "β" and v not in ("Observations", "R² Discovery", "R² Confirmation") and x != ""}
+
+    def expected(frame):
+        return {(t.replace("_", " ").title(), p.replace("_", " ").title()) for t, p in zip(frame.target, frame.predictor)}
+
+    in_graph_solid = unique[unique.tier == "kept"]
+    assert cells(kept) == expected(in_graph_solid)                         # exactly the solid edges
+    assert cells(kept) <= cells(drawn) and cells(confirmed) <= cells(kept)
+    assert cells(drawn) - cells(kept)                                       # the flagged link is what drops
+    flagged = unique[(unique.tier == "flagged")]
+    for _, row in flagged.iterrows():
+        assert (row.target.replace("_", " ").title(), row.predictor.replace("_", " ").title()) not in cells(kept)
+    confirmed_pairs = unique[unique.confirmed.eq(True)]
+    assert cells(confirmed) == expected(confirmed_pairs)
+    assert "†" not in confirmed.html.split("<table>")[1].split("</table>")[0]   # confirmed cells are all tested
+    assert "flagged links are not" in kept.html and "confirmed in the confirmation sample" in confirmed.html
+    assert any("Only links kept" in c for c in kept.conventions)
+
+
+def test_include_is_validated_and_confirmed_needs_a_confirmation(result):
+    with pytest.raises(ValueError, match="include"):
+        model_table(result, include="all")
+    with pytest.raises(ValueError, match="needs a confirmation"):
+        model_table(result.exploration, include="confirmed")
+    assert model_table(result, include="kept", ci="stacked").ci == "stacked"

@@ -38,6 +38,7 @@ import pandas as pd
 from .effects import effects_table
 
 CI_LAYOUTS = ("columns", "stacked")
+INCLUDES = ("drawn", "kept", "confirmed")
 BRACKETS = {"parentheses": ("(", ")"), "square": ("[", "]")}
 
 _STYLE = """<style>
@@ -138,14 +139,18 @@ _COEFFICIENTS = {"standardized": "standardized", "std": "standardized", "beta": 
 
 def model_table(result, confirmation: pd.DataFrame | None = None, *, coefficient: str = "standardized",
                 digits: int = 3, ci: str = "columns", brackets: str = "parentheses",
-                labels: dict | None = None, model_labels=True, title: str | None = None,
-                number: int | str | None = 1) -> ModelTable:
+                include: str = "drawn", labels: dict | None = None, model_labels=True,
+                title: str | None = None, number: int | str | None = 1) -> ModelTable:
     """Build the model table of a discovered network. See the module documentation.
 
     ``result`` is a split result (confirmation estimates are used) or a discovery result (discovery coefficients
     only); ``confirmation`` supplies a confirmation table for a discovery result, as in ``effects_table``.
     ``coefficient`` is ``"standardized"`` (default; fully standardized beta, aliases "std" and "beta") or
     ``"unstandardized"`` (B in original units; aliases "unstd" and "raw"). ``digits`` is the number of decimals for estimates, interval bounds, p-values and R² (default 3).
+    ``include`` chooses the links: ``"drawn"`` (default, as in ``effects_table`` and the graph) shows kept and
+    flagged links, flagged ones as discovery-only † cells; ``"kept"`` shows only the links kept in discovery, the
+    solid edges of the graph; ``"confirmed"`` shows only kept links the confirmation sample confirmed (it needs a
+    confirmation, so no † cells remain). A model with no remaining link drops out of the table.
     ``ci`` is ``"columns"`` or ``"stacked"``. ``brackets`` is ``"parentheses"`` (default) or ``"square"`` and
     sets what encloses the interval in the stacked layout and its header. ``labels`` maps variable names to display names (default: the
     name with underscores as spaces, title-cased). ``model_labels`` sets the row above the outcome names: True
@@ -155,6 +160,8 @@ def model_table(result, confirmation: pd.DataFrame | None = None, *, coefficient
     """
     if ci not in CI_LAYOUTS:
         raise ValueError(f"ci must be one of {CI_LAYOUTS}")
+    if include not in INCLUDES:
+        raise ValueError(f"include must be one of {INCLUDES}")
     if brackets not in BRACKETS:
         raise ValueError(f"brackets must be one of {tuple(BRACKETS)}")
     left, right = BRACKETS[brackets]
@@ -171,10 +178,14 @@ def model_table(result, confirmation: pd.DataFrame | None = None, *, coefficient
     name = lambda v: labels.get(v, _title(v))
 
     confirmation = getattr(result, "confirmation", None) if confirmation is None else confirmation
-    effects = effects_table(result, confirmation)
+    effects = effects_table(result, confirmation, include="drawn" if include == "drawn" else "kept")
+    if include == "confirmed":
+        if confirmation is None or not len(confirmation):
+            raise ValueError('include="confirmed" needs a confirmation: pass a split result or a confirmation table')
+        effects = effects[effects.confirmed.eq(True)]
     effects = effects[effects.kind == "unique"]
     if not len(effects):
-        raise ValueError("the result has no links to tabulate")
+        raise ValueError(f'no links to tabulate with include="{include}"')
     if effects.estimate.isna().all() and effects.slope.isna().all():
         raise ValueError("no signed estimates: this learner has no coefficients. Use effects_table for the "
                          "measures it does have (delta_r2, direction).")
@@ -291,6 +302,10 @@ def model_table(result, confirmation: pd.DataFrame | None = None, *, coefficient
             + "; <i>p</i> values are adjusted for multiplicity.", scale,
             "Blank cells are variables not kept as a predictor in that model; they were not necessarily absent "
             "from the pool the procedure assessed."]
+    if include == "kept":
+        note.append("Only links kept in discovery are shown; flagged links are not.")
+    elif include == "confirmed":
+        note.append("Only links kept in discovery and confirmed in the confirmation sample are shown.")
     if any(label.endswith("Discovery") for label, _, _ in fit_rows):
         note.append("<i>R</i><sup>2</sup> Discovery is the held-out fit in the discovery sample.")
     if any(not c[4] for c in cells.values()):

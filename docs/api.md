@@ -48,7 +48,8 @@ observations (the confirmation complete cases per model) and R² on the discover
 is never labelled β (`effects_table` keeps it as `estimate_std`). `ci="columns"` gives β/B, Lower, Upper and *p*
 columns (no asterisks); `ci="stacked"` gives one column per model with asterisks and the interval in parentheses on the
 next line (`brackets="square"` for square brackets), under a "β (95% CI)" header row. Discovery-only cells (flagged links, Elastic-Net; no interval or
-*p*) are marked † in grey italics. `digits` sets the decimals of every non-whole number. A row of model numbers ("Model 1", "Model 2", ... left to right) sits above the outcome names;
+*p*) are marked † in grey italics. `digits` sets the decimals of every non-whole number. `include="drawn"` (default) shows kept and flagged links, `"kept"` only the links kept in discovery (the solid edges
+of the graph), and `"confirmed"` only kept links the confirmation confirmed. A row of model numbers ("Model 1", "Model 2", ... left to right) sits above the outcome names;
 `model_labels=False` removes it and a list or dict sets your own labels (the CSV gets them as an extra header row). The result
 has `.data` (strings), `.html`, and `.save("table.html")` or `.save("table.csv")`.
 
