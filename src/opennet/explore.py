@@ -61,7 +61,7 @@ DIRECTION_COLUMNS = ["depth", "target", "source", "model", "n_fits", "coef_std",
                      "basis", "ale_net", "ale_range"]
 ALE_BINS = 10      # quantile bins of the accumulated local effect profile
 FIT_COLUMNS = ["depth", "target", "pool_size", "network_size", "network", "r2_network", "r2_pool",
-               "share_of_pool", "folds"]
+               "share_of_pool", "folds", "n"]
 
 
 def _validate_blocks(blocks) -> tuple | None:
@@ -669,7 +669,8 @@ def network_fit(data: pd.DataFrame, target: str, pool: tuple[str, ...], network:
     net, full = float(np.mean(r2["network"])), float(np.mean(r2["pool"]))
     return dict(depth=depth, target=target, pool_size=len(pool), network_size=len(network),
                 network=network, r2_network=net, r2_pool=full,
-                share_of_pool=net / full if full > 0 else np.nan, folds=len(r2["pool"]))
+                share_of_pool=net / full if full > 0 else np.nan, folds=len(r2["pool"]),
+                n=int(observed.sum()))
 
 
 def assess_target(data: pd.DataFrame, target: str, candidates: tuple[str, ...], fold_ids,

@@ -1,11 +1,16 @@
 import re
+from dataclasses import replace
 
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import pytest
 from scipy import stats
 
 from opennet.api import DiscoveryConfig, analyze, model_table, effects_table, split_sample
+from opennet import explore_report as report
 from opennet.confirm import frozen_network
 from opennet.model_table import _bounded, _number, _p_text, _stars
 
@@ -156,16 +161,34 @@ def test_columns_layout_has_separate_bounds_and_a_p_column_without_asterisks(res
     cell = t.data.loc["Strain", ("Wellbeing", "β")]
     assert re.fullmatch(r"-0\.\d{3}", cell)                                          # three decimals by default
     assert t.data.loc["Strain", ("Wellbeing", "p")] == "<.001"
-    assert {"Observations", "R² Discovery", "R² Confirmation"} <= set(t.data.index)
+    assert {"Observations Discovery", "Observations Confirmation", "R² Discovery",
+            "R² Confirmation"} <= set(t.data.index)
     assert t.data.loc["R² Confirmation", ("Wellbeing", "β")].startswith(".")
 
 
-def test_observations_are_the_confirmation_complete_cases_per_model(result, data):
+def test_observations_distinguish_the_discovery_and_confirmation_samples(result, data):
     t = model_table(result)
+    explore_part, _ = split_sample(data, result.settings["explore_fraction"], result.settings["split_seed"])
     for target in t.models:
+        label = target.replace("_", " ").title()
         pool, X, y = _confirmation_rows(result, data, target)
-        shown = int(t.data.loc["Observations", (target.replace("_", " ").title(), "β")])
-        assert shown == len(y)
+        assert int(t.data.loc["Observations Confirmation", (label, "β")]) == len(y)
+        assert int(t.data.loc["Observations Discovery", (label, "β")]) == int(explore_part[target].notna().sum())
+    assert "Observations" not in t.data.index                              # replaced by the two rows
+    rows = re.findall(r"<tr[^>]*>.*?</tr>", t.html, flags=re.S)
+    assert any("Observations Discovery" in r for r in rows) and any("Observations Confirmation" in r for r in rows)
+    assert 'class="last"' not in "".join(rows[:-1])                        # still no rule between the fit rows
+
+
+def test_observations_collapse_to_one_row_when_the_samples_are_the_same_size(result):
+    same = result.confirmation.copy()
+    fit = result.exploration.fit.set_index("target").n
+    same["n"] = same.target.map(fit)
+    t = model_table(result.exploration, same)
+    assert "Observations" in t.data.index and "Observations Discovery" not in t.data.index
+    only_discovery = model_table(result.exploration)                           # no confirmation: discovery counts
+    assert "Observations" in only_discovery.data.index
+    assert only_discovery.data.loc["Observations"].iloc[0] == str(int(fit[only_discovery.models[0]]))
 
 
 def test_digits_changes_every_non_whole_number(result):
@@ -229,7 +252,7 @@ def test_export_formats_carry_the_labels_and_the_conventions(result, tmp_path):
     page = (tmp_path / "m.html").read_text(encoding="utf-8")
     assert page.startswith("<!doctype html>") and "Well-Being" in page and "Table 2" in page
     csv = pd.read_csv(tmp_path / "m.csv", header=[0, 1, 2], index_col=0)
-    assert ("Model 3", "Well-Being", "β (95% CI)") in csv.columns and "Observations" in csv.index
+    assert ("Model 3", "Well-Being", "β (95% CI)") in csv.columns and "Observations Discovery" in csv.index
     model_table(result, ci="stacked", model_labels=False).save(tmp_path / "plain.csv")
     plain = pd.read_csv(tmp_path / "plain.csv", header=[0, 1], index_col=0)
     assert ("Skill", "β (95% CI)") in plain.columns                             # no number row, no extra header
@@ -298,7 +321,7 @@ def test_include_matches_the_links_of_the_graph_and_the_confirmation(result):
 
     def cells(t):
         return {(m, v) for v in t.data.index for (m, s), x in t.data.loc[v].items()
-                if s == "β" and v not in ("Observations", "R² Discovery", "R² Confirmation") and x != ""}
+                if s == "β" and v not in _FIT_ROWS and x != ""}
 
     def expected(frame):
         return {(t.replace("_", " ").title(), p.replace("_", " ").title()) for t, p in zip(frame.target, frame.predictor)}
@@ -323,3 +346,89 @@ def test_include_is_validated_and_confirmed_needs_a_confirmation(result):
     with pytest.raises(ValueError, match="needs a confirmation"):
         model_table(result.exploration, include="confirmed")
     assert model_table(result, include="kept", ci="stacked").ci == "stacked"
+
+
+_FIT_ROWS = {"Observations", "Observations Discovery", "Observations Confirmation", "R² Discovery", "R² Confirmation"}
+
+
+def _cells(t):
+    """{(model label, predictor label)} for every filled predictor cell of a model table."""
+    first = t.data.columns.get_level_values(1)[0]
+    return {(m, v) for v in t.data.index if v not in _FIT_ROWS
+            for (m, s), x in t.data.loc[v].items() if s == first and x != ""}
+
+
+def _forge_tiers(result, target, tier):
+    """The same result with every kept link of ``target`` demoted to ``tier`` (its estimates are untouched)."""
+    links = result.exploration.links.copy()
+    links.loc[(links.target == target) & (links.tier == "kept"), "tier"] = tier
+    return replace(result.exploration, links=links)
+
+
+def test_a_model_without_a_retained_predictor_has_no_column_but_stays_a_predictor_row(result):
+    forged = _forge_tiers(result, "strain", "flagged")                   # strain keeps nothing: it is only flagged
+    kept = model_table(forged, result.confirmation, include="kept")
+    assert "strain" not in kept.models
+    assert "Strain" not in kept.data.columns.get_level_values(0)
+    assert "Strain" in kept.data.index and ("Wellbeing", "Strain") in _cells(kept)   # still a row, for wellbeing
+    drawn = model_table(forged, result.confirmation, include="drawn")
+    assert "strain" in drawn.models and ("Strain", "Support") in _cells(drawn)        # flagged links bring it back
+    assert 'class="n disc"' in drawn.html and "†" in drawn.html                       # as discovery-only † cells
+    assert "†" not in kept.html.split("<table>")[1].split("</table>")[0]
+    nothing = result.exploration.links.assign(tier="flagged")
+    with pytest.raises(ValueError, match='include="kept"'):
+        model_table(replace(result.exploration, links=nothing), result.confirmation, include="kept")
+
+
+def test_predictor_rows_follow_their_first_appearance_with_a_deterministic_tie_break(result):
+    t = model_table(result, include="kept")
+    outcomes = list(dict.fromkeys(t.data.columns.get_level_values(0)))                # left to right
+    stat = t.data.columns[0][1]
+    rows = [v for v in t.data.index if v not in _FIT_ROWS]
+    first_model = {v: min(i for i, m in enumerate(outcomes) if t.data.loc[v, (m, stat)] != "") for v in rows}
+    order = [first_model[v] for v in rows]
+    assert order == sorted(order)                                         # never a later model before an earlier one
+    for a, b in zip(rows, rows[1:]):                                      # ties: alphabetical by display name
+        if first_model[a] == first_model[b]:
+            assert a.casefold() <= b.casefold()
+    assert rows == ["Autonomy", "Support", "Skill", "Strain"]            # Skill and Strain first appear together
+    assert first_model["Skill"] == first_model["Strain"] > first_model["Support"]
+    shuffled = replace(result.exploration, links=result.exploration.links.iloc[::-1].reset_index(drop=True))
+    again = [v for v in model_table(shuffled, result.confirmation, include="kept").data.index if v not in _FIT_ROWS]
+    assert again == rows                                                  # link order in the result does not matter
+
+
+def test_a_variable_at_the_depth_cap_is_a_predictor_row_never_an_outcome_column(data):
+    config = DiscoveryConfig(folds=5, interactions=False, max_depth=1)
+    t = model_table(analyze(data, outcome="wellbeing", config=config), include="kept")
+    assert list(t.models) == ["wellbeing"]                                # strain and skill were never assessed
+    assert {"Strain", "Skill"} <= set(t.data.index)
+    assert not ({"Strain", "Skill"} & set(t.data.columns.get_level_values(0)))
+    assert "Model 2" not in t.html
+    deeper = model_table(analyze(data, outcome="wellbeing",
+                                 config=DiscoveryConfig(folds=5, interactions=False)), include="kept")
+    assert len(deeper.models) > len(t.models)                             # without a cap the models are assessed
+
+
+def test_include_kept_matches_the_graphs_retained_edges(result):
+    fig = report.plot_explore(result.exploration, show_flagged=False)
+    labels = [x.get_text() for x in fig.axes[0].texts if re.search(r"\(\d+/\d+\)", x.get_text())]
+    plt.close(fig)
+    links = result.exploration.links
+    kept = model_table(result, include="kept")
+    assert len(labels) == len(_cells(kept)) == int(((links.tier == "kept") & (links.kind == "unique")).sum())
+    flagged = links[(links.tier == "flagged") & (links.kind == "unique")]
+    assert len(_cells(model_table(result, include="drawn"))) == len(_cells(kept)) + len(flagged)
+
+
+def test_new_rows_reach_html_and_csv_in_both_layouts(result, tmp_path):
+    for ci in ("columns", "stacked"):
+        t = model_table(result, ci=ci, include="kept")
+        t.save(tmp_path / f"{ci}.csv")
+        t.save(tmp_path / f"{ci}.html")
+        csv = pd.read_csv(tmp_path / f"{ci}.csv", header=[0, 1, 2], index_col=0)
+        assert {"Observations Discovery", "Observations Confirmation"} <= set(csv.index)
+        assert list(csv.index[:4]) == ["Autonomy", "Support", "Skill", "Strain"]
+        page = (tmp_path / f"{ci}.html").read_text(encoding="utf-8")
+        assert "Observations Discovery" in page and "Only links kept in discovery" in page
+        assert page.index("Autonomy</td>") < page.index("Support</td>") < page.index("Skill</td>") < page.index("Strain</td>")

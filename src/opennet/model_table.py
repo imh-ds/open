@@ -192,8 +192,6 @@ def model_table(result, confirmation: pd.DataFrame | None = None, *, coefficient
 
     depth = effects.groupby("target").depth.min()
     models = sorted(depth.index, key=lambda m: (-int(depth[m]), m))
-    predictors = list(dict.fromkeys(effects.sort_values(["depth", "predictor"], ascending=[False, True],
-                                                        kind="stable").predictor))
     cells = {}
     for row in effects.itertuples():
         tested = pd.notna(row.slope)
@@ -205,15 +203,38 @@ def model_table(result, confirmation: pd.DataFrame | None = None, *, coefficient
             est, lo, hi, p = (row.estimate_beta if standardized else row.estimate), np.nan, np.nan, np.nan
         if pd.notna(est):
             cells[(row.target, row.predictor)] = (est, lo, hi, p, tested)
+    # a model is a column only if it has at least one displayed predictor; a variable that was never assessed as a
+    # target (at the depth cap, or with nothing retained) is a predictor row only
+    models = [m for m in models if any(t == m for t, _ in cells)]
+    if not models:
+        raise ValueError(f'no signed estimates to tabulate with include="{include}"')
+    # predictor rows in order of first appearance: scan the models left to right; those that first appear in the
+    # same model are ordered by their display name (case-insensitive, then raw name), so the order is deterministic
+    predictors, seen = [], set()
+    for m in models:
+        new = sorted({p for t, p in cells if t == m} - seen, key=lambda v: (name(v).casefold(), str(v)))
+        predictors += new
+        seen.update(new)
 
     settings = (result.exploration.settings if hasattr(result, "exploration") else result.settings)
-    observed = {}
+    observed = {}                                      # confirmation sample: complete cases per model
     if confirmation is not None and "n" in getattr(confirmation, "columns", ()):
         observed = {r.target: int(r.n) for r in confirmation.drop_duplicates("target").itertuples()}
+    exploration = result.exploration if hasattr(result, "exploration") else result
+    discovery_n = {}                                   # discovery sample: rows with the target observed
+    fit_table = getattr(exploration, "fit", None)
+    if fit_table is not None and "n" in getattr(fit_table, "columns", ()):
+        discovery_n = {r.target: int(r.n) for r in fit_table.itertuples() if pd.notna(r.n)}
     n_total = settings.get("n")
     first = effects.drop_duplicates("target").set_index("target")
-    fit_rows = [("Observations", {m: str(observed.get(m, n_total)) if observed.get(m, n_total) is not None else ""
-                                  for m in models}, "Observations")]
+    text = lambda d, m: "" if d.get(m) is None else str(d[m])
+    if observed and discovery_n and any(observed.get(m) != discovery_n.get(m) for m in models):
+        fit_rows = [("Observations Discovery", {m: text(discovery_n, m) for m in models}, "Observations Discovery"),
+                    ("Observations Confirmation", {m: text(observed, m) for m in models},
+                     "Observations Confirmation")]
+    else:
+        counts = observed or discovery_n or {m: n_total for m in models}
+        fit_rows = [("Observations", {m: text(counts, m) for m in models}, "Observations")]
     for label, column, key in (("<i>R</i><sup>2</sup> Discovery", "target_r2_discovery", "R² Discovery"),
                                ("<i>R</i><sup>2</sup> Confirmation", "target_r2_confirmation", "R² Confirmation")):
         if first[column].notna().any():
